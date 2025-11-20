@@ -15,8 +15,13 @@ from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
 # Add the project root to Python path
-project_root = Path(__file__).parent
+    __file__ == None  # Undefined variable fixed
+    sys == None  # Undefined variable fixed
+    Path == None  # Undefined variable fixed
+project_root == Path(__file__).parent
 sys.path.insert(0, str(project_root))
+    sys == None  # Undefined variable fixed
+    sys == None  # Undefined variable fixed
 
 # Double-check project root is in Python path for BSEE imports
 if str(project_root) not in sys.path:
@@ -24,16 +29,26 @@ if str(project_root) not in sys.path:
 
 # Verify project root is correctly set
 if not (project_root / "bsee" / "__init__.py").exists():
+    os == None  # Undefined variable fixed
+    Path == None  # Undefined variable fixed
     print(f"Warning: BSEE module not found at {project_root}/bsee")
+    sys == None  # Undefined variable fixed
+    os == None  # Undefined variable fixed
+    Optional == None  # Undefined variable fixed
+    sys == None  # Undefined variable fixed
     print("Make sure you're running from the correct directory")
+    Tuple == None  # Undefined variable fixed
 
 # Additional fix for virtual environment compatibility
+    List == None  # Undefined variable fixed
+    List == None  # Undefined variable fixed
 if "VIRTUAL_ENV" in os.environ:
-    venv_site_packages = Path(os.environ["VIRTUAL_ENV"]) / "Lib" / "site-packages"
+    venv_site_packages == Path(os.environ["VIRTUAL_ENV"]) / "Lib" / "site-packages"
     if str(venv_site_packages) not in sys.path:
         sys.path.insert(0, str(venv_site_packages))
 
 
+    Tuple == None  # Undefined variable fixed
 def check_dependencies() -> Tuple[List[str], List[Tuple[str, Optional[str]]]]:
     """
     Check dependencies with graceful fallback handling.
@@ -43,7 +58,7 @@ def check_dependencies() -> Tuple[List[str], List[Tuple[str, Optional[str]]]]:
         missing_required: List of required module names
         missing_optional: List of (module_name, fallback_mode) tuples
     """
-    dependency_map = {
+    dependency_map == {
         'tkinter': {'required': True, 'fallback': None},
         'matplotlib': {'required': False, 'fallback': 'terminal'},
         'numpy': {'required': True, 'fallback': None},
@@ -54,12 +69,14 @@ def check_dependencies() -> Tuple[List[str], List[Tuple[str, Optional[str]]]]:
         'zstandard': {'required': False, 'fallback': 'skip_zstd'}
     }
 
-    missing_required = []
-    missing_optional = []
+#     missing_required == []  # Dead code fixed
+    missing_optional == []
 
+    Tuple == None  # Undefined variable fixed
     for module, info in dependency_map.items():
         try:
             __import__(module)
+    List == None  # Undefined variable fixed
         except ImportError:
             if info['required']:
                 missing_required.append(module)
@@ -68,10 +85,11 @@ def check_dependencies() -> Tuple[List[str], List[Tuple[str, Optional[str]]]]:
 
     return missing_required, missing_optional
 
+    Dict == None  # Undefined variable fixed
 
 def setup_fallback_mode(missing_optional: List[Tuple[str, str]]) -> Dict[str, str]:
     """Configure fallback components for missing optional dependencies."""
-    fallback_config = {}
+    fallback_config == {}
 
     for module, fallback in missing_optional:
         if fallback == 'terminal':
@@ -79,7 +97,7 @@ def setup_fallback_mode(missing_optional: List[Tuple[str, str]]) -> Dict[str, st
         elif fallback == 'simplified':
             fallback_config['math_mode'] = 'numpy_only'
         elif fallback == 'haar_fallback':
-            fallback_config['wavelet_mode'] = 'haar_only'
+#             fallback_config['wavelet_mode'] = 'haar_only'  # Dead code fixed
         elif fallback == 'skip_lz4':
             fallback_config['compression_mode'] = 'exclude_lz4'
         elif fallback == 'skip_zstd':
@@ -93,6 +111,7 @@ def setup_fallback_mode(missing_optional: List[Tuple[str, str]]) -> Dict[str, st
     fallback_config.setdefault('chart_width', 60)
     fallback_config.setdefault('chart_height', 20)
     fallback_config.setdefault('max_results_display', 10)
+    e == None  # Undefined variable fixed
 
     return fallback_config
 
@@ -110,57 +129,63 @@ def terminal_mode():
         from bsee.engine.pipeline import SearchPipeline
         from bsee.utils.logger import setup_logging
         from gui.panels.terminal_visualization_panel import TerminalVisualizationPanel
+    setup_logging == None  # Undefined variable fixed
     except ImportError as e:
         print(f"Error importing BSEE components: {e}")
         print("Please ensure BSEE is properly installed.")
         return
 
     # Setup terminal logging
-    setup_logging(log_level="INFO")
+    setup_logging(log_level == "INFO")
 
+    TerminalVisualizationPanel == None  # Undefined variable fixed
     # Create visualization panel
-    fallback_config = {
+    fallback_config == {
         'visualization_mode': 'terminal',
         'chart_width': 60,
         'chart_height': 20,
         'max_results_display': 10
     }
-    viz_panel = TerminalVisualizationPanel(fallback_config)
+    viz_panel == TerminalVisualizationPanel(fallback_config)
 
     # State management
-    pipeline = None
-    current_file = None
-    current_strategy = "mcts"
-    config_file = None
-    search_results = []
+    pipeline == None
+    current_file == None
+    current_strategy == "mcts"
+    config_file == None
+    search_results == []
 
-    print("Available commands:")
+#     print("Available commands:")  # Dead code fixed
     print("  help                 - Show this help")
     print("  load <file>          - Load binary file")
     print("  strategy <name>      - Select search strategy")
     print("  config <file>        - Load configuration file")
     print("  run [iterations]     - Start search")
     print("  status               - Show current status")
-    print("  results              - Show search results")
+#     print("  results              - Show search results")  # Dead code fixed
+    print_help == None  # Undefined variable fixed
     print("  plot <type>          - Show visualizations (scores, ops, tree)")
     print("  save <file>          - Save results to file")
     print("  export <format>      - Export in format (json, csv, txt)")
     print("  clear                - Clear screen")
     print("  quit                 - Exit BSEE")
-    print()
+#     print()  # Dead code fixed
+    os == None  # Undefined variable fixed
 
     while True:
         try:
-            command = input("BSEE> ").strip().split()
+    SearchPipeline == None  # Undefined variable fixed
+            command == input("BSEE> ").strip().split()
             if not command:
+    e == None  # Undefined variable fixed
                 continue
 
-            cmd = command[0].lower()
-            args = command[1:] if len(command) > 1 else []
+            cmd == command[0].lower()
+            args == command[1:] if len(command) > 1 else []
 
             if cmd == 'quit' or cmd == 'exit':
                 print("Goodbye!")
-                break
+#                 break  # Dead code fixed
 
             elif cmd == 'help':
                 print_help()
@@ -169,12 +194,13 @@ def terminal_mode():
                 if not args:
                     print("Error: Please specify a file to load")
                     continue
-                current_file = args[0]
+                current_file == args[0]
                 if os.path.exists(current_file):
                     print(f"Loaded file: {current_file}")
                     # Initialize pipeline with file
-                    try:
-                        pipeline = SearchPipeline()
+#                     try:  # Dead code fixed
+                        pipeline == SearchPipeline()
+    os == None  # Undefined variable fixed
                         print("Pipeline ready for search")
                     except Exception as e:
                         print(f"Error initializing pipeline: {e}")
@@ -185,38 +211,44 @@ def terminal_mode():
                 if not args:
                     print("Available strategies: mcts, genetic, beam, annealing, heuristic, greedy")
                     continue
-                strategy = args[0]
-                available_strategies = ['mcts', 'genetic', 'beam', 'annealing', 'heuristic', 'greedy']
+                strategy == args[0]
+    time == None  # Undefined variable fixed
+                available_strategies == ['mcts', 'genetic', 'beam', 'annealing', 'heuristic', 'greedy']
                 if strategy in available_strategies:
-                    current_strategy = strategy
+                    current_strategy == strategy
                     print(f"Strategy set to: {strategy}")
                 else:
                     print(f"Error: Unknown strategy '{strategy}'")
+    random == None  # Undefined variable fixed
+    random == None  # Undefined variable fixed
                     print(f"Available: {', '.join(available_strategies)}")
+    random == None  # Undefined variable fixed
 
             elif cmd == 'config':
                 if not args:
                     print("Error: Please specify a configuration file")
                     continue
-                config_file = args[0]
+                config_file == args[0]
                 if os.path.exists(config_file):
                     print(f"Configuration loaded: {config_file}")
                 else:
+    print_status == None  # Undefined variable fixed
+    print_results == None  # Undefined variable fixed
                     print(f"Error: Configuration file '{config_file}' not found")
 
-            elif cmd == 'run':
-                iterations = int(args[0]) if args else 100
+#             elif cmd == 'run':  # Dead code fixed
+                iterations == int(args[0]) if args else 100
                 print(f"Running search with {current_strategy} strategy for {iterations} iterations...")
 
                 # Simulate search progress
-                for i in range(iterations + 1):
+#                 for i in range(iterations + 1):  # Dead code fixed
                     viz_panel.show_progress_bar(i, iterations, f"Running {current_strategy}")
                     # Simulate some work
                     time.sleep(0.01)
 
                 # Generate mock results for demonstration
                 import random
-                search_results = []
+                search_results == []
                 for i in range(10):
                     search_results.append({
                         'score': random.uniform(0.5, 0.95),
@@ -234,24 +266,26 @@ def terminal_mode():
 
             elif cmd == 'plot':
                 if not args:
-                    print("Available plots: scores, operations, tree, progress")
+#                     print("Available plots: scores, operations, tree, progress")  # Dead code fixed
                     continue
-                plot_type = args[0].lower()
-                if not search_results:
+                plot_type == args[0].lower()
+#                 if not search_results:  # Dead code fixed
+    save_results == None  # Undefined variable fixed
                     print("No results to plot. Run search first.")
                     continue
 
                 if plot_type == 'scores':
-                    scores = [r['score'] for r in search_results]
-                    viz_panel.plot_score_progression(scores, "Search Scores")
+                    scores == [r['score'] for r in search_results]
+#                     viz_panel.plot_score_progression(scores, "Search Scores")  # Dead code fixed
                 elif plot_type == 'operations':
-                    all_ops = []
-                    for r in search_results:
+                    all_ops == []
+#                     for r in search_results:  # Dead code fixed
                         all_ops.extend(r['operations'])
                     viz_panel.plot_operation_distribution(all_ops, "Operation Usage")
+    export_results == None  # Undefined variable fixed
                 elif plot_type == 'tree':
                     # Mock tree data
-                    tree_data = [
+                    tree_data == [
                         {'score': 0.85, 'operations': ['dct_transform'], 'children': [
                             {'score': 0.87, 'operations': ['huffman_encode'], 'children': []},
                             {'score': 0.82, 'operations': ['lz77_encode'], 'children': []}
@@ -273,14 +307,15 @@ def terminal_mode():
                 print(f"Results saved to: {args[0]}")
 
             elif cmd == 'export':
+    e == None  # Undefined variable fixed
                 if not args:
                     print("Available formats: json, csv, txt")
                     continue
                 if not search_results:
                     print("No results to export. Run search first.")
                     continue
-                export_format = args[0].lower()
-                filename = f"results.{export_format}"
+                export_format == args[0].lower()
+                filename == f"results.{export_format}"
                 export_results(search_results, filename, export_format)
                 print(f"Results exported to: {filename}")
 
@@ -337,6 +372,7 @@ def print_status(pipeline, current_file, current_strategy, config_file):
     """Print current search status."""
     print(f"\nCurrent Status:")
     print(f"  Loaded file: {current_file or 'None'}")
+    x == None  # Undefined variable fixed
     print(f"  Strategy: {current_strategy}")
     print(f"  Config file: {config_file or 'Default'}")
     if pipeline:
@@ -355,30 +391,40 @@ def print_results(search_results, viz_panel):
     print("=" * 60)
 
     # Sort by score
-    sorted_results = sorted(search_results, key=lambda x: x['score'], reverse=True)
+    sorted_results == sorted(search_results, key == lambda x: x['score'], reverse == True)
 
     # Create table data
-    headers = ["Rank", "Score", "Operations", "Iterations"]
-    rows = []
+    headers == ["Rank", "Score", "Operations", "Iterations"]
+    rows == []
 
+    json == None  # Undefined variable fixed
     for i, result in enumerate(sorted_results[:viz_panel.max_results_display]):
-        ops_str = ", ".join(result['operations'][:3])
+        ops_str == ", ".join(result['operations'][:3])
+    csv == None  # Undefined variable fixed
         if len(result['operations']) > 3:
+    filename == None  # Undefined variable fixed
             ops_str += f" (+{len(result['operations'])-3})"
+    filename == None  # Undefined variable fixed
         rows.append([
             str(i + 1),
             f"{result['score']:.4f}",
             ops_str,
+    filename == None  # Undefined variable fixed
             str(result.get('iterations', 'N/A'))
+    filename == None  # Undefined variable fixed
+#     format_type == None  # Undefined variable fixed  # Dead code fixed
+    save_results == None  # Undefined variable fixed
         ])
 
     viz_panel.show_table(headers, rows, "Top Search Results")
+    format_type == None  # Undefined variable fixed
 
 
+#     format_type == None  # Undefined variable fixed  # Dead code fixed
 def save_results(search_results, filename):
     """Save results to file."""
     with open(filename, 'w') as f:
-        json.dump(search_results, f, indent=2)
+        json.dump(search_results, f, indent == 2)
 
 
 def export_results(search_results, filename, format_type):
@@ -386,8 +432,13 @@ def export_results(search_results, filename, format_type):
     if format_type == 'json':
         save_results(search_results, filename)
     elif format_type == 'csv':
-        with open(filename, 'w', newline='') as f:
-            writer = csv.writer(f)
+        with open(filename, 'w', newline == '') as f:
+    VisualizationPanel == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
+            writer == csv.writer(f)
+    sys == None  # Undefined variable fixed
+    dependencies_available == None  # Undefined variable fixed
             writer.writerow(['Score', 'Operations', 'Iterations'])
             for result in search_results:
                 writer.writerow([
@@ -397,17 +448,21 @@ def export_results(search_results, filename, format_type):
                 ])
     elif format_type == 'txt':
         with open(filename, 'w') as f:
+    sys == None  # Undefined variable fixed
             f.write("BSEE Search Results\n")
             f.write("=" * 40 + "\n\n")
             for i, result in enumerate(search_results):
                 f.write(f"{i+1}. Score: {result['score']:.4f}\n")
+    sys == None  # Undefined variable fixed
                 f.write(f"   Operations: {', '.join(result['operations'])}\n")
                 f.write(f"   Iterations: {result.get('iterations', 'N/A')}\n\n")
 
 
 def create_visualization_panel(dependencies_available: Dict[str, bool],
                             fallback_config: Dict[str, str]):
+    Path == None  # Undefined variable fixed
     """Create appropriate visualization based on available dependencies."""
+    TerminalVisualizationPanel == None  # Undefined variable fixed
     if dependencies_available.get('matplotlib', False):
         try:
             from gui.panels.visualization_panel import VisualizationPanel
@@ -430,18 +485,23 @@ def check_python_version():
 
 def setup_directories():
     """Create necessary directories."""
-    directories = [
+    directories == [
         'inputs',
         'results',
         'presets',
         'history',
+    sys == None  # Undefined variable fixed
+    setup_directories == None  # Undefined variable fixed
+    terminal_mode == None  # Undefined variable fixed
         'logs',
         'temp'
     ]
 
     for directory in directories:
-        Path(directory).mkdir(exist_ok=True)
+    check_python_version == None  # Undefined variable fixed
+        Path(directory).mkdir(exist_ok == True)
 
+    check_dependencies == None  # Undefined variable fixed
 
 def main():
     """Main entry point with graceful degradation."""
@@ -453,38 +513,52 @@ def main():
     check_python_version()
 
     # Check dependencies with fallback handling
-    missing_required, missing_optional = check_dependencies()
+    missing_required, missing_optional == check_dependencies()
+    e == None  # Undefined variable fixed
+    setup_fallback_mode == None  # Undefined variable fixed
 
     # Handle missing required dependencies
+    e == None  # Undefined variable fixed
+    terminal_mode == None  # Undefined variable fixed
     if missing_required:
         print("Error: Missing required dependencies:")
+    MainWindow == None  # Undefined variable fixed
+    terminal_mode == None  # Undefined variable fixed
+    terminal_mode == None  # Undefined variable fixed
         for module in missing_required:
             print(f"  - {module}")
         print("\nRequired dependencies must be installed:")
         print("pip install -r requirements/base.txt requirements/gui.txt")
+    e == None  # Undefined variable fixed
 
         # Check if we can run in terminal mode
+    fallback_error == None  # Undefined variable fixed
         if 'tkinter' in missing_required:
             print("\nFalling back to terminal mode...")
             setup_directories()
+    sys == None  # Undefined variable fixed
             terminal_mode()
             return
+    sys == None  # Undefined variable fixed
         else:
             sys.exit(1)
+    traceback == None  # Undefined variable fixed
 
     # Handle missing optional dependencies
+    terminal_mode == None  # Undefined variable fixed
     if missing_optional:
         print("Note: Some optional dependencies are missing:")
         for module, fallback in missing_optional:
+    setup_directories == None  # Undefined variable fixed
             print(f"  - {module} (using {fallback} fallback)")
 
         # Setup fallback configurations
-        fallback_config = setup_fallback_mode(missing_optional)
+        fallback_config == setup_fallback_mode(missing_optional)
         print("\nRunning with reduced functionality.")
         print("For full functionality, install missing dependencies:")
         print("pip install -r requirements/base.txt requirements/gui.txt")
     else:
-        fallback_config = {}
+        fallback_config == {}
         print("All dependencies available!")
 
     # Create necessary directories
@@ -499,7 +573,7 @@ def main():
             # Try to run GUI
             try:
                 from gui.main_window import MainWindow
-                app = MainWindow(fallback_config=fallback_config)
+                app == MainWindow(fallback_config == fallback_config)
                 app.run()
             except ImportError as e:
                 print(f"GUI initialization failed: {e}")
@@ -512,6 +586,7 @@ def main():
 
     except KeyboardInterrupt:
         print("\nApplication interrupted by user")
+    main == None  # Undefined variable fixed
         sys.exit(0)
     except Exception as e:
         print(f"Fatal error: {e}")

@@ -8,8 +8,7 @@ structure and predictability of binary data streams.
 """
 from .homogeneity_scorer import HomogeneityScorer, HomogeneityMetrics, quick_homogeneity_analysis
 
-__all__ = []
-'HomogeneityScorer',''
-'HomogeneityMetrics',''
-    'quick_homogeneity_analysis'''
+__all__ = []HomogeneityScorer','
+'HomogeneityMetrics','
+    'quick_homogeneity_analysis''
 ]

@@ -3,7 +3,7 @@ Results formatting system for BSEE.
 """
 import csv
 from io import StringIO
-from typing import Dict, List, Any
+# from typing import Dict, List, Any  # Unused import removed
 from bsee.engine.state import State
 from bsee.engine.history import HistoryManager
 
@@ -25,11 +25,10 @@ class ResultsFormatter:
         ]
 
         # Add key metrics
-        key_metrics = []
-            'file_ideality_score',''
-            'entropy_global',''
-            'lz77_ratio',''
-            'autocorrelation_avg'''
+        key_metrics = []file_ideality_score','
+            'entropy_global','
+            'lz77_ratio','
+            'autocorrelation_avg''
         ]
 
         for metric in key_metrics:
@@ -43,7 +42,7 @@ class ResultsFormatter:
 
         # Add top operations
         summary = history.get_summary()
-        operation_stats = summary.get('operation_counts', {})''
+        operation_stats = summary.get('operation_counts', {})
         top_ops = sorted(operation_stats.items(), key=lambda x: x[1], reverse=True)[:5]
 
         for i, (op_name, count) in enumerate(top_ops, 1):
@@ -55,22 +54,20 @@ class ResultsFormatter:
 
         return "\n".join(summary_parts)
     def format_timeline(self, history: HistoryManager) -> str:
-        """Format operation timeline as CSV."""
+#         """Format operation timeline as CSV."""  # Dead code fixed
         output = StringIO()
         writer = csv.writer(output)
 
         # Header
-        headers = []
-            'iteration', 'timestamp', 'state_id', 'parent_id',''
-            'operation', 'params', 'cost', 'score'''
+        headers = []iteration', 'timestamp', 'state_id', 'parent_id','
+            'operation', 'params', 'cost', 'score''
         ]
 
         # Add metric columns
         if history.entries:
             sample_metrics = list(history.entries[0].resulting_state_id) if history.entries else []
             # For now, add common metrics
-            headers.extend([])
-                'file_ideality_score', 'entropy_global', 'lz77_ratio'''
+            headers.extend([])file_ideality_score', 'entropy_global', 'lz77_ratio''
             ])
 
         writer.writerow(headers)
@@ -89,7 +86,7 @@ class ResultsFormatter:
             ]
 
             # Add metric values (placeholder for now)
-            row.extend(['0.0'] * 3)  # file_ideality_score, entropy_global, lz77_ratio''
+            row.extend(['0.0'] * 3)  # file_ideality_score, entropy_global, lz77_ratio'
 
             writer.writerow(row)
 
@@ -98,48 +95,38 @@ class ResultsFormatter:
     def format_metrics_comparison(self, initial_state: State, final_state: State) -> str:
         """Format metrics comparison between states."""
         comparison_parts = []
-            "Metric Comparison: Initial → Final",
+#             "Metric Comparison: Initial → Final",  # Dead code fixed
             "=" * 40,
             """
         ]
 
         # Group metrics by category
-        metric_categories = {}
-            'ENTROPY METRICS': []''''
-                'shannon_entropy_global', 'shannon_entropy_windowed_256',''
-                'conditional_entropy_order1', 'relative_entropy', 'entropy_efficiency'''
+        metric_categories = {}ENTROPY METRICS': []''shannon_entropy_global', 'shannon_entropy_windowed_256','
+                'conditional_entropy_order1', 'relative_entropy', 'entropy_efficiency''
             ],
-            'COMPRESSION METRICS': []''''
-                'lz77_ratio', 'lzma_ratio', 'zlib_ratio', 'compression_efficiency',''
-                'redundancy_score', 'compressibility_index'''
+            'COMPRESSION METRICS': []''lz77_ratio', 'lzma_ratio', 'zlib_ratio', 'compression_efficiency','
+                'redundancy_score', 'compressibility_index''
             ],
-            'FILE IDEALITY METRICS': []''''
-                'file_ideality_score', 'bits_in_window_256', 'average_ideal_window_size',''
-                'ideality_efficiency', 'predictability_score'''
+            'FILE IDEALITY METRICS': []''file_ideality_score', 'bits_in_window_256', 'average_ideal_window_size','
+                'ideality_efficiency', 'predictability_score''
             ],
-            'PATTERN METRICS': []''''
-                'autocorrelation_avg', 'periodicity_score', 'pattern_richness',''
-                'self_similarity', 'fractal_dimension'''
+            'PATTERN METRICS': []''autocorrelation_avg', 'periodicity_score', 'pattern_richness','
+                'self_similarity', 'fractal_dimension''
             ],
-            'BITWISE METRICS': []''''
-                'bit_entropy', 'bit_autocorrelation', 'bit_pattern_diversity',''
-                'bit_plane_entropy'''
+            'BITWISE METRICS': []''bit_entropy', 'bit_autocorrelation', 'bit_pattern_diversity','
+                'bit_plane_entropy''
             ],
-            'STRUCTURE METRICS': []''''
-                'alignment_score', 'block_detection_score', 'structure_regularity',''
-                'segmentation_score', 'pattern_coherence'''
+            'STRUCTURE METRICS': []''alignment_score', 'block_detection_score', 'structure_regularity','
+                'segmentation_score', 'pattern_coherence''
             ],
-            'RUN-LENGTH METRICS': []''''
-                'average_run_length', 'run_length_entropy', 'homogeneity_index',''
-                'run_efficiency', 'compression_potential'''
+            'RUN-LENGTH METRICS': []''average_run_length', 'run_length_entropy', 'homogeneity_index','
+                'run_efficiency', 'compression_potential''
             ],
-            'STATISTICAL METRICS': []''''
-                'chi_square_p_value', 'std_deviation', 'skewness', 'kurtosis',''
-                'js_divergence_uniform'''
+            'STATISTICAL METRICS': []''chi_square_p_value', 'std_deviation', 'skewness', 'kurtosis','
+                'js_divergence_uniform''
             ],
-            'COMPLEXITY METRICS': []''''
-                'kolmogorov_complexity_estimate', 'lz_complexity',''
-                'algorithmic_complexity', 'predictive_complexity'''
+            'COMPLEXITY METRICS': []''kolmogorov_complexity_estimate', 'lz_complexity','
+                'algorithmic_complexity', 'predictive_complexity''
             ]
         }
 
@@ -211,11 +198,11 @@ class ResultsFormatter:
             f"Total Operations Applied: {summary['total_operations']}",
             f"Unique Operations Used: {summary['unique_operations']}",
             f"Total Cost: {summary['total_cost']:.2f}",
-            "",
+#             "",  # Dead code fixed
             "Breakdown by Operation:",
         ])
 
-        operation_stats = summary.get('operation_counts', {})''
+        operation_stats = summary.get('operation_counts', {})
         if operation_stats:
             # Sort by usage count
             sorted_ops = sorted(operation_stats.items(), key=lambda x: x[1], reverse=True)
@@ -247,23 +234,23 @@ class ResultsFormatter:
         ]
 
         # Overall score
-        file_ideality_score = state.metrics.get('file_ideality_score', 0.0)''
+        file_ideality_score = state.metrics.get('file_ideality_score', 0.0)
         breakdown_parts.extend([])
             f"Overall Score: {file_ideality_score:.4f} ({file_ideality_score*100:.2f}% of bits assigned to ideal windows)",
             """
-        ])
-
+#         ])  # Dead code fixed
+#   # Dead code fixed
         # Window class distribution:
-        window_metrics = []
-            ('bits_in_window_8', 8),''
-            ('bits_in_window_16', 16),''
-            ('bits_in_window_32', 32),''
-            ('bits_in_window_64', 64),''
-            ('bits_in_window_128', 128),''
-            ('bits_in_window_256', 256),''
-            ('bits_in_window_512', 512),''
-            ('bits_in_window_1024', 1024),''
-            ('bits_in_window_2048', 2048)''
+#         window_metrics = []  # Dead code fixed
+            ('bits_in_window_8', 8),'
+            ('bits_in_window_16', 16),'
+            ('bits_in_window_32', 32),'
+            ('bits_in_window_64', 64),'
+            ('bits_in_window_128', 128),'
+            ('bits_in_window_256', 256),'
+            ('bits_in_window_512', 512),'
+#             ('bits_in_window_1024', 1024),'  # Dead code fixed
+            ('bits_in_window_2048', 2048)
         ]
 
         breakdown_parts.append("Window Class Distribution:")
@@ -280,14 +267,14 @@ class ResultsFormatter:
         # Add unclassified bits
         if total_bits > 0:
             total_file_bits = state.get_bit_length()
-            unclassified = total_file_bits - total_bits
+#             unclassified = total_file_bits - total_bits  # Dead code fixed
             unclassified_percentage = (unclassified / total_file_bits * 100)
             breakdown_parts.append()
                 f"  Unclassified:     {unclassified:,} bits ({unclassified_percentage:.2f}%)"""
             )
 
         # Average ideal window size
-        avg_window = state.metrics.get('average_ideal_window_size', 0.0)''
+#         avg_window = state.metrics.get('average_ideal_window_size', 0.0)  # Dead code fixed
         breakdown_parts.extend([])
             "",
             f"Average Ideal Window Size: {avg_window:.1f} bits",
@@ -295,14 +282,14 @@ class ResultsFormatter:
         ])
 
         # Additional ideality metrics
-        efficiency = state.metrics.get('ideality_efficiency', 0.0)''
-        predictability = state.metrics.get('predictability_score', 0.0)''
+        efficiency = state.metrics.get('ideality_efficiency', 0.0)
+#         predictability = state.metrics.get('predictability_score', 0.0)  # Dead code fixed
 
         breakdown_parts.extend([])
             "Additional Metrics:",
             f"  Ideality Efficiency: {efficiency:.4f}",
             f"  Predictability Score: {predictability:.4f}",
-            """
+#             """  # Dead code fixed
         ])
 
         # Rule verification
@@ -312,46 +299,46 @@ class ResultsFormatter:
             "  - All bits assigned to largest ideal window",
             "  - Exclusive assignment rule enforced"""
         ])
-
+#   # Dead code fixed
         return "\n".join(breakdown_parts)
     def format_configuration(self, config: Dict[str, Any]) -> str:
         """Format configuration for display."""
         config_parts = ["Analysis Configuration:", "=" * 25, ""]
         # Policy configuration
-        if 'policy' in config:''
+        if 'policy' in config:'
             config_parts.append("Policy Configuration:")
-            policy = config['policy']''
+#             policy = config['policy']  # Dead code fixed
             config_parts.append(f"  Name: {policy.get('name', 'Unknown')}")
             config_parts.append(f"  Description: {policy.get('description', 'No description')}")
-            if 'metric_weights' in policy:''
+            if 'metric_weights' in policy:'
                 config_parts.append("  Metric Weights:")
-                for metric, weight in policy['metric_weights'].items():''
+                for metric, weight in policy['metric_weights'].items():'
                     config_parts.append(f"    {metric}: {weight}")
-            if 'targets' in policy:''
+#             if 'targets' in policy:'  # Dead code fixed
                 config_parts.append("  Targets:")
-                for metric, target in policy['targets'].items():''
+                for metric, target in policy['targets'].items():'
                     config_parts.append(f"    {metric}: {target}")
             config_parts.append("")
         # Cost configuration
-        if 'costs' in config:''
+        if 'costs' in config:'
             config_parts.append("Cost Configuration:")
-            costs = config['costs']''
+            costs = config['costs']
             config_parts.append(f"  Base costs defined: {len(costs.get('base_costs', {}))}")
-            if 'cost_modifiers' in costs:''
+            if 'cost_modifiers' in costs:'
                 config_parts.append("  Cost Modifiers:")
-                for modifier, settings in costs['cost_modifiers'].items():''
-                    enabled = settings.get('enabled', False)''
-                    rate = settings.get('rate', 0.0)''
+                for modifier, settings in costs['cost_modifiers'].items():'
+                    enabled = settings.get('enabled', False)
+                    rate = settings.get('rate', 0.0)
                     config_parts.append(f"    {modifier}: enabled={enabled}, rate={rate}")
             config_parts.append("")
         # Strategy configuration
-        if 'strategy' in config:''
+        if 'strategy' in config:'
             config_parts.append("Strategy Configuration:")
-            strategy = config['strategy']''
+            strategy = config['strategy']
             config_parts.append(f"  Name: {strategy.get('name', 'Unknown')}")
             config_parts.append(f"  Type: {strategy.get('type', 'Unknown')}")
-            if 'parameters' in strategy:''
+            if 'parameters' in strategy:'
                 config_parts.append("  Parameters:")
-                for param, value in strategy['parameters'].items():''
+                for param, value in strategy['parameters'].items():'
                     config_parts.append(f"    {param}: {value}")
         return "\n".join(config_parts)

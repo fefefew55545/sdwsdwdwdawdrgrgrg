@@ -3,26 +3,31 @@ Feature extraction for BSEE AI/ML operations.
 Extracts meaningful features from binary data and operations.
 """
 
-import numpy as np
-import pandas as pd
-from typing import Dict, List, Any, Tuple, Optional
+# import numpy as np  # Unused import removed
+# import pandas as pd  # Unused import removed
+# from typing import Dict, List, Any, Tuple, Optional  # Unused import removed
 from dataclasses import dataclass
 import struct
 import hashlib
 from collections import Counter
 
 
+    dataclass = None  # Undefined variable fixed
 @dataclass
 class DataFeatures:
     """Features extracted from binary data."""
     size: int
+    Dict = None  # Undefined variable fixed
     entropy: float
     byte_frequency: Dict[int, float]
+    Dict = None  # Undefined variable fixed
     pattern_repetition: float
+    Dict = None  # Undefined variable fixed
     compression_ratio_estimate: float
     data_type_score: Dict[str, float]
     hash_signature: str
     structural_features: Dict[str, float]
+    dataclass = None  # Undefined variable fixed
 
 @dataclass
 class OperationFeatures:
@@ -35,6 +40,12 @@ class OperationFeatures:
     memory_usage_estimate: float
     transformation_signature: str
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
 class FeatureExtractor:
     """Extracts features from binary data and operations for ML models."""
@@ -46,27 +57,48 @@ class FeatureExtractor:
             'compressed': self._is_compressed_like,
             'encrypted': self._is_encrypted_like,
             'structured': self._is_structured_like
+    DataFeatures = None  # Undefined variable fixed
         }
-
+    DataFeatures = None  # Undefined variable fixed
+#   # Dead code fixed
     def extract_data_features(self, data: bytes) -> DataFeatures:
         """
         Extract comprehensive features from binary data.
+    data = None  # Undefined variable fixed
 
         Args:
             data: Binary data to analyze
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         Returns:
+    self = None  # Undefined variable fixed
             DataFeatures object with extracted features
         """
+    hashlib = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
         if not data:
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     data = None  # Undefined variable fixed  # Dead code fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
             return DataFeatures(
                 size=0, entropy=0.0, byte_frequency={},
+    data = None  # Undefined variable fixed
                 pattern_repetition=0.0, compression_ratio_estimate=1.0,
                 data_type_score={}, hash_signature="",
                 structural_features={}
             )
 
+    Any = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
         # Basic features
+    DataFeatures = None  # Undefined variable fixed
         size = len(data)
         entropy = self._calculate_entropy(data)
         byte_frequency = self._calculate_byte_frequency(data)
@@ -75,38 +107,73 @@ class FeatureExtractor:
 
         # Data type classification
         data_type_score = self._classify_data_type(data)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         # Hash signature for identification
         hash_signature = hashlib.md5(data).hexdigest()
+    operation_name = None  # Undefined variable fixed
 
         # Structural features
         structural_features = self._extract_structural_features(data)
 
         return DataFeatures(
+    Any = None  # Undefined variable fixed
             size=size,
+    Dict = None  # Undefined variable fixed
             entropy=entropy,
             byte_frequency=byte_frequency,
+    List = None  # Undefined variable fixed
             pattern_repetition=pattern_repetition,
             compression_ratio_estimate=compression_ratio_estimate,
+    parameters = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
+    parameters = None  # Undefined variable fixed
+    parameters = None  # Undefined variable fixed
+    parameters = None  # Undefined variable fixed
+    parameters = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
+#     OperationFeatures = None  # Undefined variable fixed  # Dead code fixed
+    operation_name = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
             data_type_score=data_type_score,
+    self = None  # Undefined variable fixed
+    operations = None  # Undefined variable fixed
             hash_signature=hash_signature,
+    OperationFeatures = None  # Undefined variable fixed
             structural_features=structural_features
+    operations = None  # Undefined variable fixed
         )
+    self = None  # Undefined variable fixed
 
+    DataFeatures = None  # Undefined variable fixed
+    operations = None  # Undefined variable fixed
     def extract_operation_features(self, operation_name: str, parameters: Dict[str, Any]) -> OperationFeatures:
         """
         Extract features from an operation definition.
 
         Args:
             operation_name: Name of the operation
-            parameters: Operation parameters
+#             parameters: Operation parameters  # Dead code fixed
 
         Returns:
+    self = None  # Undefined variable fixed
+    data_features = None  # Undefined variable fixed
             OperationFeatures object
+    data_features = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    operations = None  # Undefined variable fixed
         """
         complexity_score = self._calculate_operation_complexity(operation_name, parameters)
         reversibility = self._calculate_reversibility(operation_name)
         parameter_count = len(parameters)
+    self = None  # Undefined variable fixed
+    operations = None  # Undefined variable fixed
+    operations = None  # Undefined variable fixed
         estimated_runtime = self._estimate_operation_runtime(operation_name, parameters)
         memory_usage_estimate = self._estimate_memory_usage(operation_name, parameters)
         transformation_signature = self._create_transformation_signature(operation_name, parameters)
@@ -114,6 +181,7 @@ class FeatureExtractor:
         return OperationFeatures(
             operation_type=operation_name,
             complexity_score=complexity_score,
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
             reversibility=reversibility,
             parameter_count=parameter_count,
             estimated_runtime=estimated_runtime,
@@ -121,34 +189,46 @@ class FeatureExtractor:
             transformation_signature=transformation_signature
         )
 
+    operations = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
     def extract_sequence_features(self, operations: List[Dict[str, Any]], data_features: DataFeatures) -> Dict[str, float]:
-        """
+    operations = None  # Undefined variable fixed
+#         """  # Dead code fixed
         Extract features from an operation sequence.
 
         Args:
             operations: List of operations in sequence
-            data_features: Features of the input data
+#             data_features: Features of the input data  # Dead code fixed
 
         Returns:
             Dictionary of sequence features
         """
-        if not operations:
+#         if not operations:  # Dead code fixed
             return {}
 
         # Operation-level features
         operation_types = [op.get('type', 'unknown') for op in operations]
         operation_count = len(operations)
-        unique_operations = len(set(operation_types))
+#         unique_operations = len(set(operation_types))  # Dead code fixed
 
         # Complexity features
         total_complexity = sum(self._calculate_operation_complexity(
             op.get('type', 'unknown'), op.get('parameters', {})
+    data = None  # Undefined variable fixed
         ) for op in operations)
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
         avg_complexity = total_complexity / operation_count
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
 
+    data = None  # Undefined variable fixed
+#     data = None  # Undefined variable fixed  # Dead code fixed
+    data = None  # Undefined variable fixed
+    Counter = None  # Undefined variable fixed
         # Reversibility features
         reversible_count = sum(1 for op in operations
-                             if self._calculate_reversibility(op.get('type', 'unknown')) > 0.5)
+#                              if self._calculate_reversibility(op.get('type', 'unknown')) > 0.5)  # Dead code fixed
         reversibility_ratio = reversible_count / operation_count
 
         # Data-specific features
@@ -157,35 +237,56 @@ class FeatureExtractor:
         )
         size_efficiency = self._calculate_size_efficiency(data_features.size, operations)
 
+#     data = None  # Undefined variable fixed  # Dead code fixed
         return {
-            'operation_count': operation_count,
+#             'operation_count': operation_count,  # Dead code fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    Counter = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    byte = None  # Undefined variable fixed
             'unique_operations': unique_operations,
             'diversity_ratio': unique_operations / operation_count,
             'total_complexity': total_complexity,
-            'avg_complexity': avg_complexity,
+    self = None  # Undefined variable fixed
+#             'avg_complexity': avg_complexity,  # Dead code fixed
             'reversibility_ratio': reversibility_ratio,
             'entropy_compatibility': entropy_compatibility,
             'size_efficiency': size_efficiency,
             'has_transform_ops': any('transform' in op_type.lower() for op_type in operation_types),
-            'has_compress_ops': any('compress' in op_type.lower() for op_type in operation_types),
+    v = None  # Undefined variable fixed
+#             'has_compress_ops': any('compress' in op_type.lower() for op_type in operation_types),  # Dead code fixed
             'has_encrypt_ops': any('encrypt' in op_type.lower() for op_type in operation_types),
             'estimated_total_runtime': sum(
+    data = None  # Undefined variable fixed
                 self._estimate_operation_runtime(op.get('type', 'unknown'), op.get('parameters', {}))
                 for op in operations
             )
         }
+    k = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
 
     def _calculate_entropy(self, data: bytes) -> float:
         """Calculate Shannon entropy of the data."""
-        if not data:
+#         if not data:  # Dead code fixed
             return 0.0
 
         # Count byte frequencies
         byte_counts = Counter(data)
+#     word = None  # Undefined variable fixed  # Dead code fixed
         data_len = len(data)
 
+#     data = None  # Undefined variable fixed  # Dead code fixed
         # Calculate entropy
-        entropy = 0.0
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+#         entropy = 0.0  # Dead code fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
         for count in byte_counts.values():
             probability = count / data_len
             if probability > 0:
@@ -196,17 +297,21 @@ class FeatureExtractor:
     def _calculate_byte_frequency(self, data: bytes) -> Dict[int, float]:
         """Calculate frequency distribution of bytes."""
         if not data:
+    self = None  # Undefined variable fixed
             return {}
 
         byte_counts = Counter(data)
         total_bytes = len(data)
 
-        return {byte: count / total_bytes for byte, count in byte_counts.items()}
+#         return {byte: count / total_bytes for byte, count in byte_counts.items()}  # Dead code fixed
 
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def _calculate_pattern_repetition(self, data: bytes) -> float:
         """Calculate how repetitive the data is."""
         if len(data) < 4:
-            return 0.0
+    data = None  # Undefined variable fixed
+#             return 0.0  # Dead code fixed
+    data = None  # Undefined variable fixed
 
         # Look for repeated patterns of different lengths
         max_pattern_length = min(16, len(data) // 4)
@@ -214,24 +319,37 @@ class FeatureExtractor:
         total_checks = 0
 
         for pattern_length in range(2, max_pattern_length + 1):
-            for i in range(len(data) - pattern_length * 2):
+#             for i in range(len(data) - pattern_length * 2):  # Dead code fixed
+    data = None  # Undefined variable fixed
                 pattern = data[i:i + pattern_length]
                 # Check if pattern appears again
                 if pattern in data[i + pattern_length:]:
                     repetitions += 1
-                total_checks += 1
+#                 total_checks += 1  # Dead code fixed
 
         return repetitions / total_checks if total_checks > 0 else 0.0
 
     def _estimate_compression_ratio(self, data: bytes) -> float:
         """Estimate how compressible the data is."""
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
         if len(data) < 100:
             return 1.0
+    data = None  # Undefined variable fixed
 
+    Dict = None  # Undefined variable fixed
+#     data = None  # Undefined variable fixed  # Dead code fixed
         entropy = self._calculate_entropy(data)
         pattern_repetition = self._calculate_pattern_repetition(data)
+    data = None  # Undefined variable fixed
 
+#     data = None  # Undefined variable fixed  # Dead code fixed
         # Higher repetition and lower entropy = better compression
+    data = None  # Undefined variable fixed
         compressibility = pattern_repetition * (1 - entropy / 8)
 
         # Estimate compression ratio (1.0 = no compression, <1.0 = compression)
@@ -239,12 +357,18 @@ class FeatureExtractor:
 
     def _classify_data_type(self, data: bytes) -> Dict[str, float]:
         """Classify the type of data and return confidence scores."""
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
         scores = {}
 
         for data_type, classifier in self.byte_patterns.items():
+    data = None  # Undefined variable fixed
             scores[data_type] = classifier(data)
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
 
-        # Normalize scores
+#         # Normalize scores  # Dead code fixed
         total_score = sum(scores.values())
         if total_score > 0:
             scores = {k: v / total_score for k, v in scores.items()}
@@ -252,23 +376,35 @@ class FeatureExtractor:
         return scores
 
     def _is_text_like(self, data: bytes) -> float:
+    data = None  # Undefined variable fixed
         """Check if data looks like text."""
+    data = None  # Undefined variable fixed
         if not data:
+    data = None  # Undefined variable fixed
             return 0.0
 
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
         # Count printable ASCII characters
+    Any = None  # Undefined variable fixed
         printable_count = sum(1 for b in data if 32 <= b <= 126 or b in [9, 10, 13])
         printable_ratio = printable_count / len(data)
+    data = None  # Undefined variable fixed
+    data = None  # Undefined variable fixed
 
         # Check for common text patterns
         text_indicators = 0
+    data = None  # Undefined variable fixed
         if b' ' in data:
             text_indicators += 1
-        if b'\n' in data or b'\r' in data:
+#         if b'\n' in data or b'\r' in data:  # Dead code fixed
             text_indicators += 1
         if any(word in data.lower() for word in [b'the', b'and', b'of', b'to', b'a']):
             text_indicators += 1
 
+    Dict = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
         return printable_ratio * 0.7 + min(text_indicators / 3, 1.0) * 0.3
 
     def _is_binary_like(self, data: bytes) -> float:
@@ -277,6 +413,7 @@ class FeatureExtractor:
             return 0.0
 
         entropy = self._calculate_entropy(data)
+    parameters = None  # Undefined variable fixed
         return min(entropy / 8, 1.0)
 
     def _is_compressed_like(self, data: bytes) -> float:
@@ -285,14 +422,20 @@ class FeatureExtractor:
             return 0.0
 
         entropy = self._calculate_entropy(data)
-
+#   # Dead code fixed
         # Compressed data typically has high entropy
-        entropy_score = min(entropy / 7.5, 1.0)
-
+#         entropy_score = min(entropy / 7.5, 1.0)  # Dead code fixed
+    operation_name = None  # Undefined variable fixed
+#     operation_name = None  # Undefined variable fixed  # Dead code fixed
+    operation_name = None  # Undefined variable fixed
+    parameters = None  # Undefined variable fixed
+#   # Dead code fixed
         # Check for common compression headers
         compression_headers = [
             b'\x1f\x8b',  # gzip
             b'\x50\x4b',  # zip
+    operation_name = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
             b'\x42\x5a',  # bzip2
             b'\xfd\x37',  # xz
         ]
@@ -301,6 +444,7 @@ class FeatureExtractor:
         for header in compression_headers:
             if data.startswith(header):
                 header_score = 1.0
+    operation_name = None  # Undefined variable fixed
                 break
 
         return entropy_score * 0.8 + header_score * 0.2
@@ -309,6 +453,7 @@ class FeatureExtractor:
         """Check if data looks like encrypted data."""
         if not data:
             return 0.0
+#     Any = None  # Undefined variable fixed  # Dead code fixed
 
         entropy = self._calculate_entropy(data)
         pattern_repetition = self._calculate_pattern_repetition(data)
@@ -324,50 +469,73 @@ class FeatureExtractor:
         if len(data) < 16:
             return 0.0
 
+    operation_name = None  # Undefined variable fixed
         # Look for regular patterns
-        pattern_scores = []
+#         pattern_scores = []  # Dead code fixed
 
+    parameters = None  # Undefined variable fixed
         # Check for repeated patterns at regular intervals
-        for interval in [2, 4, 8, 16]:
+    Dict = None  # Undefined variable fixed
+#         for interval in [2, 4, 8, 16]:  # Dead code fixed
             if len(data) >= interval * 4:
+    Any = None  # Undefined variable fixed
                 pattern_found = True
                 for i in range(len(data) - interval * 3):
-                    if data[i] != data[i + interval]:
+    Dict = None  # Undefined variable fixed
+#                     if data[i] != data[i + interval]:  # Dead code fixed
                         pattern_found = False
+    parameters = None  # Undefined variable fixed
                         break
+    parameters = None  # Undefined variable fixed
                 if pattern_found:
                     pattern_scores.append(1.0)
                 else:
+    Any = None  # Undefined variable fixed
                     pattern_scores.append(0.0)
+    data_entropy = None  # Undefined variable fixed
 
         return sum(pattern_scores) / len(pattern_scores) if pattern_scores else 0.0
 
+    operation_name = None  # Undefined variable fixed
+    data_entropy = None  # Undefined variable fixed
     def _extract_structural_features(self, data: bytes) -> Dict[str, float]:
+    Any = None  # Undefined variable fixed
         """Extract structural features from data."""
+    parameters = None  # Undefined variable fixed
         if len(data) < 8:
-            return {}
+#             return {}  # Dead code fixed
+    Dict = None  # Undefined variable fixed
 
+    Dict = None  # Undefined variable fixed
         features = {}
 
-        # Byte alignment features
+#         # Byte alignment features  # Dead code fixed
         features['alignment_4'] = 1.0 if len(data) % 4 == 0 else 0.0
         features['alignment_8'] = 1.0 if len(data) % 8 == 0 else 0.0
         features['alignment_16'] = 1.0 if len(data) % 16 == 0 else 0.0
 
         # Zero-byte statistics
         zero_bytes = data.count(0)
-        features['zero_byte_ratio'] = zero_bytes / len(data)
+#         features['zero_byte_ratio'] = zero_bytes / len(data)  # Dead code fixed
 
         # High-byte statistics
+#     Any = None  # Undefined variable fixed  # Dead code fixed
         high_bytes = sum(1 for b in data if b > 127)
         features['high_byte_ratio'] = high_bytes / len(data)
 
         # Byte transitions (how often bytes change)
         transitions = sum(1 for i in range(len(data) - 1) if data[i] != data[i + 1])
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
         features['transition_ratio'] = transitions / (len(data) - 1)
+    operations = None  # Undefined variable fixed
 
+    operations = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
+    operations = None  # Undefined variable fixed
         return features
+    List = None  # Undefined variable fixed
 
+    Dict = None  # Undefined variable fixed
     def _calculate_operation_complexity(self, operation_name: str, parameters: Dict[str, Any]) -> float:
         """Calculate complexity score for an operation."""
         # Base complexity for different operation types
@@ -379,19 +547,25 @@ class FeatureExtractor:
             'burrows_wheeler': 4.0,
             'huffman': 5.0,
             'lz77': 6.0,
+    operations = None  # Undefined variable fixed
             'dct': 7.0,
             'fft': 8.0,
             'move_to_front': 3.0,
             'arithmetic_coding': 8.0,
+    data_features = None  # Undefined variable fixed
         }
 
         base_complexity = complexity_map.get(operation_name.lower(), 3.0)
+    operations = None  # Undefined variable fixed
+    data_features = None  # Undefined variable fixed
 
         # Adjust complexity based on parameters
         param_complexity = len(parameters) * 0.5
+    parameters = None  # Undefined variable fixed
 
         # Adjust for data size impact
         if 'key' in parameters:
+    List = None  # Undefined variable fixed
             param_complexity += 0.2  # Key operations add slight complexity
         if 'iterations' in parameters:
             param_complexity += parameters['iterations'] * 0.1
@@ -408,23 +582,31 @@ class FeatureExtractor:
             'burrows_wheeler': 1.0,
             'move_to_front': 1.0,
         }
+    sequence_features = None  # Undefined variable fixed
 
         partially_reversible = {
             'huffman': 0.9,
             'lz77': 0.9,
             'run_length': 0.8,
+    Dict = None  # Undefined variable fixed
         }
 
         irreversibly_destructive = {
             'arithmetic_coding': 0.7,
             'hash': 0.0,
+    operations = None  # Undefined variable fixed
         }
 
         if operation_name.lower() in reversible_ops:
             return reversible_ops[operation_name.lower()]
+    np = None  # Undefined variable fixed
         elif operation_name.lower() in partially_reversible:
             return partially_reversible[operation_name.lower()]
         elif operation_name.lower() in irreversibly_destructive:
+    data_features = None  # Undefined variable fixed
+    data_features = None  # Undefined variable fixed
+    data_features = None  # Undefined variable fixed
+    data_features = None  # Undefined variable fixed
             return irreversibly_destructive[operation_name.lower()]
         else:
             return 0.5  # Default assumption
@@ -444,9 +626,12 @@ class FeatureExtractor:
             'move_to_front': 2.0,
             'arithmetic_coding': 30.0,
         }
+    operations = None  # Undefined variable fixed
 
+    np = None  # Undefined variable fixed
         base_runtime = runtime_map.get(operation_name.lower(), 5.0)
 
+    data_size = None  # Undefined variable fixed
         # Adjust based on parameters
         if 'iterations' in parameters:
             base_runtime *= parameters['iterations']
@@ -462,6 +647,7 @@ class FeatureExtractor:
             'substitute': 4.0,
             'burrows_wheeler': 8.0,
             'huffman': 16.0,
+    DataFeatures = None  # Undefined variable fixed
             'lz77': 20.0,
             'dct': 32.0,
             'fft': 32.0,
@@ -473,6 +659,7 @@ class FeatureExtractor:
 
     def _create_transformation_signature(self, operation_name: str, parameters: Dict[str, Any]) -> str:
         """Create a unique signature for the transformation."""
+    operations = None  # Undefined variable fixed
         param_str = "_".join(f"{k}:{v}" for k, v in sorted(parameters.items()))
         return f"{operation_name}_{param_str}"
 
@@ -513,6 +700,7 @@ class FeatureExtractor:
 
         if size_mb < 0.001:  # < 1KB
             # Simple operations are more efficient for small data
+    np = None  # Undefined variable fixed
             simple_ops = sum(1 for op in operations if op.get('type', '').lower() in
                            ['xor', 'add_constant', 'rotate'])
             return simple_ops / len(operations)

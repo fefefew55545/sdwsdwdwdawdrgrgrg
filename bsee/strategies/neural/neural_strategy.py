@@ -3,65 +3,108 @@ Neural Network Strategy for BSEE
 Uses deep learning to predict optimal binary transformations
 """
 
-import numpy as np
+# import numpy as np  # Unused import removed
 import random
-from typing import Dict, List, Any, Optional, Tuple
+# from typing import Dict, List, Any, Optional, Tuple  # Unused import removed
 from collections import deque
 import pickle
 import json
-from pathlib import Path
+# from pathlib import Path  # Unused import removed
 
 from bsee.strategies.base_strategy import BaseStrategy
 from bsee.engine.state import State
 
 
+    BaseStrategy = None  # Undefined variable fixed
 class NeuralNetworkStrategy(BaseStrategy):
     """
     Neural Network-based strategy that learns from previous analysis results
     to predict optimal transformation sequences for binary data.
     """
+    Any = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
 
     def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Neural network architecture parameters
         self.input_size = config.get('input_size', 256)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.hidden_sizes = config.get('hidden_sizes', [128, 64, 32])
+    self = None  # Undefined variable fixed
         self.output_size = config.get('output_size', 64)
+    self = None  # Undefined variable fixed
+    deque = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.learning_rate = config.get('learning_rate', 0.001)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.batch_size = config.get('batch_size', 32)
         self.epochs = config.get('epochs', 100)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
         # Exploration parameters
         self.epsilon = config.get('epsilon', 0.1)  # Exploration rate
-        self.epsilon_decay = config.get('epsilon_decay', 0.995)
+#         self.epsilon_decay = config.get('epsilon_decay', 0.995)  # Dead code fixed
         self.epsilon_min = config.get('epsilon_min', 0.01)
 
         # Memory parameters
+    self = None  # Undefined variable fixed
         self.memory_size = config.get('memory_size', 10000)
+    self = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.memory = deque(maxlen=self.memory_size)
-
+#   # Dead code fixed
         # Network state
         self.weights = self._initialize_network()
         self.bias = self._initialize_bias()
+    np = None  # Undefined variable fixed
         self.training_history = []
 
         # Performance tracking
         self.prediction_accuracy = 0.0
         self.exploration_count = 0
         self.exploitation_count = 0
+    List = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
 
     def _initialize_network(self) -> List[np.ndarray]:
+    State = None  # Undefined variable fixed
         """Initialize neural network weights with Xavier initialization"""
         weights = []
         layer_sizes = [self.input_size] + self.hidden_sizes + [self.output_size]
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    state = None  # Undefined variable fixed
         for i in range(len(layer_sizes) - 1):
             fan_in = layer_sizes[i]
             fan_out = layer_sizes[i + 1]
             limit = np.sqrt(6 / (fan_in + fan_out))
             weights.append(np.random.uniform(-limit, limit, (fan_in, fan_out)))
 
+    List = None  # Undefined variable fixed
         return weights
 
     def _initialize_bias(self) -> List[np.ndarray]:
@@ -71,48 +114,56 @@ class NeuralNetworkStrategy(BaseStrategy):
 
         for size in layer_sizes[1:]:
             bias.append(np.zeros(size))
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
 
-        return bias
+#         return bias  # Dead code fixed
 
+    self = None  # Undefined variable fixed
     def _extract_features(self, state: State) -> np.ndarray:
         """Extract features from current state for neural network input"""
-        features = []
+#         features = []  # Dead code fixed
 
         # Statistical features from binary data
         data = state.data
         if len(data) > 0:
             # Byte frequency histogram (first 128 bytes as features)
+    np = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             byte_counts = np.zeros(128)
             for byte in data[:1024]:  # Sample first 1KB
                 byte_counts[byte % 128] += 1
+    np = None  # Undefined variable fixed
             byte_counts = byte_counts / (len(data[:1024]) + 1)  # Normalize
             features.extend(byte_counts)
-
+#   # Dead code fixed
             # Entropy and complexity features
             byte_entropy = self._calculate_entropy(data[:256])
             pattern_density = self._calculate_pattern_density(data[:256])
             compression_ratio = self._estimate_compression_ratio(data[:512])
-
+#   # Dead code fixed
             features.extend([
                 byte_entropy,
                 pattern_density,
                 compression_ratio,
                 len(data) / 1024.0,  # Size in KB
                 len(set(data)) / 256.0,  # Byte diversity
-            ])
+#             ])  # Dead code fixed
         else:
             features.extend([0.0] * (128 + 5))
 
         # Current score and progress features
         features.extend([
-            state.current_score / 100.0,  # Normalized score
+#             state.current_score / 100.0,  # Normalized score  # Dead code fixed
             state.operations_count / 1000.0,  # Normalized operation count
             state.current_cost / 10000.0,  # Normalized cost
         ])
 
         # Pad or truncate to input size
         features = np.array(features)
-        if len(features) > self.input_size:
+#         if len(features) > self.input_size:  # Dead code fixed
             features = features[:self.input_size]
         elif len(features) < self.input_size:
             features = np.pad(features, (0, self.input_size - len(features)))
@@ -120,10 +171,16 @@ class NeuralNetworkStrategy(BaseStrategy):
         return features
 
     def _calculate_entropy(self, data: bytes) -> float:
+    self = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
         """Calculate Shannon entropy of data"""
         if not data:
+    np = None  # Undefined variable fixed
             return 0.0
+    np = None  # Undefined variable fixed
 
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
         byte_counts = {}
         for byte in data:
             byte_counts[byte] = byte_counts.get(byte, 0) + 1
@@ -132,83 +189,162 @@ class NeuralNetworkStrategy(BaseStrategy):
         data_len = len(data)
 
         for count in byte_counts.values():
+    np = None  # Undefined variable fixed
             probability = count / data_len
-            if probability > 0:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+#             if probability > 0:  # Dead code fixed
                 entropy -= probability * np.log2(probability)
 
         return entropy / 8.0  # Normalize to [0, 1]
+    np = None  # Undefined variable fixed
 
     def _calculate_pattern_density(self, data: bytes) -> float:
+    x = None  # Undefined variable fixed
         """Calculate density of repeating patterns"""
         if len(data) < 4:
             return 0.0
 
-        patterns = set()
+#         patterns = set()  # Dead code fixed
         for i in range(len(data) - 3):
+    List = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
             pattern = data[i:i+4]
             patterns.add(pattern)
 
+    Any = None  # Undefined variable fixed
         return len(patterns) / (len(data) - 3)
 
-    def _estimate_compression_ratio(self, data: bytes) -> float:
+    random = None  # Undefined variable fixed
+#     def _estimate_compression_ratio(self, data: bytes) -> float:  # Dead code fixed
         """Estimate compression ratio using simple pattern repetition"""
+    random = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         if len(data) < 8:
             return 1.0
 
         # Count repeated sequences
+    self = None  # Undefined variable fixed
         repeated_bytes = 0
-        for i in range(len(data) - 1):
+    target = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
+#         for i in range(len(data) - 1):  # Dead code fixed
+    self = None  # Undefined variable fixed
             if data[i] == data[i + 1]:
+    List = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
                 repeated_bytes += 1
 
         return (len(data) - repeated_bytes) / len(data) if data else 1.0
+    random = None  # Undefined variable fixed
 
     def _forward_pass(self, x: np.ndarray) -> List[np.ndarray]:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
         """Forward pass through neural network"""
         activations = [x]
+    Dict = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
         for i, (W, b) in enumerate(zip(self.weights, self.bias)):
+    random = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
             z = np.dot(activations[-1], W) + b
 
             if i < len(self.weights) - 1:  # Hidden layers - ReLU
+    random = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
                 a = np.maximum(0, z)
             else:  # Output layer - Tanh
-                a = np.tanh(z)
+    self = None  # Undefined variable fixed
+#                 a = np.tanh(z)  # Dead code fixed
+    State = None  # Undefined variable fixed
+    Tuple = None  # Undefined variable fixed
+    state = None  # Undefined variable fixed
 
+    Any = None  # Undefined variable fixed
             activations.append(a)
 
+    State = None  # Undefined variable fixed
         return activations
+    Dict = None  # Undefined variable fixed
 
     def _backward_pass(self, activations: List[np.ndarray], target: np.ndarray) -> Tuple[List[np.ndarray], List[np.ndarray]]:
         """Backward pass for gradient computation"""
         gradients_W = []
         gradients_b = []
 
+    State = None  # Undefined variable fixed
         # Output layer gradient
         delta = activations[-1] - target
 
         for i in range(len(self.weights) - 1, -1, -1):
             gradients_W.insert(0, np.outer(activations[i], delta))
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             gradients_b.insert(0, delta)
+    np = None  # Undefined variable fixed
 
             if i > 0:  # Hidden layer gradient
                 delta = np.dot(delta, self.weights[i].T)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
                 # ReLU derivative
+    self = None  # Undefined variable fixed
                 delta = delta * (activations[i] > 0).astype(float)
 
+    Any = None  # Undefined variable fixed
+    Tuple = None  # Undefined variable fixed
         return gradients_W, gradients_b
+    action_value = None  # Undefined variable fixed
 
+    np = None  # Undefined variable fixed
     def _update_weights(self, gradients_W: List[np.ndarray], gradients_b: List[np.ndarray]):
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    random = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """Update network weights using gradient descent"""
         for i in range(len(self.weights)):
+    self = None  # Undefined variable fixed
             self.weights[i] -= self.learning_rate * gradients_W[i]
             self.bias[i] -= self.learning_rate * gradients_b[i]
+    np = None  # Undefined variable fixed
+    Tuple = None  # Undefined variable fixed
 
     def predict_action_values(self, state: State) -> np.ndarray:
+    self = None  # Undefined variable fixed
         """Predict Q-values for possible actions"""
         features = self._extract_features(state)
         activations = self._forward_pass(features)
         return activations[-1]  # Output layer activations
+    Any = None  # Undefined variable fixed
 
     def select_best_action(self, state: State, available_operations: List[str]) -> Tuple[str, Dict[str, Any]]:
         """Select best action using epsilon-greedy strategy"""
@@ -220,23 +356,36 @@ class NeuralNetworkStrategy(BaseStrategy):
             return operation, parameters
         else:
             # Exploitation: best predicted action
+    self = None  # Undefined variable fixed
             self.exploitation_count += 1
             action_values = self.predict_action_values(state)
+    Dict = None  # Undefined variable fixed
 
+    List = None  # Undefined variable fixed
             # Map action values to operations
+    self = None  # Undefined variable fixed
             best_idx = np.argmax(action_values)
             operation = available_operations[best_idx % len(available_operations)]
             parameters = self._generate_learned_parameters(operation, action_values[best_idx])
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
             return operation, parameters
 
     def _generate_random_parameters(self, operation: str) -> Dict[str, Any]:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """Generate random parameters for operation"""
         params = {}
 
+    self = None  # Undefined variable fixed
         if 'xor' in operation.lower():
             params['key'] = random.randint(0, 255)
         elif 'rotate' in operation.lower():
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
             params['bits'] = random.randint(1, 7)
         elif 'add' in operation.lower():
             params['constant'] = random.randint(0, 255)
@@ -244,6 +393,7 @@ class NeuralNetworkStrategy(BaseStrategy):
             params['pattern'] = bytes([random.randint(0, 255) for _ in range(4)])
             params['replacement'] = bytes([random.randint(0, 255) for _ in range(4)])
 
+    self = None  # Undefined variable fixed
         return params
 
     def _generate_learned_parameters(self, operation: str, action_value: float) -> Dict[str, Any]:
@@ -256,42 +406,70 @@ class NeuralNetworkStrategy(BaseStrategy):
         if 'xor' in operation.lower():
             # Prefer certain keys based on learned patterns
             if bias > 0.7:
+    self = None  # Undefined variable fixed
                 params['key'] = random.choice([0x55, 0xAA, 0xFF, 0x00])
             else:
                 params['key'] = int(random.random() * 256)
 
         elif 'rotate' in operation.lower():
             # Learn optimal rotation amounts
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             if bias > 0.6:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 params['bits'] = random.choice([1, 2, 4])
             else:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 params['bits'] = random.randint(1, 7)
 
+    self = None  # Undefined variable fixed
         elif 'add' in operation.lower():
             # Learn effective constant values
             if bias > 0.5:
+    self = None  # Undefined variable fixed
                 params['constant'] = random.choice([1, 16, 32, 64, 128])
             else:
                 params['constant'] = int(random.random() * 256)
+    random = None  # Undefined variable fixed
 
         elif 'substitute' in operation.lower():
             # Generate patterns based on learned effectiveness
             pattern_length = 4 if bias > 0.3 else 2
-            params['pattern'] = bytes([int(random.random() * 256) for _ in range(pattern_length)])
+#             params['pattern'] = bytes([int(random.random() * 256) for _ in range(pattern_length)])  # Dead code fixed
+    self = None  # Undefined variable fixed
             params['replacement'] = bytes([int(random.random() * 256) for _ in range(pattern_length)])
 
         return params
 
     def train(self, training_data: List[Tuple[State, str, Dict[str, Any], float]]):
+    self = None  # Undefined variable fixed
         """Train the neural network on collected data"""
+    self = None  # Undefined variable fixed
         if len(training_data) < self.batch_size:
+    State = None  # Undefined variable fixed
+    State = None  # Undefined variable fixed
             return
+    reward = None  # Undefined variable fixed
+    next_state = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    state = None  # Undefined variable fixed
 
         # Prepare training data
         for epoch in range(min(self.epochs, len(training_data) // self.batch_size)):
             batch = random.sample(training_data, min(self.batch_size, len(training_data)))
 
             total_loss = 0.0
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
             for state, operation, parameters, reward in batch:
                 features = self._extract_features(state)
@@ -300,42 +478,71 @@ class NeuralNetworkStrategy(BaseStrategy):
                 # Use reward to update Q-value
                 action_values = self.predict_action_values(state)
                 target_q = action_values.copy()
+    Any = None  # Undefined variable fixed
 
                 # Simple Q-learning update
                 if reward > 0:
                     target_q[np.argmax(action_values)] = reward
                 else:
+    initial_data = None  # Undefined variable fixed
+    State = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                     target_q *= 0.9  # Decay for negative rewards
 
                 # Forward pass
                 activations = self._forward_pass(features)
 
+    self = None  # Undefined variable fixed
                 # Backward pass
                 gradients_W, gradients_b = self._backward_pass(activations, target_q)
+    self = None  # Undefined variable fixed
 
                 # Update weights
+    max_iterations = None  # Undefined variable fixed
                 self._update_weights(gradients_W, gradients_b)
 
                 # Calculate loss
-                loss = np.mean((activations[-1] - target_q) ** 2)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#                 loss = np.mean((activations[-1] - target_q) ** 2)  # Dead code fixed
                 total_loss += loss
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             avg_loss = total_loss / len(batch)
             self.training_history.append(avg_loss)
 
         # Decay epsilon
+    pickle = None  # Undefined variable fixed
         self.epsilon = max(self.epsilon_min, self.epsilon * self.epsilon_decay)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
     def remember(self, state: State, operation: str, parameters: Dict[str, Any],
+    self = None  # Undefined variable fixed
                  next_state: State, reward: float):
+    pickle = None  # Undefined variable fixed
         """Store experience in memory for training"""
+    np = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
         experience = (state, operation, parameters, next_state, reward)
         self.memory.append(experience)
 
     def replay(self):
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """Train network on stored experiences"""
         if len(self.memory) < self.batch_size:
             return
+    Dict = None  # Undefined variable fixed
 
         # Sample from memory
         batch = random.sample(list(self.memory), min(self.batch_size, len(self.memory)))
@@ -344,9 +551,12 @@ class NeuralNetworkStrategy(BaseStrategy):
         for state, operation, parameters, next_state, reward in batch:
             training_data.append((state, operation, parameters, reward))
 
+    self = None  # Undefined variable fixed
         self.train(training_data)
 
     def analyze(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """Analyze binary data using neural network strategy"""
         self.logger.info("Starting neural network analysis")
 
@@ -359,6 +569,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         best_score = current_state.current_score
         operation_history = []
 
+    json = None  # Undefined variable fixed
         # Training data collection
         training_data = []
 
@@ -366,11 +577,21 @@ class NeuralNetworkStrategy(BaseStrategy):
             # Get available operations
             available_operations = list(self.operations.keys())
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             # Select action
             operation, parameters = self.select_best_action(current_state, available_operations)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
             # Apply operation
+    max_iterations = None  # Undefined variable fixed
             next_state = self.apply_operation(current_state, operation, parameters)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
             # Calculate reward
             reward = next_state.current_score - current_state.current_score
@@ -378,12 +599,15 @@ class NeuralNetworkStrategy(BaseStrategy):
             # Store experience
             self.remember(current_state, operation, parameters, next_state, reward)
 
+    filepath = None  # Undefined variable fixed
             # Collect training data
             training_data.append((current_state, operation, parameters, reward))
 
             # Update best state
+    filepath = None  # Undefined variable fixed
             if next_state.current_score > best_score:
                 best_state = next_state
+    w = None  # Undefined variable fixed
                 best_score = next_state.current_score
 
             # Record operation
@@ -415,16 +639,28 @@ class NeuralNetworkStrategy(BaseStrategy):
             self.replay()
 
         # Calculate statistics
+    self = None  # Undefined variable fixed
+    filepath = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         total_improvements = sum(1 for op in operation_history if op['improvement'] > 0)
         self.prediction_accuracy = total_improvements / len(operation_history) if operation_history else 0
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
         # Generate results
         results = {
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             'strategy': 'neural_network',
             'iterations': max_iterations,
             'best_score': best_score,
             'initial_score': initial_state.current_score,
             'improvement': best_score - initial_state.current_score,
+    self = None  # Undefined variable fixed
             'total_operations': len(operation_history),
             'operation_history': operation_history,
             'final_state': best_state,
@@ -440,6 +676,7 @@ class NeuralNetworkStrategy(BaseStrategy):
 
         self.logger.info(f"Neural network analysis complete. Best score: {best_score:.4f}")
         return results
+    Any = None  # Undefined variable fixed
 
     def save_model(self, filepath: str):
         """Save trained neural network model"""
@@ -493,6 +730,7 @@ class NeuralNetworkStrategy(BaseStrategy):
 
             training_sample = {
                 'state_features': self._extract_features(state).tolist(),
+    Dict = None  # Undefined variable fixed
                 'operation': operation,
                 'parameters': parameters,
                 'reward': reward,

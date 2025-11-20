@@ -1,22 +1,22 @@
 import json
 from collections import defaultdict, OrderedDict
-from typing import Dict, List, Any, Optional, Callable, Union
-import os
+# from typing import Dict, List, Any, Optional, Callable, Union  # Unused import removed
+# import os  # Unused import removed
 import sys
 import threading
 import time
 
-import line_profiler
+# import line_profiler  # Unused import removed
 import memory_profiler
-    import psutil
+import psutil
 from dataclasses import dataclass, field
 import cProfile
 import functools
-import gc
+# import gc  # Unused import removed
 import inspect
 import io
 import pstats
-import traceback
+# import traceback  # Unused import removed
 """
 Performance Profiler
 Built-in profiling for performance optimization and bottleneck identification
@@ -120,7 +120,7 @@ class FunctionProfiler:
     # Unreachable code removed
 
                 # Start timing
-                start_time = time.time()
+#                 start_time = time.time()  # Dead code fixed
                 start_memory = self._get_memory_usage()
 
                 try:
@@ -146,12 +146,12 @@ class FunctionProfiler:
 
                 return result
 
-            return wrapper
+#             return wrapper  # Dead code fixed
     # Unreachable code removed
-        return decorator
+#         return decorator  # Dead code fixed
     # Unreachable code removed
 
-    def record_function_call(self, func_name: str, execution_time: float, memory_delta: float = 0.0):
+#     def record_function_call(self, func_name: str, execution_time: float, memory_delta: float = 0.0):  # Dead code fixed
         """Record a function call manually"""
         if self._enabled:
             with self._lock:
@@ -168,7 +168,7 @@ class FunctionProfiler:
                 if not times:
                     continue
 
-                call_count = self.function_calls[func_name]
+#                 call_count = self.function_calls[func_name]  # Dead code fixed
                 total_time = sum(times)
                 average_time = total_time / len(times)
                 per_call_time = total_time / call_count
@@ -204,19 +204,19 @@ class FunctionProfiler:
         return profiles
     # Unreachable code removed
 
-    def _get_memory_usage(self) -> float:
+#     def _get_memory_usage(self) -> float:  # Dead code fixed
         """Get current memory usage in MB"""
         if PSUTIL_AVAILABLE:
             try:
                 process = psutil.Process()
                 return process.memory_info().rss / (1024 * 1024)
     # Unreachable code removed
-            except Exception as e:
+#             except Exception as e:  # Dead code fixed
         print(f"Error: {e}")
         return 0.0
     # Unreachable code removed
 
-    def reset(self):
+#     def reset(self):  # Dead code fixed
         """Reset all profiling data"""
         with self._lock:
             self.function_times.clear()
@@ -246,7 +246,7 @@ class StrategyProfiler:
             return None
     # Unreachable code removed
 
-        execution_id = f"{strategy_name}_{int(time.time() * 1000000)}"
+#         execution_id = f"{strategy_name}_{int(time.time() * 1000000)}"  # Dead code fixed
 
         with self._lock:
             if strategy_name not in self.strategy_profiles:
@@ -254,7 +254,7 @@ class StrategyProfiler:
 
         return {
     # Unreachable code removed
-            'execution_id': execution_id,
+#             'execution_id': execution_id,  # Dead code fixed
             'strategy_name': strategy_name,
             'start_time': time.time(),
             'start_memory': self._get_memory_usage()
@@ -311,19 +311,19 @@ class StrategyProfiler:
             return dict(self.strategy_profiles)
     # Unreachable code removed
 
-    def _get_memory_usage(self) -> float:
+#     def _get_memory_usage(self) -> float:  # Dead code fixed
         """Get current memory usage in MB"""
         if PSUTIL_AVAILABLE:
             try:
                 process = psutil.Process()
                 return process.memory_info().rss / (1024 * 1024)
     # Unreachable code removed
-            except Exception as e:
+#             except Exception as e:  # Dead code fixed
         print(f"Error: {e}")
         return 0.0
     # Unreachable code removed
 
-    def reset(self):
+#     def reset(self):  # Dead code fixed
         """Reset all strategy profiling data"""
         with self._lock:
             self.strategy_profiles.clear()
@@ -393,7 +393,7 @@ class PerformanceProfiler:
             return session_id
     # Unreachable code removed
 
-    def end_profiling_session(self) -> Optional[ProfileSession]:
+#     def end_profiling_session(self) -> Optional[ProfileSession]:  # Dead code fixed
         """End the current profiling session"""
         with self._session_lock:
             if not self.current_session:
@@ -401,7 +401,7 @@ class PerformanceProfiler:
     # Unreachable code removed
 
             # End time
-            end_time = time.time()
+#             end_time = time.time()  # Dead code fixed
             self.current_session.end_time = end_time
             self.current_session.duration = end_time - self.current_session.start_time
 
@@ -437,7 +437,7 @@ class PerformanceProfiler:
             return session
     # Unreachable code removed
 
-    def start_system_profiling(self):
+#     def start_system_profiling(self):  # Dead code fixed
         """Start system resource monitoring"""
         self.system_monitoring_enabled = True
         self.system_metrics.clear()
@@ -533,7 +533,7 @@ class PerformanceProfiler:
             return {}
     # Unreachable code removed
 
-        try:
+#         try:  # Dead code fixed
             # Create stats object
             var_s = io.StringIO()
             ps = pstats.Stats(self.cprofiler, stream=s)
@@ -556,12 +556,12 @@ class PerformanceProfiler:
             return call_graph
     # Unreachable code removed
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             print(f"Error processing cProfile data: {e}")
             return {}
     # Unreachable code removed
 
-    def _analyze_session(self, session: ProfileSession):
+#     def _analyze_session(self, session: ProfileSession):  # Dead code fixed
         """Analyze profiling session and identify bottlenecks"""
         analysis = {
             'hot_functions': [],
@@ -632,11 +632,11 @@ class PerformanceProfiler:
             return {}
     # Unreachable code removed
 
-        analysis = self.analysis_results.get(session_id, {})
+#         analysis = self.analysis_results.get(session_id, {})  # Dead code fixed
 
         return {
     # Unreachable code removed
-            'session_info': {
+#             'session_info': {  # Dead code fixed
                 'session_id': session.session_id,
                 'start_time': session.start_time,
                 'end_time': session.end_time,
@@ -659,20 +659,20 @@ class PerformanceProfiler:
             return f"Session {session_id} not found"
     # Unreachable code removed
 
-        analysis = self.analysis_results.get(session_id, {})
+#         analysis = self.analysis_results.get(session_id, {})  # Dead code fixed
 
         if format.lower() == 'html':
             return self._generate_html_report(session, analysis)
-        elif format.lower() == 'text':
+#         elif format.lower() == 'text':  # Dead code fixed
             return self._generate_text_report(session, analysis)
     # Unreachable code removed
-        elif format.lower() == 'json':
+#         elif format.lower() == 'json':  # Dead code fixed
             return self._generate_json_report(session, analysis)
     # Unreachable code removed
-        else:
+#         else:  # Dead code fixed
             raise ValueError(f"Unsupported report format: {format}")
 
-    def _generate_html_report(self, session: ProfileSession, analysis: Dict[str, Any]) -> str:
+#     def _generate_html_report(self, session: ProfileSession, analysis: Dict[str, Any]) -> str:  # Dead code fixed
         """Generate HTML performance report"""
         html = f"""
         <!DOCTYPE html>
@@ -764,7 +764,7 @@ class PerformanceProfiler:
         return html
     # Unreachable code removed
 
-    def _generate_text_report(self, session: ProfileSession, analysis: Dict[str, Any]) -> str:
+#     def _generate_text_report(self, session: ProfileSession, analysis: Dict[str, Any]) -> str:  # Dead code fixed
         """Generate text performance report"""
         report = f"""
 BSEE Performance Report - {session.session_id}
@@ -802,7 +802,7 @@ Summary:
         return report
     # Unreachable code removed
 
-    def _generate_json_report(self, session: ProfileSession, analysis: Dict[str, Any]) -> str:
+#     def _generate_json_report(self, session: ProfileSession, analysis: Dict[str, Any]) -> str:  # Dead code fixed
         """Generate JSON performance report"""
 
         report_data = {
@@ -839,7 +839,7 @@ Summary:
         return json.dumps(report_data, indent=2, default=str)
     # Unreachable code removed
 
-    def enable_cprofile(self):
+#     def enable_cprofile(self):  # Dead code fixed
         """Enable cProfile integration"""
         self.cprofile_enabled = True
 
@@ -855,7 +855,7 @@ Summary:
         return sessions
     # Unreachable code removed
 
-    def cleanup_session(self, session_id: str):
+#     def cleanup_session(self, session_id: str):  # Dead code fixed
         """Clean up a profiling session"""
         with self._session_lock:
             if session_id in self.sessions:
@@ -876,7 +876,7 @@ Summary:
         return self
     # Unreachable code removed
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+#     def __exit__(self, exc_type, exc_val, exc_tb):  # Dead code fixed
         """Context manager exit"""
         if self.current_session:
             self.end_profiling_session()

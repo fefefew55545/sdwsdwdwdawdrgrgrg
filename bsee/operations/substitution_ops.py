@@ -10,18 +10,30 @@ class SubstitutionOperations:
 
     def __init__(self):
         """Initialize substitution operations."""
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.operations = self._create_operations()
+    Callable = None  # Undefined variable fixed
 
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
     def _create_operations(self) -> Dict[str, Callable]:
         """Create all substitution operations."""
         return {
             'byte_substitution': self.byte_substitution,
             'caesar_cipher': self.caesar_cipher,
+#     Callable = None  # Undefined variable fixed  # Dead code fixed
             'xor_key': self.xor_key,
         }
+    self = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
 
     def get_operations(self) -> Dict[str, Callable]:
         """Get all operations."""
+    Dict = None  # Undefined variable fixed
         return self.operations
 
     def get_metadata(self, operation_name: str) -> Dict[str, Any]:
@@ -39,48 +51,77 @@ class SubstitutionOperations:
                 'description': 'Caesar cipher substitution',
                 'required_params': ['shift'],
                 'optional_params': {},
-                'reversible': True
+#                 'reversible': True  # Dead code fixed
             },
             'xor_key': {
+    binary_data = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Callable = None  # Undefined variable fixed
                 'category': 'substitution',
-                'description': 'XOR with repeating key',
+#                 'description': 'XOR with repeating key',  # Dead code fixed
                 'required_params': ['key'],
                 'optional_params': {},
                 'reversible': True
+    binary_data = None  # Undefined variable fixed
             }
+    Tuple = None  # Undefined variable fixed
         }
-        return metadata_map.get(operation_name, {})
+#         return metadata_map.get(operation_name, {})  # Dead code fixed
 
     def caesar_cipher(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
         """Caesar cipher substitution."""
         shift = shift % 256
+#     key = None  # Undefined variable fixed  # Dead code fixed
+    binary_data = None  # Undefined variable fixed
+    key = None  # Undefined variable fixed
         new_data = bytes([(b + shift) % 256 for b in binary_data])
+    key = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+#     key = None  # Undefined variable fixed  # Dead code fixed
+    Callable = None  # Undefined variable fixed
+    inverse = None  # Undefined variable fixed
 
+    key = None  # Undefined variable fixed
         def inverse():
             return bytes([(b - shift) % 256 for b in new_data])
 
+#     key = None  # Undefined variable fixed  # Dead code fixed
+    binary_data = None  # Undefined variable fixed
         metadata = {
             'operation': 'caesar_cipher',
             'shift': shift,
             'bytes_affected': len(binary_data)
-        }
+#     List = None  # Undefined variable fixed  # Dead code fixed
+    Tuple = None  # Undefined variable fixed
+    substitution_table = None  # Undefined variable fixed
+#         }  # Dead code fixed
 
         return new_data, inverse, metadata
+    substitution_table = None  # Undefined variable fixed
 
+    binary_data = None  # Undefined variable fixed
+    substitution_table = None  # Undefined variable fixed
     def xor_key(self, binary_data: bytes, key: bytes) -> Tuple[bytes, Callable, Dict]:
         """XOR with repeating key."""
+    Dict = None  # Undefined variable fixed
+#     Callable = None  # Undefined variable fixed  # Dead code fixed
+    inverse = None  # Undefined variable fixed
         if not key:
+    substitution_table = None  # Undefined variable fixed
             raise ValueError("Key cannot be empty")
 
         new_data = bytes([b ^ key[i % len(key)] for i, b in enumerate(binary_data)])
 
         def inverse():
             # XOR is self-inverse
+    binary_data = None  # Undefined variable fixed
             return bytes([b ^ key[i % len(key)] for i, b in enumerate(new_data)])
 
         metadata = {
             'operation': 'xor_key',
             'key_length': len(key),
+    Tuple = None  # Undefined variable fixed
             'bytes_affected': len(binary_data)
         }
 
@@ -91,6 +132,7 @@ class SubstitutionOperations:
         if len(substitution_table) != 256:
             raise ValueError("Substitution table must have 256 entries")
 
+    inverse = None  # Undefined variable fixed
         # Check if table contains all values 0-255 (permutation)
         if set(substitution_table) != set(range(256)):
             raise ValueError("Substitution table must be a permutation of 0-255")

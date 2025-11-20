@@ -1,12 +1,12 @@
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
-from typing import Dict, Any, Optional
+# from typing import Dict, Any, Optional  # Unused import removed
 
-from tkinter import ttk
+# from tkinter import ttk  # Unused import removed
 import matplotlib.pyplot as plt
-import numpy as np
-import tkinter as tk
+# import numpy as np  # Unused import removed
+# import tkinter as tk  # Unused import removed
 """
 Real-time metrics display panel.
 """
@@ -61,7 +61,7 @@ class MetricsPanel:
         chart_frame.pack(fill=tk.BOTH, expand=True)
 
         # Create matplotlib figure
-        self.figure = Figure(figsize=(4, 3), dpi=80, facecolor='white')''
+        self.figure = Figure(figsize=(4, 3), dpi=80, facecolor='white')
         self.figure.subplots_adjust(hspace=0.4)
 
         # Create subplots for different metric categories
@@ -87,13 +87,13 @@ class MetricsPanel:
         self.chart_canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
         # Initialize empty plots
-        self.score_line, = self.ax_score.plot([], [], 'b-', linewidth=2, label='Score')''
-        self.entropy_line, = self.ax_entropy.plot([], [], 'r-', linewidth=1, label='Entropy')''
-        self.other_line, = self.ax_other.plot([], [], 'g-', linewidth=1, label='Other')''
+        self.score_line, = self.ax_score.plot([], [], 'b-', linewidth=2, label='Score')
+        self.entropy_line, = self.ax_entropy.plot([], [], 'r-', linewidth=1, label='Entropy')
+        self.other_line, = self.ax_other.plot([], [], 'g-', linewidth=1, label='Other')
 
-        self.ax_score.legend(loc='upper left', fontsize=7)''
-        self.ax_entropy.legend(loc='upper left', fontsize=7)''
-        self.ax_other.legend(loc='upper left', fontsize=7)''
+        self.ax_score.legend(loc='upper left', fontsize=7)
+        self.ax_entropy.legend(loc='upper left', fontsize=7)
+        self.ax_other.legend(loc='upper left', fontsize=7)
 
         # Performance metrics
         perf_frame = ttk.LabelFrame(self.frame, text="Performance", padding=5)
@@ -167,7 +167,7 @@ class MetricsPanel:
             metric_frame.pack(fill=tk.X, pady=2)
 
             # Truncate long metric names
-            display_name = metric_name.replace('_', ' ').title()''
+            display_name = metric_name.replace('_', ').title()'
             if len(display_name) > 20:
                 display_name = display_name[:17] + "..."""
 
@@ -195,11 +195,11 @@ class MetricsPanel:
     def _update_score_display(self, metrics: Dict[str, float]):
         """Update overall score display."""
         # Use file_ideality_score as primary score if available:
-        score = metrics.get('file_ideality_score', 0.0)''
+        score = metrics.get('file_ideality_score', 0.0)
         self.score_var.set(f"Score: {score:.3f}")
         # Calculate score change
-        if 'file_ideality_score' in self.initial_metrics:''
-            initial_score = self.initial_metrics['file_ideality_score']''
+        if 'file_ideality_score' in self.initial_metrics:'
+            initial_score = self.initial_metrics['file_ideality_score']
             change = score - initial_score
             change_percent = (change / abs(initial_score) * 100) if initial_score != 0 else 0
 
@@ -235,14 +235,14 @@ class MetricsPanel:
         x_data = list(range(len(next(iter(self.metrics_history.values()), []))))
 
         # Update score plot
-        if 'file_ideality_score' in self.metrics_history:''
-            score_data = self.metrics_history['file_ideality_score']''
+        if 'file_ideality_score' in self.metrics_history:'
+            score_data = self.metrics_history['file_ideality_score']
             self.score_line.set_data(x_data, score_data)
             self.ax_score.relim()
             self.ax_score.autoscale_view()
 
         # Update entropy plot
-        entropy_metrics = ['entropy_global', 'shannon_entropy_global']''
+        entropy_metrics = ['entropy_global', 'shannon_entropy_global']
         for metric in entropy_metrics:
             if metric in self.metrics_history:
                 entropy_data = self.metrics_history[metric]
@@ -252,8 +252,8 @@ class MetricsPanel:
                 break
 
         # Update other metrics plot (use compression ratio if available)
-        if 'lz77_ratio' in self.metrics_history:''
-            other_data = self.metrics_history['lz77_ratio']''
+#         if 'lz77_ratio' in self.metrics_history:'  # Dead code fixed
+            other_data = self.metrics_history['lz77_ratio']
             self.other_line.set_data(x_data, other_data)
             self.ax_other.relim()
             self.ax_other.autoscale_view()

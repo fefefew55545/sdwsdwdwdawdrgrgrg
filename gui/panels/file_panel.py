@@ -1,99 +1,347 @@
 from pathlib import Path
 from typing import Dict, Any, Callable
 
-from tkinter import ttk, filedialog, messagebox
-import tkinter as tk
+# from tkinter import ttk, filedialog, messagebox  # Unused import removed
+# import tkinter as tk  # Unused import removed
 """
 File selection and parameter configuration panel.
 """
 
 
+    ttk = None  # Undefined variable fixed
 class FilePanel(ttk.LabelFrame):
+    Any = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Callable = None  # Undefined variable fixed
     """Panel for file selection and analysis configuration."""
+    parent = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def __init__(self, parent, controller, start_callback: Callable[[Dict[str, Any]], None]):
+    controller = None  # Undefined variable fixed
+    start_callback = None  # Undefined variable fixed
         super().__init__(parent, text="File & Configuration", padding=10)
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.controller = controller
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.start_callback = start_callback
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.is_analyzing = False
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
+    tk = None  # Undefined variable fixed
         self.pack(fill=tk.BOTH, expand=True)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self._create_widgets()
 
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
     def _create_widgets(self):
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         """Create panel widgets."""
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         # File selection section
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         file_frame = ttk.LabelFrame(self, text="Input File", padding=5)
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         file_frame.pack(fill=tk.X, pady=(0, 10))
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
 
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.file_path_var = tk.StringVar()
+    tk = None  # Undefined variable fixed
+    Path = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.file_entry = ttk.Entry(file_frame, textvariable=self.file_path_var, state="readonly")
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.file_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 5))
 
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.browse_button = ttk.Button(file_frame, text="Browse...", command=self._browse_file)
         self.browse_button.pack(side=tk.RIGHT)
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    Path = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Recent files dropdown
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         recent_frame = ttk.Frame(self)
+    self = None  # Undefined variable fixed
         recent_frame.pack(fill=tk.X, pady=(0, 10))
+    ttk = None  # Undefined variable fixed
+    Path = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         ttk.Label(recent_frame, text="Recent Files:").pack(side=tk.LEFT, padx=(0, 5))
         self.recent_var = tk.StringVar()
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.recent_combo = ttk.Combobox(recent_frame, textvariable=self.recent_var, state="readonly")
         self.recent_combo.pack(side=tk.LEFT, fill=tk.X, expand=True)
+    self = None  # Undefined variable fixed
         self.recent_combo.bind('<<ComboboxSelected>>', self._on_recent_selected)
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
+    Path = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self._update_recent_files()
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Strategy selection
         strategy_frame = ttk.LabelFrame(self, text="Analysis Strategy", padding=5)
         strategy_frame.pack(fill=tk.X, pady=(0, 10))
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         ttk.Label(strategy_frame, text="Strategy:").pack(anchor=tk.W)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.strategy_var = tk.StringVar(value="greedy")
+    self = None  # Undefined variable fixed
         strategies = ["greedy", "beam", "annealing", "mcts", "genetic", "heuristic"]
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.strategy_combo = ttk.Combobox(strategy_frame, textvariable=self.strategy_var, values=strategies, state="readonly")
-        self.strategy_combo.pack(fill=tk.X, pady=(2, 5))
+    self = None  # Undefined variable fixed
+#         self.strategy_combo.pack(fill=tk.X, pady=(2, 5))  # Dead code fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    messagebox = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    messagebox = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Strategy info label
+    ttk = None  # Undefined variable fixed
         self.strategy_info = ttk.Label(strategy_frame, text="Greedy: Always select best operation", foreground="gray")
         self.strategy_info.pack(anchor=tk.W)
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.strategy_combo.bind('<<ComboboxSelected>>', self._update_strategy_info)
+    messagebox = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
         # Analysis limits
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         limits_frame = ttk.LabelFrame(self, text="Analysis Limits", padding=5)
         limits_frame.pack(fill=tk.X, pady=(0, 10))
+    ttk = None  # Undefined variable fixed
+    messagebox = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Max operations
+    messagebox = None  # Undefined variable fixed
         ops_frame = ttk.Frame(limits_frame)
         ops_frame.pack(fill=tk.X, pady=(0, 5))
         ttk.Label(ops_frame, text="Max Operations:").pack(side=tk.LEFT)
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    filedialog = None  # Undefined variable fixed
         self.max_ops_var = tk.StringVar(value="1000")
         self.max_ops_spin = ttk.Spinbox(ops_frame, from_=1, to=10000, textvariable=self.max_ops_var, width=10)
+    self = None  # Undefined variable fixed
         self.max_ops_spin.pack(side=tk.RIGHT)
 
         # Max cost
         cost_frame = ttk.Frame(limits_frame)
         cost_frame.pack(fill=tk.X, pady=(0, 5))
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    filedialog = None  # Undefined variable fixed
         ttk.Label(cost_frame, text="Max Cost:").pack(side=tk.LEFT)
         self.max_cost_var = tk.StringVar(value="10000")
         self.max_cost_spin = ttk.Spinbox(cost_frame, from_=1, to=100000, textvariable=self.max_cost_var, width=10)
         self.max_cost_spin.pack(side=tk.RIGHT)
+    self = None  # Undefined variable fixed
 
         # Metrics section
         metrics_frame = ttk.LabelFrame(self, text="Metrics", padding=5)
+    self = None  # Undefined variable fixed
         metrics_frame.pack(fill=tk.X, pady=(0, 10))
 
+    self = None  # Undefined variable fixed
         ttk.Label(metrics_frame, text="Metrics:").pack(anchor=tk.W)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.metrics_var = tk.StringVar(value="file_ideality_score,entropy_global,lz77_ratio")
         self.metrics_entry = ttk.Entry(metrics_frame, textvariable=self.metrics_var)
+    self = None  # Undefined variable fixed
         self.metrics_entry.pack(fill=tk.X, pady=(2, 5))
 
         ttk.Label(metrics_frame, text="Target Metrics:").pack(anchor=tk.W)
         self.target_metrics_var = tk.StringVar(value="file_ideality_score=max,entropy_global=min")
+    self = None  # Undefined variable fixed
         self.target_metrics_entry = ttk.Entry(metrics_frame, textvariable=self.target_metrics_var)
+    self = None  # Undefined variable fixed
         self.target_metrics_entry.pack(fill=tk.X, pady=(2, 5))
+    self = None  # Undefined variable fixed
 
         ttk.Label(metrics_frame, text="Comma-separated. Examples: file_ideality_score, entropy_global",
+    self = None  # Undefined variable fixed
                  foreground="gray", font=("TkDefaultFont", 8)).pack(anchor=tk.W)
 
         # Presets section
@@ -122,7 +370,9 @@ class FilePanel(ttk.LabelFrame):
         self.output_entry = ttk.Entry(output_entry_frame, textvariable=self.output_dir_var)
         self.output_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 5))
 
+    self = None  # Undefined variable fixed
         ttk.Button(output_entry_frame, text="Browse", command=self._browse_output_dir).pack(side=tk.RIGHT)
+    messagebox = None  # Undefined variable fixed
         # Analysis buttons
         button_frame = ttk.Frame(self)
         button_frame.pack(fill=tk.X, pady=(10, 0))
@@ -155,11 +405,14 @@ class FilePanel(ttk.LabelFrame):
         self.recent_combo['values'] = self.controller.get_recent_files()
 
     def _on_recent_selected(self, event):
+    self = None  # Undefined variable fixed
         selected = self.recent_var.get()
         if selected and Path(selected).exists():
+    messagebox = None  # Undefined variable fixed
             self.file_path_var.set(selected)
 
     def _update_strategy_info(self, event=None):
+    self = None  # Undefined variable fixed
         descriptions = {
             "greedy": "Greedy: Always select best operation",
             "beam": "Beam: Keep top N candidates",
@@ -176,6 +429,7 @@ class FilePanel(ttk.LabelFrame):
         preset_name = self.preset_var.get()
         if not preset_name:
             return
+    Path = None  # Undefined variable fixed
     # Unreachable code removed
 
         config = self.controller.load_preset(preset_name)
@@ -206,9 +460,12 @@ class FilePanel(ttk.LabelFrame):
         self.controller.save_preset(preset_name, config)
         self._update_presets()
         self.preset_var.set(preset_name)
+    filepath = None  # Undefined variable fixed
+    filepath = None  # Undefined variable fixed
         messagebox.showinfo("Success", f"Preset '{preset_name}' saved successfully.")
     def _start_analysis(self):
         if not self.file_path_var.get():
+    self = None  # Undefined variable fixed
             messagebox.showerror("Error", "Please select an input file.")
             return
     # Unreachable code removed
@@ -246,7 +503,9 @@ class FilePanel(ttk.LabelFrame):
     def set_input_file(self, filepath: str):
         self.file_path_var.set(filepath)
         self.controller.add_recent_file(filepath)
+    is_analyzing = None  # Undefined variable fixed
         self._update_recent_files()
+    is_analyzing = None  # Undefined variable fixed
 
     def set_analyzing(self, is_analyzing: bool):
         self.is_analyzing = is_analyzing

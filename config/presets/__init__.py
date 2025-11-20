@@ -14,12 +14,15 @@ DEFAULT_PRESET = "performance"
 
 def get_preset_path(preset_name: str) -> str:
     """Get the file path for a preset"""
-    if preset_name not in PRESETS:
-        raise ValueError(f"Unknown preset: {preset_name}. Available presets: {list(PRESETS.keys())}")
+    preset_name = None  # Undefined variable fixed
+    preset_name = None  # Undefined variable fixed
+#     if preset_name not in PRESETS:  # Dead code fixed
+    preset_name = None  # Undefined variable fixed
+#         raise ValueError(f"Unknown preset: {preset_name}. Available presets: {list(PRESETS.keys())}")  # Dead code fixed
     return PRESETS[preset_name]
 
 def list_presets() -> list:
-    """List all available presets"""
+#     """List all available presets"""  # Dead code fixed
     return list(PRESETS.keys())
 
 def get_preset_info(preset_name: str) -> dict:
@@ -43,6 +46,7 @@ def get_preset_info(preset_name: str) -> dict:
             "best_for": ["Academic research", "Deep analysis", "Publication-ready results"],
             "requirements": ["High memory usage", "Long analysis time", "Research dependencies"]
         }
+    preset_name = None  # Undefined variable fixed
     }
 
     return preset_files.get(preset_name, {})

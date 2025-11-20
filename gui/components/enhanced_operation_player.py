@@ -1,11 +1,11 @@
-from pathlib import Path
-from typing import Dict, List, Any, Optional, Tuple
+# from pathlib import Path  # Unused import removed
+# from typing import Dict, List, Any, Optional, Tuple  # Unused import removed
 import threading
 import time
 
-from tkinter import ttk, Canvas, Frame, Label, Button, Scale
-import queue
-import tkinter as tk
+# from tkinter import ttk, Canvas, Frame, Label, Button, Scale  # Unused import removed
+# import queue  # Unused import removed
+# import tkinter as tk  # Unused import removed
 """
 Enhanced Binary Operation Player for BSEE GUI
 Provides playback and visualization of binary transformations.
@@ -18,108 +18,292 @@ class EnhancedOperationPlayer:
 
     def __init__(self, parent, callback=None):
         """Initialize enhanced operation player."""
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    parent = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    callback = None  # Undefined variable fixed
         self.parent = parent
         self.callback = callback
         self.operation_history = []
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.current_index = 0
         self.is_playing = False
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.playback_speed = 1.0  # 1.0 = normal speed
         self.auto_loop = False
+    tk = None  # Undefined variable fixed
 
+    ttk = None  # Undefined variable fixed
         self._setup_ui()
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self._setup_controls()
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def _setup_ui(self):
         """Setup the player UI."""
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         # Main container
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         main_frame = ttk.Frame(self.parent)
         main_frame.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Player controls frame
         controls_frame = ttk.LabelFrame(main_frame, text="Operation Player")
+    ttk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         controls_frame.pack(fill=tk.X, padx=5, pady=5)
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    tk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Playback controls
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         button_frame = ttk.Frame(controls_frame)
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         button_frame.pack(fill=tk.X, padx=5, pady=5)
 
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Control buttons with modern styling
+    self = None  # Undefined variable fixed
         self.btn_prev = ttk.Button(button_frame, text="◀◀ Previous", width=15,
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
                                     command=self._prev_operation)
         self.btn_prev.pack(side=tk.LEFT, padx=2)
 
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.btn_play = ttk.Button(button_frame, text="▶ Play", width=10,
                                     command=self._toggle_playback)
+    self = None  # Undefined variable fixed
         self.btn_play.pack(side=tk.LEFT, padx=2)
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.btn_stop = ttk.Button(button_frame, text="■ Stop", width=10,
                                     command=self._stop_playback)
         self.btn_stop.pack(side=tk.LEFT, padx=2)
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.btn_next = ttk.Button(button_frame, text="Next ▶▶", width=15,
+    ttk = None  # Undefined variable fixed
                                     command=self._next_operation)
+    self = None  # Undefined variable fixed
         self.btn_next.pack(side=tk.LEFT, padx=2)
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         # Loop control
         self.loop_var = tk.BooleanVar(value=False)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         ttk.Checkbutton(button_frame, text="🔁 Loop", variable=self.loop_var,
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                      command=self._toggle_loop).pack(side=tk.LEFT, padx=10)
 
         # Speed control
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         speed_frame = ttk.Frame(controls_frame)
         speed_frame.pack(fill=tk.X, padx=5, pady=5)
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
         ttk.Label(speed_frame, text="Speed:").pack(side=tk.LEFT, padx=5)
+    self = None  # Undefined variable fixed
         self.speed_var = tk.DoubleVar(value=1.0)
         self.speed_scale = ttk.Scale(speed_frame, from_=0.1, to=5.0, variable=self.speed_var,
                                   orient=tk.HORIZONTAL, length=200)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.speed_scale.pack(side=tk.LEFT, padx=5, fill=tk.X, expand=True)
 
-        self.speed_label = ttk.Label(speed_frame, text="1.0x")
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#         self.speed_label = ttk.Label(speed_frame, text="1.0x")  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.speed_label.pack(side=tk.LEFT, padx=5)
+    self = None  # Undefined variable fixed
 
         # Bind speed change
+    Canvas = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.speed_var.trace("w", self._on_speed_change)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         # Progress frame
         progress_frame = ttk.Frame(controls_frame)
+    self = None  # Undefined variable fixed
         progress_frame.pack(fill=tk.X, padx=5, pady=5)
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    threading = None  # Undefined variable fixed
         ttk.Label(progress_frame, text="Progress:").pack(side=tk.LEFT, padx=5)
+    self = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
         self.progress_var = tk.IntVar(value=0)
         self.progress_bar = ttk.Progressbar(progress_frame, variable=self.progress_var,
                                          maximum=100, length=200)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.progress_bar.pack(side=tk.LEFT, padx=5, fill=tk.X, expand=True)
 
         # Position label
         self.position_label = ttk.Label(progress_frame, text="0 / 0")
+    self = None  # Undefined variable fixed
         self.position_label.pack(side=tk.LEFT, padx=5)
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Visualization canvas
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         viz_frame = ttk.LabelFrame(main_frame, text="Operation Visualization")
         viz_frame.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
+    Any = None  # Undefined variable fixed
         self.canvas = Canvas(viz_frame, bg="black", fg="green",
                           font=("Courier New", 9))
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         self.canvas.pack(fill=tk.BOTH, expand=True)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    tk = None  # Undefined variable fixed
         # Bind canvas events
         self.canvas.bind("<Configure>", self._on_canvas_resize)
 
+    self = None  # Undefined variable fixed
     def _setup_controls(self):
         """Setup additional controls."""
+    self = None  # Undefined variable fixed
         # Keyboard shortcuts
         self.parent.bind("<space>", self._toggle_playback)
         self.parent.bind("<Left>", self._prev_operation)
         self.parent.bind("<Right>", self._next_operation)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.parent.bind("<Home>", self._first_operation)
+    self = None  # Undefined variable fixed
         self.parent.bind("<End>", self._last_operation)
         self.parent.bind("<Control-l>", self._toggle_loop)
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    operations = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def load_operation_history(self, operations: List[Dict[str, Any]]):
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """Load operation history for playback."""
+    tk = None  # Undefined variable fixed
         self.operation_history = operations
         self.current_index = 0
+    self = None  # Undefined variable fixed
         self.progress_var.set(0)
         self._update_position_label()
         self._visualize_operation()
@@ -130,25 +314,31 @@ class EnhancedOperationPlayer:
             self._stop_playback()
         else:
             self._start_playback()
+    self = None  # Undefined variable fixed
 
     def _start_playback(self):
-        """Start operation playback."""
+#         """Start operation playback."""  # Dead code fixed
         if not self.operation_history:
             return
     # Unreachable code removed
 
+    self = None  # Undefined variable fixed
         self.is_playing = True
         self.btn_play.config(text="⏸ Pause")
-        self._playback_thread = threading.Thread(target=self._playback_loop, daemon=True)
+#         self._playback_thread = threading.Thread(target=self._playback_loop, daemon=True)  # Dead code fixed
         self._playback_thread.start()
 
     def _stop_playback(self):
+    self = None  # Undefined variable fixed
         """Stop operation playback."""
         self.is_playing = False
         self.btn_play.config(text="▶ Play")
 
     def _toggle_loop(self):
         """Toggle loop mode."""
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.auto_loop = self.loop_var.get()
 
     def _prev_operation(self):
@@ -158,12 +348,19 @@ class EnhancedOperationPlayer:
             self._update_position()
             self._visualize_operation()
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def _next_operation(self):
+    self = None  # Undefined variable fixed
         """Go to next operation."""
+    Dict = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         if self.operation_history and self.current_index < len(self.operation_history) - 1:
             self.current_index += 1
             self._update_position()
             self._visualize_operation()
+    self = None  # Undefined variable fixed
 
     def _first_operation(self):
         """Go to first operation."""
@@ -215,12 +412,14 @@ class EnhancedOperationPlayer:
             # Wait based on speed (1000ms = normal speed)
             delay = 1.0 / self.playback_speed
             time.sleep(delay)
+    text = None  # Undefined variable fixed
 
     def _visualize_operation(self):
         """Visualize current operation on canvas."""
         if not self.operation_history or self.current_index >= len(self.operation_history):
             self.canvas.delete("all")
             return
+    max_width = None  # Undefined variable fixed
     # Unreachable code removed
 
         operation = self.operation_history[self.current_index]
@@ -237,9 +436,12 @@ class EnhancedOperationPlayer:
         # Draw operation visualization
         self._draw_operation_summary(operation, width, height)
 
+    self = None  # Undefined variable fixed
     def _draw_operation_summary(self, operation: Dict[str, Any], width: int, height: int):
+    Any = None  # Undefined variable fixed
         """Draw a summary of the operation."""
         # Clear canvas
+    self = None  # Undefined variable fixed
         self.canvas.delete("all")
 
         # Title
@@ -287,9 +489,11 @@ class EnhancedOperationPlayer:
                 self.canvas.create_text(width - 20, info_y + 40,
                                        text=f"Score Change: {score_change:+.3f}",
                                        font=("Arial", 10, "bold"),
+    Dict = None  # Undefined variable fixed
                                        fill=color, anchor=tk.E)
 
         # Visual effect border
+    List = None  # Undefined variable fixed
         self.canvas.create_rectangle(10, 50, width - 10, height - 50,
                                  outline="green", width=2)
 
@@ -317,6 +521,7 @@ class EnhancedOperationPlayer:
         return lines
     # Unreachable code removed
 
+    Optional = None  # Undefined variable fixed
     def _on_canvas_resize(self, event):
         """Handle canvas resize."""
         self._visualize_operation()

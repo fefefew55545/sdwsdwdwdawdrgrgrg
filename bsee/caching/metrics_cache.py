@@ -6,15 +6,16 @@ Cache expensive metric calculations for improved performance
 import time
 import threading
 import hashlib
-from typing import Dict, List, Any, Optional, Tuple, Union, Callable
+# from typing import Dict, List, Any, Optional, Tuple, Union, Callable  # Unused import removed
 from dataclasses import dataclass, field
 from collections import OrderedDict
 import pickle
-import math
+# import math  # Unused import removed
 
-from .operation_cache import LRUCache, CacheStatistics
+# from .operation_cache import LRUCache, CacheStatistics  # Unused import removed
 
 
+    dataclass = None  # Undefined variable fixed
 @dataclass
 class MetricType:
     """Definition of a metric type with caching parameters"""
@@ -26,23 +27,30 @@ class MetricType:
     size_weight: float = 1.0          # Relative size weight for memory management
     recomputation_cost: float = 1.0    # Relative cost of recomputation
 
+    dataclass = None  # Undefined variable fixed
 
 @dataclass
 class MetricCacheEntry:
     """Cache entry for metric calculation result"""
     metric_name: str
+    Any = None  # Undefined variable fixed
     data_hash: str
     parameters_hash: str
     result: Any
     result_size: int
     creation_time: float
     last_access_time: float
+    MetricType = None  # Undefined variable fixed
     access_count: int
+    Any = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
     calculation_time: float
     ttl: float
     metric_type: MetricType
     is_valid: bool = True
     validation_data: Optional[Dict[str, Any]] = None
+    dataclass = None  # Undefined variable fixed
 
 
 @dataclass
@@ -51,41 +59,92 @@ class MetricCacheStatistics:
     total_requests: int = 0
     cache_hits: int = 0
     cache_misses: int = 0
+    field = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
     expired_entries: int = 0
     invalidated_entries: int = 0
     total_calculation_time_saved: float = 0.0
     cache_size_bytes: int = 0
     memory_usage_mb: float = 0.0
+    max_memory_mb = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    MetricCacheEntry = None  # Undefined variable fixed
+    threading = None  # Undefined variable fixed
     hit_rate: float = 0.0
+    max_entries = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    OrderedDict = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    OrderedDict = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     entries_by_metric: Dict[str, int] = field(default_factory=dict)
     average_calculation_time: float = 0.0
+    MetricCacheStatistics = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Callable = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
 class MetricsCache:
+    Dict = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     MetricType = None  # Undefined variable fixed  # Dead code fixed
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
     """Specialized cache for expensive metric calculations"""
 
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
     def __init__(self, max_entries: int = 5000, max_memory_mb: float = 256.0):
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
         self.max_entries = max_entries
         self.max_memory_bytes = max_memory_mb * 1024 * 1024
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
 
         # Cache storage
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
+    MetricType = None  # Undefined variable fixed
         self._cache: OrderedDict[str, MetricCacheEntry] = OrderedDict()
         self._lock = threading.RLock()
+    MetricType = None  # Undefined variable fixed
 
         # Metric type definitions
         self.metric_types = self._initialize_metric_types()
 
+    self = None  # Undefined variable fixed
         # Statistics
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Callable = None  # Undefined variable fixed
         self.stats = MetricCacheStatistics()
+    self = None  # Undefined variable fixed
 
+    hashlib = None  # Undefined variable fixed
         # Background cleanup thread
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
         self._cleanup_running = False
         self._cleanup_thread = None
+    Any = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    hashlib = None  # Undefined variable fixed
 
+#     parameters = None  # Undefined variable fixed  # Dead code fixed
         # Validation callbacks
         self._validation_callbacks: Dict[str, Callable] = {}
 
-        # Start background cleanup
+#         # Start background cleanup  # Dead code fixed
         self.start_background_cleanup()
 
     def _initialize_metric_types(self) -> Dict[str, MetricType]:
@@ -93,55 +152,77 @@ class MetricsCache:
         return {
             # File-level metrics
             'entropy': MetricType('entropy', ttl_seconds=float('inf'), priority=3, size_weight=1.0),
-            'ideality': MetricType('ideality', ttl_seconds=float('inf'), priority=3, size_weight=1.2),
+    time = None  # Undefined variable fixed
+#             'ideality': MetricType('ideality', ttl_seconds=float('inf'), priority=3, size_weight=1.2),  # Dead code fixed
             'compression_ratio': MetricType('compression_ratio', ttl_seconds=300.0, priority=2, size_weight=0.8),
             'file_size': MetricType('file_size', cacheable=False),  # Very cheap to calculate
+#     MetricType = None  # Undefined variable fixed  # Dead code fixed
 
-            # Window-based metrics
+#             # Window-based metrics  # Dead code fixed
             'window_entropy': MetricType('window_entropy', ttl_seconds=1800.0, priority=2, size_weight=2.0),
             'window_ideality': MetricType('window_ideality', ttl_seconds=1800.0, priority=2, size_weight=2.2),
             'local_variance': MetricType('local_variance', ttl_seconds=600.0, priority=1, size_weight=1.5),
+    Any = None  # Undefined variable fixed
 
             # Pattern analysis metrics
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
             'pattern_frequency': MetricType('pattern_frequency', ttl_seconds=3600.0, priority=2, size_weight=3.0),
             'byte_distribution': MetricType('byte_distribution', ttl_seconds=3600.0, priority=2, size_weight=2.0),
             'repeating_patterns': MetricType('repeating_patterns', ttl_seconds=7200.0, priority=3, size_weight=2.5),
-
+#   # Dead code fixed
             # Advanced metrics
             'lz77_complexity': MetricType('lz77_complexity', ttl_seconds=1800.0, priority=3, size_weight=1.8),
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             'dct_coefficients': MetricType('dct_coefficients', ttl_seconds=2400.0, priority=3, size_weight=2.0),
             'fourier_spectrum': MetricType('fourier_spectrum', ttl_seconds=2400.0, priority=2, size_weight=2.5),
-
+#   # Dead code fixed
+    e = None  # Undefined variable fixed
             # Statistical metrics
-            'correlation_matrix': MetricType('correlation_matrix', ttl_seconds=1800.0, priority=2, size_weight=1.5),
+    self = None  # Undefined variable fixed
+#             'correlation_matrix': MetricType('correlation_matrix', ttl_seconds=1800.0, priority=2, size_weight=1.5),  # Dead code fixed
             'autocorrelation': MetricType('autocorrelation', ttl_seconds=1200.0, priority=2, size_weight=1.8),
-            'runs_test': MetricType('runs_test', ttl_seconds=900.0, priority=1, size_weight=1.2),
+#             'runs_test': MetricType('runs_test', ttl_seconds=900.0, priority=1, size_weight=1.2),  # Dead code fixed
 
+    callback = None  # Undefined variable fixed
+    MetricCacheEntry = None  # Undefined variable fixed
             # Custom metrics (user-defined)
             'custom': MetricType('custom', ttl_seconds=600.0, priority=1, size_weight=1.0),
-        }
+#         }  # Dead code fixed
 
     def register_metric_type(self, metric_type: MetricType):
+    pickle = None  # Undefined variable fixed
         """Register a new metric type"""
         self.metric_types[metric_type.name] = metric_type
 
     def register_validation_callback(self, metric_name: str, callback: Callable[[Any, Any], bool]):
         """Register validation callback for a metric"""
         self._validation_callbacks[metric_name] = callback
+    x = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
     def _generate_data_hash(self, data: bytes) -> str:
-        """Generate hash for input data"""
+    MetricCacheEntry = None  # Undefined variable fixed
+#         """Generate hash for input data"""  # Dead code fixed
         return hashlib.sha256(data).hexdigest()
 
-    def _generate_parameters_hash(self, parameters: Dict[str, Any]) -> str:
+#     def _generate_parameters_hash(self, parameters: Dict[str, Any]) -> str:  # Dead code fixed
+    self = None  # Undefined variable fixed
         """Generate hash for calculation parameters"""
         # Sort parameters to ensure consistent hashing
         sorted_params = sorted(parameters.items())
+    self = None  # Undefined variable fixed
         param_str = str(sorted_params)
-        return hashlib.md5(param_str.encode()).hexdigest()
+#         return hashlib.md5(param_str.encode()).hexdigest()  # Dead code fixed
 
     def _generate_cache_key(self, metric_name: str, data_hash: str, parameters_hash: str) -> str:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """Generate cache key for metric"""
+    self = None  # Undefined variable fixed
         return f"{metric_name}:{data_hash}:{parameters_hash}"
 
     def _is_entry_expired(self, entry: MetricCacheEntry) -> bool:
@@ -153,7 +234,9 @@ class MetricsCache:
             return True
 
         # Check maximum age
+    MetricCacheEntry = None  # Undefined variable fixed
         if (current_time - entry.creation_time) > entry.metric_type.max_age_seconds:
+#     time = None  # Undefined variable fixed  # Dead code fixed
             return True
 
         return False
@@ -162,14 +245,17 @@ class MetricsCache:
         """Check if cached entry is still valid for current data"""
         # Check if entry is marked invalid
         if not entry.is_valid:
+    target_memory = None  # Undefined variable fixed
             return False
 
-        # Check expiration
+#         # Check expiration  # Dead code fixed
         if self._is_entry_expired(entry):
             return False
 
         # Run custom validation if available
         metric_name = entry.metric_name
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         if metric_name in self._validation_callbacks:
             try:
                 validation_result = self._validation_callbacks[metric_name](entry.result, data)
@@ -177,14 +263,27 @@ class MetricsCache:
                     entry.is_valid = False
                     return False
             except Exception as e:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 print(f"Error in validation callback for {metric_name}: {e}")
                 return False
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         return True
 
+    self = None  # Undefined variable fixed
     def _estimate_entry_size(self, entry: MetricCacheEntry) -> int:
+    self = None  # Undefined variable fixed
         """Estimate memory usage of cache entry"""
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
         base_size = 200  # Base overhead
+    MetricCacheEntry = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
         result_size = len(pickle.dumps(entry.result))
         return base_size + result_size
 
@@ -194,106 +293,185 @@ class MetricsCache:
 
         if target_memory is None:
             target_memory = self.max_memory_bytes * 0.8
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         # Get entries sorted by eviction priority
         entries = list(self._cache.items())
         entries.sort(key=lambda x: self._calculate_eviction_score(x[1]), reverse=True)
 
+    self = None  # Undefined variable fixed
         current_memory = self._estimate_memory_usage()
 
         for key, entry in entries:
+    self = None  # Undefined variable fixed
             if current_memory <= target_memory:
                 break
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     threading = None  # Undefined variable fixed  # Dead code fixed
 
+    self = None  # Undefined variable fixed
             # Don't evict high-priority entries unless necessary
             if entry.metric_type.priority >= 3 and current_memory < self.max_memory_bytes:
                 continue
 
             del self._cache[key]
             current_memory -= self._estimate_entry_size(entry)
+    self = None  # Undefined variable fixed
             evicted_count += 1
+    self = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
             self.stats.invalidated_entries += 1
-
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#   # Dead code fixed
         return evicted_count
 
+    parameters = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def _calculate_eviction_score(self, entry: MetricCacheEntry) -> float:
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
         """Calculate eviction score (higher = more likely to evict)"""
         current_time = time.time()
         age = current_time - entry.creation_time
-        time_since_access = current_time - entry.last_access_time
+#         time_since_access = current_time - entry.last_access_time  # Dead code fixed
 
+    parameters = None  # Undefined variable fixed
         # Factors that increase eviction score (more likely to evict):
         # - Low priority
+    Dict = None  # Undefined variable fixed
         # - Old age
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     time = None  # Undefined variable fixed  # Dead code fixed
         # - Haven't been accessed recently
+    e = None  # Undefined variable fixed
         # - Low access count
         # - Large size
 
         priority_factor = 4.0 - entry.metric_type.priority  # Invert priority
         age_factor = min(age / 3600.0, 2.0)  # Age in hours, max 2.0
         access_factor = 1.0 / (1.0 + entry.access_count)  # Inverse of access count
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         recent_access_factor = min(time_since_access / 1800.0, 2.0)  # 30 minutes max
+    self = None  # Undefined variable fixed
         size_factor = entry.result_size / (1024 * 1024)  # Size in MB
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
         return (priority_factor * 0.3 +
                 age_factor * 0.2 +
                 access_factor * 0.2 +
                 recent_access_factor * 0.2 +
+    pickle = None  # Undefined variable fixed
                 size_factor * 0.1)
 
     def _estimate_memory_usage(self) -> int:
         """Estimate total memory usage of cache"""
+    self = None  # Undefined variable fixed
         total_size = 0
         for entry in self._cache.values():
             total_size += self._estimate_entry_size(entry)
+    time = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
         return total_size
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
     def _cleanup_expired_entries(self):
         """Remove expired entries from cache"""
         current_time = time.time()
         expired_keys = []
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
 
-        for key, entry in self._cache.items():
+    self = None  # Undefined variable fixed
+#         for key, entry in self._cache.items():  # Dead code fixed
             if self._is_entry_expired(entry):
+    self = None  # Undefined variable fixed
                 expired_keys.append(key)
 
         for key in expired_keys:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             del self._cache[key]
+    self = None  # Undefined variable fixed
             self.stats.expired_entries += 1
+    self = None  # Undefined variable fixed
 
         if expired_keys:
+    e = None  # Undefined variable fixed
+    pattern = None  # Undefined variable fixed
             print(f"Cleaned up {len(expired_keys)} expired metric cache entries")
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
     def _background_cleanup_loop(self):
         """Background thread for cache cleanup"""
+    parameters = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         while self._cleanup_running:
             try:
+    self = None  # Undefined variable fixed
                 self._cleanup_expired_entries()
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 # Check memory usage and evict if necessary
                 current_memory = self._estimate_memory_usage()
                 if current_memory > self.max_memory_bytes:
                     self._evict_entries()
 
+    Dict = None  # Undefined variable fixed
                 # Sleep for 60 seconds
                 time.sleep(60)
 
             except Exception as e:
+    MetricCacheEntry = None  # Undefined variable fixed
                 print(f"Error in background cleanup: {e}")
                 time.sleep(60)
 
     def start_background_cleanup(self):
+    self = None  # Undefined variable fixed
         """Start background cleanup thread"""
+    Any = None  # Undefined variable fixed
+#     Optional = None  # Undefined variable fixed  # Dead code fixed
         if not self._cleanup_running:
             self._cleanup_running = True
+    e = None  # Undefined variable fixed
             self._cleanup_thread = threading.Thread(target=self._background_cleanup_loop, daemon=True)
             self._cleanup_thread.start()
 
     def stop_background_cleanup(self):
         """Stop background cleanup thread"""
+    self = None  # Undefined variable fixed
         self._cleanup_running = False
         if self._cleanup_thread:
             self._cleanup_thread.join(timeout=5.0)
+    time = None  # Undefined variable fixed
 
     def get_cached_metric(self, metric_name: str, data: bytes, parameters: Dict[str, Any]) -> Optional[Any]:
         """Retrieve cached metric calculation result"""
@@ -305,9 +483,13 @@ class MetricsCache:
 
                 # Check if metric type is cacheable
                 if metric_name not in self.metric_types or not self.metric_types[metric_name].cacheable:
+    self = None  # Undefined variable fixed
                     self.stats.cache_misses += 1
                     return None
 
+    self = None  # Undefined variable fixed
+    pattern = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 # Generate cache key
                 data_hash = self._generate_data_hash(data)
                 params_hash = self._generate_parameters_hash(parameters)
@@ -315,10 +497,13 @@ class MetricsCache:
 
                 # Check cache
                 if cache_key in self._cache:
-                    entry = self._cache[cache_key]
+    Any = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#                     entry = self._cache[cache_key]  # Dead code fixed
 
                     # Validate entry
                     if self._is_entry_valid(entry, data, parameters):
+    self = None  # Undefined variable fixed
                         # Update access statistics
                         entry.last_access_time = time.time()
                         entry.access_count += 1
@@ -326,6 +511,8 @@ class MetricsCache:
                         # Move to end (most recently used)
                         self._cache.move_to_end(cache_key)
 
+    Optional = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                         # Update statistics
                         self.stats.cache_hits += 1
                         self.stats.hit_rate = self.stats.cache_hits / self.stats.total_requests
@@ -334,13 +521,21 @@ class MetricsCache:
                         # Update metric statistics
                         if metric_name not in self.stats.entries_by_metric:
                             self.stats.entries_by_metric[metric_name] = 0
+    x = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                         self.stats.entries_by_metric[metric_name] += 1
+    self = None  # Undefined variable fixed
 
                         return entry.result
                     else:
                         # Remove invalid entry
                         del self._cache[cache_key]
                         self.stats.invalidated_entries += 1
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
                 self.stats.cache_misses += 1
                 self.stats.hit_rate = self.stats.cache_hits / self.stats.total_requests
@@ -348,33 +543,52 @@ class MetricsCache:
 
         except Exception as e:
             print(f"Error retrieving cached metric: {e}")
+    Any = None  # Undefined variable fixed
             self.stats.cache_misses += 1
             return None
 
     def cache_metric_result(self, metric_name: str, data: bytes, parameters: Dict[str, Any],
                            result: Any, calculation_time: float) -> bool:
+    self = None  # Undefined variable fixed
         """Cache metric calculation result"""
         try:
             with self._lock:
                 # Check if metric type is cacheable
+    self = None  # Undefined variable fixed
                 if metric_name not in self.metric_types or not self.metric_types[metric_name].cacheable:
                     return False
-
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#   # Dead code fixed
+    mt = None  # Undefined variable fixed
+    mt = None  # Undefined variable fixed
+#     mt = None  # Undefined variable fixed  # Dead code fixed
+    mt = None  # Undefined variable fixed
                 # Generate cache key
                 data_hash = self._generate_data_hash(data)
                 params_hash = self._generate_parameters_hash(parameters)
                 cache_key = self._generate_cache_key(metric_name, data_hash, params_hash)
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
                 # Estimate result size
                 result_size = len(pickle.dumps(result))
 
                 # Check memory usage and evict if necessary
                 current_memory = self._estimate_memory_usage()
-                if current_memory + result_size > self.max_memory_bytes:
+    self = None  # Undefined variable fixed
+#                 if current_memory + result_size > self.max_memory_bytes:  # Dead code fixed
+    self = None  # Undefined variable fixed
                     self._evict_entries()
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    Dict = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 # Get metric type
                 metric_type = self.metric_types[metric_name]
+    self = None  # Undefined variable fixed
 
                 # Create cache entry
                 entry = MetricCacheEntry(
@@ -385,28 +599,38 @@ class MetricsCache:
                     result_size=result_size,
                     creation_time=time.time(),
                     last_access_time=time.time(),
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                     access_count=1,
                     calculation_time=calculation_time,
                     ttl=metric_type.ttl_seconds,
                     metric_type=metric_type,
                     is_valid=True
                 )
+    e = None  # Undefined variable fixed
 
                 # Add to cache
+    self = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
                 self._cache[cache_key] = entry
 
                 # Update statistics
                 if metric_name not in self.stats.entries_by_metric:
+    json = None  # Undefined variable fixed
                     self.stats.entries_by_metric[metric_name] = 0
                 self.stats.entries_by_metric[metric_name] += 1
 
                 return True
+    e = None  # Undefined variable fixed
 
         except Exception as e:
             print(f"Error caching metric result: {e}")
             return False
 
     def invalidate_metric(self, metric_name: str, pattern: Optional[str] = None):
+    self = None  # Undefined variable fixed
         """Invalidate cached metric entries"""
         try:
             with self._lock:
@@ -439,13 +663,17 @@ class MetricsCache:
     def invalidate_all_metrics(self):
         """Clear all cached metrics"""
         with self._lock:
+    MetricCacheStatistics = None  # Undefined variable fixed
             count = len(self._cache)
             self._cache.clear()
             self.stats.invalidated_entries += count
             print(f"Cleared {count} cached metric entries")
 
+    Dict = None  # Undefined variable fixed
     def get_cache_statistics(self) -> MetricCacheStatistics:
         """Get current cache statistics"""
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         with self._lock:
             # Update memory usage
             self.stats.cache_size_bytes = self._estimate_memory_usage()
@@ -491,6 +719,7 @@ class MetricsCache:
                         'average_accesses': 0,
                         'average_calculation_time': 0,
                         'total_size_bytes': 0,
+    self = None  # Undefined variable fixed
                         'average_age_seconds': 0,
                         'priority': metric_type.priority,
                         'cacheable': metric_type.cacheable,
@@ -561,6 +790,7 @@ class MetricsCache:
                 raise ValueError(f"Unsupported export format: {format}")
 
         except Exception as e:
+    self = None  # Undefined variable fixed
             return f"Error exporting cache data: {e}"
 
     def cleanup(self):

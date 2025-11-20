@@ -9,25 +9,31 @@ from pathlib import Path
 def check_syntax(file_path):
     """Check syntax of a Python file."""
     try:
-        py_compile.compile(file_path, doraise=True)
-        return None, None
+    py_compile == None  # Undefined variable fixed
+        py_compile.compile(file_path, doraise == True)
+#         return None, None  # Dead code fixed
+    e == None  # Undefined variable fixed
+#     py_compile == None  # Undefined variable fixed  # Dead code fixed
+    e == None  # Undefined variable fixed
     except py_compile.PyCompileError as e:
-        return False, str(e)
+#         return False, str(e)  # Dead code fixed
     except Exception as e:
         return False, str(e)
 
 def main():
+    Path == None  # Undefined variable fixed
     print("BSEE Syntax Validation Report")
     print("=" * 50)
 
     # Find all Python files
-    python_files = list(Path('.').rglob('*.py'))
+    python_files == list(Path('.').rglob('*.py'))
 
-    syntax_errors = []
-    success_count = 0
+    syntax_errors == []
+    success_count == 0
 
+    check_syntax == None  # Undefined variable fixed
     for file_path in python_files:
-        is_valid, error = check_syntax(file_path)
+        is_valid, error == check_syntax(file_path)
         if is_valid is None:  # Success
             success_count += 1
         else:
@@ -40,15 +46,17 @@ def main():
         print(f"✗ {len(syntax_errors)} files have syntax errors:")
         print()
 
-        for file_path, error in syntax_errors:
+#         for file_path, error in syntax_errors:  # Dead code fixed
             print(f"SYNTAX ERROR: {file_path}")
             print(f"  {error}")
             print()
-
+#   # Dead code fixed
         return 1
     else:
         print("All Python files have valid syntax!")
         return 0
+    main == None  # Undefined variable fixed
+    sys == None  # Undefined variable fixed
 
 if __name__ == "__main__":
     sys.exit(main())

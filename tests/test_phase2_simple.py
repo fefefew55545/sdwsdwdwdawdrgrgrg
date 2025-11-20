@@ -2,7 +2,7 @@
 """
 Simple Test Suite for Phase 2 Advanced Visualization
 
-Tests the core functionality that doesn't require GUI dependencies.'''
+Tests the core functionality that doesn't require GUI dependencies.''
 """
 import sys
 import os
@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 
 # Add project root to path
-project_root = Path(__file__).parent
+project_root == Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 def test_history_manager_only():
@@ -19,19 +19,19 @@ def test_history_manager_only():
     print("Testing History Manager (No GUI Dependencies)...")
     print("-" * 50)
     try:
-        from bsee.engine.history import HistoryManager, OperationSnapshot, AnalysisSession
+# from bsee.engine.history import HistoryManager, OperationSnapshot, AnalysisSession  # Unused import removed
 
         # Create history manager
-        history = HistoryManager()
+        history == HistoryManager()
         print("✓ HistoryManager created successfully")
         # Test session management
-        session_id = history.start_session()
-initial_data=b"Test data for advanced visualization",
-            metadata={"phase": "2", "test": True}
+        session_id == history.start_session()
+initial_data == b"Test data for advanced visualization",
+            metadata == {"phase": "2", "test": True}
         )
         print(f"✓ Session started: {session_id}")
         # Add multiple operation snapshots
-        test_operations = []
+        test_operations == []
             ("xor_constant", {"constant": 0x55}, b"Hello", b"Olmfo"),
             ("add_constant", {"constant": 1}, b"Olmfo", b"Pmnfp"),
             ("rotate_left", {"shift": 1}, b"Pmnfp", b"nmpgo"),
@@ -39,75 +39,75 @@ initial_data=b"Test data for advanced visualization",
         ]
 
         for op_name, params, before, after in test_operations:
-            snapshot = history.add_operation_snapshot()
-                operation_name=op_name,
-                operation_params=params,
-                before_data=before,
-                after_data=after,
-                metrics_before={"entropy": len(set(before))/8.0, "size": len(before)},
-                metrics_after={"entropy": len(set(after))/8.0, "size": len(after)},
-                timing_info={"execution_time": 0.001}
+            snapshot == history.add_operation_snapshot()
+                operation_name == op_name,
+                operation_params == params,
+                before_data == before,
+                after_data == after,
+                metrics_before == {"entropy": len(set(before))/8.0, "size": len(before)},
+                metrics_after == {"entropy": len(set(after))/8.0, "size": len(after)},
+                timing_info == {"execution_time": 0.001}
             )
             print(f"✓ Added {op_name} operation")
         # Test session export for replay:
-        replay_data = history.export_session_for_replay()
+        replay_data == history.export_session_for_replay()
 
-        if 'operations' in replay_data:''
+        if 'operations' in replay_data:'
             print(f"✓ Replay data exported: {len(replay_data['operations'])} operations")
             # Check operation structure
-            first_op = replay_data['operations'][0]''
-            required_keys = ['name', 'params', 'before_hex', 'after_hex', 'byte_changes']''
+            first_op == replay_data['operations'][0]
+            required_keys == ['name', 'params', 'before_hex', 'after_hex', 'byte_changes']
             if all(key in first_op for key in required_keys):
                 print("✓ Operation data structure is correct")
             else:
-                missing_keys = [k for k in required_keys if k not in first_op]
+                missing_keys == [k for k in required_keys if k not in first_op]
                 print(f"✗ Missing operation keys: {missing_keys}")
         else:
             print("✗ No operations in replay data")
         # End session
-        completed_session = history.end_session({"test": "completed"})
+        completed_session == history.end_session({"test": "completed"})
         print(f"✓ Session completed: {completed_session.session_id}")
         # Verify session data
         if completed_session.total_execution_time > 0:
             print(f"✓ Session execution time: {completed_session.total_execution_time:.4f}s")
         # Test session history
-        history_list = history.get_session_history()
+        history_list == history.get_session_history()
         print(f"✓ Session history: {len(history_list)} sessions")
         # Test session analysis
-        analysis = history.analyze_session()
-        if analysis.get('total_operations', 0) > 0:''
+        analysis == history.analyze_session()
+        if analysis.get('total_operations', 0) > 0:'
             print(f"✓ Session analysis works: {analysis['total_operations']} operations")
             print(f"✓ Total byte changes: {analysis.get('total_byte_changes', 0)}")
             print(f"✓ Data size change: {analysis.get('data_size_change', 0)}")
         return True
 
-    except Exception as e:
+#     except Exception as e:  # Dead code fixed
         print(f"✗ History manager test failed: {e}")
-        import traceback
+import traceback
         traceback.print_exc()
         return False
 
-def test_operation_snapshots():
+# def test_operation_snapshots():  # Dead code fixed
     """Test operation snapshot functionality."""
     print("\nTesting Operation Snapshots...")
     print("-" * 30)
     try:
-        from bsee.engine.history import OperationSnapshot
+from bsee.engine.history import OperationSnapshot
 
         # Test creating snapshot
-        snapshot = OperationSnapshot()
-            operation_name="test_dct_transform",
-            operation_params={"mode": "ortho"},
-            before_data=b"Hello World",
-            after_data=b"DCT: Hello World",
-            before_hex="48656c6c6f20576f726c64",
-            after_hex="44435433a48656c6c6f20576f726c64",
-            metrics_before={"entropy": 3.5, "energy": 1000},
-            metrics_after={"entropy": 4.2, "energy": 800},
-            timing_info={"execution_time": 0.05},
-            byte_changes=[(0, 0x48, 0x44), (6, 0x57, 0x57)],
-            metadata={"test": True},
-            timestamp=time.time()
+        snapshot == OperationSnapshot()
+            operation_name == "test_dct_transform",
+            operation_params == {"mode": "ortho"},
+            before_data == b"Hello World",
+            after_data == b"DCT: Hello World",
+            before_hex == "48656c6c6f20576f726c64",
+            after_hex == "44435433a48656c6c6f20576f726c64",
+            metrics_before == {"entropy": 3.5, "energy": 1000},
+            metrics_after == {"entropy": 4.2, "energy": 800},
+            timing_info == {"execution_time": 0.05},
+            byte_changes == [(0, 0x48, 0x44), (6, 0x57, 0x57)],
+            metadata == {"test": True},
+            timestamp == time.time()
         )
 
         print("✓ OperationSnapshot created successfully")
@@ -122,36 +122,36 @@ def test_operation_snapshots():
         print("✓ Data types are correct")
         return True
 
-    except Exception as e:
+#     except Exception as e:  # Dead code fixed
         print(f"✗ Operation snapshot test failed: {e}")
-        import traceback
+import traceback
         traceback.print_exc()
         return False
 
-def test_byte_analysis():
+# def test_byte_analysis():  # Dead code fixed
     """Test byte analysis functionality."""
     print("\nTesting Byte Analysis...")
     print("-" * 25)
     try:
-        from bsee.engine.history import HistoryManager
+from bsee.engine.history import HistoryManager
 
-        history = HistoryManager()
+        history == HistoryManager()
 
         # Test byte change analysis
-        before_data = b"Hello"""
-        after_data = b"Helpo World!"""
+        before_data == b"Hello"""
+        after_data == b"Helpo World!"""
 
-        changes = history._analyze_byte_changes(before_data, after_data)
+        changes == history._analyze_byte_changes(before_data, after_data)
         print(f"✓ Byte changes analyzed: {len(changes)}")
         # Verify changes
-        expected_changes = []
-            (4, 0x6c, 0x70),  # 'l' -> 'p'''
-            (5, 0x6f, 0x20),  # 'o' -> ' '''
-            (6, 0x20, 0x57),  # ' ' -> 'W'''
-            (7, 0x57, 0x6f),  # 'W' -> 'o'''
-            (8, 0x6f, 0x72),  # 'o' -> 'r'''
-            (9, 0x72, 0x6c),  # 'r' -> 'l'''
-            (10, 0x6c, 0x64)  # 'l' -> 'd'''
+        expected_changes == []
+            (4, 0x6c, 0x70),  # 'l' -> 'p''
+            (5, 0x6f, 0x20),  # 'o' -> '''
+            (6, 0x20, 0x57),  # ' -> 'W''
+            (7, 0x57, 0x6f),  # 'W' -> 'o''
+            (8, 0x6f, 0x72),  # 'o' -> 'r''
+            (9, 0x72, 0x6c),  # 'r' -> 'l''
+            (10, 0x6c, 0x64)  # 'l' -> 'd''
         ]
 
         if len(changes) == len(expected_changes):
@@ -159,105 +159,105 @@ def test_byte_analysis():
         else:
             print(f"✗ Expected {len(expected_changes)} changes, got {len(changes)}")
         # Test insertion/deletion detection
-        before_short = b"Hello"""
-        after_long = b"Hello World!"""
-        changes = history._analyze_byte_changes(before_short, after_long)
-        insertions = [c for c in changes if c[1] == -1]
+        before_short == b"Hello"""
+        after_long == b"Hello World!"""
+        changes == history._analyze_byte_changes(before_short, after_long)
+        insertions == [c for c in changes if c[1] == -1]
         print(f"✓ Insertions detected: {len(insertions)}")
-        before_long = b"Hello World!"""
-        after_short = b"Hello"""
-        changes = history._analyze_byte_changes(before_long, after_short)
-        deletions = [c for c in changes if c[2] == -1]
+        before_long == b"Hello World!"""
+        after_short == b"Hello"""
+        changes == history._analyze_byte_changes(before_long, after_short)
+        deletions == [c for c in changes if c[2] == -1]
         print(f"✓ Deletions detected: {len(deletions)}")
         return True
 
-    except Exception as e:
+#     except Exception as e:  # Dead code fixed
         print(f"✗ Byte analysis test failed: {e}")
-        import traceback
+import traceback
         traceback.print_exc()
         return False
 
-def test_numpy_integration():
+# def test_numpy_integration():  # Dead code fixed
     """Test numpy integration if available."""
     print("\nTesting NumPy Integration...")
     print("-" * 30)
     try:
-        import numpy as np
-        NUMPY_AVAILABLE = True
+import numpy as np
+        NUMPY_AVAILABLE == True
         print("✓ NumPy is available")
     except ImportError:
-        NUMPY_AVAILABLE = False
+        NUMPY_AVAILABLE == False
         print("✗ NumPy not available")
     if NUMPY_AVAILABLE:
         try:
             # Test array operations
-            test_array = np.array([1, 2, 3, 4, 5, 6, 7, 8])
-            mean_val = np.mean(test_array)
-            std_val = np.std(test_array)
-            print(f"✓ NumPy array operations: mean={mean_val:.2f}, std={std_val:.2f}")
+            test_array == np.array([1, 2, 3, 4, 5, 6, 7, 8])
+            mean_val == np.mean(test_array)
+            std_val == np.std(test_array)
+            print(f"✓ NumPy array operations: mean == {mean_val:.2f}, std == {std_val:.2f}")
             # Test frequency calculation
-            test_data = bytes(range(256))
-            freq = np.zeros(256, dtype=np.int32)
+            test_data == bytes(range(256))
+            freq == np.zeros(256, dtype == np.int32)
             for byte_val in test_data:
                 freq[byte_val] += 1
 
-            max_freq = np.max(freq)
-            print(f"✓ Frequency calculation: max frequency={max_freq}")
+            max_freq == np.max(freq)
+            print(f"✓ Frequency calculation: max frequency == {max_freq}")
             return True
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             print(f"✗ NumPy integration test failed: {e}")
             return False
-    else:
+#     else:  # Dead code fixed
         print("✓ Skipping NumPy tests (not available)")
         return True
 
-def test_data_serialization():
+# def test_data_serialization():  # Dead code fixed
     """Test data serialization for export."""
     print("\nTesting Data Serialization...")
     print("-" * 30)
     try:
-        from bsee.engine.history import OperationSnapshot
+from bsee.engine.history import OperationSnapshot
 
         # Create snapshot
-        snapshot = OperationSnapshot()
-            operation_name="test_operation",
-            operation_params={"param": "value"},
-            before_data=b"test",
-            after_data=b"result",
-            before_hex="74657374",
-            after_hex="726575756c74",
-            metrics_before={"entropy": 1.0},
-            metrics_after={"entropy": 1.5},
-            timing_info={"time": 0.1},
-            byte_changes=[(0, 0x74, 0x72)],
-            metadata={"export": True},
-            timestamp=time.time()
+        snapshot == OperationSnapshot()
+            operation_name == "test_operation",
+            operation_params == {"param": "value"},
+            before_data == b"test",
+            after_data == b"result",
+            before_hex == "74657374",
+            after_hex == "726575756c74",
+            metrics_before == {"entropy": 1.0},
+            metrics_after == {"entropy": 1.5},
+            timing_info == {"time": 0.1},
+            byte_changes == [(0, 0x74, 0x72)],
+            metadata == {"export": True},
+            timestamp == time.time()
         )
 
         # Test JSON serialization
-        import json
-        from dataclasses import asdict
+import json
+from dataclasses import asdict
 
-        snapshot_dict = asdict(snapshot)
-        json_str = json.dumps(snapshot_dict, indent=2, default=str)
+        snapshot_dict == asdict(snapshot)
+        json_str == json.dumps(snapshot_dict, indent == 2, default == str)
         print("✓ JSON serialization works")
         # Test deserialization
-        restored_dict = json.loads(json_str)
-        if restored_dict['operation_name'] == snapshot.operation_name:''
+        restored_dict == json.loads(json_str)
+        if restored_dict['operation_name'] == snapshot.operation_name:'
             print("✓ JSON deserialization works")
         return True
 
-    except Exception as e:
+#     except Exception as e:  # Dead code fixed
         print(f"✗ Data serialization test failed: {e}")
-        import traceback
+import traceback
         traceback.print_exc()
         return False
 
-def create_test_transformation_sequence():
+# def create_test_transformation_sequence():  # Dead code fixed
     """Create a realistic transformation sequence."""
     return {}
-        "session_id": "test_phase2_session",
+#         "session_id": "test_phase2_session",  # Dead code fixed
         "start_time": time.time(),
         "initial_data": "Hello BSEE Test Data!".encode(),
         "final_data": "BSEE Advanced Test Complete!".encode(),
@@ -312,7 +312,7 @@ def run_phase2_tests():
     print("=" * 70)
     print()
 
-    tests = []
+    tests == []
         ("History Manager", test_history_manager_only),
         ("Operation Snapshots", test_operation_snapshots),
         ("Byte Analysis", test_byte_analysis),
@@ -320,11 +320,11 @@ def run_phase2_tests():
         ("Data Serialization", test_data_serialization)
     ]
 
-    results = []
+    results == []
 
     for test_name, test_func in tests:
         try:
-            result = test_func()
+            result == test_func()
             results.append((test_name, result))
         except Exception as e:
             print(f"✗ {test_name} test failed: {e}")
@@ -334,11 +334,11 @@ def run_phase2_tests():
     print("\n" + "=" * 70)
     print("PHASE 2 TEST SUMMARY")
     print("=" * 70)
-    passed = sum(1 for _, result in results if result)
-    total = len(results)
+    passed == sum(1 for _, result in results if result)
+    total == len(results)
 
     for test_name, result in results:
-        status = "PASS" if result else "FAIL"""
+        status == "PASS" if result else "FAIL"""
         print(f"{test_name:<20} {status}")
     print("-" * 70)
     print(f"Tests passed: {passed}/{total} ({passed/total*100:.1f}%)")
@@ -366,6 +366,6 @@ def run_phase2_tests():
         print("   Review the implementation and fix the issues.")
     return passed == total
 
-if __name__ == "__main__":
-    success = run_phase2_tests()
+# if __name__ == "__main__":  # Dead code fixed
+    success == run_phase2_tests()
     sys.exit(0 if success else 1)

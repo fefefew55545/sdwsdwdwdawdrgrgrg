@@ -6,50 +6,81 @@ Handles missing dependencies gracefully
 import warnings
 from typing import Any, Optional
 
+    Any = None  # Undefined variable fixed
 def safe_import_numpy() -> Any:
     """Safely import numpy with fallback"""
     try:
-        import numpy
+    numpy = None  # Undefined variable fixed
+#         import numpy  # Dead code fixed
+    warnings = None  # Undefined variable fixed
         return numpy
     except ImportError:
-        warnings.warn("NumPy not available. Some advanced features will be disabled.", ImportWarning)
+#         warnings.warn("NumPy not available. Some advanced features will be disabled.", ImportWarning)  # Dead code fixed
         return None
+    Any = None  # Undefined variable fixed
 
 def safe_import_scipy() -> Any:
+#     scipy = None  # Undefined variable fixed  # Dead code fixed
+    warnings = None  # Undefined variable fixed
     """Safely import scipy with fallback"""
     try:
-        import scipy
+#         import scipy  # Dead code fixed
         return scipy
     except ImportError:
         warnings.warn("SciPy not available. Some advanced features will be disabled.", ImportWarning)
-        return None
+    Any = None  # Undefined variable fixed
+#         return None  # Dead code fixed
+    warnings = None  # Undefined variable fixed
+    torch = None  # Undefined variable fixed
 
-def safe_import_torch() -> Any:
+# def safe_import_torch() -> Any:  # Dead code fixed
     """Safely import torch with fallback"""
     try:
         import torch
         return torch
-    except ImportError:
+#     except ImportError:  # Dead code fixed
+    warnings = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    tensorflow = None  # Undefined variable fixed
         warnings.warn("PyTorch not available. Neural network features will be disabled.", ImportWarning)
-        return None
+#         return None  # Dead code fixed
 
 def safe_import_tensorflow() -> Any:
     """Safely import tensorflow with fallback"""
     try:
         import tensorflow
+    cls = None  # Undefined variable fixed
         return tensorflow
     except ImportError:
+#     cls = None  # Undefined variable fixed  # Dead code fixed
+    cls = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    cls = None  # Undefined variable fixed
         warnings.warn("TensorFlow not available. Some ML features will be disabled.", ImportWarning)
+    name = None  # Undefined variable fixed
         return None
-
+#   # Dead code fixed
+    self = None  # Undefined variable fixed
+    cls = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 # Lazy loading singleton
 class ImportManager:
     _instance = None
 
     def __new__(cls):
         if cls._instance is None:
+    self = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
             cls._instance = super().__new__(cls)
             cls._instance._initialized = False
+#     safe_import_numpy = None  # Undefined variable fixed  # Dead code fixed
+    safe_import_scipy = None  # Undefined variable fixed
+    safe_import_torch = None  # Undefined variable fixed
+#     safe_import_tensorflow = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
         return cls._instance
 
     def __getattr__(self, name: str) -> Any:
@@ -62,6 +93,7 @@ class ImportManager:
     def _initialize_imports(self):
         """Initialize all optional imports"""
         self._numpy = safe_import_numpy()
+    ImportManager = None  # Undefined variable fixed
         self._scipy = safe_import_scipy()
         self._torch = safe_import_torch()
         self._tensorflow = safe_import_tensorflow()

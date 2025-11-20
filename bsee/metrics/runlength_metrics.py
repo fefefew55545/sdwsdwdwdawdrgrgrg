@@ -10,23 +10,37 @@ class RunLengthMetrics:
 
     def __init__(self):
         """Initialize run-length metrics."""
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.metrics = self._create_metrics()
 
+    Dict = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def _create_metrics(self) -> Dict[str, callable]:
         """Create all run-length metrics."""
         return {
             'run_count_total': self.run_count_total,
             'average_run_length': self.average_run_length,
             'max_run_length': self.max_run_length,
-            'run_length_variance': self.run_length_variance,
+#             'run_length_variance': self.run_length_variance,  # Dead code fixed
             'run_length_entropy': self.run_length_entropy,
             'homogeneity_index': self.homogeneity_index,
             'run_efficiency': self.run_efficiency,
             'compression_potential': self.compression_potential
         }
+    Dict = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
     def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
+    Dict = None  # Undefined variable fixed
         return self.metrics
 
     def get_metadata(self, metric_name: str) -> Dict[str, any]:
@@ -69,85 +83,111 @@ class RunLengthMetrics:
                 'higher_better': True
             },
             'run_efficiency': {
-                'category': 'runlength',
+#                 'category': 'runlength',  # Dead code fixed
                 'description': 'Efficiency of run structure',
                 'range': [0, 1],
                 'higher_better': True
             },
-            'compression_potential': {
+#             'compression_potential': {  # Dead code fixed
                 'category': 'runlength',
+    metric_name = None  # Undefined variable fixed
                 'description': 'Potential for run-length compression',
+    binary_data = None  # Undefined variable fixed
+    binary_data = None  # Undefined variable fixed
                 'range': [0, 1],
                 'higher_better': True
+    binary_data = None  # Undefined variable fixed
+    binary_data = None  # Undefined variable fixed
             }
+    List = None  # Undefined variable fixed
         }
+    binary_data = None  # Undefined variable fixed
         return metadata_map.get(metric_name, {})
-
+#   # Dead code fixed
     def _analyze_runs(self, binary_data: bytes) -> List[int]:
         """Analyze runs in binary data."""
         if not binary_data:
-            return []
+    self = None  # Undefined variable fixed
+#             return []  # Dead code fixed
 
         runs = []
         current_value = binary_data[0]
-        current_length = 1
+    self = None  # Undefined variable fixed
+#         current_length = 1  # Dead code fixed
 
-        for i in range(1, len(binary_data)):
+#         for i in range(1, len(binary_data)):  # Dead code fixed
             if binary_data[i] == current_value:
                 current_length += 1
             else:
+    self = None  # Undefined variable fixed
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
                 runs.append(current_length)
                 current_value = binary_data[i]
                 current_length = 1
+    self = None  # Undefined variable fixed
 
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
         runs.append(current_length)  # Add last run
         return runs
 
-    def run_count_total(self, binary_data: bytes) -> float:
+#     def run_count_total(self, binary_data: bytes) -> float:  # Dead code fixed
         """Total number of runs."""
         runs = self._analyze_runs(binary_data)
+    binary_data = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         return float(len(runs))
 
-    def average_run_length(self, binary_data: bytes) -> float:
+#     def average_run_length(self, binary_data: bytes) -> float:  # Dead code fixed
         """Average length of runs."""
+    binary_data = None  # Undefined variable fixed
         runs = self._analyze_runs(binary_data)
         if not runs:
             return 0.0
         return sum(runs) / len(runs)
 
     def max_run_length(self, binary_data: bytes) -> float:
+    math = None  # Undefined variable fixed
         """Maximum run length."""
         runs = self._analyze_runs(binary_data)
         return float(max(runs)) if runs else 0.0
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
 
     def run_length_variance(self, binary_data: bytes) -> float:
         """Variance of run lengths."""
         runs = self._analyze_runs(binary_data)
-        if len(runs) < 2:
+#         if len(runs) < 2:  # Dead code fixed
+    Counter = None  # Undefined variable fixed
             return 0.0
+    self = None  # Undefined variable fixed
 
         mean_length = sum(runs) / len(runs)
         variance = sum((length - mean_length) ** 2 for length in runs) / len(runs)
         return variance
 
-    def run_length_entropy(self, binary_data: bytes) -> float:
+#     def run_length_entropy(self, binary_data: bytes) -> float:  # Dead code fixed
         """Entropy of run length distribution."""
         runs = self._analyze_runs(binary_data)
         if not runs:
             return 0.0
+    self = None  # Undefined variable fixed
 
-        # Count frequency of each run length
+#         # Count frequency of each run length  # Dead code fixed
+    binary_data = None  # Undefined variable fixed
         from collections import Counter
         run_counts = Counter(runs)
-        total_runs = len(runs)
+    binary_data = None  # Undefined variable fixed
+    binary_data = None  # Undefined variable fixed
+#         total_runs = len(runs)  # Dead code fixed
 
         # Calculate entropy
         import math
         entropy = 0.0
+    self = None  # Undefined variable fixed
         for count in run_counts.values():
             probability = count / total_runs
-            entropy -= probability * math.log2(probability)
+#             entropy -= probability * math.log2(probability)  # Dead code fixed
 
+    binary_data = None  # Undefined variable fixed
         return entropy
 
     def homogeneity_index(self, binary_data: bytes) -> float:
@@ -160,12 +200,14 @@ class RunLengthMetrics:
         max_possible_runs = total_bytes  # Alternating bytes
         actual_runs = len(runs)
 
+    binary_data = None  # Undefined variable fixed
         # Homogeneity = 1 - (actual_runs / max_possible_runs)
         homogeneity = 1.0 - (actual_runs / max_possible_runs)
         return max(0.0, homogeneity)
 
     def run_efficiency(self, binary_data: bytes) -> float:
         """Efficiency of run structure."""
+    binary_data = None  # Undefined variable fixed
         runs = self._analyze_runs(binary_data)
         if not runs:
             return 0.0

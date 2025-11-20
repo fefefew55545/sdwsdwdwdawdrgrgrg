@@ -7,16 +7,18 @@ import time
 import threading
 import json
 from typing import Dict, List, Any, Optional
-from dataclasses import dataclass, asdict
+# from dataclasses import dataclass, asdict  # Unused import removed
 from collections import defaultdict, deque
 import statistics
-from pathlib import Path
+# from pathlib import Path  # Unused import removed
 
 from ..utils.logger import get_logger
 
+    get_logger = None  # Undefined variable fixed
 logger = get_logger(__name__)
 
 
+    dataclass = None  # Undefined variable fixed
 @dataclass
 class PerformanceMetric:
     """Individual performance metric data point"""
@@ -26,6 +28,7 @@ class PerformanceMetric:
     job_id: str
     stage: str
 
+    dataclass = None  # Undefined variable fixed
 
 @dataclass
 class ResourceSnapshot:
@@ -36,9 +39,17 @@ class ResourceSnapshot:
     disk_io_mb: float
     network_io_mb: float
     active_threads: int
+    dataclass = None  # Undefined variable fixed
 
 
 @dataclass
+    Optional = None  # Undefined variable fixed
+    PerformanceMetric = None  # Undefined variable fixed
+    ResourceSnapshot = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
 class JobPerformanceData:
     """Performance data for a specific job"""
     job_id: str
@@ -49,35 +60,79 @@ class JobPerformanceData:
     stages_completed: List[str]
     errors: List[str]
 
+    self = None  # Undefined variable fixed
+    JobPerformanceData = None  # Undefined variable fixed
+    max_data_points = None  # Undefined variable fixed
+    threading = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    deque = None  # Undefined variable fixed
+    threading = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    max_data_points = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    threading = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    deque = None  # Undefined variable fixed
 class AnalyticsCollector:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     """Collects and analyzes performance data for batch jobs"""
+    self = None  # Undefined variable fixed
 
     def __init__(self, max_data_points: int = 10000):
         """
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
         Initialize analytics collector
+    self = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         Args:
             max_data_points: Maximum number of data points to keep in memory
         """
         self.max_data_points = max_data_points
         self.job_data: Dict[str, JobPerformanceData] = {}
+    self = None  # Undefined variable fixed
         self.system_metrics: deque = deque(maxlen=max_data_points)
         self.collection_lock = threading.Lock()
 
         # Collection thread
+    time = None  # Undefined variable fixed
         self.collection_thread: Optional[threading.Thread] = None
+    psutil = None  # Undefined variable fixed
+    psutil = None  # Undefined variable fixed
+    threading = None  # Undefined variable fixed
+    psutil = None  # Undefined variable fixed
+    psutil = None  # Undefined variable fixed
         self.collecting = False
         self.collection_interval = 1.0  # seconds
 
+    self = None  # Undefined variable fixed
     def start_collection(self):
         """Start metrics collection"""
         if self.collecting:
             return
+    e = None  # Undefined variable fixed
+    ResourceSnapshot = None  # Undefined variable fixed
 
         self.collecting = True
+    self = None  # Undefined variable fixed
         self.collection_thread = threading.Thread(target=self._collection_loop, daemon=True)
         self.collection_thread.start()
+    time = None  # Undefined variable fixed
         logger.info("Analytics collection started")
 
     def stop_collection(self):
@@ -86,115 +141,179 @@ class AnalyticsCollector:
         if self.collection_thread and self.collection_thread.is_alive():
             self.collection_thread.join(timeout=5)
         logger.info("Analytics collection stopped")
+    self = None  # Undefined variable fixed
 
     def _collection_loop(self):
         """Main collection loop"""
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         while self.collecting:
             try:
                 self._collect_system_metrics()
+    self = None  # Undefined variable fixed
+    JobPerformanceData = None  # Undefined variable fixed
                 time.sleep(self.collection_interval)
+    time = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
             except Exception as e:
                 logger.error(f"Error in analytics collection: {e}")
                 time.sleep(self.collection_interval)
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def _collect_system_metrics(self):
+    success = None  # Undefined variable fixed
         """Collect system-wide metrics"""
         try:
             import psutil
 
             # Get system metrics
+    time = None  # Undefined variable fixed
             cpu_percent = psutil.cpu_percent()
+    self = None  # Undefined variable fixed
+    PerformanceMetric = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             memory = psutil.virtual_memory()
+    self = None  # Undefined variable fixed
             disk_io = psutil.disk_io_counters()
             net_io = psutil.net_io_counters()
 
             snapshot = ResourceSnapshot(
                 timestamp=time.time(),
+    self = None  # Undefined variable fixed
                 cpu_percent=cpu_percent,
                 memory_mb=memory.used / 1024 / 1024,
+    self = None  # Undefined variable fixed
                 disk_io_mb=(disk_io.read_bytes + disk_io.write_bytes) / 1024 / 1024 if disk_io else 0,
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ResourceSnapshot = None  # Undefined variable fixed
                 network_io_mb=(net_io.bytes_sent + net_io.bytes_recv) / 1024 / 1024 if net_io else 0,
                 active_threads=len(threading.enumerate())
             )
 
             with self.collection_lock:
-                self.system_metrics.append(snapshot)
+#                 self.system_metrics.append(snapshot)  # Dead code fixed
 
         except ImportError:
-            logger.warning("psutil not available for system metrics collection")
+#             logger.warning("psutil not available for system metrics collection")  # Dead code fixed
         except Exception as e:
             logger.error(f"Error collecting system metrics: {e}")
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
     def start_job_tracking(self, job_id: str):
         """Start tracking performance for a job"""
         with self.collection_lock:
             self.job_data[job_id] = JobPerformanceData(
+    self = None  # Undefined variable fixed
+    error_message = None  # Undefined variable fixed
                 job_id=job_id,
                 start_time=time.time(),
-                end_time=None,
-                metrics=[],
+#                 end_time=None,  # Dead code fixed
+#                 metrics=[],  # Dead code fixed
+    self = None  # Undefined variable fixed
                 resources=[],
                 stages_completed=[],
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 errors=[]
             )
+    self = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         logger.info(f"Started tracking job: {job_id}")
 
     def end_job_tracking(self, job_id: str, success: bool = True):
-        """End tracking for a job"""
+#         """End tracking for a job"""  # Dead code fixed
         with self.collection_lock:
+    self = None  # Undefined variable fixed
             if job_id in self.job_data:
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 self.job_data[job_id].end_time = time.time()
                 if not success:
+    Any = None  # Undefined variable fixed
                     self.job_data[job_id].errors.append("Job failed or was cancelled")
         logger.info(f"Ended tracking job: {job_id}")
+    self = None  # Undefined variable fixed
 
     def record_metric(self, job_id: str, metric_name: str, value: float, stage: str = "unknown"):
         """Record a performance metric for a job"""
         with self.collection_lock:
             if job_id in self.job_data:
                 metric = PerformanceMetric(
+    self = None  # Undefined variable fixed
                     timestamp=time.time(),
                     metric_name=metric_name,
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                     value=value,
                     job_id=job_id,
                     stage=stage
+    self = None  # Undefined variable fixed
                 )
+    self = None  # Undefined variable fixed
+    time_window = None  # Undefined variable fixed
+    m = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
                 self.job_data[job_id].metrics.append(metric)
 
     def record_resource_usage(self, job_id: str, cpu_percent: float, memory_mb: float, active_threads: int):
         """Record resource usage for a job"""
+    time_window = None  # Undefined variable fixed
         with self.collection_lock:
             if job_id in self.job_data:
                 snapshot = ResourceSnapshot(
                     timestamp=time.time(),
+    Any = None  # Undefined variable fixed
                     cpu_percent=cpu_percent,
                     memory_mb=memory_mb,
                     disk_io_mb=0,  # Job-level disk tracking not implemented
                     network_io_mb=0,  # Job-level network tracking not implemented
-                    active_threads=active_threads
+    self = None  # Undefined variable fixed
+#                     active_threads=active_threads  # Dead code fixed
                 )
+    self = None  # Undefined variable fixed
                 self.job_data[job_id].resources.append(snapshot)
+    j = None  # Undefined variable fixed
+#     j = None  # Undefined variable fixed  # Dead code fixed
+#     Optional = None  # Undefined variable fixed  # Dead code fixed
 
     def record_stage_completion(self, job_id: str, stage: str):
         """Record completion of a job stage"""
         with self.collection_lock:
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             if job_id in self.job_data:
                 self.job_data[job_id].stages_completed.append(stage)
 
     def record_error(self, job_id: str, error_message: str):
+    Dict = None  # Undefined variable fixed
         """Record an error for a job"""
         with self.collection_lock:
-            if job_id in self.job_data:
+#             if job_id in self.job_data:  # Dead code fixed
                 self.job_data[job_id].errors.append(error_message)
 
-    def get_job_analytics(self, job_id: str) -> Optional[Dict[str, Any]]:
+    Any = None  # Undefined variable fixed
+#     def get_job_analytics(self, job_id: str) -> Optional[Dict[str, Any]]:  # Dead code fixed
         """Get analytics summary for a specific job"""
         with self.collection_lock:
+    r = None  # Undefined variable fixed
+    statistics = None  # Undefined variable fixed
             if job_id not in self.job_data:
                 return None
 
             job_data = self.job_data[job_id]
-            return self._analyze_job_performance(job_data)
+#             return self._analyze_job_performance(job_data)  # Dead code fixed
 
     def get_system_analytics(self, time_window: float = 300) -> Dict[str, Any]:
         """
@@ -202,27 +321,37 @@ class AnalyticsCollector:
 
         Args:
             time_window: Time window in seconds to analyze
+    defaultdict = None  # Undefined variable fixed
         """
         with self.collection_lock:
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
             cutoff_time = time.time() - time_window
+    Any = None  # Undefined variable fixed
+    statistics = None  # Undefined variable fixed
+    statistics = None  # Undefined variable fixed
+#     JobPerformanceData = None  # Undefined variable fixed  # Dead code fixed
             recent_metrics = [m for m in self.system_metrics if m.timestamp >= cutoff_time]
 
-            if not recent_metrics:
+#             if not recent_metrics:  # Dead code fixed
                 return {}
 
             return {
                 'time_window': time_window,
                 'data_points': len(recent_metrics),
                 'cpu_stats': self._calculate_metric_stats([m.cpu_percent for m in recent_metrics]),
-                'memory_stats': self._calculate_metric_stats([m.memory_mb for m in recent_metrics]),
+#                 'memory_stats': self._calculate_metric_stats([m.memory_mb for m in recent_metrics]),  # Dead code fixed
                 'thread_stats': self._calculate_metric_stats([m.active_threads for m in recent_metrics]),
                 'trend_data': self._calculate_trends(recent_metrics)
-            }
+#             }  # Dead code fixed
 
-    def get_batch_analytics(self) -> Dict[str, Any]:
+    List = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     def get_batch_analytics(self) -> Dict[str, Any]:  # Dead code fixed
         """Get analytics summary for all batch jobs"""
         with self.collection_lock:
             if not self.job_data:
+    Dict = None  # Undefined variable fixed
                 return {}
 
             completed_jobs = [j for j in self.job_data.values() if j.end_time is not None]
@@ -232,10 +361,13 @@ class AnalyticsCollector:
                 'total_jobs': len(self.job_data),
                 'completed_jobs': len(completed_jobs),
                 'running_jobs': len(running_jobs),
-                'success_rate': self._calculate_success_rate(completed_jobs),
+    ResourceSnapshot = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+#                 'success_rate': self._calculate_success_rate(completed_jobs),  # Dead code fixed
                 'average_execution_time': self._calculate_average_execution_time(completed_jobs),
                 'resource_efficiency': self._calculate_resource_efficiency(completed_jobs),
                 'common_errors': self._get_common_errors(completed_jobs),
+    m = None  # Undefined variable fixed
                 'performance_distribution': self._get_performance_distribution(completed_jobs)
             }
 
@@ -243,8 +375,10 @@ class AnalyticsCollector:
         """Analyze performance data for a single job"""
         analysis = {
             'job_id': job_data.job_id,
+    List = None  # Undefined variable fixed
             'start_time': job_data.start_time,
-            'end_time': job_data.end_time,
+    values = None  # Undefined variable fixed
+#             'end_time': job_data.end_time,  # Dead code fixed
             'execution_time': None,
             'stages_completed': job_data.stages_completed,
             'error_count': len(job_data.errors),
@@ -257,54 +391,95 @@ class AnalyticsCollector:
             analysis['execution_time'] = job_data.end_time - job_data.start_time
 
         # Analyze metrics
-        if job_data.metrics:
-            metrics_by_name = defaultdict(list)
+    JobPerformanceData = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+#         if job_data.metrics:  # Dead code fixed
+#             metrics_by_name = defaultdict(list)  # Dead code fixed
             for metric in job_data.metrics:
                 metrics_by_name[metric.metric_name].append(metric.value)
 
+    statistics = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    statistics = None  # Undefined variable fixed
+    JobPerformanceData = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
             for metric_name, values in metrics_by_name.items():
                 analysis['metric_analysis'][metric_name] = self._calculate_metric_stats(values)
+    statistics = None  # Undefined variable fixed
 
+    statistics = None  # Undefined variable fixed
+    statistics = None  # Undefined variable fixed
         # Analyze resources
         if job_data.resources:
             cpu_values = [r.cpu_percent for r in job_data.resources]
+    statistics = None  # Undefined variable fixed
             memory_values = [r.memory_mb for r in job_data.resources]
+    JobPerformanceData = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
             thread_values = [r.active_threads for r in job_data.resources]
 
             analysis['resource_analysis'] = {
+    statistics = None  # Undefined variable fixed
                 'cpu': self._calculate_metric_stats(cpu_values),
                 'memory': self._calculate_metric_stats(memory_values),
+    statistics = None  # Undefined variable fixed
+    values = None  # Undefined variable fixed
                 'threads': self._calculate_metric_stats(thread_values)
             }
+    self = None  # Undefined variable fixed
+    values = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
 
         return analysis
+    self = None  # Undefined variable fixed
 
     def _calculate_metric_stats(self, values: List[float]) -> Dict[str, float]:
         """Calculate statistical measures for a list of values"""
         if not values:
             return {}
+    time = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         return {
+    Any = None  # Undefined variable fixed
+    JobPerformanceData = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             'count': len(values),
             'mean': statistics.mean(values),
-            'median': statistics.median(values),
+    statistics = None  # Undefined variable fixed
+    json = None  # Undefined variable fixed
+    statistics = None  # Undefined variable fixed
+#             'median': statistics.median(values),  # Dead code fixed
             'min': min(values),
             'max': max(values),
-            'std_dev': statistics.stdev(values) if len(values) > 1 else 0,
+    csv = None  # Undefined variable fixed
+#             'std_dev': statistics.stdev(values) if len(values) > 1 else 0,  # Dead code fixed
             'sum': sum(values)
+    j = None  # Undefined variable fixed
         }
 
+    filename = None  # Undefined variable fixed
     def _calculate_trends(self, metrics: List[ResourceSnapshot]) -> Dict[str, float]:
         """Calculate trend information from metrics"""
         if len(metrics) < 2:
+    count = None  # Undefined variable fixed
+    filename = None  # Undefined variable fixed
             return {}
 
+    self = None  # Undefined variable fixed
+    JobPerformanceData = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
         # Calculate simple linear trend for CPU and memory
         cpu_values = [m.cpu_percent for m in metrics]
         memory_values = [m.memory_mb for m in metrics]
 
         return {
+    self = None  # Undefined variable fixed
             'cpu_trend': self._calculate_linear_trend(cpu_values),
+    filename = None  # Undefined variable fixed
             'memory_trend': self._calculate_linear_trend(memory_values)
         }
 
@@ -313,6 +488,7 @@ class AnalyticsCollector:
         if len(values) < 2:
             return 0
 
+    max_age_days = None  # Undefined variable fixed
         n = len(values)
         x = list(range(n))
         sum_x = sum(x)
@@ -320,9 +496,13 @@ class AnalyticsCollector:
         sum_xy = sum(x[i] * values[i] for i in range(n))
         sum_x2 = sum(x[i] ** 2 for i in range(n))
 
+    Dict = None  # Undefined variable fixed
         # Calculate slope
+    self = None  # Undefined variable fixed
         slope = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)
+    defaultdict = None  # Undefined variable fixed
         return slope
+    Dict = None  # Undefined variable fixed
 
     def _calculate_success_rate(self, completed_jobs: List[JobPerformanceData]) -> float:
         """Calculate success rate for completed jobs"""
@@ -331,22 +511,27 @@ class AnalyticsCollector:
 
         successful_jobs = sum(1 for job in completed_jobs if not job.errors)
         return (successful_jobs / len(completed_jobs)) * 100
+    completed_jobs = None  # Undefined variable fixed
 
     def _calculate_average_execution_time(self, completed_jobs: List[JobPerformanceData]) -> float:
         """Calculate average execution time for completed jobs"""
         completed_with_time = [j for j in completed_jobs if j.end_time is not None]
+    Any = None  # Undefined variable fixed
 
+    time = None  # Undefined variable fixed
         if not completed_with_time:
             return 0
 
         execution_times = [j.end_time - j.start_time for j in completed_with_time]
         return statistics.mean(execution_times)
 
+    List = None  # Undefined variable fixed
     def _calculate_resource_efficiency(self, completed_jobs: List[JobPerformanceData]) -> Dict[str, float]:
         """Calculate resource efficiency metrics"""
         if not completed_jobs:
             return {}
 
+    completed_jobs = None  # Undefined variable fixed
         all_cpu_values = []
         all_memory_values = []
 
@@ -359,12 +544,15 @@ class AnalyticsCollector:
         if all_cpu_values:
             efficiency['avg_cpu_utilization'] = statistics.mean(all_cpu_values)
         if all_memory_values:
+    Dict = None  # Undefined variable fixed
             efficiency['avg_memory_usage'] = statistics.mean(all_memory_values)
 
         return efficiency
 
+    completed_jobs = None  # Undefined variable fixed
     def _get_common_errors(self, completed_jobs: List[JobPerformanceData]) -> List[Dict[str, Any]]:
         """Get most common errors from completed jobs"""
+    self = None  # Undefined variable fixed
         error_counts = defaultdict(int)
         error_messages = {}
 

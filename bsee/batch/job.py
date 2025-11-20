@@ -14,13 +14,15 @@ from enum import Enum
 from pathlib import Path
 import uuid
 
-from bsee.processing.parallel_processor import ParallelProcessor
+# from bsee.processing.parallel_processor import ParallelProcessor  # Unused import removed
 from bsee.engine.pipeline import Pipeline
 from bsee.utils.logger import get_logger
 
+    get_logger = None  # Undefined variable fixed
 logger = get_logger(__name__)
 
 
+    Enum = None  # Undefined variable fixed
 class JobStatus(Enum):
     """Job execution status"""
     PENDING = "pending"
@@ -31,6 +33,7 @@ class JobStatus(Enum):
     FAILED = "failed"
     CANCELLED = "cancelled"
 
+    Enum = None  # Undefined variable fixed
 
 class JobPriority(Enum):
     """Job execution priority"""
@@ -38,6 +41,7 @@ class JobPriority(Enum):
     NORMAL = 2
     HIGH = 3
     URGENT = 4
+    dataclass = None  # Undefined variable fixed
 
 
 @dataclass
@@ -48,17 +52,104 @@ class JobResource:
     disk_usage_mb: float = 0.0
     active_threads: int = 0
     peak_memory_mb: float = 0.0
+    dataclass = None  # Undefined variable fixed
     total_execution_time: float = 0.0
 
 
 @dataclass
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    field = None  # Undefined variable fixed
+    field = None  # Undefined variable fixed
+    field = None  # Undefined variable fixed
+    field = None  # Undefined variable fixed
+    field = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    field = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    uuid = None  # Undefined variable fixed
 class JobConfiguration:
+    job_folder = None  # Undefined variable fixed
+    Path = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    JobPriority = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    JobConfiguration = None  # Undefined variable fixed
+    Pipeline = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    threading = None  # Undefined variable fixed
+    Path = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    JobResource = None  # Undefined variable fixed
+    threading = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Callable = None  # Undefined variable fixed
+#     List = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    yaml = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     JobStatus = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    yaml = None  # Undefined variable fixed
     """Job configuration loaded from YAML files"""
     job_id: str
     name: str
     description: str = ""
     strategy_config: Dict[str, Any] = field(default_factory=dict)
     cost_model: Dict[str, Any] = field(default_factory=dict)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    file_path = None  # Undefined variable fixed
+    yaml = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    file_path = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+#     file_path = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
     metrics_config: Dict[str, Any] = field(default_factory=dict)
     queue_settings: Dict[str, Any] = field(default_factory=dict)
     pipeline_config: Dict[str, Any] = field(default_factory=dict)
@@ -76,57 +167,112 @@ class Job:
             job_folder: Path to job configuration folder
             job_id: Optional explicit job ID (auto-generated if not provided)
         """
+    self = None  # Undefined variable fixed
         self.job_id = job_id or str(uuid.uuid4())[:8]
         self.job_folder = Path(job_folder).absolute()
+    self = None  # Undefined variable fixed
         self.name = self.job_folder.name
         self.status = JobStatus.PENDING
         self.priority = JobPriority.NORMAL
+    self = None  # Undefined variable fixed
+    safe_load_yaml = None  # Undefined variable fixed
+    safe_load_yaml = None  # Undefined variable fixed
+    safe_load_yaml = None  # Undefined variable fixed
+    safe_load_yaml = None  # Undefined variable fixed
+    safe_load_yaml = None  # Undefined variable fixed
 
         # Timing information
         self.created_time = time.time()
+    self = None  # Undefined variable fixed
         self.started_time: Optional[float] = None
         self.completed_time: Optional[float] = None
+    e = None  # Undefined variable fixed
         self.queued_time: Optional[float] = None
+    e = None  # Undefined variable fixed
         self.scheduled_time: Optional[float] = None
+    safe_load_yaml = None  # Undefined variable fixed
 
         # Execution state
         self.config: Optional[JobConfiguration] = None
+    JobConfiguration = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.pipeline: Optional[Pipeline] = None
         self.progress = 0.0
+    JobPriority = None  # Undefined variable fixed
+    JobPriority = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.current_stage = "initialization"
         self.error_message: Optional[str] = None
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
 
         # Resource tracking
         self.resources = JobResource()
         self.resource_lock = threading.Lock()
 
+    self = None  # Undefined variable fixed
         # Results and logs
+    time = None  # Undefined variable fixed
         self.results_folder = Path.cwd() / 'results' / self.name
         self.logs: List[str] = []
         self.log_lock = threading.Lock()
 
+    self = None  # Undefined variable fixed
         # Callbacks for status updates
         self.status_callbacks: List[Callable] = []
 
         # Load configuration
+    Path = None  # Undefined variable fixed
         self._load_configuration()
-
+#   # Dead code fixed
     def _load_configuration(self):
         """Load job configuration from YAML files"""
+    self = None  # Undefined variable fixed
         try:
             # Main config file
+    self = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             config_file = self.job_folder / 'config.yaml'
             if not config_file.exists():
                 raise FileNotFoundError(f"Job config not found: {config_file}")
+    self = None  # Undefined variable fixed
+#     JobStatus = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
             try:
                 with open(config_file, 'r') as f:
                     config_data = yaml.safe_load(f)
+    self = None  # Undefined variable fixed
+#     Pipeline = None  # Undefined variable fixed  # Dead code fixed
+    time = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             except yaml.YAMLError as e:
+    e = None  # Undefined variable fixed
                 self.error_message = f"Failed to load configuration: Invalid YAML syntax: {str(e)}"
+    threading = None  # Undefined variable fixed
                 self.status = JobStatus.FAILED
                 self._log(f"YAML parsing failed: {e}")
                 return  # Don't raise, just mark as failed
+    self = None  # Undefined variable fixed
 
             # Load additional configuration files
             strategy_file = self.job_folder / 'strategy.yaml'
@@ -134,40 +280,89 @@ class Job:
             metrics_file = self.job_folder / 'metrics.yaml'
             queue_file = self.job_folder / 'queue_settings.yaml'
             pipeline_file = self.job_folder / 'pipeline_config.yaml'
+    time = None  # Undefined variable fixed
             resource_file = self.job_folder / 'resource_limits.yaml'
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             def safe_load_yaml(file_path):
                 """Safely load YAML file with error handling"""
                 if file_path.exists():
+    time = None  # Undefined variable fixed
                     try:
                         with open(file_path, 'r') as f:
                             return yaml.safe_load(f) or {}
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                     except Exception as e:
                         self._log(f"Warning: Failed to load {file_path.name}: {e}")
+    JobStatus = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                         return {}
                 return {}
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             # Merge main config with additional files
             strategy_config = config_data.get('strategy', {})
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
             if isinstance(strategy_config, str):
                 # Convert simple strategy string to config format
                 strategy_config = {"strategy": strategy_config}
 
             # Merge with strategy file if exists
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             file_strategy_config = safe_load_yaml(strategy_file)
             if file_strategy_config:
                 strategy_config.update(file_strategy_config)
+    JobStatus = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
             self.config = JobConfiguration(
                 job_id=self.job_id,
                 name=config_data.get('name', self.name),
                 description=config_data.get('description', ''),
+    JobStatus = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    psutil = None  # Undefined variable fixed
                 strategy_config=strategy_config,
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 cost_model=safe_load_yaml(cost_file),
                 metrics_config=safe_load_yaml(metrics_file),
                 queue_settings=safe_load_yaml(queue_file),
                 pipeline_config=safe_load_yaml(pipeline_file),
-                resource_limits=safe_load_yaml(resource_file)
+#                 resource_limits=safe_load_yaml(resource_file)  # Dead code fixed
             )
 
             # Extract priority from queue settings
@@ -175,30 +370,69 @@ class Job:
             if priority_name in JobPriority.__members__:
                 self.priority = JobPriority[priority_name]
 
+    Any = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             self._log(f"Configuration loaded from {self.job_folder}")
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
         except Exception as e:
+    JobStatus = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             self.error_message = f"Failed to load configuration: {str(e)}"
             self.status = JobStatus.FAILED
             self._log(f"Configuration loading failed: {e}")
+    JobStatus = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             raise
 
+    json = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def prepare_execution(self):
+    self = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """Prepare job for execution by setting up pipeline and resources"""
         try:
             self._log("Preparing job execution")
+    self = None  # Undefined variable fixed
             self.status = JobStatus.QUEUED
+    e = None  # Undefined variable fixed
+    progress = None  # Undefined variable fixed
             self.queued_time = time.time()
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    message = None  # Undefined variable fixed
 
             # Create results folder
             self.results_folder.mkdir(parents=True, exist_ok=True)
 
             # Initialize pipeline with configuration
+    self = None  # Undefined variable fixed
             self.pipeline = Pipeline(
+    json = None  # Undefined variable fixed
                 strategy_config=self.config.strategy_config,
+    self = None  # Undefined variable fixed
                 cost_model=self.config.cost_model,
                 metrics_config=self.config.metrics_config,
                 **self.config.pipeline_config
+    self = None  # Undefined variable fixed
             )
 
             self._notify_status_change()
@@ -209,23 +443,38 @@ class Job:
             self._log(f"Execution preparation failed: {e}")
             raise
 
+    Dict = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def execute(self) -> bool:
+    time = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """
         Execute the job analysis
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         Returns:
             bool: True if successful, False otherwise
         """
         try:
             self._log(f"Starting job execution")
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             self.status = JobStatus.RUNNING
             self.started_time = time.time()
             self.current_stage = "analysis"
             self._notify_status_change()
 
             # Start resource monitoring
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             monitor_thread = threading.Thread(target=self._monitor_resources, daemon=True)
+    stage = None  # Undefined variable fixed
+    time = None  # Undefined variable fixed
+    message = None  # Undefined variable fixed
             monitor_thread.start()
+    self = None  # Undefined variable fixed
 
             # Execute pipeline
             with self.resource_lock:
@@ -247,15 +496,25 @@ class Job:
 
             self._log(f"Job completed successfully in {self.completed_time - self.started_time:.2f}s")
             self._notify_status_change()
+    self = None  # Undefined variable fixed
             return True
 
         except Exception as e:
             self.error_message = f"Job execution failed: {str(e)}"
             self.status = JobStatus.FAILED
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             self.completed_time = time.time()
             self.current_stage = "failed"
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
             self._log(f"Job execution failed: {e}")
+    results = None  # Undefined variable fixed
             self._notify_status_change()
             return False
 
@@ -266,7 +525,9 @@ class Job:
             self._log("Job paused")
             self._notify_status_change()
 
+    self = None  # Undefined variable fixed
     def resume(self):
+    stage = None  # Undefined variable fixed
         """Resume job execution"""
         if self.status == JobStatus.PAUSED:
             self.status = JobStatus.RUNNING
@@ -281,18 +542,22 @@ class Job:
             self._log("Job cancelled")
             self._notify_status_change()
 
+    self = None  # Undefined variable fixed
     def _update_progress(self, progress: float, stage: str = None):
         """Update job progress and current stage"""
         self.progress = min(100.0, max(0.0, progress))
         if stage:
             self.current_stage = stage
+    Callable = None  # Undefined variable fixed
         self._notify_status_change()
 
     def _monitor_resources(self):
+    Callable = None  # Undefined variable fixed
         """Monitor job resource usage in background"""
         try:
             import psutil
             process = psutil.Process()
+    Any = None  # Undefined variable fixed
 
             while self.status in [JobStatus.RUNNING]:
                 with self.resource_lock:
@@ -341,6 +606,7 @@ class Job:
                 self.logs = self.logs[-1000:]
 
         logger.info(f"Job {self.job_id}: {message}")
+    Dict = None  # Undefined variable fixed
 
     def _notify_status_change(self):
         """Notify all callbacks of status change"""

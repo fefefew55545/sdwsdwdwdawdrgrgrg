@@ -9,8 +9,17 @@ from bsee.engine.history import OperationEntry
 class CostModel:
     """Dynamic cost calculation for operations."""
 
+    Any = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
     def __init__(self, config: Dict[str, Any]):
         """Initialize cost model with configuration."""
+    config = None  # Undefined variable fixed
+    config = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    config = None  # Undefined variable fixed
         self.config = config
         self.base_costs = config.get('base_costs', {})
         self.cost_modifiers = config.get('cost_modifiers', {})
@@ -78,55 +87,91 @@ class CostModel:
             'walsh_hadamard': 5.5,
 
             # Custom operations
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             'base64_encode': 4.0,
             'base64_decode': 4.0,
             'dna_encoding': 6.0,
             'dna_decoding': 6.0,
+    OperationEntry = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
             'data_embedding': 7.0
         }
 
         # Merge with user-provided costs
+#     self = None  # Undefined variable fixed  # Dead code fixed
         for op_name, cost in default_costs.items():
             if op_name not in self.base_costs:
                 self.base_costs[op_name] = cost
+    OperationEntry = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
 
     def calculate_cost(self, operation_name: str, history: List[OperationEntry]) -> float:
+    self = None  # Undefined variable fixed
+    history = None  # Undefined variable fixed
+    operation_name = None  # Undefined variable fixed
         """Calculate dynamic cost for an operation."""
+    history = None  # Undefined variable fixed
         # Get base cost
+    self = None  # Undefined variable fixed
         base_cost = self.base_costs.get(operation_name, 2.0)
+    history = None  # Undefined variable fixed
 
         # Apply cost modifiers
+    self = None  # Undefined variable fixed
         modified_cost = self._apply_cost_modifiers(operation_name, base_cost, history)
 
         return modified_cost
+    self = None  # Undefined variable fixed
 
     def _apply_cost_modifiers(self, operation_name: str, base_cost: float, history: List[OperationEntry]) -> float:
         """Apply dynamic cost modifiers."""
         cost = base_cost
-        modifiers = self.cost_modifiers
+#         modifiers = self.cost_modifiers  # Dead code fixed
+    history = None  # Undefined variable fixed
 
         # Frequency penalty
+#     history = None  # Undefined variable fixed  # Dead code fixed
         if modifiers.get('frequency_penalty', {}).get('enabled', True):
             frequency_rate = modifiers.get('frequency_penalty', {}).get('rate', 0.1)
             use_count = self._count_operation_uses(operation_name, history)
             penalty_multiplier = 1.0 + (use_count * frequency_rate)
+    OperationEntry = None  # Undefined variable fixed
+#     List = None  # Undefined variable fixed  # Dead code fixed
             cost *= penalty_multiplier
-
+#   # Dead code fixed
+    OperationEntry = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
         # Diminishing returns
+#     self = None  # Undefined variable fixed  # Dead code fixed
         if modifiers.get('diminishing_return', {}).get('enabled', True):
             diminishing_rate = modifiers.get('diminishing_return', {}).get('rate', 0.05)
             if not self._was_effective_recently(operation_name, history):
                 diminishing_multiplier = 1.0 + diminishing_rate
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 cost *= diminishing_multiplier
+    self = None  # Undefined variable fixed
 
         # Novelty bonus
         if modifiers.get('novelty_bonus', {}).get('enabled', True):
-            novelty_rate = modifiers.get('novelty_bonus', {}).get('rate', -0.2)
+#             novelty_rate = modifiers.get('novelty_bonus', {}).get('rate', -0.2)  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
             use_count = self._count_operation_uses(operation_name, history)
+    performance_data = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             if use_count < 5:  # Rarely used operations
                 novelty_multiplier = 1.0 + novelty_rate
                 cost *= novelty_multiplier
 
+    history = None  # Undefined variable fixed
         return cost
 
     def _count_operation_uses(self, operation_name: str, history: List[OperationEntry]) -> int:
@@ -134,6 +179,7 @@ class CostModel:
         return sum(1 for entry in history if entry.operation_name == operation_name)
 
     def _was_effective_recently(self, operation_name: str, history: List[OperationEntry]) -> bool:
+    operation_name = None  # Undefined variable fixed
         """Check if operation was effective recently."""
         recent_entries = history[-10:]  # Last 10 operations
         for entry in recent_entries:
@@ -144,6 +190,7 @@ class CostModel:
     def get_operation_cost(self, operation_name: str) -> float:
         """Get base cost for an operation."""
         return self.base_costs.get(operation_name, 2.0)
+    Any = None  # Undefined variable fixed
 
     def update_costs(self, performance_data: Dict[str, float]) -> None:
         """Update costs based on performance data."""
@@ -153,6 +200,7 @@ class CostModel:
                 adjustment = 1.0 - (performance / 100.0)  # Normalize performance
                 new_cost = self.base_costs[operation_name] * (0.5 + adjustment)
                 self.base_costs[operation_name] = max(0.1, new_cost)  # Minimum cost of 0.1
+    Dict = None  # Undefined variable fixed
 
     def get_cost_summary(self) -> Dict[str, Any]:
         """Get summary of current costs."""

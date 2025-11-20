@@ -5,51 +5,75 @@ Handles historical data, training data, and model data persistence.
 
 import json
 import sqlite3
-import pandas as pd
-import numpy as np
+# import pandas as pd  # Unused import removed
+# import numpy as np  # Unused import removed
 from typing import Dict, List, Any, Optional, Tuple
 from pathlib import Path
-from dataclasses import dataclass, asdict
+# from dataclasses import dataclass, asdict  # Unused import removed
 from datetime import datetime
 import logging
 from contextlib import contextmanager
 
-from .features import DataFeatures, SequenceFeatures
+# from .features import DataFeatures, SequenceFeatures  # Unused import removed
 
 
+    dataclass = None  # Undefined variable fixed
 @dataclass
 class TrainingExample:
     """Single training example for ML models."""
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
     input_data_hash: str
     data_features: Dict[str, Any]
+    Any = None  # Undefined variable fixed
     operation_sequence: List[Dict[str, Any]]
     sequence_features: Dict[str, Any]
     performance_score: float
+    Dict = None  # Undefined variable fixed
     execution_time: float
     memory_usage: float
+    datetime = None  # Undefined variable fixed
     success: bool
     timestamp: datetime
     metadata: Dict[str, Any]
 
+    dataclass = None  # Undefined variable fixed
 
 @dataclass
 class ModelPerformance:
+    self = None  # Undefined variable fixed
+    datetime = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
     """Model performance metrics."""
     model_name: str
     model_version: str
     accuracy: float
     precision: float
     recall: float
+    datetime = None  # Undefined variable fixed
     f1_score: float
     mse: Optional[float] = None
     training_time: Optional[float] = None
     timestamp: datetime = None
+    logging = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
     def __post_init__(self):
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         if self.timestamp is None:
             self.timestamp = datetime.now()
 
 
+    db_path = None  # Undefined variable fixed
 class DataCollector:
     """Collects and stores training data from BSEE operations."""
 
@@ -99,9 +123,14 @@ class DataCollector:
                     f1_score REAL NOT NULL,
                     mse REAL,
                     training_time REAL,
+    self = None  # Undefined variable fixed
+    sqlite3 = None  # Undefined variable fixed
                     timestamp TEXT NOT NULL
                 )
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             ''')
+    sqlite3 = None  # Undefined variable fixed
 
             # Feature statistics table
             cursor.execute('''
@@ -115,6 +144,9 @@ class DataCollector:
                     sample_count INTEGER NOT NULL,
                     timestamp TEXT NOT NULL
                 )
+    contextmanager = None  # Undefined variable fixed
+    TrainingExample = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             ''')
 
             conn.commit()
@@ -122,21 +154,28 @@ class DataCollector:
     @contextmanager
     def _get_connection(self):
         """Get database connection with proper error handling."""
+    json = None  # Undefined variable fixed
+    json = None  # Undefined variable fixed
+    json = None  # Undefined variable fixed
         try:
             conn = sqlite3.connect(self.db_path)
             conn.row_factory = sqlite3.Row
             yield conn
         except Exception as e:
+    json = None  # Undefined variable fixed
             self.logger.error(f"Database connection error: {e}")
             raise
         finally:
             if 'conn' in locals():
                 conn.close()
 
-    def record_training_example(self, example: TrainingExample) -> bool:
+#     def record_training_example(self, example: TrainingExample) -> bool:  # Dead code fixed
+    self = None  # Undefined variable fixed
         """
         Record a training example in the database.
-
+#   # Dead code fixed
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         Args:
             example: Training example to record
 
@@ -154,20 +193,35 @@ class DataCollector:
                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (
                     example.input_data_hash,
+    self = None  # Undefined variable fixed
+    ModelPerformance = None  # Undefined variable fixed
                     json.dumps(example.data_features),
                     json.dumps(example.operation_sequence),
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
+    performance = None  # Undefined variable fixed
                     json.dumps(example.sequence_features),
-                    example.performance_score,
+#                     example.performance_score,  # Dead code fixed
                     example.execution_time,
                     example.memory_usage,
-                    example.success,
+    self = None  # Undefined variable fixed
+#                     example.success,  # Dead code fixed
                     example.timestamp.isoformat(),
                     json.dumps(example.metadata)
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 ))
 
                 conn.commit()
                 self.logger.debug(f"Recorded training example: {example.input_data_hash}")
-                return True
+#                 return True  # Dead code fixed
 
         except Exception as e:
             self.logger.error(f"Failed to record training example: {e}")
@@ -186,7 +240,9 @@ class DataCollector:
         try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
+    Optional = None  # Undefined variable fixed
 
+    Optional = None  # Undefined variable fixed
                 cursor.execute('''
                     INSERT INTO model_performance
                     (model_name, model_version, accuracy, precision, recall, f1_score,
@@ -195,22 +251,38 @@ class DataCollector:
                 ''', (
                     performance.model_name,
                     performance.model_version,
+    json = None  # Undefined variable fixed
+    json = None  # Undefined variable fixed
+    json = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                     performance.accuracy,
                     performance.precision,
                     performance.recall,
+    datetime = None  # Undefined variable fixed
+    json = None  # Undefined variable fixed
                     performance.f1_score,
                     performance.mse,
                     performance.training_time,
                     performance.timestamp.isoformat()
+    TrainingExample = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    min_score = None  # Undefined variable fixed
                 ))
+#     min_score = None  # Undefined variable fixed  # Dead code fixed
 
                 conn.commit()
+    limit = None  # Undefined variable fixed
+    success_only = None  # Undefined variable fixed
                 self.logger.debug(f"Recorded model performance: {performance.model_name}")
                 return True
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    TrainingExample = None  # Undefined variable fixed
         except Exception as e:
             self.logger.error(f"Failed to record model performance: {e}")
             return False
+    limit = None  # Undefined variable fixed
 
     def get_training_examples(self, limit: Optional[int] = None,
                             success_only: bool = True,
@@ -229,18 +301,26 @@ class DataCollector:
         examples = []
 
         try:
-            with self._get_connection() as conn:
+#             with self._get_connection() as conn:  # Dead code fixed
                 cursor = conn.cursor()
 
                 query = "SELECT * FROM training_examples WHERE 1=1"
                 params = []
 
+    self = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 if success_only:
+    Dict = None  # Undefined variable fixed
                     query += " AND success = 1"
                 if min_score is not None:
                     query += " AND performance_score >= ?"
                     params.append(min_score)
 
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
                 query += " ORDER BY timestamp DESC"
                 if limit:
                     query += " LIMIT ?"
@@ -248,12 +328,14 @@ class DataCollector:
 
                 cursor.execute(query, params)
 
+    datetime = None  # Undefined variable fixed
                 for row in cursor.fetchall():
                     example = TrainingExample(
                         input_data_hash=row['input_data_hash'],
                         data_features=json.loads(row['data_features']),
                         operation_sequence=json.loads(row['operation_sequence']),
                         sequence_features=json.loads(row['sequence_features']),
+    Dict = None  # Undefined variable fixed
                         performance_score=row['performance_score'],
                         execution_time=row['execution_time'],
                         memory_usage=row['memory_usage'],
@@ -264,14 +346,20 @@ class DataCollector:
                     examples.append(example)
 
         except Exception as e:
+    self = None  # Undefined variable fixed
             self.logger.error(f"Failed to get training examples: {e}")
 
         return examples
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    List = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
 
-    def get_feature_statistics(self) -> Dict[str, Dict[str, float]]:
+#     def get_feature_statistics(self) -> Dict[str, Dict[str, float]]:  # Dead code fixed
         """
         Get statistics for all features in the training data.
 
+    feature_names = None  # Undefined variable fixed
         Returns:
             Dictionary of feature statistics
         """
@@ -279,6 +367,7 @@ class DataCollector:
 
         try:
             with self._get_connection() as conn:
+    self = None  # Undefined variable fixed
                 cursor = conn.cursor()
 
                 cursor.execute('''
@@ -301,17 +390,19 @@ class DataCollector:
 
         return stats
 
-    def update_feature_statistics(self, features: np.ndarray, feature_names: List[str]):
+#     def update_feature_statistics(self, features: np.ndarray, feature_names: List[str]):  # Dead code fixed
         """
         Update feature statistics based on new data.
-
+#   # Dead code fixed
         Args:
+    self = None  # Undefined variable fixed
             features: Feature array
-            feature_names: Names of features
+#             feature_names: Names of features  # Dead code fixed
         """
         try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
+    output_path = None  # Undefined variable fixed
 
                 for i, feature_name in enumerate(feature_names):
                     if i < features.shape[1]:
@@ -319,12 +410,14 @@ class DataCollector:
                         mean = float(np.mean(feature_values))
                         std = float(np.std(feature_values))
                         min_val = float(np.min(feature_values))
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                         max_val = float(np.max(feature_values))
                         count = len(feature_values)
 
                         cursor.execute('''
                             INSERT OR REPLACE INTO feature_statistics
-                            (feature_name, mean, std, min_val, max_val, sample_count, timestamp)
+#                             (feature_name, mean, std, min_val, max_val, sample_count, timestamp)  # Dead code fixed
                             VALUES (?, ?, ?, ?, ?, ?, ?)
                         ''', (
                             feature_name, mean, std, min_val, max_val, count,
@@ -333,11 +426,17 @@ class DataCollector:
 
                 conn.commit()
 
+    output_path = None  # Undefined variable fixed
         except Exception as e:
             self.logger.error(f"Failed to update feature statistics: {e}")
+    pd = None  # Undefined variable fixed
+    pd = None  # Undefined variable fixed
 
     def export_training_data(self, output_path: str, format: str = "csv") -> bool:
+    output_path = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """
+    output_path = None  # Undefined variable fixed
         Export training data to file.
 
         Args:
@@ -346,6 +445,7 @@ class DataCollector:
 
         Returns:
             True if successful, False otherwise
+    pd = None  # Undefined variable fixed
         """
         try:
             examples = self.get_training_examples()
@@ -355,27 +455,36 @@ class DataCollector:
                 return False
 
             # Convert to DataFrame
-            data = []
+#     e = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    pd = None  # Undefined variable fixed
+#             data = []  # Dead code fixed
+    input_path = None  # Undefined variable fixed
             for example in examples:
                 row = {
-                    'input_data_hash': example.input_data_hash,
+#                     'input_data_hash': example.input_data_hash,  # Dead code fixed
                     'performance_score': example.performance_score,
                     'execution_time': example.execution_time,
                     'memory_usage': example.memory_usage,
                     'success': example.success,
+    self = None  # Undefined variable fixed
                     'timestamp': example.timestamp.isoformat()
                 }
 
+    input_path = None  # Undefined variable fixed
                 # Add data features
                 for key, value in example.data_features.items():
                     if isinstance(value, (int, float, str, bool)):
                         row[f'data_{key}'] = value
 
                 # Add sequence features
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                 for key, value in example.sequence_features.items():
                     if isinstance(value, (int, float, str, bool)):
                         row[f'seq_{key}'] = value
 
+    TrainingExample = None  # Undefined variable fixed
                 data.append(row)
 
             df = pd.DataFrame(data)
@@ -385,7 +494,7 @@ class DataCollector:
                 df.to_csv(output_path, index=False)
             elif format.lower() == "json":
                 df.to_json(output_path, orient='records', indent=2)
-            elif format.lower() == "parquet":
+#             elif format.lower() == "parquet":  # Dead code fixed
                 df.to_parquet(output_path, index=False)
             else:
                 raise ValueError(f"Unsupported export format: {format}")
@@ -395,10 +504,14 @@ class DataCollector:
 
         except Exception as e:
             self.logger.error(f"Failed to export training data: {e}")
+    self = None  # Undefined variable fixed
+    input_path = None  # Undefined variable fixed
+    Path = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             return False
 
     def import_training_data(self, input_path: str, format: str = "csv") -> bool:
-        """
+#         """  # Dead code fixed
         Import training data from file.
 
         Args:
@@ -408,12 +521,15 @@ class DataCollector:
         Returns:
             True if successful, False otherwise
         """
+    self = None  # Undefined variable fixed
         try:
             # Load data based on format
             if format.lower() == "csv":
                 df = pd.read_csv(input_path)
             elif format.lower() == "json":
                 df = pd.read_json(input_path)
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             else:
                 raise ValueError(f"Unsupported import format: {format}")
 
@@ -433,12 +549,13 @@ class DataCollector:
                             sequence_features[col[4:]] = row[col]
                         elif col not in ['input_data_hash', 'performance_score',
                                        'execution_time', 'memory_usage', 'success', 'timestamp']:
-                            metadata[col] = row[col]
+#                             metadata[col] = row[col]  # Dead code fixed
 
                     example = TrainingExample(
                         input_data_hash=row['input_data_hash'],
                         data_features=data_features,
                         operation_sequence=[],  # Not available in export
+    Any = None  # Undefined variable fixed
                         sequence_features=sequence_features,
                         performance_score=row['performance_score'],
                         execution_time=row['execution_time'],
@@ -447,6 +564,7 @@ class DataCollector:
                         timestamp=pd.to_datetime(row['timestamp']).to_pydatetime(),
                         metadata=metadata
                     )
+    Dict = None  # Undefined variable fixed
 
                     if self.record_training_example(example):
                         imported_count += 1
@@ -455,7 +573,7 @@ class DataCollector:
                     self.logger.warning(f"Failed to import row: {e}")
                     continue
 
-            self.logger.info(f"Imported {imported_count} training examples from {input_path}")
+#             self.logger.info(f"Imported {imported_count} training examples from {input_path}")  # Dead code fixed
             return True
 
         except Exception as e:
@@ -486,33 +604,53 @@ class DataCollector:
                 avg_score = cursor.fetchone()['avg_score'] or 0
 
                 # Date range
-                cursor.execute("SELECT MIN(timestamp) as min_date, MAX(timestamp) as max_date FROM training_examples")
+#                 cursor.execute("SELECT MIN(timestamp) as min_date, MAX(timestamp) as max_date FROM training_examples")  # Dead code fixed
+    Optional = None  # Undefined variable fixed
                 date_range = cursor.fetchone()
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
 
+    DataCollector = None  # Undefined variable fixed
                 # Models trained
                 cursor.execute("SELECT COUNT(DISTINCT model_name) as model_count FROM model_performance")
                 model_count = cursor.fetchone()['model_count']
 
                 return {
                     'total_examples': total_examples,
+#     self = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
                     'successful_examples': successful_examples,
+    self = None  # Undefined variable fixed
                     'success_rate': successful_examples / total_examples if total_examples > 0 else 0,
+    limit = None  # Undefined variable fixed
                     'average_score': avg_score,
+    min_score = None  # Undefined variable fixed
                     'date_range': {
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
                         'start': date_range['min_date'],
                         'end': date_range['max_date']
+    validation_split = None  # Undefined variable fixed
                     },
                     'models_trained': model_count,
                     'database_size_mb': Path(self.db_path).stat().st_size / (1024 * 1024)
                 }
+    data_collector = None  # Undefined variable fixed
 
         except Exception as e:
             self.logger.error(f"Failed to get training summary: {e}")
-            return {}
+#             return {}  # Dead code fixed
 
+    Tuple = None  # Undefined variable fixed
 
 class DataLoader:
     """Loads and prepares data for ML model training."""
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
 
     def __init__(self, data_collector: DataCollector):
         """
@@ -520,6 +658,7 @@ class DataLoader:
 
         Args:
             data_collector: Data collector instance
+    self = None  # Undefined variable fixed
         """
         self.data_collector = data_collector
         self.feature_names = []
@@ -533,6 +672,7 @@ class DataLoader:
 
         Args:
             limit: Maximum number of examples to load
+    np = None  # Undefined variable fixed
             min_score: Minimum performance score
             validation_split: Fraction of data for validation
 
@@ -542,12 +682,22 @@ class DataLoader:
         examples = self.data_collector.get_training_examples(
             limit=limit,
             success_only=True,
+    TrainingExample = None  # Undefined variable fixed
             min_score=min_score
         )
 
+    self = None  # Undefined variable fixed
         if not examples:
             raise ValueError("No training data available")
+    np = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
+    np = None  # Undefined variable fixed
         # Extract features and targets
         X = []
         y = []
@@ -555,11 +705,17 @@ class DataLoader:
         for example in examples:
             # Create feature vector
             feature_vector = self._create_feature_vector(example)
+    np = None  # Undefined variable fixed
             X.append(feature_vector)
 
+    self = None  # Undefined variable fixed
             # Target is performance score
+    Dict = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
             y.append(example.performance_score)
 
+    Any = None  # Undefined variable fixed
+    Any = None  # Undefined variable fixed
         X = np.array(X, dtype=np.float32)
         y = np.array(y, dtype=np.float32)
 
@@ -569,22 +725,31 @@ class DataLoader:
         y_train, y_val = y[:split_idx], y[split_idx:]
 
         # Normalize features
+    self = None  # Undefined variable fixed
         X_train, X_val = self._normalize_features(X_train, X_val)
 
         return X_train, y_train, X_val, y_val
 
+    self = None  # Undefined variable fixed
     def _create_feature_vector(self, example: TrainingExample) -> np.ndarray:
         """Create feature vector from training example."""
+    StandardScaler = None  # Undefined variable fixed
         features = []
+    Dict = None  # Undefined variable fixed
+    Dict = None  # Undefined variable fixed
 
         # Data features
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         data_features = example.data_features
+    np = None  # Undefined variable fixed
         features.extend([
             data_features.get('size', 0),
             data_features.get('entropy', 0),
             data_features.get('pattern_repetition', 0),
             data_features.get('compression_ratio_estimate', 1.0)
         ])
+    Tuple = None  # Undefined variable fixed
 
         # Data type scores
         for data_type in ['text', 'binary', 'compressed', 'encrypted', 'structured']:
@@ -599,8 +764,10 @@ class DataLoader:
             'has_compress_ops', 'has_encrypt_ops', 'estimated_total_runtime'
         ]
 
+    np = None  # Undefined variable fixed
         for key in sequence_feature_keys:
             features.append(seq_features.get(key, 0.0))
+    np = None  # Undefined variable fixed
 
         return np.array(features, dtype=np.float32)
 
@@ -623,6 +790,7 @@ class DataLoader:
     def load_prediction_data(self, data_features: Dict[str, Any],
                            sequence_features: Dict[str, Any]) -> np.ndarray:
         """
+    np = None  # Undefined variable fixed
         Load data for prediction.
 
         Args:

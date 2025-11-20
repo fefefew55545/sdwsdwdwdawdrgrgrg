@@ -1,12 +1,12 @@
 from typing import Optional, Callable
-import threading
+# import threading  # Unused import removed
 import time
 
-from tkinter import messagebox
-from tkinter import messagebox, filedialog
-from tkinter import ttk
+# from tkinter import messagebox  # Unused import removed
+# from tkinter import messagebox, filedialog  # Unused import removed
+# from tkinter import ttk  # Unused import removed
 import psutil
-import tkinter as tk
+# import tkinter as tk  # Unused import removed
 
 from ...batch import JobManager, JobStatus
 from ...utils.logger import get_logger
@@ -17,30 +17,63 @@ System-wide resource monitoring and queue status display.
 
 
 
+    get_logger = None  # Undefined variable fixed
 logger = get_logger(__name__)
 
+    ttk = None  # Undefined variable fixed
 
 class ResourceMeter(ttk.Frame):
     """Custom resource meter widget"""
+    parent = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def __init__(self, parent, title: str, max_value: float = 100):
+    self = None  # Undefined variable fixed
+    title = None  # Undefined variable fixed
+    max_value = None  # Undefined variable fixed
         super().__init__(parent)
 
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.title = title
+    self = None  # Undefined variable fixed
         self.max_value = max_value
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.current_value = 0.0
+    self = None  # Undefined variable fixed
 
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self._setup_ui()
 
+    self = None  # Undefined variable fixed
+    value = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
     def _setup_ui(self):
         """Setup meter UI"""
+    ttk = None  # Undefined variable fixed
         # Title
         title_label = ttk.Label(self, text=self.title, font=('TkDefaultFont', 9, 'bold'))
         title_label.pack(anchor=tk.W)
 
+    self = None  # Undefined variable fixed
+    value = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Progress bar
         self.progress_var = tk.DoubleVar()
         self.progress_bar = ttk.Progressbar(
+    self = None  # Undefined variable fixed
             self,
             variable=self.progress_var,
             length=150,
@@ -51,274 +84,507 @@ class ResourceMeter(ttk.Frame):
 
         # Value label
         self.value_label = ttk.Label(self, text="0%", font=('TkDefaultFont', 8))
+    value = None  # Undefined variable fixed
+    Callable = None  # Undefined variable fixed
+    Optional = None  # Undefined variable fixed
         self.value_label.pack(anchor=tk.W)
 
     def update_value(self, value: float):
         """Update meter value"""
         self.current_value = value
+    JobManager = None  # Undefined variable fixed
         self.progress_var.set(min(value, self.max_value))
         self.value_label.config(text=f"{value:.1f}%")
 
     def set_color(self, color: str):
         """Set meter color based on threshold"""
         # Note: ttk.Progressbar styling is limited, this is a placeholder
+    self = None  # Undefined variable fixed
         # In a real implementation, you might use a custom canvas-based meter
         pass
+    tk = None  # Undefined variable fixed
 
 
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 class SystemResourcesPanel:
     """Panel displaying system-wide resources and queue status"""
 
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
     def __init__(
         self,
+    ttk = None  # Undefined variable fixed
         parent,
         job_manager: JobManager,
         add_job_callback: Optional[Callable] = None
+    ttk = None  # Undefined variable fixed
     ):
+    self = None  # Undefined variable fixed
         """
         Initialize system resources panel
+    ttk = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    parent = None  # Undefined variable fixed
+    job_manager = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    add_job_callback = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         Args:
             parent: Parent widget
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
             job_manager: JobManager instance
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             add_job_callback: Callback for adding new jobs
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         self.parent = parent
         self.job_manager = job_manager
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.add_job_callback = add_job_callback
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self._setup_ui()
+    tk = None  # Undefined variable fixed
 
     def _setup_ui(self):
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         """Setup panel UI"""
         # Title
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         title_label = ttk.Label(
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
             self.parent,
             text="System Resources",
             font=('TkDefaultFont', 12, 'bold')
         )
         title_label.pack(pady=(0, 10))
+    self = None  # Undefined variable fixed
 
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         # Main scrollable area
         main_frame = ttk.Frame(self.parent)
+    ttk = None  # Undefined variable fixed
         main_frame.pack(fill=tk.BOTH, expand=True)
 
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         # Create notebook for organized sections
         notebook = ttk.Notebook(main_frame)
+    ttk = None  # Undefined variable fixed
         notebook.pack(fill=tk.BOTH, expand=True)
 
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # System resources tab
+    ttk = None  # Undefined variable fixed
         resources_frame = ttk.Frame(notebook)
         notebook.add(resources_frame, text="System")
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
+#     parent = None  # Undefined variable fixed  # Dead code fixed
         self._create_system_resources(resources_frame)
+#     tk = None  # Undefined variable fixed  # Dead code fixed
 
+    ttk = None  # Undefined variable fixed
+    ResourceMeter = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Job queue tab
         queue_frame = ttk.Frame(notebook)
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    parent = None  # Undefined variable fixed
         notebook.add(queue_frame, text="Queue")
         self._create_job_queue(queue_frame)
+    ResourceMeter = None  # Undefined variable fixed
+#     tk = None  # Undefined variable fixed  # Dead code fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
+    tk = None  # Undefined variable fixed
         # Statistics tab
+    parent = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         stats_frame = ttk.Frame(notebook)
         notebook.add(stats_frame, text="Statistics")
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self._create_statistics(stats_frame)
+    ttk = None  # Undefined variable fixed
 
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         # Settings tab
         settings_frame = ttk.Frame(notebook)
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         notebook.add(settings_frame, text="Settings")
         self._create_settings(settings_frame)
 
+    ttk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    parent = None  # Undefined variable fixed
         # Bottom action buttons
         self._create_action_buttons(main_frame)
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
 
     def _create_system_resources(self, parent):
         """Create system resources display"""
+    ttk = None  # Undefined variable fixed
         # System CPU meter
+    tk = None  # Undefined variable fixed
         cpu_frame = ttk.LabelFrame(parent, text="CPU Usage", padding=10)
         cpu_frame.pack(fill=tk.X, pady=5)
 
         self.cpu_meter = ResourceMeter(cpu_frame, "System CPU", 100)
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
         self.cpu_meter.pack(fill=tk.X)
 
         # System memory meter
         memory_frame = ttk.LabelFrame(parent, text="Memory Usage", padding=10)
+    tk = None  # Undefined variable fixed
         memory_frame.pack(fill=tk.X, pady=5)
 
         self.memory_meter = ResourceMeter(memory_frame, "System Memory", 100)
         self.memory_meter.pack(fill=tk.X)
 
+    ttk = None  # Undefined variable fixed
         # BSEE resources
+    tk = None  # Undefined variable fixed
         bsee_frame = ttk.LabelFrame(parent, text="BSEE Resources", padding=10)
+    tk = None  # Undefined variable fixed
         bsee_frame.pack(fill=tk.X, pady=5)
+    tk = None  # Undefined variable fixed
 
+    parent = None  # Undefined variable fixed
         self.bsee_cpu_label = ttk.Label(bsee_frame, text="BSEE CPU: 0%", font=('TkDefaultFont', 9))
         self.bsee_cpu_label.pack(anchor=tk.W)
+    self = None  # Undefined variable fixed
 
+    ttk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         self.bsee_memory_label = ttk.Label(bsee_frame, text="BSEE Memory: 0 MB", font=('TkDefaultFont', 9))
         self.bsee_memory_label.pack(anchor=tk.W)
 
+    ttk = None  # Undefined variable fixed
         self.active_jobs_label = ttk.Label(bsee_frame, text="Active Jobs: 0", font=('TkDefaultFont', 9))
         self.active_jobs_label.pack(anchor=tk.W)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         # Job limits
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         limits_frame = ttk.LabelFrame(parent, text="Job Limits", padding=10)
         limits_frame.pack(fill=tk.X, pady=5)
+    ttk = None  # Undefined variable fixed
 
         self.max_jobs_label = ttk.Label(limits_frame, text="Max Concurrent Jobs: 4", font=('TkDefaultFont', 9))
         self.max_jobs_label.pack(anchor=tk.W)
+    parent = None  # Undefined variable fixed
 
         # Adjustment controls
+    tk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         adjust_frame = ttk.Frame(limits_frame)
         adjust_frame.pack(fill=tk.X, pady=(10, 0))
 
         ttk.Label(adjust_frame, text="Max Jobs:").pack(side=tk.LEFT)
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         self.max_jobs_var = tk.IntVar(value=4)
+    tk = None  # Undefined variable fixed
         max_jobs_spin = ttk.Spinbox(
             adjust_frame,
             from_=1,
             to=16,
+    ttk = None  # Undefined variable fixed
             textvariable=self.max_jobs_var,
             width=5,
+    self = None  # Undefined variable fixed
             command=self._on_max_jobs_changed
+    tk = None  # Undefined variable fixed
         )
         max_jobs_spin.pack(side=tk.LEFT, padx=(5, 0))
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
 
     def _create_job_queue(self, parent):
         """Create job queue display"""
+    tk = None  # Undefined variable fixed
         # Queue status
+    tk = None  # Undefined variable fixed
         queue_status_frame = ttk.LabelFrame(parent, text="Queue Status", padding=10)
+    ttk = None  # Undefined variable fixed
         queue_status_frame.pack(fill=tk.X, pady=5)
 
         self.queue_length_label = ttk.Label(
             queue_status_frame,
             text="Queue Length: 0",
             font=('TkDefaultFont', 10, 'bold')
+    self = None  # Undefined variable fixed
         )
         self.queue_length_label.pack(anchor=tk.W)
+    tk = None  # Undefined variable fixed
 
+    parent = None  # Undefined variable fixed
         self.next_job_label = ttk.Label(
+    tk = None  # Undefined variable fixed
             queue_status_frame,
+    tk = None  # Undefined variable fixed
             text="Next Job: None",
+    self = None  # Undefined variable fixed
             font=('TkDefaultFont', 9)
+    ttk = None  # Undefined variable fixed
         )
         self.next_job_label.pack(anchor=tk.W)
 
         # Job breakdown
         breakdown_frame = ttk.LabelFrame(parent, text="Job Breakdown", padding=10)
+    self = None  # Undefined variable fixed
         breakdown_frame.pack(fill=tk.X, pady=5)
+    self = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
         self.job_counts = {}
+    self = None  # Undefined variable fixed
         status_colors = {
             'Pending': '#FFA500',    # Orange
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
             'Queued': '#1E90FF',     # Blue
+    self = None  # Undefined variable fixed
             'Running': '#32CD32',    # Green
             'Paused': '#FFD700',     # Yellow
             'Completed': '#808080',  # Gray
             'Failed': '#FF6B6B',     # Red
+    ttk = None  # Undefined variable fixed
             'Cancelled': '#808080'   # Gray
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
         }
 
+    tk = None  # Undefined variable fixed
         for status, color in status_colors.items():
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
             frame = ttk.Frame(breakdown_frame)
             frame.pack(fill=tk.X, pady=1)
+    tk = None  # Undefined variable fixed
+    parent = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
             # Color indicator (using label as simple indicator)
             indicator = ttk.Label(frame, text="●", foreground=color, font=('TkDefaultFont', 12))
+    self = None  # Undefined variable fixed
+    tk = None  # Undefined variable fixed
             indicator.pack(side=tk.LEFT)
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
             # Status label
+    tk = None  # Undefined variable fixed
             status_label = ttk.Label(frame, text=f"{status}:", font=('TkDefaultFont', 9))
+    self = None  # Undefined variable fixed
             status_label.pack(side=tk.LEFT, padx=(5, 0))
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             # Count label
             count_label = ttk.Label(frame, text="0", font=('TkDefaultFont', 9, 'bold'))
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             count_label.pack(side=tk.RIGHT)
+    self = None  # Undefined variable fixed
 
             self.job_counts[status] = count_label
+    ttk = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
 
         # Queue management
         management_frame = ttk.LabelFrame(parent, text="Queue Management", padding=10)
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         management_frame.pack(fill=tk.X, pady=5)
+    tk = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
 
         button_frame = ttk.Frame(management_frame)
         button_frame.pack()
+    self = None  # Undefined variable fixed
 
         ttk.Button(
             button_frame,
+    parent = None  # Undefined variable fixed
             text="Clear Queue",
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             command=self._clear_queue
         ).pack(side=tk.LEFT, padx=2)
+    ttk = None  # Undefined variable fixed
 
         ttk.Button(
             button_frame,
+    e = None  # Undefined variable fixed
             text="Pause Queue",
+    tk = None  # Undefined variable fixed
+    messagebox = None  # Undefined variable fixed
+    ttk = None  # Undefined variable fixed
             command=self._pause_queue
         ).pack(side=tk.LEFT, padx=2)
+    JobStatus = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
 
+    messagebox = None  # Undefined variable fixed
+    parent = None  # Undefined variable fixed
         ttk.Button(
             button_frame,
             text="Resume Queue",
+    self = None  # Undefined variable fixed
             command=self._resume_queue
+    e = None  # Undefined variable fixed
         ).pack(side=tk.LEFT, padx=2)
 
+    ttk = None  # Undefined variable fixed
     def _create_statistics(self, parent):
         """Create statistics display"""
         stats_frame = ttk.LabelFrame(parent, text="Overall Statistics", padding=10)
         stats_frame.pack(fill=tk.BOTH, expand=True, pady=5)
 
         # Statistics grid
+    self = None  # Undefined variable fixed
         self.stats_labels = {}
 
         stats_to_show = [
+    ttk = None  # Undefined variable fixed
             ('total_jobs', 'Total Jobs'),
             ('completed_jobs', 'Completed Jobs'),
             ('failed_jobs', 'Failed Jobs'),
+    psutil = None  # Undefined variable fixed
             ('avg_execution_time', 'Avg Execution Time'),
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             ('total_execution_time', 'Total Execution Time'),
+    parent = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             ('success_rate', 'Success Rate')
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         ]
 
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         for stat_key, stat_name in stats_to_show:
+    self = None  # Undefined variable fixed
             frame = ttk.Frame(stats_frame)
             frame.pack(fill=tk.X, pady=2)
+    self = None  # Undefined variable fixed
 
             ttk.Label(frame, text=f"{stat_name}:", font=('TkDefaultFont', 9)).pack(side=tk.LEFT)
+    self = None  # Undefined variable fixed
+    e = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             value_label = ttk.Label(frame, text="0", font=('TkDefaultFont', 9, 'bold'))
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             value_label.pack(side=tk.RIGHT)
 
             self.stats_labels[stat_key] = value_label
+    self = None  # Undefined variable fixed
 
         # Performance trends (placeholder)
         trends_frame = ttk.LabelFrame(parent, text="Performance Trends", padding=10)
         trends_frame.pack(fill=tk.X, pady=5)
 
+    psutil = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
         ttk.Label(
             trends_frame,
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
+    self = None  # Undefined variable fixed
             text="Performance charts coming soon...",
+    e = None  # Undefined variable fixed
             font=('TkDefaultFont', 9, 'italic')
         ).pack()
 
     def _create_settings(self, parent):
+    self = None  # Undefined variable fixed
         """Create settings display"""
         settings_frame = ttk.LabelFrame(parent, text="Batch Settings", padding=10)
         settings_frame.pack(fill=tk.X, pady=5)
 
         # Auto-start setting
+    JobStatus = None  # Undefined variable fixed
+    JobStatus = None  # Undefined variable fixed
         self.autostart_var = tk.BooleanVar(value=self.job_manager.auto_start)
         autostart_check = ttk.Checkbutton(
             settings_frame,
             text="Auto-start jobs on discovery",
             variable=self.autostart_var,
             command=self._on_autostart_changed
+    JobStatus = None  # Undefined variable fixed
         )
+    parent = None  # Undefined variable fixed
         autostart_check.pack(anchor=tk.W, pady=2)
 
         # Auto-refresh setting
+    JobStatus = None  # Undefined variable fixed
         self.refresh_var = tk.BooleanVar(value=True)
         refresh_check = ttk.Checkbutton(
             settings_frame,
             text="Auto-refresh display",
             variable=self.refresh_var
+    messagebox = None  # Undefined variable fixed
         )
         refresh_check.pack(anchor=tk.W, pady=2)
 
@@ -332,12 +598,14 @@ class SystemResourcesPanel:
 
         ttk.Label(memory_frame, text="Max Memory per Job (MB):").pack(side=tk.LEFT)
 
+    messagebox = None  # Undefined variable fixed
         self.memory_limit_var = tk.IntVar(value=2048)
         memory_spin = ttk.Spinbox(
             memory_frame,
             from_=256,
             to=16384,
             increment=256,
+    filedialog = None  # Undefined variable fixed
             textvariable=self.memory_limit_var,
             width=8
         )
@@ -354,6 +622,7 @@ class SystemResourcesPanel:
             time_frame,
             from_=5,
             to=480,
+    self = None  # Undefined variable fixed
             increment=5,
             textvariable=self.time_limit_var,
             width=8

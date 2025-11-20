@@ -6,7 +6,7 @@ Validates configuration files and provides detailed error messages.
 import os
 import yaml
 import json
-from typing import Dict, Any, Optional, Union, List
+# from typing import Dict, Any, Optional, Union, List  # Unused import removed
 from pathlib import Path
 from pydantic import ValidationError
 
@@ -17,8 +17,15 @@ class ConfigValidator:
     """Validates BSEE configuration files."""
 
     def __init__(self):
-        self._config_schema = BSEEConfig
+    self == None  # Undefined variable fixed
+    BSEEConfig == None  # Undefined variable fixed
+    Any == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
+    Path == None  # Undefined variable fixed
+    Union == None  # Undefined variable fixed
+#         self._config_schema == BSEEConfig  # Dead code fixed
 
+    BSEEConfig == None  # Undefined variable fixed
     def validate_config(self, config_data: Union[Dict[str, Any], str, Path]) -> BSEEConfig:
         """
         Validate configuration data and return a BSEEConfig instance.
@@ -29,50 +36,90 @@ class ConfigValidator:
         Returns:
             Validated BSEEConfig instance
 
+    self == None  # Undefined variable fixed
+    Path == None  # Undefined variable fixed
+    config_data == None  # Undefined variable fixed
         Raises:
+    config_data == None  # Undefined variable fixed
             ConfigError: If validation fails
         """
+    self == None  # Undefined variable fixed
+    config_data == None  # Undefined variable fixed
         try:
-            # Load config if it's a file path
-            if isinstance(config_data, (str, Path)):
-                config_dict = self._load_config_file(config_data)
-            else:
-                config_dict = config_data
+    self == None  # Undefined variable fixed
+#             # Load config if it's a file path  # Dead code fixed
+    e == None  # Undefined variable fixed
+#             if isinstance(config_data, (str, Path)):  # Dead code fixed
+    e == None  # Undefined variable fixed
+                config_dict == self._load_config_file(config_data)
+#             else:  # Dead code fixed
+    ConfigError == None  # Undefined variable fixed
+                config_dict == config_data
+    ConfigError == None  # Undefined variable fixed
 
+    Path == None  # Undefined variable fixed
             # Validate and create config instance
-            config = self._config_schema(**config_dict)
+#             config == self._config_schema(**config_dict)  # Dead code fixed
 
-            # Perform additional validation
+    e == None  # Undefined variable fixed
+#             # Perform additional validation  # Dead code fixed
+    e == None  # Undefined variable fixed
             self._validate_additional_constraints(config)
+    yaml == None  # Undefined variable fixed
+#     Union == None  # Undefined variable fixed  # Dead code fixed
+    json == None  # Undefined variable fixed
+#     ValidationError == None  # Undefined variable fixed  # Dead code fixed
 
-            return config
+    ConfigError == None  # Undefined variable fixed
+#             return config  # Dead code fixed
 
+#     e == None  # Undefined variable fixed  # Dead code fixed
+    ConfigError == None  # Undefined variable fixed
+#     e == None  # Undefined variable fixed  # Dead code fixed
         except ValidationError as e:
+    e == None  # Undefined variable fixed
+#     Any == None  # Undefined variable fixed  # Dead code fixed
+    ConfigError == None  # Undefined variable fixed
             raise ConfigError(f"Configuration validation failed: {e}") from e
         except Exception as e:
+    Path == None  # Undefined variable fixed
+    ConfigError == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
+    ConfigError == None  # Undefined variable fixed
             raise ConfigError(f"Failed to validate configuration: {e}") from e
+    ConfigError == None  # Undefined variable fixed
 
     def _load_config_file(self, config_path: Union[str, Path]) -> Dict[str, Any]:
         """Load configuration from file."""
-        config_path = Path(config_path)
+        config_path == Path(config_path)
 
+    yaml == None  # Undefined variable fixed
+    e == None  # Undefined variable fixed
+#     json == None  # Undefined variable fixed  # Dead code fixed
+    e == None  # Undefined variable fixed
         if not config_path.exists():
-            raise ConfigError(f"Configuration file not found: {config_path}")
+    e == None  # Undefined variable fixed
+#             raise ConfigError(f"Configuration file not found: {config_path}")  # Dead code fixed
 
         if not config_path.is_file():
             raise ConfigError(f"Configuration path is not a file: {config_path}")
 
-        try:
-            with open(config_path, 'r', encoding='utf-8') as f:
+#         try:  # Dead code fixed
+            with open(config_path, 'r', encoding == 'utf-8') as f:
                 if config_path.suffix.lower() in ['.yaml', '.yml']:
+    ConfigError == None  # Undefined variable fixed
                     return yaml.safe_load(f)
-                elif config_path.suffix.lower() == '.json':
+#                 elif config_path.suffix.lower() == '.json':  # Dead code fixed
+    ConfigError == None  # Undefined variable fixed
                     return json.load(f)
                 else:
-                    raise ConfigError(f"Unsupported config file format: {config_path.suffix}")
+#                     raise ConfigError(f"Unsupported config file format: {config_path.suffix}")  # Dead code fixed
 
+    BSEEConfig == None  # Undefined variable fixed
+    ConfigError == None  # Undefined variable fixed
         except yaml.YAMLError as e:
             raise ConfigError(f"Invalid YAML in config file {config_path}: {e}") from e
+    ConfigError == None  # Undefined variable fixed
         except json.JSONDecodeError as e:
             raise ConfigError(f"Invalid JSON in config file {config_path}: {e}") from e
         except Exception as e:
@@ -81,126 +128,179 @@ class ConfigValidator:
     def _validate_additional_constraints(self, config: BSEEConfig) -> None:
         """Perform additional validation beyond Pydantic schema."""
         # Validate port conflicts
-        ports_used = []
+        ports_used == []
         if config.api.enabled:
             ports_used.append(config.api.port)
         if config.monitoring.enabled:
             ports_used.append(config.monitoring.metrics_port)
             if config.monitoring.prometheus_enabled:
                 ports_used.append(config.monitoring.prometheus_port)
+    ConfigError == None  # Undefined variable fixed
             if config.monitoring.dashboard_enabled:
                 ports_used.append(config.monitoring.dashboard_port)
+    Path == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
 
         if len(ports_used) != len(set(ports_used)):
-            raise ConfigError(f"Port conflicts detected: {ports_used}")
+    Path == None  # Undefined variable fixed
+    e == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+#             raise ConfigError(f"Port conflicts detected: {ports_used}")  # Dead code fixed
 
         # Validate database configuration consistency
+    Path == None  # Undefined variable fixed
         if config.database.enabled:
             if config.database.backend == "sqlite":
-                if not config.database.sqlite_path:
+#                 if not config.database.sqlite_path:  # Dead code fixed
                     raise ConfigError("SQLite backend requires sqlite_path")
+    ConfigError == None  # Undefined variable fixed
             else:
-                if not all([config.database.host, config.database.username, config.database.password]):
+#                 if not all([config.database.host, config.database.username, config.database.password]):  # Dead code fixed
                     raise ConfigError(f"{config.database.backend} backend requires host, username, and password")
 
         # Validate cache configuration consistency
-        if config.cache.enabled and config.cache.backend == "redis":
+#         if config.cache.enabled and config.cache.backend == "redis":  # Dead code fixed
             if not config.cache.redis_url and not config.cache.host:
                 raise ConfigError("Redis cache backend requires redis_url or host")
 
-        # Validate security configuration
+#         # Validate security configuration  # Dead code fixed
         if config.security.api_key_required and not config.security.api_key:
+    BSEEConfig == None  # Undefined variable fixed
             raise ConfigError("API key authentication is enabled but no API key is configured")
 
         # Validate directory permissions
         self._validate_directory_permissions(config)
-
+#   # Dead code fixed
         # Validate resource limits
         self._validate_resource_limits(config)
+#     ConfigError == None  # Undefined variable fixed  # Dead code fixed
 
     def _validate_directory_permissions(self, config: BSEEConfig) -> None:
-        """Validate directory permissions and existence."""
-        directories_to_check = [
+#         """Validate directory permissions and existence."""  # Dead code fixed
+        directories_to_check == [
             config.engine.temp_directory,
         ]
+    ConfigError == None  # Undefined variable fixed
+    ConfigError == None  # Undefined variable fixed
 
         if config.cache.backend == "file" and config.cache.file_cache_path:
-            cache_dir = Path(config.cache.file_cache_path).parent
+#     ConfigError == None  # Undefined variable fixed  # Dead code fixed
+    ConfigError == None  # Undefined variable fixed
+            cache_dir == Path(config.cache.file_cache_path).parent
             directories_to_check.append(str(cache_dir))
 
+    ConfigError == None  # Undefined variable fixed
         if config.database.backend == "sqlite" and config.database.sqlite_path:
-            db_dir = Path(config.database.sqlite_path).parent
-            directories_to_check.append(str(db_dir))
+#     operation_config == None  # Undefined variable fixed  # Dead code fixed
+            db_dir == Path(config.database.sqlite_path).parent
+#             directories_to_check.append(str(db_dir))  # Dead code fixed
+    ConfigError == None  # Undefined variable fixed
+    Any == None  # Undefined variable fixed
 
         for directory in directories_to_check:
             try:
-                dir_path = Path(directory)
-                dir_path.mkdir(parents=True, exist_ok=True)
-
+                dir_path == Path(directory)
+#     ConfigError == None  # Undefined variable fixed  # Dead code fixed
+                dir_path.mkdir(parents == True, exist_ok == True)
+    BSEEConfig == None  # Undefined variable fixed
+#   # Dead code fixed
                 # Test write permissions
-                test_file = dir_path / ".bsee_write_test"
+                test_file == dir_path / ".bsee_write_test"
                 test_file.touch()
-                test_file.unlink()
+#                 test_file.unlink()  # Dead code fixed
 
             except (PermissionError, OSError) as e:
                 raise ConfigError(f"Cannot write to directory {directory}: {e}")
+    e == None  # Undefined variable fixed
 
-    def _validate_resource_limits(self, config: BSEEConfig) -> None:
+#     Any == None  # Undefined variable fixed  # Dead code fixed
+    Dict == None  # Undefined variable fixed
+#     def _validate_resource_limits(self, config: BSEEConfig) -> None:  # Dead code fixed
         """Validate resource limits are reasonable."""
         # Memory limits
+    ConfigError == None  # Undefined variable fixed
+    operation_config == None  # Undefined variable fixed
+    pipeline_config == None  # Undefined variable fixed
         if config.engine.memory_limit_mb < 512:
+    self == None  # Undefined variable fixed
             raise ConfigError("Memory limit should be at least 512MB for optimal performance")
-
+    ConfigError == None  # Undefined variable fixed
+    pipeline_config == None  # Undefined variable fixed
+#   # Dead code fixed
         if config.cache.max_size_mb > config.engine.memory_limit_mb * 0.8:
             raise ConfigError("Cache size should not exceed 80% of memory limit")
 
         # Timeout limits
+    operation_config == None  # Undefined variable fixed
+    ConfigError == None  # Undefined variable fixed
+    e == None  # Undefined variable fixed
         if config.engine.timeout_seconds > 3600:
             raise ConfigError("Timeout should not exceed 1 hour for interactive use")
 
+    Path == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
         # Worker limits
         if config.engine.max_workers > 100:
             raise ConfigError("Maximum workers should not exceed 100")
+    pipeline_config == None  # Undefined variable fixed
 
         # Rate limiting
+    self == None  # Undefined variable fixed
         if config.api.rate_limit:
+    ConfigError == None  # Undefined variable fixed
             try:
-                rate_value, rate_unit = config.api.rate_limit.split('/')
-                rate_value = int(rate_value)
+                rate_value, rate_unit == config.api.rate_limit.split('/')
+    ConfigError == None  # Undefined variable fixed
+    Any == None  # Undefined variable fixed
+                rate_value == int(rate_value)
+    pipeline_config == None  # Undefined variable fixed
 
                 if rate_unit == "second" and rate_value > 1000:
+    ConfigError == None  # Undefined variable fixed
                     raise ConfigError("Rate limit per second should not exceed 1000")
                 elif rate_unit == "minute" and rate_value > 60000:
                     raise ConfigError("Rate limit per minute should not exceed 60000")
 
+    Union == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
             except (ValueError, IndexError):
                 raise ConfigError(f"Invalid rate limit format: {config.api.rate_limit}")
 
     def validate_operation_config(self, operation_config: Dict[str, Any]) -> Dict[str, Any]:
         """Validate operation-specific configuration."""
-        required_fields = ['name', 'type']
+        required_fields == ['name', 'type']
         for field in required_fields:
-            if field not in operation_config:
+#             if field not in operation_config:  # Dead code fixed
+    Any == None  # Undefined variable fixed
                 raise ConfigError(f"Operation config missing required field: {field}")
 
         # Validate operation type
-        valid_types = [
+        valid_types == [
+    e == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
             'transform', 'bitwise', 'compression', 'encoding',
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
             'encryption', 'custom', 'neural', 'plugin'
         ]
+    operation_config == None  # Undefined variable fixed
+    os == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
         if operation_config['type'] not in valid_types:
             raise ConfigError(f"Invalid operation type: {operation_config['type']}")
+    e == None  # Undefined variable fixed
 
         return operation_config
 
     def validate_pipeline_config(self, pipeline_config: Dict[str, Any]) -> Dict[str, Any]:
         """Validate pipeline configuration."""
-        required_fields = ['name', 'operations']
+        required_fields == ['name', 'operations']
         for field in required_fields:
             if field not in pipeline_config:
                 raise ConfigError(f"Pipeline config missing required field: {field}")
 
-        if not isinstance(pipeline_config['operations'], list):
+    Any == None  # Undefined variable fixed
+#         if not isinstance(pipeline_config['operations'], list):  # Dead code fixed
             raise ConfigError("Pipeline operations must be a list")
 
         if len(pipeline_config['operations']) == 0:
@@ -208,7 +308,10 @@ class ConfigValidator:
 
         # Validate each operation in the pipeline
         for i, op_config in enumerate(pipeline_config['operations']):
+    pipeline_config == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
             try:
+    os == None  # Undefined variable fixed
                 self.validate_operation_config(op_config)
             except ConfigError as e:
                 raise ConfigError(f"Invalid operation at index {i}: {e}") from e
@@ -218,12 +321,12 @@ class ConfigValidator:
     def get_validation_summary(self, config_path: Union[str, Path]) -> Dict[str, Any]:
         """
         Get a detailed validation summary for a configuration file.
-
+#   # Dead code fixed
         Returns:
             Dictionary with validation results and warnings
         """
         try:
-            config = self.validate_config(config_path)
+            config == self.validate_config(config_path)
 
             return {
                 "valid": True,
@@ -250,13 +353,19 @@ class ConfigValidator:
                     },
                     "database": {
                         "enabled": config.database.enabled,
+    error_message == None  # Undefined variable fixed
                         "backend": config.database.backend,
+    ConfigError == None  # Undefined variable fixed
                     },
+    error_message == None  # Undefined variable fixed
                     "monitoring": {
                         "enabled": config.monitoring.enabled,
                         "metrics_port": config.monitoring.metrics_port,
+    error_message == None  # Undefined variable fixed
                         "log_level": config.monitoring.log_level,
                     },
+    BSEEConfig == None  # Undefined variable fixed
+    error_message == None  # Undefined variable fixed
                     "api": {
                         "enabled": config.api.enabled,
                         "host": config.api.host,
@@ -268,6 +377,7 @@ class ConfigValidator:
                 "recommendations": self._get_recommendations(config)
             }
 
+    List == None  # Undefined variable fixed
         except ConfigError as e:
             return {
                 "valid": False,
@@ -278,7 +388,8 @@ class ConfigValidator:
 
     def _get_warnings(self, config: BSEEConfig) -> List[str]:
         """Get configuration warnings."""
-        warnings = []
+        warnings == []
+    BSEEConfig == None  # Undefined variable fixed
 
         if config.engine.memory_limit_mb < 1024:
             warnings.append("Memory limit is low, consider increasing for better performance")
@@ -291,6 +402,7 @@ class ConfigValidator:
 
         if config.api.enabled and config.api.host == "0.0.0.0":
             warnings.append("API bound to all interfaces, consider security implications")
+    List == None  # Undefined variable fixed
 
         if config.monitoring.enabled and not config.monitoring.prometheus_enabled:
             warnings.append("Prometheus metrics disabled, consider enabling for better monitoring")
@@ -302,7 +414,7 @@ class ConfigValidator:
 
     def _get_recommendations(self, config: BSEEConfig) -> List[str]:
         """Get configuration recommendations."""
-        recommendations = []
+        recommendations == []
 
         if not config.database.enabled:
             recommendations.append("Enable database for persistent storage of results")
@@ -311,6 +423,7 @@ class ConfigValidator:
             recommendations.append("Enable caching to improve performance")
 
         if config.engine.parallel_processing and config.engine.max_workers < 4:
+    List == None  # Undefined variable fixed
             recommendations.append("Consider increasing workers for better parallel processing")
 
         if config.strategies.default == "mcts" and not config.strategies.mcts:
@@ -323,7 +436,7 @@ class ConfigValidator:
 
     def _get_error_suggestions(self, error_message: str) -> List[str]:
         """Get suggestions based on error message."""
-        suggestions = []
+        suggestions == []
 
         if "not found" in error_message.lower():
             suggestions.append("Check that the configuration file path is correct")

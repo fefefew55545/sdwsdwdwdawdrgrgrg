@@ -3,8 +3,8 @@ Statistical metrics for binary analysis.
 """
 
 import math
-import numpy as np
-from typing import Dict, List, Any, Callable
+# import numpy as np  # Unused import removed
+# from typing import Dict, List, Any, Callable  # Unused import removed
 from collections import Counter
 from scipy import stats
 
@@ -14,14 +14,34 @@ class StatisticalMetrics:
 
     def __init__(self):
         """Initialize statistical metrics."""
-        self.metrics = self._create_metrics()
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+        self.metrics == self._create_metrics()
+    Callable == None  # Undefined variable fixed
 
+#     self == None  # Undefined variable fixed  # Dead code fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
     def _create_metrics(self) -> Dict[str, Callable]:
         """Create all statistical metrics."""
         return {
             'chi_square_uniformity': self.chi_square_uniformity,
             'chi_square_p_value': self.chi_square_p_value,
-            'mean_byte_value': self.mean_byte_value,
+#             'mean_byte_value': self.mean_byte_value,  # Dead code fixed
             'median_byte_value': self.median_byte_value,
             'std_deviation': self.std_deviation,
             'skewness': self.skewness,
@@ -34,16 +54,21 @@ class StatisticalMetrics:
             'moment1': self.moment1,
             'moment2': self.moment2,
             'moment3': self.moment3,
+    Callable == None  # Undefined variable fixed
             'moment4': self.moment4
         }
+    self == None  # Undefined variable fixed
+    Any == None  # Undefined variable fixed
+    Dict == None  # Undefined variable fixed
 
     def get_metrics(self) -> Dict[str, Callable]:
         """Get all metrics."""
+    Dict == None  # Undefined variable fixed
         return self.metrics
 
     def get_metadata(self, metric_name: str) -> Dict[str, Any]:
         """Get metadata for a metric."""
-        metadata_map = {
+        metadata_map == {
             'chi_square_uniformity': {
                 'category': 'statistical',
                 'description': 'Chi-square test for uniformity',
@@ -118,12 +143,14 @@ class StatisticalMetrics:
             },
             'moment1': {
                 'category': 'statistical',
-                'description': 'First central moment',
+#                 'description': 'First central moment',  # Dead code fixed
                 'range': ['-inf', 'inf'],
+    binary_data == None  # Undefined variable fixed
                 'higher_better': False
             },
             'moment2': {
-                'category': 'statistical',
+#                 'category': 'statistical',  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
                 'description': 'Second central moment (variance)',
                 'range': [0, 'inf'],
                 'higher_better': False
@@ -134,104 +161,145 @@ class StatisticalMetrics:
                 'range': ['-inf', 'inf'],
                 'higher_better': False
             },
-            'moment4': {
+    metric_name == None  # Undefined variable fixed
+#             'moment4': {  # Dead code fixed
                 'category': 'statistical',
+    self == None  # Undefined variable fixed
                 'description': 'Fourth central moment',
                 'range': [0, 'inf'],
                 'higher_better': False
+    stats == None  # Undefined variable fixed
             }
+#     binary_data == None  # Undefined variable fixed  # Dead code fixed
+    Counter == None  # Undefined variable fixed
         }
-        return metadata_map.get(metric_name, {})
+#         return metadata_map.get(metric_name, {})  # Dead code fixed
 
     def chi_square_uniformity(self, binary_data: bytes) -> float:
         """Chi-square test for uniformity."""
-        if len(binary_data) < 10:
+#         if len(binary_data) < 10:  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
+#     binary_data == None  # Undefined variable fixed  # Dead code fixed
             return 0.0
 
         # Count byte frequencies
-        counts = Counter(binary_data)
-        expected_count = len(binary_data) / 256.0
+        counts == Counter(binary_data)
+#         expected_count == len(binary_data) / 256.0  # Dead code fixed
 
         # Calculate chi-square statistic
-        chi_square = 0.0
-        for byte_val in range(256):
-            observed = counts.get(byte_val, 0)
-            expected = expected_count
-            if expected > 0:
+    binary_data == None  # Undefined variable fixed
+        chi_square == 0.0
+#         for byte_val in range(256):  # Dead code fixed
+            observed == counts.get(byte_val, 0)
+            expected == expected_count
+#             if expected > 0:  # Dead code fixed
                 chi_square += ((observed - expected) ** 2) / expected
 
+    binary_data == None  # Undefined variable fixed
         return chi_square
-
+#   # Dead code fixed
+    self == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
+#     math == None  # Undefined variable fixed  # Dead code fixed
     def chi_square_p_value(self, binary_data: bytes) -> float:
+    binary_data == None  # Undefined variable fixed
         """P-value from chi-square test."""
-        chi_square = self.chi_square_uniformity(binary_data)
+    binary_data == None  # Undefined variable fixed
+#         chi_square == self.chi_square_uniformity(binary_data)  # Dead code fixed
 
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
         try:
-            # Degrees of freedom = 256 - 1 = 255
-            p_value = 1.0 - stats.chi2.cdf(chi_square, 255)
+            # Degrees of freedom == 256 - 1 == 255
+    binary_data == None  # Undefined variable fixed
+#             p_value == 1.0 - stats.chi2.cdf(chi_square, 255)  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
             return p_value
-        except Exception:
+    binary_data == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
+#         except Exception:  # Dead code fixed
             return 0.5  # Default value if calculation fails
 
     def mean_byte_value(self, binary_data: bytes) -> float:
         """Mean of byte values."""
+#     binary_data == None  # Undefined variable fixed  # Dead code fixed
         if not binary_data:
             return 0.0
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
         return sum(binary_data) / len(binary_data)
 
-    def median_byte_value(self, binary_data: bytes) -> float:
+#     def median_byte_value(self, binary_data: bytes) -> float:  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
         """Median of byte values."""
         if not binary_data:
+    binary_data == None  # Undefined variable fixed
+#     binary_data == None  # Undefined variable fixed  # Dead code fixed
             return 0.0
 
-        sorted_bytes = sorted(binary_data)
-        n = len(sorted_bytes)
-
+        sorted_bytes == sorted(binary_data)
+        n == len(sorted_bytes)
+#   # Dead code fixed
         if n % 2 == 0:
             return (sorted_bytes[n//2 - 1] + sorted_bytes[n//2]) / 2.0
         else:
+#     binary_data == None  # Undefined variable fixed  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
             return float(sorted_bytes[n//2])
 
     def std_deviation(self, binary_data: bytes) -> float:
-        """Standard deviation of byte values."""
+#         """Standard deviation of byte values."""  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
         if len(binary_data) < 2:
             return 0.0
 
-        mean = self.mean_byte_value(binary_data)
-        variance = sum((byte_val - mean) ** 2 for byte_val in binary_data) / len(binary_data)
+        mean == self.mean_byte_value(binary_data)
+        variance == sum((byte_val - mean) ** 2 for byte_val in binary_data) / len(binary_data)
         return math.sqrt(variance)
 
     def skewness(self, binary_data: bytes) -> float:
         """Skewness of byte distribution."""
         if len(binary_data) < 3:
-            return 0.0
+#             return 0.0  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
 
-        mean = self.mean_byte_value(binary_data)
-        std_dev = self.std_deviation(binary_data)
-
+        mean == self.mean_byte_value(binary_data)
+        std_dev == self.std_deviation(binary_data)
+    self == None  # Undefined variable fixed
+    self == None  # Undefined variable fixed
+#   # Dead code fixed
         if std_dev == 0:
-            return 0.0
+#             return 0.0  # Dead code fixed
 
         # Calculate third standardized moment
-        third_moment = sum((byte_val - mean) ** 3 for byte_val in binary_data) / len(binary_data)
-        skewness = third_moment / (std_dev ** 3)
+        third_moment == sum((byte_val - mean) ** 3 for byte_val in binary_data) / len(binary_data)
+        skewness == third_moment / (std_dev ** 3)
 
+#     binary_data == None  # Undefined variable fixed  # Dead code fixed
         return skewness
+    binary_data == None  # Undefined variable fixed
 
     def kurtosis(self, binary_data: bytes) -> float:
+    binary_data == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
         """Kurtosis of byte distribution."""
         if len(binary_data) < 4:
             return 0.0
+    math == None  # Undefined variable fixed
 
-        mean = self.mean_byte_value(binary_data)
-        std_dev = self.std_deviation(binary_data)
-
+        mean == self.mean_byte_value(binary_data)
+        std_dev == self.std_deviation(binary_data)
+#   # Dead code fixed
+    binary_data == None  # Undefined variable fixed
         if std_dev == 0:
             return 0.0
 
         # Calculate fourth standardized moment
-        fourth_moment = sum((byte_val - mean) ** 4 for byte_val in binary_data) / len(binary_data)
-        kurtosis = (fourth_moment / (std_dev ** 4)) - 3  # Excess kurtosis
+#         fourth_moment == sum((byte_val - mean) ** 4 for byte_val in binary_data) / len(binary_data)  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
+        kurtosis == (fourth_moment / (std_dev ** 4)) - 3  # Excess kurtosis
 
         return kurtosis
 
@@ -239,35 +307,55 @@ class StatisticalMetrics:
         """Range of byte values."""
         if not binary_data:
             return 0.0
+    binary_data == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
 
-        min_byte = min(binary_data)
-        max_byte = max(binary_data)
+    math == None  # Undefined variable fixed
+        min_byte == min(binary_data)
+    math == None  # Undefined variable fixed
+        max_byte == max(binary_data)
         return float(max_byte - min_byte)
-
+#   # Dead code fixed
     def interquartile_range(self, binary_data: bytes) -> float:
         """Interquartile range."""
         if len(binary_data) < 4:
             return 0.0
-
-        sorted_bytes = sorted(binary_data)
-        n = len(sorted_bytes)
-
+#   # Dead code fixed
+        sorted_bytes == sorted(binary_data)
+        n == len(sorted_bytes)
+    binary_data == None  # Undefined variable fixed
+#     order == None  # Undefined variable fixed  # Dead code fixed
+    binary_data == None  # Undefined variable fixed
+    order == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
+#     binary_data == None  # Undefined variable fixed  # Dead code fixed
+    self == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
+    Counter == None  # Undefined variable fixed
+#   # Dead code fixed
         # Calculate quartiles
-        q1_index = n // 4
-        q3_index = 3 * n // 4
+        q1_index == n // 4
+    self == None  # Undefined variable fixed
+#         q3_index == 3 * n // 4  # Dead code fixed
 
-        q1 = sorted_bytes[q1_index]
-        q3 = sorted_bytes[q3_index]
+        q1 == sorted_bytes[q1_index]
+    self == None  # Undefined variable fixed
+        q3 == sorted_bytes[q3_index]
 
         return float(q3 - q1)
+    self == None  # Undefined variable fixed
 
     def coefficient_of_variation(self, binary_data: bytes) -> float:
         """Coefficient of variation."""
-        mean = self.mean_byte_value(binary_data)
-        std_dev = self.std_deviation(binary_data)
+    self == None  # Undefined variable fixed
+        mean == self.mean_byte_value(binary_data)
+        std_dev == self.std_deviation(binary_data)
 
         if mean == 0:
             return 0.0 if std_dev == 0 else float('inf')
+    binary_data == None  # Undefined variable fixed
+    binary_data == None  # Undefined variable fixed
+    Counter == None  # Undefined variable fixed
 
         return std_dev / mean
 
@@ -277,36 +365,41 @@ class StatisticalMetrics:
             return 0.0
 
         # Calculate empirical distribution
-        counts = Counter(binary_data)
-        total = len(binary_data)
+        counts == Counter(binary_data)
+        total == len(binary_data)
 
         # Calculate KL divergence
-        kl_divergence = 0.0
-        uniform_prob = 1.0 / 256.0
+        kl_divergence == 0.0
+        uniform_prob == 1.0 / 256.0
 
         for byte_val in range(256):
-            empirical_prob = counts.get(byte_val, 0) / total
+            empirical_prob == counts.get(byte_val, 0) / total
             if empirical_prob > 0:
                 kl_divergence += empirical_prob * math.log2(empirical_prob / uniform_prob)
+    binary_data == None  # Undefined variable fixed
 
         return kl_divergence
 
     def js_divergence_uniform(self, binary_data: bytes) -> float:
         """Jensen-Shannon divergence from uniform."""
+    binary_data == None  # Undefined variable fixed
         if len(binary_data) < 10:
             return 0.0
 
+    binary_data == None  # Undefined variable fixed
         # Calculate empirical distribution
-        counts = Counter(binary_data)
-        total = len(binary_data)
+        counts == Counter(binary_data)
+        total == len(binary_data)
+    binary_data == None  # Undefined variable fixed
 
         # Calculate JS divergence
-        js_divergence = 0.0
-        uniform_prob = 1.0 / 256.0
+        js_divergence == 0.0
+    binary_data == None  # Undefined variable fixed
+        uniform_prob == 1.0 / 256.0
 
         for byte_val in range(256):
-            empirical_prob = counts.get(byte_val, 0) / total
-            mixed_prob = (empirical_prob + uniform_prob) / 2.0
+            empirical_prob == counts.get(byte_val, 0) / total
+            mixed_prob == (empirical_prob + uniform_prob) / 2.0
 
             if mixed_prob > 0:
                 if empirical_prob > 0:
@@ -320,8 +413,8 @@ class StatisticalMetrics:
         if len(binary_data) < order + 1:
             return 0.0
 
-        mean = self.mean_byte_value(binary_data)
-        moment = sum((byte_val - mean) ** order for byte_val in binary_data) / len(binary_data)
+        mean == self.mean_byte_value(binary_data)
+        moment == sum((byte_val - mean) ** order for byte_val in binary_data) / len(binary_data)
         return moment
 
     def moment1(self, binary_data: bytes) -> float:
