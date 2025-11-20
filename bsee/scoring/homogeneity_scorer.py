@@ -1,3 +1,15 @@
+import matplotlib
+matplotlib.use('Agg')  # Use non-interactive backend
+import matplotlib.pyplot as plt
+try:
+    import matplotlib.pyplot as plt
+    import numpy as np
+    MATPLOTLIB_AVAILABLE = True
+except ImportError:
+    MATPLOTLIB_AVAILABLE = False
+    plt = None
+    np = None
+
 """
 Homogeneity Scorer for BSEE Binary Structure Enhancement Engine.
 
@@ -13,13 +25,6 @@ Key Concepts:
 - Structural Uniformity: Overall structural consistency in binary data
 """
 
-import math
-import logging
-from typing import Dict, List, Any, Tuple, Optional
-from dataclasses import dataclass
-from collections import Counter, defaultdict
-import numpy as np
-from pathlib import Path
 
 # Configure logging
 logger = logging.getLogger(__name__)
