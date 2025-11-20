@@ -152,7 +152,7 @@ class FilePanel(ttk.LabelFrame):
             self.output_dir_var.set(directory)
 
     def _update_recent_files(self):
-        self.recent_combo['values'] = self.controller.get_recent_files()''
+        self.recent_combo['values'] = self.controller.get_recent_files()
 
     def _on_recent_selected(self, event):
         selected = self.recent_var.get()
