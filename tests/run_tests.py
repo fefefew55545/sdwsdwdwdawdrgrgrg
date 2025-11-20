@@ -411,7 +411,7 @@ Examples:
 
     parser.add_argument()
         "--mode",
-        choices=["smoke", "unit", "integration", "performance", "gui",""""""""""]
+        choices=["smoke", "unit", "integration", "performance", "gui","""""]
                 "regression", "full", "coverage", "comprehensive"],
         default="smoke",
         help="Test mode to run (default: smoke)"""
