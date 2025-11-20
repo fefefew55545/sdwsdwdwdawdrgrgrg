@@ -1,0 +1,869 @@
+#!/usr/bin/env python3
+"""
+Advanced Cross-File Combination Testing System for BSEE Codebase
+Dependency graph analysis, circular dependency detection, and integration error testing
+"""
+
+import os
+import sys
+import ast
+import subprocess
+import tempfile
+import importlib.util
+import json
+import re
+import itertools
+import random
+from pathlib import Path
+from typing import List, Dict, Any, Optional, Set, Tuple
+from dataclasses import dataclass
+from enum import Enum
+from datetime import datetime
+from collections import defaultdict, deque
+
+# Import base classes from existing system
+try:
+    from advanced_error_detector import ErrorInfo, ErrorSeverity, ErrorCategory
+except ImportError:
+    # Fallback definitions if import fails
+    class ErrorSeverity(Enum):
+        CRITICAL = "CRITICAL"
+        HIGH = "HIGH"
+        MEDIUM = "MEDIUM"
+        LOW = "LOW"
+
+    class ErrorCategory(Enum):
+        SYNTAX = "SYNTAX"
+        IMPORT = "IMPORT"
+        RUNTIME = "RUNTIME"
+        LOGICAL = "LOGICAL"
+        PERFORMANCE = "PERFORMANCE"
+        SECURITY = "SECURITY"
+        MAINTAINABILITY = "MAINTAINABILITY"
+        COMPATIBILITY = "COMPATIBILITY"
+        DEAD_CODE = "DEAD_CODE"
+        DATA_FLOW = "DATA_FLOW"
+        RESOURCE_LEAK = "RESOURCE_LEAK"
+        RACE_CONDITION = "RACE_CONDITION"
+        COMBINATION = "COMBINATION"
+
+    @dataclass
+    class ErrorInfo:
+        file_path: str
+        error_type: str
+        error_message: str
+        severity: ErrorSeverity
+        category: ErrorCategory
+        line_number: Optional[int] = None
+        column_number: Optional[int] = None
+        context_snippet: Optional[str] = None
+        suggested_fix: Optional[str] = None
+        dependencies: List[str] = None
+        test_context: Optional[str] = None
+        fix_applied: bool = False
+        verification_status: str = "PENDING"
+        timestamp: str = None
+
+        def __post_init__(self):
+            if self.timestamp is None:
+                self.timestamp = datetime.now().isoformat()
+            if self.dependencies is None:
+                self.dependencies = []
+
+
+@dataclass
+class DependencyNode:
+    """Node in the dependency graph"""
+    file_path: str
+    imports: Set[str]
+    imported_by: Set[str]
+    is_circular: bool = False
+    circular_cycle: List[str] = None
+    load_order: int = -1
+
+    def __post_init__(self):
+        if self.circular_cycle is None:
+            self.circular_cycle = []
+
+
+@dataclass
+class TestScenario:
+    """Test scenario for combination testing"""
+    name: str
+    files: List[str]
+    load_order: List[str]
+    description: str
+    expected_outcome: str
+
+
+class CombinationTester:
+    """Advanced cross-file combination testing system"""
+
+    def __init__(self, project_root: str = "."):
+        self.project_root = Path(project_root).resolve()
+        self.dependency_graph: Dict[str, DependencyNode] = {}
+        self.file_imports: Dict[str, Set[str]] = {}
+        self.import_errors: List[ErrorInfo] = []
+        self.circular_dependencies: List[ErrorInfo] = []
+        self.missing_dependencies: List[ErrorInfo] = []
+        self.combination_errors: List[ErrorInfo] = []
+
+    def analyze_combinations(self, python_files: List[Path]) -> List[ErrorInfo]:
+        """Run comprehensive combination analysis"""
+        print("🔗 Starting Cross-File Combination Analysis")
+        print(f"📁 Analyzing {len(python_files)} files for interactions")
+
+        all_errors = []
+
+        # Phase 1: Build comprehensive dependency graph
+        dependency_errors = self._build_dependency_graph(python_files)
+        all_errors.extend(dependency_errors)
+
+        # Phase 2: Detect circular dependencies
+        circular_errors = self._detect_circular_dependencies()
+        all_errors.extend(circular_errors)
+
+        # Phase 3: Detect missing dependencies
+        missing_dep_errors = self._detect_missing_dependencies()
+        all_errors.extend(missing_dep_errors)
+
+        # Phase 4: Test file loading sequences
+        loading_errors = self._test_loading_sequences(python_files)
+        all_errors.extend(loading_errors)
+
+        # Phase 5: Test combination scenarios
+        scenario_errors = self._test_combination_scenarios(python_files)
+        all_errors.extend(scenario_errors)
+
+        # Phase 6: Stress testing
+        stress_errors = self._stress_test_combinations(python_files)
+        all_errors.extend(stress_errors)
+
+        print(f"🔗 Found {len(all_errors)} cross-file interaction errors")
+        return all_errors
+
+    def _build_dependency_graph(self, python_files: List[Path]) -> List[ErrorInfo]:
+        """Build comprehensive dependency graph"""
+        print("  📊 Building dependency graph...")
+        errors = []
+
+        # Initialize nodes for all files
+        for file_path in python_files:
+            rel_path = str(file_path.relative_to(self.project_root))
+            self.dependency_graph[rel_path] = DependencyNode(
+                file_path=rel_path,
+                imports=set(),
+                imported_by=set()
+            )
+
+        # Analyze imports for each file
+        for file_path in python_files:
+            try:
+                rel_path = str(file_path.relative_to(self.project_root))
+                imports = self._extract_file_imports(file_path)
+                self.file_imports[rel_path] = imports
+                self.dependency_graph[rel_path].imports = imports
+
+                # Link dependencies
+                for import_name in imports:
+                    # Find which file provides this import
+                    provider_files = self._find_import_providers(import_name, python_files)
+                    for provider in provider_files:
+                        provider_rel = str(provider.relative_to(self.project_root))
+                        self.dependency_graph[provider_rel].imported_by.add(rel_path)
+
+            except Exception as e:
+                errors.append(ErrorInfo(
+                    file_path=str(file_path.relative_to(self.project_root)),
+                    error_type="DependencyAnalysisError",
+                    error_message=f"Error analyzing dependencies: {str(e)}",
+                    severity=ErrorSeverity.LOW,
+                    category=ErrorCategory.COMBINATION,
+                    suggested_fix="Check file for complex import patterns or syntax issues"
+                ))
+
+        # Validate dependency graph
+        validation_errors = self._validate_dependency_graph()
+        errors.extend(validation_errors)
+
+        return errors
+
+    def _extract_file_imports(self, file_path: Path) -> Set[str]:
+        """Extract all imports from a file"""
+        imports = set()
+
+        try:
+            content = file_path.read_text(encoding='utf-8')
+            tree = ast.parse(content)
+
+            class ImportVisitor(ast.NodeVisitor):
+                def visit_Import(self, node: ast.Import):
+                    for alias in node.names:
+                        imports.add(alias.name)
+                    self.generic_visit(node)
+
+                def visit_ImportFrom(self, node: ast.ImportFrom):
+                    if node.module:
+                        imports.add(node.module)
+                    self.generic_visit(node)
+
+            visitor = ImportVisitor()
+            visitor.visit(tree)
+
+        except (SyntaxError, UnicodeDecodeError):
+            # Skip files with syntax errors
+            pass
+
+        return imports
+
+    def _find_import_providers(self, import_name: str, python_files: List[Path]) -> List[Path]:
+        """Find files that provide a given import"""
+        providers = []
+
+        # Check if import_name matches any file path
+        for file_path in python_files:
+            rel_path = file_path.relative_to(self.project_root)
+            file_stem = file_path.stem
+
+            # Direct match (module name matches file name)
+            if import_name == file_stem:
+                providers.append(file_path)
+
+            # Package match (import_name.path matches directory structure)
+            import_parts = import_name.split('.')
+            path_parts = list(rel_path.parts[:-1]) + [file_stem]
+
+            if import_parts == path_parts:
+                providers.append(file_path)
+
+        return providers
+
+    def _validate_dependency_graph(self) -> List[ErrorInfo]:
+        """Validate the dependency graph for issues"""
+        errors = []
+
+        # Check for orphaned files (files that import but are never imported)
+        for file_path, node in self.dependency_graph.items():
+            if node.imports and not node.imported_by and not file_path.endswith('__init__.py'):
+                # This file imports things but nothing imports it
+                # Check if it's a main script or test file
+                is_main_or_test = any(keyword in file_path for keyword in ['main', 'test', '__main__'])
+
+                if not is_main_or_test:
+                    errors.append(ErrorInfo(
+                        file_path=file_path,
+                        error_type="PotentiallyUnusedModule",
+                        error_message=f"Module '{file_path}' imports other modules but is never imported",
+                        severity=ErrorSeverity.LOW,
+                        category=ErrorCategory.COMBINATION,
+                        suggested_fix="Consider if this module should be imported elsewhere or if it's a standalone script"
+                    ))
+
+        # Check for excessively complex dependency chains
+        for file_path, node in self.dependency_graph.items():
+            chain_length = self._calculate_dependency_chain_length(file_path)
+            if chain_length > 10:  # Arbitrary threshold for "excessive"
+                errors.append(ErrorInfo(
+                    file_path=file_path,
+                    error_type="DeepDependencyChain",
+                    error_message=f"Module '{file_path}' has a deep dependency chain ({chain_length} levels)",
+                    severity=ErrorSeverity.MEDIUM,
+                    category=ErrorCategory.COMBINATION,
+                    suggested_fix="Consider refactoring to reduce dependency depth"
+                ))
+
+        return errors
+
+    def _calculate_dependency_chain_length(self, file_path: str, visited: Set[str] = None) -> int:
+        """Calculate the length of the dependency chain for a file"""
+        if visited is None:
+            visited = set()
+
+        if file_path in visited:
+            return 0  # Circular dependency, stop counting
+
+        visited.add(file_path)
+        node = self.dependency_graph.get(file_path)
+
+        if not node or not node.imports:
+            visited.remove(file_path)
+            return 0
+
+        max_depth = 0
+        for import_name in node.imports:
+            # Find the file that provides this import
+            for provider_path, provider_node in self.dependency_graph.items():
+                if import_name in provider_path or import_name == Path(provider_path).stem:
+                    depth = self._calculate_dependency_chain_length(provider_path, visited.copy())
+                    max_depth = max(max_depth, depth + 1)
+
+        visited.remove(file_path)
+        return max_depth
+
+    def _detect_circular_dependencies(self) -> List[ErrorInfo]:
+        """Detect circular dependencies using DFS"""
+        print("  🔍 Detecting circular dependencies...")
+        errors = []
+
+        # Use DFS to detect cycles
+        visited = set()
+        rec_stack = set()
+        path = []
+
+        def dfs(file_path: str) -> List[str]:
+            """DFS to detect cycles, returns cycle path if found"""
+            if file_path in rec_stack:
+                # Found a cycle
+                cycle_start = path.index(file_path)
+                return path[cycle_start:] + [file_path]
+
+            if file_path in visited:
+                return []
+
+            visited.add(file_path)
+            rec_stack.add(file_path)
+            path.append(file_path)
+
+            node = self.dependency_graph.get(file_path)
+            if node:
+                for import_name in node.imports:
+                    # Find the file that provides this import
+                    for provider_path in self.dependency_graph:
+                        if import_name in provider_path or import_name == Path(provider_path).stem:
+                            cycle = dfs(provider_path)
+                            if cycle:
+                                return cycle
+
+            path.pop()
+            rec_stack.remove(file_path)
+            return []
+
+        # Run DFS from all nodes
+        for file_path in self.dependency_graph:
+            if file_path not in visited:
+                cycle = dfs(file_path)
+                if cycle:
+                    # Mark all nodes in the cycle as circular
+                    for cycle_file in cycle:
+                        if cycle_file in self.dependency_graph:
+                            self.dependency_graph[cycle_file].is_circular = True
+                            self.dependency_graph[cycle_file].circular_cycle = cycle
+
+                    errors.append(ErrorInfo(
+                        file_path="multiple_files",
+                        error_type="CircularDependency",
+                        error_message=f"Circular dependency detected: {' -> '.join(cycle)}",
+                        severity=ErrorSeverity.HIGH,
+                        category=ErrorCategory.COMBINATION,
+                        suggested_fix="Break the circular dependency by refactoring one of the modules or using dependency injection"
+                    ))
+
+        return errors
+
+    def _detect_missing_dependencies(self) -> List[ErrorInfo]:
+        """Detect missing dependencies"""
+        print("  🔍 Detecting missing dependencies...")
+        errors = []
+
+        # Count how many files try to import each module
+        import_counts = defaultdict(int)
+        import_sources = defaultdict(list)
+
+        for file_path, imports in self.file_imports.items():
+            for import_name in imports:
+                import_counts[import_name] += 1
+                import_sources[import_name].append(file_path)
+
+        # Find imports that are referenced but not provided by any file in the project
+        all_provided_modules = set()
+        for provider_path in self.dependency_graph:
+            # Add the file stem as a provided module
+            all_provided_modules.add(Path(provider_path).stem)
+
+            # Add directory components for package imports
+            parts = Path(provider_path).parts[:-1]  # Exclude the file name
+            current_path = ""
+            for part in parts:
+                if current_path:
+                    current_path += f".{part}"
+                else:
+                    current_path = part
+                all_provided_modules.add(current_path)
+
+        # Check for missing modules
+        for import_name, count in import_counts.items():
+            if import_name not in all_provided_modules and count > 2:  # Referenced by multiple files
+                # Check if it might be a standard library or external dependency
+                is_standard_lib = self._is_standard_library_module(import_name)
+
+                if not is_standard_lib:
+                    errors.append(ErrorInfo(
+                        file_path="multiple_files",
+                        error_type="MissingDependency",
+                        error_message=f"Module '{import_name}' is imported by {count} files but not found in project",
+                        severity=ErrorSeverity.HIGH,
+                        category=ErrorCategory.COMBINATION,
+                        dependencies=import_sources[import_name],
+                        suggested_fix=f"Ensure module '{import_name}' is installed: pip install {import_name}"
+                    ))
+
+        return errors
+
+    def _is_standard_library_module(self, module_name: str) -> bool:
+        """Check if a module is part of Python standard library"""
+        standard_lib_modules = {
+            'os', 'sys', 'json', 're', 'datetime', 'pathlib', 'collections',
+            'itertools', 'functools', 'operator', 'typing', 'dataclasses',
+            'enum', 'tempfile', 'subprocess', 'importlib', 'inspect',
+            'ast', 'dis', 'gc', 'threading', 'multiprocessing', 'asyncio',
+            'socket', 'urllib', 'http', 'email', 'html', 'xml', 'csv',
+            'configparser', 'logging', 'unittest', 'argparse', 'getopt',
+            'shlex', 'glob', 'fnmatch', 'pickle', 'copy', 'random',
+            'math', 'statistics', 'decimal', 'fractions', 'cmath',
+            'string', 'unicodedata', 'codecs', 'io', 'time', 'calendar',
+            'traceback', 'warnings', 'contextlib', 'abc', 'weakref',
+            'types', 'copyreg', 'struct', 'code', 'codeop', 'zipimport',
+            'pkgutil', 'modulefinder', 'runpy', 'parser', 'symbol',
+            'token', 'keyword', 'tokenize', 'tabnanny', 'pyclbr',
+            'py_compile', 'compileall', 'dis', 'pickletools',
+            'html', 'xml', 'xmlrpc', 'email', 'mimetypes', 'uu', 'binhex',
+            'xdrlib', 'mailcap', 'mailbox', 'mbox', 'mhlib', 'distutils',
+            'ensurepip', 'venv', 'pydoc', 'doctest', 'unittest',
+            'test', 'bdb', 'pdb', 'profile', 'pstats', 'timeit',
+            'trace', 'gc', 'weakref', 'abc', 'atexit', 'builtins',
+            'site', 'sysconfig', 'locale', 'gettext', 'heapq',
+            'bisect', 'array', 'collections', 'pprint', 'reprlib',
+            'enum', 'types', 'typing', 'dataclasses', 'contextlib',
+            'faulthandler', 'resource', 'sys', 'traceback', 'gc'
+        }
+
+        # Check exact match or prefix match
+        return module_name in standard_lib_modules or any(
+            module_name.startswith(f"{std_lib}.") for std_lib in standard_lib_modules
+        )
+
+    def _test_loading_sequences(self, python_files: List[Path]) -> List[ErrorInfo]:
+        """Test different file loading sequences"""
+        print("  🔄 Testing loading sequences...")
+        errors = []
+
+        # Create test scenarios for different loading orders
+        scenarios = [
+            ("dependency_order", self._get_dependency_order()),
+            ("alphabetical_order", sorted([str(f.relative_to(self.project_root)) for f in python_files])),
+            ("reverse_order", sorted([str(f.relative_to(self.project_root)) for f in python_files], reverse=True)),
+        ]
+
+        # Add random order testing (limited to avoid too many tests)
+        if len(python_files) <= 10:
+            random_files = random.sample([str(f.relative_to(self.project_root)) for f in python_files],
+                                       min(5, len(python_files)))
+            scenarios.append(("random_order", random_files))
+
+        for scenario_name, file_sequence in scenarios:
+            errors.extend(self._test_loading_scenario(scenario_name, file_sequence))
+
+        return errors
+
+    def _get_dependency_order(self) -> List[str]:
+        """Get files in dependency order (topological sort)"""
+        try:
+            # Simple topological sort
+            in_degree = {file_path: 0 for file_path in self.dependency_graph}
+
+            # Calculate in-degrees
+            for file_path, node in self.dependency_graph.items():
+                for import_name in node.imports:
+                    for provider_path in self.dependency_graph:
+                        if import_name in provider_path or import_name == Path(provider_path).stem:
+                            if provider_path in in_degree:
+                                in_degree[file_path] += 1
+
+            # Kahn's algorithm
+            queue = deque([file_path for file_path, degree in in_degree.items() if degree == 0])
+            result = []
+
+            while queue:
+                current = queue.popleft()
+                result.append(current)
+
+                node = self.dependency_graph.get(current)
+                if node:
+                    for dependent in node.imported_by:
+                        if dependent in in_degree:
+                            in_degree[dependent] -= 1
+                            if in_degree[dependent] == 0:
+                                queue.append(dependent)
+
+            return result
+        except Exception:
+            # Fallback to alphabetical order
+            return sorted(self.dependency_graph.keys())
+
+    def _test_loading_scenario(self, scenario_name: str, file_sequence: List[str]) -> List[ErrorInfo]:
+        """Test a specific loading scenario"""
+        errors = []
+
+        if not file_sequence:
+            return errors
+
+        # Create a test script that loads files in the specified order
+        test_script = self._create_loading_test_script(file_sequence)
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as temp_file:
+            temp_file.write(test_script)
+            temp_file_path = temp_file.name
+
+        try:
+            result = subprocess.run(
+                [sys.executable, temp_file_path],
+                capture_output=True,
+                text=True,
+                timeout=60,
+                cwd=str(self.project_root)
+            )
+
+            if result.returncode != 0:
+                error_info = ErrorInfo(
+                    file_path="loading_scenario",
+                    error_type="LoadingSequenceError",
+                    error_message=f"Error in {scenario_name} loading sequence: {result.stderr[:200]}...",
+                    severity=ErrorSeverity.HIGH,
+                    category=ErrorCategory.COMBINATION,
+                    test_context=scenario_name,
+                    suggested_fix=f"Review {scenario_name} loading order for dependency issues"
+                )
+                errors.append(error_info)
+
+        except subprocess.TimeoutExpired:
+            errors.append(ErrorInfo(
+                file_path="loading_scenario",
+                error_type="LoadingTimeout",
+                error_message=f"Loading timeout in {scenario_name} scenario",
+                severity=ErrorSeverity.MEDIUM,
+                category=ErrorCategory.COMBINATION,
+                test_context=scenario_name,
+                suggested_fix="Check for infinite imports or initialization loops"
+            ))
+        except Exception as e:
+            errors.append(ErrorInfo(
+                file_path="loading_scenario",
+                error_type="LoadingTestError",
+                error_message=f"Error testing {scenario_name} scenario: {str(e)}",
+                severity=ErrorSeverity.LOW,
+                category=ErrorCategory.COMBINATION,
+                test_context=scenario_name
+            ))
+        finally:
+            try:
+                os.unlink(temp_file_path)
+            except:
+                pass
+
+        return errors
+
+    def _create_loading_test_script(self, file_sequence: List[str]) -> str:
+        """Create a test script for loading files in sequence"""
+        script_lines = [
+            "import sys",
+            "import os",
+            "import importlib.util",
+            "import traceback",
+            "",
+            "sys.path.insert(0, os.getcwd())",
+            "",
+            "files_to_load = ["
+        ]
+
+        for file_path in file_sequence:
+            script_lines.append(f"    '{file_path}',")
+
+        script_lines.extend([
+            "]",
+            "",
+            "print(f'Testing loading sequence: {len(files_to_load)} files')",
+            "",
+            "errors = []",
+            "",
+            "for file_path in files_to_load:",
+            "    try:",
+            "        print(f'Loading: {file_path}')",
+            "        spec = importlib.util.spec_from_file_location('test_module', file_path)",
+            "        if spec and spec.loader:",
+            "            module = importlib.util.module_from_spec(spec)",
+            "            spec.loader.exec_module(module)",
+            "            print(f'  ✓ Loaded successfully')",
+            "        else:",
+            "            errors.append(f'Could not create spec for {file_path}')",
+            "            print(f'  ✗ Failed to create spec')",
+            "    except Exception as e:",
+            "        errors.append(f'Error loading {file_path}: {e}')",
+            "        print(f'  ✗ Error: {e}')",
+            "",
+            "if errors:",
+            "    print('Loading errors:')",
+            "    for error in errors:",
+            "        print(f'  {error}')",
+            "    sys.exit(1)",
+            "else:",
+            "    print('All files loaded successfully')",
+            "    print('LOADING_SEQUENCE_SUCCESS')"
+        ])
+
+        return '\n'.join(script_lines)
+
+    def _test_combination_scenarios(self, python_files: List[Path]) -> List[ErrorInfo]:
+        """Test specific combination scenarios"""
+        print("  🧪 Testing combination scenarios...")
+        errors = []
+
+        # Test scenarios with small combinations to avoid exponential explosion
+        max_combinations = min(3, len(python_files))
+
+        if len(python_files) <= max_combinations:
+            # Test all files together
+            all_files = [str(f.relative_to(self.project_root)) for f in python_files]
+            scenario_errors = self._test_combination_scenario("all_files", all_files)
+            errors.extend(scenario_errors)
+        else:
+            # Test combinations of related files
+            file_groups = self._group_related_files(python_files)
+            for group_name, group_files in file_groups.items():
+                if len(group_files) <= 5:  # Only test small groups
+                    rel_paths = [str(f.relative_to(self.project_root)) for f in group_files]
+                    scenario_errors = self._test_combination_scenario(f"group_{group_name}", rel_paths)
+                    errors.extend(scenario_errors)
+
+        return errors
+
+    def _group_related_files(self, python_files: List[Path]) -> Dict[str, List[Path]]:
+        """Group related files based on directory structure and imports"""
+        groups = defaultdict(list)
+
+        # Group by directory
+        for file_path in python_files:
+            dir_name = file_path.parent.name
+            groups[dir_name].append(file_path)
+
+        return dict(groups)
+
+    def _test_combination_scenario(self, scenario_name: str, files: List[str]) -> List[ErrorInfo]:
+        """Test a specific combination of files"""
+        errors = []
+
+        if len(files) < 2:
+            return errors
+
+        # Create a test script that imports all files
+        test_script = self._create_combination_test_script(files)
+
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as temp_file:
+            temp_file.write(test_script)
+            temp_file_path = temp_file.name
+
+        try:
+            result = subprocess.run(
+                [sys.executable, temp_file_path],
+                capture_output=True,
+                text=True,
+                timeout=60,
+                cwd=str(self.project_root)
+            )
+
+            if result.returncode != 0:
+                # Analyze the error to see if it's a combination-specific issue
+                error_output = result.stderr + result.stdout
+
+                if "ImportError" in error_output or "circular" in error_output.lower():
+                    error_info = ErrorInfo(
+                        file_path="combination_test",
+                        error_type="CombinationImportError",
+                        error_message=f"Import error in {scenario_name}: {error_output[:300]}...",
+                        severity=ErrorSeverity.HIGH,
+                        category=ErrorCategory.COMBINATION,
+                        test_context=scenario_name,
+                        dependencies=files,
+                        suggested_fix="Review import dependencies between these files"
+                    )
+                    errors.append(error_info)
+                else:
+                    error_info = ErrorInfo(
+                        file_path="combination_test",
+                        error_type="CombinationRuntimeError",
+                        error_message=f"Runtime error in {scenario_name}: {error_output[:300]}...",
+                        severity=ErrorSeverity.MEDIUM,
+                        category=ErrorCategory.COMBINATION,
+                        test_context=scenario_name,
+                        dependencies=files,
+                        suggested_fix="Debug runtime interactions between these files"
+                    )
+                    errors.append(error_info)
+
+        except subprocess.TimeoutExpired:
+            errors.append(ErrorInfo(
+                file_path="combination_test",
+                error_type="CombinationTimeout",
+                error_message=f"Timeout in {scenario_name} scenario",
+                severity=ErrorSeverity.MEDIUM,
+                category=ErrorCategory.COMBINATION,
+                test_context=scenario_name,
+                suggested_fix="Check for infinite loops or deadlocks in file interactions"
+            ))
+        except Exception as e:
+            errors.append(ErrorInfo(
+                file_path="combination_test",
+                error_type="CombinationTestError",
+                error_message=f"Error testing {scenario_name}: {str(e)}",
+                severity=ErrorSeverity.LOW,
+                category=ErrorCategory.COMBINATION,
+                test_context=scenario_name
+            ))
+        finally:
+            try:
+                os.unlink(temp_file_path)
+            except:
+                pass
+
+        return errors
+
+    def _create_combination_test_script(self, files: List[str]) -> str:
+        """Create a test script for file combinations"""
+        script_lines = [
+            "import sys",
+            "import os",
+            "import importlib.util",
+            "",
+            "sys.path.insert(0, os.getcwd())",
+            "",
+            "print(f'Testing combination of {len(files)} files')",
+            "",
+            "loaded_modules = {}",
+            "errors = []",
+            "",
+            "# First, load all modules individually",
+            "for file_path in files:",
+            "    try:",
+            "        spec = importlib.util.spec_from_file_location('module_' + file_path.replace('/', '_').replace('.py', ''), file_path)",
+            "        if spec and spec.loader:",
+            "            module = importlib.util.module_from_spec(spec)",
+            "            spec.loader.exec_module(module)",
+            "            loaded_modules[file_path] = module",
+            "            print(f'  ✓ Loaded: {file_path}')",
+            "        else:",
+            "            errors.append(f'Failed to create spec for {file_path}')",
+            "    except Exception as e:",
+            "        errors.append(f'Error loading {file_path}: {e}')",
+            "",
+            "if errors:",
+            "    print('Individual loading errors:')",
+            "    for error in errors:",
+            "        print(f'  {error}')",
+            "    sys.exit(1)",
+            "",
+            "print('All files loaded successfully in combination')",
+            "print('COMBINATION_TEST_SUCCESS')"
+        ]
+
+        # Add the files list
+        files_list = ", ".join([f"'{f}'" for f in files])
+        script_lines.insert(5, f"files = [{files_list}]")
+
+        return '\n'.join(script_lines)
+
+    def _stress_test_combinations(self, python_files: List[Path]) -> List[ErrorInfo]:
+        """Stress test with repeated loading/unloading cycles"""
+        print("  🔥 Stress testing combinations...")
+        errors = []
+
+        if len(python_files) > 10:
+            # Only stress test smaller projects to avoid excessive runtime
+            return errors
+
+        # Test repeated loading cycles
+        rel_paths = [str(f.relative_to(self.project_root)) for f in python_files]
+
+        for cycle in range(3):  # 3 loading cycles
+            cycle_errors = self._test_combination_scenario(f"stress_cycle_{cycle+1}", rel_paths)
+            for error in cycle_errors:
+                error.error_message = f"Stress test cycle {cycle+1}: {error.error_message}"
+                error.test_context = f"stress_cycle_{cycle+1}"
+            errors.extend(cycle_errors)
+
+        return errors
+
+    def export_dependency_graph(self, output_path: str = None) -> str:
+        """Export dependency graph for visualization"""
+        if output_path is None:
+            output_path = f"/tmp/dependency_graph_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+
+        graph_data = {
+            'timestamp': datetime.now().isoformat(),
+            'nodes': [],
+            'edges': []
+        }
+
+        # Add nodes
+        for file_path, node in self.dependency_graph.items():
+            graph_data['nodes'].append({
+                'id': file_path,
+                'label': Path(file_path).name,
+                'is_circular': node.is_circular,
+                'cycle': node.circular_cycle,
+                'imports_count': len(node.imports),
+                'imported_by_count': len(node.imported_by)
+            })
+
+        # Add edges
+        for file_path, node in self.dependency_graph.items():
+            for import_name in node.imports:
+                for provider_path in self.dependency_graph:
+                    if import_name in provider_path or import_name == Path(provider_path).stem:
+                        graph_data['edges'].append({
+                            'from': file_path,
+                            'to': provider_path,
+                            'type': 'import'
+                        })
+
+        with open(output_path, 'w') as f:
+            json.dump(graph_data, f, indent=2)
+
+        print(f"📊 Dependency graph exported to: {output_path}")
+        return output_path
+
+
+def main():
+    """Main function for combination testing"""
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Cross-file combination testing")
+    parser.add_argument("--project-root", default=".", help="Root directory of the project")
+    parser.add_argument("--export-graph", action="store_true", help="Export dependency graph")
+    parser.add_argument("--output", help="Output file for results")
+
+    args = parser.parse_args()
+
+    tester = CombinationTester(args.project_root)
+
+    # Find all Python files
+    python_files = []
+    for root, dirs, files in os.walk(args.project_root):
+        dirs[:] = [d for d in dirs if not d.startswith('.') and d not in [
+            '__pycache__', 'node_modules', '.git', '.pytest_cache'
+        ]]
+        for file in files:
+            if file.endswith('.py'):
+                python_files.append(Path(root) / file)
+
+    errors = tester.analyze_combinations(python_files)
+
+    print(f"\n🔗 Combination Analysis Complete")
+    print(f"Found {len(errors)} cross-file interaction errors")
+
+    if args.export_graph:
+        tester.export_dependency_graph(args.output)
+
+    return errors
+
+
+if __name__ == "__main__":
+    main()
