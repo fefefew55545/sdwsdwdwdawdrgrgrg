@@ -594,6 +594,7 @@ if "%launch_mode%"=="preset" goto preset_mode
 if "%launch_mode%"=="config" goto check_configuration
 if "%launch_mode%"=="help" goto show_help
 if "%launch_mode%"=="system" goto show_system_info
+if "%launch_mode%"=="errors" goto error_detection_fix
 
 echo    [INFO] Unknown argument: %~1
 echo    Use --help for available options
