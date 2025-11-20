@@ -171,6 +171,7 @@ class TerminalPanel:
                 self.text_area.tag_add("highlight", highlight_start, highlight_end)
             except:
         pass
+        pass
                 break  # Invalid index, probably out of bounds
 
             start = idx + 1
