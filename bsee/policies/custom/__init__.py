@@ -6,7 +6,7 @@ from .adaptive_policy import AdaptivePolicy, PolicyMode, PolicyMetrics
 from .multi_objective_policy import MultiObjectivePolicy, ObjectiveType, ObjectiveWeight
 
 __all__ = []
-    'AdaptivePolicy',''
+'AdaptivePolicy',''
     'PolicyMode',''
     'PolicyMetrics',''
     'MultiObjectivePolicy',''

@@ -1,5 +1,5 @@
 from matplotlib.backends.backend_agg import FigureCanvasAgg
-    import matplotlib.figure
+import matplotlib.figure
 from datetime import datetime
 from typing import Dict, List, Tuple, Optional, Any, BinaryIO
 import json

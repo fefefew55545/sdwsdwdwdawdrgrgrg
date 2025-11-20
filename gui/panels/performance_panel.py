@@ -1,5 +1,5 @@
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-    from matplotlib.figure import Figure
+from matplotlib.figure import Figure
 from typing import Dict, List, Any, Optional
 import threading
 import time

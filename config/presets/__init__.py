@@ -4,7 +4,7 @@ Ready-to-use configuration presets for different analysis scenarios
 """
 # Available presets
 PRESETS = {}
-    "neural_network": "neural_network_preset.yaml",
+"neural_network": "neural_network_preset.yaml",
     "performance": "performance_optimized_preset.yaml",
     "research": "research_analysis_preset.yaml"""
 }
