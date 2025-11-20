@@ -46,9 +46,9 @@ class TestErrorDetector:
 
         assert len(python_files) == 3
         file_names = [f.name for f in python_files]
-        assert "test1.py" in file_names""
-        assert "test2.py" in file_names""
-        assert "test3.py" in file_names""
+        assert "test1.py" in file_names
+        assert "test2.py" in file_names
+        assert "test3.py" in file_names
 
     def test_check_syntax_error(self, tmp_path):
         """Test syntax error detection"""
