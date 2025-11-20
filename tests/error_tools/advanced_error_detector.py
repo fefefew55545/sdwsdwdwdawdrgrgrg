@@ -594,6 +594,50 @@ except Exception as e:
 
         return missing_deps
 
+    def _detect_cross_file_errors(self, all_errors: List[ErrorInfo], python_files: List[Path]) -> List[ErrorInfo]:
+        """Detect cross-file interaction errors"""
+        cross_file_errors = []
+
+        try:
+            # Try to use combination_tester if available
+            from combination_tester import CombinationTester
+            tester = CombinationTester(str(self.project_root))
+            combo_errors = tester.analyze_combinations(python_files)
+            cross_file_errors.extend(combo_errors)
+        except ImportError:
+            # Fallback to basic cross-file analysis
+            cross_file_errors = self._basic_cross_file_analysis(all_errors)
+
+        return cross_file_errors
+
+    def _basic_cross_file_analysis(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
+        """Basic cross-file error analysis"""
+        cross_file_errors = []
+
+        # Group errors by file to identify patterns
+        file_errors = {}
+        for error in all_errors:
+            if error.file_path not in file_errors:
+                file_errors[error.file_path] = []
+            file_errors[error.file_path].append(error)
+
+        # Look for files with many similar errors
+        for file_path, errors in file_errors.items():
+            if len(errors) > 10:  # Many errors in one file
+                error_types = [e.error_type for e in errors]
+                most_common = max(set(error_types), key=error_types.count)
+
+                cross_file_errors.append(ErrorInfo(
+                    file_path=file_path,
+                    error_type="FileWithManyErrors",
+                    error_message=f"File has {len(errors)} errors, most common: {most_common}",
+                    severity=ErrorSeverity.MEDIUM,
+                    category=ErrorCategory.COMBINATION,
+                    suggested_fix=f"Focus on fixing {most_common} errors in this file first"
+                ))
+
+        return cross_file_errors
+
     def _detect_performance_and_security_issues(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
         """Detect performance and security issues"""
         perf_security_errors = []
