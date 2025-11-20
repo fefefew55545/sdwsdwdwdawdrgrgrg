@@ -194,13 +194,13 @@ class FilePanel(ttk.LabelFrame):
         if not preset_name:
             preset_name = f"preset_{len(self.controller.list_presets()) + 1}""
 
-        config = {}
-            'strategy': self.strategy_var.get(),''
-            'max_operations': int(self.max_ops_var.get()),''
-            'max_cost': float(self.max_cost_var.get()),''
-            'metrics': self.metrics_var.get(),''
-            'target_metrics': self.target_metrics_var.get(),''
-            'output_dir': self.output_dir_var.get()''
+        config = {
+            'strategy': self.strategy_var.get(),
+            'max_operations': int(self.max_ops_var.get()),
+            'max_cost': float(self.max_cost_var.get()),
+            'metrics': self.metrics_var.get(),
+            'target_metrics': self.target_metrics_var.get(),
+            'output_dir': self.output_dir_var.get()
         }
 
         self.controller.save_preset(preset_name, config)
