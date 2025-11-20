@@ -909,6 +909,7 @@ echo      BSEE.bat dev [args]              - Development mode with debug flags
 echo      BSEE.bat preset [name]           - Use configuration preset
 echo      BSEE.bat config                  - Check configuration status
 echo      BSEE.bat system                  - Show system information
+echo      BSEE.bat errors / fix / fix-errors - Error detection and fixing system
 echo      BSEE.bat help                    - Show this help
 echo.
 echo    Enhanced Features:
