@@ -119,7 +119,19 @@ class AdvancedErrorDetector:
         logical_errors = self._detect_logical_errors(all_errors)
         all_errors.extend(logical_errors)
 
-        # Phase 3: Performance and security analysis
+        # Phase 3: Enhanced logical error detection
+        try:
+            from logical_error_detector import LogicalErrorDetector
+            logical_detector = LogicalErrorDetector(str(self.project_root))
+            for file_path in python_files:
+                logical_errors = logical_detector.detect_logical_errors(file_path)
+                all_errors.extend(logical_errors)
+        except ImportError:
+            # Fallback to basic logical detection if logical_error_detector not available
+            logical_errors = self._detect_logical_errors(all_errors)
+            all_errors.extend(logical_errors)
+
+        # Phase 4: Performance and security analysis
         perf_security_errors = self._detect_performance_and_security_issues(all_errors)
         all_errors.extend(perf_security_errors)
 
