@@ -37,6 +37,11 @@ class ErrorCategory(Enum):
     SECURITY = "SECURITY"
     MAINTAINABILITY = "MAINTAINABILITY"
     COMPATIBILITY = "COMPATIBILITY"
+    DEAD_CODE = "DEAD_CODE"           # New: Dead code detection
+    DATA_FLOW = "DATA_FLOW"           # New: Data flow issues
+    RESOURCE_LEAK = "RESOURCE_LEAK"   # New: Resource management
+    RACE_CONDITION = "RACE_CONDITION" # New: Concurrency issues
+    COMBINATION = "COMBINATION"       # New: Cross-file interaction
 
 
 @dataclass
