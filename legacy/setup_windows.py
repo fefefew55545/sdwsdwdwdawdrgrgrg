@@ -7,7 +7,6 @@ import winreg
 from win32com.client import Dispatch
 import traceback
 import winshell
-#!/usr/bin/env python3
 import subprocess
 """
 Windows-specific setup and configuration for BSEE.
