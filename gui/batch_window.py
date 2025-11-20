@@ -3,7 +3,7 @@ import os
 import threading
 import time
 
-  import csv
+import csv
 from tkinter import ttk, messagebox, filedialog
 import platform
 import subprocess
