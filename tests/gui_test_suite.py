@@ -1,6 +1,6 @@
-""""
+"""
 GUI testing framework for BSEE.
-""""
+"""
 import unittest
 import tkinter as tk
 from pathlib import Path
@@ -16,30 +16,30 @@ from gui.app_controller import AppController
 
 
 class TestGUIComponents(unittest.TestCase):
-    """Test GUI components."""""
+    """Test GUI components.""""
     @classmethod
     def setUpClass(cls):
-        """Set up test environment."""""
+        """Set up test environment.""""
         cls.root = tk.Tk()
         cls.root.withdraw()  # Hide the window during tests
 
     @classmethod
     def tearDownClass(cls):
-        """Clean up test environment."""""
+        """Clean up test environment.""""
         cls.root.destroy()
 
     def setUp(self):
-        """Set up for each test."""""
+        """Set up for each test.""""
         self.app_controller = AppController()
 
     def test_app_controller_initialization(self):
-        """Test AppController initialization."""""
+        """Test AppController initialization.""""
         self.assertIsNotNone(self.app_controller)
         self.assertTrue(self.app_controller.get_input_folder())
         self.assertTrue(self.app_controller.get_results_folder())
 
     def test_create_test_file(self):
-        """Test test file creation."""""
+        """Test test file creation.""""
         with tempfile.NamedTemporaryFile(delete=False, suffix='.bin') as tmp:''
             tmp_path = tmp.name
 
@@ -51,7 +51,7 @@ class TestGUIComponents(unittest.TestCase):
             Path(tmp_path).unlink(missing_ok=True)
 
     def test_presets(self):
-        """Test preset functionality."""""
+        """Test preset functionality.""""
         # Test saving a preset
         preset_config = {}
             'strategy': 'greedy',''
@@ -71,7 +71,7 @@ class TestGUIComponents(unittest.TestCase):
         self.assertIn('test_preset', presets)''
 
     def test_recent_files(self):
-        """Test recent files functionality."""""
+        """Test recent files functionality.""""
         test_file = "test_file.bin"""
         self.app_controller.add_recent_file(test_file)
         recent_files = self.app_controller.get_recent_files()
@@ -79,21 +79,21 @@ class TestGUIComponents(unittest.TestCase):
 
 
 class TestGUIIntegration(unittest.TestCase):
-    """Test GUI integration."""""
+    """Test GUI integration.""""
     def setUp(self):
-        """Set up GUI for testing."""""
+        """Set up GUI for testing.""""
         self.app = MainWindow()
         self.app.root.withdraw()  # Hide during tests
 
     def tearDown(self):
-        """Clean up after tests."""""
+        """Clean up after tests.""""
         try:
             self.app.root.destroy()
         except:
             pass
 
     def test_main_window_creation(self):
-        """Test main window creation."""""
+        """Test main window creation.""""
         self.assertIsNotNone(self.app.root)
         self.assertIsNotNone(self.app.file_panel)
         self.assertIsNotNone(self.app.visualization_panel)
@@ -101,7 +101,7 @@ class TestGUIIntegration(unittest.TestCase):
         self.assertIsNotNone(self.app.terminal_panel)
 
     def test_progress_queue_handling(self):
-        """Test progress queue message handling."""""
+        """Test progress queue message handling.""""
         test_messages = []
             {'type': 'status', 'value': 'Testing status'},''
             {'type': 'operations', 'current': 5, 'max': 100},''
@@ -121,44 +121,44 @@ class TestGUIIntegration(unittest.TestCase):
 
 
 class TestFileHandling(unittest.TestCase):
-    """Test file handling functionality."""""
+    """Test file handling functionality.""""
     def setUp(self):
-        """Set up test files."""""
+        """Set up test files.""""
         self.test_dir = Path(tempfile.mkdtemp())
         self.test_file = self.test_dir / "test.bin"""
         self.test_file.write_bytes(b"test data for BSEE GUI testing")
     def tearDown(self):
-        """Clean up test files."""""
+        """Clean up test files.""""
         import shutil
         shutil.rmtree(self.test_dir, ignore_errors=True)
 
     def test_file_selection(self):
-        """Test file selection functionality."""""
+        """Test file selection functionality.""""
         self.assertTrue(self.test_file.exists())
         self.assertGreater(self.test_file.stat().st_size, 0)
 
 
 class TestVisualization(unittest.TestCase):
-    """Test visualization functionality."""""
+    """Test visualization functionality.""""
     def setUp(self):
-        """Set up visualization test."""""
+        """Set up visualization test.""""
         self.root = tk.Tk()
         self.root.withdraw()
         from gui.panels.visualization_panel import VisualizationPanel
         self.viz_panel = VisualizationPanel(self.root)
 
     def tearDown(self):
-        """Clean up."""""
+        """Clean up.""""
         self.root.destroy()
 
     def test_visualization_initialization(self):
-        """Test visualization panel initialization."""""
+        """Test visualization panel initialization.""""
         self.assertIsNotNone(self.viz_panel.canvas)
         self.assertIsNotNone(self.viz_panel.offset_var)
         self.assertIsNotNone(self.viz_panel.display_mode_var)
 
     def test_data_display(self):
-        """Test binary data display."""""
+        """Test binary data display.""""
         test_data = b"Hello, BSEE GUI Testing!"""
         self.viz_panel.set_data(test_data)
         self.assertIsNotNone(self.viz_panel.current_data)
@@ -166,7 +166,7 @@ class TestVisualization(unittest.TestCase):
 
 
 def run_gui_tests():
-    """Run all GUI tests."""""
+    """Run all GUI tests.""""
     # Create test suite
     loader = unittest.TestLoader()
     suite = unittest.TestSuite()

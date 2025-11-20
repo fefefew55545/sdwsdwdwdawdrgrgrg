@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Fix docstring syntax errors - convert """" to """
+Fix docstring syntax errors - convert """ to """
 """
 
 from pathlib import Path
@@ -20,13 +20,13 @@ class DocstringFixer:
             with open(file_path, 'r', encoding='utf-8') as f:
                 content = f.read()
 
-            # Fix the main issue: replace """" with """
+            # Fix the main issue: replace """ with """
             original_content = content
-            content = content.replace('""""', '"""')
+            content = content.replace('"""', '"""')
 
             # Also fix common docstring issues
-            content = content.replace('""""\n', '"""\n')
-            content = content.replace('""""\r', '"""\r')
+            content = content.replace('"""\n', '"""\n')
+            content = content.replace('"""\r', '"""\r')
 
             # Write back if changed
             if content != original_content:

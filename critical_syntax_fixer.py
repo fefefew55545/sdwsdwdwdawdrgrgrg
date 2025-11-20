@@ -87,8 +87,8 @@ class CriticalSyntaxFixer:
     def fix_unclosed_quotes(self, content: str) -> str:
         """Fix unclosed triple quotes and regular quotes"""
         # Fix triple quotes
-        content = re.sub(r'""""\s*$', '"""', content, flags=re.MULTILINE)
-        content = re.sub(r'^\s*""""', '"""', content, flags=re.MULTILINE)
+        content = re.sub(r'"""\s*$', '"""', content, flags=re.MULTILINE)
+        content = re.sub(r'^\s*"""', '"""', content, flags=re.MULTILINE)
 
         # Fix unmatched quotes at end of lines
         lines = content.split('\n')

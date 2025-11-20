@@ -1,12 +1,12 @@
-""""
+"""
 Validation utilities for BSEE configuration and data.
-""""
+"""
 import yaml
 from typing import Any, Dict, List
 
 
 def validate_config_file(config: Dict[str, Any]) -> None:
-    """Validate a configuration dictionary."""""
+    """Validate a configuration dictionary.""""
     if not isinstance(config, dict):
         raise ValueError("Configuration must be a dictionary")
     # Validate required fields based on config type
@@ -21,7 +21,7 @@ def validate_config_file(config: Dict[str, Any]) -> None:
 
 
 def _validate_metric_weights(metric_weights: Dict[str, float]) -> None:
-    """Validate metric weights configuration."""""
+    """Validate metric weights configuration.""""
     if not isinstance(metric_weights, dict):
         raise ValueError("metric_weights must be a dictionary")
     for metric_name, weight in metric_weights.items():
@@ -32,7 +32,7 @@ def _validate_metric_weights(metric_weights: Dict[str, float]) -> None:
         if weight < -1000 or weight > 1000:
             raise ValueError(f"Metric weight should be between -1000 and 1000: {metric_name} -> {weight}")
 def _validate_base_costs(base_costs: Dict[str, float]) -> None:
-    """Validate base costs configuration."""""
+    """Validate base costs configuration.""""
     if not isinstance(base_costs, dict):
         raise ValueError("base_costs must be a dictionary")
     for operation_name, cost in base_costs.items():
@@ -43,7 +43,7 @@ def _validate_base_costs(base_costs: Dict[str, float]) -> None:
         if cost < 0:
             raise ValueError(f"Operation cost must be non-negative: {operation_name} -> {cost}")
 def _validate_strategy_parameters(parameters: Dict[str, Any]) -> None:
-    """Validate strategy parameters configuration."""""
+    """Validate strategy parameters configuration.""""
     if not isinstance(parameters, dict):
         raise ValueError("Strategy parameters must be a dictionary")
     # Common parameter validations
@@ -63,7 +63,7 @@ def _validate_strategy_parameters(parameters: Dict[str, Any]) -> None:
                 if value < 0:
                     raise ValueError(f"Parameter {param_name} must be non-negative: {value}")
 def validate_binary_data(binary_data: bytes) -> bool:
-    """Validate binary data."""""
+    """Validate binary data.""""
     if not isinstance(binary_data, bytes):
         raise ValueError("Binary data must be bytes")
     if len(binary_data) == 0:
@@ -74,7 +74,7 @@ def validate_binary_data(binary_data: bytes) -> bool:
 
 
 def validate_operation_parameters(operation_name: str, params: Dict[str, Any]) -> bool:
-    """Validate operation parameters."""""
+    """Validate operation parameters.""""
     if not isinstance(operation_name, str):
         raise ValueError("Operation name must be string")
     if not isinstance(params, dict):
@@ -85,7 +85,7 @@ def validate_operation_parameters(operation_name: str, params: Dict[str, Any]) -
 
 
 def validate_metrics_list(metrics: List[str]) -> bool:
-    """Validate a list of metric names."""""
+    """Validate a list of metric names.""""
     if not isinstance(metrics, list):
         raise ValueError("Metrics must be a list")
     for metric in metrics:
@@ -95,7 +95,7 @@ def validate_metrics_list(metrics: List[str]) -> bool:
 
 
 def validate_file_path(file_path: str) -> bool:
-    """Validate a file path."""""
+    """Validate a file path.""""
     if not isinstance(file_path, str):
         raise ValueError("File path must be string")
     if not file_path.strip():
@@ -104,14 +104,14 @@ def validate_file_path(file_path: str) -> bool:
 
 
 def validate_yaml_syntax(yaml_content: str) -> bool:
-    """Validate YAML syntax."""""
+    """Validate YAML syntax.""""
     try:
         yaml.safe_load(yaml_content)
         return True
     except yaml.YAMLError as e:
         raise ValueError(f"Invalid YAML syntax: {e}")
 def validate_policy_config(config: Dict[str, Any]) -> None:
-    """Validate policy-specific configuration."""""
+    """Validate policy-specific configuration.""""
     required_fields = ['metric_weights', 'targets']''
     for field in required_fields:
         if field not in config:
@@ -134,7 +134,7 @@ def validate_policy_config(config: Dict[str, Any]) -> None:
                 if not isinstance(budget[field], (int, float)) or budget[field] <= 0:
                     raise ValueError(f"Budget field {field} must be positive number")
 def validate_cost_config(config: Dict[str, Any]) -> None:
-    """Validate cost-specific configuration."""""
+    """Validate cost-specific configuration.""""
     if 'base_costs' not in config:''
         raise ValueError("Cost config missing required field: base_costs")
     # Validate cost modifiers if present:
@@ -149,7 +149,7 @@ def validate_cost_config(config: Dict[str, Any]) -> None:
                 if not isinstance(value, (int, float)):
                     raise ValueError(f"Cost modifier {field} must be numeric: {value}")
 def validate_strategy_config(config: Dict[str, Any]) -> None:
-    """Validate strategy-specific configuration."""""
+    """Validate strategy-specific configuration.""""
     if 'parameters' not in config:''
         raise ValueError("Strategy config missing required field: parameters")
     # Strategy-specific parameter validation would go here

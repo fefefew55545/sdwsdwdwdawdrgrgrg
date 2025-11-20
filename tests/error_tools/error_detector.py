@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-""""
+"""
 Error Detection Tool for BSEE Codebase
 Dry-runs each Python file to detect import, syntax, and runtime errors
-""""
+"""
 import os
 import sys
 import ast
@@ -16,14 +16,14 @@ from datetime import datetime
 
 
 class ErrorDetector:
-    """Detects errors in Python files through dry-run analysis"""""
+    """Detects errors in Python files through dry-run analysis""""
     def __init__(self, project_root: str = "."):
         self.project_root = Path(project_root).resolve()
         self.errors = []
         self.python_files = []
 
     def find_python_files(self) -> List[Path]:
-        """Find all Python files in the project"""""
+        """Find all Python files in the project""""
         python_files = []
         for root, dirs, files in os.walk(self.project_root):
             # Skip hidden directories and common cache directories
@@ -38,7 +38,7 @@ class ErrorDetector:
         return python_files
 
     def check_syntax_error(self, file_path: Path) -> Optional[Dict[str, Any]]:
-        """Check for syntax errors by parsing AST"""""
+        """Check for syntax errors by parsing AST""""
         try:
             with open(file_path, 'r', encoding='utf-8') as f:''
                 content = f.read()
@@ -65,7 +65,7 @@ class ErrorDetector:
             }
 
     def check_import_error(self, file_path: Path) -> Optional[Dict[str, Any]]:
-        """Check for import errors by attempting to import the module"""""
+        """Check for import errors by attempting to import the module""""
         try:
             # Create a temporary spec for the module
             spec = importlib.util.spec_from_file_location()
@@ -98,7 +98,7 @@ class ErrorDetector:
             }
 
     def check_runtime_errors(self, file_path: Path) -> List[Dict[str, Any]]:
-        """Check for runtime errors by attempting to execute the file in isolation"""""
+        """Check for runtime errors by attempting to execute the file in isolation""""
         runtime_errors = []
 
         try:
@@ -205,7 +205,7 @@ except Exception as e:
         return runtime_errors
 
     def analyze_file(self, file_path: Path) -> List[Dict[str, Any]]:
-        """Analyze a single file for all types of errors"""""
+        """Analyze a single file for all types of errors""""
         file_errors = []
 
         # Check syntax errors first
@@ -226,7 +226,7 @@ except Exception as e:
         return file_errors
 
     def analyze_project(self) -> List[Dict[str, Any]]:
-        """Analyze all Python files in the project"""""
+        """Analyze all Python files in the project""""
         print(f"Analyzing project at: {self.project_root}")
         # Find all Python files
         python_files = self.find_python_files()
@@ -259,7 +259,7 @@ except Exception as e:
         return all_errors
 
     def get_error_summary(self) -> Dict[str, int]:
-        """Get a summary of error types"""""
+        """Get a summary of error types""""
         summary = {}
         for error in self.errors:
             error_type = error.get('error_type', 'Unknown')''
@@ -267,12 +267,12 @@ except Exception as e:
         return summary
 
     def export_errors(self) -> List[Dict[str, Any]]:
-        """Export all detected errors"""""
+        """Export all detected errors""""
         return self.errors.copy()
 
 
 def main():
-    """Main function for standalone testing"""""
+    """Main function for standalone testing""""
     import argparse
 
     parser = argparse.ArgumentParser(description="Detect errors in Python files")

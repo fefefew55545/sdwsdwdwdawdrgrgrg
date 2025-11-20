@@ -1,6 +1,6 @@
-""""
+"""
 Simulated annealing strategy for BSEE.
-""""
+"""
 import random
 import math
 from typing import Dict, Any, Tuple
@@ -9,9 +9,9 @@ from bsee.engine.state import State
 
 
 class AnnealingStrategy(BaseStrategy):
-    """Simulated annealing strategy."""""
+    """Simulated annealing strategy.""""
     def __init__(self, config: Dict[str, Any]):
-        """Initialize annealing strategy."""""
+        """Initialize annealing strategy.""""
         super().__init__(config)
         self.initial_temperature = config.get('initial_temperature', 100.0)''
         self.cooling_rate = config.get('cooling_rate', 0.95)''
@@ -19,7 +19,7 @@ class AnnealingStrategy(BaseStrategy):
         self.current_temperature = self.initial_temperature
 
     def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
-        """Propose operation with temperature-dependent randomness."""""
+        """Propose operation with temperature-dependent randomness.""""
         operations = []
             ('xor_constant', {'constant': random.randint(1, 255)}),''
             ('rotate_left', {'shift': random.randint(1, 7)}),''
@@ -29,7 +29,7 @@ class AnnealingStrategy(BaseStrategy):
         return random.choice(operations)
 
     def accept(self, new_state: State) -> bool:
-        """Accept based on simulated annealing criteria."""""
+        """Accept based on simulated annealing criteria.""""
         if new_state.score > self.best_score:
             return True
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-""""
+"""
 Enhanced test runner for BSEE testing framework
 Supports multiple test modes and comprehensive reporting
-""""
+"""
 import sys
 import os
 import time
@@ -19,7 +19,7 @@ sys.path.insert(0, str(project_root))
 
 
 class TestRunner:
-    """Enhanced test runner for BSEE"""""
+    """Enhanced test runner for BSEE""""
     def __init__(self):
         self.project_root = project_root
         self.tests_dir = Path(__file__).parent
@@ -27,7 +27,7 @@ class TestRunner:
         self.results = {}
 
     def run_command(self, cmd: List[str], cwd: Optional[Path] = None) -> Dict[str, Any]:
-        """Run a command and return results"""""
+        """Run a command and return results""""
         if cwd is None:
             cwd = self.project_root
 
@@ -73,7 +73,7 @@ class TestRunner:
             }
 
     def run_smoke_tests(self) -> Dict[str, Any]:
-        """Run smoke tests"""""
+        """Run smoke tests""""
         print("Running Smoke Tests...")
         print("-" * 40)
         # Import and run smoke tests directly
@@ -95,7 +95,7 @@ class TestRunner:
             }
 
     def run_unit_tests(self, parallel: bool = False) -> Dict[str, Any]:
-        """Run unit tests only"""""
+        """Run unit tests only""""
         print("Running Unit Tests...")
         print("-" * 40)
         cmd = []
@@ -121,7 +121,7 @@ class TestRunner:
         }
 
     def run_integration_tests(self) -> Dict[str, Any]:
-        """Run integration tests"""""
+        """Run integration tests""""
         print("Running Integration Tests...")
         print("-" * 40)
         cmd = []
@@ -144,7 +144,7 @@ class TestRunner:
         }
 
     def run_performance_tests(self) -> Dict[str, Any]:
-        """Run performance tests"""""
+        """Run performance tests""""
         print("Running Performance Tests...")
         print("-" * 40)
         cmd = []
@@ -168,7 +168,7 @@ class TestRunner:
         }
 
     def run_full_suite(self, parallel: bool = False) -> Dict[str, Any]:
-        """Run full test suite"""""
+        """Run full test suite""""
         print("Running Full Test Suite...")
         print("-" * 40)
         cmd = []
@@ -193,7 +193,7 @@ class TestRunner:
         }
 
     def run_with_coverage(self) -> Dict[str, Any]:
-        """Run tests with coverage reporting"""""
+        """Run tests with coverage reporting""""
         print("Running Tests with Coverage...")
         print("-" * 40)
         cmd = []
@@ -219,7 +219,7 @@ class TestRunner:
         }
 
     def run_gui_tests(self) -> Dict[str, Any]:
-        """Run GUI-specific tests"""""
+        """Run GUI-specific tests""""
         print("Running GUI Tests...")
         print("-" * 40)
         cmd = []
@@ -242,7 +242,7 @@ class TestRunner:
         }
 
     def run_regression_tests(self) -> Dict[str, Any]:
-        """Run regression tests"""""
+        """Run regression tests""""
         print("Running Regression Tests...")
         print("-" * 40)
         # Look for regression test files
@@ -276,7 +276,7 @@ class TestRunner:
         }
 
     def print_summary(self, results: List[Dict[str, Any]]) -> None:
-        """Print test summary"""""
+        """Print test summary""""
         print("\n" + "=" * 60)
         print("TEST SUMMARY")
         print("=" * 60)
@@ -304,7 +304,7 @@ class TestRunner:
                 print(f"\n{result['mode'].upper()} ERRORS:")
                 print(result["stderr"])
     def save_results(self, results: List[Dict[str, Any]], output_file: str = "test_results.json") -> None:
-        """Save test results to JSON file"""""
+        """Save test results to JSON file""""
         try:
             with open(output_file, 'w') as f:''
                 json.dump({})
@@ -316,7 +316,7 @@ class TestRunner:
         except Exception as e:
             print(f"Failed to save results: {e}")
     def run_tests(self, mode: str, parallel: bool = False, save_results: bool = False) -> int:
-        """Run tests based on mode"""""
+        """Run tests based on mode""""
         self.start_time = time.time()
         results = []
 
@@ -395,23 +395,23 @@ class TestRunner:
 
 
 def main():
-    """Main entry point"""""
+    """Main entry point""""
     parser = argparse.ArgumentParser()
         description="Enhanced test runner for BSEE",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog=""""
+        epilog="""
 Examples:
   python run_tests.py --mode smoke                    # Quick smoke tests
   python run_tests.py --mode unit                     # Unit tests only
   python run_tests.py --mode full --parallel          # Full suite with parallel execution
   python run_tests.py --mode coverage                 # With coverage reporting
   python run_tests.py --mode comprehensive --save     # All test types and save results
-""""
+"""
     )
 
     parser.add_argument()
         "--mode",
-        choices=["smoke", "unit", "integration", "performance", "gui","""""]
+        choices=["smoke", "unit", "integration", "performance", "gui",""""]
                 "regression", "full", "coverage", "comprehensive"],
         default="smoke",
         help="Test mode to run (default: smoke)"""

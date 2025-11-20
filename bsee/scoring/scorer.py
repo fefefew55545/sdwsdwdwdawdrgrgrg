@@ -1,20 +1,20 @@
-""""
+"""
 State scoring system for BSEE.
-""""
+"""
 from typing import Dict, Any
 from bsee.engine.state import State
 
 
 class Scorer:
-    """Score states based on metrics and policy."""""
+    """Score states based on metrics and policy.""""
     def __init__(self, policy_config: Dict[str, Any]):
-        """Initialize scorer with policy configuration."""""
+        """Initialize scorer with policy configuration.""""
         self.policy_config = policy_config
         self.metric_weights = policy_config.get('metric_weights', {})''
         self.targets = policy_config.get('targets', {})''
 
     def calculate_score(self, new_state: State, old_state: State, target_metrics: Dict[str, str]) -> float:
-        """Calculate score for a state based on metrics and targets."""""
+        """Calculate score for a state based on metrics and targets.""""
         score = 0.0
 
         # Calculate score for each metric
@@ -43,7 +43,7 @@ class Scorer:
         return score
 
     def evaluate_state(self, state: State) -> float:
-        """Evaluate the quality of a single state."""""
+        """Evaluate the quality of a single state.""""
         score = 0.0
 
         # Calculate weighted sum of metrics
@@ -64,7 +64,7 @@ class Scorer:
         return score
 
     def _get_metric_max_value(self, metric_name: str) -> float:
-        """Get maximum possible value for a metric."""""
+        """Get maximum possible value for a metric.""""
         # Define typical maximum values for different metric categories
         max_values = {}
             # Entropy metrics (bits per byte)
@@ -159,15 +159,15 @@ class Scorer:
         return max_values.get(metric_name, 1.0)
 
     def get_metric_importance(self, metric_name: str) -> float:
-        """Get importance weight for a metric."""""
+        """Get importance weight for a metric.""""
         return self.metric_weights.get(metric_name, 0.0)
 
     def get_target_direction(self, metric_name: str) -> str:
-        """Get optimization direction for a metric."""""
+        """Get optimization direction for a metric.""""
         return self.targets.get(metric_name, 'maximize')''
 
     def compare_states(self, state1: State, state2: State) -> int:
-        """Compare two states and return which is better."""""
+        """Compare two states and return which is better.""""
         score1 = self.evaluate_state(state1)
         score2 = self.evaluate_state(state2)
 
@@ -179,7 +179,7 @@ class Scorer:
             return 0
 
     def get_score_components(self, state: State) -> Dict[str, float]:
-        """Get score breakdown by metric components."""""
+        """Get score breakdown by metric components.""""
         components = {}
 
         for metric_name, weight in self.metric_weights.items():
@@ -202,7 +202,7 @@ class Scorer:
         return components
 
     def update_weights(self, performance_feedback: Dict[str, float]) -> None:
-        """Update metric weights based on performance feedback."""""
+        """Update metric weights based on performance feedback.""""
         for metric_name, feedback in performance_feedback.items():
             if metric_name in self.metric_weights:
                 # Adjust weight based on feedback

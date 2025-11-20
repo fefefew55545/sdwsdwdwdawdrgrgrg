@@ -1,7 +1,7 @@
-"""""
+""""
 BSEE AI Module - Intelligent Binary Homogeneity Optimization
 Provides machine learning capabilities for discovering and learning optimal operation sequences.
-"""""
+""""
 
 from .utils.simple_scorer import SimpleHomogeneityScorer
 

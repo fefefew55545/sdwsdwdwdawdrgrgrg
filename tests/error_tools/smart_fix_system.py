@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-""""
+"""
 Smart Fix System for BSEE Codebase
 Automatically fixes common issues and applies context-aware solutions
-""""
+"""
 import os
 import sys
 import re
@@ -35,36 +35,36 @@ class SmartFixSystem:
     def _initialize_fix_patterns(self) -> Dict[str, Any]:
         """Initialize patterns for common fixes"""
         return {}
-            "syntax_fixes": {}""""
-                "unclosed_brackets": {}""""
+            "syntax_fixes": {}"""
+                "unclosed_brackets": {}"""
                     "pattern": r"([(\[{])([^)\]}]*$)","])}])])"""
                     "replacement": r"\1\2)]",
                     "description": "Add missing closing bracket"""
                 },
-                "unclosed_quotes": {}""""
+                "unclosed_quotes": {}"""
                     "pattern": r"(['\"])([^'\"]*)$",
                     "replacement": r"\1\2\1",
                     "description": "Add missing closing quote"""
                 },
-                "missing_colon": {}""""
+                "missing_colon": {}"""
                     "pattern": r"(if|elif|else|for|while|def|class|try|except|finally)(\s+[a-zA-Z_][a-zA-Z0-9_]*\s*)$",
                     "replacement": r"\1\2:",
                     "description": "Add missing colon"""
                 },
-                "pydantic_regex_to_pattern": {}""""
+                "pydantic_regex_to_pattern": {}"""
                     "pattern": r"regex\s*=",
                     "replacement": "pattern=",
                     "description": "Fix Pydantic v2 regex parameter"""
                 },
-                "pydantic_validator_to_field_validator": {}""""
+                "pydantic_validator_to_field_validator": {}"""
                     "pattern": r"@validator\s*\(",")"""
                     "replacement": "@field_validator(",")"""
                     "description": "Fix Pydantic v2 validator decorator"""
                 }
             },
-            "import_fixes": {}""""
-                "absolute_imports": {}""""
-                    "bsee_patterns": []""""
+            "import_fixes": {}"""
+                "absolute_imports": {}"""
+                    "bsee_patterns": []"""
                         (r"from \.validator import", "from bsee.config.validator import"),
                         (r"from \.manager import", "from bsee.config.manager import"),
                         (r"from \.schemas import", "from bsee.config.schemas import"),
@@ -79,18 +79,18 @@ class SmartFixSystem:
                     "description": "Convert relative imports to absolute imports"""
                 }
             },
-            "code_quality_fixes": {}""""
-                "remove_debug_prints": {}""""
+            "code_quality_fixes": {}"""
+                "remove_debug_prints": {}"""
                     "pattern": r"^\s*print\s*\([\'\"]DEBUG",""'])"""'"
                     "replacement": "# DEBUG: ",
                     "description": "Comment out debug print statements"""
                 },
-                "fix_todo_comments": {}""""
+                "fix_todo_comments": {}"""
                     "pattern": r"# TODO\s*$",
                     "replacement": "# TODO - IMPLEMENT",
                     "description": "Add placeholder implementation description to TODO comments"""
                 },
-                "add_type_hints": {}""""
+                "add_type_hints": {}"""
                     "function_pattern": r"def\s+(\w+)\s*\([^)]*):\s*$",
                     "replacement": "def \\1() -> None:",
                     "description": "Add type hint to function"""

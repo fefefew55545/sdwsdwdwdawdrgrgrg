@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-""""
+"""
 Simple Test Suite for Phase 2 Advanced Visualization
 
 Tests the core functionality that doesn't require GUI dependencies.'''
-""""
+"""
 import sys
 import os
 import time
@@ -15,7 +15,7 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 def test_history_manager_only():
-    """Test history manager without GUI components."""""
+    """Test history manager without GUI components.""""
     print("Testing History Manager (No GUI Dependencies)...")
     print("-" * 50)
     try:
@@ -88,7 +88,7 @@ def test_history_manager_only():
         return False
 
 def test_operation_snapshots():
-    """Test operation snapshot functionality."""""
+    """Test operation snapshot functionality.""""
     print("\nTesting Operation Snapshots...")
     print("-" * 30)
     try:
@@ -129,7 +129,7 @@ def test_operation_snapshots():
         return False
 
 def test_byte_analysis():
-    """Test byte analysis functionality."""""
+    """Test byte analysis functionality.""""
     print("\nTesting Byte Analysis...")
     print("-" * 25)
     try:
@@ -178,7 +178,7 @@ def test_byte_analysis():
         return False
 
 def test_numpy_integration():
-    """Test numpy integration if available."""""
+    """Test numpy integration if available.""""
     print("\nTesting NumPy Integration...")
     print("-" * 30)
     try:
@@ -213,7 +213,7 @@ def test_numpy_integration():
         return True
 
 def test_data_serialization():
-    """Test data serialization for export."""""
+    """Test data serialization for export.""""
     print("\nTesting Data Serialization...")
     print("-" * 30)
     try:
@@ -255,13 +255,13 @@ def test_data_serialization():
         return False
 
 def create_test_transformation_sequence():
-    """Create a realistic transformation sequence."""""
+    """Create a realistic transformation sequence.""""
     return {}
         "session_id": "test_phase2_session",
         "start_time": time.time(),
         "initial_data": "Hello BSEE Test Data!".encode(),
         "final_data": "BSEE Advanced Test Complete!".encode(),
-        "operations": []""""
+        "operations": []"""
             {}
                 "name": "xor_constant",
                 "params": {"constant": 0x42},
@@ -270,7 +270,7 @@ def create_test_transformation_sequence():
                 "metrics_before": {"entropy": 4.2, "energy": 1200},
                 "metrics_after": {"entropy": 4.5, "energy": 1100},
                 "timing": {"execution_time": 0.001},
-                "byte_changes": [(0, 0x48, 0x0a), (1, 0x65, 0x27), (2, 0x6c, 0x2e), (3, 0x6c, 0x27),))))]""""
+                "byte_changes": [(0, 0x48, 0x0a), (1, 0x65, 0x27), (2, 0x6c, 0x2e), (3, 0x6c, 0x27),))))]"""
                               (4, 0x6f, 0x20), (5, 0x20, 0x42), (6, 0x42, 0x42), (7, 0x45, 0x42),
                               (8, 0x45, 0x45), (9, 0x45, 0x42), (10, 0x45, 0x45), (11, 0x45, 0x52),
                               (12, 0x45, 0x45), (13, 0x45, 0x45), (14, 0x52, 0x42), (15, 0x45, 0x42)],
@@ -295,7 +295,7 @@ def create_test_transformation_sequence():
                 "metrics_before": {"entropy": 4.3, "energy": 1150},
                 "metrics_after": {"entropy": 4.8, "energy": 900},
                 "timing": {"execution_time": 0.05},
-                "byte_changes": [(0, 0x27, 0x44), (1, 0x2e, 0x57), (2, 0x27, 0x45), (3, 0x27, 0x2e),))))]""""
+                "byte_changes": [(0, 0x27, 0x44), (1, 0x2e, 0x57), (2, 0x27, 0x45), (3, 0x27, 0x2e),))))]"""
                               (4, 0x2e, 0x45), (5, 0x45, 0x45), (6, 0x45, 0x57), (7, 0x45, 0x52),
                               (8, 0x45, 0x52), (9, 0x52, 0x45), (10, 0x52, 0x20), (11, 0x20, 0x45),
                               (12, 0x45, 0x45), (13, 0x45, 0x45), (14, 0x45, 0x45), (15, 0x45, 0x52)],
@@ -306,7 +306,7 @@ def create_test_transformation_sequence():
     }
 
 def run_phase2_tests():
-    """Run Phase 2 advanced visualization tests."""""
+    """Run Phase 2 advanced visualization tests.""""
     print("=" * 70)
     print("BSEE Phase 2: Advanced Visualization & Transformation System Tests")
     print("=" * 70)

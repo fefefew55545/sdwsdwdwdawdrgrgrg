@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-""""
+"""
 Simple Test for AI Integration System
 Tests the AI learning and recommendation functionality
-""""
+"""
 import os
 import sys
 import time
@@ -18,7 +18,7 @@ from bsee_ai.utils.simple_scorer import SimpleHomogeneityScorer
 
 
 def generate_test_data() -> Dict[str, bytes]:
-    """Generate test data for AI system."""""
+    """Generate test data for AI system.""""
     test_data = {}
 
     # Repetitive data (should have high homogeneity)
@@ -38,7 +38,7 @@ def generate_test_data() -> Dict[str, bytes]:
 
 
 def test_simple_scorer():
-    """Test the simple homogeneity scorer."""""
+    """Test the simple homogeneity scorer.""""
     print("🧪 Testing Simple Homogeneity Scorer")
     print("=" * 50)
     scorer = SimpleHomogeneityScorer()
@@ -54,7 +54,7 @@ def test_simple_scorer():
         print(f"  Pattern Score: {analysis['pattern_score']:.4f}")
     print("\n✅ Simple scorer test completed\n")
 def test_ai_learner():
-    """Test the AI learning system."""""
+    """Test the AI learning system.""""
     print("🤖 Testing AI Learning System")
     print("=" * 50)
     learner = HomogeneityLearner()
@@ -118,7 +118,7 @@ def test_ai_learner():
 
 
 def test_operation_predictor(learner):
-    """Test the operation predictor."""""
+    """Test the operation predictor.""""
     print("🔮 Testing Operation Predictor")
     print("=" * 50)
     predictor = OperationPredictor(learner)
@@ -143,7 +143,7 @@ def test_operation_predictor(learner):
               f"{summary['average_confidence']:.2f} average confidence")
     print("\n✅ Operation predictor test completed\n")
 def test_complete_ai_workflow():
-    """Test the complete AI workflow."""""
+    """Test the complete AI workflow.""""
     print("🔄 Testing Complete AI Workflow")
     print("=" * 50)
     # Initialize components
@@ -209,7 +209,7 @@ def test_complete_ai_workflow():
     print(f"  Success rate: {learning_summary['learning_progress']['overall_success_rate']:.2%}")
     print("\n✅ Complete AI workflow test completed\n")
 def main():
-    """Main test function."""""
+    """Main test function.""""
     print("🚀 BSEE AI INTEGRATION TEST SUITE")
     print("=" * 60)
     print("Testing the complete AI learning and recommendation system")
