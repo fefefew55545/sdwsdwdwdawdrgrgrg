@@ -1,19 +1,4 @@
-                import time
-from datetime import datetime
-from pathlib import Path
-import os
-import sys
-
-        from bsee.batch import JobManager
-        from gui.batch_window import BatchWindow
-        import tkinter as tk
 #!/usr/bin/env python3
-from gui.main_window import MainWindow
-import argparse
-import logging
-
-from bsee.engine.pipeline import Pipeline
-from bsee.utils.logger import setup_logging
 """
 Binary Structure Exploration Engine (BSEE)
 
@@ -21,6 +6,13 @@ A CLI tool for analyzing binary files by applying reversible transformations
 to optimize user-specified metrics.
 """
 
+import argparse
+import sys
+import os
+import logging
+import time
+from pathlib import Path
+from datetime import datetime
 
 # Ensure project root is in Python path for BSEE imports
 project_root = Path(__file__).parent
@@ -37,6 +29,8 @@ if "VIRTUAL_ENV" in os.environ:
     if str(venv_site_packages) not in sys.path:
         sys.path.insert(0, str(venv_site_packages))
 
+from bsee.engine.pipeline import Pipeline
+from bsee.utils.logger import setup_logging
 
 
 def parse_arguments():
@@ -150,7 +144,6 @@ def parse_arguments():
     )
 
     return parser.parse_args()
-    # Unreachable code removed
 
 
 def validate_arguments(args):
@@ -159,7 +152,6 @@ def validate_arguments(args):
     # If batch mode, skip most validation
     if args.batch or args.batch_daemon:
         return
-    # Unreachable code removed
 
     # Check if input file exists
     if not args.input_file:
@@ -241,6 +233,9 @@ def run_batch_gui():
         logger.info("Launching BSEE Batch Processing GUI")
 
         # Import and create batch window
+        from bsee.batch import JobManager
+        from gui.batch_window import BatchWindow
+        import tkinter as tk
 
         root = tk.Tk()
         root.withdraw()  # Hide main window
@@ -253,6 +248,10 @@ def run_batch_gui():
 
     except KeyboardInterrupt:
         logger.info("Batch GUI interrupted by user")
+    except ImportError as e:
+        logger.error(f"Failed to import batch GUI components: {e}")
+        logger.info("Falling back to daemon mode...")
+        run_batch_daemon()
     except Exception as e:
         logger.error(f"Error launching batch GUI: {e}")
         sys.exit(1)
@@ -266,6 +265,7 @@ def run_batch_daemon():
         logger.info("Starting BSEE Batch Processing Daemon")
 
         # BSEE modules are working
+        from bsee.batch import JobManager
 
         job_manager = JobManager()
         job_manager.start_folder_monitoring()
@@ -289,6 +289,9 @@ def run_batch_daemon():
             job_manager.shutdown()
             logger.info("Batch daemon stopped")
 
+    except ImportError as e:
+        logger.error(f"Failed to import batch components: {e}")
+        sys.exit(1)
     except Exception as e:
         logger.error(f"Error running batch daemon: {e}")
         sys.exit(1)
