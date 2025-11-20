@@ -160,13 +160,13 @@ class FilePanel(ttk.LabelFrame):
             self.file_path_var.set(selected)
 
     def _update_strategy_info(self, event=None):
-        descriptions = {}
+        descriptions = {
             "greedy": "Greedy: Always select best operation",
             "beam": "Beam: Keep top N candidates",
             "annealing": "Annealing: Simulated annealing search",
             "mcts": "MCTS: Monte Carlo Tree Search",
             "genetic": "Genetic: Evolutionary algorithm",
-            "heuristic": "Heuristic: Rule-based selection"""
+            "heuristic": "Heuristic: Rule-based selection"
         }
         self.strategy_info.config(text=descriptions.get(self.strategy_var.get(), ""))
     def _update_presets(self):
