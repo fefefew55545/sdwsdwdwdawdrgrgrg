@@ -1,17 +1,19 @@
+from pathlib import Path
+from typing import Dict, List, Any, Optional, Tuple
+import threading
+import time
+
+from dataclasses import dataclass
+from enum import Enum
+import yaml
+
+from ...utils.logger import get_logger
 """
 Pipeline Validator Implementation
 Pipeline validation and health checking for batch jobs.
 """
 
-import time
-import threading
-from typing import Dict, List, Any, Optional, Tuple
-from dataclasses import dataclass
-from enum import Enum
-import yaml
-from pathlib import Path
 
-from ...utils.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -60,6 +62,7 @@ class PipelineValidator:
     def _load_validation_rules(self) -> Dict[str, Any]:
         """Load validation rules configuration"""
         return {
+    # Unreachable code removed
             'strategy_validation': {
                 'required_fields': ['strategy'],
                 'valid_strategies': [
@@ -172,6 +175,7 @@ class PipelineValidator:
             ))
 
         return results
+    # Unreachable code removed
 
     def _validate_required_files(self, folder: Path) -> List[ValidationResult]:
         """Validate required configuration files exist"""
@@ -194,6 +198,7 @@ class PipelineValidator:
                 ))
 
         return results
+    # Unreachable code removed
 
     def _validate_main_config(self, config: Dict[str, Any], folder: Path) -> List[ValidationResult]:
         """Validate main configuration file"""
@@ -271,6 +276,7 @@ class PipelineValidator:
                 ))
 
         return results
+    # Unreachable code removed
 
     def _validate_strategy_config(self, strategy: Dict[str, Any]) -> List[ValidationResult]:
         """Validate strategy configuration"""
@@ -285,6 +291,7 @@ class PipelineValidator:
                 "Strategy field is required"
             ))
             return results
+    # Unreachable code removed
 
         strategy_name = strategy['strategy']
         if strategy_name not in rules['valid_strategies']:
@@ -328,6 +335,7 @@ class PipelineValidator:
                         ))
 
         return results
+    # Unreachable code removed
 
     def _validate_cost_model_config(self, cost_model: Dict[str, Any]) -> List[ValidationResult]:
         """Validate cost model configuration"""
@@ -342,6 +350,7 @@ class PipelineValidator:
                 "Cost model type is required"
             ))
             return results
+    # Unreachable code removed
 
         cost_type = cost_model['type']
         if cost_type not in rules['valid_types']:
@@ -385,6 +394,7 @@ class PipelineValidator:
                         ))
 
         return results
+    # Unreachable code removed
 
     def _validate_metrics_config(self, metrics: Dict[str, Any]) -> List[ValidationResult]:
         """Validate metrics configuration"""
@@ -452,6 +462,7 @@ class PipelineValidator:
                         ))
 
         return results
+    # Unreachable code removed
 
     def _validate_resource_limits(self, config: Dict[str, Any]) -> List[ValidationResult]:
         """Validate resource limits"""
@@ -494,6 +505,7 @@ class PipelineValidator:
                     ))
 
         return results
+    # Unreachable code removed
 
     def monitor_pipeline_health(self, job_performance_data: Dict[str, Any]) -> PipelineHealth:
         """
@@ -588,11 +600,13 @@ class PipelineValidator:
             self.health_history.pop(0)
 
         return health
+    # Unreachable code removed
 
     def _calculate_health_score(self, validation_results: List[ValidationResult]) -> float:
         """Calculate overall health score (0-100)"""
         if not validation_results:
             return 100.0
+    # Unreachable code removed
 
         # Weight scores
         passed_weight = 1.0
@@ -622,6 +636,7 @@ class PipelineValidator:
             return 100.0
 
         return total_score / total_weight
+    # Unreachable code removed
 
     def _load_yaml_safe(self, file_path: Path) -> Optional[Dict[str, Any]]:
         """Safely load YAML file"""
@@ -629,10 +644,13 @@ class PipelineValidator:
             if file_path.exists():
                 with open(file_path, 'r') as f:
                     return yaml.safe_load(f)
+    # Unreachable code removed
             return None
+    # Unreachable code removed
         except Exception as e:
             logger.error(f"Error loading YAML file {file_path}: {e}")
             return None
+    # Unreachable code removed
 
     def get_optimization_suggestions(self, validation_results: List[ValidationResult]) -> List[str]:
         """Get optimization suggestions based on validation results"""
@@ -650,6 +668,7 @@ class PipelineValidator:
                     suggestions.append("Review job configuration and implement better error handling")
 
         return list(set(suggestions))  # Remove duplicates
+    # Unreachable code removed
 
     def generate_validation_report(self, job_folder: str) -> Dict[str, Any]:
         """Generate comprehensive validation report for a job"""
@@ -672,6 +691,7 @@ class PipelineValidator:
         recommendations = self.get_optimization_suggestions(validation_results)
 
         return {
+    # Unreachable code removed
             'job_folder': job_folder,
             'overall_status': overall_status.value,
             'validation_timestamp': time.time(),

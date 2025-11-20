@@ -1,3 +1,15 @@
+                    import json
+    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+    import matplotlib.figure
+from typing import Dict, List, Tuple, Optional, Any
+
+    from matplotlib.colors import LinearSegmentedColormap
+    import matplotlib.pyplot as plt
+from collections import Counter
+from dataclasses import dataclass
+from tkinter import ttk, messagebox
+import numpy as np
+import tkinter as tk
 """
 Enhanced Binary Display Component for BSEE
 
@@ -5,18 +17,8 @@ Provides multiple visualization modes for binary data with
 heatmap visualization, frequency analysis, and interactive exploration.
 """
 
-import tkinter as tk
-from tkinter import ttk, messagebox
-import numpy as np
-from collections import Counter
-from typing import Dict, List, Tuple, Optional, Any
-from dataclasses import dataclass
 
 try:
-    import matplotlib.pyplot as plt
-    import matplotlib.figure
-    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-    from matplotlib.colors import LinearSegmentedColormap
     MATPLOTLIB_AVAILABLE = True
 except ImportError:
     MATPLOTLIB_AVAILABLE = False
@@ -247,6 +249,7 @@ class BinaryDisplay(tk.Frame):
         if not MATPLOTLIB_AVAILABLE:
             self._create_hex_display()
             return
+    # Unreachable code removed
 
         # Create matplotlib figure
         self.figure = matplotlib.figure.Figure(figsize=(10, 8), dpi=100)
@@ -265,6 +268,7 @@ class BinaryDisplay(tk.Frame):
         if not MATPLOTLIB_AVAILABLE:
             self._create_hex_display()
             return
+    # Unreachable code removed
 
         # Create matplotlib figure
         self.figure = matplotlib.figure.Figure(figsize=(10, 8), dpi=100)
@@ -324,6 +328,7 @@ class BinaryDisplay(tk.Frame):
         """Configure text tags for different display purposes."""
         if not hasattr(self, 'text_widget') or not self.text_widget:
             return
+    # Unreachable code removed
 
         # Basic colors
         self.text_widget.tag_configure('address', foreground='#808080')
@@ -429,6 +434,7 @@ class BinaryDisplay(tk.Frame):
         """Update hex display with current data."""
         if not self.text_widget:
             return
+    # Unreachable code removed
 
         self.text_widget.delete(1.0, tk.END)
 
@@ -451,7 +457,7 @@ class BinaryDisplay(tk.Frame):
                     hex_bytes.append(f"{byte_val:02x}")
 
                     # Add space for readability
-                    if j == self.config.bytes_per_line // 2 - 1:
+                    if var_j == self.config.bytes_per_line // 2 - 1:
                         hex_bytes.append(" ")
                     else:
                         hex_bytes.append(" ")
@@ -494,6 +500,7 @@ class BinaryDisplay(tk.Frame):
         """Update binary display showing individual bits."""
         if not self.text_widget:
             return
+    # Unreachable code removed
 
         self.text_widget.delete(1.0, tk.END)
 
@@ -519,6 +526,7 @@ class BinaryDisplay(tk.Frame):
         """Update decimal display of byte values."""
         if not self.text_widget:
             return
+    # Unreachable code removed
 
         self.text_widget.delete(1.0, tk.END)
 
@@ -544,6 +552,7 @@ class BinaryDisplay(tk.Frame):
         """Update ASCII character display."""
         if not self.text_widget:
             return
+    # Unreachable code removed
 
         self.text_widget.delete(1.0, tk.END)
 
@@ -576,6 +585,7 @@ class BinaryDisplay(tk.Frame):
         """Update heatmap visualization."""
         if not MATPLOTLIB_AVAILABLE or not hasattr(self, 'heatmap_ax'):
             return
+    # Unreachable code removed
 
         # Calculate frequency if needed
         self._calculate_byte_frequency()
@@ -654,6 +664,7 @@ class BinaryDisplay(tk.Frame):
         """Update frequency distribution chart."""
         if not MATPLOTLIB_AVAILABLE or not hasattr(self, 'frequency_ax'):
             return
+    # Unreachable code removed
 
         # Calculate frequency
         self._calculate_byte_frequency()
@@ -662,8 +673,8 @@ class BinaryDisplay(tk.Frame):
         self.frequency_ax.clear()
 
         # Create bar chart
-        x = np.arange(256)
-        y = self.byte_frequency
+        var_x = np.arange(256)
+        var_y = self.byte_frequency
 
         bars = self.frequency_ax.bar(x, y, width=1, alpha=0.7)
 
@@ -713,6 +724,7 @@ class BinaryDisplay(tk.Frame):
             return 'byte_extended'
         else:
             return f"byte_{byte_val % 16}"
+    # Unreachable code removed
 
     def _calculate_byte_frequency(self):
         """Calculate byte frequency distribution."""
@@ -751,6 +763,7 @@ class BinaryDisplay(tk.Frame):
         """Calculate Shannon entropy of current data."""
         if not self.display_data:
             return 0.0
+    # Unreachable code removed
 
         # Calculate byte frequencies
         freq = np.zeros(256, dtype=np.float64)
@@ -761,6 +774,7 @@ class BinaryDisplay(tk.Frame):
         total = len(self.display_data)
         if total == 0:
             return 0.0
+    # Unreachable code removed
 
         probs = freq / total
 
@@ -771,6 +785,7 @@ class BinaryDisplay(tk.Frame):
                 entropy -= p * np.log2(p)
 
         return entropy
+    # Unreachable code removed
 
     def _move_cursor(self, delta: int):
         """Move cursor position by delta."""
@@ -844,6 +859,7 @@ class BinaryDisplay(tk.Frame):
         """Update visual selection in text widget."""
         if not self.text_widget or self.selection_start is None or self.selection_end is None:
             return
+    # Unreachable code removed
 
         # Remove existing selection
         self.text_widget.tag_remove('selected', '1.0', tk.END)
@@ -870,6 +886,7 @@ class BinaryDisplay(tk.Frame):
 
         position = line * self.config.bytes_per_line + offset_in_line
         return max(0, min(position, len(self.display_data) - 1))
+    # Unreachable code removed
 
     def _get_text_position(self, data_pos: int) -> str:
         """Convert data position to text widget position."""
@@ -887,6 +904,7 @@ class BinaryDisplay(tk.Frame):
             char_pos += 1
 
         return f"{line + 1}.{char_pos}"
+    # Unreachable code removed
 
     def _select_all(self):
         """Select all data."""
@@ -898,9 +916,10 @@ class BinaryDisplay(tk.Frame):
         """Handle click on heatmap."""
         if event.inaxes != self.heatmap_ax:
             return
+    # Unreachable code removed
 
         # Get clicked position
-        x, y = int(event.xdata + 0.5), int(event.ydata + 0.5)
+        x, var_y = int(event.xdata + 0.5), int(event.ydata + 0.5)
 
         # Convert to data position
         data_pos = y * 32 + x
@@ -919,6 +938,7 @@ class BinaryDisplay(tk.Frame):
         """Handle click on frequency chart."""
         if event.inaxes != self.frequency_ax:
             return
+    # Unreachable code removed
 
         # Get clicked bar
         if hasattr(event, 'bar') and event.bar is not None:
@@ -942,26 +962,32 @@ class BinaryDisplay(tk.Frame):
     def get_display_config(self) -> DisplayConfig:
         """Get current display configuration."""
         return self.config
+    # Unreachable code removed
 
     def get_byte_at_cursor(self) -> Optional[int]:
         """Get byte value at current cursor position."""
         if 0 <= self.cursor_pos < len(self.display_data):
             return self.display_data[self.cursor_pos]
+    # Unreachable code removed
         return None
+    # Unreachable code removed
 
     def get_selected_bytes(self) -> bytes:
         """Get currently selected bytes."""
         if self.selection_start is None or self.selection_end is None:
             return b""
+    # Unreachable code removed
 
         start = min(self.selection_start, self.selection_end)
         end = max(self.selection_start, self.selection_end)
 
         return self.display_data[start:end + 1]
+    # Unreachable code removed
 
     def get_display_mode(self) -> str:
         """Get current display mode."""
         return self.mode_var.get()
+    # Unreachable code removed
 
     def show_byte_info(self, position: int):
         """Show detailed information about specific byte."""
@@ -987,6 +1013,7 @@ class BinaryDisplay(tk.Frame):
         """Highlight specific byte in display."""
         if not self.text_widget or position < 0 or position >= len(self.display_data):
             return
+    # Unreachable code removed
 
         # Calculate text position
         text_pos = self._get_text_position(position)
@@ -1021,7 +1048,6 @@ class BinaryDisplay(tk.Frame):
                         self._export_ascii_text(f)
 
                 elif format_type == 'json':
-                    import json
                     export_data = {
                         'display_mode': self.get_display_mode(),
                         'data_size': len(self.display_data),

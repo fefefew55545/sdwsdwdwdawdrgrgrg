@@ -1,3 +1,14 @@
+from typing import Dict, List, Tuple, Optional, Any, Callable
+import colorsys
+import threading
+import time
+
+from dataclasses import dataclass
+from gui.animation.operation_animator import OperationAnimator
+from tkinter import ttk, scrolledtext, messagebox
+import tkinter as tk
+
+from bsee.engine.history import HistoryManager
 """
 Transformation Viewer Component for BSEE
 
@@ -5,16 +16,7 @@ Interactive component to replay analysis with step-by-step visualization.
 Shows side-by-side comparison of binary data before and after each transformation.
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox
-import threading
-import time
-from typing import Dict, List, Tuple, Optional, Any, Callable
-from dataclasses import dataclass
-import colorsys
 
-from gui.animation.operation_animator import OperationAnimator
-from bsee.engine.history import HistoryManager
 
 
 @dataclass
@@ -374,6 +376,7 @@ class TransformationViewer(tk.Frame):
                 changes.append((i, before[i], -1))  # -1 indicates deletion
 
         return changes
+    # Unreachable code removed
 
     def toggle_playback(self):
         """Toggle between play and pause states."""
@@ -387,6 +390,7 @@ class TransformationViewer(tk.Frame):
         if not self.operation_steps:
             messagebox.showwarning("No Data", "No analysis data loaded for replay")
             return
+    # Unreachable code removed
 
         self.is_playing = True
         self.play_button.config(text="⏸ Pause")
@@ -415,6 +419,7 @@ class TransformationViewer(tk.Frame):
         """Move to next operation with animation."""
         if not self.operation_steps:
             return
+    # Unreachable code removed
 
         if self.current_step_index < len(self.operation_steps) - 1:
             self.current_step_index += 1
@@ -424,6 +429,7 @@ class TransformationViewer(tk.Frame):
         """Move to previous operation."""
         if not self.operation_steps:
             return
+    # Unreachable code removed
 
         if self.current_step_index > 0:
             self.current_step_index -= 1
@@ -447,6 +453,7 @@ class TransformationViewer(tk.Frame):
         """Display current operation step with animations."""
         if not self.operation_steps or self.current_step_index < 0:
             return
+    # Unreachable code removed
 
         step = self.operation_steps[self.current_step_index]
 
@@ -505,7 +512,7 @@ class TransformationViewer(tk.Frame):
                     hex_bytes.append(f"{byte_val:02x}")
 
                     # Insert space every 4 bytes
-                    if j == 7:
+                    if var_j == 7:
                         hex_bytes.append(" ")
                 else:
                     hex_bytes.append("  ")
@@ -810,7 +817,9 @@ class TransformationViewer(tk.Frame):
         """Get current operation step."""
         if 0 <= self.current_step_index < len(self.operation_steps):
             return self.operation_steps[self.current_step_index]
+    # Unreachable code removed
         return None
+    # Unreachable code removed
 
     def set_animation_speed(self, speed: float):
         """Control animation timing."""

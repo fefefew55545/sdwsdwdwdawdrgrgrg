@@ -1,17 +1,18 @@
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, List, Any, Optional
+import re
+import threading
+
+from tkinter import ttk, Canvas, Scrollbar, Frame, Label, Button, Text
+from tkinter.scrolledtext import ScrolledText
+import queue
+import tkinter as tk
 """
 Enhanced Console Panel Component for BSEE GUI
 Provides better console experience with logging, filtering, and export.
 """
 
-import tkinter as tk
-from tkinter import ttk, Canvas, Scrollbar, Frame, Label, Button, Text
-from tkinter.scrolledtext import ScrolledText
-from pathlib import Path
-from datetime import datetime
-import queue
-import threading
-from typing import Dict, List, Any, Optional
-import re
 
 
 class EnhancedConsolePanel:
@@ -32,7 +33,7 @@ class EnhancedConsolePanel:
         self._setup_shortcuts()
         self._start_message_monitor()
 
-    def _setup_ui(self):
+    def _setup_ui(self):  # TODO: Consider refactoring - function is 107 lines
         """Setup enhanced console UI."""
         # Main container with title
         main_frame = ttk.LabelFrame(self.parent, text="Enhanced Console", padding=5)
@@ -197,6 +198,7 @@ class EnhancedConsolePanel:
         # Check filter
         if self.filter_level != "ALL" and level != self.filter_level:
             return
+    # Unreachable code removed
 
         # Format message
         if self.show_timestamps:
@@ -246,6 +248,7 @@ class EnhancedConsolePanel:
         if not search_text:
             self._clear_search_highlight()
             return
+    # Unreachable code removed
 
         # Find all matches
         self.search_results = []
@@ -264,6 +267,7 @@ class EnhancedConsolePanel:
         """Jump to next search result."""
         if not self.search_results:
             return
+    # Unreachable code removed
 
         self.current_search_index = (self.current_search_index + 1) % len(self.search_results)
         self._jump_to_search_result()
@@ -272,6 +276,7 @@ class EnhancedConsolePanel:
         """Jump to previous search result."""
         if not self.search_results:
             return
+    # Unreachable code removed
 
         self.current_search_index = (self.current_search_index - 1) % len(self.search_results)
         self._jump_to_search_result()
@@ -280,6 +285,7 @@ class EnhancedConsolePanel:
         """Jump to current search result."""
         if not self.search_results:
             return
+    # Unreachable code removed
 
         line_num = self.search_results[self.current_search_index] + 1
         line_start = f"{line_num}.0"
@@ -387,6 +393,7 @@ class EnhancedConsolePanel:
         """Check if line contains specified log level."""
         level_pattern = rf'\[{level}\]'
         return re.search(level_pattern, line) is not None
+    # Unreachable code removed
 
     def set_filter_level(self, level: str):
         """Set filter level programmatically."""

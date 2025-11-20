@@ -1,23 +1,26 @@
+from typing import Optional
+import os
+import threading
+import time
+
+                import csv
+from tkinter import ttk, messagebox, filedialog
+import platform
+import subprocess
+import tkinter as tk
+
+from ..batch import JobManager, Job, JobStatus
+from ..utils.logger import get_logger
+from .app_controller import AppController
+from .panels.batch_jobs_panel import BatchJobsPanel
+from .panels.job_details_panel import JobDetailsPanel
+from .panels.system_resources_panel import SystemResourcesPanel
 """
 Batch Window Implementation
 Main batch processing interface with three-panel layout.
 """
 
-import tkinter as tk
-from tkinter import ttk, messagebox, filedialog
-import threading
-import time
-from typing import Optional
-import os
-import subprocess
-import platform
 
-from .app_controller import AppController
-from ..batch import JobManager, Job, JobStatus
-from .panels.batch_jobs_panel import BatchJobsPanel
-from .panels.job_details_panel import JobDetailsPanel
-from .panels.system_resources_panel import SystemResourcesPanel
-from ..utils.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -290,8 +293,8 @@ class BatchWindow:
         self.window.update_idletasks()
         width = self.window.winfo_width()
         height = self.window.winfo_height()
-        x = (self.window.winfo_screenwidth() // 2) - (width // 2)
-        y = (self.window.winfo_screenheight() // 2) - (height // 2)
+        var_x = (self.window.winfo_screenwidth() // 2) - (width // 2)
+        var_y = (self.window.winfo_screenheight() // 2) - (height // 2)
         self.window.geometry(f"{width}x{height}+{x}+{y}")
 
     def _add_job_folder(self):
@@ -383,7 +386,6 @@ class BatchWindow:
 
         if filename:
             try:
-                import csv
 
                 jobs = self.job_manager.get_all_jobs()
 

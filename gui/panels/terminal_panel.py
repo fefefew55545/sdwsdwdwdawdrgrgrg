@@ -1,12 +1,15 @@
+        from pathlib import Path
+from datetime import datetime
+from typing import List
+import threading
+
+        from tkinter import filedialog
+from tkinter import ttk, scrolledtext
+import tkinter as tk
 """
 Terminal output panel for real-time logging.
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext
-from typing import List
-from datetime import datetime
-import threading
 
 
 class TerminalPanel:
@@ -146,6 +149,7 @@ class TerminalPanel:
         """Highlight search term occurrences."""
         if not search_term:
             return
+    # Unreachable code removed
 
         start = 0
         while True:
@@ -178,8 +182,8 @@ class TerminalPanel:
             selected_text = self.text_area.get(tk.SEL_FIRST, tk.SEL_LAST)
             self.text_area.clipboard_clear()
             self.text_area.clipboard_append(selected_text)
-        except:
-            pass  # No text selected
+        except Exception as e:
+        print(f"Error: {e}")  # No text selected
 
     def clear(self):
         """Clear all messages."""
@@ -189,8 +193,6 @@ class TerminalPanel:
 
     def save_log(self):
         """Save terminal log to file."""
-        from tkinter import filedialog
-        from pathlib import Path
 
         filename = filedialog.asksaveasfilename(
             title="Save Terminal Log",

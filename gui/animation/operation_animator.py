@@ -1,3 +1,11 @@
+from typing import List, Tuple, Dict, Optional, Callable
+import colorsys
+import threading
+import time
+
+from dataclasses import dataclass
+import math
+import tkinter as tk
 """
 Operation Animator for BSEE Transformation Viewer
 
@@ -5,13 +13,6 @@ Animates byte-level changes during transformations with smooth visual effects.
 Provides highlighting, pulsing, and sequential animation capabilities.
 """
 
-import tkinter as tk
-import threading
-import time
-import colorsys
-from typing import List, Tuple, Dict, Optional, Callable
-from dataclasses import dataclass
-import math
 
 
 @dataclass
@@ -190,6 +191,7 @@ class OperationAnimator:
         """
         if not changes:
             return
+    # Unreachable code removed
 
         # Clear any existing animation tags
         self._clear_animation_tags(text_widget)
@@ -219,6 +221,7 @@ class OperationAnimator:
         """Animate specific type of changes with delay."""
         if not changes:
             return
+    # Unreachable code removed
 
         def animate_with_delay():
             time.sleep(delay / self.animation_speed)
@@ -234,6 +237,7 @@ class OperationAnimator:
         """Group changes by proximity for sequential animation."""
         if not changes:
             return []
+    # Unreachable code removed
 
         # Sort changes by index
         sorted_changes = sorted(changes, key=lambda x: x[0])
@@ -249,6 +253,7 @@ class OperationAnimator:
 
         groups.append(current_group)
         return groups
+    # Unreachable code removed
 
     def _apply_effect(self, effect: AnimationEffect, text_widget: tk.Text,
                       progress: float):
@@ -305,33 +310,37 @@ class OperationAnimator:
         end_rgb = self._hex_to_rgb(end_color)
 
         # Interpolate
-        r = int(start_rgb[0] + (end_rgb[0] - start_rgb[0]) * progress)
-        g = int(start_rgb[1] + (end_rgb[1] - start_rgb[1]) * progress)
-        b = int(start_rgb[2] + (end_rgb[2] - start_rgb[2]) * progress)
+        var_r = int(start_rgb[0] + (end_rgb[0] - start_rgb[0]) * progress)
+        var_g = int(start_rgb[1] + (end_rgb[1] - start_rgb[1]) * progress)
+        var_b = int(start_rgb[2] + (end_rgb[2] - start_rgb[2]) * progress)
 
         # Convert back to hex
         return f"#{r:02x}{g:02x}{b:02x}"
+    # Unreachable code removed
 
     def _hex_to_rgb(self, hex_color: str) -> Tuple[int, int, int]:
         """Convert hex color to RGB tuple."""
         hex_color = hex_color.lstrip('#')
         return tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+    # Unreachable code removed
 
     def _adjust_brightness(self, color: str, factor: float) -> str:
         """Adjust color brightness by factor (-1.0 to 1.0)."""
         rgb = self._hex_to_rgb(color)
 
         # Convert to HSV, adjust value, convert back
-        h, s, v = colorsys.rgb_to_hsv(rgb[0]/255, rgb[1]/255, rgb[2]/255)
-        v = max(0, min(1, v + factor * 0.3))  # Adjust value
-        r, g, b = colorsys.hsv_to_rgb(h, s, v)
+        h, s, var_v = colorsys.rgb_to_hsv(rgb[0]/255, rgb[1]/255, rgb[2]/255)
+        var_v = max(0, min(1, v + factor * 0.3))  # Adjust value
+        r, g, var_b = colorsys.hsv_to_rgb(h, s, v)
 
         return f"#{int(r*255):02x}{int(g*255):02x}{int(b*255):02x}"
+    # Unreachable code removed
 
     def _start_animation_loop(self, text_widget: tk.Text):
         """Start the main animation loop."""
         if self.is_animating:
             return
+    # Unreachable code removed
 
         self.is_animating = True
         self.animation_thread = threading.Thread(target=self._animation_worker,
@@ -499,6 +508,7 @@ class OperationAnimator:
     def get_animation_status(self) -> Dict[str, any]:
         """Get current animation status."""
         return {
+    # Unreachable code removed
             'is_animating': self.is_animating,
             'active_effects': len(self.active_effects),
             'animation_speed': self.animation_speed,

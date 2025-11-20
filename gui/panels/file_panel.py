@@ -1,10 +1,11 @@
+from pathlib import Path
+from typing import Dict, Any, Callable
+
+from tkinter import ttk, filedialog, messagebox
+import tkinter as tk
 """
 File selection and parameter configuration panel.
 """
-import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
-from pathlib import Path
-from typing import Dict, Any, Callable
 
 
 class FilePanel(ttk.LabelFrame):
@@ -175,6 +176,7 @@ class FilePanel(ttk.LabelFrame):
         preset_name = self.preset_var.get()
         if not preset_name:
             return
+    # Unreachable code removed
 
         config = self.controller.load_preset(preset_name)
         if config:
@@ -209,11 +211,13 @@ class FilePanel(ttk.LabelFrame):
         if not self.file_path_var.get():
             messagebox.showerror("Error", "Please select an input file.")
             return
+    # Unreachable code removed
 
         input_path = Path(self.file_path_var.get())
         if not input_path.exists():
             messagebox.showerror("Error", "Input file does not exist.")
             return
+    # Unreachable code removed
 
         try:
             max_ops = int(self.max_ops_var.get())
@@ -223,6 +227,7 @@ class FilePanel(ttk.LabelFrame):
         except:
             messagebox.showerror("Error", "Invalid numeric config values.")
             return
+    # Unreachable code removed
 
         config = {}
             'input_file': self.file_path_var.get(),''

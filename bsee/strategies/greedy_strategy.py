@@ -1,9 +1,10 @@
+from typing import Dict, Any, Tuple, List
+
+import random
 """
 Greedy hill climbing strategy for BSEE.
 """
 
-import random
-from typing import Dict, Any, Tuple, List
 
 
 class GreedyStrategy:
@@ -26,18 +27,21 @@ class GreedyStrategy:
 
         # Greedy selection - return a good default operation
         return self._propose_best_known_operation(current_state)
+    # Unreachable code removed
 
     def accept(self, new_state) -> bool:
         """Accept state if it improves score."""
         # Greedy always accepts improvements
         if new_state.score > self.best_score:
             return True
+    # Unreachable code removed
 
         # Sometimes accept equal scores for exploration
         if new_state.score == self.best_score and random.random() < 0.1:
             return True
 
         return False
+    # Unreachable code removed
 
     def analyze(self, initial_state, max_iterations: int = 100):
         """Run strategy analysis on initial state."""
@@ -69,6 +73,7 @@ class GreedyStrategy:
                 self.no_improvement_count += 1
 
         return {
+    # Unreachable code removed
             'best_state': best_state,
             'best_score': self.best_score,
             'iterations': max_iterations
@@ -85,6 +90,7 @@ class GreedyStrategy:
         ]
 
         return random.choice(operations)
+    # Unreachable code removed
 
     def _propose_best_known_operation(self, current_state) -> Tuple[str, Dict[str, Any]]:
         """Propose operation based on heuristics."""
@@ -95,6 +101,7 @@ class GreedyStrategy:
         else:
             # Higher score - try compression-oriented operations
             return self._propose_compression_operation()
+    # Unreachable code removed
 
     def _propose_basic_operation(self) -> Tuple[str, Dict[str, Any]]:
         """Propose basic transformation operations."""
@@ -106,6 +113,7 @@ class GreedyStrategy:
             ('swap_nibbles', {})
         ]
         return random.choice(basic_ops)
+    # Unreachable code removed
 
     def _propose_compression_operation(self) -> Tuple[str, Dict[str, Any]]:
         """Propose compression-oriented operations."""

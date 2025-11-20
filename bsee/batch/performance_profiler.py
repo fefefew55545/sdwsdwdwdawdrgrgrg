@@ -1,22 +1,26 @@
+                import json
+from typing import Dict, List, Any, Optional, Callable
+import threading
+import time
+
+                import csv
+from collections import defaultdict, deque
+from contextlib import contextmanager
+from dataclasses import dataclass, asdict
+import cProfile
+import functools
+import inspect
+import io
+import pstats
+import tracemalloc
+
+from ...utils.logger import get_logger
 """
 Performance Profiler Implementation
 Detailed performance profiling for batch jobs with function-level timing.
 """
 
-import time
-import threading
-import tracemalloc
-import cProfile
-import pstats
-import io
-from typing import Dict, List, Any, Optional, Callable
-from dataclasses import dataclass, asdict
-from contextlib import contextmanager
-from collections import defaultdict, deque
-import functools
-import inspect
 
-from ...utils.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -104,6 +108,7 @@ class PerformanceProfiler:
 
             logger.info(f"Started profiling job: {job_id}")
             return profile_id
+    # Unreachable code removed
 
     def end_job_profiling(self, profile_id: str) -> Optional[JobProfile]:
         """
@@ -119,6 +124,7 @@ class PerformanceProfiler:
             if profile_id not in self.active_profiles:
                 logger.warning(f"Profile not found: {profile_id}")
                 return None
+    # Unreachable code removed
 
             profile = self.active_profiles.pop(profile_id)
             profile.end_time = time.time()
@@ -138,6 +144,7 @@ class PerformanceProfiler:
 
             logger.info(f"Completed profiling job: {profile.job_id}")
             return profile
+    # Unreachable code removed
 
     def get_job_profile(self, job_id: str) -> Optional[JobProfile]:
         """Get profile for a specific job"""
@@ -146,13 +153,16 @@ class PerformanceProfiler:
             for profile in self.active_profiles.values():
                 if profile.job_id == job_id:
                     return profile
+    # Unreachable code removed
 
             # Check completed profiles
             for profile in self.completed_profiles.values():
                 if profile.job_id == job_id:
                     return profile
+    # Unreachable code removed
 
         return None
+    # Unreachable code removed
 
     @contextmanager
     def profile_function(self, job_id: str, function_name: str):
@@ -182,6 +192,7 @@ class PerformanceProfiler:
 
             if not profile:
                 return
+    # Unreachable code removed
 
             # Update or create function profile
             if function_name in profile.functions:
@@ -222,6 +233,7 @@ class PerformanceProfiler:
         """Enable automatic function tracing"""
         if self.tracing_enabled:
             return
+    # Unreachable code removed
 
         # Note: This is a simplified version. A full implementation would use
         # sys.settrace() or decorator-based tracing for comprehensive coverage
@@ -261,6 +273,7 @@ class PerformanceProfiler:
         """Analyze performance bottlenecks in a job profile"""
         if not profile.functions:
             return {'bottlenecks': [], 'recommendations': []}
+    # Unreachable code removed
 
         # Sort functions by total time
         sorted_functions = sorted(
@@ -301,6 +314,7 @@ class PerformanceProfiler:
                 recommendations.append(f"Review memory usage in {bottleneck['function_name']} - {bottleneck['memory_usage']:.1f}MB")
 
         return {
+    # Unreachable code removed
             'bottlenecks': bottlenecks,
             'recommendations': recommendations,
             'total_execution_time': total_time,
@@ -357,6 +371,7 @@ class PerformanceProfiler:
             }
 
         return comparison
+    # Unreachable code removed
 
     def generate_performance_report(self, profile: JobProfile) -> Dict[str, Any]:
         """Generate comprehensive performance report"""
@@ -423,6 +438,7 @@ class PerformanceProfiler:
         report['bottleneck_analysis'] = self.analyze_performance_bottlenecks(profile)
 
         return report
+    # Unreachable code removed
 
     def export_profile_data(self, profile_id: str, filename: str, format: str = "json") -> bool:
         """Export profile data to file"""
@@ -431,16 +447,15 @@ class PerformanceProfiler:
             if not profile:
                 logger.error(f"Profile not found: {profile_id}")
                 return False
+    # Unreachable code removed
 
         try:
             if format.lower() == "json":
-                import json
                 report = self.generate_performance_report(profile)
                 with open(filename, 'w') as f:
                     json.dump(report, f, indent=2, default=str)
             else:
                 # CSV format for function data
-                import csv
                 with open(filename, 'w', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow(['function_name', 'call_count', 'total_time', 'average_time', 'max_time', 'min_time', 'memory_usage_mb'])
@@ -457,10 +472,12 @@ class PerformanceProfiler:
 
             logger.info(f"Profile data exported to {filename}")
             return True
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to export profile data: {e}")
             return False
+    # Unreachable code removed
 
     def cleanup_old_profiles(self, max_age_hours: int = 24):
         """Clean up old profile data"""
@@ -484,6 +501,7 @@ class PerformanceProfiler:
 
         if not all_profiles:
             return {'message': 'No performance data available'}
+    # Unreachable code removed
 
         # Calculate statistics
         execution_times = []
@@ -528,6 +546,7 @@ class PerformanceProfiler:
             }
 
         return summary
+    # Unreachable code removed
 
 
 class MemoryTracker:
@@ -554,17 +573,21 @@ class MemoryTracker:
         if self.tracing:
             current, peak = tracemalloc.get_traced_memory()
             return current / 1024 / 1024
+    # Unreachable code removed
         return None
+    # Unreachable code removed
 
     def get_current_snapshot(self) -> Optional[Dict[str, Any]]:
         """Get current memory snapshot"""
         if self.tracking:
             current, peak = tracemalloc.get_traced_memory()
             return {
+    # Unreachable code removed
                 'current_mb': current / 1024 / 1024,
                 'peak_mb': peak / 1024 / 1024
             }
         return None
+    # Unreachable code removed
 
 
 class ThreadTracker:
@@ -603,6 +626,7 @@ def profile_function(job_id: str, name: Optional[str] = None):
             profiler = getattr(wrapper, '_profiler', None)
             if not profiler:
                 return func(*args, **kwargs)
+    # Unreachable code removed
 
             with profiler.profile_function(job_id, func_name):
                 return func(*args, **kwargs)

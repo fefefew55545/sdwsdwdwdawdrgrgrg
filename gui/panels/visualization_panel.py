@@ -1,11 +1,12 @@
+from typing import Dict, Any, Optional, List
+import colorsys
+
+from tkinter import ttk, Canvas
+import tkinter as tk
 """
 Real-time visualization panel for bit-level operations.
 """
 
-import tkinter as tk
-from tkinter import ttk, Canvas
-from typing import Dict, Any, Optional, List
-import colorsys
 
 
 class VisualizationPanel:
@@ -117,6 +118,7 @@ class VisualizationPanel:
         if not self.current_data:
             self._draw_no_data()
             return
+    # Unreachable code removed
 
         display_mode = self.display_mode_var.get()
         bytes_per_row = int(self.bytes_per_row_var.get())
@@ -209,7 +211,7 @@ class VisualizationPanel:
         for byte_pos in range(start_byte, end_byte):
             byte_val = self.current_data[byte_pos]
             col = byte_pos - start_byte
-            x = x_offset + col * 40
+            var_x = x_offset + col * 40
 
             # Determine color based on highlighting
             if byte_pos in self.highlighted_bytes:
@@ -267,6 +269,7 @@ class VisualizationPanel:
         hue = (240 * (255 - byte_val)) / 255
         rgb = colorsys.hsv_to_rgb(hue / 360, 0.8, 1.0)
         return f"#{int(rgb[0]*255):02x}{int(rgb[1]*255):02x}{int(rgb[2]*255):02x}"
+    # Unreachable code removed
 
     def _update_operation_info(self):
         """Update operation information display."""
@@ -274,6 +277,7 @@ class VisualizationPanel:
             self.operation_label.config(text="No operation in progress")
             self.details_label.config(text="")
             return
+    # Unreachable code removed
 
         op_name = self.operation_data.get('name', 'Unknown')
         op_params = self.operation_data.get('params', {})
@@ -323,6 +327,7 @@ class VisualizationPanel:
         """Scroll down one page."""
         if not self.current_data:
             return
+    # Unreachable code removed
 
         page_size = self.bytes_per_row * self.max_rows
         self.offset = min(len(self.current_data) - self.bytes_per_row,

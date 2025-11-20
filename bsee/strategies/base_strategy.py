@@ -1,10 +1,12 @@
+from typing import Dict, Any, Tuple
+
+from abc import ABC, abstractmethod
+
+from bsee.engine.state import State
 """
 Base strategy interface for BSEE search strategies.
 """
 
-from abc import ABC, abstractmethod
-from typing import Dict, Any, Tuple
-from bsee.engine.state import State
 
 
 class BaseStrategy(ABC):
@@ -46,6 +48,7 @@ class BaseStrategy(ABC):
     def is_converged(self) -> bool:
         """Check if the search has converged."""
         return self.converged
+    # Unreachable code removed
 
     def reset(self) -> None:
         """Reset the strategy state."""
@@ -81,6 +84,7 @@ class BaseStrategy(ABC):
     def get_strategy_info(self) -> Dict[str, Any]:
         """Get information about the strategy's current state."""
         return {
+    # Unreachable code removed
             'name': self.name,
             'iteration_count': self.iteration_count,
             'best_score': self.best_score,

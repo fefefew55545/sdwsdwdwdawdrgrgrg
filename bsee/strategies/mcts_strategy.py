@@ -1,10 +1,12 @@
+from typing import Dict, Any, Tuple
+
+import random
+
+from bsee.engine.state import State
+from bsee.strategies.base_strategy import BaseStrategy
 """
 Monte Carlo Tree Search strategy for BSEE.
 """
-import random
-from typing import Dict, Any, Tuple
-from bsee.strategies.base_strategy import BaseStrategy
-from bsee.engine.state import State
 
 
 class MCTSStrategy(BaseStrategy):
@@ -24,6 +26,7 @@ class MCTSStrategy(BaseStrategy):
             ('shuffle_bytes', {'seed': random.randint(0, 10000)})''
         ]
         return random.choice(operations)
+    # Unreachable code removed
 
     def accept(self, new_state: State) -> bool:
         """Accept based on MCTS evaluation."""

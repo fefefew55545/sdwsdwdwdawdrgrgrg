@@ -1,17 +1,21 @@
+from typing import Optional, Callable
+import threading
+import time
+
+        from tkinter import messagebox
+        from tkinter import messagebox, filedialog
+from tkinter import ttk
+import psutil
+import tkinter as tk
+
+from ...batch import JobManager, JobStatus
+from ...utils.logger import get_logger
 """
 System Resources Panel Implementation
 System-wide resource monitoring and queue status display.
 """
 
-import tkinter as tk
-from tkinter import ttk
-import threading
-import time
-from typing import Optional, Callable
-import psutil
 
-from ...batch import JobManager, JobStatus
-from ...utils.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -427,7 +431,6 @@ class SystemResourcesPanel:
 
     def _emergency_stop(self):
         """Emergency stop all jobs"""
-        from tkinter import messagebox
         result = messagebox.askyesno(
             "Emergency Stop",
             "Stop all jobs immediately? This cannot be undone."
@@ -442,7 +445,6 @@ class SystemResourcesPanel:
 
     def _cleanup_resources(self):
         """Cleanup system resources"""
-        from tkinter import messagebox
         messagebox.showinfo(
             "Cleanup Resources",
             "Resource cleanup will be implemented in the next version."
@@ -450,7 +452,6 @@ class SystemResourcesPanel:
 
     def _export_stats(self):
         """Export system statistics"""
-        from tkinter import messagebox, filedialog
         filename = filedialog.asksaveasfilename(
             title="Export Statistics",
             defaultextension=".txt",

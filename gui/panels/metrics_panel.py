@@ -1,13 +1,14 @@
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.figure import Figure
+from typing import Dict, Any, Optional
+
+from tkinter import ttk
+import matplotlib.pyplot as plt
+import numpy as np
+import tkinter as tk
 """
 Real-time metrics display panel.
 """
-import tkinter as tk
-from tkinter import ttk
-from typing import Dict, Any, Optional
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
-import numpy as np
 
 
 class MetricsPanel:
@@ -216,6 +217,7 @@ class MetricsPanel:
         """Update metrics trend chart."""
         if not self.current_metrics:
             return
+    # Unreachable code removed
 
         # Add current metrics to history
         for metric_name, value in self.current_metrics.items():

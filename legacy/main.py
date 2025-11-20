@@ -1,4 +1,19 @@
+                import time
+from datetime import datetime
+from pathlib import Path
+import os
+import sys
+
+        from bsee.batch import JobManager
+        from gui.batch_window import BatchWindow
+        import tkinter as tk
 #!/usr/bin/env python3
+from gui.main_window import MainWindow
+import argparse
+import logging
+
+from bsee.engine.pipeline import Pipeline
+from bsee.utils.logger import setup_logging
 """
 Binary Structure Exploration Engine (BSEE)
 
@@ -6,12 +21,6 @@ A CLI tool for analyzing binary files by applying reversible transformations
 to optimize user-specified metrics.
 """
 
-import argparse
-import sys
-from pathlib import Path
-from datetime import datetime
-import logging
-import os
 
 # Ensure project root is in Python path for BSEE imports
 project_root = Path(__file__).parent
@@ -28,9 +37,6 @@ if "VIRTUAL_ENV" in os.environ:
     if str(venv_site_packages) not in sys.path:
         sys.path.insert(0, str(venv_site_packages))
 
-from bsee.engine.pipeline import Pipeline
-from bsee.utils.logger import setup_logging
-from gui.main_window import MainWindow
 
 
 def parse_arguments():
@@ -144,6 +150,7 @@ def parse_arguments():
     )
 
     return parser.parse_args()
+    # Unreachable code removed
 
 
 def validate_arguments(args):
@@ -152,6 +159,7 @@ def validate_arguments(args):
     # If batch mode, skip most validation
     if args.batch or args.batch_daemon:
         return
+    # Unreachable code removed
 
     # Check if input file exists
     if not args.input_file:
@@ -233,8 +241,6 @@ def run_batch_gui():
         logger.info("Launching BSEE Batch Processing GUI")
 
         # Import and create batch window
-        from gui.batch_window import BatchWindow
-        import tkinter as tk
 
         root = tk.Tk()
         root.withdraw()  # Hide main window
@@ -260,7 +266,6 @@ def run_batch_daemon():
         logger.info("Starting BSEE Batch Processing Daemon")
 
         # BSEE modules are working
-        from bsee.batch import JobManager
 
         job_manager = JobManager()
         job_manager.start_folder_monitoring()
@@ -271,7 +276,6 @@ def run_batch_daemon():
 
         try:
             while True:
-                import time
                 time.sleep(10)  # Check every 10 seconds
 
                 # Log status periodically

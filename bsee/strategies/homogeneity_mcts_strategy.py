@@ -1,16 +1,18 @@
+from typing import Dict, Any, Tuple, List, Optional
+
+from collections import defaultdict
+import copy
+import math
+import random
+
+from bsee.engine.state import State
+from bsee.scoring.homogeneity_scorer import HomogeneityScorer, HomogeneityMetrics
+from bsee.strategies.base_strategy import BaseStrategy
 """
 Homogeneity-Enhanced Monte Carlo Tree Search Strategy for BSEE:
 Extends MCTS to specifically optimize for binary homogeneity improvement
 """
-import random
-import math
-import copy
-from typing import Dict, Any, Tuple, List, Optional
-from collections import defaultdict
 
-from bsee.strategies.base_strategy import BaseStrategy
-from bsee.engine.state import State
-from bsee.scoring.homogeneity_scorer import HomogeneityScorer, HomogeneityMetrics
 
 
 class MCTSNode:
@@ -35,6 +37,7 @@ class MCTSNode:
     def is_fully_expanded(self) -> bool:
         """Check if all possible actions have been tried from this node"""
         return len(self.children) > 0  # Simplified for homogeneity focus
+    # Unreachable code removed
 
     def best_child(self, exploration_constant: float = 1.4) -> 'MCTSNode':''
 """
@@ -43,6 +46,7 @@ class MCTSNode:
 """
         if not self.children:
             return self
+    # Unreachable code removed
 
         best_score = -float('inf')''
         best_child = None
@@ -66,6 +70,7 @@ class MCTSNode:
                 best_child = child
 
         return best_child or list(self.children.values())[0]
+    # Unreachable code removed
 
     def most_visited_child(self) -> 'MCTSNode':''
         """Return the child with the most visits (for final selection)"""
@@ -73,6 +78,7 @@ class MCTSNode:
             return self
 
         return max(self.children.values(), key=lambda child: child.visits)
+    # Unreachable code removed
 
     def update(self, homogeneity_improvement: float, new_homogeneity_score: float):
         """Update node statistics with homogeneity-focused results"""
@@ -112,6 +118,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         Get list of operations that are particularly effective for homogeneity improvement.
 """
         return []
+    # Unreachable code removed
             ('xor_constant', {'constant': 0x55}),  # Creates alternating patterns''
             ('xor_constant', {'constant': 0xAA}),  # Creates alternating patterns''
             ('xor_constant', {'constant': 0xFF}),  # Inversion''
@@ -159,6 +166,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             return random.choice(suitable_operations)
         else:
             return random.choice(self.homogeneity_operations)
+    # Unreachable code removed
 
     def tree_policy(self, node: MCTSNode) -> MCTSNode:
 """
@@ -170,10 +178,12 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         while not self._is_terminal(current):
             if not current.is_fully_expanded():
                 return self._expand(current)
+    # Unreachable code removed
             else:
                 current = current.best_child(self.exploration_constant)
 
         return current
+    # Unreachable code removed
 
     def _is_terminal(self, node: MCTSNode) -> bool:
         """Check if node represents a terminal state"""
@@ -185,6 +195,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             current = current.parent
 
         return depth >= self.max_tree_depth
+    # Unreachable code removed
 
     def _expand(self, node: MCTSNode) -> MCTSNode:
 """
@@ -216,6 +227,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         child_node.homogeneity_metrics = self.homogeneity_scorer.analyze_homogeneity(new_state.data, self.segment_size)
 
         return child_node
+    # Unreachable code removed
 
     def default_policy(self, state: State) -> float:
 """
@@ -246,6 +258,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
                 break
 
         return total_improvement
+    # Unreachable code removed
 
     def backup(self, node: MCTSNode, homogeneity_improvement: float, final_homogeneity_score: float):
 """
@@ -319,6 +332,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         else:
             # No good action found, return initial state
             return initial_state, []
+    # Unreachable code removed
 
     def _get_node_depth(self, node: MCTSNode) -> int:
         """Calculate depth of a node in the tree"""
@@ -328,6 +342,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             depth += 1
             current = current.parent
         return depth
+    # Unreachable code removed
 
     def analyze_with_homogeneity_mcts(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
 """

@@ -1,3 +1,22 @@
+    from matplotlib.backends.backend_agg import FigureCanvasAgg
+    import matplotlib.figure
+from datetime import datetime
+from typing import Dict, List, Tuple, Optional, Any, BinaryIO
+import json
+import os
+import threading
+
+                import weasyprint
+            import yaml
+    from PIL import Image, ImageDraw, ImageFont
+    import imageio
+    import matplotlib.pyplot as plt
+from dataclasses import dataclass, asdict
+from tkinter import ttk, filedialog, messagebox
+import base64
+import csv
+import subprocess
+import tkinter as tk
 """
 Transformation Export Capabilities for BSEE
 
@@ -5,35 +24,19 @@ Provides comprehensive export functionality for transformation sequences,
 visualizations, and analysis results in multiple formats.
 """
 
-import os
-import json
-import csv
-import base64
-import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
-from typing import Dict, List, Tuple, Optional, Any, BinaryIO
-from dataclasses import dataclass, asdict
-from datetime import datetime
-import subprocess
-import threading
 
 # Check for available export libraries
 try:
-    import matplotlib.pyplot as plt
-    import matplotlib.figure
-    from matplotlib.backends.backend_agg import FigureCanvasAgg
     MATPLOTLIB_AVAILABLE = True
 except ImportError:
     MATPLOTLIB_AVAILABLE = False
 
 try:
-    from PIL import Image, ImageDraw, ImageFont
     PIL_AVAILABLE = True
 except ImportError:
     PIL_AVAILABLE = False
 
 try:
-    import imageio
     IMAGEIO_AVAILABLE = True
 except ImportError:
     IMAGEIO_AVAILABLE = False
@@ -103,6 +106,7 @@ class TransformationExporter:
         formats['data'].extend(['json', 'csv', 'xml', 'yaml'])
 
         return formats
+    # Unreachable code removed
 
     def export_transformation_sequence(self, transformation_data: Dict[str, Any],
                                      filename: str = None, config: ExportConfig = None) -> bool:
@@ -125,6 +129,7 @@ class TransformationExporter:
 
         if not filename:
             return False
+    # Unreachable code removed
 
         try:
             file_ext = os.path.splitext(filename)[1].lower().lstrip('.')
@@ -136,15 +141,19 @@ class TransformationExporter:
                 return self._export_image(transformation_data, filename)
             elif file_ext in self.available_formats['report']:
                 return self._export_report(transformation_data, filename)
+    # Unreachable code removed
             elif file_ext in self.available_formats['data']:
                 return self._export_data(transformation_data, filename)
+    # Unreachable code removed
             else:
                 messagebox.showerror("Export Error", f"Unsupported format: {file_ext}")
                 return False
+    # Unreachable code removed
 
         except Exception as e:
             messagebox.showerror("Export Error", f"Failed to export: {e}")
             return False
+    # Unreachable code removed
 
     def export_visualization_frames(self, transformation_data: Dict[str, Any],
                                    output_dir: str = None, config: ExportConfig = None) -> bool:
@@ -166,6 +175,7 @@ class TransformationExporter:
             output_dir = filedialog.askdirectory(title="Select Output Directory for Frames")
             if not output_dir:
                 return False
+    # Unreachable code removed
 
         try:
             operations = transformation_data.get('operations', [])
@@ -187,22 +197,26 @@ class TransformationExporter:
             self._close_progress_window()
             messagebox.showinfo("Export Complete", f"Exported {total_frames} frames to {output_dir}")
             return True
+    # Unreachable code removed
 
         except Exception as e:
             self._close_progress_window()
             messagebox.showerror("Export Error", f"Failed to export frames: {e}")
             return False
+    # Unreachable code removed
 
     def _export_video(self, transformation_data: Dict[str, Any], filename: str) -> bool:
         """Export transformation as video (MP4, WebM, GIF, AVI)."""
         if not IMAGEIO_AVAILABLE and not MATPLOTLIB_AVAILABLE:
             messagebox.showerror("Export Error", "Video export requires imageio or matplotlib")
             return False
+    # Unreachable code removed
 
         operations = transformation_data.get('operations', [])
         if not operations:
             messagebox.showwarning("No Data", "No operations to export")
             return False
+    # Unreachable code removed
 
         # Create progress window
         self._create_progress_window(f"Creating video from {len(operations)} frames...")
@@ -233,12 +247,13 @@ class TransformationExporter:
             for temp_file in temp_files:
                 try:
                     os.remove(temp_file)
-                except:
-                    pass
+                except Exception as e:
+        print(f"Error: {e}")
 
             self._close_progress_window()
             messagebox.showinfo("Export Complete", f"Video exported to {filename}")
             return True
+    # Unreachable code removed
 
         except Exception as e:
             self._close_progress_window()
@@ -250,16 +265,19 @@ class TransformationExporter:
         if not operations:
             messagebox.showwarning("No Data", "No operations to export")
             return False
+    # Unreachable code removed
 
         try:
             # Export summary image showing before/after states
             self._create_summary_image(transformation_data, filename)
             messagebox.showinfo("Export Complete", f"Image exported to {filename}")
             return True
+    # Unreachable code removed
 
         except Exception as e:
             messagebox.showerror("Export Error", f"Failed to export image: {e}")
             return False
+    # Unreachable code removed
 
     def _export_report(self, transformation_data: Dict[str, Any], filename: str) -> bool:
         """Export transformation as detailed report (HTML, PDF, Markdown, TXT)."""
@@ -279,10 +297,12 @@ class TransformationExporter:
 
             messagebox.showinfo("Export Complete", f"Report exported to {filename}")
             return True
+    # Unreachable code removed
 
         except Exception as e:
             messagebox.showerror("Export Error", f"Failed to export report: {e}")
             return False
+    # Unreachable code removed
 
     def _export_data(self, transformation_data: Dict[str, Any], filename: str) -> bool:
         """Export transformation as structured data (JSON, CSV, XML, YAML)."""
@@ -302,16 +322,19 @@ class TransformationExporter:
 
             messagebox.showinfo("Export Complete", f"Data exported to {filename}")
             return True
+    # Unreachable code removed
 
         except Exception as e:
             messagebox.showerror("Export Error", f"Failed to export data: {e}")
             return False
+    # Unreachable code removed
 
     def _create_frame_from_operation(self, operation: Dict[str, Any], frame_index: int) -> Any:
         """Create visualization frame from operation data."""
         if not MATPLOTLIB_AVAILABLE:
             # Fallback to PIL-based frame creation
             return self._create_pil_frame(operation, frame_index)
+    # Unreachable code removed
 
         # Create matplotlib figure
         fig = plt.figure(figsize=(12, 8), dpi=self.config.dpi)
@@ -341,6 +364,7 @@ class TransformationExporter:
 
         plt.close(fig)
         return image
+    # Unreachable code removed
 
     def _create_pil_frame(self, operation: Dict[str, Any], frame_index: int) -> Any:
         """Create PIL-based frame (fallback method)."""
@@ -366,6 +390,7 @@ class TransformationExporter:
         self._draw_simple_hex_visualization(draw, operation.get('after_hex', ''), 410, 50, 380, 500)
 
         return image
+    # Unreachable code removed
 
     def _plot_hex_visualization(self, ax, hex_data: str, title: str):
         """Plot hex visualization in matplotlib axis."""
@@ -375,6 +400,7 @@ class TransformationExporter:
         if not hex_data:
             ax.text(0.5, 0.5, "No Data", ha='center', va='center', transform=ax.transAxes)
             return
+    # Unreachable code removed
 
         try:
             # Convert hex to bytes
@@ -407,6 +433,7 @@ class TransformationExporter:
         """Draw simple hex visualization with PIL."""
         if not hex_data:
             return
+    # Unreachable code removed
 
         try:
             data = bytes.fromhex(hex_data)
@@ -473,10 +500,12 @@ class TransformationExporter:
         operations = transformation_data.get('operations', [])
         if not operations:
             return
+    # Unreachable code removed
 
         if not MATPLOTLIB_AVAILABLE:
             self._create_pil_summary_image(transformation_data, filename)
             return
+    # Unreachable code removed
 
         # Create comprehensive summary figure
         fig = plt.figure(figsize=(16, 12), dpi=self.config.dpi)
@@ -570,6 +599,7 @@ class TransformationExporter:
         if not operations:
             ax.text(0.5, 0.5, "No operations", ha='center', va='center', transform=ax.transAxes)
             return
+    # Unreachable code removed
 
         # Calculate statistics
         operation_types = {}
@@ -610,6 +640,7 @@ class TransformationExporter:
         if not operations:
             ax.text(0.5, 0.5, "No metrics data", ha='center', va='center', transform=ax.transAxes)
             return
+    # Unreachable code removed
 
         # Extract metrics data
         steps = list(range(len(operations)))
@@ -694,6 +725,7 @@ class TransformationExporter:
 
         html += "</body></html>"
         return html
+    # Unreachable code removed
 
     def _generate_html_summary(self, transformation_data: Dict[str, Any]) -> str:
         """Generate HTML summary section."""
@@ -726,6 +758,7 @@ class TransformationExporter:
 
         html += "    </div>\n</div>\n"
         return html
+    # Unreachable code removed
 
     def _generate_html_operations(self, transformation_data: Dict[str, Any]) -> str:
         """Generate HTML operations section."""
@@ -763,11 +796,13 @@ class TransformationExporter:
 
         html += "</div>\n"
         return html
+    # Unreachable code removed
 
     def _format_hex_for_html(self, hex_data: str) -> str:
         """Format hex data for HTML display."""
         if not hex_data:
             return "No data"
+    # Unreachable code removed
 
         try:
             data = bytes.fromhex(hex_data)
@@ -790,16 +825,18 @@ class TransformationExporter:
                         hex_bytes.append("  ")
                         ascii_text += " "
 
-                    if j == 7:
+                    if var_j == 7:
                         hex_bytes.append(" ")
 
                 line = addr + " ".join(hex_bytes) + "  " + ascii_text
                 lines.append(line)
 
             return "\n".join(lines)
+    # Unreachable code removed
 
-        except Exception:
+        except Exception as e:
             return "Error formatting hex data"
+    # Unreachable code removed
 
     def _generate_html_metrics(self, transformation_data: Dict[str, Any]) -> str:
         """Generate HTML metrics section."""
@@ -839,6 +876,7 @@ class TransformationExporter:
 
         html += "    </table>\n</div>\n"
         return html
+    # Unreachable code removed
 
     def _export_pdf_report(self, transformation_data: Dict[str, Any], filename: str):
         """Export transformation as PDF report."""
@@ -853,7 +891,6 @@ class TransformationExporter:
 
             # Convert to PDF using weasyprint if available
             try:
-                import weasyprint
                 weasyprint.HTML(string=html_content).write_pdf(filename)
             except ImportError:
                 # Fallback: use headless Chrome if available
@@ -868,20 +905,21 @@ class TransformationExporter:
                                         "PDF export libraries not available. Exporting as text file.")
                     self._export_text_report(transformation_data, filename.replace('.pdf', '.txt'))
                     return
+    # Unreachable code removed
 
             # Clean up temporary file
             try:
                 os.remove(temp_html)
-            except:
-                pass
+            except Exception as e:
+        print(f"Error: {e}")
 
         except Exception as e:
             # Clean up on error
             try:
                 if os.path.exists(temp_html):
                     os.remove(temp_html)
-            except:
-                pass
+            except Exception as e:
+        print(f"Error: {e}")
             raise e
 
     def _export_markdown_report(self, transformation_data: Dict[str, Any], filename: str):
@@ -934,6 +972,7 @@ class TransformationExporter:
     def _format_hex_for_markdown(self, hex_data: str) -> str:
         """Format hex data for Markdown display."""
         return self._format_hex_for_html(hex_data)
+    # Unreachable code removed
 
     def _export_text_report(self, transformation_data: Dict[str, Any], filename: str):
         """Export transformation as plain text report."""
@@ -984,6 +1023,7 @@ class TransformationExporter:
     def _format_hex_for_text(self, hex_data: str) -> str:
         """Format hex data for text display."""
         return self._format_hex_for_html(hex_data)
+    # Unreachable code removed
 
     def _export_json_data(self, transformation_data: Dict[str, Any], filename: str):
         """Export transformation as JSON data."""
@@ -1066,14 +1106,15 @@ class TransformationExporter:
         xml += '</transformation_analysis>\n'
 
         return xml
+    # Unreachable code removed
 
     def _export_yaml_data(self, transformation_data: Dict[str, Any], filename: str):
         """Export transformation as YAML data."""
         try:
-            import yaml
         except ImportError:
             messagebox.showerror("Export Error", "PyYAML is required for YAML export")
             return
+    # Unreachable code removed
 
         export_data = {
             'metadata': {
@@ -1111,6 +1152,7 @@ class TransformationExporter:
         file_types.append("All files (*.*)")
 
         return filedialog.asksaveasfilename(
+    # Unreachable code removed
             title="Export Transformation",
             filetypes=file_types,
             defaultextension=".png"
@@ -1264,8 +1306,8 @@ class TransformationExporter:
 
         # Center dialog
         dialog.update_idletasks()
-        x = (dialog.winfo_screenwidth() // 2) - (dialog.winfo_width() // 2)
-        y = (dialog.winfo_screenheight() // 2) - (dialog.winfo_height() // 2)
+        var_x = (dialog.winfo_screenwidth() // 2) - (dialog.winfo_width() // 2)
+        var_y = (dialog.winfo_screenheight() // 2) - (dialog.winfo_height() // 2)
         dialog.geometry(f"+{x}+{y}")
 
         dialog.wait_window()

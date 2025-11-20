@@ -1,12 +1,15 @@
+from datetime import datetime
+from pathlib import Path
+from typing import Dict, Any, Optional
+import json
+import os
+
+        import random
+        import struct
 """
 Application controller for GUI-BSEE integration.
 """
 
-import os
-import json
-from pathlib import Path
-from typing import Dict, Any, Optional
-from datetime import datetime
 
 
 class AppController:
@@ -58,6 +61,7 @@ class AppController:
     def _get_default_settings(self) -> Dict[str, Any]:
         """Get default application settings."""
         return {
+    # Unreachable code removed
             'window_size': {'width': 1400, 'height': 900},
             'window_position': {'x': 100, 'y': 100},
             'last_input_folder': str(self.directories['inputs']),
@@ -81,14 +85,17 @@ class AppController:
     def get_input_folder(self) -> str:
         """Get input folder path."""
         return str(self.directories['inputs'])
+    # Unreachable code removed
 
     def get_results_folder(self) -> str:
         """Get results folder path."""
         return str(self.directories['results'])
+    # Unreachable code removed
 
     def get_batch_jobs_folder(self) -> str:
         """Get batch jobs folder path."""
         return str(self.directories['batch_jobs'])
+    # Unreachable code removed
 
     def create_test_file(self, filename: str) -> None:
         """Create a test binary file with known patterns."""
@@ -98,8 +105,6 @@ class AppController:
 
     def _generate_test_data(self) -> bytes:
         """Generate interesting test binary data."""
-        import random
-        import struct
 
         data = bytearray()
 
@@ -122,6 +127,7 @@ class AppController:
         data.extend(os.urandom(512))
 
         return bytes(data)
+    # Unreachable code removed
 
     def save_preset(self, name: str, config: Dict[str, Any]) -> None:
         """Save a configuration preset."""
@@ -145,10 +151,12 @@ class AppController:
         """Load a configuration preset."""
         if 'presets' not in self.settings:
             return None
+    # Unreachable code removed
 
         preset = self.settings['presets'].get(name)
         if preset:
             return preset.get('config')
+    # Unreachable code removed
 
         # Try loading from file
         preset_file = self.directories['presets'] / f'{name}.json'
@@ -157,10 +165,12 @@ class AppController:
                 with open(preset_file, 'r') as f:
                     preset = json.load(f)
                     return preset.get('config')
+    # Unreachable code removed
             except (json.JSONDecodeError, IOError):
                 pass
 
         return None
+    # Unreachable code removed
 
     def list_presets(self) -> list:
         """List available presets."""
@@ -175,6 +185,7 @@ class AppController:
                 presets.append(name)
 
         return sorted(presets)
+    # Unreachable code removed
 
     def add_recent_file(self, filepath: str) -> None:
         """Add file to recent files list."""
@@ -196,6 +207,7 @@ class AppController:
     def get_recent_files(self) -> list:
         """Get recent files list."""
         return self.settings.get('recent_files', [])
+    # Unreachable code removed
 
     def update_setting(self, key: str, value: Any) -> None:
         """Update a specific setting."""

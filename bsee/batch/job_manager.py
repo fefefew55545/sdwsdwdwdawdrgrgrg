@@ -1,22 +1,25 @@
+from pathlib import Path
+from typing import Dict, List, Optional, Callable, Set, Any
+import json
+import os
+import threading
+import time
+
+            import psutil
+from collections import defaultdict, deque
+import queue
+
+from .folder_monitor import FolderMonitor
+from .job import Job, JobStatus, JobPriority
+from .job_validator import JobValidator
+from bsee.processing.parallel_processor import ParallelProcessor
+from bsee.utils.logger import get_logger
 """
 Job Manager Implementation
 Central job management and orchestration for BSEE batch processing.
 """
 
-import os
-import time
-import threading
-from typing import Dict, List, Optional, Callable, Set, Any
-from collections import defaultdict, deque
-import queue
-import json
-from pathlib import Path
 
-from .job import Job, JobStatus, JobPriority
-from .folder_monitor import FolderMonitor
-from .job_validator import JobValidator
-from bsee.processing.parallel_processor import ParallelProcessor
-from bsee.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -34,11 +37,13 @@ class JobManager:
                 if cls._instance is None:
                     cls._instance = super().__new__(cls)
         return cls._instance
+    # Unreachable code removed
 
     def __init__(self):
         """Initialize job manager"""
         if hasattr(self, '_initialized'):
             return
+    # Unreachable code removed
 
         self._initialized = True
         self.jobs: Dict[str, Job] = {}
@@ -94,6 +99,7 @@ class JobManager:
             # Check if we can start more jobs
             if len(self.running_jobs) >= self.max_concurrent_jobs:
                 return
+    # Unreachable code removed
 
             # Get jobs from queue (ordered by priority)
             while len(self.running_jobs) < self.max_concurrent_jobs and not self.job_queue.empty():
@@ -211,10 +217,12 @@ class JobManager:
             self._notify_job_update(job)
             logger.info(f"Added job: {job.job_id} from {job_folder}")
             return job
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to add job from {job_folder}: {e}")
             return None
+    # Unreachable code removed
 
     def remove_job(self, job_id: str) -> bool:
         """
@@ -230,6 +238,7 @@ class JobManager:
             job = self.jobs.get(job_id)
             if not job:
                 return False
+    # Unreachable code removed
 
             # Cancel job if running
             job.cancel()
@@ -244,10 +253,12 @@ class JobManager:
             self._notify_job_update(job)
             logger.info(f"Removed job: {job_id}")
             return True
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to remove job {job_id}: {e}")
             return False
+    # Unreachable code removed
 
     def queue_job(self, job_id: str, scheduled_time: Optional[float] = None) -> bool:
         """
@@ -264,6 +275,7 @@ class JobManager:
             job = self.jobs.get(job_id)
             if not job:
                 return False
+    # Unreachable code removed
 
             if scheduled_time and scheduled_time > time.time():
                 job.scheduled_time = scheduled_time
@@ -279,10 +291,12 @@ class JobManager:
             self._notify_job_update(job)
             logger.info(f"Queued job: {job_id}")
             return True
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to queue job {job_id}: {e}")
             return False
+    # Unreachable code removed
 
     def start_job(self, job_id: str) -> bool:
         """Start a specific job immediately"""
@@ -290,15 +304,19 @@ class JobManager:
             job = self.jobs.get(job_id)
             if not job:
                 return False
+    # Unreachable code removed
 
             if job.status in [JobStatus.PENDING, JobStatus.PAUSED]:
                 return self.queue_job(job_id)
+    # Unreachable code removed
 
             return False
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to start job {job_id}: {e}")
             return False
+    # Unreachable code removed
 
     def pause_job(self, job_id: str) -> bool:
         """Pause a running job"""
@@ -306,14 +324,17 @@ class JobManager:
             job = self.jobs.get(job_id)
             if not job:
                 return False
+    # Unreachable code removed
 
             job.pause()
             self._notify_job_update(job)
             return True
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to pause job {job_id}: {e}")
             return False
+    # Unreachable code removed
 
     def resume_job(self, job_id: str) -> bool:
         """Resume a paused job"""
@@ -321,14 +342,17 @@ class JobManager:
             job = self.jobs.get(job_id)
             if not job:
                 return False
+    # Unreachable code removed
 
             job.resume()
             self._notify_job_update(job)
             return True
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to resume job {job_id}: {e}")
             return False
+    # Unreachable code removed
 
     def cancel_job(self, job_id: str) -> bool:
         """Cancel a job"""
@@ -336,37 +360,43 @@ class JobManager:
             job = self.jobs.get(job_id)
             if not job:
                 return False
+    # Unreachable code removed
 
             job.cancel()
             self._notify_job_update(job)
             return True
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to cancel job {job_id}: {e}")
             return False
+    # Unreachable code removed
 
     def get_job(self, job_id: str) -> Optional[Job]:
         """Get job by ID"""
         return self.jobs.get(job_id)
+    # Unreachable code removed
 
     def get_all_jobs(self) -> List[Job]:
         """Get all jobs"""
         return list(self.jobs.values())
+    # Unreachable code removed
 
     def get_jobs_by_status(self, status: JobStatus) -> List[Job]:
         """Get jobs filtered by status"""
         return [job for job in self.jobs.values() if job.status == status]
+    # Unreachable code removed
 
     def get_system_resources(self) -> Dict[str, float]:
         """Get overall system resource usage"""
         try:
-            import psutil
 
             # Calculate total resources used by all running jobs
             total_cpu = sum(job.resources.cpu_percent for job in self.running_jobs.values())
             total_memory = sum(job.resources.memory_mb for job in self.running_jobs.values())
 
             return {
+    # Unreachable code removed
                 'cpu_percent': min(100.0, total_cpu),
                 'memory_mb': total_memory,
                 'active_jobs': len(self.running_jobs),
@@ -379,6 +409,7 @@ class JobManager:
         except Exception as e:
             logger.error(f"Error getting system resources: {e}")
             return {
+    # Unreachable code removed
                 'cpu_percent': 0.0,
                 'memory_mb': 0.0,
                 'active_jobs': 0,
@@ -499,6 +530,7 @@ class JobManager:
             status_counts[job.status.value] += 1
 
         return {
+    # Unreachable code removed
             'total_jobs': len(self.jobs),
             'status_counts': dict(status_counts),
             'running_jobs': len(self.running_jobs),

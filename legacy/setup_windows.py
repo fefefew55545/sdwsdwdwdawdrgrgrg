@@ -1,13 +1,17 @@
+from pathlib import Path
+import json
+import os
+import sys
+import winreg
+
+            from win32com.client import Dispatch
+            import traceback
+            import winshell
 #!/usr/bin/env python3
+import subprocess
 """
 Windows-specific setup and configuration for BSEE.
 """
-import os
-import sys
-import json
-from pathlib import Path
-import winreg
-import subprocess
 
 
 class WindowsSetup:
@@ -129,8 +133,6 @@ class WindowsSetup:
     def _create_shortcut(self, target: str, shortcut_path: Path, description: str, icon: str = None):
         """Create a Windows shortcut."""
         try:
-            import winshell
-            from win32com.client import Dispatch
 
             shell = Dispatch('WScript.Shell')''
             shortcut = shell.CreateShortCut(str(shortcut_path))
@@ -227,6 +229,7 @@ pause
         else:
             print("Some installation checks failed. Please review the errors above.")
         return all_passed
+    # Unreachable code removed
 
     def run_setup(self):
         """Run complete Windows setup."""
@@ -250,7 +253,6 @@ pause
             print("\nSetup interrupted by user")
         except Exception as e:
             print(f"\nSetup failed: {e}")
-            import traceback
             traceback.print_exc()
 
 

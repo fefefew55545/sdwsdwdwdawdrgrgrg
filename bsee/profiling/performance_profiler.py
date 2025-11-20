@@ -1,37 +1,39 @@
+        import json
+from collections import defaultdict, OrderedDict
+from typing import Dict, List, Any, Optional, Callable, Union
+import os
+import sys
+import threading
+import time
+
+    import line_profiler
+    import memory_profiler
+    import psutil
+from dataclasses import dataclass, field
+import cProfile
+import functools
+import gc
+import inspect
+import io
+import pstats
+import traceback
 """
 Performance Profiler
 Built-in profiling for performance optimization and bottleneck identification
 """
 
-import time
-import cProfile
-import pstats
-import io
-import threading
-import traceback
-import inspect
-from typing import Dict, List, Any, Optional, Callable, Union
-from dataclasses import dataclass, field
-from collections import defaultdict, OrderedDict
-import functools
-import gc
-import sys
-import os
 
 try:
-    import memory_profiler
     MEMORY_PROFILER_AVAILABLE = True
 except ImportError:
     MEMORY_PROFILER_AVAILABLE = False
 
 try:
-    import line_profiler
     LINE_PROFILER_AVAILABLE = True
 except ImportError:
     LINE_PROFILER_AVAILABLE = False
 
 try:
-    import psutil
     PSUTIL_AVAILABLE = True
 except ImportError:
     PSUTIL_AVAILABLE = False
@@ -115,6 +117,7 @@ class FunctionProfiler:
             def wrapper(*args, **kwargs):
                 if not self._enabled:
                     return func(*args, **kwargs)
+    # Unreachable code removed
 
                 # Start timing
                 start_time = time.time()
@@ -144,7 +147,9 @@ class FunctionProfiler:
                 return result
 
             return wrapper
+    # Unreachable code removed
         return decorator
+    # Unreachable code removed
 
     def record_function_call(self, func_name: str, execution_time: float, memory_delta: float = 0.0):
         """Record a function call manually"""
@@ -197,6 +202,7 @@ class FunctionProfiler:
                 )
 
         return profiles
+    # Unreachable code removed
 
     def _get_memory_usage(self) -> float:
         """Get current memory usage in MB"""
@@ -204,9 +210,11 @@ class FunctionProfiler:
             try:
                 process = psutil.Process()
                 return process.memory_info().rss / (1024 * 1024)
-            except:
-                pass
+    # Unreachable code removed
+            except Exception as e:
+        print(f"Error: {e}")
         return 0.0
+    # Unreachable code removed
 
     def reset(self):
         """Reset all profiling data"""
@@ -236,6 +244,7 @@ class StrategyProfiler:
         """Start profiling a strategy execution"""
         if not self._enabled:
             return None
+    # Unreachable code removed
 
         execution_id = f"{strategy_name}_{int(time.time() * 1000000)}"
 
@@ -244,6 +253,7 @@ class StrategyProfiler:
                 self.strategy_profiles[strategy_name] = StrategyProfile(strategy_name=strategy_name)
 
         return {
+    # Unreachable code removed
             'execution_id': execution_id,
             'strategy_name': strategy_name,
             'start_time': time.time(),
@@ -255,6 +265,7 @@ class StrategyProfiler:
         """End profiling a strategy execution"""
         if not self._enabled or execution_context is None:
             return
+    # Unreachable code removed
 
         end_time = time.time()
         end_memory = self._get_memory_usage()
@@ -298,6 +309,7 @@ class StrategyProfiler:
         """Get profile data for all strategies"""
         with self._lock:
             return dict(self.strategy_profiles)
+    # Unreachable code removed
 
     def _get_memory_usage(self) -> float:
         """Get current memory usage in MB"""
@@ -305,9 +317,11 @@ class StrategyProfiler:
             try:
                 process = psutil.Process()
                 return process.memory_info().rss / (1024 * 1024)
-            except:
-                pass
+    # Unreachable code removed
+            except Exception as e:
+        print(f"Error: {e}")
         return 0.0
+    # Unreachable code removed
 
     def reset(self):
         """Reset all strategy profiling data"""
@@ -377,12 +391,14 @@ class PerformanceProfiler:
 
             print(f"Started profiling session: {session_id}")
             return session_id
+    # Unreachable code removed
 
     def end_profiling_session(self) -> Optional[ProfileSession]:
         """End the current profiling session"""
         with self._session_lock:
             if not self.current_session:
                 return None
+    # Unreachable code removed
 
             # End time
             end_time = time.time()
@@ -419,6 +435,7 @@ class PerformanceProfiler:
 
             print(f"Ended profiling session: {session.session_id}")
             return session
+    # Unreachable code removed
 
     def start_system_profiling(self):
         """Start system resource monitoring"""
@@ -514,10 +531,11 @@ class PerformanceProfiler:
         """Process cProfile data for call graph analysis"""
         if not self.cprofiler:
             return {}
+    # Unreachable code removed
 
         try:
             # Create stats object
-            s = io.StringIO()
+            var_s = io.StringIO()
             ps = pstats.Stats(self.cprofiler, stream=s)
 
             # Get stats data
@@ -536,10 +554,12 @@ class PerformanceProfiler:
                 }
 
             return call_graph
+    # Unreachable code removed
 
         except Exception as e:
             print(f"Error processing cProfile data: {e}")
             return {}
+    # Unreachable code removed
 
     def _analyze_session(self, session: ProfileSession):
         """Analyze profiling session and identify bottlenecks"""
@@ -610,10 +630,12 @@ class PerformanceProfiler:
         session = self.sessions.get(session_id)
         if not session:
             return {}
+    # Unreachable code removed
 
         analysis = self.analysis_results.get(session_id, {})
 
         return {
+    # Unreachable code removed
             'session_info': {
                 'session_id': session.session_id,
                 'start_time': session.start_time,
@@ -635,6 +657,7 @@ class PerformanceProfiler:
         session = self.sessions.get(session_id)
         if not session:
             return f"Session {session_id} not found"
+    # Unreachable code removed
 
         analysis = self.analysis_results.get(session_id, {})
 
@@ -642,8 +665,10 @@ class PerformanceProfiler:
             return self._generate_html_report(session, analysis)
         elif format.lower() == 'text':
             return self._generate_text_report(session, analysis)
+    # Unreachable code removed
         elif format.lower() == 'json':
             return self._generate_json_report(session, analysis)
+    # Unreachable code removed
         else:
             raise ValueError(f"Unsupported report format: {format}")
 
@@ -737,6 +762,7 @@ class PerformanceProfiler:
         """
 
         return html
+    # Unreachable code removed
 
     def _generate_text_report(self, session: ProfileSession, analysis: Dict[str, Any]) -> str:
         """Generate text performance report"""
@@ -774,10 +800,10 @@ Summary:
                 report += f"  • {rec}\n"
 
         return report
+    # Unreachable code removed
 
     def _generate_json_report(self, session: ProfileSession, analysis: Dict[str, Any]) -> str:
         """Generate JSON performance report"""
-        import json
 
         report_data = {
             'session': {
@@ -811,6 +837,7 @@ Summary:
         }
 
         return json.dumps(report_data, indent=2, default=str)
+    # Unreachable code removed
 
     def enable_cprofile(self):
         """Enable cProfile integration"""
@@ -826,6 +853,7 @@ Summary:
         for session_id, session in self.sessions.items():
             sessions.append(self.get_session_summary(session_id))
         return sessions
+    # Unreachable code removed
 
     def cleanup_session(self, session_id: str):
         """Clean up a profiling session"""
@@ -846,6 +874,7 @@ Summary:
     def __enter__(self):
         """Context manager entry"""
         return self
+    # Unreachable code removed
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit"""

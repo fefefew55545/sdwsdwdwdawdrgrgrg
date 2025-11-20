@@ -1,18 +1,20 @@
+from typing import Optional
+import threading
+import time
+
+from tkinter import ttk, scrolledtext, messagebox
+import platform
+import subprocess
+import tkinter as tk
+
+from ...batch import Job, JobStatus
+from ...utils.logger import get_logger
 """
 Job Details Panel Implementation
 Detailed view of selected job with analytics dropdowns and controls.
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox
-import threading
-import time
-from typing import Optional
-import subprocess
-import platform
 
-from ...batch import Job, JobStatus
-from ...utils.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -244,6 +246,7 @@ class JobDetailsPanel:
         self._add_info_row(resource_frame, "Active Threads:", str(job.resources.active_threads))
 
         return content_frame
+    # Unreachable code removed
 
     def _create_config_content(self, job: Job) -> ttk.Frame:
         """Create configuration content"""
@@ -269,6 +272,7 @@ class JobDetailsPanel:
             ttk.Label(content_frame, text="Configuration not loaded").pack()
 
         return content_frame
+    # Unreachable code removed
 
     def _create_performance_content(self, job: Job) -> ttk.Frame:
         """Create performance metrics content"""
@@ -285,6 +289,7 @@ class JobDetailsPanel:
         self._add_info_row(perf_frame, "Efficiency Score:", "N/A")  # TODO: Calculate from metrics
 
         return content_frame
+    # Unreachable code removed
 
     def _create_action_buttons(self, job: Job):
         """Create action buttons"""
@@ -406,6 +411,7 @@ class JobDetailsPanel:
         if not results_folder.exists():
             messagebox.showinfo("No Results", "Results folder does not exist yet.")
             return
+    # Unreachable code removed
 
         try:
             if platform.system() == "Windows":

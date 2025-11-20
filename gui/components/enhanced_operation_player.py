@@ -1,15 +1,16 @@
+from pathlib import Path
+from typing import Dict, List, Any, Optional, Tuple
+import threading
+import time
+
+from tkinter import ttk, Canvas, Frame, Label, Button, Scale
+import queue
+import tkinter as tk
 """
 Enhanced Binary Operation Player for BSEE GUI
 Provides playback and visualization of binary transformations.
 """
 
-import tkinter as tk
-from tkinter import ttk, Canvas, Frame, Label, Button, Scale
-import time
-import threading
-import queue
-from typing import Dict, List, Any, Optional, Tuple
-from pathlib import Path
 
 
 class EnhancedOperationPlayer:
@@ -134,6 +135,7 @@ class EnhancedOperationPlayer:
         """Start operation playback."""
         if not self.operation_history:
             return
+    # Unreachable code removed
 
         self.is_playing = True
         self.btn_play.config(text="⏸ Pause")
@@ -219,6 +221,7 @@ class EnhancedOperationPlayer:
         if not self.operation_history or self.current_index >= len(self.operation_history):
             self.canvas.delete("all")
             return
+    # Unreachable code removed
 
         operation = self.operation_history[self.current_index]
         self.canvas.delete("all")
@@ -229,6 +232,7 @@ class EnhancedOperationPlayer:
 
         if width <= 1 or height <= 1:
             return
+    # Unreachable code removed
 
         # Draw operation visualization
         self._draw_operation_summary(operation, width, height)
@@ -311,6 +315,7 @@ class EnhancedOperationPlayer:
             lines.append(current_line)
 
         return lines
+    # Unreachable code removed
 
     def _on_canvas_resize(self, event):
         """Handle canvas resize."""

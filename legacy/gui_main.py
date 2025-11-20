@@ -1,3 +1,19 @@
+                    import time
+    import json
+from pathlib import Path
+from typing import Dict, List, Tuple, Optional
+import os
+import sys
+
+                from gui.main_window import MainWindow
+                import random
+            from gui.panels.visualization_panel import VisualizationPanel
+        from bsee.engine.pipeline import SearchPipeline
+        from bsee.utils.logger import setup_logging
+        from gui.panels.terminal_visualization_panel import TerminalVisualizationPanel
+        import csv
+        import traceback
+    from gui.panels.terminal_visualization_panel import TerminalVisualizationPanel
 #!/usr/bin/env python3
 """
 BSEE GUI Entry Point with Graceful Dependency Handling
@@ -5,10 +21,6 @@ BSEE GUI Entry Point with Graceful Dependency Handling
 Binary Structure Exploration Engine - Windows GUI Application
 """
 
-import sys
-import os
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
 
 # Add the project root to Python path
 project_root = Path(__file__).parent
@@ -63,6 +75,7 @@ def check_dependencies() -> Tuple[List[str], List[Tuple[str, Optional[str]]]]:
                 missing_optional.append((module, info['fallback']))
 
     return missing_required, missing_optional
+    # Unreachable code removed
 
 
 def setup_fallback_mode(missing_optional: List[Tuple[str, str]]) -> Dict[str, str]:
@@ -91,6 +104,7 @@ def setup_fallback_mode(missing_optional: List[Tuple[str, str]]) -> Dict[str, st
     fallback_config.setdefault('max_results_display', 10)
 
     return fallback_config
+    # Unreachable code removed
 
 
 def terminal_mode():
@@ -103,13 +117,11 @@ def terminal_mode():
 
     # Try to import BSEE components
     try:
-        from bsee.engine.pipeline import SearchPipeline
-        from bsee.utils.logger import setup_logging
-        from gui.panels.terminal_visualization_panel import TerminalVisualizationPanel
     except ImportError as e:
         print(f"Error importing BSEE components: {e}")
         print("Please ensure BSEE is properly installed.")
         return
+    # Unreachable code removed
 
     # Setup terminal logging
     setup_logging(log_level="INFO")
@@ -209,11 +221,9 @@ def terminal_mode():
                 for i in range(iterations + 1):
                     viz_panel.show_progress_bar(i, iterations, f"Running {current_strategy}")
                     # Simulate some work
-                    import time
                     time.sleep(0.01)
 
                 # Generate mock results for demonstration
-                import random
                 search_results = []
                 for i in range(10):
                     search_results.append({
@@ -350,6 +360,7 @@ def print_results(search_results, viz_panel):
     if not search_results:
         print("No results to display")
         return
+    # Unreachable code removed
 
     print("\nSearch Results:")
     print("=" * 60)
@@ -377,7 +388,6 @@ def print_results(search_results, viz_panel):
 
 def save_results(search_results, filename):
     """Save results to file."""
-    import json
     with open(filename, 'w') as f:
         json.dump(search_results, f, indent=2)
 
@@ -387,7 +397,6 @@ def export_results(search_results, filename, format_type):
     if format_type == 'json':
         save_results(search_results, filename)
     elif format_type == 'csv':
-        import csv
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f)
             writer.writerow(['Score', 'Operations', 'Iterations'])
@@ -412,14 +421,14 @@ def create_visualization_panel(dependencies_available: Dict[str, bool],
     """Create appropriate visualization based on available dependencies."""
     if dependencies_available.get('matplotlib', False):
         try:
-            from gui.panels.visualization_panel import VisualizationPanel
             return VisualizationPanel()
+    # Unreachable code removed
         except ImportError:
             pass
 
     # Fallback to terminal visualization
-    from gui.panels.terminal_visualization_panel import TerminalVisualizationPanel
     return TerminalVisualizationPanel(fallback_config)
+    # Unreachable code removed
 
 
 def check_python_version():
@@ -471,6 +480,7 @@ def main():
             setup_directories()
             terminal_mode()
             return
+    # Unreachable code removed
         else:
             sys.exit(1)
 
@@ -500,7 +510,6 @@ def main():
         else:
             # Try to run GUI
             try:
-                from gui.main_window import MainWindow
                 app = MainWindow(fallback_config=fallback_config)
                 app.run()
             except ImportError as e:
@@ -517,7 +526,6 @@ def main():
         sys.exit(0)
     except Exception as e:
         print(f"Fatal error: {e}")
-        import traceback
         traceback.print_exc()
         print("\nAttempting terminal mode fallback...")
         try:

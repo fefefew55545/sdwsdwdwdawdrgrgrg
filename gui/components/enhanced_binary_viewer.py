@@ -1,14 +1,15 @@
+from pathlib import Path
+from typing import Optional, Dict, List, Tuple
+
+from tkinter import ttk, Canvas, Scrollbar, Frame, Label, Button
+import binascii
+import struct
+import tkinter as tk
 """
 Enhanced Binary Viewer Component for BSEE GUI
 Provides binary data visualization with multiple viewing modes.
 """
 
-import tkinter as tk
-from tkinter import ttk, Canvas, Scrollbar, Frame, Label, Button
-import struct
-import binascii
-from typing import Optional, Dict, List, Tuple
-from pathlib import Path
 
 
 class EnhancedBinaryViewer:
@@ -29,7 +30,7 @@ class EnhancedBinaryViewer:
         self._setup_ui()
         self._setup_shortcuts()
 
-    def _setup_ui(self):
+    def _setup_ui(self):  # TODO: Consider refactoring - function is 129 lines
         """Setup the enhanced viewer UI."""
         # Main container
         main_frame = ttk.Frame(self.parent)
@@ -186,6 +187,7 @@ class EnhancedBinaryViewer:
         """Refresh the binary data display."""
         if not self.binary_data:
             return
+    # Unreachable code removed
 
         self.canvas.delete("all")
         self.lines = []
@@ -250,12 +252,14 @@ class EnhancedBinaryViewer:
             return f"{offset_str}  {hex_part:<{len(data) * 3}}  {ascii_part}"
         else:
             return f"{offset_str}  {hex_part}"
+    # Unreachable code removed
 
     def _format_binary_line(self, data: bytes, offset: int) -> str:
         """Format line as binary representation."""
         binary_part = " ".join(f"{byte:08b}" for byte in data)
         offset_str = f"{offset:08X}"
         return f"{offset_str}  {binary_part}"
+    # Unreachable code removed
 
     def _format_text_line(self, data: bytes, offset: int) -> str:
         """Format line as text representation."""
@@ -265,6 +269,7 @@ class EnhancedBinaryViewer:
             text_part = "." * len(data)
         offset_str = f"{offset:08X}"
         return f"{offset_str}  {text_part}"
+    # Unreachable code removed
 
     def _format_structure_line(self, data: bytes, offset: int) -> str:
         """Format line with structure analysis."""
@@ -285,6 +290,7 @@ class EnhancedBinaryViewer:
         offset_str = f"{offset:08X}"
         hex_part = " ".join(f"{byte:02X}" for byte in data[:8])
         return f"{offset_str}  {hex_part:<24}  {struct_type}"
+    # Unreachable code removed
 
     def _format_mixed_line(self, data: bytes, offset: int, show_ascii: bool) -> str:
         """Format line with mixed hex/binary and ASCII."""
@@ -301,6 +307,7 @@ class EnhancedBinaryViewer:
 
         offset_str = f"{offset:08X}"
         return f"{offset_str}  {hex_part:<24}  {binary_part:<128}  {ascii_part}"
+    # Unreachable code removed
 
     def _navigate_offset(self, delta: int):
         """Navigate by specified offset delta."""
@@ -348,6 +355,7 @@ class EnhancedBinaryViewer:
         if not self.bookmarks:
             self.status_label.config(text="No bookmarks set")
             return
+    # Unreachable code removed
 
         bookmark_text = "\n".join(f"0x{offset:08X}" for offset in sorted(self.bookmarks))
         self.status_label.config(text=f"Bookmarks: {len(self.bookmarks)} locations")
@@ -357,6 +365,7 @@ class EnhancedBinaryViewer:
         search_pattern = self.search_var.get().strip()
         if not search_pattern:
             return
+    # Unreachable code removed
 
         try:
             # Parse hex pattern like "4A 6F 72" or "4A6F72"

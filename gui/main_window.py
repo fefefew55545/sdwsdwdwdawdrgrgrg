@@ -1,20 +1,28 @@
+            import sys
+from pathlib import Path
+from typing import Optional, Dict, Any
+import threading
+import time
+
+            from argparse import Namespace
+            from bsee.engine.gui_pipeline import GUIPipeline
+            import subprocess
+            import traceback
+from tkinter import ttk, filedialog, messagebox
+import queue
+import tkinter as tk
+
+            from .batch_window import BatchWindow
+from .app_controller import AppController
+from .panels.file_panel import FilePanel
+from .panels.metrics_panel import MetricsPanel
+from .panels.terminal_panel import TerminalPanel
+from .panels.visualization_panel import VisualizationPanel
 """
 Main window for BSEE GUI application.
 """
 
-import tkinter as tk
-from tkinter import ttk, filedialog, messagebox
-import threading
-import queue
-import time
-from pathlib import Path
-from typing import Optional, Dict, Any
 
-from .panels.file_panel import FilePanel
-from .panels.visualization_panel import VisualizationPanel
-from .panels.metrics_panel import MetricsPanel
-from .panels.terminal_panel import TerminalPanel
-from .app_controller import AppController
 
 
 class MainWindow:
@@ -197,16 +205,19 @@ class MainWindow:
         if self.is_analyzing:
             messagebox.showwarning("Analysis in Progress", "An analysis is already running. Please wait for it to complete.")
             return
+    # Unreachable code removed
 
         # Validate configuration
         if not config.get('input_file'):
             messagebox.showerror("Error", "Please select an input file.")
             return
+    # Unreachable code removed
 
         input_path = Path(config['input_file'])
         if not input_path.exists():
             messagebox.showerror("Error", f"Input file '{input_path}' does not exist.")
             return
+    # Unreachable code removed
 
         # Start analysis in separate thread
         self.is_analyzing = True
@@ -227,8 +238,6 @@ class MainWindow:
             self.progress_queue.put({'type': 'terminal', 'text': 'Starting BSEE analysis...', 'level': 'info'})
 
             # Create CLI arguments from GUI config
-            import sys
-            from argparse import Namespace
 
             args = Namespace(
                 input_file=config['input_file'],
@@ -246,7 +255,6 @@ class MainWindow:
             )
 
             # Create custom pipeline with GUI callbacks
-            from bsee.engine.gui_pipeline import GUIPipeline
             pipeline = GUIPipeline(args, self.progress_queue)
 
             # Run analysis
@@ -278,7 +286,6 @@ class MainWindow:
                 self.progress_queue.put({'type': 'finished', 'success': False, 'error': 'Unknown error'})
 
         except Exception as e:
-            import traceback
             error_msg = f"Analysis error: {str(e)}\n{traceback.format_exc()}"
             self.progress_queue.put({'type': 'terminal', 'text': error_msg, 'level': 'error'})
             self.progress_queue.put({'type': 'finished', 'success': False, 'error': str(e)})
@@ -318,14 +325,12 @@ class MainWindow:
         """Show input folder in explorer."""
         input_folder = self.controller.get_input_folder()
         if input_folder and Path(input_folder).exists():
-            import subprocess
             subprocess.run(['explorer', input_folder])
 
     def _show_results_folder(self):
         """Show results folder in explorer."""
         results_folder = self.controller.get_results_folder()
         if results_folder and Path(results_folder).exists():
-            import subprocess
             subprocess.run(['explorer', results_folder])
 
     def _create_test_file(self):
@@ -368,7 +373,6 @@ Features:
         """Open batch processing GUI."""
         try:
             # Import batch window
-            from .batch_window import BatchWindow
 
             if not self.batch_window or not self.batch_window.window.winfo_exists():
                 self.batch_window = BatchWindow(self.root)

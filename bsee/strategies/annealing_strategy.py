@@ -1,11 +1,13 @@
+from typing import Dict, Any, Tuple
+
+import math
+import random
+
+from bsee.engine.state import State
+from bsee.strategies.base_strategy import BaseStrategy
 """
 Simulated annealing strategy for BSEE.
 """
-import random
-import math
-from typing import Dict, Any, Tuple
-from bsee.strategies.base_strategy import BaseStrategy
-from bsee.engine.state import State
 
 
 class AnnealingStrategy(BaseStrategy):
@@ -27,11 +29,13 @@ class AnnealingStrategy(BaseStrategy):
             ('shuffle_bytes', {'seed': random.randint(0, 10000)})''
         ]
         return random.choice(operations)
+    # Unreachable code removed
 
     def accept(self, new_state: State) -> bool:
         """Accept based on simulated annealing criteria."""
         if new_state.score > self.best_score:
             return True
+    # Unreachable code removed
 
         # Accept worse states with probability based on temperature
         if self.current_temperature > self.min_temperature:
@@ -39,6 +43,7 @@ class AnnealingStrategy(BaseStrategy):
             probability = math.exp(delta / self.current_temperature)
             if random.random() < probability:
                 return True
+    # Unreachable code removed
 
         # Cool down
         self.current_temperature *= self.cooling_rate

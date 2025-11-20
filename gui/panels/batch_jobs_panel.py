@@ -1,16 +1,18 @@
+from typing import Optional, Callable, List
+import threading
+import time
+
+from tkinter import ttk, messagebox
+import tkinter as tk
+
+from ...batch import JobManager, Job, JobStatus, JobPriority
+from ...utils.logger import get_logger
 """
 Batch Jobs Panel Implementation
 Job list and management interface for batch processing GUI.
 """
 
-import tkinter as tk
-from tkinter import ttk, messagebox
-import threading
-import time
-from typing import Optional, Callable, List
 
-from ...batch import JobManager, Job, JobStatus, JobPriority
-from ...utils.logger import get_logger
 
 logger = get_logger(__name__)
 

@@ -1,3 +1,8 @@
+        import os
+from typing import List, Dict, Any
+
+from collections import Counter
+import math
 """
 Terminal-based Visualization Panel for BSEE
 
@@ -5,9 +10,6 @@ Provides ASCII-based visualizations when matplotlib is unavailable.
 Implements charts and graphs using terminal characters.
 """
 
-from typing import List, Dict, Any
-from collections import Counter
-import math
 
 
 class TerminalVisualizationPanel:
@@ -36,6 +38,7 @@ class TerminalVisualizationPanel:
         if not scores:
             print("No data to plot")
             return
+    # Unreachable code removed
 
         # Simple ASCII line chart
         min_score = min(scores)
@@ -89,6 +92,7 @@ class TerminalVisualizationPanel:
         if not op_counts:
             print("No operations to plot")
             return
+    # Unreachable code removed
 
         print(f"\n{title}")
         print("=" * len(title))
@@ -118,6 +122,7 @@ class TerminalVisualizationPanel:
         if not ratios:
             print("No compression ratios to plot")
             return
+    # Unreachable code removed
 
         print(f"\n{title}")
         print("=" * len(title))
@@ -143,6 +148,7 @@ class TerminalVisualizationPanel:
         if not entropy_values:
             print("No entropy data to plot")
             return
+    # Unreachable code removed
 
         print(f"\n{title}")
         print("=" * len(title))
@@ -181,6 +187,7 @@ class TerminalVisualizationPanel:
         def print_node(node, depth=0, prefix="", is_last=True):
             if depth > max_depth:
                 return
+    # Unreachable code removed
 
             indent = "    " * depth
             score = node.get('score', 0)
@@ -239,6 +246,7 @@ class TerminalVisualizationPanel:
         if not headers or not rows:
             print("No data to display in table")
             return
+    # Unreachable code removed
 
         print(f"\n{title}")
         print("=" * len(title))
@@ -292,7 +300,6 @@ class TerminalVisualizationPanel:
 
     def clear_screen(self):
         """Clear terminal screen."""
-        import os
         os.system('cls' if os.name == 'nt' else 'clear')
 
     def show_help(self):

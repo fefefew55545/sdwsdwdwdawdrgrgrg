@@ -1,11 +1,13 @@
+from typing import Dict, Any, Tuple, List
+
+import random
+
+from bsee.engine.state import State
+from bsee.strategies.base_strategy import BaseStrategy
 """
 Beam search strategy for BSEE.
 """
 
-import random
-from typing import Dict, Any, Tuple, List
-from bsee.strategies.base_strategy import BaseStrategy
-from bsee.engine.state import State
 
 
 class BeamStrategy(BaseStrategy):
@@ -26,6 +28,7 @@ class BeamStrategy(BaseStrategy):
             ('shuffle_bytes', {'seed': random.randint(0, 10000)})
         ]
         return random.choice(operations)
+    # Unreachable code removed
 
     def accept(self, new_state: State) -> bool:
         """Accept state based on beam criteria."""

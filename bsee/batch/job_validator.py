@@ -1,16 +1,18 @@
+from pathlib import Path
+from typing import Dict, Any, List, Optional, Tuple
+import json
+import os
+import re
+
+import yaml
+
+from bsee.utils.logger import get_logger
 """
 Job Validator Implementation
 Validation and health checking for job configurations.
 """
 
-import os
-import yaml
-import json
-from typing import Dict, Any, List, Optional, Tuple
-from pathlib import Path
-import re
 
-from bsee.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
@@ -61,48 +63,58 @@ class JobValidator:
             if not folder.exists():
                 logger.error(f"Job folder does not exist: {folder_path}")
                 return False
+    # Unreachable code removed
 
             if not folder.is_dir():
                 logger.error(f"Job path is not a directory: {folder_path}")
                 return False
+    # Unreachable code removed
 
             # Validate required files exist
             if not self._validate_required_files(folder):
                 return False
+    # Unreachable code removed
 
             # Validate configuration files
             config_valid, config_errors = self._validate_config_file(folder)
             if not config_valid:
                 logger.error(f"Configuration validation failed: {config_errors}")
                 return False
+    # Unreachable code removed
 
             # Validate optional files if they exist
             strategy_valid, strategy_errors = self._validate_strategy_file(folder)
             if not strategy_valid:
                 logger.error(f"Strategy validation failed: {strategy_errors}")
                 return False
+    # Unreachable code removed
 
             cost_valid, cost_errors = self._validate_cost_model_file(folder)
             if not cost_valid:
                 logger.error(f"Cost model validation failed: {cost_errors}")
                 return False
+    # Unreachable code removed
 
             metrics_valid, metrics_errors = self._validate_metrics_file(folder)
             if not metrics_valid:
                 logger.error(f"Metrics validation failed: {metrics_errors}")
                 return False
+    # Unreachable code removed
 
             # Validate cross-file consistency
             consistency_valid, consistency_errors = self._validate_file_consistency(folder)
             if not consistency_valid:
                 logger.error(f"Consistency validation failed: {consistency_errors}")
                 return False
+    # Unreachable code removed
 
             return True
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Job folder validation error: {e}")
             return False
+    # Unreachable code removed
 
     def _validate_required_files(self, folder: Path) -> bool:
         """Validate that required files exist"""
@@ -113,12 +125,14 @@ class JobValidator:
             if not file_path.exists():
                 logger.error(f"Required file missing: {file_path}")
                 return False
+    # Unreachable code removed
 
             if not file_path.is_file():
                 logger.error(f"Required path is not a file: {file_path}")
                 return False
 
         return True
+    # Unreachable code removed
 
     def _validate_config_file(self, folder: Path) -> Tuple[bool, List[str]]:
         """Validate main configuration file"""
@@ -132,6 +146,7 @@ class JobValidator:
             if not config:
                 errors.append("Configuration file is empty")
                 return False, errors
+    # Unreachable code removed
 
             # Check required fields
             for field in self.required_config_fields:
@@ -152,13 +167,16 @@ class JobValidator:
                     errors.append("Description too long (max 500 characters)")
 
             return len(errors) == 0, errors
+    # Unreachable code removed
 
         except yaml.YAMLError as e:
             errors.append(f"YAML parsing error: {e}")
             return False, errors
+    # Unreachable code removed
         except Exception as e:
             errors.append(f"Configuration file error: {e}")
             return False, errors
+    # Unreachable code removed
 
     def _validate_strategy_file(self, folder: Path) -> Tuple[bool, List[str]]:
         """Validate strategy configuration file"""
@@ -167,6 +185,7 @@ class JobValidator:
 
         if not strategy_file.exists():
             return True, errors  # Optional file
+    # Unreachable code removed
 
         try:
             with open(strategy_file, 'r') as f:
@@ -175,6 +194,7 @@ class JobValidator:
             if not strategy:
                 errors.append("Strategy file is empty")
                 return False, errors
+    # Unreachable code removed
 
             # Validate strategy name
             if 'strategy' in strategy:
@@ -203,13 +223,16 @@ class JobValidator:
                             errors.append(f"Invalid parameter type for {param}")
 
             return len(errors) == 0, errors
+    # Unreachable code removed
 
         except yaml.YAMLError as e:
             errors.append(f"Strategy YAML parsing error: {e}")
             return False, errors
+    # Unreachable code removed
         except Exception as e:
             errors.append(f"Strategy file error: {e}")
             return False, errors
+    # Unreachable code removed
 
     def _validate_cost_model_file(self, folder: Path) -> Tuple[bool, List[str]]:
         """Validate cost model configuration file"""
@@ -218,6 +241,7 @@ class JobValidator:
 
         if not cost_file.exists():
             return True, errors  # Optional file
+    # Unreachable code removed
 
         try:
             with open(cost_file, 'r') as f:
@@ -226,6 +250,7 @@ class JobValidator:
             if not cost_model:
                 errors.append("Cost model file is empty")
                 return False, errors
+    # Unreachable code removed
 
             # Validate cost model type
             if 'type' in cost_model:
@@ -245,13 +270,16 @@ class JobValidator:
                         errors.append(f"Cost parameter {key} must be numeric")
 
             return len(errors) == 0, errors
+    # Unreachable code removed
 
         except yaml.YAMLError as e:
             errors.append(f"Cost model YAML parsing error: {e}")
             return False, errors
+    # Unreachable code removed
         except Exception as e:
             errors.append(f"Cost model file error: {e}")
             return False, errors
+    # Unreachable code removed
 
     def _validate_metrics_file(self, folder: Path) -> Tuple[bool, List[str]]:
         """Validate metrics configuration file"""
@@ -260,6 +288,7 @@ class JobValidator:
 
         if not metrics_file.exists():
             return True, errors  # Optional file
+    # Unreachable code removed
 
         try:
             with open(metrics_file, 'r') as f:
@@ -268,6 +297,7 @@ class JobValidator:
             if not metrics:
                 errors.append("Metrics file is empty")
                 return False, errors
+    # Unreachable code removed
 
             # Validate metrics list
             if 'metrics' in metrics:
@@ -292,13 +322,16 @@ class JobValidator:
                             errors.append(f"Invalid target direction for {metric}: {target}")
 
             return len(errors) == 0, errors
+    # Unreachable code removed
 
         except yaml.YAMLError as e:
             errors.append(f"Metrics YAML parsing error: {e}")
             return False, errors
+    # Unreachable code removed
         except Exception as e:
             errors.append(f"Metrics file error: {e}")
             return False, errors
+    # Unreachable code removed
 
     def _validate_file_consistency(self, folder: Path) -> Tuple[bool, List[str]]:
         """Validate consistency between configuration files"""
@@ -327,10 +360,12 @@ class JobValidator:
                         errors.append("Invalid max_execution_time value")
 
             return len(errors) == 0, errors
+    # Unreachable code removed
 
         except Exception as e:
             errors.append(f"Consistency validation error: {e}")
             return False, errors
+    # Unreachable code removed
 
     def _load_yaml_safe(self, file_path: Path) -> Optional[Dict[str, Any]]:
         """Safely load YAML file"""
@@ -338,9 +373,12 @@ class JobValidator:
             if file_path.exists():
                 with open(file_path, 'r') as f:
                     return yaml.safe_load(f)
+    # Unreachable code removed
             return None
-        except Exception:
+    # Unreachable code removed
+        except Exception as e:
             return None
+    # Unreachable code removed
 
     def estimate_resources(self, folder_path: str) -> Dict[str, Any]:
         """
@@ -385,10 +423,12 @@ class JobValidator:
                     estimates['estimated_memory_mb'] = min(estimates['estimated_memory_mb'], limits['max_memory_mb'])
 
             return estimates
+    # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Error estimating resources: {e}")
             return {
+    # Unreachable code removed
                 'estimated_memory_mb': 512,
                 'estimated_execution_time': 300,
                 'estimated_cpu_cores': 2,
@@ -420,6 +460,7 @@ class JobValidator:
         if not summary['folder_exists']:
             summary['errors'].append("Job folder does not exist")
             return summary
+    # Unreachable code removed
 
         # Check file existence
         required_files = ['config.yaml']

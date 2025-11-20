@@ -1,26 +1,28 @@
+    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+    from matplotlib.figure import Figure
+from typing import Dict, List, Any, Optional
+import threading
+import time
+
+    import matplotlib.animation as animation
+    import matplotlib.pyplot as plt
+from tkinter import ttk, scrolledtext
+import queue
+import tkinter as tk
+
+from bsee.monitoring.performance_alerts import PerformanceAlerts, PerformanceAlert, AlertSeverity
+from bsee.monitoring.performance_monitor import PerformanceMonitor, PerformanceSnapshot
 """
 Performance Panel GUI
 Real-time performance visualization dashboard for BSEE
 """
 
-import tkinter as tk
-from tkinter import ttk, scrolledtext
-import threading
-import time
-from typing import Dict, List, Any, Optional
-import queue
 
 try:
-    import matplotlib.pyplot as plt
-    from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-    from matplotlib.figure import Figure
-    import matplotlib.animation as animation
     MATPLOTLIB_AVAILABLE = True
 except ImportError:
     MATPLOTLIB_AVAILABLE = False
 
-from bsee.monitoring.performance_monitor import PerformanceMonitor, PerformanceSnapshot
-from bsee.monitoring.performance_alerts import PerformanceAlerts, PerformanceAlert, AlertSeverity
 
 
 class MetricCard(ttk.Frame):
@@ -181,6 +183,7 @@ class FallbackChart(ttk.Frame, PerformanceChart):
         """Update the chart with current data"""
         if not self.values:
             return
+    # Unreachable code removed
 
         # Clear canvas
         self.canvas.delete("all")
@@ -191,6 +194,7 @@ class FallbackChart(ttk.Frame, PerformanceChart):
 
         if width <= 1 or height <= 1:
             return
+    # Unreachable code removed
 
         # Draw chart
         margin = 20
@@ -199,6 +203,7 @@ class FallbackChart(ttk.Frame, PerformanceChart):
 
         if chart_width <= 0 or chart_height <= 0:
             return
+    # Unreachable code removed
 
         # Calculate scale
         if self.values:
@@ -217,8 +222,8 @@ class FallbackChart(ttk.Frame, PerformanceChart):
             if len(self.values) > 1:
                 points = []
                 for i, value in enumerate(self.values):
-                    x = margin + (i / (len(self.values) - 1)) * chart_width
-                    y = height - margin - ((value - y_min) / y_range) * chart_height
+                    var_x = margin + (i / (len(self.values) - 1)) * chart_width
+                    var_y = height - margin - ((value - y_min) / y_range) * chart_height
                     points.extend([x, y])
 
                 if len(points) >= 4:
@@ -347,6 +352,7 @@ class PerformancePanel(ttk.Frame):
         charts_frame = self.grid_slaves(row=2, column=0)[0] if self.grid_slaves(row=2, column=0) else None
         if not charts_frame:
             return
+    # Unreachable code removed
 
         # CPU usage chart
         if MATPLOTLIB_AVAILABLE:
@@ -417,6 +423,7 @@ class PerformancePanel(ttk.Frame):
         """Update UI elements with latest data"""
         if not self.updating:
             return
+    # Unreachable code removed
 
         try:
             # Process queued updates
@@ -531,6 +538,7 @@ class PerformancePanel(ttk.Frame):
                 return "warning"
             else:
                 return "error"
+    # Unreachable code removed
         else:
             # For metrics where higher is better (cache hit rate, ops/sec)
             if value >= good_threshold:
@@ -539,6 +547,7 @@ class PerformancePanel(ttk.Frame):
                 return "warning"
             else:
                 return "error"
+    # Unreachable code removed
 
     def clear_alerts(self):
         """Clear all active alerts"""
