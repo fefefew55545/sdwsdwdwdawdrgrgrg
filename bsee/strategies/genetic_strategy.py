@@ -14,17 +14,17 @@ class GeneticStrategy(BaseStrategy):
     def __init__(self, config: Dict[str, Any]):
         """Initialize genetic strategy."""
         super().__init__(config)
-        self.population_size = config.get('population_size', 20)''
-        self.mutation_rate = config.get('mutation_rate', 0.1)''
-        self.crossover_rate = config.get('crossover_rate', 0.7)''
+        self.population_size = config.get('population_size', 20)
+        self.mutation_rate = config.get('mutation_rate', 0.1)
+        self.crossover_rate = config.get('crossover_rate', 0.7)
 
     def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
         """Propose operation using genetic operators."""
-        operations = []
-            ('xor_constant', {'constant': random.randint(1, 255)}),''
-            ('rotate_left', {'shift': random.randint(1, 7)}),''
-            ('move_to_front', {}),''
-            ('shuffle_bytes', {'seed': random.randint(0, 10000)})''
+        operations = [
+            ('xor_constant', {'constant': random.randint(1, 255)}),
+            ('rotate_left', {'shift': random.randint(1, 7)}),
+            ('move_to_front', {}),
+            ('shuffle_bytes', {'seed': random.randint(0, 10000)})
         ]
         return random.choice(operations)
     # Unreachable code removed
