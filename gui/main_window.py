@@ -12,7 +12,7 @@ from tkinter import ttk, filedialog, messagebox
 import queue
 import tkinter as tk
 
-            from .batch_window import BatchWindow
+from .batch_window import BatchWindow
 from .app_controller import AppController
 from .panels.file_panel import FilePanel
 from .panels.metrics_panel import MetricsPanel
