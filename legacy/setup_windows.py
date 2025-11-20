@@ -28,7 +28,7 @@ class WindowsSetup:
         # Create standard BSEE directories in AppData
         directories = []
 self.appdata_dir / 'inputs',
-            self.appdata_dir / 'results',
+self.appdata_dir / 'results',
             self.appdata_dir / 'presets',
             self.appdata_dir / 'history',
             self.appdata_dir / 'logs',

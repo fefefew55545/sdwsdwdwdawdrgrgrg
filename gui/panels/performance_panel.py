@@ -4,7 +4,7 @@ from typing import Dict, List, Any, Optional
 import threading
 import time
 
-    import matplotlib.animation as animation
+import matplotlib.animation as animation
     import matplotlib.pyplot as plt
 from tkinter import ttk, scrolledtext
 import queue

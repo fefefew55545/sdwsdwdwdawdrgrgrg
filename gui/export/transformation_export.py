@@ -6,7 +6,7 @@ import json
 import os
 import threading
 
-                import weasyprint
+import weasyprint
             import yaml
     from PIL import Image, ImageDraw, ImageFont
     import imageio

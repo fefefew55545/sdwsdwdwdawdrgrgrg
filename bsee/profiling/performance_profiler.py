@@ -6,7 +6,7 @@ import sys
 import threading
 import time
 
-    import line_profiler
+import line_profiler
     import memory_profiler
     import psutil
 from dataclasses import dataclass, field

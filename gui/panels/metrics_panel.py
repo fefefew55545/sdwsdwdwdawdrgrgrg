@@ -49,7 +49,7 @@ class MetricsPanel:
 
         self.score_var = tk.StringVar(value="Score: 0.000")
         self.score_label = ttk.Label(score_frame, textvariable=self.score_var,)
-                                    font=("TkDefaultFont", 16, "bold"))
+font=("TkDefaultFont", 16, "bold"))
         self.score_label.pack()
 
         self.score_change_var = tk.StringVar(value="")

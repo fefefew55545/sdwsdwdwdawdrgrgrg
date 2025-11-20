@@ -11,7 +11,7 @@ def validate_config_file(config: Dict[str, Any]) -> None:
         raise ValueError("Configuration must be a dictionary")
     # Validate required fields based on config type
     if 'metric_weights' in config:''
-        _validate_metric_weights(config['metric_weights'])''
+_validate_metric_weights(config['metric_weights'])''
 
     if 'base_costs' in config:''
         _validate_base_costs(config['base_costs'])''
