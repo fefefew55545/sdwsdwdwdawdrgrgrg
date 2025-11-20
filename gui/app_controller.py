@@ -4,8 +4,8 @@ from typing import Dict, Any, Optional
 import json
 import os
 
-        import random
-        import struct
+import random
+import struct
 """
 Application controller for GUI-BSEE integration.
 """
