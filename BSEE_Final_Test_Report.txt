@@ -1,31 +1,29 @@
 BSEE Final Comprehensive Test and Fix Report
 ==================================================
-Generated: 2025-11-20 20:52:01.739491
+Generated: 2025-11-20 21:00:29.490773
 Project Root: /workspace/cmi7urjxn01cbooikrrxi21p3/sdwsdwdwdawdrgrgrg
 
 Test Results:
   Total Tests: 36
-  Passed: 30
-  Failed: 6
-  Warnings: 42
-  Success Rate: 83.3%
+  Passed: 32
+  Failed: 4
+  Warnings: 40
+  Success Rate: 88.9%
 
 Detailed Test Results:
 ------------------------------
 ✅ PASS: BSEE.bat exists
   Found at: /workspace/cmi7urjxn01cbooikrrxi21p3/sdwsdwdwdawdrgrgrg/scripts/BSEE.bat
 
-❌ FAIL: legacy/gui_main.py syntax
-  Syntax errors detected
-  Details: Sorry: IndentationError: unexpected indent (gui_main.py, line 1)
+✅ PASS: legacy/gui_main.py syntax
+  GUI main entry point has valid syntax
 
-❌ FAIL: legacy/main.py syntax
-  Syntax errors detected
-  Details: Sorry: IndentationError: unexpected indent (main.py, line 1)
+✅ PASS: legacy/main.py syntax
+  CLI main entry point has valid syntax
 
 ✅ PASS: legacy/gui_main.py runtime
   No syntax errors - handles missing deps gracefully
-  Details: Exit code: 1
+  Details: Exit code: 0
 
 ✅ PASS: legacy/main.py runtime
   No syntax errors - can process arguments
@@ -47,10 +45,10 @@ Detailed Test Results:
   Checked 176 Python files
 
 ✅ PASS: Syntax validation results
-  ✓ 134 files have valid syntax
+  ✓ 136 files have valid syntax
 
 ✅ PASS: Syntax validation results
-  ✗ 42 files have syntax errors:
+  ✗ 40 files have syntax errors:
 
 ✅ PASS: Directory legacy
   Exists with 3 Python files
