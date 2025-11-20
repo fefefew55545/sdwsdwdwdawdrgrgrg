@@ -16,10 +16,10 @@ Extends MCTS to specifically optimize for binary homogeneity improvement
 
 
 class MCTSNode:
-"""
+    """
     Node in the Monte Carlo Tree Search, specifically for homogeneity optimization.
-"""
-    def __init__(self, state: State, parent: Optional['MCTSNode'] = None, action: Optional[Tuple[str, Dict]] = None):''
+    """
+    def __init__(self, state: State, parent: Optional['MCTSNode'] = None, action: Optional[Tuple[str, Dict]] = None):
         self.state = state
         self.parent = parent
         self.action = action  # (operation, parameters) that led to this node
