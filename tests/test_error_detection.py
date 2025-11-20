@@ -39,7 +39,7 @@ class TestErrorDetector:
         (tmp_path / "subdir").mkdir()
         (tmp_path / "subdir" / "test3.py").touch()
         (tmp_path / ".hidden").mkdir()
-        (tmp_path / ".hidden" / "hidden.py").touch()  # Should be ignored""
+        (tmp_path / ".hidden" / "hidden.py").touch()  # Should be ignored
 
         detector = ErrorDetector(str(tmp_path))
         python_files = detector.find_python_files()
