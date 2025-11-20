@@ -56,7 +56,7 @@ class FilePanel(ttk.LabelFrame):
         # Strategy info label
         self.strategy_info = ttk.Label(strategy_frame, text="Greedy: Always select best operation", foreground="gray")
         self.strategy_info.pack(anchor=tk.W)
-        self.strategy_combo.bind('<<ComboboxSelected>>', self._update_strategy_info)''
+        self.strategy_combo.bind('<<ComboboxSelected>>', self._update_strategy_info)
 
         # Analysis limits
         limits_frame = ttk.LabelFrame(self, text="Analysis Limits", padding=5)
