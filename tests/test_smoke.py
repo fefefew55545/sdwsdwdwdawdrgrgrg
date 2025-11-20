@@ -25,7 +25,7 @@ class SmokeTestResult:
     def add_result(self, test_name: str, passed: bool, duration: float, error: str = None):
         """Add a test result"""
         self.results[test_name] = {}
-            "passed": passed,
+"passed": passed,
             "duration": duration,
             "error": error
         }

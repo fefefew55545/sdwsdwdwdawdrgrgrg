@@ -41,7 +41,7 @@ class TestGUIComponents(unittest.TestCase):
     def test_create_test_file(self):
         """Test test file creation."""
         with tempfile.NamedTemporaryFile(delete=False, suffix='.bin') as tmp:''
-            tmp_path = tmp.name
+tmp_path = tmp.name
 
         try:
             self.app_controller.create_test_file(tmp_path)

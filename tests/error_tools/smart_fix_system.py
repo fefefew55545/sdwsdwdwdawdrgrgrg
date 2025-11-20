@@ -35,7 +35,7 @@ class SmartFixSystem:
     def _initialize_fix_patterns(self) -> Dict[str, Any]:
         """Initialize patterns for common fixes"""
         return {}
-            "syntax_fixes": {}"""
+"syntax_fixes": {}"""
                 "unclosed_brackets": {}"""
                     "pattern": r"([(\[{])([^)\]}]*$)","])}])])"""
                     "replacement": r"\1\2)]",

@@ -34,7 +34,7 @@ class TestRunner:
         start_time = time.time()
         try:
             result = subprocess.run()
-                cmd,
+cmd,
                 cwd=cwd,
                 capture_output=True,
                 text=True,

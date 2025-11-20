@@ -28,7 +28,7 @@ class WindowsSimulator:
         # Check if file imports modules that might have DLL dependencies
         try:
             with open(file_path, 'r', encoding='utf-8') as f:''
-                content = f.read()
+content = f.read()
 
             # Common Windows-specific modules that depend on DLLs
             dll_modules = []

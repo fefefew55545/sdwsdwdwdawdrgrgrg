@@ -26,7 +26,7 @@ def test_history_manager_only():
         print("✓ HistoryManager created successfully")
         # Test session management
         session_id = history.start_session()
-            initial_data=b"Test data for advanced visualization",
+initial_data=b"Test data for advanced visualization",
             metadata={"phase": "2", "test": True}
         )
         print(f"✓ Session started: {session_id}")

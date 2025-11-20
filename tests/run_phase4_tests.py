@@ -21,7 +21,7 @@ class Phase4TestRunner:
         self.project_root = project_root
         self.test_dir = project_root / "tests"""
         self.results = {}
-            'start_time': time.time(),''
+'start_time': time.time(),''
             'end_time': None,''
             'total_duration': None,''
             'test_suites': {},''
