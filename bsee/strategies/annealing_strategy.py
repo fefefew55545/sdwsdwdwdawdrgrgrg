@@ -22,11 +22,11 @@ class AnnealingStrategy(BaseStrategy):
 
     def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
         """Propose operation with temperature-dependent randomness."""
-        operations = []
-            ('xor_constant', {'constant': random.randint(1, 255)}),''
-            ('rotate_left', {'shift': random.randint(1, 7)}),''
-            ('move_to_front', {}),''
-            ('shuffle_bytes', {'seed': random.randint(0, 10000)})''
+        operations = [
+            ('xor_constant', {'constant': random.randint(1, 255)}),
+            ('rotate_left', {'shift': random.randint(1, 7)}),
+            ('move_to_front', {}),
+            ('shuffle_bytes', {'seed': random.randint(0, 10000)})
         ]
         return random.choice(operations)
     # Unreachable code removed
