@@ -559,10 +559,11 @@ echo    BSEE is ready! Select launch mode:
     echo    [10] Exit          - Exit BSEE
     echo.
 
-    choice /c 123456789 /n /m "Select option (1-9): "
+    choice /c 1234567890 /n /m "Select option (1-10): "
 
-    if errorlevel 9 goto exit_bsee
-    if errorlevel 8 goto show_help
+    if errorlevel 10 goto exit_bsee
+    if errorlevel 9 goto show_help
+    if errorlevel 8 goto error_detection_fix
     if errorlevel 7 goto show_system_info
     if errorlevel 6 goto check_configuration
     if errorlevel 5 goto preset_mode
