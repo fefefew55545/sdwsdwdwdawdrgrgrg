@@ -4,10 +4,10 @@ from typing import Optional, Dict, Any
 import threading
 import time
 
-            from argparse import Namespace
-            from bsee.engine.gui_pipeline import GUIPipeline
-            import subprocess
-            import traceback
+from argparse import Namespace
+from bsee.engine.gui_pipeline import GUIPipeline
+import subprocess
+import traceback
 from tkinter import ttk, filedialog, messagebox
 import queue
 import tkinter as tk
