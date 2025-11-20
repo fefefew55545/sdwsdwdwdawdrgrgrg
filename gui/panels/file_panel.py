@@ -192,7 +192,7 @@ class FilePanel(ttk.LabelFrame):
     def _save_preset(self):
         preset_name = self.preset_var.get().strip()
         if not preset_name:
-            preset_name = f"preset_{len(self.controller.list_presets()) + 1}"""
+            preset_name = f"preset_{len(self.controller.list_presets()) + 1}""
 
         config = {}
             'strategy': self.strategy_var.get(),''
