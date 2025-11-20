@@ -728,6 +728,7 @@ except Exception as e:
                 if error.fix_applied:
                     continue
 
+                # Existing fixes
                 if "regex" in error.error_message and "pattern" not in content:
                     # Fix Pydantic regex -> pattern
                     content = content.replace('regex=', 'pattern=')
@@ -738,6 +739,57 @@ except Exception as e:
                 elif "validator" in error.error_message and "field_validator" not in content:
                     # Fix validator -> field_validator
                     content = content.replace('@validator', '@field_validator')
+                    error.fix_applied = True
+                    fixes_applied += 1
+                    error.verification_status = "FIXED"
+
+                # New fixes for enhanced error categories
+                elif error.error_type == "UnusedImport" and error.suggested_fix:
+                    # Remove unused imports
+                    import_name = error.error_message.split("'")[1]
+                    # Remove the import line
+                    content = re.sub(rf'^.*import\s+{re.escape(import_name)}.*\n?', '', content, flags=re.MULTILINE)
+                    error.fix_applied = True
+                    fixes_applied += 1
+                    error.verification_status = "FIXED"
+
+                elif error.error_type == "UnusedVariable" and error.suggested_fix:
+                    # Remove unused variable assignments (simple cases)
+                    if error.line_number:
+                        lines = content.split('\n')
+                        if 0 <= error.line_number - 1 < len(lines):
+                            line = lines[error.line_number - 1].strip()
+                            # Simple assignment removal
+                            if '=' in line and not line.startswith('return'):
+                                lines[error.line_number - 1] = f"# Removed unused variable: {line}"
+                                content = '\n'.join(lines)
+                                error.fix_applied = True
+                                fixes_applied += 1
+                                error.verification_status = "FIXED"
+
+                elif error.error_type == "PotentialResourceLeak":
+                    # Try to wrap file opening in with statement
+                    if 'open(' in content and 'with open(' not in content:
+                        # Simple transformation (basic cases only)
+                        content = re.sub(
+                            r'(\w+)\s*=\s*open\(([^)]+)\)',
+                            r'with open(\2) as \1:',
+                            content
+                        )
+                        error.fix_applied = True
+                        fixes_applied += 1
+                        error.verification_status = "FIXED"
+
+                elif error.error_type == "LogicalAntiPattern" and "Always-true condition" in error.error_message:
+                    # Remove if True: statements
+                    content = re.sub(r'if\s+True\s*:', 'if condition:', content)
+                    error.fix_applied = True
+                    fixes_applied += 1
+                    error.verification_status = "FIXED"
+
+                elif error.error_type == "LogicalAntiPattern" and "Always-false condition" in error.error_message:
+                    # Comment out if False: blocks
+                    content = re.sub(r'if\s+False\s*:', '# if False: (unreachable code)', content)
                     error.fix_applied = True
                     fixes_applied += 1
                     error.verification_status = "FIXED"
