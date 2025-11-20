@@ -10,7 +10,7 @@ from bsee.engine.history import HistoryManager
 
 class ResultsFormatter:
     """Format analysis results for output."""
-    def format_summary(self, best_state: State, history: HistoryManager,)
+    def format_summary(self, best_state: State, history: HistoryManager,
                       total_cost: float, total_operations: int) -> str:
         """Format analysis summary."""
         summary_parts = []
