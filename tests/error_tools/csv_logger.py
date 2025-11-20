@@ -6,6 +6,7 @@ Generates CSV reports with file errors, correlation tracking, and fix status tra
 
 import csv
 import os
+import re
 import hashlib
 import statistics
 from pathlib import Path
