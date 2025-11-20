@@ -14,7 +14,7 @@ from unittest.mock import patch, mock_open
 from datetime import datetime
 
 # Add the error_tools directory to the path
-sys.path.insert(0, str(Path(__file__).parent / 'error_tools'))''
+sys.path.insert(0, str(Path(__file__).parent / 'error_tools'))
 
 from error_detector import ErrorDetector
 from csv_logger import CSVLogger
