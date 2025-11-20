@@ -115,11 +115,7 @@ class AdvancedErrorDetector:
             if fixed_count > 0:
                 print(f"  ✅ Applied {fixed_count} smart fixes")
 
-        # Phase 2: Cross-file logical analysis
-        logical_errors = self._detect_logical_errors(all_errors)
-        all_errors.extend(logical_errors)
-
-        # Phase 3: Enhanced logical error detection
+        # Phase 2: Enhanced logical error detection
         try:
             from logical_error_detector import LogicalErrorDetector
             logical_detector = LogicalErrorDetector(str(self.project_root))
@@ -130,6 +126,10 @@ class AdvancedErrorDetector:
             # Fallback to basic logical detection if logical_error_detector not available
             logical_errors = self._detect_logical_errors(all_errors)
             all_errors.extend(logical_errors)
+
+        # Phase 3: Cross-file analysis (will be enhanced with combination_tester)
+        cross_file_errors = self._detect_cross_file_errors(all_errors, python_files)
+        all_errors.extend(cross_file_errors)
 
         # Phase 4: Performance and security analysis
         perf_security_errors = self._detect_performance_and_security_issues(all_errors)
