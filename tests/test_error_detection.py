@@ -116,7 +116,7 @@ class TestErrorDetector:
         summary = detector.get_error_summary()
         assert summary['SyntaxError'] == 2
         assert summary['ImportError'] == 1
-        assert summary['RuntimeError'] == 1''
+        assert summary['RuntimeError'] == 1
 
 
 class TestCSVLogger:
