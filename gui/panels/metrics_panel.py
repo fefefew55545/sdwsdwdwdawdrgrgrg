@@ -143,8 +143,8 @@ class MetricsPanel:
             widget.destroy()
 
         # Sort metrics by importance (file ideality first, then entropy, etc.)
-        metric_order = ['file_ideality_score', 'entropy_global', 'lz77_ratio','''''']''
-                       'shannon_entropy_global', 'compression_ratio']''
+        metric_order = ['file_ideality_score', 'entropy_global', 'lz77_ratio',
+                       'shannon_entropy_global', 'compression_ratio']
 
         # Add metrics in preferred order, then others
         ordered_metrics = []
