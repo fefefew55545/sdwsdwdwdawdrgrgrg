@@ -180,11 +180,11 @@ class FilePanel(ttk.LabelFrame):
 
         config = self.controller.load_preset(preset_name)
         if config:
-            self.strategy_var.set(config.get('strategy', 'greedy'))''
-            self.max_ops_var.set(str(config.get('max_operations', 1000)))''
-            self.max_cost_var.set(str(config.get('max_cost', 10000)))''
-            self.metrics_var.set(config.get('metrics', 'file_ideality_score,entropy_global,lz77_ratio'))''
-            self.target_metrics_var.set(config.get('target_metrics', 'file_ideality_score=max,entropy_global=min'))''
+            self.strategy_var.set(config.get('strategy', 'greedy'))
+            self.max_ops_var.set(str(config.get('max_operations', 1000)))
+            self.max_cost_var.set(str(config.get('max_cost', 10000)))
+            self.metrics_var.set(config.get('metrics', 'file_ideality_score,entropy_global,lz77_ratio'))
+            self.target_metrics_var.set(config.get('target_metrics', 'file_ideality_score=max,entropy_global=min'))
             self.output_dir_var.set(config.get('output_dir', str(Path.cwd() / "results")))
             messagebox.showinfo("Success", f"Preset '{preset_name}' loaded successfully.")
         else:
