@@ -170,7 +170,7 @@ class FilePanel(ttk.LabelFrame):
         }
         self.strategy_info.config(text=descriptions.get(self.strategy_var.get(), ""))
     def _update_presets(self):
-        self.preset_combo['values'] = self.controller.list_presets()''
+        self.preset_combo['values'] = self.controller.list_presets()
 
     def _load_preset(self):
         preset_name = self.preset_var.get()
