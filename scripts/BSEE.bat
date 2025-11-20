@@ -554,8 +554,9 @@ echo    BSEE is ready! Select launch mode:
     echo    [5] Preset Mode   - Choose predefined configurations
     echo    [6] Configuration Check - Validate setup
     echo    [7] System Information - Show detailed system info
-    echo    [8] Help          - Show detailed help
-    echo    [9] Exit          - Exit BSEE
+    echo    [8] Error Detection & Fix - Find and fix code issues
+    echo    [9] Help          - Show detailed help
+    echo    [10] Exit          - Exit BSEE
     echo.
 
     choice /c 123456789 /n /m "Select option (1-9): "
