@@ -39,7 +39,7 @@ class FilePanel(ttk.LabelFrame):
         self.recent_var = tk.StringVar()
         self.recent_combo = ttk.Combobox(recent_frame, textvariable=self.recent_var, state="readonly")
         self.recent_combo.pack(side=tk.LEFT, fill=tk.X, expand=True)
-        self.recent_combo.bind('<<ComboboxSelected>>', self._on_recent_selected)''
+        self.recent_combo.bind('<<ComboboxSelected>>', self._on_recent_selected)
 
         self._update_recent_files()
 
