@@ -15,9 +15,9 @@ class AnnealingStrategy(BaseStrategy):
     def __init__(self, config: Dict[str, Any]):
         """Initialize annealing strategy."""
         super().__init__(config)
-        self.initial_temperature = config.get('initial_temperature', 100.0)''
-        self.cooling_rate = config.get('cooling_rate', 0.95)''
-        self.min_temperature = config.get('min_temperature', 0.1)''
+        self.initial_temperature = config.get('initial_temperature', 100.0)
+        self.cooling_rate = config.get('cooling_rate', 0.95)
+        self.min_temperature = config.get('min_temperature', 0.1)
         self.current_temperature = self.initial_temperature
 
     def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
