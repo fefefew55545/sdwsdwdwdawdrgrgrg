@@ -33,8 +33,8 @@ class TestRunner:
 
         start_time = time.time()
         try:
-            result = subprocess.run()
-cmd,
+            result = subprocess.run(
+                cmd,
                 cwd=cwd,
                 capture_output=True,
                 text=True,
