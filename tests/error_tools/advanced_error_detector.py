@@ -877,13 +877,18 @@ except Exception as e:
             ErrorCategory.SYNTAX: 0,
             ErrorCategory.IMPORT: 1,
             ErrorCategory.RUNTIME: 2,
-            ErrorCategory.LOGICAL: 3,
-            ErrorCategory.SECURITY: 4,
-            ErrorCategory.PERFORMANCE: 5,
-            ErrorCategory.MAINTAINABILITY: 6,
-            ErrorCategory.COMPATIBILITY: 7
+            ErrorCategory.DATA_FLOW: 3,      # New: Critical data flow issues
+            ErrorCategory.RESOURCE_LEAK: 4,  # New: Important resource issues
+            ErrorCategory.RACE_CONDITION: 5, # New: Concurrency issues
+            ErrorCategory.LOGICAL: 6,
+            ErrorCategory.SECURITY: 7,
+            ErrorCategory.PERFORMANCE: 8,
+            ErrorCategory.DEAD_CODE: 9,      # New: Dead code issues
+            ErrorCategory.COMBINATION: 10,   # New: Cross-file issues
+            ErrorCategory.MAINTAINABILITY: 11,
+            ErrorCategory.COMPATIBILITY: 12
         }
-        return order.get(category, 8)
+        return order.get(category, 13)
 
     def _print_error_summary(self):
         """Print comprehensive error summary"""
