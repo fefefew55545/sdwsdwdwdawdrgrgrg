@@ -106,11 +106,11 @@ class TestErrorDetector:
     def test_get_error_summary(self):
         """Test error summary generation"""
         detector = ErrorDetector()
-        detector.errors = []
-            {'error_type': 'SyntaxError'},''
-            {'error_type': 'ImportError'},''
-            {'error_type': 'SyntaxError'},''
-            {'error_type': 'RuntimeError'}''
+        detector.errors = [
+            {'error_type': 'SyntaxError'},
+            {'error_type': 'ImportError'},
+            {'error_type': 'SyntaxError'},
+            {'error_type': 'RuntimeError'}
         ]
 
         summary = detector.get_error_summary()
