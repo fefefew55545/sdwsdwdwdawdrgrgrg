@@ -3,14 +3,14 @@ BSEE Configuration Presets
 Ready-to-use configuration presets for different analysis scenarios
 """
 # Available presets
-PRESETS = {}
-"neural_network": "neural_network_preset.yaml",
+PRESETS = {
+    "neural_network": "neural_network_preset.yaml",
     "performance": "performance_optimized_preset.yaml",
-    "research": "research_analysis_preset.yaml"""
+    "research": "research_analysis_preset.yaml"
 }
 
 # Default preset
-DEFAULT_PRESET = "performance"""
+DEFAULT_PRESET = "performance"
 
 def get_preset_path(preset_name: str) -> str:
     """Get the file path for a preset"""
