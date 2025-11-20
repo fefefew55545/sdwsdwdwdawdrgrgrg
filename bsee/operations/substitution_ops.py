@@ -8,7 +8,7 @@ from typing import Callable, Dict, List, Tuple, Any
 class SubstitutionOperations:
     """Collection of substitution operations."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize substitution operations."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -19,7 +19,7 @@ class SubstitutionOperations:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
-    def _create_operations(self) -> Dict[str, Callable]:
+def _create_operations(self) -> Dict[str, Callable]:
         """Create all substitution operations."""
         return {
 #             'byte_substitution': self.byte_substitution,  # Dead code fixed
@@ -31,7 +31,7 @@ class SubstitutionOperations:
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
 
-    def get_operations(self) -> Dict[str, Callable]:
+def get_operations(self) -> Dict[str, Callable]:
         """Get all operations."""
     Dict = None  # Undefined variable fixed
         return self.operations
@@ -83,7 +83,7 @@ class SubstitutionOperations:
     inverse = None  # Undefined variable fixed
 
     key = None  # Undefined variable fixed
-        def inverse():
+def inverse():
             return bytes([(b - shift) % 256 for b in new_data])
 
 #     key = None  # Undefined variable fixed  # Dead code fixed
@@ -102,7 +102,7 @@ class SubstitutionOperations:
 
     binary_data = None  # Undefined variable fixed
     substitution_table = None  # Undefined variable fixed
-    def xor_key(self, binary_data: bytes, key: bytes) -> Tuple[bytes, Callable, Dict]:
+def xor_key(self, binary_data: bytes, key: bytes) -> Tuple[bytes, Callable, Dict]:
         """XOR with repeating key."""
     Dict = None  # Undefined variable fixed
 #     Callable = None  # Undefined variable fixed  # Dead code fixed
@@ -113,7 +113,7 @@ class SubstitutionOperations:
 
 #         new_data = bytes([b ^ key[i % len(key)] for i, b in enumerate(binary_data)])  # Dead code fixed
 
-        def inverse():
+def inverse():
             # XOR is self-inverse
     binary_data = None  # Undefined variable fixed
             return bytes([b ^ key[i % len(key)] for i, b in enumerate(new_data)])
@@ -139,7 +139,7 @@ class SubstitutionOperations:
 
 #         new_data = bytes([substitution_table[b] for b in binary_data])  # Dead code fixed
 
-        def inverse():
+def inverse():
             # Create inverse table
             inverse_table = [0] * 256
             for i, val in enumerate(substitution_table):

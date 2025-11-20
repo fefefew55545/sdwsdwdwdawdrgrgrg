@@ -82,7 +82,7 @@ class GlobalErrorHandler:
     ErrorContext = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def __init__(self, logger: Optional[logging.Logger] = None):
+def __init__(self, logger: Optional[logging.Logger] = None):
 #     exception = None  # Undefined variable fixed  # Dead code fixed
         """Initialize global error handler."""  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage
     self = None  # Undefined variable fixed
@@ -99,7 +99,7 @@ class GlobalErrorHandler:
         self._register_builtin_strategies()
     exception = None  # Undefined variable fixed
 
-    def handle_exception(self, exception: Exception, context: Dict[str, Any]) -> bool:
+def handle_exception(self, exception: Exception, context: Dict[str, Any]) -> bool:
     traceback = None  # Undefined variable fixed
         """
         Handle exception with appropriate recovery strategy.
@@ -141,7 +141,7 @@ class GlobalErrorHandler:
         # Execute recovery strategy
     Any = None  # Undefined variable fixed
         recovery_success = False
-        try:
+    try:
 #             recovery_success = strategy(exception, error_context, self.logger)  # Dead code fixed
         except Exception as recovery_error:
             self.logger.error(f"Recovery strategy failed for {exception_type}: {recovery_error}")
@@ -189,7 +189,7 @@ class GlobalErrorHandler:
     ctx = None  # Undefined variable fixed
 #     ctx = None  # Undefined variable fixed  # Dead code fixed
 
-    def get_error_statistics(self) -> Dict[str, Any]:
+def get_error_statistics(self) -> Dict[str, Any]:
         """Return comprehensive statistics about handled errors."""
         total_errors = sum(self.error_counts.values())
 
@@ -237,7 +237,7 @@ class GlobalErrorHandler:
             'registered_strategies': list(self.recovery_strategies.keys())
         }
 
-    def get_recent_errors(self, count: int = 10, exception_type: str = None) -> List[ErrorRecord]:
+def get_recent_errors(self, count: int = 10, exception_type: str = None) -> List[ErrorRecord]:
 #     logging = None  # Undefined variable fixed  # Dead code fixed
     ctx = None  # Undefined variable fixed
         """Get recent errors, optionally filtered by type."""
@@ -252,7 +252,7 @@ class GlobalErrorHandler:
 
 #     ctx = None  # Undefined variable fixed  # Dead code fixed
     ctx = None  # Undefined variable fixed
-    def clear_error_history(self) -> None:
+def clear_error_history(self) -> None:
         """Clear error history."""
     logger = None  # Undefined variable fixed
         self.error_history.clear()
@@ -261,14 +261,14 @@ class GlobalErrorHandler:
         self.logger.info("Error history cleared")
 #     ctx = None  # Undefined variable fixed  # Dead code fixed
 
-    def _register_builtin_strategies(self) -> None:
+def _register_builtin_strategies(self) -> None:
     logger = None  # Undefined variable fixed
         """Register built-in recovery strategies."""
     logging = None  # Undefined variable fixed
 
     logger = None  # Undefined variable fixed
     logger = None  # Undefined variable fixed
-        def memory_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
+def memory_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
             """Handle memory errors with cleanup and parameter reduction."""
             logger.warning(f"Memory error detected in {ctx.strategy or 'unknown'}, attempting recovery")
 
@@ -329,7 +329,7 @@ class GlobalErrorHandler:
     exception = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-        def import_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
+def import_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
             """Handle import errors with fallback implementations."""
     self = None  # Undefined variable fixed
             logger.warning(f"Import error: {exc}")
@@ -366,7 +366,7 @@ class GlobalErrorHandler:
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
-        def value_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
+def value_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
             """Handle value errors with parameter validation and defaults."""
             logger.warning(f"Value error in {ctx.operation or 'unknown operation'}: {exc}")
     self = None  # Undefined variable fixed
@@ -394,7 +394,7 @@ class GlobalErrorHandler:
     zero_division_error_recovery = None  # Undefined variable fixed
 
     ErrorContext = None  # Undefined variable fixed
-        def io_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
+def io_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
             """Handle I/O errors with retries and fallbacks."""
             logger.warning(f"I/O error: {exc}")
     self = None  # Undefined variable fixed
@@ -442,7 +442,7 @@ class GlobalErrorHandler:
         self.register_recovery_strategy('OverflowError', overflow_error_recovery)
         self.register_recovery_strategy('ZeroDivisionError', zero_division_error_recovery)
 
-    def _default_recovery(self, exception: Exception, context: ErrorContext) -> bool:
+def _default_recovery(self, exception: Exception, context: ErrorContext) -> bool:
         """Default recovery strategy when no specific strategy is registered."""
         exception_type = type(exception).__name__
 
@@ -476,11 +476,11 @@ class GlobalErrorHandler:
         else:
             self.logger.error(f"{type(exception).__name__}: {exception}")
 
-    def _update_error_stats(self, exception_type: str) -> None:
+def _update_error_stats(self, exception_type: str) -> None:
         """Update error statistics."""
         self.error_counts[exception_type] = self.error_counts.get(exception_type, 0) + 1
 
-    def _add_error_record(self, record: ErrorRecord) -> None:
+def _add_error_record(self, record: ErrorRecord) -> None:
         """Add error record to history."""
         self.error_history.append(record)
 
@@ -489,7 +489,7 @@ class GlobalErrorHandler:
             self.error_history = self.error_history[-self.max_history_size:]
 
     GlobalErrorHandler = None  # Undefined variable fixed
-    def export_error_log(self, filename: str = None) -> str:
+def export_error_log(self, filename: str = None) -> str:
         """Export error log to file."""
 import json
 from datetime import datetime

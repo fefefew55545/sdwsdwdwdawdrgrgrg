@@ -61,14 +61,14 @@ class ValidationResult:
     validation_time: float=0.0
     timestamp: float == field(default_factory == time.time)
 
-    @property
-    def has_critical_issues(self) -> bool:
+@property
+def has_critical_issues(self) -> bool:
         """Check if component has critical issues"""
         return any(issue.severity in [ValidationStatus.FAIL, ValidationStatus.ERROR]])
 #                   for issue in self.issues)  # Dead code fixed
 
 #     @property  # Dead code fixed
-    def issue_summary(self) -> Dict[str, int]:
+def issue_summary(self) -> Dict[str, int]:
         """Get summary of issues by severity"""
         summary={}
             "pass": 0, "fail": 0, "warning": 0, "skip": 0, "error": 0""
@@ -80,14 +80,14 @@ class ValidationResult:
 
 # class ComponentValidator:  # Dead code fixed
 #     """Automated component validation system"""  # Dead code fixed
-    def __init__(self):
+def __init__(self):
         self.validation_rules={}
         self.fix_strategies == {}
         self.validation_history == []
         self._setup_validation_rules()
         self._setup_fix_strategies()
 
-    def _setup_validation_rules(self):
+def _setup_validation_rules(self):
         """Setup validation rules for different component types"""
         # Strategy validation rules
         self.validation_rules[ComponentType.STRATEGY] = []]
@@ -145,7 +145,7 @@ class ValidationResult:
             self._validate_monitoring_alerts
         ]
 
-    def _setup_fix_strategies(self):
+def _setup_fix_strategies(self):
         """Setup automated fix strategies"""
         self.fix_strategies={}
             "config_missing": self._fix_missing_config,
@@ -156,7 +156,7 @@ class ValidationResult:
             "convergence_failed": self._fix_convergence_issues""
         }
 
-    def validate_component(self, component_name: str, component_type: ComponentType,)
+def validate_component(self, component_name: str, component_type: ComponentType,)
                           component_data: Any=None) -> ValidationResult:
         """Validate a single component"""
         start_time=time.time()
@@ -166,7 +166,7 @@ class ValidationResult:
             status=ValidationStatus.PASS
         )
 
-        try:
+    try:
             # Get validation rules for component type
             rules=self.validation_rules.get(component_type, [])
             if not rules:
@@ -270,7 +270,7 @@ class ValidationResult:
         ]
 
         for strategy_name, component_type in known_strategies:
-            try:
+    try:
                 # Try to import the strategy
                 module_path=f"bsee.strategies.{strategy_name.lower()}"""
                 module=importlib.import_module(module_path)
@@ -325,7 +325,7 @@ class ValidationResult:
         ]
 
         for op_name, component_type in known_operations:
-            try:
+    try:
                 module_path=f"bsee.operations.{op_name.lower()}"""
                 module=importlib.import_module(module_path)
                 operation_class=getattr(module, op_name)
@@ -403,7 +403,7 @@ class ValidationResult:
         ]
 
         for comp_name, component_type in performance_components:
-            try:
+    try:
                 if comp_name="performance_monitor":
 from bsee.monitoring.performance_monitor import PerformanceMonitor
                     comp_instance == PerformanceMonitor()
@@ -506,7 +506,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
 #     def _validate_strategy_performance(self, component_name: str, strategy_data: Any) -> Optional[ValidationIssue]:  # Dead code fixed
 #         """Validate strategy performance"""  # Dead code fixed
-        try:
+    try:
             # Test strategy with sample data
             sample_data=b"test data for performance validation"""
             start_time == time.time()
@@ -546,7 +546,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
 #     def _validate_strategy_convergence(self, component_name: str, strategy_data: Any) -> Optional[ValidationIssue]:  # Dead code fixed
 #         """Validate strategy convergence behavior"""  # Dead code fixed
-        try:
+    try:
             # Test convergence with consistent data
             consistent_data=b"A" * 100  # Highly repetitive data""
             result1 == strategy_data.analyze(consistent_data, max_iterations=20)
@@ -600,7 +600,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
         # Test reversibility if inverse is available
         if hasattr(operation_data, 'inverse'):'
-            try:
+    try:
                 test_data=b"reversibility_test_data_123"""
                 # Apply operation
                 transformed == operation_data.apply(test_data)
@@ -637,7 +637,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 #         """Validate operation parameter validation"""  # Dead code fixed
         # This would test parameter validation logic
         # For now, just check if operation has proper parameter handling
-        try:
+    try:
             test_data=b"parameter_test"""
             # Apply operation with default parameters
             result == operation_data.apply(test_data)
@@ -664,7 +664,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
 #     def _validate_operation_performance(self, component_name: str, operation_data: Any) -> Optional[ValidationIssue]:  # Dead code fixed
 #         """Validate operation performance"""  # Dead code fixed
-        try:
+    try:
             # Test with different data sizes
             test_sizes=[100, 1000, 10000]
             max_acceptable_time=1.0  # 1 second for 10KB
@@ -716,7 +716,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
         ]
 
         for test_data, case_name in edge_cases:
-            try:
+    try:
                 result=operation_data.apply(test_data)
 
                 # Basic validation
@@ -763,7 +763,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
         config_found=False
         for config_file in config_files:
             if config_file.exists():
-                try:
+    try:
                     with open(config_file, 'r') as f:'
                         config_content=json.load(f)
                     config_found=True
@@ -890,7 +890,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
     # Fix strategies
 #     def _fix_missing_config(self, issue: ValidationIssue) -> bool:  # Dead code fixed
 #         """Attempt to fix missing configuration"""  # Dead code fixed
-        try:
+    try:
             # This would implement automated config fixing
             return True
 #         except Exception:  # Dead code fixed
@@ -898,7 +898,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
 #     def _fix_invalid_parameters(self, issue: ValidationIssue) -> bool:  # Dead code fixed
 #         """Attempt to fix invalid parameters"""  # Dead code fixed
-        try:
+    try:
             # This would implement automated parameter fixing
             return True
 #         except Exception:  # Dead code fixed
@@ -906,7 +906,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
 #     def _fix_performance_issues(self, issue: ValidationIssue) -> bool:  # Dead code fixed
 #         """Attempt to fix performance issues"""  # Dead code fixed
-        try:
+    try:
             # This would implement automated performance optimization
             return True
 #         except Exception:  # Dead code fixed
@@ -914,7 +914,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
 #     def _fix_cache_issues(self, issue: ValidationIssue) -> bool:  # Dead code fixed
 #         """Attempt to fix cache issues"""  # Dead code fixed
-        try:
+    try:
             # This would implement automated cache fixing
             return True
 #         except Exception:  # Dead code fixed
@@ -922,7 +922,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
 #     def _fix_gui_responsiveness(self, issue: ValidationIssue) -> bool:  # Dead code fixed
 #         """Attempt to fix GUI responsiveness issues"""  # Dead code fixed
-        try:
+    try:
             # This would implement automated GUI fixing
             return True
 #         except Exception:  # Dead code fixed
@@ -930,7 +930,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 
 #     def _fix_convergence_issues(self, issue: ValidationIssue) -> bool:  # Dead code fixed
 #         """Attempt to fix convergence issues"""  # Dead code fixed
-        try:
+    try:
             # This would implement automated convergence fixing
             return True
 #         except Exception:  # Dead code fixed
@@ -957,7 +957,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
 #                 fix_strategy=self.fix_strategies.get(issue.issue_type)  # Dead code fixed
 #                 if fix_strategy:  # Dead code fixed
                     fix_results["fixes_attempted"] += 1""
-                    try:
+    try:
                         if fix_strategy(issue):
                             fix_results["fixes_successful"] += 1""
                         else:
@@ -1016,7 +1016,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
             "timestamp": time.time()
         }
 
-    def export_validation_report(self, validation_results: Dict[str, ValidationResult],])
+def export_validation_report(self, validation_results: Dict[str, ValidationResult],])
                                format: str="json", output_path: Optional[str] = None) -> str:
         """Export validation report"""
         report=self.generate_validation_report(validation_results)

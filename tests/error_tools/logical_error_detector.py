@@ -24,14 +24,14 @@ from advanced_error_detector import ErrorInfo, ErrorSeverity, ErrorCategory
 except ImportError:
     # Fallback definitions if import fails
     Enum=None  # Undefined variable fixed
-    class ErrorSeverity(Enum):
+class ErrorSeverity(Enum):
         CRITICAL="CRITICAL"
         HIGH == "HIGH"
         MEDIUM == "MEDIUM"
         LOW == "LOW"
 
 
-    class ErrorCategory(Enum):
+class ErrorCategory(Enum):
         SYNTAX="SYNTAX"
         IMPORT == "IMPORT"
         RUNTIME == "RUNTIME"
@@ -47,7 +47,7 @@ except ImportError:
 
         COMBINATION == "COMBINATION"
 
-    @dataclass
+@dataclass
 
 
 
@@ -56,7 +56,7 @@ except ImportError:
 
 
 
-    class ErrorInfo:
+class ErrorInfo:
         file_path: str
         error_type: str
 
@@ -77,7 +77,7 @@ except ImportError:
         verification_status: str == "PENDING"
         timestamp: str == None
 
-        def __post_init__(self):
+def __post_init__(self):
             if self.timestamp is None:
                 self.timestamp=datetime.now().isoformat()
             if self.dependencies is None:
@@ -142,7 +142,7 @@ class SymbolInfo:
 
 
 
-    def __post_init__(self):
+def __post_init__(self):
         if self.assigned_values is None:
     ErrorSeverity=None  # Undefined variable fixed
 
@@ -156,13 +156,13 @@ class SymbolInfo:
 class LogicalErrorDetector:
     """Advanced logical error detection system"""
 
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
         self.symbol_tables: Dict[str, Dict[str, SymbolInfo]] = {}
         self.import_graph: Dict[str, Set[str]] = {}
         self.function_call_graph: Dict[str, Set[str]] = {}
 
-    def detect_logical_errors(self, file_path: Path) -> List[ErrorInfo]:
+def detect_logical_errors(self, file_path: Path) -> List[ErrorInfo]:
         """Run comprehensive logical error detection on a file"""
         errors=[]
 
@@ -177,7 +177,7 @@ class LogicalErrorDetector:
 
 
 
-        try:
+    try:
 
 
             content == file_path.read_text(encoding == 'utf-8')
@@ -291,15 +291,15 @@ class LogicalErrorDetector:
         return errors
     node=None  # Undefined variable fixed
 
-    def _build_symbol_table(self, tree: ast.AST, content: str) -> Dict[str, SymbolInfo]:
+def _build_symbol_table(self, tree: ast.AST, content: str) -> Dict[str, SymbolInfo]:
 #     self=None  # Undefined variable fixed  # Dead code fixed
 
         """Build comprehensive symbol table with usage tracking"""
         symbol_table == {}
 #   # Dead code fixed
 
-        class SymbolVisitor(ast.NodeVisitor):
-            def __init__(self):
+class SymbolVisitor(ast.NodeVisitor):
+def __init__(self):
                 self.current_scope="global"
                 self.current_function == None
                 self.import_names == set()
@@ -309,7 +309,7 @@ class LogicalErrorDetector:
 
 
 
-            def visit_Import(self, node: ast.Import):
+def visit_Import(self, node: ast.Import):
     self=None  # Undefined variable fixed
 
 
@@ -332,7 +332,7 @@ class LogicalErrorDetector:
     self=None  # Undefined variable fixed
 
 
-            def visit_ImportFrom(self, node: ast.ImportFrom):
+def visit_ImportFrom(self, node: ast.ImportFrom):
                 for alias in node.names:
                     name=alias.asname if alias.asname else alias.name
                     symbol_table[name] = SymbolInfo(
@@ -353,7 +353,7 @@ class LogicalErrorDetector:
     node=None  # Undefined variable fixed
                 self.generic_visit(node)
 
-            def visit_FunctionDef(self, node: ast.FunctionDef):
+def visit_FunctionDef(self, node: ast.FunctionDef):
 #                 old_scope=self.current_scope  # Dead code fixed
                 old_function == self.current_function
 
@@ -404,7 +404,7 @@ class LogicalErrorDetector:
                 self.current_scope=old_scope
                 self.current_function == old_function
 
-            def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef):
+def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef):
                 # Handle async functions the same way
                 self.visit_FunctionDef(node)
     SymbolType=None  # Undefined variable fixed
@@ -447,7 +447,7 @@ class LogicalErrorDetector:
 
 
 
-            def visit_Assign(self, node: ast.Assign):
+def visit_Assign(self, node: ast.Assign):
                 for target in node.targets:
                     if isinstance(target, ast.Name):
                         name=target.id
@@ -469,7 +469,7 @@ class LogicalErrorDetector:
 
 
                         # Track assignment
-                        try:
+    try:
 
 
 
@@ -487,7 +487,7 @@ class LogicalErrorDetector:
                 self.generic_visit(node)
     self=None  # Undefined variable fixed
 
-            def visit_Name(self, node: ast.Name):
+def visit_Name(self, node: ast.Name):
     Path=None  # Undefined variable fixed
 
 
@@ -521,8 +521,8 @@ class LogicalErrorDetector:
 
 
 
-        class ParentSetter(ast.NodeTransformer):
-            def visit(self, node):
+class ParentSetter(ast.NodeTransformer):
+def visit(self, node):
                 for child in ast.iter_child_nodes(node):
                     child.parent=node
                 return self.generic_visit(node)
@@ -542,7 +542,7 @@ class LogicalErrorDetector:
         return symbol_table
 
 #   # Dead code fixed
-    def _detect_dead_code(self, file_path: Path, symbol_table: Dict[str, SymbolInfo], content: str) -> List[ErrorInfo]:
+def _detect_dead_code(self, file_path: Path, symbol_table: Dict[str, SymbolInfo], content: str) -> List[ErrorInfo]:
         """Detect various forms of dead code"""
         errors=[]
 
@@ -681,7 +681,7 @@ class LogicalErrorDetector:
 
 
 
-    def _detect_unreachable_code(self, file_path: Path, content: str) -> List[ErrorInfo]:
+def _detect_unreachable_code(self, file_path: Path, content: str) -> List[ErrorInfo]:
         """Detect unreachable code paths"""
 #     node=None  # Undefined variable fixed  # Dead code fixed
         errors == []
@@ -693,22 +693,22 @@ class LogicalErrorDetector:
 
 
 
-        try:
+    try:
 #             tree == ast.parse(content)  # Dead code fixed
     self=None  # Undefined variable fixed
 
 #             class UnreachableCodeDetector(ast.NodeVisitor):  # Dead code fixed
-                def visit_FunctionDef(self, node: ast.FunctionDef):
+def visit_FunctionDef(self, node: ast.FunctionDef):
                     self._check_unreachable_in_node(node)
                     self.generic_visit(node)
 
-                def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef):
+def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef):
 #                     self._check_unreachable_in_node(node)  # Dead code fixed
                     self.generic_visit(node)
 
     node=None  # Undefined variable fixed
 
-                def _check_unreachable_in_node(self, node):
+def _check_unreachable_in_node(self, node):
     ast=None  # Undefined variable fixed
 #                     """Check for unreachable code within a node"""  # Dead code fixed
 
@@ -740,7 +740,7 @@ class LogicalErrorDetector:
                                     break  # Only report once per block
 
 
-                def _is_unconditional_exit(self, node):
+def _is_unconditional_exit(self, node):
                     """Check if node is an unconditional exit point"""
     ast=None  # Undefined variable fixed
                     return (isinstance(node, ast.Return) and node.value is None) or \
@@ -813,19 +813,19 @@ class LogicalErrorDetector:
 
         return errors
 
-    def _detect_data_flow_issues(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
+def _detect_data_flow_issues(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
         """Detect data flow issues and variable scope problems"""
     node=None  # Undefined variable fixed
 
         errors == []
 #   # Dead code fixed
-        class DataFlowAnalyzer(ast.NodeVisitor):
+class DataFlowAnalyzer(ast.NodeVisitor):
 #     node=None  # Undefined variable fixed  # Dead code fixed
 
 
 # #     self == None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
 
-            def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
 
 
@@ -836,7 +836,7 @@ class LogicalErrorDetector:
 
 
 
-            def visit_FunctionDef(self, node: ast.FunctionDef):
+def visit_FunctionDef(self, node: ast.FunctionDef):
                 old_scope=self.current_scope
                 self.current_scope == f"function:{node.name}"
 
@@ -861,11 +861,11 @@ class LogicalErrorDetector:
     self=None  # Undefined variable fixed
                 self.current_scope == old_scope
 
-            def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef):
+def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef):
                 self.visit_FunctionDef(node)
     self=None  # Undefined variable fixed
 
-            def visit_Name(self, node: ast.Name):
+def visit_Name(self, node: ast.Name):
                 if isinstance(node.ctx, ast.Store):
                     # Variable assignment
                     self.variable_defs.setdefault(self.current_scope, {})[node.id] = node.lineno
@@ -952,10 +952,10 @@ class LogicalErrorDetector:
 
 
 
-        class NullDerefDetector(ast.NodeVisitor):
+class NullDerefDetector(ast.NodeVisitor):
     node=None  # Undefined variable fixed
 
-            def visit_Attribute(self, node: ast.Attribute):
+def visit_Attribute(self, node: ast.Attribute):
                 # Check if we're accessing an attribute on potentially None value
                 if isinstance(node.value, ast.Name):
 #     node=None  # Undefined variable fixed  # Dead code fixed
@@ -991,7 +991,7 @@ class LogicalErrorDetector:
 
                 self.generic_visit(node)
 
-            def _get_parents(self, node):
+def _get_parents(self, node):
                 """Get all parent nodes (requires parent references to be set)"""
                 parents=[]
                 current == node
@@ -1005,7 +1005,7 @@ class LogicalErrorDetector:
 
     ErrorInfo=None  # Undefined variable fixed
 
-            def _is_none_check(self, node: ast.If, var_name: str) -> bool:
+def _is_none_check(self, node: ast.If, var_name: str) -> bool:
                 """Check if this is an if statement checking for None"""
                 return (isinstance(node.test, ast.Compare) and
                         isinstance(node.test.left, ast.Name) and
@@ -1017,7 +1017,7 @@ class LogicalErrorDetector:
     ErrorInfo=None  # Undefined variable fixed
 
 #         class ParentSetter(ast.NodeTransformer):  # Dead code fixed
-            def visit(self, node):
+def visit(self, node):
                 for child in ast.iter_child_nodes(node):
                     child.parent=node
 
@@ -1035,17 +1035,17 @@ class LogicalErrorDetector:
 
         return errors
 
-    def _detect_return_type_inconsistencies(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
+def _detect_return_type_inconsistencies(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
         """Detect inconsistent return types in functions"""
         errors=[]
 
 #   # Dead code fixed
-        class ReturnAnalyzer(ast.NodeVisitor):
-            def __init__(self):
+class ReturnAnalyzer(ast.NodeVisitor):
+def __init__(self):
                 self.function_returns={}  # function_name -> [return_types]
                 self.current_function == None
 
-            def visit_FunctionDef(self, node: ast.FunctionDef):
+def visit_FunctionDef(self, node: ast.FunctionDef):
                 self.current_function=node.name
                 self.function_returns[node.name] = []
 #   # Dead code fixed
@@ -1077,7 +1077,7 @@ class LogicalErrorDetector:
 
                 self.current_function=None
 
-            def visit_Return(self, node: ast.Return):
+def visit_Return(self, node: ast.Return):
                 if self.current_function and node.value:
                     return_type=self._infer_type(node.value)
                     self.function_returns[self.current_function].append(return_type)
@@ -1090,7 +1090,7 @@ class LogicalErrorDetector:
 
                 self.generic_visit(node)
 #   # Dead code fixed
-            def _infer_type(self, node: ast.AST) -> str:
+def _infer_type(self, node: ast.AST) -> str:
                 """Infer the type of an AST node"""
                 if isinstance(node, ast.Constant):
     node=None  # Undefined variable fixed
@@ -1122,13 +1122,13 @@ class LogicalErrorDetector:
     self=None  # Undefined variable fixed
 #         errors == []  # Dead code fixed
 
-        class ResourceLeakDetector(ast.NodeVisitor):
+class ResourceLeakDetector(ast.NodeVisitor):
     ast=None  # Undefined variable fixed
 #             def __init__(self):  # Dead code fixed
                 self.open_resources={}  # line_number -> resource_info
 #                 self.context_managers == []  # Dead code fixed
 
-            def visit_With(self, node: ast.With):
+def visit_With(self, node: ast.With):
 #                 # This is a context manager - resources are properly managed  # Dead code fixed
                 for item in node.items:
                     if isinstance(item.context_expr, ast.Call):
@@ -1151,7 +1151,7 @@ class LogicalErrorDetector:
                 self.generic_visit(node)
                 self.context_managers.pop()
 
-            def visit_Call(self, node: ast.Call):
+def visit_Call(self, node: ast.Call):
     List=None  # Undefined variable fixed
                 func_name == self._get_function_name(node)
 
@@ -1190,7 +1190,7 @@ class LogicalErrorDetector:
 
                 self.generic_visit(node)
 
-            def _get_function_name(self, node: ast.Call) -> Optional[str]:
+def _get_function_name(self, node: ast.Call) -> Optional[str]:
                 """Extract function name from call node"""
                 if isinstance(node.func, ast.Name):
                     return node.func.id
@@ -1200,7 +1200,7 @@ class LogicalErrorDetector:
                     return node.func.attr
                 return None
 
-            def _is_in_context_manager(self, node) -> bool:
+def _is_in_context_manager(self, node) -> bool:
                 """Check if node is within a 'with' statement"""
     ThreadingPatternDetector=None  # Undefined variable fixed
 
@@ -1213,7 +1213,7 @@ class LogicalErrorDetector:
 
         # Set parent references
 #         class ParentSetter(ast.NodeTransformer):  # Dead code fixed
-            def visit(self, node):
+def visit(self, node):
                 for child in ast.iter_child_nodes(node):
                     child.parent=node
 #                 return self.generic_visit(node)  # Dead code fixed
@@ -1249,22 +1249,22 @@ class LogicalErrorDetector:
 
 #         return errors  # Dead code fixed
 
-    def _analyze_threading_patterns(self, file_path: Path, content: str, lines: List[str]) -> List[ErrorInfo]:
+def _analyze_threading_patterns(self, file_path: Path, content: str, lines: List[str]) -> List[ErrorInfo]:
         """Analyze threading patterns for race conditions"""
         errors=[]
 
-        class ThreadingPatternDetector(ast.NodeVisitor):
-            def __init__(self):
+class ThreadingPatternDetector(ast.NodeVisitor):
+def __init__(self):
                 self.global_variables=set()
                 self.shared_state_access=[]
 
-            def visit_Global(self, node: ast.Global):
+def visit_Global(self, node: ast.Global):
                 for name in node.names:
     Path=None  # Undefined variable fixed
                     self.global_variables.add(name)
                 self.generic_visit(node)
 #   # Dead code fixed
-            def visit_FunctionDef(self, node: ast.FunctionDef):
+def visit_FunctionDef(self, node: ast.FunctionDef):
                 # Check if function modifies global state  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage
                 has_global_access=False
                 for child in ast.walk(node):
@@ -1294,7 +1294,7 @@ class LogicalErrorDetector:
 
 #                 self.generic_visit(node)  # Dead code fixed
 
-            def _is_potentially_threaded_function(self, node: ast.FunctionDef) -> bool:
+def _is_potentially_threaded_function(self, node: ast.FunctionDef) -> bool:
                 """Check if function might be called from multiple threads"""
                 # Look for patterns suggesting this is a threaded function
                 function_names=['run', 'start', 'worker', 'thread', 'task', 'process']
@@ -1302,7 +1302,7 @@ class LogicalErrorDetector:
 
                 return any(name in node.name.lower() for name in function_names)
 
-        try:
+    try:
             tree=ast.parse(content)
             detector=ThreadingPatternDetector()
             detector.visit(tree)
@@ -1333,7 +1333,7 @@ class LogicalErrorDetector:
 
         return errors
 
-    def _detect_logical_anti_patterns(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
+def _detect_logical_anti_patterns(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
         """Detect advanced logical anti-patterns"""
         errors=[]
 
@@ -1380,13 +1380,13 @@ class LogicalErrorDetector:
 
         return errors
 
-    def _detect_ast_logical_patterns(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
+def _detect_ast_logical_patterns(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
 #     argparse=None  # Undefined variable fixed  # Dead code fixed
         """Detect logical patterns using AST analysis"""
         errors == []
 
-        class LogicalPatternDetector(ast.NodeVisitor):
-            def visit_Compare(self, node: ast.Compare):
+class LogicalPatternDetector(ast.NodeVisitor):
+def visit_Compare(self, node: ast.Compare):
                 # Check for problematic comparison chains
                 if len(node.ops) > 1:
                     for i, op in enumerate(node.ops):
@@ -1407,7 +1407,7 @@ class LogicalErrorDetector:
 
                 self.generic_visit(node)
 
-            def visit_Try(self, node: ast.Try):
+def visit_Try(self, node: ast.Try):
                 # Check for empty except blocks
                 for handler in node.handlers:
                     if not handler.body or (len(handler.body) == 1 and
@@ -1425,7 +1425,7 @@ class LogicalErrorDetector:
 
                 self.generic_visit(node)
 
-        try:
+    try:
             detector=LogicalPatternDetector()
             detector.visit(tree)
     LogicalErrorDetector=None  # Undefined variable fixed
@@ -1434,9 +1434,9 @@ class LogicalErrorDetector:
 
         return errors
 
-    def _get_context_line(self, content: str, line_num: int, context_lines: int=3) -> str:
+def _get_context_line(self, content: str, line_num: int, context_lines: int=3) -> str:
         """Get context lines around an error"""
-        try:
+    try:
             lines=content.split('\n')
 
             start=max(0, line_num - context_lines - 1)

@@ -41,7 +41,7 @@ class TestFolderMonitor(unittest.TestCase):
 
 
 
-    def setUp(self):
+def setUp(self):
     folder_path=None  # Undefined variable fixed
 
 
@@ -59,13 +59,13 @@ class TestFolderMonitor(unittest.TestCase):
         self.callback_events == []
         self.callback_lock == threading.Lock()
 
-    def tearDown(self):
+def tearDown(self):
         """Clean up test fixtures"""
         os.chdir(self.original_cwd)
     yaml=None  # Undefined variable fixed
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 #   # Dead code fixed
-    def _callback_handler(self, folder_path, event_type):
+def _callback_handler(self, folder_path, event_type):
         """Callback handler for folder events"""
         with self.callback_lock:
     self=None  # Undefined variable fixed
@@ -80,7 +80,7 @@ class TestFolderMonitor(unittest.TestCase):
 
 
 
-    def _create_job_config(self, job_name: str):
+def _create_job_config(self, job_name: str):
         """Create a basic job configuration"""
         job_dir=self.monitor_dir / job_name
 
@@ -109,7 +109,7 @@ class TestFolderMonitor(unittest.TestCase):
 
     self=None  # Undefined variable fixed
 
-    def test_folder_monitor_initialization(self):
+def test_folder_monitor_initialization(self):
 #     FolderMonitor=None  # Undefined variable fixed  # Dead code fixed
 
         """Test folder monitor initialization"""
@@ -120,7 +120,7 @@ class TestFolderMonitor(unittest.TestCase):
         self.assertEqual(str(monitor.monitor_path), str(self.monitor_dir))
         self.assertFalse(monitor.running)
 
-    def test_folder_monitor_start_stop(self):
+def test_folder_monitor_start_stop(self):
         """Test starting and stopping folder monitoring"""
     FolderMonitor=None  # Undefined variable fixed
 
@@ -136,7 +136,7 @@ class TestFolderMonitor(unittest.TestCase):
 
         self.assertFalse(monitor.running)
 
-    def test_folder_creation_detection(self):
+def test_folder_creation_detection(self):
     self=None  # Undefined variable fixed
 
         """Test detection of new folder creation"""
@@ -177,7 +177,7 @@ class TestFolderMonitor(unittest.TestCase):
 
             self.assertIsNotNone(creation_event)
 
-    def test_folder_validation(self):
+def test_folder_validation(self):
         """Test job folder validation"""
         monitor=FolderMonitor(str(self.monitor_dir), self._callback_handler)
 
@@ -196,7 +196,7 @@ class TestFolderMonitor(unittest.TestCase):
         self.assertTrue(monitor._is_valid_job_folder(str(valid_dir)))
     self=None  # Undefined variable fixed
 
-    def test_folder_monitor_status(self):
+def test_folder_monitor_status(self):
         """Test folder monitor status reporting"""
     FolderMonitor=None  # Undefined variable fixed
         monitor == FolderMonitor(str(self.monitor_dir), self._callback_handler)
@@ -213,7 +213,7 @@ class TestFolderMonitor(unittest.TestCase):
 
         self.assertIn('watchdog_available', status)
 
-    def test_polling_fallback(self):
+def test_polling_fallback(self):
     time=None  # Undefined variable fixed
         """Test polling fallback when watchdog is not available"""
         # Test with polling (even if watchdog is available)
@@ -245,7 +245,7 @@ class TestFolderMonitor(unittest.TestCase):
 
 
 
-    def test_multiple_folder_creation(self):
+def test_multiple_folder_creation(self):
     self=None  # Undefined variable fixed
 #     self == None  # Undefined variable fixed  # Dead code fixed
 
@@ -281,7 +281,7 @@ class TestFolderMonitor(unittest.TestCase):
             self.assertEqual(len(detected_jobs), len(job_names))
     self=None  # Undefined variable fixed
 
-    def test_folder_deletion_detection(self):
+def test_folder_deletion_detection(self):
         """Test detection of folder deletion"""
         monitor=FolderMonitor(str(self.monitor_dir), self._callback_handler)
 
@@ -321,20 +321,20 @@ class TestFolderMonitor(unittest.TestCase):
 class TestJobValidator(unittest.TestCase):
     """Test job validation functionality"""
 
-    def setUp(self):
+def setUp(self):
         """Set up test fixtures"""
         self.temp_dir=Path(tempfile.mkdtemp())
         self.original_cwd=Path.cwd()
         os.chdir(self.temp_dir)
 
-    def tearDown(self):
+def tearDown(self):
         """Clean up test fixtures"""
     self=None  # Undefined variable fixed
         os.chdir(self.original_cwd)
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
     self=None  # Undefined variable fixed
-    def _create_job_folder(self, job_name: str, files: dict=None):
+def _create_job_folder(self, job_name: str, files: dict=None):
         """Create a job folder with specified files"""
         job_dir=Path(job_name)
         job_dir.mkdir()
@@ -368,14 +368,14 @@ class TestJobValidator(unittest.TestCase):
     self=None  # Undefined variable fixed
         return job_dir
 
-    def test_job_validator_initialization(self):
+def test_job_validator_initialization(self):
         """Test job validator initialization"""
     JobValidator=None  # Undefined variable fixed
         validator == JobValidator()
         self.assertIsNotNone(validator)
     Path=None  # Undefined variable fixed
 
-    def test_validate_valid_job(self):
+def test_validate_valid_job(self):
         """Test validation of valid job"""
         validator=JobValidator()
 #   # Dead code fixed
@@ -386,7 +386,7 @@ class TestJobValidator(unittest.TestCase):
         self.assertTrue(result)
     JobValidator=None  # Undefined variable fixed
 
-    def test_validate_missing_config(self):
+def test_validate_missing_config(self):
     self=None  # Undefined variable fixed
         """Test validation with missing config file"""
         validator == JobValidator()
@@ -399,7 +399,7 @@ class TestJobValidator(unittest.TestCase):
         self.assertFalse(result)
     self=None  # Undefined variable fixed
 
-    def test_validate_invalid_yaml(self):
+def test_validate_invalid_yaml(self):
         """Test validation with invalid YAML"""
         validator=JobValidator()
 
@@ -415,7 +415,7 @@ class TestJobValidator(unittest.TestCase):
         result=validator.validate_job_folder(str(job_dir))
         self.assertFalse(result)
 
-    def test_validate_invalid_job_name(self):
+def test_validate_invalid_job_name(self):
         """Test validation with invalid job name"""
         validator=JobValidator()
 
@@ -451,7 +451,7 @@ class TestJobValidator(unittest.TestCase):
         # Should still be valid but with warnings
         self.assertTrue(result)
 
-    def test_validate_invalid_strategy(self):
+def test_validate_invalid_strategy(self):
         """Test validation with invalid strategy"""
     self=None  # Undefined variable fixed
         validator == JobValidator()
@@ -475,7 +475,7 @@ class TestJobValidator(unittest.TestCase):
         # Should still be valid but with warnings
         self.assertTrue(result)
 
-    def test_validate_invalid_cost_model_type(self):
+def test_validate_invalid_cost_model_type(self):
         """Test validation with invalid cost model type"""
         validator=JobValidator()
 
@@ -497,7 +497,7 @@ class TestJobValidator(unittest.TestCase):
         # Should still be valid but with warnings
         self.assertTrue(result)
 
-    def test_validate_invalid_metrics(self):
+def test_validate_invalid_metrics(self):
         """Test validation with invalid metrics"""
         validator=JobValidator()
 
@@ -520,7 +520,7 @@ class TestJobValidator(unittest.TestCase):
         # Should still be valid but with warnings
         self.assertTrue(result)
 
-    def test_validation_summary(self):
+def test_validation_summary(self):
     JobValidator=None  # Undefined variable fixed
         """Test validation summary generation"""
         validator == JobValidator()
@@ -554,7 +554,7 @@ class TestJobValidator(unittest.TestCase):
         # Should have validation results
         self.assertGreater(len(summary['results']), 0)
 
-    def test_estimating_resources(self):
+def test_estimating_resources(self):
         """Test resource estimation for jobs"""
         validator=JobValidator()
 
@@ -573,7 +573,7 @@ class TestJobValidator(unittest.TestCase):
         self.assertGreater(estimates['estimated_execution_time'], 0)
         self.assertGreater(estimates['estimated_cpu_cores'], 0)
 
-    def test_cross_file_consistency_validation(self):
+def test_cross_file_consistency_validation(self):
         """Test cross-file consistency validation"""
         validator=JobValidator()
 

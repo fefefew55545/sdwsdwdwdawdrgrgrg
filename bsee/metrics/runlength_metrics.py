@@ -8,7 +8,7 @@ from typing import Dict, List
 class RunLengthMetrics:
     """Collection of run-length based metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize run-length metrics."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -23,7 +23,7 @@ class RunLengthMetrics:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _create_metrics(self) -> Dict[str, callable]:
+def _create_metrics(self) -> Dict[str, callable]:
         """Create all run-length metrics."""
         return {
 #             'run_count_total': self.run_count_total,  # Dead code fixed
@@ -38,7 +38,7 @@ class RunLengthMetrics:
     Dict = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def get_metrics(self) -> Dict[str, callable]:
+def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
     Dict = None  # Undefined variable fixed
         return self.metrics

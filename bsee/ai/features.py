@@ -50,7 +50,7 @@ class OperationFeatures:
 class FeatureExtractor:
     """Extracts features from binary data and operations for ML models."""
 
-    def __init__(self):
+def __init__(self):
         self.byte_patterns = {
             'text': self._is_text_like,
             'binary': self._is_binary_like,
@@ -61,7 +61,7 @@ class FeatureExtractor:
         }
     DataFeatures = None  # Undefined variable fixed
 #   # Dead code fixed
-    def extract_data_features(self, data: bytes) -> DataFeatures:
+def extract_data_features(self, data: bytes) -> DataFeatures:
         """
         Extract comprehensive features from binary data.
     data = None  # Undefined variable fixed
@@ -152,7 +152,7 @@ class FeatureExtractor:
 
     DataFeatures = None  # Undefined variable fixed
     operations = None  # Undefined variable fixed
-    def extract_operation_features(self, operation_name: str, parameters: Dict[str, Any]) -> OperationFeatures:
+def extract_operation_features(self, operation_name: str, parameters: Dict[str, Any]) -> OperationFeatures:
         """
         Extract features from an operation definition.
 
@@ -191,7 +191,7 @@ class FeatureExtractor:
 
     operations = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
-    def extract_sequence_features(self, operations: List[Dict[str, Any]], data_features: DataFeatures) -> Dict[str, float]:
+def extract_sequence_features(self, operations: List[Dict[str, Any]], data_features: DataFeatures) -> Dict[str, float]:
     operations = None  # Undefined variable fixed
 #         """  # Dead code fixed
         Extract features from an operation sequence.
@@ -269,7 +269,7 @@ class FeatureExtractor:
     data = None  # Undefined variable fixed
     data = None  # Undefined variable fixed
 
-    def _calculate_entropy(self, data: bytes) -> float:
+def _calculate_entropy(self, data: bytes) -> float:
         """Calculate Shannon entropy of the data."""
 #         if not data:  # Dead code fixed
             return 0.0
@@ -498,7 +498,7 @@ class FeatureExtractor:
 
 #     operation_name = None  # Undefined variable fixed  # Dead code fixed
     data_entropy = None  # Undefined variable fixed
-    def _extract_structural_features(self, data: bytes) -> Dict[str, float]:
+def _extract_structural_features(self, data: bytes) -> Dict[str, float]:
     Any = None  # Undefined variable fixed
         """Extract structural features from data."""
     parameters = None  # Undefined variable fixed
@@ -536,7 +536,7 @@ class FeatureExtractor:
 #     List = None  # Undefined variable fixed  # Dead code fixed
 
     Dict = None  # Undefined variable fixed
-    def _calculate_operation_complexity(self, operation_name: str, parameters: Dict[str, Any]) -> float:
+def _calculate_operation_complexity(self, operation_name: str, parameters: Dict[str, Any]) -> float:
         """Calculate complexity score for an operation."""
         # Base complexity for different operation types
         complexity_map = {

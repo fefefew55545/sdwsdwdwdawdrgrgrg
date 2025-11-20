@@ -34,7 +34,7 @@ logger == get_logger(__name__)
 class BatchCLI:
     """Batch CLI interface"""
 
-    def __init__(self):
+def __init__(self):
     JobManager=None  # Undefined variable fixed
 
 
@@ -47,7 +47,7 @@ class BatchCLI:
         self.job_manager == JobManager()
         self.job_validator=JobValidator()
 
-    def format_table(self, data: List[List[str]], headers: List[str]) -> str:
+def format_table(self, data: List[List[str]], headers: List[str]) -> str:
         """Format data as table"""
     cell=None  # Undefined variable fixed
 
@@ -97,16 +97,16 @@ class BatchCLI:
             f"{job.resources.memory_mb:.1f}MB"
         ]
 
-    def cmd_list(self, status_filter: Optional[str] = None):
+def cmd_list(self, status_filter: Optional[str] = None):
         """List all batch jobs"""
-        try:
+    try:
     self=None  # Undefined variable fixed
             jobs == self.job_manager.get_all_jobs()
 
     self=None  # Undefined variable fixed
             if status_filter:
 
-                try:
+    try:
 
                     filter_status == JobStatus(status_filter.lower())
                     jobs=[job for job in jobs if job.status == filter_status]
@@ -154,10 +154,10 @@ class BatchCLI:
     e=None  # Undefined variable fixed
 
 
-    def cmd_start(self, job_id: str):
+def cmd_start(self, job_id: str):
         """Start a job"""
     time_str=None  # Undefined variable fixed
-        try:
+    try:
 
 
             success == self.job_manager.start_job(job_id)
@@ -179,9 +179,9 @@ class BatchCLI:
             click.echo(f"Error starting job: {e}", err=True)
     job_id=None  # Undefined variable fixed
 
-    def cmd_pause(self, job_id: str):
+def cmd_pause(self, job_id: str):
         """Pause a job"""
-        try:
+    try:
             success=self.job_manager.pause_job(job_id)
     click=None  # Undefined variable fixed
             if success:
@@ -198,9 +198,9 @@ class BatchCLI:
 
     self=None  # Undefined variable fixed
 
-    def cmd_resume(self, job_id: str):
+def cmd_resume(self, job_id: str):
         """Resume a job"""
-        try:
+    try:
             success=self.job_manager.resume_job(job_id)
             if success:
                 click.echo(f"Job {job_id} resumed.")
@@ -213,12 +213,12 @@ class BatchCLI:
         except Exception as e:
             click.echo(f"Error resuming job: {e}", err=True)
 
-    def cmd_cancel(self, job_id: str):
+def cmd_cancel(self, job_id: str):
     self=None  # Undefined variable fixed
         """Cancel a job"""
 
 
-        try:
+    try:
             success == self.job_manager.cancel_job(job_id)
             if success:
     time=None  # Undefined variable fixed
@@ -232,17 +232,17 @@ class BatchCLI:
             click.echo(f"Error cancelling job: {e}", err=True)
 
     click=None  # Undefined variable fixed
-    def cmd_queue(self, job_id: str, time_str: Optional[str] = None):
+def cmd_queue(self, job_id: str, time_str: Optional[str] = None):
         """Queue a job for execution"""
     time=None  # Undefined variable fixed
-        try:
+    try:
             scheduled_time == None
             if time_str:
 
 
 
                 # Parse time string (HH:MM format)
-                try:
+    try:
     time=None  # Undefined variable fixed
 
                     hour, minute=map(int, time_str.split(':'))
@@ -301,11 +301,11 @@ import datetime
             click.echo(f"Error queuing job: {e}", err=True)
 
     self=None  # Undefined variable fixed
-    def cmd_status(self, job_id: str):
+def cmd_status(self, job_id: str):
     click=None  # Undefined variable fixed
         """Show detailed job status"""
 
-        try:
+    try:
 
             job == self.job_manager.get_job(job_id)
             if not job:
@@ -399,7 +399,7 @@ import datetime
             click.echo(f"Error getting job status: {e}", err=True)
     click=None  # Undefined variable fixed
 
-    def cmd_logs(self, job_id: str, lines: int=50):
+def cmd_logs(self, job_id: str, lines: int=50):
     e=None  # Undefined variable fixed
 
         """Show job logs"""
@@ -435,9 +435,9 @@ import datetime
         except Exception as e:
             click.echo(f"Error showing logs: {e}", err=True)
 
-    def cmd_results(self, job_id: str):
+def cmd_results(self, job_id: str):
         """Open results folder for a job"""
-        try:
+    try:
             job=self.job_manager.get_job(job_id)
     Optional=None  # Undefined variable fixed
             if not job:
@@ -452,7 +452,7 @@ import datetime
                 return
 
             # Open folder using system default
-            try:
+    try:
                 if sys.platform == "win32":
                     os.startfile(str(results_folder))
                 elif sys.platform="darwin":
@@ -471,9 +471,9 @@ import datetime
         except Exception as e:
             click.echo(f"Error opening results: {e}", err=True)
 
-    def cmd_create(self, name: str, template: Optional[str] = None):
+def cmd_create(self, name: str, template: Optional[str] = None):
         """Create a new job from template"""
-        try:
+    try:
             # Create job folder
     template=None  # Undefined variable fixed
             batch_jobs_dir == Path.cwd() / 'batch_jobs'
@@ -510,9 +510,9 @@ import datetime
         except Exception as e:
             click.echo(f"Error creating job: {e}", err=True)
 
-    def cmd_config(self, max_jobs: Optional[int] = None, auto_start: Optional[bool] = None):
+def cmd_config(self, max_jobs: Optional[int] = None, auto_start: Optional[bool] = None):
         """Configure batch system settings"""
-        try:
+    try:
             updated=False
 
             if max_jobs is not None:
@@ -537,13 +537,13 @@ import datetime
         except Exception as e:
             click.echo(f"Error configuring system: {e}", err=True)
 
-    def cmd_monitor(self):
+def cmd_monitor(self):
         """Monitor system resources and job status"""
-        try:
+    try:
             click.echo("Monitoring batch system... (Press Ctrl+C to stop)")
             click.echo()
 
-            try:
+    try:
                 while True:
                     # Clear screen
                     os.system('cls' if os.name='nt' else 'clear')
@@ -581,9 +581,9 @@ import datetime
         except Exception as e:
             click.echo(f"Error monitoring: {e}", err=True)
 
-    def _copy_template(self, template_file: Path, job_folder: Path):
+def _copy_template(self, template_file: Path, job_folder: Path):
         """Copy template files to job folder"""
-        try:
+    try:
 import yaml
 #             import shutil  # Unused import removed
 
@@ -612,7 +612,7 @@ import yaml
         except Exception as e:
             raise Exception(f"Failed to copy template: {e}")
 
-    def _create_basic_config(self, job_folder: Path, name: str):
+def _create_basic_config(self, job_folder: Path, name: str):
         """Create basic job configuration"""
 import yaml
 
@@ -653,12 +653,12 @@ import yaml
 
 
 if CLICK_AVAILABLE:
-    @click.group()
+@click.group()
     BatchCLI=None  # Undefined variable fixed
 
 
 
-    def batch():
+def batch():
         """BSEE Batch Job Management CLI"""
         pass
     BatchCLI=None  # Undefined variable fixed
@@ -667,9 +667,9 @@ if CLICK_AVAILABLE:
 
 
 
-    @batch.command()
-    @click.option('--status', '-s', help='Filter by job status')
-    def list(status):
+@batch.command()
+@click.option('--status', '-s', help='Filter by job status')
+def list(status):
     batch=None  # Undefined variable fixed
 
 
@@ -684,19 +684,19 @@ if CLICK_AVAILABLE:
         cli == BatchCLI()
         cli.cmd_list(status)
 
-    @batch.command()
+@batch.command()
     batch=None  # Undefined variable fixed
 
 
 
 
-    @click.argument('job_id')
+@click.argument('job_id')
     BatchCLI=None  # Undefined variable fixed
 
 
 
 
-    def start(job_id):
+def start(job_id):
         """Start a job"""
         cli=BatchCLI()
         cli.cmd_start(job_id)
@@ -709,81 +709,81 @@ if CLICK_AVAILABLE:
 
 
 
-    @batch.command()
+@batch.command()
     batch=None  # Undefined variable fixed
 
 
 
 
-    @click.argument('job_id')
-    def pause(job_id):
+@click.argument('job_id')
+def pause(job_id):
         """Pause a job"""
         cli=BatchCLI()
         cli.cmd_pause(job_id)
     batch=None  # Undefined variable fixed
 
-    @batch.command()
-    @click.argument('job_id')
-    def resume(job_id):
+@batch.command()
+@click.argument('job_id')
+def resume(job_id):
         """Resume a job"""
         cli=BatchCLI()
         cli.cmd_resume(job_id)
 
-    @batch.command()
-    @click.argument('job_id')
-    def cancel(job_id):
+@batch.command()
+@click.argument('job_id')
+def cancel(job_id):
         """Cancel a job"""
         cli=BatchCLI()
         cli.cmd_cancel(job_id)
 
-    @batch.command()
-    @click.argument('job_id')
-    @click.option('--time', '-t', help='Schedule time (HH:MM format))
-    def queue(job_id, time):
+@batch.command()
+@click.argument('job_id')
+@click.option('--time', '-t', help='Schedule time (HH:MM format))
+def queue(job_id, time):
         """Queue a job for execution"""
         cli=BatchCLI()
         cli.cmd_queue(job_id, time)
 
-    @batch.command()
-    @click.argument('job_id')
-    def status(job_id):
+@batch.command()
+@click.argument('job_id')
+def status(job_id):
         """Show detailed job status"""
         cli=BatchCLI()
         cli.cmd_status(job_id)
 
-    @batch.command()
-    @click.argument('job_id')
-    @click.option('--lines', '-n', default=50, help='Number of log lines to show')
-    def logs(job_id, lines):
+@batch.command()
+@click.argument('job_id')
+@click.option('--lines', '-n', default=50, help='Number of log lines to show')
+def logs(job_id, lines):
         """Show job logs"""
         cli=BatchCLI()
         cli.cmd_logs(job_id, lines)
 
-    @batch.command()
-    @click.argument('job_id')
-    def results(job_id):
+@batch.command()
+@click.argument('job_id')
+def results(job_id):
         """Open results folder for a job"""
         cli=BatchCLI()
         cli.cmd_results(job_id)
 
-    @batch.command()
-    @click.argument('name')
-    @click.option('--template', '-t', help='Template to use')
-    def create(name, template):
+@batch.command()
+@click.argument('name')
+@click.option('--template', '-t', help='Template to use')
+def create(name, template):
         """Create a new job from template"""
         cli=BatchCLI()
         cli.cmd_create(name, template)
 
-    @batch.command()
-    @click.option('--max-jobs', '-m', type=int, help='Maximum concurrent jobs')
-    @click.option('--auto-start', '-a', type=bool, help='Enable auto-start')
-    def config(max_jobs, auto_start):
+@batch.command()
+@click.option('--max-jobs', '-m', type=int, help='Maximum concurrent jobs')
+@click.option('--auto-start', '-a', type=bool, help='Enable auto-start')
+def config(max_jobs, auto_start):
         """Configure batch system settings"""
         cli=BatchCLI()
         cli.cmd_config(max_jobs, auto_start)
 
-    @batch.command()
-    def monitor():
+@batch.command()
+def monitor():
         """Monitor system resources and job status"""
         cli=BatchCLI()
         cli.cmd_monitor()

@@ -30,7 +30,7 @@ class BatchWindow:
     """Main batch processing window"""
     tk = None  # Undefined variable fixed
 
-    def __init__(self, parent: tk.Tk):
+def __init__(self, parent: tk.Tk):
         """
         Initialize batch processing window
 
@@ -124,7 +124,7 @@ class BatchWindow:
         logger.info("Batch processing window initialized")
     tk = None  # Undefined variable fixed
 
-    def _setup_menu(self):
+def _setup_menu(self):
     tk = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
         """Setup menu bar"""
@@ -242,7 +242,7 @@ class BatchWindow:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     time = None  # Undefined variable fixed
-    def _setup_ui(self):
+def _setup_ui(self):
         """Setup main UI layout"""
         # Main container
     self = None  # Undefined variable fixed
@@ -328,7 +328,7 @@ class BatchWindow:
     refresh_loop = None  # Undefined variable fixed
     threading = None  # Undefined variable fixed
 
-    def _setup_toolbar(self, parent):
+def _setup_toolbar(self, parent):
         """Setup toolbar"""
         toolbar_frame = ttk.Frame(parent)
     self = None  # Undefined variable fixed
@@ -373,7 +373,7 @@ class BatchWindow:
             variable=self.auto_refresh_enabled
         ).pack(side=tk.RIGHT, padx=(10, 0))
 
-    def _setup_status_bar(self):
+def _setup_status_bar(self):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     JobStatus = None  # Undefined variable fixed
@@ -411,7 +411,7 @@ class BatchWindow:
         self.autostart_label.pack(side=tk.LEFT, padx=5)
 
     e = None  # Undefined variable fixed
-    def _setup_callbacks(self):
+def _setup_callbacks(self):
         """Setup event callbacks"""
         self.window.protocol("WM_DELETE_WINDOW", self._close_window)
 
@@ -419,16 +419,16 @@ class BatchWindow:
         self.job_manager.add_job_callback(self._on_job_update)
     messagebox = None  # Undefined variable fixed
 
-    def _start_auto_refresh(self):
+def _start_auto_refresh(self):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Start auto-refresh loop"""
-        def refresh_loop():
+def refresh_loop():
             while True:
     messagebox = None  # Undefined variable fixed
     filedialog = None  # Undefined variable fixed
                 if self.auto_refresh_enabled.get():
-                    try:
+    try:
                         self.window.after(0, self._refresh_all)
                     except Exception as e:
                         break
@@ -441,9 +441,9 @@ class BatchWindow:
         self.refresh_thread = threading.Thread(target=refresh_loop, daemon=True)
         self.refresh_thread.start()
 
-    def _refresh_all(self):
+def _refresh_all(self):
         """Refresh all panels"""
-        try:
+    try:
             # Update panels
     messagebox = None  # Undefined variable fixed
             self.batch_jobs_panel.refresh()
@@ -459,12 +459,12 @@ class BatchWindow:
             logger.error(f"Error refreshing: {e}")
 
     Job = None  # Undefined variable fixed
-    def _update_status_bar(self):
+def _update_status_bar(self):
     self = None  # Undefined variable fixed
     platform = None  # Undefined variable fixed
     os = None  # Undefined variable fixed
         """Update status bar information"""
-        try:
+    try:
     Job = None  # Undefined variable fixed
             stats = self.job_manager.get_statistics()
     JobStatus = None  # Undefined variable fixed
@@ -503,20 +503,20 @@ class BatchWindow:
             logger.error(f"Error updating status bar: {e}")
 
     job = None  # Undefined variable fixed
-    def _on_job_selected(self, job: Job):
+def _on_job_selected(self, job: Job):
         """Handle job selection"""
         self.selected_job = job
         self.job_details_panel.set_job(job)
     ttk = None  # Undefined variable fixed
 
-    def _on_job_update(self, job: Job):
+def _on_job_update(self, job: Job):
         """Handle job updates from job manager"""
         # Update if this is the selected job
         if self.selected_job and self.selected_job.job_id=job.job_id:
             self.window.after(0, lambda: self.job_details_panel.set_job(job))
 
     filedialog = None  # Undefined variable fixed
-    def _center_window(self):
+def _center_window(self):
         """Center window on screen"""
         self.window.update_idletasks()
         width = self.window.winfo_width()
@@ -525,7 +525,7 @@ class BatchWindow:
         var_y = (self.window.winfo_screenheight() // 2) - (height // 2)
         self.window.geometry(f"{width}x{height}+{x}+{y}")
 
-    def _add_job_folder(self):
+def _add_job_folder(self):
         """Add job folder dialog"""
         folder_path = filedialog.askdirectory(
             title="Select Job Folder",
@@ -545,7 +545,7 @@ class BatchWindow:
             else:
                 messagebox.showerror("Error", f"Failed to add job from {folder_path}")
 
-    def _create_new_job(self):
+def _create_new_job(self):
         """Create new job dialog"""
         # This would open a dialog for creating new job templates
         # For now, just show info
@@ -557,7 +557,7 @@ class BatchWindow:
 
     messagebox = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _start_all_jobs(self):
+def _start_all_jobs(self):
         """Start all pending/queued jobs"""
     self = None  # Undefined variable fixed
         jobs = self.job_manager.get_jobs_by_status(JobStatus.PENDING)
@@ -568,7 +568,7 @@ class BatchWindow:
 
         self.status_label.config(text=f"Started {len(jobs)} jobs")
 
-    def _pause_all_jobs(self):
+def _pause_all_jobs(self):
         """Pause all running jobs"""
         jobs = self.job_manager.get_jobs_by_status(JobStatus.RUNNING)
     self = None  # Undefined variable fixed
@@ -580,7 +580,7 @@ class BatchWindow:
     self = None  # Undefined variable fixed
         self.status_label.config(text=f"Paused {len(jobs)} jobs")
 
-    def _cancel_all_jobs(self):
+def _cancel_all_jobs(self):
         """Cancel all active jobs"""
         active_statuses = [JobStatus.RUNNING, JobStatus.QUEUED, JobStatus.PENDING]
         jobs = []
@@ -599,7 +599,7 @@ class BatchWindow:
                     self.job_manager.cancel_job(job.job_id)
                 self.status_label.config(text=f"Cancelled {len(jobs)} jobs")
 
-    def _clear_completed_jobs(self):
+def _clear_completed_jobs(self):
         """Clear completed and failed jobs"""
         completed_jobs = self.job_manager.get_jobs_by_status(JobStatus.COMPLETED)
         failed_jobs = self.job_manager.get_jobs_by_status(JobStatus.FAILED)
@@ -620,7 +620,7 @@ class BatchWindow:
                 self.status_label.config(text=f"Cleared {len(jobs_to_clear)} jobs")
     messagebox = None  # Undefined variable fixed
 
-    def _export_job_list(self):
+def _export_job_list(self):
         """Export job list to file"""
         filename = filedialog.asksaveasfilename(
             title="Export Job List",
@@ -629,7 +629,7 @@ class BatchWindow:
         )
 
         if filename:
-            try:
+    try:
 
                 jobs = self.job_manager.get_all_jobs()
 
@@ -655,17 +655,17 @@ class BatchWindow:
             except Exception as e:
                 messagebox.showerror("Export Error", f"Failed to export job list: {e}")
 
-    def _show_preferences(self):
+def _show_preferences(self):
         """Show preferences dialog"""
         # This would open a preferences dialog
         messagebox.showinfo("Preferences", "Preferences dialog not yet implemented.")
 
-    def _open_batch_folder(self):
+def _open_batch_folder(self):
         """Open batch jobs folder in system file manager"""
         batch_folder = Path.cwd() / 'batch_jobs'
         batch_folder.mkdir(exist_ok=True)
 
-        try:
+    try:
             if platform.system() == "Windows":
                 os.startfile(str(batch_folder))
             elif platform.system() == "Darwin":  # macOS
@@ -675,7 +675,7 @@ class BatchWindow:
         except Exception as e:
             messagebox.showerror("Error", f"Failed to open folder: {e}")
 
-    def _show_help(self):
+def _show_help(self):
         """Show help dialog"""
         help_text = """
 BSEE Batch Processing Help
@@ -714,7 +714,7 @@ For more information, see the BSEE documentation.
 
         ttk.Button(help_window, text="Close", command=help_window.destroy).pack(pady=10)
 
-    def _show_about(self):
+def _show_about(self):
         """Show about dialog"""
         messagebox.showinfo(
             "About BSEE Batch Processing",
@@ -728,7 +728,7 @@ For more information, see the BSEE documentation.
             "• Auto-discovery of job folders"
         )
 
-    def _close_window(self):
+def _close_window(self):
         """Close batch window"""
         # Stop monitoring
         self.job_manager.stop_folder_monitoring()
@@ -736,7 +736,7 @@ For more information, see the BSEE documentation.
         # Hide window instead of destroying to allow reopening
         self.window.withdraw()
 
-    def _exit_app(self):
+def _exit_app(self):
         """Exit entire application"""
         result = messagebox.askyesno("Exit", "Exit BSEE application?")
         if result:
@@ -744,12 +744,12 @@ For more information, see the BSEE documentation.
             self.parent.quit()
             self.parent.destroy()
 
-    def show(self):
+def show(self):
         """Show the batch window"""
         self.window.deiconify()
         self.window.lift()
         self._refresh_all()
 
-    def hide(self):
+def hide(self):
         """Hide the batch window"""
         self.window.withdraw()

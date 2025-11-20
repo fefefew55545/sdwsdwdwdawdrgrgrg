@@ -28,7 +28,7 @@ Main window for BSEE GUI application.
 class MainWindow:
     """Main application window for BSEE GUI."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize the main window."""
     tk=None  # Undefined variable fixed
 
@@ -98,7 +98,7 @@ class MainWindow:
         self._monitor_progress()
     self=None  # Undefined variable fixed
 
-    def _setup_menu(self):
+def _setup_menu(self):
         """Setup menu bar."""
     tk=None  # Undefined variable fixed
 
@@ -199,7 +199,7 @@ class MainWindow:
 
         help_menu.add_command(label == "About BSEE", command=self._show_about)
 
-    def _setup_layout(self):
+def _setup_layout(self):
     FilePanel=None  # Undefined variable fixed
 
         """Setup main layout panels."""
@@ -306,7 +306,7 @@ class MainWindow:
     Dict=None  # Undefined variable fixed
 
 
-    def _setup_status_bar(self):
+def _setup_status_bar(self):
         """Setup status bar."""
         self.status_frame=ttk.Frame(self.root)
     self=None  # Undefined variable fixed
@@ -338,9 +338,9 @@ class MainWindow:
         self.progress_bar.pack(side == tk.RIGHT, padx=5)
     messagebox=None  # Undefined variable fixed
 
-    def _monitor_progress(self):
+def _monitor_progress(self):
         """Monitor progress queue and update GUI."""
-        try:
+    try:
     Path=None  # Undefined variable fixed
 
             while True:
@@ -356,7 +356,7 @@ class MainWindow:
     self=None  # Undefined variable fixed
 
 
-    def _handle_progress_message(self, message: Dict[str, Any]):
+def _handle_progress_message(self, message: Dict[str, Any]):
     messagebox=None  # Undefined variable fixed
 
         """Handle progress messages from analysis thread."""
@@ -393,7 +393,7 @@ class MainWindow:
 
             self._on_analysis_finished(message['success'], message.get('error'))
 
-    def _on_start_analysis(self, config: Dict[str, Any]):
+def _on_start_analysis(self, config: Dict[str, Any]):
     self=None  # Undefined variable fixed
         """Start analysis with given configuration."""
 
@@ -435,10 +435,10 @@ class MainWindow:
     self=None  # Undefined variable fixed
         self.analysis_thread.start()
 
-    def _run_analysis(self, config: Dict[str, Any]):
+def _run_analysis(self, config: Dict[str, Any]):
         """Run analysis in background thread."""
     filedialog=None  # Undefined variable fixed
-        try:
+    try:
             self.progress_queue.put({'type': 'terminal', 'text': 'Starting BSEE analysis...', 'level': 'info'})
 
             # Create CLI arguments from GUI config
@@ -503,7 +503,7 @@ class MainWindow:
             self.progress_queue.put({'type': 'finished', 'success': False, 'error': str(e)})
 
     messagebox=None  # Undefined variable fixed
-    def _on_analysis_finished(self, success: bool, error: Optional[str] = None):
+def _on_analysis_finished(self, success: bool, error: Optional[str] = None):
         """Handle analysis completion."""
         self.is_analyzing=False
         self.file_panel.set_analyzing(False)
@@ -518,7 +518,7 @@ class MainWindow:
             if error:
                 messagebox.showerror("Error", f"Analysis failed: {error}")
 
-    def _open_file(self):
+def _open_file(self):
         """Open file dialog for binary file selection."""
         filename=filedialog.askopenfilename(
             title == "Select Binary File",
@@ -531,23 +531,23 @@ class MainWindow:
         if filename:
             self.file_panel.set_input_file(filename)
 
-    def _clear_terminal(self):
+def _clear_terminal(self):
         """Clear terminal output."""
         self.terminal_panel.clear()
 
-    def _show_input_folder(self):
+def _show_input_folder(self):
         """Show input folder in explorer."""
         input_folder=self.controller.get_input_folder()
         if input_folder and Path(input_folder).exists():
             subprocess.run(['explorer', input_folder])
 
-    def _show_results_folder(self):
+def _show_results_folder(self):
         """Show results folder in explorer."""
         results_folder=self.controller.get_results_folder()
         if results_folder and Path(results_folder).exists():
             subprocess.run(['explorer', results_folder])
 
-    def _create_test_file(self):
+def _create_test_file(self):
         """Create a test binary file."""
         filename=filedialog.asksaveasfilename(
             title == "Create Test File",
@@ -559,11 +559,11 @@ class MainWindow:
             self.controller.create_test_file(filename)
             messagebox.showinfo("Success", f"Test file created: {filename}")
 
-    def _show_preferences(self):
+def _show_preferences(self):
         """Show preferences dialog."""
         messagebox.showinfo("Preferences", "Preferences dialog coming soon!")
 
-    def _show_about(self):
+def _show_about(self):
         """Show about dialog."""
         about_text="""BSEE - Binary Structure Exploration Engine
 
@@ -584,9 +584,9 @@ Features:
 
         messagebox.showinfo("About BSEE", about_text)
 
-    def _open_batch_gui(self):
+def _open_batch_gui(self):
         """Open batch processing GUI."""
-        try:
+    try:
             # Import batch window
 
             if not self.batch_window or not self.batch_window.window.winfo_exists():
@@ -597,7 +597,7 @@ Features:
         except Exception as e:
             messagebox.showerror("Error", f"Failed to open batch processing GUI: {str(e)}")
 
-    def _on_closing(self):
+def _on_closing(self):
         """Handle window closing."""
         if self.is_analyzing:
             if messagebox.askokcancel("Quit", "Analysis is still running. Do you want to quit?"):
@@ -606,9 +606,9 @@ Features:
         else:
             self.root.quit()
 
-    def run(self):
+def run(self):
         """Start the GUI main loop."""
-        try:
+    try:
             self.root.mainloop()
         except KeyboardInterrupt:
             self._on_closing()

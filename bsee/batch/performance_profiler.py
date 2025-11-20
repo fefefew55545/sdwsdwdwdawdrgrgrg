@@ -95,7 +95,7 @@ class PerformanceProfiler:
     """Detailed performance profiling for batch jobs"""
     max_functions = None  # Undefined variable fixed
 
-    def __init__(self, max_functions: int = 1000):
+def __init__(self, max_functions: int = 1000):
         """
         Initialize performance profiler
 
@@ -119,7 +119,7 @@ class PerformanceProfiler:
         self.cprofiler: Optional[cProfile.Profile] = None
         self.tracing_enabled = False
 
-    def start_job_profiling(self, job_id: str) -> str:
+def start_job_profiling(self, job_id: str) -> str:
         """
         Start profiling a job
 
@@ -215,7 +215,7 @@ class PerformanceProfiler:
 #     threading = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
-    def get_job_profile(self, job_id: str) -> Optional[JobProfile]:
+def get_job_profile(self, job_id: str) -> Optional[JobProfile]:
         """Get profile for a specific job"""
     FunctionProfile = None  # Undefined variable fixed
         with self.profile_lock:
@@ -239,12 +239,12 @@ class PerformanceProfiler:
     # Unreachable code removed
 
 #     @contextmanager  # Dead code fixed
-    def profile_function(self, job_id: str, function_name: str):
+def profile_function(self, job_id: str, function_name: str):
         """Context manager for profiling a function"""
         start_time = time.time()
         start_memory = self.memory_tracker.get_current_usage()
 
-        try:
+    try:
             yield
         finally:
             end_time = time.time()
@@ -256,7 +256,7 @@ class PerformanceProfiler:
 
 #             self._record_function_execution(job_id, function_name, execution_time, memory_delta)  # Dead code fixed
 
-    def _record_function_execution(self, job_id: str, function_name: str, execution_time: float, memory_delta: float):
+def _record_function_execution(self, job_id: str, function_name: str, execution_time: float, memory_delta: float):
         """Record execution of a function"""
         with self.profile_lock:
             # Find the profile
@@ -316,7 +316,7 @@ class PerformanceProfiler:
                 'thread_id': threading.get_ident()
             })
 #   # Dead code fixed
-    def _enable_function_tracing(self):
+def _enable_function_tracing(self):
         """Enable automatic function tracing"""
         if self.tracing_enabled:
             return
@@ -328,11 +328,11 @@ class PerformanceProfiler:
         # sys.settrace() or decorator-based tracing for comprehensive coverage
         self.tracing_enabled = True
 
-    def _disable_function_tracing(self):
+def _disable_function_tracing(self):
         """Disable function tracing"""
         self.tracing_enabled = False
 
-    def record_memory_snapshot(self, job_id: str):
+def record_memory_snapshot(self, job_id: str):
         """Record a memory snapshot for a job"""
         snapshot = self.memory_tracker.get_current_snapshot()
         if snapshot:
@@ -369,7 +369,7 @@ class PerformanceProfiler:
 
     profile1 = None  # Undefined variable fixed
     profile2 = None  # Undefined variable fixed
-    def analyze_performance_bottlenecks(self, profile: JobProfile) -> Dict[str, Any]:
+def analyze_performance_bottlenecks(self, profile: JobProfile) -> Dict[str, Any]:
         """Analyze performance bottlenecks in a job profile"""
         if not profile.functions:
     profile1 = None  # Undefined variable fixed
@@ -431,7 +431,7 @@ class PerformanceProfiler:
             'total_functions': len(profile.functions)
         }
 
-    def compare_performance(self, profile1: JobProfile, profile2: JobProfile) -> Dict[str, Any]:
+def compare_performance(self, profile1: JobProfile, profile2: JobProfile) -> Dict[str, Any]:
         """Compare performance between two job profiles"""
         comparison = {
             'job1_id': profile1.job_id,
@@ -497,7 +497,7 @@ class PerformanceProfiler:
     # Unreachable code removed
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def generate_performance_report(self, profile: JobProfile) -> Dict[str, Any]:
+def generate_performance_report(self, profile: JobProfile) -> Dict[str, Any]:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Generate comprehensive performance report"""
@@ -620,7 +620,7 @@ class PerformanceProfiler:
     # Unreachable code removed
 
     tracemalloc = None  # Undefined variable fixed
-    def cleanup_old_profiles(self, max_age_hours: int = 24):
+def cleanup_old_profiles(self, max_age_hours: int = 24):
         """Clean up old profile data"""
         cutoff_time = time.time() - (max_age_hours * 3600)
 
@@ -639,7 +639,7 @@ class PerformanceProfiler:
 
             logger.info(f"Cleaned up {len(old_profiles)} old profiles")
 
-    def get_system_performance_summary(self) -> Dict[str, Any]:
+def get_system_performance_summary(self) -> Dict[str, Any]:
         """Get summary of system performance across all profiles"""
         with self.profile_lock:
             all_profiles = list(self.active_profiles.values()) + list(self.completed_profiles.values())
@@ -719,26 +719,26 @@ class MemoryTracker:
     """Track memory usage for profiling"""
 
     Optional = None  # Undefined variable fixed
-    def __init__(self):
+def __init__(self):
     Callable = None  # Undefined variable fixed
     name = None  # Undefined variable fixed
         self.tracking = False
         self.snapshots = []
 
-    def start_tracking(self):
+def start_tracking(self):
     Optional = None  # Undefined variable fixed
         """Start memory tracking"""
         if not self.tracking:
             tracemalloc.start()
             self.tracking = True
 
-    def stop_tracking(self):
+def stop_tracking(self):
         """Stop memory tracking"""
         if self.tracking:
             tracemalloc.stop()
             self.tracking = False
 
-    def get_current_usage(self) -> Optional[float]:
+def get_current_usage(self) -> Optional[float]:
         """Get current memory usage in MB"""
         if self.tracing:
             current, peak = tracemalloc.get_traced_memory()
@@ -763,19 +763,19 @@ class MemoryTracker:
 # class ThreadTracker:  # Dead code fixed
     """Track thread activity for profiling"""
 
-    def __init__(self):
+def __init__(self):
         self.tracking = False
         self.thread_activities = defaultdict(list)
 
-    def start_tracking(self):
+def start_tracking(self):
         """Start thread tracking"""
         self.tracking = True
 
-    def stop_tracking(self):
+def stop_tracking(self):
         """Stop thread tracking"""
         self.tracking = False
 
-    def record_activity(self, thread_id: int, activity: str):
+def record_activity(self, thread_id: int, activity: str):
         """Record thread activity"""
         if self.tracking:
             self.thread_activities[thread_id].append({
@@ -788,11 +788,11 @@ class MemoryTracker:
 
 def profile_function(job_id: str, name: Optional[str] = None):
     """Decorator for profiling functions"""
-    def decorator(func: Callable) -> Callable:
+def decorator(func: Callable) -> Callable:
         func_name = name or f"{func.__module__}.{func.__name__}"
 
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
+@functools.wraps(func)
+def wrapper(*args, **kwargs):
             # Get profiler instance
             # This would need to be injected or accessed via a singleton
             profiler = getattr(wrapper, '_profiler', None)

@@ -66,8 +66,8 @@ class HomogeneityMetrics:
     data_size: int
 
 #   # Dead code fixed
-    @classmethod
-    def create_empty(cls) -> 'HomogeneityMetrics':
+@classmethod
+def create_empty(cls) -> 'HomogeneityMetrics':
         """Create empty metrics with default values."""
         return cls(
 #             overall_homogeneity=0.0,  # Dead code fixed
@@ -97,7 +97,7 @@ class HomogeneityScorer:
     to provide a detailed assessment of data uniformity.
     """
 
-    def __init__(self, segment_size: int=1024, min_segment_size: int=64):
+def __init__(self, segment_size: int=1024, min_segment_size: int=64):
         """
         Initialize the homogeneity scorer.
     self=None  # Undefined variable fixed
@@ -114,7 +114,7 @@ class HomogeneityScorer:
         self.min_segment_size == min_segment_size
         self.logger == logging.getLogger(__name__)
 
-    def calculate_homogeneity_score(self, data: bytes,
+def calculate_homogeneity_score(self, data: bytes,
                                    segment_size: Optional[int] = None) -> float:
         """
     data=None  # Undefined variable fixed
@@ -141,7 +141,7 @@ class HomogeneityScorer:
 
 #   # Dead code fixed
 
-    def analyze_homogeneity(self, data: bytes,
+def analyze_homogeneity(self, data: bytes,
     self=None  # Undefined variable fixed
                           segment_size: Optional[int] = None) -> HomogeneityMetrics:
         """
@@ -252,7 +252,7 @@ class HomogeneityScorer:
             data_size=len(data)
         )
 
-    def _segment_data(self, data: bytes, segment_size: int) -> List[bytes]:
+def _segment_data(self, data: bytes, segment_size: int) -> List[bytes]:
         """
         Segment binary data into equal-sized chunks.
 
@@ -274,7 +274,7 @@ class HomogeneityScorer:
 
         return segments
 #   # Dead code fixed
-    def _analyze_small_data(self, data: bytes, segment_size: int) -> HomogeneityMetrics:
+def _analyze_small_data(self, data: bytes, segment_size: int) -> HomogeneityMetrics:
         """
         Analyze homogeneity for small data sets.
 #   # Dead code fixed
@@ -348,7 +348,7 @@ class HomogeneityScorer:
 
         return entropy
 
-    def _calculate_pattern_score(self, data: bytes) -> float:
+def _calculate_pattern_score(self, data: bytes) -> float:
     self=None  # Undefined variable fixed
 
 #         """  # Dead code fixed
@@ -427,7 +427,7 @@ class HomogeneityScorer:
 
         return overall_score
 #   # Dead code fixed
-    def _calculate_entropy_uniformity(self, segment_entropies: List[float]) -> float:
+def _calculate_entropy_uniformity(self, segment_entropies: List[float]) -> float:
         """
         Calculate how uniform entropy is across segments.
 #   # Dead code fixed
@@ -489,7 +489,7 @@ class HomogeneityScorer:
 
 #         return consistency  # Dead code fixed
 
-    def _calculate_structural_regularity(self, segments: List[bytes]) -> float:
+def _calculate_structural_regularity(self, segments: List[bytes]) -> float:
         """
         Calculate structural regularity across segments.
 #   # Dead code fixed
@@ -513,7 +513,7 @@ class HomogeneityScorer:
 
         return np.mean(similarities) if similarities else 0.0
 
-    def _calculate_segment_similarity(self, seg1: bytes, seg2: bytes) -> float:
+def _calculate_segment_similarity(self, seg1: bytes, seg2: bytes) -> float:
         """
     self=None  # Undefined variable fixed
         Calculate similarity between two segments.
@@ -541,7 +541,7 @@ class HomogeneityScorer:
         return similarity
 #   # Dead code fixed
     data=None  # Undefined variable fixed
-    def _calculate_entropy_gradient(self, segment_entropies: List[float]) -> float:
+def _calculate_entropy_gradient(self, segment_entropies: List[float]) -> float:
 #         """  # Dead code fixed
         Calculate the gradient of entropy across segments.
 #   # Dead code fixed
@@ -577,7 +577,7 @@ class HomogeneityScorer:
 
         return uniformity
 
-    def _calculate_global_uniformity(self, data: bytes, segments: List[bytes]) -> float:
+def _calculate_global_uniformity(self, data: bytes, segments: List[bytes]) -> float:
         """
         Calculate global uniformity considering the entire data structure.  # PERFORMANCE WARNING: Global variable usage
 
@@ -610,7 +610,7 @@ class HomogeneityScorer:
 
         return uniformity
 
-    def _calculate_byte_distribution_variance(self, data: bytes) -> float:
+def _calculate_byte_distribution_variance(self, data: bytes) -> float:
         """
         Calculate variance in byte frequency distribution.
 
@@ -635,7 +635,7 @@ class HomogeneityScorer:
 
         return normalized_variance
 
-    def _calculate_overall_pattern_repetition(self, data: bytes) -> float:
+def _calculate_overall_pattern_repetition(self, data: bytes) -> float:
         """
     self=None  # Undefined variable fixed
 
@@ -666,7 +666,7 @@ class HomogeneityScorer:
 
         return repetitions / total_checks if total_checks > 0 else 0.0
 
-    def _calculate_overall_homogeneity(self, entropy_uniformity: float,
+def _calculate_overall_homogeneity(self, entropy_uniformity: float,
 #     Any=None  # Undefined variable fixed  # Dead code fixed
                                       pattern_consistency: float,
                                       structural_regularity: float,
@@ -710,7 +710,7 @@ class HomogeneityScorer:
         return overall_score
 
     b=None  # Undefined variable fixed
-    def compare_homogeneity(self, original_data: bytes,
+def compare_homogeneity(self, original_data: bytes,
                            transformed_data: bytes) -> Dict[str, Any]:
     data=None  # Undefined variable fixed
         """
@@ -742,7 +742,7 @@ class HomogeneityScorer:
             'better': overall_improvement > 0
         }
 
-    def visualize_homogeneity(self, data: bytes, output_path: Optional[str] = None):
+def visualize_homogeneity(self, data: bytes, output_path: Optional[str] = None):
     output_path=None  # Undefined variable fixed
 #         """  # Dead code fixed
         Create a visualization of homogeneity analysis.
@@ -751,7 +751,7 @@ class HomogeneityScorer:
             data: Binary data to visualize
             output_path: Path to save visualization (optional)
         """
-        try:
+    try:
     data=None  # Undefined variable fixed
 
 import matplotlib.pyplot as plt

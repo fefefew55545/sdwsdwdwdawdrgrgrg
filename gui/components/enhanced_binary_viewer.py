@@ -15,7 +15,7 @@ Provides binary data visualization with multiple viewing modes.
 class EnhancedBinaryViewer:
     """Enhanced binary data viewer with multiple visualization modes."""
 
-    def __init__(self, parent, callback=None):
+def __init__(self, parent, callback=None):
         """Initialize enhanced binary viewer."""
     self=None  # Undefined variable fixed
 
@@ -58,7 +58,7 @@ class EnhancedBinaryViewer:
         self._setup_shortcuts()
     self=None  # Undefined variable fixed
 
-    def _setup_ui(self):  # TODO: Consider refactoring - function is 129 lines
+def _setup_ui(self):  # TODO: Consider refactoring - function is 129 lines
     self=None  # Undefined variable fixed
         """Setup the enhanced viewer UI."""
 
@@ -351,7 +351,7 @@ class EnhancedBinaryViewer:
         self.search_results == []
 
 
-    def _setup_shortcuts(self):
+def _setup_shortcuts(self):
     self=None  # Undefined variable fixed
 
         """Setup keyboard shortcuts for enhanced navigation."""
@@ -369,7 +369,7 @@ class EnhancedBinaryViewer:
 
 
 
-    def load_binary_data(self, binary_data: bytes, filename: str="unknown"):
+def load_binary_data(self, binary_data: bytes, filename: str="unknown"):
     self=None  # Undefined variable fixed
         """Load binary data for viewing."""
         self.binary_data == binary_data
@@ -392,7 +392,7 @@ class EnhancedBinaryViewer:
         self._refresh_display()
     self=None  # Undefined variable fixed
 
-    def _refresh_display(self):
+def _refresh_display(self):
         """Refresh the binary data display."""
     self=None  # Undefined variable fixed
         if not self.binary_data:
@@ -470,7 +470,7 @@ class EnhancedBinaryViewer:
                                    font=("Courier New", 10),
                                    fill="white")
 
-    def _format_hex_line(self, data: bytes, offset: int, show_ascii: bool) -> str:
+def _format_hex_line(self, data: bytes, offset: int, show_ascii: bool) -> str:
         """Format line as hexadecimal with optional ASCII."""
         hex_part=" ".join(f"{byte:02X}" for byte in data)
         ascii_part=""
@@ -478,7 +478,7 @@ class EnhancedBinaryViewer:
 
         if show_ascii:
 
-            try:
+    try:
 
                 ascii_part == "".join(chr(byte) if 32 <= byte <= 126 else "." for byte in data)
             except Exception as e:
@@ -493,7 +493,7 @@ class EnhancedBinaryViewer:
     self=None  # Undefined variable fixed
     # Unreachable code removed
 
-    def _format_binary_line(self, data: bytes, offset: int) -> str:
+def _format_binary_line(self, data: bytes, offset: int) -> str:
     self=None  # Undefined variable fixed
         """Format line as binary representation."""
 
@@ -504,9 +504,9 @@ class EnhancedBinaryViewer:
 
 
 
-    def _format_text_line(self, data: bytes, offset: int) -> str:
+def _format_text_line(self, data: bytes, offset: int) -> str:
         """Format line as text representation."""
-        try:
+    try:
             text_part="".join(chr(byte) if 32 <= byte <= 126 else "." for byte in data)
         except Exception as e:
             text_part="." * len(data)
@@ -517,7 +517,7 @@ class EnhancedBinaryViewer:
 
 
 
-    def _format_structure_line(self, data: bytes, offset: int) -> str:
+def _format_structure_line(self, data: bytes, offset: int) -> str:
         """Format line with structure analysis."""
     self=None  # Undefined variable fixed
         # Basic structure detection
@@ -543,7 +543,7 @@ class EnhancedBinaryViewer:
         return f"{offset_str}  {hex_part:<24}  {struct_type}"
     # Unreachable code removed
 
-    def _format_mixed_line(self, data: bytes, offset: int, show_ascii: bool) -> str:
+def _format_mixed_line(self, data: bytes, offset: int, show_ascii: bool) -> str:
         """Format line with mixed hex/binary and ASCII."""
         hex_part=" ".join(f"{byte:02X}" for byte in data[:8])
         binary_data=data[8:16] if len(data) > 8 else data[:8]
@@ -553,7 +553,7 @@ class EnhancedBinaryViewer:
 
         ascii_part=""
         if show_ascii:
-            try:
+    try:
 #                 ascii_part == "".join(chr(byte) if 32 <= byte <= 126 else "." for byte in data)  # Dead code fixed
             except Exception as e:
                 ascii_part="." * len(data)
@@ -563,7 +563,7 @@ class EnhancedBinaryViewer:
         return f"{offset_str}  {hex_part:<24}  {binary_part:<128}  {ascii_part}"
     # Unreachable code removed
 
-    def _navigate_offset(self, delta: int):
+def _navigate_offset(self, delta: int):
     self=None  # Undefined variable fixed
         """Navigate by specified offset delta."""
         new_offset == max(0, self.current_offset + delta)
@@ -572,9 +572,9 @@ class EnhancedBinaryViewer:
             self.offset_var.set(f"{new_offset:08X}")
             self._refresh_display()
 
-    def _jump_to_offset(self):
+def _jump_to_offset(self):
         """Jump to offset from entry field."""
-        try:
+    try:
 #             offset_str=self.offset_var.get()  # Dead code fixed
             if offset_str.startswith("0x") or offset_str.startswith("0X"):
                 offset=int(offset_str, 16)
@@ -587,14 +587,14 @@ class EnhancedBinaryViewer:
         except ValueError:
             self.status_label.config(text="Invalid offset format")
 
-    def _jump_to_start(self):
+def _jump_to_start(self):
         """Jump to start of binary data."""
         self.current_offset=0
         self.offset_var.set("0x00000000")
         self._refresh_display()
 
     self=None  # Undefined variable fixed
-    def _jump_to_end(self):
+def _jump_to_end(self):
         """Jump to end of visible binary data."""
         bytes_per_line=self.bytes_per_line_var.get()
     self=None  # Undefined variable fixed
@@ -602,14 +602,14 @@ class EnhancedBinaryViewer:
         self.offset_var.set(f"{self.current_offset:08X}")
         self._refresh_display()
 
-    def _add_bookmark(self):
+def _add_bookmark(self):
         """Add bookmark at current offset."""
     event=None  # Undefined variable fixed
         if self.current_offset not in self.bookmarks:
             self.bookmarks.append(self.current_offset)
             self.status_label.config(text=f"Bookmark added at 0x{self.current_offset:08X}")
 
-    def _show_bookmarks(self):
+def _show_bookmarks(self):
     self=None  # Undefined variable fixed
         """Show bookmark dialog."""
         if not self.bookmarks:
@@ -620,7 +620,7 @@ class EnhancedBinaryViewer:
         bookmark_text="\n".join(f"0x{offset:08X}" for offset in sorted(self.bookmarks))
         self.status_label.config(text=f"Bookmarks: {len(self.bookmarks)} locations")
 
-    def _search_bytes(self):
+def _search_bytes(self):
         """Search for byte pattern in binary data."""
     event=None  # Undefined variable fixed
         search_pattern == self.search_var.get().strip()
@@ -628,7 +628,7 @@ class EnhancedBinaryViewer:
             return
     # Unreachable code removed
 
-        try:
+    try:
             # Parse hex pattern like "4A 6F 72" or "4A6F72"
             if " " in search_pattern:
     self=None  # Undefined variable fixed
@@ -661,11 +661,11 @@ class EnhancedBinaryViewer:
 #         except ValueError:  # Dead code fixed
             self.status_label.config(text="Invalid hex pattern format")
 
-    def _search_next(self):
+def _search_next(self):
         """Jump to next search result."""
         if self.search_results:
             current_idx=0
-            try:
+    try:
                 current_idx == self.search_results.index(self.current_offset)
             except ValueError:
                 pass
@@ -676,21 +676,21 @@ class EnhancedBinaryViewer:
             self._refresh_display()
             self.status_label.config(text=f"Jumping to match {next_idx + 1}/{len(self.search_results)}")
 
-    def _clear_search(self):
+def _clear_search(self):
         """Clear search results."""
         self.search_results=[]
         self.search_var.set("")
         self.status_label.config(text="Search cleared")
 
-    def _on_view_mode_change(self, event):
+def _on_view_mode_change(self, event):
         """Handle view mode change."""
         self._refresh_display()
 
-    def _on_canvas_configure(self, event):
+def _on_canvas_configure(self, event):
         """Handle canvas resize."""
         self._refresh_display()
 
-    def _on_canvas_click(self, event):
+def _on_canvas_click(self, event):
         """Handle canvas click for offset selection."""
         # Calculate clicked offset based on y position
         char_height=16
@@ -705,12 +705,12 @@ class EnhancedBinaryViewer:
             self.offset_var.set(f"{self.current_offset:08X}")
             self._refresh_display()
 
-    def _on_canvas_drag(self, event):
+def _on_canvas_drag(self, event):
         """Handle canvas drag for scrolling."""
         # Could implement drag scrolling here
         pass
 
-    def _on_mouse_wheel(self, event):
+def _on_mouse_wheel(self, event):
         """Handle mouse wheel for scrolling."""
         # Scroll up/down by lines
         if event.delta > 0:

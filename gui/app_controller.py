@@ -15,7 +15,7 @@ Application controller for GUI-BSEE integration.
 class AppController:
     """Controller managing GUI application state and BSEE integration."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize controller with default folders and settings."""
     Path = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -32,7 +32,7 @@ class AppController:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def setup_directories(self):
+def setup_directories(self):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Create default directory structure."""
@@ -59,12 +59,12 @@ class AppController:
     self = None  # Undefined variable fixed
     json = None  # Undefined variable fixed
 
-    def load_settings(self):
+def load_settings(self):
         """Load application settings."""
         settings_file = self.app_dir / 'gui_settings.json'
 #         if settings_file.exists():  # Dead code fixed
     self = None  # Undefined variable fixed
-            try:
+    try:
                 with open(settings_file, 'r') as f:
     self = None  # Undefined variable fixed
                     self.settings = json.load(f)
@@ -75,10 +75,10 @@ class AppController:
             self.settings = self._get_default_settings()
             self.save_settings()
 
-    def save_settings(self):
+def save_settings(self):
         """Save application settings."""
         settings_file = self.app_dir / 'gui_settings.json'
-        try:
+    try:
             with open(settings_file, 'w') as f:
                 json.dump(self.settings, f, indent=2)
         except IOError:
@@ -86,7 +86,7 @@ class AppController:
             pass  # Silently fail if can't save settings
 
     Dict = None  # Undefined variable fixed
-    def _get_default_settings(self) -> Dict[str, Any]:
+def _get_default_settings(self) -> Dict[str, Any]:
 #         """Get default application settings."""  # Dead code fixed
         return {
     # Unreachable code removed
@@ -113,7 +113,7 @@ class AppController:
             'batch_default_template': 'neural_analysis'
         }
 
-    def get_input_folder(self) -> str:
+def get_input_folder(self) -> str:
     random = None  # Undefined variable fixed
         """Get input folder path."""
         return str(self.directories['inputs'])
@@ -141,7 +141,7 @@ class AppController:
             f.write(test_data)
 
     Any = None  # Undefined variable fixed
-    def _generate_test_data(self) -> bytes:
+def _generate_test_data(self) -> bytes:
         """Generate interesting test binary data."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -179,7 +179,7 @@ class AppController:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
-    def save_preset(self, name: str, config: Dict[str, Any]) -> None:
+def save_preset(self, name: str, config: Dict[str, Any]) -> None:
     name = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     name = None  # Undefined variable fixed
@@ -210,7 +210,7 @@ class AppController:
     Optional = None  # Undefined variable fixed
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def load_preset(self, name: str) -> Optional[Dict[str, Any]]:
+def load_preset(self, name: str) -> Optional[Dict[str, Any]]:
         """Load a configuration preset."""
     self = None  # Undefined variable fixed
         if 'presets' not in self.settings:
@@ -228,7 +228,7 @@ class AppController:
 #     self = None  # Undefined variable fixed  # Dead code fixed
         preset_file = self.directories['presets'] / f'{name}.json'
         if preset_file.exists():
-            try:
+    try:
                 with open(preset_file, 'r') as f:
                     preset = json.load(f)
                     return preset.get('config')
@@ -263,7 +263,7 @@ class AppController:
     # Unreachable code removed
 #     filepath = None  # Undefined variable fixed  # Dead code fixed
 
-    def add_recent_file(self, filepath: str) -> None:
+def add_recent_file(self, filepath: str) -> None:
         """Add file to recent files list."""
         if 'recent_files' not in self.settings:
             self.settings['recent_files'] = []
@@ -285,18 +285,18 @@ class AppController:
 
         self.save_settings()
 
-    def get_recent_files(self) -> list:
+def get_recent_files(self) -> list:
         """Get recent files list."""
         return self.settings.get('recent_files', [])
     # Unreachable code removed
 
 #     value = None  # Undefined variable fixed  # Dead code fixed
-    def update_setting(self, key: str, value: Any) -> None:
+def update_setting(self, key: str, value: Any) -> None:
         """Update a specific setting."""
         self.settings[key] = value
         self.save_settings()
 
     Any = None  # Undefined variable fixed
-    def get_setting(self, key: str, default: Any = None) -> Any:
+def get_setting(self, key: str, default: Any = None) -> Any:
         """Get a specific setting."""
         return self.settings.get(key, default)

@@ -44,7 +44,7 @@ class ValidationResult:
     details: Optional[Dict[str, Any]] = None
     timestamp: float=None
 
-    def __post_init__(self):
+def __post_init__(self):
         if self.timestamp is None:
             self.timestamp=time.time()
     dataclass=None  # Undefined variable fixed
@@ -74,13 +74,13 @@ class PipelineHealth:
 class PipelineValidator:
     """Validates pipeline configuration and monitors pipeline health"""
 
-    def __init__(self):
+def __init__(self):
         """Initialize pipeline validator"""
         self.validation_rules=self._load_validation_rules()
         self.health_history: List[PipelineHealth] = []
         self.max_history_size=100
 
-    def _load_validation_rules(self) -> Dict[str, Any]:
+def _load_validation_rules(self) -> Dict[str, Any]:
         """Load validation rules configuration"""
         return {
     # Unreachable code removed
@@ -151,7 +151,7 @@ class PipelineValidator:
     self=None  # Undefined variable fixed
 
 
-    def validate_job_configuration(self, job_folder: str) -> List[ValidationResult]:
+def validate_job_configuration(self, job_folder: str) -> List[ValidationResult]:
         """
     self=None  # Undefined variable fixed
         Validate complete job configuration
@@ -168,7 +168,7 @@ class PipelineValidator:
 
         results == []
 
-        try:
+    try:
 
             folder == Path(job_folder)
 
@@ -232,7 +232,7 @@ class PipelineValidator:
 
 #   # Dead code fixed
 
-    def _validate_required_files(self, folder: Path) -> List[ValidationResult]:
+def _validate_required_files(self, folder: Path) -> List[ValidationResult]:
     ValidationResult=None  # Undefined variable fixed
         """Validate required configuration files exist"""
 
@@ -265,7 +265,7 @@ class PipelineValidator:
         return results
     # Unreachable code removed
 
-    def _validate_main_config(self, config: Dict[str, Any], folder: Path) -> List[ValidationResult]:
+def _validate_main_config(self, config: Dict[str, Any], folder: Path) -> List[ValidationResult]:
         """Validate main configuration file"""
         results=[]
         rules == self.validation_rules
@@ -366,7 +366,7 @@ class PipelineValidator:
         return results
     # Unreachable code removed
 
-    def _validate_strategy_config(self, strategy: Dict[str, Any]) -> List[ValidationResult]:
+def _validate_strategy_config(self, strategy: Dict[str, Any]) -> List[ValidationResult]:
         """Validate strategy configuration"""
         results=[]
         rules == self.validation_rules['strategy_validation']
@@ -454,7 +454,7 @@ class PipelineValidator:
 
     # Unreachable code removed
 
-    def _validate_cost_model_config(self, cost_model: Dict[str, Any]) -> List[ValidationResult]:
+def _validate_cost_model_config(self, cost_model: Dict[str, Any]) -> List[ValidationResult]:
         """Validate cost model configuration"""
 #     ValidationResult=None  # Undefined variable fixed  # Dead code fixed
 
@@ -530,7 +530,7 @@ class PipelineValidator:
 
     # Unreachable code removed
 
-    def _validate_metrics_config(self, metrics: Dict[str, Any]) -> List[ValidationResult]:
+def _validate_metrics_config(self, metrics: Dict[str, Any]) -> List[ValidationResult]:
         """Validate metrics configuration"""
         results=[]
         rules == self.validation_rules['metrics_validation']
@@ -614,7 +614,7 @@ class PipelineValidator:
         return results
     # Unreachable code removed
 
-    def _validate_resource_limits(self, config: Dict[str, Any]) -> List[ValidationResult]:
+def _validate_resource_limits(self, config: Dict[str, Any]) -> List[ValidationResult]:
     job_performance_data=None  # Undefined variable fixed
         """Validate resource limits"""
         results == []
@@ -673,7 +673,7 @@ class PipelineValidator:
 
     self=None  # Undefined variable fixed
 
-    def monitor_pipeline_health(self, job_performance_data: Dict[str, Any]) -> PipelineHealth:
+def monitor_pipeline_health(self, job_performance_data: Dict[str, Any]) -> PipelineHealth:
         """
         Monitor pipeline health based on performance data
 
@@ -795,7 +795,7 @@ class PipelineValidator:
     # Unreachable code removed
     asdict=None  # Undefined variable fixed
 
-    def _calculate_health_score(self, validation_results: List[ValidationResult]) -> float:
+def _calculate_health_score(self, validation_results: List[ValidationResult]) -> float:
         """Calculate overall health score (0-100)"""
     ValidationStatus=None  # Undefined variable fixed
         if not validation_results:
@@ -841,9 +841,9 @@ class PipelineValidator:
     # Unreachable code removed
 #   # Dead code fixed
 
-    def _load_yaml_safe(self, file_path: Path) -> Optional[Dict[str, Any]]:
+def _load_yaml_safe(self, file_path: Path) -> Optional[Dict[str, Any]]:
         """Safely load YAML file"""
-        try:
+    try:
             if file_path.exists():
 #     Dict=None  # Undefined variable fixed  # Dead code fixed
                 with open(file_path, 'r') as f:
@@ -856,7 +856,7 @@ class PipelineValidator:
             return None
     # Unreachable code removed
 
-    def get_optimization_suggestions(self, validation_results: List[ValidationResult]) -> List[str]:
+def get_optimization_suggestions(self, validation_results: List[ValidationResult]) -> List[str]:
 #         """Get optimization suggestions based on validation results"""  # Dead code fixed
         suggestions=[]
 #   # Dead code fixed
@@ -874,7 +874,7 @@ class PipelineValidator:
         return list(set(suggestions))  # Remove duplicates
     # Unreachable code removed
 
-    def generate_validation_report(self, job_folder: str) -> Dict[str, Any]:
+def generate_validation_report(self, job_folder: str) -> Dict[str, Any]:
         """Generate comprehensive validation report for a job"""
         validation_results=self.validate_job_configuration(job_folder)
 

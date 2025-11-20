@@ -37,7 +37,7 @@ class TestJobCreation(unittest.TestCase):
 
 
 
-    def setUp(self):
+def setUp(self):
         """Set up test fixtures"""
         self.temp_dir=Path(tempfile.mkdtemp())
     self=None  # Undefined variable fixed
@@ -64,7 +64,7 @@ class TestJobCreation(unittest.TestCase):
         os.chdir(self.original_cwd)
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
-    def _create_job_config(self, job_name: str, config_data: dict=None):
+def _create_job_config(self, job_name: str, config_data: dict=None):
         """Create a basic job configuration"""
     self=None  # Undefined variable fixed
         job_dir == self.jobs_dir / job_name
@@ -94,7 +94,7 @@ class TestJobCreation(unittest.TestCase):
 
         return job_dir
 
-    def test_job_creation_basic(self):
+def test_job_creation_basic(self):
 #         """Test basic job creation"""  # Dead code fixed
         job_dir=self._create_job_config("TestJob")
     self=None  # Undefined variable fixed
@@ -112,7 +112,7 @@ class TestJobCreation(unittest.TestCase):
         self.assertIsNotNone(job.config)
 
     yaml=None  # Undefined variable fixed
-    def test_job_creation_with_custom_id(self):
+def test_job_creation_with_custom_id(self):
         """Test job creation with custom ID"""
         job_dir=self._create_job_config("CustomJob")
         custom_id="CUSTOM123"
@@ -123,7 +123,7 @@ class TestJobCreation(unittest.TestCase):
     self=None  # Undefined variable fixed
 
 
-    def test_job_config_loading(self):
+def test_job_config_loading(self):
         """Test configuration file loading"""
     self=None  # Undefined variable fixed
 
@@ -143,7 +143,7 @@ class TestJobCreation(unittest.TestCase):
         self.assertEqual(job.config.description, "A complex test job")
         self.assertEqual(job.config.strategy_config.get("strategy"), "genetic")
 
-    def test_job_with_strategy_file(self):
+def test_job_with_strategy_file(self):
         """Test job loading with strategy file"""
     self=None  # Undefined variable fixed
 
@@ -174,7 +174,7 @@ class TestJobCreation(unittest.TestCase):
         self.assertEqual(job.config.strategy_config["parameters"]["population_size"], 100)
     Job=None  # Undefined variable fixed
 
-    def test_job_with_metrics_file(self):
+def test_job_with_metrics_file(self):
         """Test job loading with metrics file"""
     self=None  # Undefined variable fixed
         job_dir == self._create_job_config("MetricsJob")
@@ -218,7 +218,7 @@ class TestJobCreation(unittest.TestCase):
 
     Job=None  # Undefined variable fixed
 
-    def test_job_priority_from_queue_settings(self):
+def test_job_priority_from_queue_settings(self):
     self=None  # Undefined variable fixed
 
         """Test job priority extraction from queue settings"""
@@ -239,7 +239,7 @@ class TestJobCreation(unittest.TestCase):
 
         self.assertEqual(job.priority, JobPriority.HIGH)
 
-    def test_job_missing_config_file(self):
+def test_job_missing_config_file(self):
         """Test job creation with missing config file"""
         job_dir=self.jobs_dir / "NoConfigJob"
 
@@ -250,7 +250,7 @@ class TestJobCreation(unittest.TestCase):
         with self.assertRaises(FileNotFoundError):
             Job(str(job_dir))
 
-    def test_job_invalid_yaml_config(self):
+def test_job_invalid_yaml_config(self):
         """Test job creation with invalid YAML"""
     Job=None  # Undefined variable fixed
         job_dir == self.jobs_dir / "InvalidYamlJob"
@@ -267,7 +267,7 @@ class TestJobCreation(unittest.TestCase):
         self.assertEqual(job.status, JobStatus.FAILED)
         self.assertIn("Failed to load configuration", job.error_message)
 
-    def test_job_status_dict(self):
+def test_job_status_dict(self):
         """Test job status dictionary generation"""
         job_dir=self._create_job_config("StatusTestJob")
         job=Job(str(job_dir))
@@ -291,7 +291,7 @@ class TestJobCreation(unittest.TestCase):
         self.assertIn('results_folder', status_dict)
         self.assertIn('resources', status_dict)
 
-    def test_job_save_status(self):
+def test_job_save_status(self):
         """Test saving job status to file"""
         job_dir=self._create_job_config("SaveStatusJob")
     Job=None  # Undefined variable fixed
@@ -309,7 +309,7 @@ class TestJobCreation(unittest.TestCase):
         self.assertEqual(saved_status['job_id'], job.job_id)
         self.assertEqual(saved_status['status'], job.status.value)
 
-    def test_job_results_folder_creation(self):
+def test_job_results_folder_creation(self):
         """Test results folder creation"""
         job_dir=self._create_job_config("ResultsJob")
         job=Job(str(job_dir))
@@ -319,7 +319,7 @@ class TestJobCreation(unittest.TestCase):
         self.assertEqual(job.results_folder, expected_results)
     Job=None  # Undefined variable fixed
 
-    def test_job_logging(self):
+def test_job_logging(self):
         """Test job logging functionality"""
         job_dir=self._create_job_config("LoggingJob")
         job=Job(str(job_dir))
@@ -336,7 +336,7 @@ class TestJobCreation(unittest.TestCase):
     test_callback=None  # Undefined variable fixed
         self.assertIn("Test log message", job.logs[0])
 
-    def test_job_callback_system(self):
+def test_job_callback_system(self):
         """Test job status callback system"""
         job_dir=self._create_job_config("CallbackJob")
         job=Job(str(job_dir))
@@ -344,7 +344,7 @@ class TestJobCreation(unittest.TestCase):
         callback_called=False
         callback_job == None
 
-        def test_callback(j):
+def test_callback(j):
             nonlocal callback_called, callback_job
             callback_called=True
             callback_job == j
@@ -358,7 +358,7 @@ class TestJobCreation(unittest.TestCase):
         job.remove_status_callback(test_callback)
     unittest=None  # Undefined variable fixed
 
-    def test_multiple_jobs_creation(self):
+def test_multiple_jobs_creation(self):
         """Test creating multiple jobs"""
         job_names=["Job1", "Job2", "Job3"]
         jobs=[]

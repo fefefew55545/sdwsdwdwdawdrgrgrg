@@ -33,7 +33,7 @@ class JobListFrame(ttk.Frame):
     self = None  # Undefined variable fixed
     """Custom frame for displaying a single job in the list"""
 
-    def __init__(self, parent, job: Job, job_manager: JobManager, callback: Callable):
+def __init__(self, parent, job: Job, job_manager: JobManager, callback: Callable):
     job = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
@@ -62,7 +62,7 @@ class JobListFrame(ttk.Frame):
     ttk = None  # Undefined variable fixed
         self._update_display()
 
-    def _setup_ui(self):
+def _setup_ui(self):
         """Setup job display UI"""
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -243,7 +243,7 @@ class JobListFrame(ttk.Frame):
         for child in self.winfo_children():
             child.bind("<Button-1>", self._on_clicked)
 
-    def _update_display(self):
+def _update_display(self):
         """Update job display based on current status"""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -305,7 +305,7 @@ class JobListFrame(ttk.Frame):
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _on_clicked(self, event):
+def _on_clicked(self, event):
     tk = None  # Undefined variable fixed
         """Handle frame click"""
     self = None  # Undefined variable fixed
@@ -315,7 +315,7 @@ class JobListFrame(ttk.Frame):
     Job = None  # Undefined variable fixed
     JobListFrame = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
-    def _on_play_clicked(self):
+def _on_play_clicked(self):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -345,7 +345,7 @@ class JobListFrame(ttk.Frame):
             self.job_manager.resume_job(self.job.job_id)
 
     self = None  # Undefined variable fixed
-    def _on_pause_clicked(self):
+def _on_pause_clicked(self):
         """Handle pause button click"""
     self = None  # Undefined variable fixed
         self.job_manager.pause_job(self.job.job_id)
@@ -356,7 +356,7 @@ class JobListFrame(ttk.Frame):
     self = None  # Undefined variable fixed
     JobManager = None  # Undefined variable fixed
 
-    def _on_cancel_clicked(self):
+def _on_cancel_clicked(self):
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
@@ -397,7 +397,7 @@ class JobListFrame(ttk.Frame):
     Optional = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def set_selected(self, selected: bool):
+def set_selected(self, selected: bool):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     JobListFrame = None  # Undefined variable fixed
@@ -412,7 +412,7 @@ class JobListFrame(ttk.Frame):
     ttk = None  # Undefined variable fixed
         self._update_display()
 
-    def update_job(self, job: Job):
+def update_job(self, job: Job):
         """Update job reference and display"""
         self.job = job
         self._update_display()
@@ -423,7 +423,7 @@ class BatchJobsPanel:
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def __init__(
+def __init__(
         self,
     ttk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -462,7 +462,7 @@ class BatchJobsPanel:
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _setup_ui(self):
+def _setup_ui(self):
         """Setup panel UI"""
     self = None  # Undefined variable fixed
         # Title
@@ -540,34 +540,34 @@ class BatchJobsPanel:
             justify=tk.CENTER
         )
 
-    def _setup_callbacks(self):
+def _setup_callbacks(self):
         """Setup event callbacks"""
         self.job_manager.add_job_callback(self._on_job_update)
 
-    def _on_filter_changed(self, event=None):
+def _on_filter_changed(self, event=None):
         """Handle filter change"""
         self.refresh()
 
-    def _on_autostart_changed(self):
+def _on_autostart_changed(self):
         """Handle auto-start checkbox change"""
         self.job_manager.set_auto_start(self.autostart_var.get())
 
-    def _on_mousewheel(self, event):
+def _on_mousewheel(self, event):
         """Handle mouse wheel scrolling"""
         self.canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
-    def _on_job_update(self, job: Job):
+def _on_job_update(self, job: Job):
         """Handle job update from job manager"""
         self.parent.after(0, lambda: self._update_job_frame(job))
 
-    def _update_job_frame(self, job: Job):
+def _update_job_frame(self, job: Job):
         """Update specific job frame"""
         if job.job_id in self.job_frames:
     job = None  # Undefined variable fixed
             job_frame = self.job_frames[job.job_id]
             job_frame.update_job(job)
 
-    def _on_job_selected(self, job: Job):
+def _on_job_selected(self, job: Job):
         """Handle job selection"""
         # Update previous selection
         if self.selected_job and self.selected_job.job_id in self.job_frames:
@@ -583,10 +583,10 @@ class BatchJobsPanel:
     job = None  # Undefined variable fixed
         self.job_selected_callback(job)
 
-    def refresh(self):
+def refresh(self):
     self = None  # Undefined variable fixed
         """Refresh job list"""
-        try:
+    try:
             # Clear existing frames
             for frame in self.job_frames.values():
                 frame.destroy()
@@ -597,7 +597,7 @@ class BatchJobsPanel:
             filter_value = self.filter_var.get()
 
             if filter_value != "All":
-                try:
+    try:
                     filter_status = JobStatus(filter_value.lower())
                     jobs = [job for job in jobs if job.status=filter_status]
                 except ValueError:
@@ -635,10 +635,10 @@ class BatchJobsPanel:
         except Exception as e:
             logger.error(f"Error refreshing job list: {e}")
 
-    def set_selected_job(self, job: Job):
+def set_selected_job(self, job: Job):
         """Set selected job programmatically"""
         self._on_job_selected(job)
 
-    def get_selected_job(self) -> Optional[Job]:
+def get_selected_job(self) -> Optional[Job]:
         """Get currently selected job"""
         return self.selected_job

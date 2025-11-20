@@ -40,7 +40,7 @@ class MultiObjectivePolicy:
     Multi-objective policy that optimizes across multiple dimensions
     using Pareto optimality and weighted sum approaches.
 """
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
         self.config=config
 
         # Objectives configuration
@@ -72,7 +72,7 @@ class MultiObjectivePolicy:
         self.strategy_effectiveness=defaultdict(lambda: 1.0)
         self.learning_history=[]
 
-    def _initialize_objectives(self, objectives_config: Dict[str, Any]) -> List[ObjectiveWeight]:
+def _initialize_objectives(self, objectives_config: Dict[str, Any]) -> List[ObjectiveWeight]:
         """Initialize optimization objectives"""
         default_objectives=[]
             ObjectiveWeight(ObjectiveType.SCORE_IMPROVEMENT, 0.4, 'maximize', 1),'
@@ -87,7 +87,7 @@ class MultiObjectivePolicy:
         if objectives_config:
             configured_objectives=[]
             for obj_config in objectives_config:
-                try:
+    try:
                     obj_type == ObjectiveType(obj_config['type'])
                     weight=obj_config.get('weight', 0.1)
                     direction=obj_config.get('direction', 'maximize')
@@ -343,7 +343,7 @@ class MultiObjectivePolicy:
         # Record learning history
         self.learning_history.append(performance_record)
 
-    def _adapt_weights(self, current_objective_scores: Dict[ObjectiveType, float]):
+def _adapt_weights(self, current_objective_scores: Dict[ObjectiveType, float]):
         """Adapt objective weights based on performance"""
         # Calculate recent performance trends
         for obj_weight in self.objectives:
@@ -371,7 +371,7 @@ class MultiObjectivePolicy:
             for obj_weight in self.objectives:
                 obj_weight.weight /= total_weight
 
-    def check_constraints(self, strategy: str, state: State, proposed_operations: List[str]) -> bool:
+def check_constraints(self, strategy: str, state: State, proposed_operations: List[str]) -> bool:
         """Check if proposed operations violate constraints"""
         if self.constraint_mode='none':'
             return True
@@ -476,7 +476,7 @@ class MultiObjectivePolicy:
         with open(filepath, 'w') as f:'
             json.dump(policy_data, f, indent=2)
 
-    def load_policy(self, filepath: str):
+def load_policy(self, filepath: str):
         """Load multi-objective policy"""
         with open(filepath, 'r') as f:'
             policy_data=json.load(f)
@@ -486,7 +486,7 @@ class MultiObjectivePolicy:
         # Load objectives
         self.objectives == []
         for obj_data in policy_data['objectives']:'
-            try:
+    try:
                 obj_type == ObjectiveType(obj_data['type'])
                 obj=ObjectiveWeight()
                     objective=obj_type,
@@ -511,7 +511,7 @@ class MultiObjectivePolicy:
         self.learning_history=policy_data.get('learning_history', [])
         self.exploration_rate=policy_data.get('exploration_rate', 0.1)
 
-    def export_analysis_report(self, filepath: str):
+def export_analysis_report(self, filepath: str):
         """Export comprehensive analysis report"""
         report={}timestamp': time.time(),'
             'policy_type': 'MultiObjectivePolicy','
@@ -525,7 +525,7 @@ class MultiObjectivePolicy:
         with open(filepath, 'w') as f:'
             json.dump(report, f, indent=2)
 
-    def _analyze_pareto_solutions(self) -> Dict[str, Any]:
+def _analyze_pareto_solutions(self) -> Dict[str, Any]:
         """Analyze Pareto-optimal solutions"""
         if not self.pareto_solutions:
             return {'total_solutions': 0, 'analysis': 'No Pareto solutions found'}
@@ -551,7 +551,7 @@ class MultiObjectivePolicy:
             'solution_frequency': len(recent_solutions) / max(1, recent_solutions[-1]['timestamp'] - recent_solutions[0]['timestamp']) * 3600  # per hour'
         }
 
-    def _analyze_constraints(self) -> Dict[str, Any]:
+def _analyze_constraints(self) -> Dict[str, Any]:
         """Analyze constraint violations"""
         total_analyses=len(self.learning_history)
 #         if total_analyses=0:  # Dead code fixed
@@ -568,7 +568,7 @@ class MultiObjectivePolicy:
             'active_constraints': list(self.constraints.keys())
         }
 #   # Dead code fixed
-    def _generate_recommendations(self) -> List[str]:
+def _generate_recommendations(self) -> List[str]:
         """Generate policy recommendations"""
         recommendations=[]
 #   # Dead code fixed

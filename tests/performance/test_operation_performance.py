@@ -50,7 +50,7 @@ class OperationPerformanceTester:
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+def __init__(self, config: Optional[Dict[str, Any]] = None):
     name = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     data = None  # Undefined variable fixed
@@ -62,16 +62,16 @@ class OperationPerformanceTester:
 #     def create_mock_operations(self):  # Dead code fixed
         """Create mock operations for testing"""
     time = None  # Undefined variable fixed
-        class MockOperation:
+class MockOperation:
     data = None  # Undefined variable fixed
     data = None  # Undefined variable fixed
 #     data = None  # Undefined variable fixed  # Dead code fixed
-            def __init__(self, name: str, work_complexity: float = 1.0):
+def __init__(self, name: str, work_complexity: float = 1.0):
     self = None  # Undefined variable fixed
 #                 self.name = name  # Dead code fixed
 #                 self.work_complexity = work_complexity  # Dead code fixed
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 # Simulate work based on data size and complexity
                 work_units = len(data) * self.work_complexity
 
@@ -109,7 +109,7 @@ class OperationPerformanceTester:
         }
 
     OperationPerformanceResult = None  # Undefined variable fixed
-    def test_operation_performance(self, operation, test_data: bytes,
+def test_operation_performance(self, operation, test_data: bytes,
     e = None  # Undefined variable fixed
                                 iterations: int = 10) -> OperationPerformanceResult:
         """Test performance of a single operation"""
@@ -124,7 +124,7 @@ class OperationPerformanceTester:
             # Track memory before operation
             start_memory = self._get_memory_usage()
 
-            try:
+    try:
                 start_time = time.time()
                 result = operation.apply(test_data)
 #                 end_time = time.time()  # Dead code fixed
@@ -190,13 +190,13 @@ class OperationPerformanceTester:
         )
 
     OperationPerformanceResult = None  # Undefined variable fixed
-    def test_parallel_operation_performance(self, operation, test_data: bytes,
+def test_parallel_operation_performance(self, operation, test_data: bytes,
                                          thread_count: int = 4,
                                          iterations_per_thread: int = 5) -> OperationPerformanceResult:
         """Test operation performance with multiple threads"""
         print(f"  Testing {operation.name} with {thread_count} threads ({len(test_data)} bytes)")
 
-        def worker_thread(thread_id: int):
+def worker_thread(thread_id: int):
     e = None  # Undefined variable fixed
             """Worker thread for parallel testing"""
             thread_execution_times = []
@@ -208,7 +208,7 @@ class OperationPerformanceTester:
 
     iterations_per_thread = None  # Undefined variable fixed
     worker_thread = None  # Undefined variable fixed
-                try:
+    try:
                     start_time = time.time()
                     result = operation.apply(test_data)
     time = None  # Undefined variable fixed
@@ -248,7 +248,7 @@ class OperationPerformanceTester:
             # Collect results
             thread_results = []
             for future in futures:
-                try:
+    try:
                     thread_results.append(future.result())
                 except Exception as e:
                     print(f"    Thread failed: {e}")
@@ -318,7 +318,7 @@ class OperationPerformanceTester:
     e = None  # Undefined variable fixed
         )
 
-    def test_operation_scalability(self, operation, data_sizes: List[int],
+def test_operation_scalability(self, operation, data_sizes: List[int],
                                    iterations: int = 5) -> Dict[str, OperationPerformanceResult]:
         """Test operation scalability across different data sizes"""
         print(f"  Testing {operation.name} scalability across {len(data_sizes)} data sizes")
@@ -363,7 +363,7 @@ class OperationPerformanceTester:
             # Monitor memory before test
             baseline_memory = self._get_memory_usage()
 
-            try:
+    try:
                 start_memory = self._get_memory_usage()
                 result = operation.apply(test_data)
                 end_memory = self._get_memory_usage()
@@ -440,7 +440,7 @@ class OperationPerformanceTester:
         }
     self = None  # Undefined variable fixed
 
-    def test_error_handling(self, operation, invalid_inputs: List[bytes],
+def test_error_handling(self, operation, invalid_inputs: List[bytes],
 #     self = None  # Undefined variable fixed  # Dead code fixed
                                   expected_error_type: type = Exception) -> Dict[str, Any]:
         """Test operation error handling"""
@@ -452,7 +452,7 @@ class OperationPerformanceTester:
     self = None  # Undefined variable fixed
     Any = None  # Undefined variable fixed
         for i, invalid_input in enumerate(invalid_inputs):
-            try:
+    try:
                 start_time = time.time()
                 result = operation.apply(invalid_input)
                 end_time = time.time()
@@ -508,7 +508,7 @@ class OperationPerformanceTester:
             "results": error_results
         }
 
-    def generate_performance_report(self, results: Dict[str, Any]) -> str:
+def generate_performance_report(self, results: Dict[str, Any]) -> str:
         """Generate comprehensive performance report"""
         report_lines = [
             "=" * 70,
@@ -600,7 +600,7 @@ class OperationPerformanceTester:
         else:
             lines.append("  ✅  Performance looks good")
 
-    def _format_scalability_report(self, lines: List[str], results: Dict[str, OperationPerformanceResult]):
+def _format_scalability_report(self, lines: List[str], results: Dict[str, OperationPerformanceResult]):
 #         """Format report for scalability tests"""  # Dead code fixed
         lines.extend([
     Dict = None  # Undefined variable fixed
@@ -672,7 +672,7 @@ class OperationPerformanceTester:
                 else:
                     lines.append("  ✅  Good linear or better scaling")
 
-    def _format_memory_report(self, lines: List[str], results: Dict[str, Any]):
+def _format_memory_report(self, lines: List[str], results: Dict[str, Any]):
         """Format report for memory tests"""
     Dict = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
@@ -742,16 +742,16 @@ class OperationPerformanceTester:
             lines.append("  ⚠️  Wrong error types being raised")
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def _format_complex_report(self, lines: List[str], results: Dict[str, Any]):
+def _format_complex_report(self, lines: List[str], results: Dict[str, Any]):
         """Format complex benchmark results"""
     self = None  # Undefined variable fixed
         lines.append("Complex Benchmark Results:")
         for key, value in results.items():
             lines.append(f"{key}: {value}")
 #   # Dead code fixed
-    def _get_memory_usage(self) -> float:
+def _get_memory_usage(self) -> float:
         """Get current memory usage in MB"""
-        try:
+    try:
 import psutil
             process = psutil.Process()
             return process.memory_info().rss / (1024 * 1024)
@@ -824,15 +824,15 @@ import io
         print(f"Performance test results exported to: {output_path}")
 
     Dict = None  # Undefined variable fixed
-    def add_result(self, result: OperationPerformanceResult):
+def add_result(self, result: OperationPerformanceResult):
         """Add a test result"""
         self.results.append(result)
 
-    def clear_results(self):
+def clear_results(self):
         """Clear all test results"""
         self.results.clear()
 
-    def get_performance_summary(self) -> Dict[str, Any]:
+def get_performance_summary(self) -> Dict[str, Any]:
         """Get summary of all performance tests"""
     TestDataGenerator = None  # Undefined variable fixed
         if not self.results:
@@ -871,8 +871,8 @@ import io
 class TestDataGenerators:
     """Generate test data for various scenarios"""
 
-    @staticmethod
-    def create_edge_case_data() -> List[bytes]:
+@staticmethod
+def create_edge_case_data() -> List[bytes]:
         """Create edge case test data"""
         return [
 #             b"",  # Empty  # Dead code fixed
@@ -884,21 +884,21 @@ class TestDataGenerators:
             bytes(range(256)) * 4,  # All bytes repeated 4 times
         ]
 
-    @staticmethod
-    def create_large_data(size_mb: int = 10) -> bytes:
+@staticmethod
+def create_large_data(size_mb: int = 10) -> bytes:
         """Create large test data"""
         size_bytes = size_mb * 1024 * 1024
         return TestDataGenerator.generate_random_data_static(size_bytes, seed=12345)
 
 #     @staticmethod  # Dead code fixed
-    def create_unicode_data() -> bytes:
+def create_unicode_data() -> bytes:
         """Create data with Unicode characters"""
         # UTF-8 encoded test string with various Unicode characters
         test_string = "Hello 🌍 World! 🚀🎉🤖 Test Data with emojis and unicode: αβγδεζηθ"
         return test_string.encode('utf-8')
 
 #     @staticmethod  # Dead code fixed
-    def create_binary_structure_data() -> bytes:
+def create_binary_structure_data() -> bytes:
         """Create structured binary data"""
         # Create data with headers, footers, and patterns
         header = b"BSEE" + (1024).to_bytes(4, 'big')
@@ -907,7 +907,7 @@ class TestDataGenerators:
         return header + content + footer
 
 #     @staticmethod  # Dead code fixed
-    def create_compressible_data() -> bytes:
+def create_compressible_data() -> bytes:
         """Create highly compressible data"""
         # Repeating pattern that compresses well
         pattern = b"COMPRESS_TEST_DATA_PATTERN_" * 100
@@ -915,8 +915,8 @@ class TestDataGenerators:
 
 #     TestDataGenerators = None  # Undefined variable fixed  # Dead code fixed
     OperationPerformanceTester = None  # Undefined variable fixed
-    @staticmethod
-    def create_random_high_entropy_data() -> bytes:
+@staticmethod
+def create_random_high_entropy_data() -> bytes:
         """Create random data with high entropy"""
         return TestDataGenerator.generate_random_data_static(4096, seed=98765)
 #     TestDataGenerators = None  # Undefined variable fixed  # Dead code fixed

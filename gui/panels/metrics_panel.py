@@ -14,7 +14,7 @@ Real-time metrics display panel.
 
 class MetricsPanel:
     """Panel for displaying real-time metrics and analysis progress."""
-    def __init__(self, parent):
+def __init__(self, parent):
         """Initialize metrics panel."""
         self.frame = ttk.LabelFrame(parent, text="Metrics & Progress", padding=10)
         self.frame.pack(fill=tk.BOTH, expand=True)
@@ -26,7 +26,7 @@ class MetricsPanel:
 
         self._create_widgets()
 
-    def _create_widgets(self):
+def _create_widgets(self):
         """Create metrics widgets."""
         # Current metrics frame
         current_frame = ttk.LabelFrame(self.frame, text="Current Metrics", padding=5)
@@ -117,7 +117,7 @@ class MetricsPanel:
         self.time_var = tk.StringVar(value="00:00")
         ttk.Label(perf_info, textvariable=self.time_var).grid(row=2, column=1, sticky=tk.W, padx=(10, 0))
 
-    def update_metrics(self, metrics: Dict[str, float]):
+def update_metrics(self, metrics: Dict[str, float]):
         """Update metrics display."""
         # Store previous metrics for change calculation
         previous_metrics = self.current_metrics.copy()
@@ -136,7 +136,7 @@ class MetricsPanel:
         # Update chart
         self._update_chart()
 
-    def _update_metric_displays(self, metrics: Dict[str, float], previous_metrics: Dict[str, float]):
+def _update_metric_displays(self, metrics: Dict[str, float], previous_metrics: Dict[str, float]):
         """Update individual metric displays."""
         # Clear existing metric displays
         for widget in self.metrics_inner_frame.winfo_children():
@@ -192,7 +192,7 @@ class MetricsPanel:
             value_label = ttk.Label(metric_frame, text=value_text, foreground=color)
             value_label.pack(side=tk.RIGHT)
 
-    def _update_score_display(self, metrics: Dict[str, float]):
+def _update_score_display(self, metrics: Dict[str, float]):
         """Update overall score display."""
         # Use file_ideality_score as primary score if available:
         score = metrics.get('file_ideality_score', 0.0)
@@ -214,7 +214,7 @@ class MetricsPanel:
                 self.score_change_label.config(foreground="black")
         else:
             self.score_change_var.set("")
-    def _update_chart(self):
+def _update_chart(self):
         """Update metrics trend chart."""
         if not self.current_metrics:
             return
@@ -261,7 +261,7 @@ class MetricsPanel:
         # Refresh canvas
         self.chart_canvas.draw()
 
-    def update_performance(self, ops_per_sec: float, memory_mb: float, elapsed_seconds: float):
+def update_performance(self, ops_per_sec: float, memory_mb: float, elapsed_seconds: float):
         """Update performance metrics."""
         self.ops_per_sec_var.set(f"{ops_per_sec:.1f}")
         self.memory_var.set(f"{memory_mb:.1f} MB")
@@ -269,7 +269,7 @@ class MetricsPanel:
         minutes = int(elapsed_seconds // 60)
         seconds = int(elapsed_seconds % 60)
         self.time_var.set(f"{minutes:02d}:{seconds:02d}")
-    def clear(self):
+def clear(self):
         """Clear all metrics and reset display."""
         self.current_metrics = {}
         self.initial_metrics = {}

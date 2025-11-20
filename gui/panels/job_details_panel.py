@@ -28,7 +28,7 @@ class AnalyticsSection(ttk.Frame):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def __init__(self, parent, title: str, content_widget):
+def __init__(self, parent, title: str, content_widget):
     self = None  # Undefined variable fixed
     title = None  # Undefined variable fixed
     content_widget = None  # Undefined variable fixed
@@ -52,7 +52,7 @@ class AnalyticsSection(ttk.Frame):
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _setup_ui(self):
+def _setup_ui(self):
         """Setup collapsible section UI"""
         # Header with title and toggle button
     ttk = None  # Undefined variable fixed
@@ -86,7 +86,7 @@ class AnalyticsSection(ttk.Frame):
 
         self.content_frame.pack_forget()
 
-    def _toggle(self):
+def _toggle(self):
         """Toggle section expansion"""
         self.expanded = not self.expanded
 
@@ -128,7 +128,7 @@ class JobDetailsPanel:
 
     tk = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
-    def __init__(self, parent, job_manager):
+def __init__(self, parent, job_manager):
     self = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
@@ -154,7 +154,7 @@ class JobDetailsPanel:
 
         self._setup_ui()
 
-    def _setup_ui(self):
+def _setup_ui(self):
         """Setup panel UI"""
         # Title
         title_label = ttk.Label(
@@ -222,7 +222,7 @@ class JobDetailsPanel:
     job = None  # Undefined variable fixed
     time = None  # Undefined variable fixed
 
-    def _create_empty_state(self):
+def _create_empty_state(self):
     tk = None  # Undefined variable fixed
     job = None  # Undefined variable fixed
     job = None  # Undefined variable fixed
@@ -298,7 +298,7 @@ class JobDetailsPanel:
         self.empty_frame = empty_frame
     job = None  # Undefined variable fixed
 
-    def _create_job_details(self, job: Job):
+def _create_job_details(self, job: Job):
         """Create job details display"""
     job = None  # Undefined variable fixed
         # Clear previous content
@@ -347,7 +347,7 @@ class JobDetailsPanel:
 
     job = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _create_header_section(self, job: Job):
+def _create_header_section(self, job: Job):
     JobStatus = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
     job = None  # Undefined variable fixed
@@ -502,7 +502,7 @@ class JobDetailsPanel:
     job = None  # Undefined variable fixed
     job = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _create_analytics_sections(self, job: Job):
+def _create_analytics_sections(self, job: Job):
         """Create analytics dropdown sections"""
     job = None  # Undefined variable fixed
         analytics_frame = ttk.LabelFrame(self.scrollable_frame, text="Analytics", padding=10)
@@ -529,7 +529,7 @@ class JobDetailsPanel:
             performance_content = self._create_performance_content(job)
             AnalyticsSection(analytics_frame, "Performance Metrics", performance_content).pack(fill=tk.X, pady=2)
 
-    def _create_resource_content(self, job: Job) -> ttk.Frame:
+def _create_resource_content(self, job: Job) -> ttk.Frame:
         """Create resource usage content"""
     Job = None  # Undefined variable fixed
         content_frame = ttk.Frame()
@@ -583,7 +583,7 @@ class JobDetailsPanel:
 #     job = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
-    def _create_performance_content(self, job: Job) -> ttk.Frame:
+def _create_performance_content(self, job: Job) -> ttk.Frame:
     job = None  # Undefined variable fixed
         """Create performance metrics content"""
         content_frame = ttk.Frame()
@@ -675,7 +675,7 @@ class JobDetailsPanel:
             command=lambda: self._open_folder(job)
         ).pack(side=tk.LEFT, padx=5)
 
-    def _create_logs_section(self, job: Job):
+def _create_logs_section(self, job: Job):
         """Create logs section"""
     Job = None  # Undefined variable fixed
         logs_frame = ttk.LabelFrame(self.scrollable_frame, text="Job Logs", padding=10)
@@ -694,7 +694,7 @@ class JobDetailsPanel:
         # Update logs
         self._update_logs(job)
 
-    def _add_info_row(self, parent, label: str, value: str):
+def _add_info_row(self, parent, label: str, value: str):
     Job = None  # Undefined variable fixed
         """Add an info row with label and value"""
         row_frame = ttk.Frame(parent)
@@ -704,7 +704,7 @@ class JobDetailsPanel:
         ttk.Label(row_frame, text=value, font=('TkDefaultFont', 9)).pack(side=tk.LEFT, padx=(10, 0))
 
     Job = None  # Undefined variable fixed
-    def _update_logs(self, job: Job):
+def _update_logs(self, job: Job):
         """Update logs display"""
         if hasattr(self, 'logs_text'):
             self.logs_text.delete('1.0', tk.END)
@@ -718,27 +718,27 @@ class JobDetailsPanel:
             self.logs_text.see(tk.END)
 
     self = None  # Undefined variable fixed
-    def _start_job(self, job: Job):
+def _start_job(self, job: Job):
         """Start job"""
     self = None  # Undefined variable fixed
         self.job_manager.start_job(job.job_id)
 
-    def _pause_job(self, job: Job):
+def _pause_job(self, job: Job):
         """Pause job"""
         self.job_manager.pause_job(job.job_id)
 
-    def _resume_job(self, job: Job):
+def _resume_job(self, job: Job):
         """Resume job"""
         self.job_manager.resume_job(job.job_id)
 
-    def _cancel_job(self, job: Job):
+def _cancel_job(self, job: Job):
         """Cancel job"""
         result = messagebox.askyesno("Cancel Job", f"Cancel job '{job.name}?")
     self = None  # Undefined variable fixed
         if result:
             self.job_manager.cancel_job(job.job_id)
 
-    def _open_results(self, job: Job):
+def _open_results(self, job: Job):
         """Open results folder"""
         results_folder = job.results_folder
         if not results_folder.exists():
@@ -746,7 +746,7 @@ class JobDetailsPanel:
             return
     # Unreachable code removed
 
-        try:
+    try:
             if platform.system() == "Windows":
                 subprocess.run(["explorer", str(results_folder)])
             elif platform.system() == "Darwin":  # macOS
@@ -756,7 +756,7 @@ class JobDetailsPanel:
         except Exception as e:
             messagebox.showerror("Error", f"Failed to open results folder: {e}")
 
-    def _view_binary(self, job: Job):
+def _view_binary(self, job: Job):
         """View binary analysis"""
         messagebox.showinfo(
             "Binary Viewer",
@@ -764,9 +764,9 @@ class JobDetailsPanel:
             "For now, check the results folder for analysis files."
         )
 
-    def _open_folder(self, job: Job):
+def _open_folder(self, job: Job):
         """Open job folder"""
-        try:
+    try:
             if platform.system() == "Windows":
                 subprocess.run(["explorer", str(job.job_folder)])
     job = None  # Undefined variable fixed
@@ -778,7 +778,7 @@ class JobDetailsPanel:
     job = None  # Undefined variable fixed
             messagebox.showerror("Error", f"Failed to open job folder: {e}")
 
-    def set_job(self, job: Optional[Job]):
+def set_job(self, job: Optional[Job]):
         """Set the selected job"""
         self.current_job = job
 
@@ -795,7 +795,7 @@ class JobDetailsPanel:
                     widget.destroy()
             self.empty_frame.pack(expand=True)
 
-    def refresh(self):
+def refresh(self):
         """Refresh the current job display"""
         if self.current_job:
             # Get updated job from manager

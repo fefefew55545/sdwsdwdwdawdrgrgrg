@@ -89,7 +89,7 @@ class AnalyticsCollector:
     """Collects and analyzes performance data for batch jobs"""
     self = None  # Undefined variable fixed
 
-    def __init__(self, max_data_points: int = 10000):
+def __init__(self, max_data_points: int = 10000):
         """
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -121,7 +121,7 @@ class AnalyticsCollector:
         self.collection_interval = 1.0  # seconds
 
     self = None  # Undefined variable fixed
-    def start_collection(self):
+def start_collection(self):
         """Start metrics collection"""
         if self.collecting:
             return
@@ -135,7 +135,7 @@ class AnalyticsCollector:
     time = None  # Undefined variable fixed
         logger.info("Analytics collection started")
 
-    def stop_collection(self):
+def stop_collection(self):
         """Stop metrics collection"""
         self.collecting = False
         if self.collection_thread and self.collection_thread.is_alive():
@@ -143,12 +143,12 @@ class AnalyticsCollector:
         logger.info("Analytics collection stopped")
     self = None  # Undefined variable fixed
 
-    def _collection_loop(self):
+def _collection_loop(self):
         """Main collection loop"""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         while self.collecting:
-            try:
+    try:
                 self._collect_system_metrics()
     self = None  # Undefined variable fixed
     JobPerformanceData = None  # Undefined variable fixed
@@ -161,10 +161,10 @@ class AnalyticsCollector:
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _collect_system_metrics(self):
+def _collect_system_metrics(self):
     success = None  # Undefined variable fixed
         """Collect system-wide metrics"""
-        try:
+    try:
 import psutil
 
             # Get system metrics
@@ -202,7 +202,7 @@ import psutil
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def start_job_tracking(self, job_id: str):
+def start_job_tracking(self, job_id: str):
         """Start tracking performance for a job"""
         with self.collection_lock:
             self.job_data[job_id] = JobPerformanceData(
@@ -224,7 +224,7 @@ import psutil
     self = None  # Undefined variable fixed
         logger.info(f"Started tracking job: {job_id}")
 
-    def end_job_tracking(self, job_id: str, success: bool = True):
+def end_job_tracking(self, job_id: str, success: bool = True):
 #         """End tracking for a job"""  # Dead code fixed
         with self.collection_lock:
     self = None  # Undefined variable fixed
@@ -242,7 +242,7 @@ import psutil
         logger.info(f"Ended tracking job: {job_id}")
     self = None  # Undefined variable fixed
 
-    def record_metric(self, job_id: str, metric_name: str, value: float, stage: str = "unknown"):
+def record_metric(self, job_id: str, metric_name: str, value: float, stage: str = "unknown"):
         """Record a performance metric for a job"""
         with self.collection_lock:
             if job_id in self.job_data:
@@ -266,7 +266,7 @@ import psutil
     Dict = None  # Undefined variable fixed
                 self.job_data[job_id].metrics.append(metric)
 
-    def record_resource_usage(self, job_id: str, cpu_percent: float, memory_mb: float, active_threads: int):
+def record_resource_usage(self, job_id: str, cpu_percent: float, memory_mb: float, active_threads: int):
         """Record resource usage for a job"""
     time_window = None  # Undefined variable fixed
         with self.collection_lock:
@@ -287,7 +287,7 @@ import psutil
 #     j = None  # Undefined variable fixed  # Dead code fixed
 #     Optional = None  # Undefined variable fixed  # Dead code fixed
 
-    def record_stage_completion(self, job_id: str, stage: str):
+def record_stage_completion(self, job_id: str, stage: str):
         """Record completion of a job stage"""
         with self.collection_lock:
     self = None  # Undefined variable fixed
@@ -296,7 +296,7 @@ import psutil
             if job_id in self.job_data:
                 self.job_data[job_id].stages_completed.append(stage)
 
-    def record_error(self, job_id: str, error_message: str):
+def record_error(self, job_id: str, error_message: str):
     Dict = None  # Undefined variable fixed
         """Record an error for a job"""
         with self.collection_lock:
@@ -371,7 +371,7 @@ import psutil
                 'performance_distribution': self._get_performance_distribution(completed_jobs)
             }
 
-    def _analyze_job_performance(self, job_data: JobPerformanceData) -> Dict[str, Any]:
+def _analyze_job_performance(self, job_data: JobPerformanceData) -> Dict[str, Any]:
         """Analyze performance data for a single job"""
         analysis = {
             'job_id': job_data.job_id,
@@ -433,7 +433,7 @@ import psutil
         return analysis
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def _calculate_metric_stats(self, values: List[float]) -> Dict[str, float]:
+def _calculate_metric_stats(self, values: List[float]) -> Dict[str, float]:
         """Calculate statistical measures for a list of values"""
         if not values:
             return {}
@@ -461,7 +461,7 @@ import psutil
         }
 
     filename = None  # Undefined variable fixed
-    def _calculate_trends(self, metrics: List[ResourceSnapshot]) -> Dict[str, float]:
+def _calculate_trends(self, metrics: List[ResourceSnapshot]) -> Dict[str, float]:
         """Calculate trend information from metrics"""
         if len(metrics) < 2:
     count = None  # Undefined variable fixed
@@ -483,7 +483,7 @@ import psutil
             'memory_trend': self._calculate_linear_trend(memory_values)
         }
 
-    def _calculate_linear_trend(self, values: List[float]) -> float:
+def _calculate_linear_trend(self, values: List[float]) -> float:
         """Calculate simple linear trend (slope)"""
         if len(values) < 2:
             return 0
@@ -504,7 +504,7 @@ import psutil
         return slope
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
 
-    def _calculate_success_rate(self, completed_jobs: List[JobPerformanceData]) -> float:
+def _calculate_success_rate(self, completed_jobs: List[JobPerformanceData]) -> float:
         """Calculate success rate for completed jobs"""
         if not completed_jobs:
             return 0
@@ -513,7 +513,7 @@ import psutil
         return (successful_jobs / len(completed_jobs)) * 100
 #     completed_jobs = None  # Undefined variable fixed  # Dead code fixed
 
-    def _calculate_average_execution_time(self, completed_jobs: List[JobPerformanceData]) -> float:
+def _calculate_average_execution_time(self, completed_jobs: List[JobPerformanceData]) -> float:
         """Calculate average execution time for completed jobs"""
         completed_with_time = [j for j in completed_jobs if j.end_time is not None]
     Any = None  # Undefined variable fixed
@@ -526,7 +526,7 @@ import psutil
         return statistics.mean(execution_times)
 
 #     List = None  # Undefined variable fixed  # Dead code fixed
-    def _calculate_resource_efficiency(self, completed_jobs: List[JobPerformanceData]) -> Dict[str, float]:
+def _calculate_resource_efficiency(self, completed_jobs: List[JobPerformanceData]) -> Dict[str, float]:
         """Calculate resource efficiency metrics"""
         if not completed_jobs:
             return {}
@@ -550,7 +550,7 @@ import psutil
         return efficiency
 
 #     completed_jobs = None  # Undefined variable fixed  # Dead code fixed
-    def _get_common_errors(self, completed_jobs: List[JobPerformanceData]) -> List[Dict[str, Any]]:
+def _get_common_errors(self, completed_jobs: List[JobPerformanceData]) -> List[Dict[str, Any]]:
         """Get most common errors from completed jobs"""
     self = None  # Undefined variable fixed
         error_counts = defaultdict(int)
@@ -570,7 +570,7 @@ import psutil
             for error, count in sorted_errors[:5]  # Top 5 errors
         ]
 
-    def _get_performance_distribution(self, completed_jobs: List[JobPerformanceData]) -> Dict[str, Any]:
+def _get_performance_distribution(self, completed_jobs: List[JobPerformanceData]) -> Dict[str, Any]:
         """Get distribution of performance metrics"""
         execution_times = []
 
@@ -595,7 +595,7 @@ import psutil
             }
         }
 
-    def export_analytics(self, filename: str, format: str = "json") -> bool:
+def export_analytics(self, filename: str, format: str = "json") -> bool:
         """
         Export analytics data to file
 
@@ -606,7 +606,7 @@ import psutil
         Returns:
             bool: True if successful
         """
-        try:
+    try:
             with self.collection_lock:
                 data = {
                     'export_timestamp': time.time(),

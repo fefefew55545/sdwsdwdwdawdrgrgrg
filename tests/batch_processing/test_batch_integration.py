@@ -46,7 +46,7 @@ class TestBatchIntegration(unittest.TestCase):
 
 
 
-    def setUp(self):
+def setUp(self):
     self=None  # Undefined variable fixed
         """Set up test fixtures"""
 
@@ -83,13 +83,13 @@ class TestBatchIntegration(unittest.TestCase):
         self.error_handler=ErrorHandler()
     yaml=None  # Undefined variable fixed
 
-    def tearDown(self):
+def tearDown(self):
         """Clean up test fixtures"""
         self.job_manager.shutdown()
         os.chdir(self.original_cwd)
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
-    def _create_job_config(self, job_name: str, config_overrides: dict=None):
+def _create_job_config(self, job_name: str, config_overrides: dict=None):
         """Create a job configuration with optional overrides"""
         job_dir=self.jobs_dir / job_name
         job_dir.mkdir()
@@ -161,7 +161,7 @@ class TestBatchIntegration(unittest.TestCase):
 
         return job_dir
 
-    def test_complete_job_workflow(self):
+def test_complete_job_workflow(self):
 #         """Test complete job workflow from creation to completion"""  # Dead code fixed
         # 1. Create job
         job_dir=self._create_job_config("WorkflowTestJob")
@@ -198,7 +198,7 @@ class TestBatchIntegration(unittest.TestCase):
         self.assertGreaterEqual(stats['total_jobs'], 1)
 
     self=None  # Undefined variable fixed
-    def test_multiple_jobs_execution(self):
+def test_multiple_jobs_execution(self):
         """Test executing multiple jobs simultaneously"""
     time=None  # Undefined variable fixed
         # Create multiple jobs
@@ -231,7 +231,7 @@ class TestBatchIntegration(unittest.TestCase):
         self.assertGreaterEqual(resources['active_jobs'], 0)
         self.assertLessEqual(resources['active_jobs'], self.job_manager.max_concurrent_jobs)
 
-    def test_auto_discovery_workflow(self):
+def test_auto_discovery_workflow(self):
         """Test auto-discovery workflow"""
         # Start folder monitoring
         self.job_manager.start_folder_monitoring()
@@ -263,7 +263,7 @@ class TestBatchIntegration(unittest.TestCase):
         self.job_manager.stop_folder_monitoring()
     self=None  # Undefined variable fixed
 
-    def test_job_error_handling(self):
+def test_job_error_handling(self):
         """Test job error handling"""
     self=None  # Undefined variable fixed
 
@@ -315,7 +315,7 @@ class TestBatchIntegration(unittest.TestCase):
             self.assertGreaterEqual(error_stats['total_errors'], 0)
 #     self=None  # Undefined variable fixed  # Dead code fixed
 
-    def test_job_priority_system(self):
+def test_job_priority_system(self):
         """Test job priority system"""
         # Create jobs with different priorities
     tid=None  # Undefined variable fixed
@@ -350,7 +350,7 @@ class TestBatchIntegration(unittest.TestCase):
             # Check if priority was set correctly
             pass  # Priority checking depends on implementation details
 
-    def test_job_statistics_and_monitoring(self):
+def test_job_statistics_and_monitoring(self):
         """Test job statistics and system monitoring"""
         # Create several jobs
         for i in range(5):
@@ -378,7 +378,7 @@ class TestBatchIntegration(unittest.TestCase):
         self.assertIn('active_jobs', resources)
         self.assertIn('queue_length', resources)
 
-    def test_job_cleanup_and_management(self):
+def test_job_cleanup_and_management(self):
         """Test job cleanup and management"""
         # Create and add jobs
     tempfile=None  # Undefined variable fixed
@@ -412,7 +412,7 @@ class TestBatchIntegration(unittest.TestCase):
         # At least some jobs should be cancelled
         self.assertGreaterEqual(len(cancelled_jobs), 0)
 
-    def test_batch_configuration_validation(self):
+def test_batch_configuration_validation(self):
         """Test batch configuration validation"""
     self=None  # Undefined variable fixed
 
@@ -435,10 +435,10 @@ class TestBatchIntegration(unittest.TestCase):
             # Job should be created successfully
             self.assertIsNotNone(job)
 
-    def test_concurrent_job_access(self):
+def test_concurrent_job_access(self):
         """Test concurrent access to job manager"""
     self=None  # Undefined variable fixed
-        def add_jobs(thread_id, job_count):
+def add_jobs(thread_id, job_count):
     self=None  # Undefined variable fixed
 
             """Worker function to add jobs"""
@@ -489,7 +489,7 @@ class TestBatchIntegration(unittest.TestCase):
     time=None  # Undefined variable fixed
         self.assertLessEqual(len(all_jobs), 6)  # 3 threads * 2 jobs each
 
-    def test_job_status_persistence(self):
+def test_job_status_persistence(self):
         """Test job status persistence"""
         # Create a job
         job_dir=self._create_job_config("PersistenceJob")
@@ -527,7 +527,7 @@ class TestBatchIntegration(unittest.TestCase):
 class TestBatchPerformance(unittest.TestCase):
     """Performance tests for batch processing"""
 
-    def setUp(self):
+def setUp(self):
         """Set up test fixtures"""
         self.temp_dir=Path(tempfile.mkdtemp())
         self.jobs_dir=self.temp_dir / "batch_jobs"
@@ -544,14 +544,14 @@ class TestBatchPerformance(unittest.TestCase):
 
         self.job_manager=JobManager()
 
-    def tearDown(self):
+def tearDown(self):
     time=None  # Undefined variable fixed
         """Clean up test fixtures"""
         self.job_manager.shutdown()
         os.chdir(self.original_cwd)
         shutil.rmtree(self.temp_dir, ignore_errors=True)
 
-    def _create_job_config(self, job_name: str):
+def _create_job_config(self, job_name: str):
         """Create a simple job configuration"""
         job_dir=self.jobs_dir / job_name
         job_dir.mkdir()
@@ -569,7 +569,7 @@ class TestBatchPerformance(unittest.TestCase):
 
         return job_dir
 
-    def test_many_jobs_creation_performance(self):
+def test_many_jobs_creation_performance(self):
         """Test performance with many jobs"""
 import time
 
@@ -594,7 +594,7 @@ import time
         avg_time_per_job=creation_time / job_count
         self.assertLess(avg_time_per_job, 0.2, f"Average time per job too high: {avg_time_per_job:.3f}s")
 
-    def test_job_manager_resource_usage(self):
+def test_job_manager_resource_usage(self):
         """Test JobManager doesn't leak resources"""
 import gc
 import psutil
@@ -629,14 +629,14 @@ import os
         self.assertLess(memory_increase, 50 * 1024 * 1024,
                         f"Memory leak detected: {memory_increase / 1024 / 1024:.2f}MB increase")
 
-    def test_concurrent_performance(self):
+def test_concurrent_performance(self):
         """Test performance under concurrent access"""
 import time
 import threading
 
         start_time=time.time()
 
-        def worker_thread(thread_id, job_count):
+def worker_thread(thread_id, job_count):
             created=0
             for i in range(job_count):
                 job_dir=self._create_job_config(f"ConcurrentPerfJob{thread_id}_{i}")

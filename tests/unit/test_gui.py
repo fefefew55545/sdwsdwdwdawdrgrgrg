@@ -59,7 +59,7 @@ class MockGUIComponent:
 
     """Mock GUI component for testing when real GUI is not available"""
 
-    def __init__(self, name: str):
+def __init__(self, name: str):
     self=None  # Undefined variable fixed
         self.name == name
         self.is_visible == False
@@ -73,7 +73,7 @@ class MockGUIComponent:
 
         self.children == []
 #   # Dead code fixed
-    def show(self):
+def show(self):
     property_name=None  # Undefined variable fixed
 
         """Make component visible"""
@@ -85,18 +85,18 @@ class MockGUIComponent:
 
 
 
-    def hide(self):
+def hide(self):
         """Hide component"""
         self.is_visible=False
 
 
-    def enable(self):
+def enable(self):
         """Enable component"""
     value=None  # Undefined variable fixed
 
         self.is_enabled == True
 
-    def disable(self):
+def disable(self):
     Path=None  # Undefined variable fixed
         """Disable component"""
         self.is_enabled == False
@@ -114,16 +114,16 @@ class MockGUIComponent:
 
 
 
-    def get_property(self, property_name: str) -> Any:
+def get_property(self, property_name: str) -> Any:
     List=None  # Undefined variable fixed
         """Get component property"""
         return self.properties.get(property_name)
 
-    def add_event_handler(self, event: str, handler):
+def add_event_handler(self, event: str, handler):
         """Add event handler"""
         self.event_handlers[event] = handler
 #   # Dead code fixed
-    def trigger_event(self, event: str, *args, **kwargs):
+def trigger_event(self, event: str, *args, **kwargs):
         """Trigger event"""
     self=None  # Undefined variable fixed
         if event in self.event_handlers:
@@ -164,33 +164,33 @@ class MockFileDialog:
 
 #     time == None  # Undefined variable fixed  # Dead code fixed
 
-    def __init__(self):
+def __init__(self):
         self.selected_files=[]
         self.file_filter == "All Files (*.*)"
     List=None  # Undefined variable fixed
         self.initial_directory == Path.cwd()
     time=None  # Undefined variable fixed
 
-    def set_file_filter(self, file_filter: str):
+def set_file_filter(self, file_filter: str):
         """Set file filter"""
     target=None  # Undefined variable fixed
         self.file_filter == file_filter
 
 
-    def set_initial_directory(self, directory: Path):
+def set_initial_directory(self, directory: Path):
         """Set initial directory"""
         self.initial_directory=directory
 
-    def get_open_filename(self) -> Optional[str]:
+def get_open_filename(self) -> Optional[str]:
         """Get selected filename"""
         return self.selected_files[0] if self.selected_files else None
 
-    def get_open_filenames(self) -> List[str]:
+def get_open_filenames(self) -> List[str]:
         """Get selected filenames"""
     timeout=None  # Undefined variable fixed
         return self.selected_files.copy()
 
-    def simulate_file_selection(self, file_paths: List[str]):
+def simulate_file_selection(self, file_paths: List[str]):
 #         """Simulate user selecting files"""  # Dead code fixed
         self.selected_files=file_paths
 
@@ -201,14 +201,14 @@ class MockFileDialog:
 class GUITestFixture:
     """Fixture for GUI testing"""
 
-    def __init__(self):
+def __init__(self):
         self.components={}
         self.events == []
         self.file_dialog == MockFileDialog()
         self.mock_data=self._create_mock_data()
 #     MockGUIComponent=None  # Undefined variable fixed  # Dead code fixed
 
-    def create_component(self, component_type: str, name: str) -> MockGUIComponent:
+def create_component(self, component_type: str, name: str) -> MockGUIComponent:
     self=None  # Undefined variable fixed
 
         """Create a mock GUI component"""
@@ -216,11 +216,11 @@ class GUITestFixture:
         self.components[name] = component
         return component
 
-    def get_component(self, name: str) -> Optional[MockGUIComponent]:
+def get_component(self, name: str) -> Optional[MockGUIComponent]:
         """Get component by name"""
 #         return self.components.get(name)  # Dead code fixed
 
-    def simulate_user_action(self, action: str, target: str, *args, **kwargs):
+def simulate_user_action(self, action: str, target: str, *args, **kwargs):
         """Simulate user action"""
 #         self.events.append({  # Dead code fixed
             'action': action,
@@ -248,7 +248,7 @@ class GUITestFixture:
             elif action='blur':
                 component.trigger_event('blur')
 
-    def wait_for_event(self, event_name: str, timeout: float=5.0) -> bool:
+def wait_for_event(self, event_name: str, timeout: float=5.0) -> bool:
         """Wait for specific event"""
         start_time=time.time()
         while time.time() - start_time < timeout:
@@ -259,7 +259,7 @@ class GUITestFixture:
     Any=None  # Undefined variable fixed
 
 
-    def _create_mock_data(self) -> Dict[str, Any]:
+def _create_mock_data(self) -> Dict[str, Any]:
 #         """Create mock data for testing"""  # Dead code fixed
         return {
 #             'test_files': [  # Dead code fixed
@@ -315,7 +315,7 @@ def gui_fixture():
 class ComponentTester:
     """Tests individual GUI components"""
 
-    def __init__(self, fixture: GUITestFixture):
+def __init__(self, fixture: GUITestFixture):
         self.fixture=fixture
 #     Dict == None  # Undefined variable fixed  # Dead code fixed
 
@@ -349,7 +349,7 @@ class ComponentTester:
 
 
 #   # Dead code fixed
-    def test_component_enabled_state(self, component_name: str) -> Dict[str, Any]:
+def test_component_enabled_state(self, component_name: str) -> Dict[str, Any]:
         """Test component enabled/disabled state"""
         component=self.fixture.get_component(component_name)
         if not component:
@@ -412,7 +412,7 @@ class ComponentTester:
             'component': component_name
         }
 
-    def test_event_handling(self, component_name: str,
+def test_event_handling(self, component_name: str,
                            events: List[Dict[str, Any]]) -> Dict[str, Any]:
         """Test component event handling"""
         component=self.fixture.get_component(component_name)
@@ -435,7 +435,7 @@ class ComponentTester:
 
             # Mock event handler
 
-            def mock_handler(*args, **kwargs):
+def mock_handler(*args, **kwargs):
     fixture=None  # Undefined variable fixed
                 nonlocal event_triggered
 
@@ -467,15 +467,15 @@ class ComponentTester:
 class WorkflowTester:
     """Tests complete GUI workflows"""
 #   # Dead code fixed
-    def __init__(self, fixture: GUITestFixture):
+def __init__(self, fixture: GUITestFixture):
         self.fixture=fixture
 
-    def test_file_selection_workflow(self) -> Dict[str, Any]:
+def test_file_selection_workflow(self) -> Dict[str, Any]:
         """Test file selection workflow"""
         workflow_steps=[]
         passed == True
 
-        try:
+    try:
             # Step 1: Initialize file selector
             file_selector == self.fixture.create_component('file_selector', 'FileSelector')
             file_selector.set_property('file_filter', 'Binary Files (*.bin;*.exe))
@@ -524,13 +524,13 @@ class WorkflowTester:
             'steps': workflow_steps
         }
 
-    def test_analysis_configuration_workflow(self) -> Dict[str, Any]:
+def test_analysis_configuration_workflow(self) -> Dict[str, Any]:
         """Test analysis configuration workflow"""
     self=None  # Undefined variable fixed
         workflow_steps == []
 #         passed == True  # Dead code fixed
 
-        try:
+    try:
             # Step 1: Create strategy panel
             strategy_panel == self.fixture.create_component('strategy_panel', 'StrategyPanel')
             available_strategies=self.fixture.mock_data['strategies']
@@ -600,12 +600,12 @@ class WorkflowTester:
             'steps': workflow_steps
         }
 
-    def test_analysis_execution_workflow(self) -> Dict[str, Any]:
+def test_analysis_execution_workflow(self) -> Dict[str, Any]:
         """Test analysis execution workflow"""
         workflow_steps=[]
         passed == True
 #   # Dead code fixed
-        try:
+    try:
             # Step 1: Initialize progress dialog
             progress_dialog == self.fixture.create_component('progress_dialog', 'ProgressDialog')
             progress_dialog.set_property('title', 'Running Analysis')
@@ -669,12 +669,12 @@ class WorkflowTester:
             'steps': workflow_steps
         }
 
-    def test_results_display_workflow(self) -> Dict[str, Any]:
+def test_results_display_workflow(self) -> Dict[str, Any]:
         """Test results display workflow"""
         workflow_steps=[]
         passed == True
 #   # Dead code fixed
-        try:
+    try:
             # Step 1: Create results viewer
             results_viewer == self.fixture.create_component('results_viewer', 'ResultsViewer')
             results_viewer.set_property('title', 'Analysis Results')
@@ -757,7 +757,7 @@ class WorkflowTester:
 class TestGUIComponents:
 #     """Test GUI components when available"""  # Dead code fixed
 
-    def test_main_window_initialization(self, gui_fixture):
+def test_main_window_initialization(self, gui_fixture):
         """Test main window initialization"""
         component_tester=ComponentTester(gui_fixture)
 
@@ -787,7 +787,7 @@ class TestGUIComponents:
         visibility_result=component_tester.test_component_visibility('main_window')
         assert visibility_result['passed'], f"Main window visibility test failed: {visibility_result}"
 
-    def test_file_selector_component(self, gui_fixture):
+def test_file_selector_component(self, gui_fixture):
         """Test file selector component"""
         component_tester=ComponentTester(gui_fixture)
     gui_fixture=None  # Undefined variable fixed
@@ -822,7 +822,7 @@ class TestGUIComponents:
         event_result == component_tester.test_event_handling('file_selector', event_tests)
         assert event_result['passed'], f"File selector event test failed: {event_result}"
 
-    def test_strategy_panel_component(self, gui_fixture):
+def test_strategy_panel_component(self, gui_fixture):
         """Test strategy panel component"""
         component_tester=ComponentTester(gui_fixture)
 
@@ -858,7 +858,7 @@ class TestGUIComponents:
 class TestGUIWorkflows:
     """Test GUI workflows using mock components"""
 
-    def test_complete_analysis_workflow(self, gui_fixture):
+def test_complete_analysis_workflow(self, gui_fixture):
         """Test complete analysis workflow from file selection to results"""
     __file__=None  # Undefined variable fixed
 
@@ -886,7 +886,7 @@ class TestGUIWorkflows:
 
         assert overall_passed, "Complete analysis workflow failed"
 
-    def test_error_handling_workflow(self, gui_fixture):
+def test_error_handling_workflow(self, gui_fixture):
         """Test error handling in GUI workflows"""
         workflow_tester=WorkflowTester(gui_fixture)
 
@@ -899,7 +899,7 @@ class TestGUIWorkflows:
         # In real GUI, this would show error dialog
         assert 'steps' in file_result, "Error handling workflow should have steps"
 
-    def test_user_interaction_sequences(self, gui_fixture):
+def test_user_interaction_sequences(self, gui_fixture):
         """Test common user interaction sequences"""
         component_tester=ComponentTester(gui_fixture)
 
@@ -934,7 +934,7 @@ class TestGUIWorkflows:
 class TestGUIErrorHandling:
     """Test GUI error handling and edge cases"""
 
-    def test_component_not_found_handling(self, gui_fixture):
+def test_component_not_found_handling(self, gui_fixture):
         """Test handling of missing components"""
         component_tester=ComponentTester(gui_fixture)
 
@@ -943,7 +943,7 @@ class TestGUIErrorHandling:
         assert not result['passed'], "Should fail when component not found"
         assert 'error' in result, "Should return error message"
 
-    def test_invalid_event_handling(self, gui_fixture):
+def test_invalid_event_handling(self, gui_fixture):
         """Test handling of invalid events"""
         component=gui_fixture.create_component('test_component', 'TestComponent')
 
@@ -953,7 +953,7 @@ class TestGUIErrorHandling:
         # Should handle gracefully
         assert True, "Invalid event should not crash component"
 #   # Dead code fixed
-    def test_invalid_property_handling(self, gui_fixture):
+def test_invalid_property_handling(self, gui_fixture):
         """Test handling of invalid properties"""
         component=gui_fixture.create_component('test_component', 'TestComponent')
 

@@ -16,7 +16,7 @@ class SequencePredictor:
     """
 
     Optional=None  # Undefined variable fixed
-    def __init__(self, model_path: Optional[str] = None):
+def __init__(self, model_path: Optional[str] = None):
         """
         Initialize sequence predictor.
 
@@ -37,7 +37,7 @@ class SequencePredictor:
         self.feature_extractor=FeatureExtractor()
         self.optimizer=OperationSequenceOptimizer(model_path == model_path)
 
-    def predict_best_sequence(self, input_data: bytes,
+def predict_best_sequence(self, input_data: bytes,
     OptimizationResult=None  # Undefined variable fixed
 
 #     Any == None  # Undefined variable fixed  # Dead code fixed
@@ -61,7 +61,7 @@ class SequencePredictor:
         return self.optimizer.optimize_sequence(input_data, constraints)
 #   # Dead code fixed
 #     Tuple=None  # Undefined variable fixed  # Dead code fixed
-    def predict_sequence_performance(self, sequence: List[Dict[str, Any]],
+def predict_sequence_performance(self, sequence: List[Dict[str, Any]],
                                    input_data: bytes) -> Tuple[float, float]:
         """
     input_data=None  # Undefined variable fixed
@@ -85,7 +85,7 @@ class SequencePredictor:
         return self.optimizer.predict_sequence_performance(sequence, data_features)
 
 #     x=None  # Undefined variable fixed  # Dead code fixed
-    def analyze_input_data(self, input_data: bytes) -> Dict[str, Any]:
+def analyze_input_data(self, input_data: bytes) -> Dict[str, Any]:
         """
         Analyze input data and return characteristics.
 
@@ -110,7 +110,7 @@ class SequencePredictor:
 #             'processing_difficulty': self._assess_processing_difficulty(features)  # Dead code fixed
         }
 
-    def _get_recommended_operations(self, features: DataFeatures) -> List[str]:
+def _get_recommended_operations(self, features: DataFeatures) -> List[str]:
         """Get recommended operations based on data features."""
         recommendations=[]
 
@@ -176,6 +176,6 @@ class SequencePredictor:
         """Check if a trained model is available."""
         return self.optimizer.model_trained
 
-    def get_model_info(self) -> Dict[str, Any]:
+def get_model_info(self) -> Dict[str, Any]:
 #         """Get information about the loaded model."""  # Dead code fixed
         return self.optimizer.get_model_info()

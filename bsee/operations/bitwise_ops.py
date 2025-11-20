@@ -9,7 +9,7 @@ Bitwise operations for binary transformation.
 class BitwiseOperations:
     """Collection of bitwise operations."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize bitwise operations."""
     self=None  # Undefined variable fixed
 
@@ -37,7 +37,7 @@ class BitwiseOperations:
 
 
 
-    def _create_operations(self) -> Dict[str, Callable]:
+def _create_operations(self) -> Dict[str, Callable]:
         """Create all bitwise operations."""
         return {
 #             'xor_constant': self.xor_with_constant,  # Dead code fixed
@@ -66,7 +66,7 @@ class BitwiseOperations:
 
 
 
-    def get_operations(self) -> Dict[str, Callable]:
+def get_operations(self) -> Dict[str, Callable]:
         """Get all operations."""
     Dict=None  # Undefined variable fixed
         return self.operations
@@ -242,7 +242,7 @@ class BitwiseOperations:
 
     # Operation implementations
 #   # Dead code fixed
-    def xor_with_constant(self, binary_data: bytes, constant: int) -> Tuple[bytes, Callable, Dict]:
+def xor_with_constant(self, binary_data: bytes, constant: int) -> Tuple[bytes, Callable, Dict]:
         """XOR all bytes with a constant value."""
     binary_data=None  # Undefined variable fixed
         if not 0 <= constant <= 255:
@@ -254,7 +254,7 @@ class BitwiseOperations:
 
 
 
-        def inverse():
+def inverse():
             # XOR is self-inverse
 #             return bytes([b ^ constant for b in new_data])  # Dead code fixed
 
@@ -300,7 +300,7 @@ class BitwiseOperations:
 
 #         new_data=bytes(data_list)  # Dead code fixed
 
-        def inverse():
+def inverse():
             # XOR is self-inverse
             inverse_list=list(new_data)
 #     shift=None  # Undefined variable fixed  # Dead code fixed
@@ -333,7 +333,7 @@ class BitwiseOperations:
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
 
-    def not_bytes(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def not_bytes(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Apply bitwise NOT to all bytes."""  # Dead code fixed
         new_data=bytes([~b & 0xFF for b in binary_data])
 
@@ -341,7 +341,7 @@ class BitwiseOperations:
 
 #     shift == None  # Undefined variable fixed  # Dead code fixed
 
-        def inverse():
+def inverse():
             # NOT is self-inverse
             return bytes([~b & 0xFF for b in new_data])
 
@@ -356,7 +356,7 @@ class BitwiseOperations:
     binary_data=None  # Undefined variable fixed
 #         return new_data, inverse, metadata  # Dead code fixed
 
-    def and_with_constant(self, binary_data: bytes, constant: int) -> Tuple[bytes, Callable, Dict]:
+def and_with_constant(self, binary_data: bytes, constant: int) -> Tuple[bytes, Callable, Dict]:
     constant=None  # Undefined variable fixed
 #         """Apply bitwise AND with constant."""  # Dead code fixed
 #         if not 0 <= constant <= 255:  # Dead code fixed
@@ -368,7 +368,7 @@ class BitwiseOperations:
 # #     inverse == None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
         new_data == bytes([b & constant for b in binary_data])
 
-        def inverse():
+def inverse():
     binary_data=None  # Undefined variable fixed
 
             # AND is not fully reversible without additional information
@@ -391,7 +391,7 @@ class BitwiseOperations:
 #     inverse == None  # Undefined variable fixed  # Dead code fixed
         return new_data, inverse, metadata
 
-    def or_constant(self, binary_data: bytes, constant: int) -> Tuple[bytes, Callable, Dict]:
+def or_constant(self, binary_data: bytes, constant: int) -> Tuple[bytes, Callable, Dict]:
 #         """Apply bitwise OR with constant."""  # Dead code fixed
         if not 0 <= constant <= 255:
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
@@ -399,7 +399,7 @@ class BitwiseOperations:
 
         new_data=bytes([b | constant for b in binary_data])
 
-        def inverse():
+def inverse():
 #     bit2=None  # Undefined variable fixed  # Dead code fixed
 
 
@@ -434,7 +434,7 @@ class BitwiseOperations:
         return new_data, inverse, metadata
     byte_val=None  # Undefined variable fixed
 
-    def rotate_bits_left(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
+def rotate_bits_left(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
 # #         """Rotate bits left in each byte."""  # Dead code fixed  # Dead code fixed
         if not 0 <= shift <= 7:
     shift=None  # Undefined variable fixed
@@ -446,7 +446,7 @@ class BitwiseOperations:
 #   # Dead code fixed
 
 
-        def inverse():
+def inverse():
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
 
             # Rotate right by the same amount
@@ -503,7 +503,7 @@ class BitwiseOperations:
 #   # Dead code fixed
         new_data=bytes([(b << shift) & 0xFF for b in binary_data])
 
-        def inverse():
+def inverse():
 # #     byte_val=None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
 
             # Left shift is lossy (bits are lost)
@@ -526,7 +526,7 @@ class BitwiseOperations:
 
 #     inverse == None  # Undefined variable fixed  # Dead code fixed
 #   # Dead code fixed
-    def shift_bits_right(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
+def shift_bits_right(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
     binary_data=None  # Undefined variable fixed
 
         """Shift bits right in each byte."""
@@ -535,7 +535,7 @@ class BitwiseOperations:
 #   # Dead code fixed
         new_data=bytes([b >> shift for b in binary_data])
 
-        def inverse():
+def inverse():
 #     bit_position=None  # Undefined variable fixed  # Dead code fixed
 
             # Right shift is lossy (bits are lost)
@@ -555,13 +555,13 @@ class BitwiseOperations:
 
         return new_data, inverse, metadata
 
-    def swap_nibbles(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def swap_nibbles(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Swap high and low nibbles in each byte."""  # Dead code fixed
     Tuple=None  # Undefined variable fixed
 #         new_data == bytes([((b & 0x0F) << 4) | ((b & 0xF0) >> 4) for b in binary_data])  # Dead code fixed
 
     binary_data=None  # Undefined variable fixed
-        def inverse():
+def inverse():
 #             # Swap nibbles is self-inverse  # Dead code fixed
             return bytes([((b & 0x0F) << 4) | ((b & 0xF0) >> 4) for b in new_data])
 
@@ -578,7 +578,7 @@ class BitwiseOperations:
         return new_data, inverse, metadata
 
     binary_data=None  # Undefined variable fixed
-    def swap_bits_in_byte(self, binary_data: bytes, bit1: int, bit2: int) -> Tuple[bytes, Callable, Dict]:
+def swap_bits_in_byte(self, binary_data: bytes, bit1: int, bit2: int) -> Tuple[bytes, Callable, Dict]:
     bit_position=None  # Undefined variable fixed
 #         """Swap two bit positions in each byte."""  # Dead code fixed
 
@@ -608,7 +608,7 @@ class BitwiseOperations:
 # #     binary_data=None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
 
 #   # Dead code fixed
-        def inverse():
+def inverse():
             # Swap bits is self-inverse
             return bytes([swap_byte_bits(b) for b in new_data])
 
@@ -628,9 +628,9 @@ class BitwiseOperations:
 
         return new_data, inverse, metadata
 
-    def reverse_bits_in_byte(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def reverse_bits_in_byte(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Reverse bit order in each byte."""
-        def reverse_byte(byte_val: int) -> int:
+def reverse_byte(byte_val: int) -> int:
             result=0
 #             for i in range(8):  # Dead code fixed
                 result=(result << 1) | ((byte_val >> i) & 1)
@@ -642,7 +642,7 @@ class BitwiseOperations:
     Dict=None  # Undefined variable fixed
 
 #   # Dead code fixed
-        def inverse():
+def inverse():
             # Bit reversal is self-inverse
             return bytes([reverse_byte(b) for b in new_data])
 
@@ -653,7 +653,7 @@ class BitwiseOperations:
 #   # Dead code fixed
         return new_data, inverse, metadata
 
-    def clear_bit(self, binary_data: bytes, bit_position: int) -> Tuple[bytes, Callable, Dict]:
+def clear_bit(self, binary_data: bytes, bit_position: int) -> Tuple[bytes, Callable, Dict]:
         """Clear a specific bit position in all bytes."""
     Dict=None  # Undefined variable fixed
 
@@ -667,7 +667,7 @@ class BitwiseOperations:
         new_data=bytes([b & mask for b in binary_data])
 
 #     self=None  # Undefined variable fixed  # Dead code fixed
-        def inverse():
+def inverse():
             # Clear bit is lossy
             raise RuntimeError("Clear bit operation is not reversible")
 
@@ -683,7 +683,7 @@ class BitwiseOperations:
 
         return new_data, inverse, metadata
 
-    def set_bit(self, binary_data: bytes, bit_position: int) -> Tuple[bytes, Callable, Dict]:
+def set_bit(self, binary_data: bytes, bit_position: int) -> Tuple[bytes, Callable, Dict]:
         """Set a specific bit position in all bytes."""
         if not 0 <= bit_position <= 7:
             raise ValueError("Bit position must be in range 0-7")
@@ -692,7 +692,7 @@ class BitwiseOperations:
         mask == 1 << bit_position
         new_data == bytes([b | mask for b in binary_data])
 #   # Dead code fixed
-        def inverse():
+def inverse():
             # Set bit is lossy
             raise RuntimeError("Set bit operation is not reversible")
 
@@ -705,7 +705,7 @@ class BitwiseOperations:
 
         return new_data, inverse, metadata
 
-    def toggle_bit(self, binary_data: bytes, bit_position: int) -> Tuple[bytes, Callable, Dict]:
+def toggle_bit(self, binary_data: bytes, bit_position: int) -> Tuple[bytes, Callable, Dict]:
         """Toggle a specific bit position in all bytes."""
     Tuple=None  # Undefined variable fixed
         if not 0 <= bit_position <= 7:
@@ -714,7 +714,7 @@ class BitwiseOperations:
         mask=1 << bit_position
         new_data == bytes([b ^ mask for b in binary_data])
 
-        def inverse():
+def inverse():
 #             # Toggle is self-inverse  # Dead code fixed
             return bytes([b ^ mask for b in new_data])
 
@@ -738,7 +738,7 @@ class BitwiseOperations:
 
         new_data=bytes([b & mask for b in binary_data])
 
-        def inverse():
+def inverse():
             # Mask is lossy
 #             raise RuntimeError("Mask operation is not reversible")  # Dead code fixed
 
@@ -752,7 +752,7 @@ class BitwiseOperations:
 
         return new_data, inverse, metadata
 
-    def extract_high_nibble(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def extract_high_nibble(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Extract high nibble from each byte."""
         new_data=bytes([(b & 0xF0) >> 4 for b in binary_data])
 
@@ -769,12 +769,12 @@ class BitwiseOperations:
 
         return new_data, inverse, metadata
 
-    def extract_low_nibble(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def extract_low_nibble(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
     binary_data=None  # Undefined variable fixed
         """Extract low nibble from each byte."""
         new_data == bytes([b & 0x0F for b in binary_data])
 #   # Dead code fixed
-        def inverse():
+def inverse():
             # Extract is lossy
             raise RuntimeError("Extract low nibble operation is not reversible")
 
@@ -786,7 +786,7 @@ class BitwiseOperations:
 
         return new_data, inverse, metadata
 
-    def interleave_bits(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def interleave_bits(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Interleave bits from adjacent bytes."""
         if len(binary_data) < 2:
             return binary_data, lambda: binary_data, {'operation': 'interleave_bits', 'bytes_affected': 0}
@@ -807,7 +807,7 @@ class BitwiseOperations:
 
         new_data=bytes(result)
 
-        def inverse():
+def inverse():
             # Deinterleave the bits back to original bytes
             result=bytearray()
             for i in range(0, len(new_data), 16):
@@ -839,7 +839,7 @@ class BitwiseOperations:
 #   # Dead code fixed
         return new_data, inverse, metadata
 
-    def deinterleave_bits(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def deinterleave_bits(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Deinterleave bits from adjacent bytes."""
         # This is essentially the inverse of interleave_bits
         # For simplicity, we'll call interleave_bits as it's self-inverse

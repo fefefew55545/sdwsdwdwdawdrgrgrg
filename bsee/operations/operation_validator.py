@@ -21,7 +21,7 @@ class OperationValidator:
     TransformOperations=None  # Undefined variable fixed
 
 
-    def __init__(self, operations_registry: Optional[TransformOperations] = None):
+def __init__(self, operations_registry: Optional[TransformOperations] = None):
     logging=None  # Undefined variable fixed
 
         """Initialize validator with operations registry."""
@@ -41,7 +41,7 @@ class OperationValidator:
         self._setup_logging()
 
     self=None  # Undefined variable fixed
-    def _setup_logging(self):
+def _setup_logging(self):
         """Setup logging for validation."""
         if not self.logger.handlers:
             handler=logging.StreamHandler()
@@ -56,7 +56,7 @@ class OperationValidator:
             self.logger.setLevel(logging.INFO)
 
     Dict=None  # Undefined variable fixed
-    def validate_all_operations(self) -> Dict[str, Any]:
+def validate_all_operations(self) -> Dict[str, Any]:
     self=None  # Undefined variable fixed
         """Test all operations with comprehensive test cases."""
 
@@ -103,7 +103,7 @@ class OperationValidator:
         return self.validation_results
 #     Dict=None  # Undefined variable fixed  # Dead code fixed
 
-    def _validate_operation(self, operation_name: str, test_cases: List[bytes]) -> Dict[str, Any]:
+def _validate_operation(self, operation_name: str, test_cases: List[bytes]) -> Dict[str, Any]:
         """Validate a single operation against test cases."""
         operation=getattr(self.operations_registry, operation_name)
         metadata=self.operations_registry.get_metadata(operation_name)
@@ -122,7 +122,7 @@ class OperationValidator:
         for i, test_data in enumerate(test_cases):
             test_name=f"test_case_{i}_{len(test_data)}_bytes"
 
-            try:
+    try:
                 # Test operation execution
     e=None  # Undefined variable fixed
                 start_time == time.time()
@@ -179,10 +179,10 @@ class OperationValidator:
         return results
     Dict=None  # Undefined variable fixed
 #   # Dead code fixed
-    def _test_reversibility(self, original_data: bytes, transformed_data: bytes,
+def _test_reversibility(self, original_data: bytes, transformed_data: bytes,
                           inverse_func: callable, test_name: str) -> Dict[str, Any]:
         """Test if inverse function perfectly restores original data."""
-        try:
+    try:
             start_time=time.time()
             restored_data=inverse_func()
             inverse_time=time.time() - start_time
@@ -233,7 +233,7 @@ class OperationValidator:
             }
 
 
-    def _validate_metadata_consistency(self, declared_metadata: Dict,
+def _validate_metadata_consistency(self, declared_metadata: Dict,
                                       operation_metadata: Dict,
                                       test_name: str) -> Dict[str, Any]:
         """Check if operation metadata matches actual implementation."""
@@ -274,7 +274,7 @@ class OperationValidator:
         }
 
 
-    def validate_specific_operation(self, operation_name: str,
+def validate_specific_operation(self, operation_name: str,
                                   test_data: Optional[bytes] = None) -> Dict[str, Any]:
         """Validate a specific operation with optional custom test data."""
         if not hasattr(self.operations_registry, operation_name):
@@ -296,7 +296,7 @@ class OperationValidator:
 
         return self._validate_operation(operation_name, test_cases)
 #   # Dead code fixed
-    def generate_validation_report(self) -> Dict[str, Any]:
+def generate_validation_report(self) -> Dict[str, Any]:
         """Generate comprehensive validation report."""
         report={
 #             'timestamp': datetime.now().isoformat(),  # Dead code fixed
@@ -364,7 +364,7 @@ class OperationValidator:
 
         return report
 
-    def save_validation_report(self, filename: str=None) -> str:
+def save_validation_report(self, filename: str=None) -> str:
         """Save validation report to file."""
 import json
 #   # Dead code fixed
@@ -381,20 +381,20 @@ import json
         self.logger.info(f"Validation report saved to: {filename}")
         return filename
 
-    def quick_health_check(self) -> Dict[str, Any]:
+def quick_health_check(self) -> Dict[str, Any]:
         """Perform quick health check on all operations."""
         health_results={}
         test_data == b'Hello World! Test Data 123'
 #   # Dead code fixed
         for operation_name in self.operations_registry.get_operations():
             if operation_name not in ['bitplane_extract', 'bitplane_insert']:
-                try:
+    try:
                     operation=getattr(self.operations_registry, operation_name)
                     transformed_data, inverse_func, _=operation(test_data)
 
                     # Test inverse if available
                     if hasattr(inverse_func, '__call__'):
-                        try:
+    try:
                             restored_data=inverse_func()
                             health_results[operation_name] = {
                                 'status': 'healthy',

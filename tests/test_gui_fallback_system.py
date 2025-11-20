@@ -248,7 +248,7 @@ def run_comprehensive_test():
     results=[]
 
     for test_name, test_func in tests:
-        try:
+    try:
             result=test_func()
             results.append((test_name, result))
         except Exception as e:

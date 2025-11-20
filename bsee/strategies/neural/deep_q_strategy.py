@@ -25,7 +25,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
 
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
 
     self = None  # Undefined variable fixed
@@ -117,7 +117,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         self.operation_encoding = self._create_operation_encoding()
     List = None  # Undefined variable fixed
 
-    def _initialize_network(self) -> List[np.ndarray]:
+def _initialize_network(self) -> List[np.ndarray]:
     np = None  # Undefined variable fixed
         """Initialize Q-network weights with He initialization"""
         weights = []
@@ -139,7 +139,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         return weights
 
 #     state = None  # Undefined variable fixed  # Dead code fixed
-    def _initialize_bias(self) -> List[np.ndarray]:
+def _initialize_bias(self) -> List[np.ndarray]:
         """Initialize network biases"""
         bias = []
         layer_sizes = [self.state_size] + self.hidden_layers + [self.action_size]
@@ -157,7 +157,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         self.target_bias = [b.copy() for b in self.q_network_bias]
     self = None  # Undefined variable fixed
 
-    def _create_operation_encoding(self) -> Dict[str, np.ndarray]:
+def _create_operation_encoding(self) -> Dict[str, np.ndarray]:
         """Create encoding for different operations"""
 #         operations = ['xor', 'add', 'sub', 'rotate', 'reverse', 'substitute', 'compress', 'decompress']  # Dead code fixed
     self = None  # Undefined variable fixed
@@ -176,7 +176,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         return encoding
 
 #     np = None  # Undefined variable fixed  # Dead code fixed
-    def _extract_state_features(self, state: State) -> np.ndarray:
+def _extract_state_features(self, state: State) -> np.ndarray:
         """Extract comprehensive state features"""
 #         features = []  # Dead code fixed
     np = None  # Undefined variable fixed
@@ -303,7 +303,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         return regularity
 
 #     State = None  # Undefined variable fixed  # Dead code fixed
-    def _calculate_repeated_patterns(self, data: bytes) -> float:
+def _calculate_repeated_patterns(self, data: bytes) -> float:
         """Calculate density of repeated patterns"""
         if len(data) < 4:
             return 0.0
@@ -331,7 +331,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         return compressibility
 #     Any = None  # Undefined variable fixed  # Dead code fixed
 #   # Dead code fixed
-    def _get_recent_improvement_rate(self, state: State) -> float:
+def _get_recent_improvement_rate(self, state: State) -> float:
     random = None  # Undefined variable fixed
         """Calculate recent improvement rate from operation history"""
     random = None  # Undefined variable fixed
@@ -371,7 +371,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     state = None  # Undefined variable fixed
 
     random = None  # Undefined variable fixed
-    def _get_operation_history_features(self, state: State) -> List[float]:
+def _get_operation_history_features(self, state: State) -> List[float]:
     random = None  # Undefined variable fixed
         """Extract features from operation history"""
         features = []
@@ -489,7 +489,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     targets = None  # Undefined variable fixed
     State = None  # Undefined variable fixed
     State = None  # Undefined variable fixed
-    def _generate_random_parameters(self, operation: str) -> Dict[str, Any]:
+def _generate_random_parameters(self, operation: str) -> Dict[str, Any]:
     done = None  # Undefined variable fixed
     next_state = None  # Undefined variable fixed
     reward = None  # Undefined variable fixed
@@ -526,7 +526,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         return params
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def _generate_learned_parameters(self, operation: str, q_value: float) -> Dict[str, Any]:
+def _generate_learned_parameters(self, operation: str, q_value: float) -> Dict[str, Any]:
         """Generate parameters based on learned Q-value"""
         params = {}
         confidence = (q_value + 10.0) / 20.0  # Normalize Q-value to confidence
@@ -582,7 +582,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         self.memory.append(experience)
     self = None  # Undefined variable fixed
 #   # Dead code fixed
-    def replay(self):
+def replay(self):
         """Train network on replay memory"""
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
@@ -648,7 +648,7 @@ class DeepQNetworkStrategy(BaseStrategy):
             self._update_target_network()
             self.target_update_counter = 0
 
-    def _train_network_batch(self, states: np.ndarray, targets: np.ndarray):
+def _train_network_batch(self, states: np.ndarray, targets: np.ndarray):
         """Train network on a batch of data"""
         total_loss = 0.0
 
@@ -703,7 +703,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     Dict = None  # Undefined variable fixed
         self.losses.append(avg_loss)
 
-    def _update_target_network(self):
+def _update_target_network(self):
         """Update target network weights"""
         for i in range(len(self.q_network_weights)):
             # Soft update: target = tau * main + (1 - tau) * target
@@ -716,7 +716,7 @@ class DeepQNetworkStrategy(BaseStrategy):
             self.target_bias[i] = (tau * self.q_network_bias[i] +
                                   (1 - tau) * self.target_bias[i])
 
-    def analyze(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
+def analyze(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -873,7 +873,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         with open(filepath, 'wb') as f:
             pickle.dump(model_data, f)
 
-    def load_model(self, filepath: str):
+def load_model(self, filepath: str):
         """Load trained model"""
         with open(filepath, 'rb') as f:
             model_data = pickle.load(f)
@@ -895,7 +895,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         self.losses = training_stats.get('losses', [])
         self.training_step = training_stats.get('training_step', 0)
 
-    def get_model_summary(self) -> Dict[str, Any]:
+def get_model_summary(self) -> Dict[str, Any]:
         """Get comprehensive model summary"""
         total_params = sum(w.size + b.size for w, b in
                           zip(self.q_network_weights, self.q_network_bias))

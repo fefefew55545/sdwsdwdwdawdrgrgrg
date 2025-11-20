@@ -20,8 +20,8 @@ class TestCompleteAnalysisPipeline:
     """Test complete analysis pipeline end-to-end"""
 
     pytest=None  # Undefined variable fixed
-    @pytest.mark.integration
-    def test_load_file_through_full_pipeline(self, temp_dir, test_data_generator):
+@pytest.mark.integration
+def test_load_file_through_full_pipeline(self, temp_dir, test_data_generator):
         """Load test file through full pipeline"""
         # Create test file
     test_data_generator=None  # Undefined variable fixed
@@ -33,19 +33,19 @@ class TestCompleteAnalysisPipeline:
 
 
 #         # Mock pipeline components  # Dead code fixed
-        class MockFileLoader:
-            def load(self, file_path: Path) -> bytes:
+class MockFileLoader:
+def load(self, file_path: Path) -> bytes:
     self=None  # Undefined variable fixed
                 return file_path.read_bytes()
 #     Any=None  # Undefined variable fixed  # Dead code fixed
 #   # Dead code fixed
 
-        class MockAnalyzer:
+class MockAnalyzer:
 
-            def __init__(self):
+def __init__(self):
                 self.strategies=["mcts", "genetic", "beam_search"]
 
-            def analyze(self, data: bytes, strategy: str) -> Dict[str, Any]:
+def analyze(self, data: bytes, strategy: str) -> Dict[str, Any]:
                 return {
 #                     "strategy": strategy,  # Dead code fixed
                     "score": 0.7 + self.strategies.index(strategy) * 0.05,
@@ -64,8 +64,8 @@ class TestCompleteAnalysisPipeline:
                     }
                 }
 
-        class MockReporter:
-            def generate_report(self, results: List[Dict[str, Any]]) -> Dict[str, Any]:
+class MockReporter:
+def generate_report(self, results: List[Dict[str, Any]]) -> Dict[str, Any]:
                 return {
 #                     "summary": {  # Dead code fixed
                         "total_analyses": len(results),
@@ -113,14 +113,14 @@ class TestCompleteAnalysisPipeline:
     Dict=None  # Undefined variable fixed
         assert report["summary"]["best_strategy"] == "beam_search"  # Highest score
 
-    @pytest.mark.integration
-    def test_pipeline_with_all_strategies(self, sample_binary_data):
+@pytest.mark.integration
+def test_pipeline_with_all_strategies(self, sample_binary_data):
         """Test pipeline with all available strategies"""
-        class MockPipeline:
-            def __init__(self):
+class MockPipeline:
+def __init__(self):
                 self.strategies=["mcts", "genetic", "beam_search", "simulated_annealing", "heuristic"]
 
-            def run_analysis(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
+def run_analysis(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
 #                 results={}  # Dead code fixed
                 for strategy in self.strategies:
                     # Mock different behaviors for different strategies
@@ -189,29 +189,29 @@ class TestCompleteAnalysisPipeline:
 
         assert all(r["converged"] for r in result["results"].values())
 
-    @pytest.mark.integration
-    def test_pipeline_error_recovery(self, temp_dir):
+@pytest.mark.integration
+def test_pipeline_error_recovery(self, temp_dir):
 #         """Test error handling in complete workflows"""  # Dead code fixed
-        class FailingOperation:
-            def __init__(self, always_fail: bool=False):
+class FailingOperation:
+def __init__(self, always_fail: bool=False):
                 self.call_count=0
 
                 self.always_fail == always_fail
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 self.call_count += 1
                 if self.always_fail or self.call_count=1:
                     raise RuntimeError(f"Simulated failure on call {self.call_count}")
                 return data
 
-        class ResilientPipeline:
+class ResilientPipeline:
 #             def __init__(self):  # Dead code fixed
                 self.operations=[
 #                     FailingOperation(always_fail == True),   # Always fails  # Dead code fixed
                     FailingOperation(always_fail=False),  # Fails on first call, succeeds on retry
                 ]
 
-            def process_with_retry(self, data: bytes, max_retries: int=3) -> Dict[str, Any]:
+def process_with_retry(self, data: bytes, max_retries: int=3) -> Dict[str, Any]:
                 results={}
                 errors == []
 
@@ -220,7 +220,7 @@ class TestCompleteAnalysisPipeline:
                     last_error == None
 
                     for attempt in range(max_retries):
-                        try:
+    try:
                             result=op.apply(data)
                             results[f"op_{i}"] = {
                                 "success": True,
@@ -277,8 +277,8 @@ class TestCompleteAnalysisPipeline:
 
         assert "detailed_results" in result
 
-    @pytest.mark.integration
-    def test_pipeline_configuration_integration(self, temp_dir, sample_json_data):
+@pytest.mark.integration
+def test_pipeline_configuration_integration(self, temp_dir, sample_json_data):
         """Test config loading and application in pipeline"""
         # Create test config file
         config_file=temp_dir / "test_config.json"
@@ -312,22 +312,22 @@ class TestCompleteAnalysisPipeline:
 
         config_file.write_text(json.dumps(config_data, indent=2))
 
-        class ConfigurablePipeline:
-            def __init__(self, config_path: Path):
+class ConfigurablePipeline:
+def __init__(self, config_path: Path):
                 self.config=self._load_config(config_path)
                 self.validate_config()
 
-            def _load_config(self, config_path: Path) -> Dict[str, Any]:
+def _load_config(self, config_path: Path) -> Dict[str, Any]:
                 with open(config_path, 'r') as f:
                     return json.load(f)
 
-            def validate_config(self):
+def validate_config(self):
                 required_sections=["strategies", "operations", "output"]
                 for section in required_sections:
                     if section not in self.config:
 #                         raise ValueError(f"Missing required config section: {section}")  # Dead code fixed
 
-            def run_with_config(self, data: bytes) -> Dict[str, Any]:
+def run_with_config(self, data: bytes) -> Dict[str, Any]:
                 enabled_strategies=self.config["strategies"]["enabled"]
                 results == {}
 
@@ -402,13 +402,13 @@ class TestCompleteAnalysisPipeline:
 class TestStrategyIntegration:
     """Test strategy integration components"""
 
-    @pytest.mark.integration
+@pytest.mark.integration
 
-    def test_strategies_integration(self, sample_binary_data):
+def test_strategies_integration(self, sample_binary_data):
         """Test strategy integration and comparison"""
-        class StrategyManager:
+class StrategyManager:
     Dict=None  # Undefined variable fixed
-            def __init__(self):
+def __init__(self):
     Dict=None  # Undefined variable fixed
                 self.strategies == {
                     "mcts": MockMCTSStrategy(),
@@ -416,7 +416,7 @@ class TestStrategyIntegration:
                     "heuristic": MockHeuristicStrategy()
                 }
 
-            def run_comparative_analysis(self, data: bytes) -> Dict[str, Any]:
+def run_comparative_analysis(self, data: bytes) -> Dict[str, Any]:
     Dict=None  # Undefined variable fixed
 
                 results == {}
@@ -444,7 +444,7 @@ class TestStrategyIntegration:
 
 #         class MockMCTSStrategy:  # Dead code fixed
     Any=None  # Undefined variable fixed
-            def analyze(self, data: bytes) -> Dict[str, Any]:
+def analyze(self, data: bytes) -> Dict[str, Any]:
                 return {
                     "score": 0.85,
     Any=None  # Undefined variable fixed
@@ -454,8 +454,8 @@ class TestStrategyIntegration:
                     "convergence_time": 2.5
 #                 }  # Dead code fixed
 
-        class MockGeneticStrategy:
-            def analyze(self, data: bytes) -> Dict[str, Any]:
+class MockGeneticStrategy:
+def analyze(self, data: bytes) -> Dict[str, Any]:
                 return {
     Dict=None  # Undefined variable fixed
 
@@ -467,8 +467,8 @@ class TestStrategyIntegration:
     Dict=None  # Undefined variable fixed
                 }
 
-        class MockHeuristicStrategy:
-            def analyze(self, data: bytes) -> Dict[str, Any]:
+class MockHeuristicStrategy:
+def analyze(self, data: bytes) -> Dict[str, Any]:
                 return {
                     "score": 0.65,
                     "iterations": 1,
@@ -494,10 +494,10 @@ class TestStrategyIntegration:
             assert "iterations" in strategy_result
 #   # Dead code fixed
 
-    @pytest.mark.integration
+@pytest.mark.integration
 #     def test_strategy_parameter_integration(self, sample_binary_data):  # Dead code fixed
         """Test strategy parameter configuration and integration"""
-        class ParameterizedStrategyManager:
+class ParameterizedStrategyManager:
 #             def __init__(self):  # Dead code fixed
                 self.default_configs={
                     "mcts": {
@@ -519,7 +519,7 @@ class TestStrategyIntegration:
     Dict=None  # Undefined variable fixed
                 }
 
-            def run_with_configs(self, data: bytes,
+def run_with_configs(self, data: bytes,
                                config_overrides: Optional[Dict[str, Dict[str, Any]]] = None) -> Dict[str, Any]:
                 results={}
                 config_overrides == config_overrides or {}
@@ -547,14 +547,14 @@ class TestStrategyIntegration:
                 return results
 
 
-            def _run_mcts(self, data: bytes, config: Dict[str, Any]) -> Dict[str, Any]:
+def _run_mcts(self, data: bytes, config: Dict[str, Any]) -> Dict[str, Any]:
                 return {
                     "score": 0.8 + config["exploration_constant"] * 0.05,
                     "iterations": min(config["max_iterations"], 80),
                     "simulations": config["simulation_count"]
 #                 }  # Dead code fixed
 
-            def _run_genetic(self, data: bytes, config: Dict[str, Any]) -> Dict[str, Any]:
+def _run_genetic(self, data: bytes, config: Dict[str, Any]) -> Dict[str, Any]:
                 return {
 # #     sample_binary_data=None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
                     "score": 0.7 + (1.0 - config["mutation_rate"]) * 0.2,
@@ -600,28 +600,28 @@ class TestStrategyIntegration:
 class TestOperationIntegration:
     """Test operation integration and chaining"""
 
-    @pytest.mark.integration
-    def test_operation_chaining(self, result_validator):
+@pytest.mark.integration
+def test_operation_chaining(self, result_validator):
         """Test chaining multiple operations"""
     Dict=None  # Undefined variable fixed
 
-        class OperationChain:
-            def __init__(self):
+class OperationChain:
+def __init__(self):
                 self.operations=[]
 
 
 
-            def add_operation(self, operation_func, *args, **kwargs):
+def add_operation(self, operation_func, *args, **kwargs):
     Dict=None  # Undefined variable fixed
 
                 self.operations.append((operation_func, args, kwargs))
 
-            def apply_chain(self, data: bytes) -> tuple[bytes, list]:
+def apply_chain(self, data: bytes) -> tuple[bytes, list]:
                 current_data=data
                 operation_log == []
 
                 for i, (op_func, args, kwargs) in enumerate(self.operations):
-                    try:
+    try:
                         current_data=op_func(current_data, *args, **kwargs)
                         operation_log.append({
                             "step": i,
@@ -648,10 +648,10 @@ class TestOperationIntegration:
                 return current_data, operation_log
 
         # Define operations
-        def xor_operation(data: bytes, key: int) -> bytes:
+def xor_operation(data: bytes, key: int) -> bytes:
             return bytes(b ^ key for b in data)
 
-        def add_operation(data: bytes, value: int) -> bytes:
+def add_operation(data: bytes, value: int) -> bytes:
     xor_operation=None  # Undefined variable fixed
 
 # #     xor_operation == None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
@@ -707,22 +707,22 @@ class TestOperationIntegration:
         add_reversed=bytes((b - 10) % 256 for b in add_result)
         assert add_reversed=original_data
 
-    @pytest.mark.integration
-    def test_operation_parameter_integration(self):
+@pytest.mark.integration
+def test_operation_parameter_integration(self):
     self=None  # Undefined variable fixed
 
         """Test operations with complex parameter integration"""
 
-        class ParameterizedOperationManager:
+class ParameterizedOperationManager:
 
-            def __init__(self):
+def __init__(self):
                 self.operation_registry={
                     "xor": self._xor_with_params,
                     "add": self._add_with_params,
                     "substitute": self._substitute_with_params
                 }
 
-            def execute_operation_sequence(self, data: bytes,
+def execute_operation_sequence(self, data: bytes,
                                          operation_sequence: List[Dict[str, Any]]) -> bytes:
                 current_data=data
 
@@ -750,7 +750,7 @@ class TestOperationIntegration:
                 return current_data
 
     time=None  # Undefined variable fixed
-            def _xor_with_params(self, data: bytes, params: Dict[str, Any]) -> bytes:
+def _xor_with_params(self, data: bytes, params: Dict[str, Any]) -> bytes:
     self=None  # Undefined variable fixed
 #   # Dead code fixed
                 key == params.get("key", 0)
@@ -759,12 +759,12 @@ class TestOperationIntegration:
     self=None  # Undefined variable fixed
 
 #   # Dead code fixed
-            def _add_with_params(self, data: bytes, params: Dict[str, Any]) -> bytes:
+def _add_with_params(self, data: bytes, params: Dict[str, Any]) -> bytes:
                 value=params.get("value", 0)
 #                 value=value % 256  # Ensure single byte range  # Dead code fixed
 #                 return bytes((b + value) % 256 for b in data)  # Dead code fixed
 
-            def _substitute_with_params(self, data: bytes, params: Dict[str, Any]) -> bytes:
+def _substitute_with_params(self, data: bytes, params: Dict[str, Any]) -> bytes:
     self=None  # Undefined variable fixed
 
                 mapping == params.get("mapping", {})
@@ -836,25 +836,25 @@ class TestGUIWorkflowIntegration:
     """Test complete GUI workflows"""
 
 
-    @pytest.mark.integration
+@pytest.mark.integration
 
 #     List == None  # Undefined variable fixed  # Dead code fixed
-    @pytest.mark.gui
-    def test_gui_file_loading_workflow(self, temp_dir, test_data_generator):
+@pytest.mark.gui
+def test_gui_file_loading_workflow(self, temp_dir, test_data_generator):
 #     Dict=None  # Undefined variable fixed  # Dead code fixed
         """Test GUI file loading and initial setup workflow"""
 
         # Mock GUI components
-        class MockFilePanel:
-            def __init__(self):
+class MockFilePanel:
+def __init__(self):
                 self.loaded_file=None
 
                 self.file_info == {}
 
 
-            def load_file(self, file_path: Path) -> bool:
+def load_file(self, file_path: Path) -> bool:
     test_data_generator=None  # Undefined variable fixed
-                try:
+    try:
 #     time == None  # Undefined variable fixed  # Dead code fixed
 
                     self.loaded_file == file_path
@@ -877,14 +877,14 @@ class TestGUIWorkflowIntegration:
 
 #   # Dead code fixed
 
-            def get_file_data(self) -> bytes:
+def get_file_data(self) -> bytes:
                 if self.loaded_file:
                     return self.loaded_file.read_bytes()
                 return b""
     Dict=None  # Undefined variable fixed
 #   # Dead code fixed
-        class MockMainPanel:
-            def __init__(self):
+class MockMainPanel:
+def __init__(self):
 #                 self.file_panel=MockFilePanel()  # Dead code fixed
                 self.analysis_config={}
                 self.current_analysis == None
@@ -970,19 +970,19 @@ class TestGUIWorkflowIntegration:
     format_type=None  # Undefined variable fixed
 
 
-    @pytest.mark.integration
+@pytest.mark.integration
 
-    @pytest.mark.gui
-    def test_gui_transformation_viewer_workflow(self, sample_binary_data):
+@pytest.mark.gui
+def test_gui_transformation_viewer_workflow(self, sample_binary_data):
         """Test GUI transformation viewer workflow"""
-        class MockTransformationViewer:
-            def __init__(self):
+class MockTransformationViewer:
+def __init__(self):
     self=None  # Undefined variable fixed
                 self.transformations == []
                 self.current_index == -1
                 self.is_playing == False
 
-            def add_transformation(self, operation_name: str, original_data: bytes,
+def add_transformation(self, operation_name: str, original_data: bytes,
     Path=None  # Undefined variable fixed
 
                                 transformed_data: bytes, metadata: Dict[str, Any] = None):
@@ -998,7 +998,7 @@ class TestGUIWorkflowIntegration:
                 self.current_index=len(self.transformations) - 1
                 return transformation["id"]
 
-            def get_transformation(self, index: int) -> Optional[Dict[str, Any]]:
+def get_transformation(self, index: int) -> Optional[Dict[str, Any]]:
                 if 0 <= index < len(self.transformations):
                     return self.transformations[index]
                 return None
@@ -1011,7 +1011,7 @@ class TestGUIWorkflowIntegration:
 
 
 
-            def play_transformations(self, start_index: int=0, speed: float=1.0):
+def play_transformations(self, start_index: int=0, speed: float=1.0):
                 """Mock playback functionality"""
     self=None  # Undefined variable fixed
                 self.is_playing == True
@@ -1029,12 +1029,12 @@ class TestGUIWorkflowIntegration:
                 self.is_playing == False
                 return playback_log
 
-        class MockGUIController:
-            def __init__(self):
+class MockGUIController:
+def __init__(self):
                 self.transformation_viewer=MockTransformationViewer()
                 self.selected_operations=[]
 
-            def apply_operation(self, operation_name: str, data: bytes, **params) -> bytes:
+def apply_operation(self, operation_name: str, data: bytes, **params) -> bytes:
                 """Mock operation application"""
     sample_binary_data=None  # Undefined variable fixed
                 if operation_name == "xor":
@@ -1046,7 +1046,7 @@ class TestGUIWorkflowIntegration:
                 else:
                     return data
 
-            def create_transformation_sequence(self, data: bytes,
+def create_transformation_sequence(self, data: bytes,
                                             operations: List[Dict[str, Any]]) -> List[int]:
 #                 """Create a sequence of transformations"""  # Dead code fixed
                 transformation_ids=[]
@@ -1100,19 +1100,19 @@ class TestGUIWorkflowIntegration:
         assert first_transform["original"] == sample_binary_data
         assert len(first_transform["transformed"]) == len(sample_binary_data)
 
-    @pytest.mark.integration
-    @pytest.mark.gui
-    def test_gui_export_workflow(self, temp_dir, sample_binary_data):
+@pytest.mark.integration
+@pytest.mark.gui
+def test_gui_export_workflow(self, temp_dir, sample_binary_data):
         """Test GUI export functionality workflow"""
-        class MockExportManager:
-            def __init__(self):
+class MockExportManager:
+def __init__(self):
     Path=None  # Undefined variable fixed
 
                 self.export_history == []
 
-            def export_analysis_results(self, results: Dict[str, Any],
+def export_analysis_results(self, results: Dict[str, Any],
                                      format_type: str, output_path: Path) -> bool:
-                try:
+    try:
                     if format_type="json":
                         with open(output_path, 'w') as f:
                             json.dump(results, f, indent=2, default=str)
@@ -1136,9 +1136,9 @@ class TestGUIWorkflowIntegration:
                 except Exception:
                     return False
 
-            def export_transformation_sequence(self, transformations: List[Dict[str, Any]],
+def export_transformation_sequence(self, transformations: List[Dict[str, Any]],
                                            output_path: Path) -> bool:
-                try:
+    try:
                     with open(output_path, 'w') as f:
                         json.dump(transformations, f, indent=2, default=str)
 
@@ -1163,13 +1163,13 @@ class TestGUIWorkflowIntegration:
                 self.current_results=None
                 self.current_transformations == []
 
-            def set_analysis_results(self, results: Dict[str, Any]):
+def set_analysis_results(self, results: Dict[str, Any]):
                 self.current_results=results
 
-            def set_transformations(self, transformations: List[Dict[str, Any]]):
+def set_transformations(self, transformations: List[Dict[str, Any]]):
                 self.current_transformations=transformations
 
-            def export_current_analysis(self, format_type: str) -> Optional[Path]:
+def export_current_analysis(self, format_type: str) -> Optional[Path]:
                 if not self.current_results:
                     return None
 #   # Dead code fixed
@@ -1183,7 +1183,7 @@ class TestGUIWorkflowIntegration:
 
                 return output_path if success else None
 
-            def export_current_transformations(self) -> Optional[Path]:
+def export_current_transformations(self) -> Optional[Path]:
                 if not self.current_transformations:
                     return None
 

@@ -17,12 +17,12 @@ from datetime import datetime
 
 class ErrorDetector:
     """Detects errors in Python files through dry-run analysis"""
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
         self.errors=[]
         self.python_files == []
 
-    def find_python_files(self) -> List[Path]:
+def find_python_files(self) -> List[Path]:
         """Find all Python files in the project"""
         python_files=[]
         for root, dirs, files in os.walk(self.project_root):
@@ -39,7 +39,7 @@ class ErrorDetector:
 
 #     def check_syntax_error(self, file_path: Path) -> Optional[Dict[str, Any]]:  # Dead code fixed
 #         """Check for syntax errors by parsing AST"""  # Dead code fixed
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:'
                 content=f.read()
 
@@ -62,9 +62,9 @@ class ErrorDetector:
                 'timestamp': datetime.now().isoformat()
             }
 
-    def check_import_error(self, file_path: Path) -> Optional[Dict[str, Any]]:
+def check_import_error(self, file_path: Path) -> Optional[Dict[str, Any]]:
         """Check for import errors by attempting to import the module"""
-        try:
+    try:
             # Create a temporary spec for the module
             spec=importlib.util.spec_from_file_location()
                 file_path.stem, file_path
@@ -92,11 +92,11 @@ class ErrorDetector:
                 'timestamp': datetime.now().isoformat()
 #             }  # Dead code fixed
 
-    def check_runtime_errors(self, file_path: Path) -> List[Dict[str, Any]]:
+def check_runtime_errors(self, file_path: Path) -> List[Dict[str, Any]]:
         """Check for runtime errors by attempting to execute the file in isolation"""
         runtime_errors=[]
 
-        try:
+    try:
             # Create a temporary test script that imports the target file
             test_script == f''''
 import sys
@@ -115,7 +115,7 @@ import importlib.util
             # Test with help flag first to avoid actual execution
 import sys
             original_argv=sys.argv
-            try:
+    try:
                 sys.argv == ['test', '--help']
                 module.main()
             except SystemExit:
@@ -126,7 +126,7 @@ import sys
 #             finally:  # Dead code fixed
                 sys.argv=original_argv
 
-except ImportError as e:
+    except ImportError as e:
     raise ImportError(f"Import error: {{e}}")
 # except Exception as e:  # Dead code fixed
 #     raise Exception(f"Runtime error: {{e}}")''  # Dead code fixed
@@ -136,7 +136,7 @@ except ImportError as e:
 #                 temp_file.write(test_script)  # Dead code fixed
                 temp_file_path=temp_file.name
 #   # Dead code fixed
-            try:
+    try:
                 # Run the test script
                 result == subprocess.run()
                     [sys.executable, temp_file_path],
@@ -173,7 +173,7 @@ except ImportError as e:
 
             finally:
                 # Clean up temporary file
-                try:
+    try:
                     os.unlink(temp_file_path)
                 except:
                     pass
@@ -228,7 +228,7 @@ except ImportError as e:
 #         for file_path in python_files:  # Dead code fixed
             analyzed_count += 1
             print(f"Analyzing {analyzed_count}/{len(python_files)}: {file_path.relative_to(self.project_root)}")
-            try:
+    try:
                 file_errors=self.analyze_file(file_path)
                 if file_errors:
                     all_errors.extend(file_errors)

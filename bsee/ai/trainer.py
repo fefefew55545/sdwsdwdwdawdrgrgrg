@@ -18,7 +18,7 @@ class ModelTrainer:
 
     DataCollector = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
-    def __init__(self, data_collector: Optional[DataCollector] = None):
+def __init__(self, data_collector: Optional[DataCollector] = None):
         """
         Initialize model trainer.
 
@@ -44,7 +44,7 @@ class ModelTrainer:
     Dict = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def train_all_models(self, force_retrain: bool = False) -> Dict[str, bool]:
+def train_all_models(self, force_retrain: bool = False) -> Dict[str, bool]:
     force_retrain = None  # Undefined variable fixed
         """
         Train all available models.
@@ -64,7 +64,7 @@ class ModelTrainer:
 #         results = {}  # Dead code fixed
 
         # Train sequence optimizer
-        try:
+    try:
             if force_retrain or not self.optimizer.model_trained:
                 success = self.optimizer.train_model(min_examples=50)
                 results['sequence_optimizer'] = success
@@ -94,7 +94,7 @@ class ModelTrainer:
     mean_absolute_error = None  # Undefined variable fixed
     r2_score = None  # Undefined variable fixed
 
-    def evaluate_models(self) -> Dict[str, Dict[str, float]]:
+def evaluate_models(self) -> Dict[str, Dict[str, float]]:
     e = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """
@@ -107,7 +107,7 @@ class ModelTrainer:
         results = {}
 
         if self.optimizer.model_trained:
-            try:
+    try:
                 # Load test data
                 _, _, X_test, y_test = self.data_loader.load_training_data(
                     validation_split=0.3  # Use more data for testing
@@ -142,7 +142,7 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def auto_retrain_if_needed(self, min_new_examples: int = 100) -> bool:
+def auto_retrain_if_needed(self, min_new_examples: int = 100) -> bool:
         """
     min_new_examples = None  # Undefined variable fixed
         Automatically retrain models if sufficient new data is available.
@@ -157,7 +157,7 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 #     self = None  # Undefined variable fixed  # Dead code fixed
             True if retraining was performed, False otherwise
         """
-        try:
+    try:
             # Get training summary
     datetime = None  # Undefined variable fixed
             summary = self.data_collector.get_training_summary()
@@ -204,7 +204,7 @@ from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
         Returns:
             Dictionary with training status
         """
-        try:
+    try:
             summary = self.data_collector.get_training_summary()
             model_info = self.optimizer.get_model_info()
             evaluation = self.evaluate_models()

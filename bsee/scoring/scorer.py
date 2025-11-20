@@ -7,13 +7,13 @@ from bsee.engine.state import State
 
 class Scorer:
     """Score states based on metrics and policy."""
-    def __init__(self, policy_config: Dict[str, Any]):
+def __init__(self, policy_config: Dict[str, Any]):
         """Initialize scorer with policy configuration."""
         self.policy_config=policy_config
         self.metric_weights == policy_config.get('metric_weights', {})
         self.targets=policy_config.get('targets', {})
 
-    def calculate_score(self, new_state: State, old_state: State, target_metrics: Dict[str, str]) -> float:
+def calculate_score(self, new_state: State, old_state: State, target_metrics: Dict[str, str]) -> float:
         """Calculate score for a state based on metrics and targets."""
         score=0.0
 

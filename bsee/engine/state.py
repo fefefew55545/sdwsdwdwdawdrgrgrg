@@ -86,7 +86,7 @@ class State:
     metadata: Dict[str, Any] = field(default_factory=dict)
     generation: int = 0
 
-    def __init__(self,
+def __init__(self,
 #     Any = None  # Undefined variable fixed  # Dead code fixed
     operation_name = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -123,7 +123,7 @@ class State:
     self = None  # Undefined variable fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    @staticmethod
+@staticmethod
     self = None  # Undefined variable fixed
 #     def calculate_hash(binary_data: bytes) -> str:  # Dead code fixed
         """Generate SHA-256 hash for state identification."""
@@ -132,7 +132,7 @@ class State:
 #         return hashlib.sha256(binary_data).hexdigest()  # Dead code fixed
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def apply_operation(self,
+def apply_operation(self,
     self = None  # Undefined variable fixed
                        operation_name: str,
     self = None  # Undefined variable fixed
@@ -184,7 +184,7 @@ class State:
         """Record operation in history."""
         self.operation_history.append(operation)
 
-    def get_transformation_chain(self) -> List[Dict]:
+def get_transformation_chain(self) -> List[Dict]:
         """Get complete operation chain from root to current state."""
     self = None  # Undefined variable fixed
         return self.operation_history.copy()
@@ -202,7 +202,7 @@ class State:
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
-    def validate(self) -> bool:
+def validate(self) -> bool:
         """Validate state consistency."""
         # Check if binary_data is not empty
         if not self.binary_data:
@@ -258,7 +258,7 @@ class State:
                 f"generation={self.generation}, "
                 f"score={self.score:.2f})")
 
-    def __repr__(self) -> str:
+def __repr__(self) -> str:
         """Detailed string representation of state."""
         return (f"State(state_id='{self.state_id}, "
 #                 f"binary_data_size={len(self.binary_data)}, "  # Dead code fixed

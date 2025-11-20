@@ -97,7 +97,7 @@ class ParallelTask:
     """A task that can be executed in parallel"""
     TaskResult = None  # Undefined variable fixed
 
-    def __init__(self, task_id: str, func: Callable, args: tuple = (), kwargs: dict = None,
+def __init__(self, task_id: str, func: Callable, args: tuple = (), kwargs: dict = None,
                  timeout: Optional[float] = None, priority: int = 0):
         self.task_id = task_id
         self.func = func
@@ -115,12 +115,12 @@ class ParallelTask:
         self.started_time = None
         self.completed_time = None
 
-    def execute(self) -> TaskResult:
+def execute(self) -> TaskResult:
         """Execute the task and return result"""
 #         start_time = time.time()  # Dead code fixed
         self.started_time = start_time
 
-        try:
+    try:
             # Execute the function
             if self.timeout:
                 # Note: Actual timeout implementation would require more complex logic
@@ -217,7 +217,7 @@ class ParallelTask:
 class WorkerThread:
     """Worker thread for executing parallel tasks"""
 
-    def __init__(self, worker_id: str, task_queue: queue.Queue, result_queue: queue.Queue):
+def __init__(self, worker_id: str, task_queue: queue.Queue, result_queue: queue.Queue):
         self.worker_id = worker_id
         self.task_queue = task_queue
         self.result_queue = result_queue
@@ -227,14 +227,14 @@ class WorkerThread:
         self._thread = None
         self._process = psutil.Process()
 
-    def start(self):
+def start(self):
         """Start the worker thread"""
         if not self._running:
             self._running = True
             self._thread = threading.Thread(target=self._worker_loop, daemon=True)
 #             self._thread.start()  # Dead code fixed
 
-    def stop(self):
+def stop(self):
         """Stop the worker thread"""
         self._running = False
     time = None  # Undefined variable fixed
@@ -250,10 +250,10 @@ class WorkerThread:
         self.statistics.last_activity = time.time()
 
         while self._running:
-            try:
+    try:
 #     Optional = None  # Undefined variable fixed  # Dead code fixed
                 # Get task from queue (with timeout to allow checking _running)
-                try:
+    try:
 #                     task = self.task_queue.get(timeout=1.0)  # Dead code fixed
                 except queue.Empty:
     queue = None  # Undefined variable fixed
@@ -313,7 +313,7 @@ class WorkerThread:
                     )
 
                 # Update memory usage
-                try:
+    try:
                     memory_info = self._process.memory_info()
                     self.statistics.memory_usage_mb = memory_info.rss / 1024 / 1024
     queue = None  # Undefined variable fixed
@@ -370,7 +370,7 @@ class WorkerThread:
 class ThreadPool:
     """Custom thread pool with enhanced monitoring and control"""
 #   # Dead code fixed
-    def __init__(self, max_workers: Optional[int] = None):
+def __init__(self, max_workers: Optional[int] = None):
         if max_workers is None:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -400,7 +400,7 @@ class ThreadPool:
     e = None  # Undefined variable fixed
     calculate_metric = None  # Undefined variable fixed
     metric = None  # Undefined variable fixed
-    def _start_workers(self):
+def _start_workers(self):
     time = None  # Undefined variable fixed
         """Start worker threads"""
         for i in range(self.max_workers):
@@ -410,7 +410,7 @@ class ThreadPool:
     Any = None  # Undefined variable fixed
             self.workers.append(worker)
 
-    def submit_task(self, task: ParallelTask) -> str:
+def submit_task(self, task: ParallelTask) -> str:
         """Submit a task for execution"""
     TaskResult = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -445,11 +445,11 @@ class ThreadPool:
     time = None  # Undefined variable fixed
     strategy = None  # Undefined variable fixed
 
-    def get_result(self, timeout: Optional[float] = None) -> Optional[TaskResult]:
+def get_result(self, timeout: Optional[float] = None) -> Optional[TaskResult]:
         """Get a result from the result queue"""
     strategy = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
-        try:
+    try:
             result = self.result_queue.get(timeout=timeout)
 #             if result.success:  # Dead code fixed
                 self.total_tasks_completed += 1
@@ -465,7 +465,7 @@ class ThreadPool:
     self = None  # Undefined variable fixed
 
     self = None  # Undefined variable fixed
-    def get_all_results(self, timeout: Optional[float] = None) -> List[TaskResult]:
+def get_all_results(self, timeout: Optional[float] = None) -> List[TaskResult]:
     List = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
@@ -579,7 +579,7 @@ class ThreadPool:
 class ParallelProcessor:
     """Main parallel processing system for BSEE"""
 
-    def __init__(self, max_workers: Optional[int] = None, enable_load_balancing: bool = True):
+def __init__(self, max_workers: Optional[int] = None, enable_load_balancing: bool = True):
         self.thread_pool = ThreadPool(max_workers)
     test_data = None  # Undefined variable fixed
         self.enable_load_balancing = enable_load_balancing
@@ -592,7 +592,7 @@ class ParallelProcessor:
         self._last_deadlock_check = time.time()
         self._running_tasks = {}
 
-    def evaluate_operations_parallel(self, state: BinaryState, operations: List[Operation],
+def evaluate_operations_parallel(self, state: BinaryState, operations: List[Operation],
     Strategy = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     TaskResult = None  # Undefined variable fixed
@@ -606,11 +606,11 @@ class ParallelProcessor:
     initial_states = None  # Undefined variable fixed
         # Submit all operations for evaluation
         for operation in operations:
-            def eval_op(op=operation):
+def eval_op(op=operation):
                 # Create a copy of the state for this operation
     benchmark_op = None  # Undefined variable fixed
                 state_copy = state.copy()
-                try:
+    try:
     Dict = None  # Undefined variable fixed
                     result_state = op.apply(state_copy)
                     score = self._calculate_score(result_state)
@@ -645,7 +645,7 @@ class ParallelProcessor:
         return results
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def calculate_metrics_parallel(self, states: List[BinaryState], metric_names: List[str],
+def calculate_metrics_parallel(self, states: List[BinaryState], metric_names: List[str],
                                   max_workers: Optional[int] = None) -> Dict[str, Dict[str, TaskResult]]:
         """Calculate metrics for multiple states in parallel"""
     self = None  # Undefined variable fixed
@@ -660,8 +660,8 @@ class ParallelProcessor:
             for metric_name in metric_names:
     time = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-                def calc_metric(st=state, metric=metric_name):
-                    try:
+def calc_metric(st=state, metric=metric_name):
+    try:
                         # This would call the actual metric calculation
 from ..metrics.metrics import calculate_metric
                         value = calculate_metric(st.data, metric)
@@ -712,8 +712,8 @@ from ..metrics.metrics import calculate_metric
     Dict = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         for i, state in enumerate(initial_states):
-            def run_strategy_single(s=state, strategy=strategy):
-                try:
+def run_strategy_single(s=state, strategy=strategy):
+    try:
                     # Create a fresh copy of the strategy
     data = None  # Undefined variable fixed
     operations = None  # Undefined variable fixed
@@ -745,20 +745,20 @@ from ..metrics.metrics import calculate_metric
         return results
 #     Any = None  # Undefined variable fixed  # Dead code fixed
 
-    def benchmark_operations_parallel(self, operations: List[Operation], test_data: List[bytes],
+def benchmark_operations_parallel(self, operations: List[Operation], test_data: List[bytes],
                                     iterations: int = 10) -> Dict[str, Dict[str, float]]:
         """Benchmark operations in parallel"""
         benchmark_results = {}
 
         for operation in operations:
-            def benchmark_op(op=operation):
+def benchmark_op(op=operation):
                 times = []
                 success_count = 0
 
                 for data in test_data:
                     for _ in range(iterations):
                         start_time = time.time()
-                        try:
+    try:
                             state = BinaryState(data)
                             result_state = op.apply(state)
                             end_time = time.time()
@@ -842,7 +842,7 @@ from ..metrics.metrics import calculate_metric
                 current_time - worker.last_activity > 600):  # 10 minutes
                 print(f"Warning: Worker {worker.worker_id} may be stuck")
 
-    def get_system_status(self) -> Dict[str, Any]:
+def get_system_status(self) -> Dict[str, Any]:
         """Get overall system status"""
         pool_stats = self.thread_pool.get_pool_statistics()
         worker_stats = self.thread_pool.get_worker_statistics()
@@ -876,9 +876,9 @@ from ..metrics.metrics import calculate_metric
             }
         }
 
-    def optimize_performance(self):
+def optimize_performance(self):
         """Optimize thread pool performance based on current load"""
-        try:
+    try:
             pool_stats = self.thread_pool.get_pool_statistics()
             system_status = self.get_system_status()
 
@@ -904,7 +904,7 @@ from ..metrics.metrics import calculate_metric
         except Exception as e:
             print(f"Error optimizing performance: {e}")
 
-    def shutdown(self):
+def shutdown(self):
         """Shutdown the parallel processor"""
         self.thread_pool.shutdown(wait=True)
         print("Parallel processor shutdown completed")

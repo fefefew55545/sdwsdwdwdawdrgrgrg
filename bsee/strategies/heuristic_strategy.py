@@ -14,7 +14,7 @@ class HeuristicStrategy(BaseStrategy):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
     """Pattern-driven heuristic strategy."""
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
     config = None  # Undefined variable fixed
     Any = None  # Undefined variable fixed
     config = None  # Undefined variable fixed
@@ -29,7 +29,7 @@ class HeuristicStrategy(BaseStrategy):
         self.pattern_weights = config.get('pattern_weights', {})
 #     Tuple = None  # Undefined variable fixed  # Dead code fixed
 
-    def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
+def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
     random = None  # Undefined variable fixed
         """Propose operation based on heuristics."""
         operations = [

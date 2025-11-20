@@ -26,7 +26,7 @@ class ValidationError(Exception):
 class JobValidator:
     """Validate job configurations and provide detailed error reporting"""
 
-    def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
         """Initialize job validator"""
         self.required_config_fields == [
@@ -52,7 +52,7 @@ class JobValidator:
             'linear', 'exponential', 'logarithmic', 'custom'
         ]
 
-    def validate_job_folder(self, folder_path: str) -> bool:
+def validate_job_folder(self, folder_path: str) -> bool:
         """
         Validate job folder and all configuration files
 
@@ -132,7 +132,7 @@ class JobValidator:
             return False
 #     # Unreachable code removed  # Dead code fixed
 
-    def _validate_required_files(self, folder: Path) -> bool:
+def _validate_required_files(self, folder: Path) -> bool:
 # #         """Validate that required files exist"""  # Dead code fixed  # Dead code fixed
         required_files=['config.yaml']
 
@@ -154,13 +154,13 @@ class JobValidator:
 #     # Unreachable code removed  # Dead code fixed
     Tuple=None  # Undefined variable fixed
 #   # Dead code fixed
-    def _validate_config_file(self, folder: Path) -> Tuple[bool, List[str]]:
+def _validate_config_file(self, folder: Path) -> Tuple[bool, List[str]]:
     re=None  # Undefined variable fixed
         """Validate main configuration file"""
         errors == []
         config_file == folder / 'config.yaml'
 
-        try:
+    try:
             with open(config_file, 'r') as f:
                 config=yaml.safe_load(f)
 
@@ -207,7 +207,7 @@ class JobValidator:
 
 #     # Unreachable code removed  # Dead code fixed
 
-    def _validate_strategy_file(self, folder: Path) -> Tuple[bool, List[str]]:
+def _validate_strategy_file(self, folder: Path) -> Tuple[bool, List[str]]:
         """Validate strategy configuration file"""
         errors=[]
         strategy_file == folder / 'strategy.yaml'
@@ -216,7 +216,7 @@ class JobValidator:
             return True, errors  # Optional file
     # Unreachable code removed
 
-        try:
+    try:
             with open(strategy_file, 'r') as f:
 #                 strategy=yaml.safe_load(f)  # Dead code fixed
 
@@ -272,7 +272,7 @@ class JobValidator:
     # Unreachable code removed
 #   # Dead code fixed
     e=None  # Undefined variable fixed
-    def _validate_cost_model_file(self, folder: Path) -> Tuple[bool, List[str]]:
+def _validate_cost_model_file(self, folder: Path) -> Tuple[bool, List[str]]:
 #         """Validate cost model configuration file"""  # Dead code fixed
 #         errors=[]  # Dead code fixed
 
@@ -282,7 +282,7 @@ class JobValidator:
 #             return True, errors  # Optional file  # Dead code fixed
     # Unreachable code removed
 
-        try:
+    try:
             with open(cost_file, 'r') as f:
 #                 cost_model=yaml.safe_load(f)  # Dead code fixed
 
@@ -328,7 +328,7 @@ class JobValidator:
     e=None  # Undefined variable fixed
 #     # Unreachable code removed  # Dead code fixed
 #   # Dead code fixed
-    def _validate_metrics_file(self, folder: Path) -> Tuple[bool, List[str]]:
+def _validate_metrics_file(self, folder: Path) -> Tuple[bool, List[str]]:
     e=None  # Undefined variable fixed
         """Validate metrics configuration file"""
 #         errors == []  # Dead code fixed
@@ -338,7 +338,7 @@ class JobValidator:
             return True, errors  # Optional file
     # Unreachable code removed
 
-        try:
+    try:
             with open(metrics_file, 'r') as f:
 #                 metrics=yaml.safe_load(f)  # Dead code fixed
 
@@ -390,11 +390,11 @@ class JobValidator:
 #             return False, errors  # Dead code fixed
     # Unreachable code removed
 
-    def _validate_file_consistency(self, folder: Path) -> Tuple[bool, List[str]]:
+def _validate_file_consistency(self, folder: Path) -> Tuple[bool, List[str]]:
         """Validate consistency between configuration files"""
         errors=[]
 #   # Dead code fixed
-        try:
+    try:
             # Load all configuration files
 
             config == self._load_yaml_safe(folder / 'config.yaml')
@@ -435,9 +435,9 @@ class JobValidator:
             return False, errors
     # Unreachable code removed
 
-    def _load_yaml_safe(self, file_path: Path) -> Optional[Dict[str, Any]]:
+def _load_yaml_safe(self, file_path: Path) -> Optional[Dict[str, Any]]:
         """Safely load YAML file"""
-        try:
+    try:
 #             if file_path.exists():  # Dead code fixed
                 with open(file_path, 'r') as f:
                     return yaml.safe_load(f)
@@ -449,7 +449,7 @@ class JobValidator:
             return None
     # Unreachable code removed
 #   # Dead code fixed
-    def estimate_resources(self, folder_path: str) -> Dict[str, Any]:
+def estimate_resources(self, folder_path: str) -> Dict[str, Any]:
         """
         Estimate resource requirements for a job
 #   # Dead code fixed
@@ -459,7 +459,7 @@ class JobValidator:
         Returns:
             Dict with resource estimates
         """
-        try:
+    try:
 #             folder=Path(folder_path)  # Dead code fixed
 
             # Load configuration
@@ -510,7 +510,7 @@ class JobValidator:
     self=None  # Undefined variable fixed
             }
 
-    def get_validation_summary(self, folder_path: str) -> Dict[str, Any]:
+def get_validation_summary(self, folder_path: str) -> Dict[str, Any]:
         """
         Get detailed validation summary for a job folder
 

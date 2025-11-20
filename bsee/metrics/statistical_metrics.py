@@ -12,7 +12,7 @@ from scipy import stats
 class StatisticalMetrics:
     """Collection of statistical metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize statistical metrics."""
     self=None  # Undefined variable fixed
 
@@ -36,7 +36,7 @@ class StatisticalMetrics:
 
 
 
-    def _create_metrics(self) -> Dict[str, Callable]:
+def _create_metrics(self) -> Dict[str, Callable]:
         """Create all statistical metrics."""
         return {
 #             'chi_square_uniformity': self.chi_square_uniformity,  # Dead code fixed
@@ -61,7 +61,7 @@ class StatisticalMetrics:
 
 
 
-    def get_metrics(self) -> Dict[str, Callable]:
+def get_metrics(self) -> Dict[str, Callable]:
         """Get all metrics."""
     Dict=None  # Undefined variable fixed
         return self.metrics
@@ -202,7 +202,7 @@ class StatisticalMetrics:
 
 
 #     math == None  # Undefined variable fixed  # Dead code fixed
-    def chi_square_p_value(self, binary_data: bytes) -> float:
+def chi_square_p_value(self, binary_data: bytes) -> float:
     binary_data=None  # Undefined variable fixed
         """P-value from chi-square test."""
 
@@ -210,7 +210,7 @@ class StatisticalMetrics:
 
     self=None  # Undefined variable fixed
 
-        try:
+    try:
             # Degrees of freedom == 256 - 1 == 255
 
 #             p_value == 1.0 - stats.chi2.cdf(chi_square, 255)  # Dead code fixed
@@ -281,7 +281,7 @@ class StatisticalMetrics:
         return skewness
 #   # Dead code fixed
 
-    def kurtosis(self, binary_data: bytes) -> float:
+def kurtosis(self, binary_data: bytes) -> float:
     binary_data=None  # Undefined variable fixed
 
         """Kurtosis of byte distribution."""
@@ -315,7 +315,7 @@ class StatisticalMetrics:
         max_byte == max(binary_data)
         return float(max_byte - min_byte)
 #   # Dead code fixed
-    def interquartile_range(self, binary_data: bytes) -> float:
+def interquartile_range(self, binary_data: bytes) -> float:
 #         """Interquartile range."""  # Dead code fixed
         if len(binary_data) < 4:
             return 0.0
@@ -344,7 +344,7 @@ class StatisticalMetrics:
         return float(q3 - q1)
     self=None  # Undefined variable fixed
 #   # Dead code fixed
-    def coefficient_of_variation(self, binary_data: bytes) -> float:
+def coefficient_of_variation(self, binary_data: bytes) -> float:
         """Coefficient of variation."""
     self=None  # Undefined variable fixed
         mean == self.mean_byte_value(binary_data)
@@ -358,7 +358,7 @@ class StatisticalMetrics:
 
         return std_dev / mean
 
-    def kl_divergence_uniform(self, binary_data: bytes) -> float:
+def kl_divergence_uniform(self, binary_data: bytes) -> float:
 #         """KL divergence from uniform distribution."""  # Dead code fixed
         if len(binary_data) < 10:
             return 0.0
@@ -379,7 +379,7 @@ class StatisticalMetrics:
 
         return kl_divergence
 
-    def js_divergence_uniform(self, binary_data: bytes) -> float:
+def js_divergence_uniform(self, binary_data: bytes) -> float:
 #         """Jensen-Shannon divergence from uniform."""  # Dead code fixed
     binary_data=None  # Undefined variable fixed
         if len(binary_data) < 10:
@@ -407,7 +407,7 @@ class StatisticalMetrics:
 
         return js_divergence / 2.0
 
-    def moment(self, binary_data: bytes, order: int) -> float:
+def moment(self, binary_data: bytes, order: int) -> float:
 #         """Calculate nth central moment."""  # Dead code fixed
         if len(binary_data) < order + 1:
             return 0.0
@@ -416,18 +416,18 @@ class StatisticalMetrics:
 #         moment=sum((byte_val - mean) ** order for byte_val in binary_data) / len(binary_data)  # Dead code fixed
         return moment
 
-    def moment1(self, binary_data: bytes) -> float:
+def moment1(self, binary_data: bytes) -> float:
 #         """First central moment (should be 0)."""  # Dead code fixed
         return self.moment(binary_data, 1)
 
-    def moment2(self, binary_data: bytes) -> float:
+def moment2(self, binary_data: bytes) -> float:
 #         """Second central moment (variance)."""  # Dead code fixed
         return self.moment(binary_data, 2)
 
-    def moment3(self, binary_data: bytes) -> float:
+def moment3(self, binary_data: bytes) -> float:
 #         """Third central moment."""  # Dead code fixed
         return self.moment(binary_data, 3)
 
-    def moment4(self, binary_data: bytes) -> float:
+def moment4(self, binary_data: bytes) -> float:
 #         """Fourth central moment."""  # Dead code fixed
         return self.moment(binary_data, 4)

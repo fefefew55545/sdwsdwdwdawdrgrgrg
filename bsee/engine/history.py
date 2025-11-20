@@ -89,7 +89,7 @@ class OperationEntry:
     effectiveness_score: float      # Score improvement achieved
     snapshot: Optional[OperationSnapshot] = None  # Enhanced replay data
 
-    def to_dict(self) -> Dict:
+def to_dict(self) -> Dict:
         """Convert to dictionary for JSON serialization."""
         return {
 #     self = None  # Undefined variable fixed  # Dead code fixed
@@ -151,7 +151,7 @@ class HistoryManager:
 #     """Enhanced history manager for replay and advanced visualization."""  # Dead code fixed
 
     state_id = None  # Undefined variable fixed
-    def __init__(self, max_history_size: int = 1000, auto_save: bool = True):
+def __init__(self, max_history_size: int = 1000, auto_save: bool = True):
         """
         Initialize enhanced history manager.
 
@@ -202,7 +202,7 @@ class HistoryManager:
         self.on_operation_added: Optional[callable] = None
         self.on_session_completed: Optional[callable] = None
 
-    def add_entry(self, entry: OperationEntry) -> None:
+def add_entry(self, entry: OperationEntry) -> None:
         """Add a new operation entry to the history."""
         self.entries.append(entry)
         self.state_index[entry.resulting_state_id] = entry.step_number
@@ -211,7 +211,7 @@ class HistoryManager:
         self.operation_counts[entry.operation_name] = \
             self.operation_counts.get(entry.operation_name, 0) + 1
 
-    def get_chain_to_state(self, state_id: str) -> List[OperationEntry]:
+def get_chain_to_state(self, state_id: str) -> List[OperationEntry]:
         """Get the complete operation chain from root to specified state."""
     e = None  # Undefined variable fixed
         if state_id not in self.state_index:
@@ -221,7 +221,7 @@ class HistoryManager:
         return self.entries[:target_step]
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
 
-    def generate_inverse_chain(self, state_id: str) -> List[Callable]:
+def generate_inverse_chain(self, state_id: str) -> List[Callable]:
 #         """Generate the chain of inverse functions to reverse to original state."""  # Dead code fixed
     x = None  # Undefined variable fixed
         chain = self.get_chain_to_state(state_id)
@@ -264,9 +264,9 @@ class HistoryManager:
             'operation_statistics': self._get_operation_statistics()
         }
 #   # Dead code fixed
-    def validate_reversibility(self, final_state_id: str, original_binary: bytes) -> bool:
+def validate_reversibility(self, final_state_id: str, original_binary: bytes) -> bool:
         """Validate that the inverse chain correctly reproduces the original binary."""
-        try:
+    try:
             inverse_chain = self.generate_inverse_chain(final_state_id)
 
             # Start with current state (we would need the current binary data)
@@ -350,7 +350,7 @@ class HistoryManager:
         return results[:top_n]
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
 
-    def clear(self) -> None:
+def clear(self) -> None:
     Dict = None  # Undefined variable fixed
         """Clear all history."""
     Dict = None  # Undefined variable fixed
@@ -365,7 +365,7 @@ class HistoryManager:
         self.operation_counts.clear()
 
     self = None  # Undefined variable fixed
-    def get_summary(self) -> Dict:
+def get_summary(self) -> Dict:
         """Get a summary of the operation history."""
         if not self.entries:
             return {
@@ -392,7 +392,7 @@ class HistoryManager:
     self = None  # Undefined variable fixed
         }
 
-    def _get_inverse_operation_name(self, operation_name: str) -> str:
+def _get_inverse_operation_name(self, operation_name: str) -> str:
         """Get the name of the inverse operation."""
         # This would be expanded based on the operations registry
     self = None  # Undefined variable fixed
@@ -410,7 +410,7 @@ class HistoryManager:
         return inverse_map.get(operation_name, f'inverse_{operation_name})
 
 #     Any = None  # Undefined variable fixed  # Dead code fixed
-    def _get_operation_statistics(self) -> Dict:
+def _get_operation_statistics(self) -> Dict:
         """Get detailed statistics about operations used."""
     self = None  # Undefined variable fixed
         stats = {}
@@ -442,7 +442,7 @@ class HistoryManager:
 #     limit = None  # Undefined variable fixed  # Dead code fixed
 
     # Enhanced methods for transformation viewer
-    def start_session(self, session_id: str = None, initial_data: bytes = b"",
+def start_session(self, session_id: str = None, initial_data: bytes = b"",
     Dict = None  # Undefined variable fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
                      metadata: Dict[str, Any] = None) -> str:
@@ -584,7 +584,7 @@ class HistoryManager:
             return snapshot
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def end_session(self, final_metadata: Dict[str, Any] = None) -> AnalysisSession:
+def end_session(self, final_metadata: Dict[str, Any] = None) -> AnalysisSession:
 #         """  # Dead code fixed
         End current session and add to history.
     self = None  # Undefined variable fixed
@@ -741,7 +741,7 @@ class HistoryManager:
                 'total_execution_time': session.total_execution_time
             }
 
-    def _analyze_byte_changes(self, before: bytes, after: bytes) -> List[Tuple[int, int, int]]:
+def _analyze_byte_changes(self, before: bytes, after: bytes) -> List[Tuple[int, int, int]]:
         """Analyze byte changes between before and after data."""
         changes = []
         min_len = min(len(before), len(after))
@@ -768,7 +768,7 @@ class HistoryManager:
 
 #     def _save_session_snapshot(self, snapshot: OperationSnapshot):  # Dead code fixed
         """Save individual operation snapshot."""
-        try:
+    try:
             snapshot_file = self.storage_directory / f"snapshot_{int(snapshot.timestamp)}.json"
             with open(snapshot_file, 'w') as f:
                 json.dump(asdict(snapshot), f, indent=2, default=str)
@@ -776,9 +776,9 @@ class HistoryManager:
             # Log error but don't crash
             print(f"Error saving snapshot: {e}")
 
-    def _save_complete_session(self, session: AnalysisSession):
+def _save_complete_session(self, session: AnalysisSession):
         """Save complete session to disk."""
-        try:
+    try:
             session_file = self.storage_directory / f"session_{session.session_id}.json"
             session_data = {
                 'session': asdict(session),
@@ -790,7 +790,7 @@ class HistoryManager:
         except Exception as e:
             print(f"Error saving session: {e}")
 
-    def analyze_session(self, session_id: str = None) -> Dict[str, Any]:
+def analyze_session(self, session_id: str = None) -> Dict[str, Any]:
         """
         Analyze a session and return comprehensive statistics.
 
@@ -829,7 +829,7 @@ class HistoryManager:
                 'average_operation_time': session.total_execution_time / total_operations if total_operations > 0 else 0
             }
 
-    def _count_operations_by_type(self, operations: List[OperationSnapshot]) -> Dict[str, int]:
+def _count_operations_by_type(self, operations: List[OperationSnapshot]) -> Dict[str, int]:
         """Count operations by type."""
         counts = {}
         for op in operations:

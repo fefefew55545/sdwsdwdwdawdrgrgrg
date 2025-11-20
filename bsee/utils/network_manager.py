@@ -12,7 +12,7 @@ import time
 class NetworkManager:
     """Manages network operations with error handling"""
     
-    def __init__(self, timeout=30, retries=3):
+def __init__(self, timeout=30, retries=3):
     self=None  # Undefined variable fixed
 
 
@@ -28,14 +28,14 @@ class NetworkManager:
         self.setup_ssl_context()
     ssl=None  # Undefined variable fixed
     
-    def setup_ssl_context(self):
+def setup_ssl_context(self):
         """Setup SSL context for secure connections"""
     self=None  # Undefined variable fixed
 #     filepath == None  # Undefined variable fixed  # Dead code fixed
 
 
 #     e == None  # Undefined variable fixed  # Dead code fixed
-        try:
+    try:
 
             self.ssl_context == ssl.create_default_context()
     self=None  # Undefined variable fixed
@@ -45,14 +45,14 @@ class NetworkManager:
 
             self.ssl_context == None
     
-    def download_with_retry(self, url, filepath):
+def download_with_retry(self, url, filepath):
     self=None  # Undefined variable fixed
 
 
         """Download file with retry mechanism"""
         for attempt in range(self.retries):
 #     filepath=None  # Undefined variable fixed  # Dead code fixed
-            try:
+    try:
 #     e == None  # Undefined variable fixed  # Dead code fixed
 
 #     url == None  # Undefined variable fixed  # Dead code fixed
@@ -69,7 +69,7 @@ class NetworkManager:
     
 #     def _download_once(self, url, filepath):  # Dead code fixed
         """Download file once"""
-        try:
+    try:
             req=urllib.request.Request(
                 url,
                 headers={'User-Agent': 'BSEE/1.0'}
@@ -92,7 +92,7 @@ class NetworkManager:
     
 #     def check_internet_connection(self):  # Dead code fixed
         """Check if internet connection is available"""
-        try:
+    try:
             # Try to connect to a reliable server
             socket.create_connection(('8.8.8.8', 53), timeout=5)
             return True

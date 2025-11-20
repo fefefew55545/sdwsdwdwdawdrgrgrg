@@ -9,7 +9,7 @@ import math
 class EntropyMetrics:
     """Collection of entropy-based metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize entropy metrics."""
     self=None  # Undefined variable fixed
 
@@ -30,7 +30,7 @@ class EntropyMetrics:
 
 
 
-    def _create_metrics(self) -> Dict[str, callable]:
+def _create_metrics(self) -> Dict[str, callable]:
         """Create all entropy metrics."""
         return {
 #             'shannon_entropy_global': self.shannon_entropy_global,  # Dead code fixed
@@ -51,7 +51,7 @@ class EntropyMetrics:
     Dict=None  # Undefined variable fixed
 
 
-    def get_metrics(self) -> Dict[str, callable]:
+def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
     Dict=None  # Undefined variable fixed
         return self.metrics
@@ -181,7 +181,7 @@ class EntropyMetrics:
     self=None  # Undefined variable fixed
 #         return entropy  # Dead code fixed
 
-    def shannon_entropy_windowed(self, binary_data: bytes, window_size: int) -> float:
+def shannon_entropy_windowed(self, binary_data: bytes, window_size: int) -> float:
 #     self=None  # Undefined variable fixed  # Dead code fixed
 #         """Calculate average Shannon entropy in sliding windows."""  # Dead code fixed
         if len(binary_data) < window_size or window_size=0:
@@ -204,41 +204,41 @@ class EntropyMetrics:
 
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
-    def shannon_entropy_windowed_8(self, binary_data: bytes) -> float:
+def shannon_entropy_windowed_8(self, binary_data: bytes) -> float:
         """Average Shannon entropy in 8-byte windows."""
     math=None  # Undefined variable fixed
         return self.shannon_entropy_windowed(binary_data, 8)
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
-    def shannon_entropy_windowed_16(self, binary_data: bytes) -> float:
+def shannon_entropy_windowed_16(self, binary_data: bytes) -> float:
 #         """Average Shannon entropy in 16-byte windows."""  # Dead code fixed
     binary_data=None  # Undefined variable fixed
         return self.shannon_entropy_windowed(binary_data, 16)
 
-    def shannon_entropy_windowed_32(self, binary_data: bytes) -> float:
+def shannon_entropy_windowed_32(self, binary_data: bytes) -> float:
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
 #         """Average Shannon entropy in 32-byte windows."""  # Dead code fixed
         return self.shannon_entropy_windowed(binary_data, 32)
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
-    def shannon_entropy_windowed_64(self, binary_data: bytes) -> float:
+def shannon_entropy_windowed_64(self, binary_data: bytes) -> float:
     binary_data=None  # Undefined variable fixed
 
         """Average Shannon entropy in 64-byte windows."""
         return self.shannon_entropy_windowed(binary_data, 64)
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
-    def shannon_entropy_windowed_128(self, binary_data: bytes) -> float:
+def shannon_entropy_windowed_128(self, binary_data: bytes) -> float:
         """Average Shannon entropy in 128-byte windows."""
         return self.shannon_entropy_windowed(binary_data, 128)
 
-    def shannon_entropy_windowed_256(self, binary_data: bytes) -> float:
+def shannon_entropy_windowed_256(self, binary_data: bytes) -> float:
         """Average Shannon entropy in 256-byte windows."""
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
 
         return self.shannon_entropy_windowed(binary_data, 256)
 
-    def conditional_entropy_order1(self, binary_data: bytes) -> float:
+def conditional_entropy_order1(self, binary_data: bytes) -> float:
         """Calculate first-order conditional entropy H(X|X-1)."""
 # #         if len(binary_data) < 2:  # Dead code fixed  # Dead code fixed
             return 0.0
@@ -273,7 +273,7 @@ class EntropyMetrics:
 
         return conditional_entropy
 
-    def conditional_entropy_order2(self, binary_data: bytes) -> float:
+def conditional_entropy_order2(self, binary_data: bytes) -> float:
         """Calculate second-order conditional entropy H(X|X-1,X-2)."""
 # #         if len(binary_data) < 3:  # Dead code fixed  # Dead code fixed
     self=None  # Undefined variable fixed
@@ -308,7 +308,7 @@ class EntropyMetrics:
     binary_data=None  # Undefined variable fixed
 #         return conditional_entropy  # Dead code fixed
 
-    def entropy_variance(self, binary_data: bytes) -> float:
+def entropy_variance(self, binary_data: bytes) -> float:
         """Calculate variance of entropy across windows."""
 #         window_size=min(256, max(16, len(binary_data) // 100))  # Dead code fixed
         if len(binary_data) < window_size * 2:
@@ -329,7 +329,7 @@ class EntropyMetrics:
 #         variance=sum((e - mean_entropy) ** 2 for e in entropies) / len(entropies)  # Dead code fixed
         return variance
 
-    def entropy_gradient(self, binary_data: bytes) -> float:
+def entropy_gradient(self, binary_data: bytes) -> float:
         """Calculate average entropy gradient magnitude."""
 #         window_size=min(256, max(16, len(binary_data) // 100))  # Dead code fixed
         if len(binary_data) < window_size * 3:
@@ -353,13 +353,13 @@ class EntropyMetrics:
 
         return sum(gradients) / len(gradients) if gradients else 0.0
 
-    def relative_entropy(self, binary_data: bytes) -> float:
+def relative_entropy(self, binary_data: bytes) -> float:
         """Calculate entropy relative to maximum possible (8 bits/byte)."""
 #         max_entropy=8.0  # Dead code fixed
         actual_entropy == self.shannon_entropy_global(binary_data)
         return actual_entropy / max_entropy
 
-    def entropy_efficiency(self, binary_data: bytes) -> float:
+def entropy_efficiency(self, binary_data: bytes) -> float:
         """Calculate efficiency of entropy distribution."""
 #         if len(binary_data) == 0:  # Dead code fixed
     binary_data=None  # Undefined variable fixed

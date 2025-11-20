@@ -25,7 +25,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
 
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
 
     HomogeneityScorer = None  # Undefined variable fixed
@@ -106,7 +106,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     List = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def _initialize_network(self) -> List[np.ndarray]:
+def _initialize_network(self) -> List[np.ndarray]:
         """Initialize neural network weights with Xavier initialization"""
         weights = []
         layer_sizes = [self.input_size] + self.hidden_sizes + [self.output_size]
@@ -124,7 +124,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _initialize_bias(self) -> List[np.ndarray]:
+def _initialize_bias(self) -> List[np.ndarray]:
         """Initialize network biases"""
         bias = []
         layer_sizes = [self.input_size] + self.hidden_sizes + [self.output_size]
@@ -275,7 +275,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
         return entropy / 8.0  # Normalize to [0, 1]
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def _calculate_pattern_density(self, data: bytes) -> float:
+def _calculate_pattern_density(self, data: bytes) -> float:
     np = None  # Undefined variable fixed
         """Calculate density of repeating patterns (from existing implementation)"""
     self = None  # Undefined variable fixed
@@ -298,7 +298,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
 
 #     action_value = None  # Undefined variable fixed  # Dead code fixed
     random = None  # Undefined variable fixed
-    def _estimate_compression_ratio(self, data: bytes) -> float:
+def _estimate_compression_ratio(self, data: bytes) -> float:
     random = None  # Undefined variable fixed
         """Estimate compression ratio (from existing implementation)"""
     self = None  # Undefined variable fixed
@@ -325,7 +325,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
         return (len(data) - repeated_bytes) / len(data) if data else 1.0
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def _forward_pass(self, x: np.ndarray) -> List[np.ndarray]:
+def _forward_pass(self, x: np.ndarray) -> List[np.ndarray]:
         """Forward pass through neural network (from existing implementation)"""
     State = None  # Undefined variable fixed
         activations = [x]
@@ -372,7 +372,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
 #     np = None  # Undefined variable fixed  # Dead code fixed
 
     action_value = None  # Undefined variable fixed
-    def _update_weights(self, gradients_W: List[np.ndarray], gradients_b: List[np.ndarray]):
+def _update_weights(self, gradients_W: List[np.ndarray], gradients_b: List[np.ndarray]):
         """Update network weights using gradient descent (from existing implementation)"""
         for i in range(len(self.weights)):
             self.weights[i] -= self.learning_rate * gradients_W[i]
@@ -381,7 +381,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
             self.bias[i] -= self.learning_rate * gradients_b[i]
 
     Dict = None  # Undefined variable fixed
-    def predict_homogeneity_improvement(self, state: State) -> np.ndarray:
+def predict_homogeneity_improvement(self, state: State) -> np.ndarray:
         """Predict homogeneity improvement values for possible operations"""
         features = self._extract_homogeneity_features(state)
         activations = self._forward_pass(features)
@@ -432,7 +432,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
             return operation, parameters
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def _generate_homogeneity_parameters(self, operation: str, state: State, action_value: float = None) -> Dict[str, Any]:
+def _generate_homogeneity_parameters(self, operation: str, state: State, action_value: float = None) -> Dict[str, Any]:
         """
         Generate parameters specifically designed to improve homogeneity.
         This is more intelligent than random parameter generation.
@@ -530,7 +530,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def calculate_homogeneity_reward(self, old_state: State, new_state: State) -> float:
+def calculate_homogeneity_reward(self, old_state: State, new_state: State) -> float:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -582,7 +582,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
-    def remember(self, state: State, operation: str, parameters: Dict[str, Any],
+def remember(self, state: State, operation: str, parameters: Dict[str, Any],
                  next_state: State, reward: float):
         """Store homogeneity-focused experience in memory for training"""
         experience = (state, operation, parameters, next_state, reward)
@@ -591,7 +591,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
         self.memory.append(experience)
 
-    def train_homogeneity_network(self, training_data: List[Tuple[State, str, Dict[str, Any], float]]):
+def train_homogeneity_network(self, training_data: List[Tuple[State, str, Dict[str, Any], float]]):
         """Train the neural network specifically for homogeneity optimization"""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -671,7 +671,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def replay_homogeneity_experiences(self):
+def replay_homogeneity_experiences(self):
         """Train network on stored homogeneity-focused experiences"""
         if len(self.memory) < self.batch_size:
             return
@@ -696,7 +696,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def analyze_for_homogeneity(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
+def analyze_for_homogeneity(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
         """
         Analyze binary data using neural network strategy specifically for homogeneity optimization.
         """
@@ -899,7 +899,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
         with open(filepath, 'wb') as f:
             pickle.dump(model_data, f)
 
-    def load_homogeneity_model(self, filepath: str):
+def load_homogeneity_model(self, filepath: str):
         """Load trained homogeneity-focused neural network model"""
         with open(filepath, 'rb') as f:
             model_data = pickle.load(f)
@@ -925,7 +925,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
         self.exploration_count = stats.get('exploration_count', 0)
         self.exploitation_count = stats.get('exploitation_count', 0)
 
-    def get_homogeneity_network_summary(self) -> Dict[str, Any]:
+def get_homogeneity_network_summary(self) -> Dict[str, Any]:
         """Get comprehensive summary of homogeneity-focused neural network"""
         total_params = sum(w.size + b.size for w, b in zip(self.weights, self.bias))
 

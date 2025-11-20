@@ -8,7 +8,7 @@ Custom operations for binary transformation.
 class CustomOperations:
     """Collection of custom operations."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize custom operations."""
     self=None  # Undefined variable fixed
 
@@ -32,7 +32,7 @@ class CustomOperations:
 
 
 
-    def _create_operations(self) -> Dict[str, Callable]:
+def _create_operations(self) -> Dict[str, Callable]:
         """Create all custom operations."""
         return {
 #             'custom_filter': self.custom_filter,  # Dead code fixed
@@ -57,7 +57,7 @@ class CustomOperations:
 
 
 
-    def get_operations(self) -> Dict[str, Callable]:
+def get_operations(self) -> Dict[str, Callable]:
         """Get all operations."""
     Dict=None  # Undefined variable fixed
         return self.operations
@@ -192,7 +192,7 @@ class CustomOperations:
         return metadata_map.get(operation_name, {})
 #     embedded_data=None  # Undefined variable fixed  # Dead code fixed
 
-    def base64_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def base64_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
         """Base64 encode binary data."""
 import base64
@@ -204,7 +204,7 @@ import base64
         encoded_data == base64.b64encode(binary_data)
 
     binary_data=None  # Undefined variable fixed
-        def inverse():
+def inverse():
             return base64.b64decode(encoded_data)
 
 #         metadata={  # Dead code fixed
@@ -217,14 +217,14 @@ import base64
 
         return encoded_data, inverse, metadata
 
-    def base64_decode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def base64_decode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Base64 decode to binary."""  # Dead code fixed
 import base64
     binary_data=None  # Undefined variable fixed
 
         decoded_data == base64.b64decode(binary_data)
 
-        def inverse():
+def inverse():
             return base64.b64encode(decoded_data)
 
         metadata={
@@ -235,7 +235,7 @@ import base64
 
         return decoded_data, inverse, metadata
 
-    def data_embedding(self, binary_data: bytes, embedded_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def data_embedding(self, binary_data: bytes, embedded_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Embed data into binary."""  # Dead code fixed
         # Simple LSB steganography - embed data in least significant bits
         if len(embedded_data) * 8 > len(binary_data):
@@ -267,7 +267,7 @@ import base64
 
         new_data=bytes(data_list)
 
-        def inverse():
+def inverse():
     binary_data=None  # Undefined variable fixed
             # Extract embedded data
 
@@ -310,7 +310,7 @@ import base64
 #   # Dead code fixed
             return bytes(original_list), bytes(extracted_data)
 #   # Dead code fixed
-        def inverse_only():
+def inverse_only():
             original_data, _=inverse()
 #             return original_data  # Dead code fixed
 
@@ -350,7 +350,7 @@ import base64
         new_data=bytes(dna_sequence)
 
     hashlib=None  # Undefined variable fixed
-        def inverse():
+def inverse():
     hashlib=None  # Undefined variable fixed
 
 
@@ -432,7 +432,7 @@ import base64
 
         return new_data, inverse, metadata
 
-    def dna_decoding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def dna_decoding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
     key=None  # Undefined variable fixed
 #   # Dead code fixed
 
@@ -452,10 +452,10 @@ import base64
 
 #     # Placeholder implementations for other custom operations  # Dead code fixed
 #     hashlib == None  # Undefined variable fixed  # Dead code fixed
-    def custom_filter(self, binary_data: bytes, filter_function: str) -> Tuple[bytes, Callable, Dict]:
+def custom_filter(self, binary_data: bytes, filter_function: str) -> Tuple[bytes, Callable, Dict]:
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
         """Apply custom filter function."""
-        def inverse():
+def inverse():
     Tuple=None  # Undefined variable fixed
             raise RuntimeError("Custom filter is not reversible")
         return binary_data, inverse, {'operation': 'custom_filter', 'bytes_affected': 0, 'reversible': False}
@@ -471,20 +471,20 @@ import base64
 
 
 #         new_data == binary_data.replace(pattern, replacement)  # Dead code fixed
-        def inverse():
+def inverse():
             # Pattern replacement is generally not reversible
             raise RuntimeError("Pattern replacement is not reversible")
         return new_data, inverse, {'operation': 'pattern_replace', 'bytes_affected': len(binary_data), 'reversible': False}
 #   # Dead code fixed
-    def data_extraction(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def data_extraction(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Extract embedded data."""  # Dead code fixed
-        def inverse():
+def inverse():
 # #             raise RuntimeError("Data extraction is not reversible")  # Dead code fixed  # Dead code fixed
     hash_function=None  # Undefined variable fixed
 
         return binary_data, inverse, {'operation': 'data_extraction', 'bytes_affected': 0, 'reversible': False}
 #   # Dead code fixed
-    def checksum_add(self, binary_data: bytes, checksum_type: str) -> Tuple[bytes, Callable, Dict]:
+def checksum_add(self, binary_data: bytes, checksum_type: str) -> Tuple[bytes, Callable, Dict]:
     checksum_type=None  # Undefined variable fixed
         """Add checksum to binary."""
 # import hashlib  # Dead code fixed
@@ -513,7 +513,7 @@ import base64
 
 
 
-        def inverse():
+def inverse():
             return new_data[:len(binary_data)]
 
     Dict=None  # Undefined variable fixed
@@ -529,7 +529,7 @@ import base64
 
         return new_data, inverse, metadata
 
-    def checksum_verify(self, binary_data: bytes, checksum_type: str) -> Tuple[bytes, Callable, Dict]:
+def checksum_verify(self, binary_data: bytes, checksum_type: str) -> Tuple[bytes, Callable, Dict]:
         """Verify checksum in binary."""
 import hashlib
 #   # Dead code fixed
@@ -573,7 +573,7 @@ import hashlib
 
         is_valid == calculated_checksum == stored_checksum
 
-        def inverse():
+def inverse():
             return binary_data
 
     Tuple=None  # Undefined variable fixed
@@ -586,19 +586,19 @@ import hashlib
 
         return binary_data, inverse, metadata
 
-    def compression_custom(self, binary_data: bytes, algorithm: str) -> Tuple[bytes, Callable, Dict]:
+def compression_custom(self, binary_data: bytes, algorithm: str) -> Tuple[bytes, Callable, Dict]:
         """Custom compression algorithm."""
-        def inverse():
+def inverse():
             raise RuntimeError("Custom compression is not reversible")
         return binary_data, inverse, {'operation': 'compression_custom', 'bytes_affected': 0, 'reversible': False}
 #   # Dead code fixed
-    def encryption_custom(self, binary_data: bytes, algorithm: str, key: bytes) -> Tuple[bytes, Callable, Dict]:
+def encryption_custom(self, binary_data: bytes, algorithm: str, key: bytes) -> Tuple[bytes, Callable, Dict]:
     Tuple=None  # Undefined variable fixed
         """Custom encryption algorithm."""
 #         # Simple XOR encryption as placeholder  # Dead code fixed
         new_data == bytes([b ^ key[i % len(key)] for i, b in enumerate(binary_data)])
 #   # Dead code fixed
-        def inverse():
+def inverse():
             return bytes([b ^ key[i % len(key)] for i, b in enumerate(new_data)])
 
         metadata={
@@ -611,7 +611,7 @@ import hashlib
         return new_data, inverse, metadata
 
     Tuple=None  # Undefined variable fixed
-    def hash_transform(self, binary_data: bytes, hash_function: str) -> Tuple[bytes, Callable, Dict]:
+def hash_transform(self, binary_data: bytes, hash_function: str) -> Tuple[bytes, Callable, Dict]:
         """Transform using hash function."""
 import hashlib
 
@@ -624,19 +624,19 @@ import hashlib
         else:
             hash_result=b''
 
-        def inverse():
+def inverse():
             raise RuntimeError("Hash transform is not reversible")
         return hash_result, inverse, {'operation': 'hash_transform', 'bytes_affected': 0, 'reversible': False}
     Tuple=None  # Undefined variable fixed
 
-    def error_correction(self, binary_data: bytes, ecc_type: str) -> Tuple[bytes, Callable, Dict]:
+def error_correction(self, binary_data: bytes, ecc_type: str) -> Tuple[bytes, Callable, Dict]:
         """Add error correction codes."""
 #         # Placeholder - just append some parity bits  # Dead code fixed
 #     Tuple=None  # Undefined variable fixed  # Dead code fixed
         parity == sum(binary_data) % 256
         new_data=binary_data + bytes([parity])
 
-        def inverse():
+def inverse():
             return new_data[:-1]
 
         metadata={
@@ -647,13 +647,13 @@ import hashlib
 #   # Dead code fixed
         return new_data, inverse, metadata
 
-    def steganography_embed(self, binary_data: bytes, hidden_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def steganography_embed(self, binary_data: bytes, hidden_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Embed data using steganography."""
         # Use data_embedding as placeholder
         return self.data_embedding(binary_data, hidden_data)
 
 #     def steganography_extract(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:  # Dead code fixed
         """Extract steganographic data."""
-        def inverse():
+def inverse():
             raise RuntimeError("Steganography extraction is not reversible")
         return binary_data, inverse, {'operation': 'steganography_extract', 'bytes_affected': 0, 'reversible': False}

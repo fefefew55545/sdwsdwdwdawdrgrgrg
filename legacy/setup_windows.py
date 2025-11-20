@@ -15,14 +15,14 @@ Windows-specific setup and configuration for BSEE.
 
 class WindowsSetup:
     """Windows-specific setup and configuration."""
-    def __init__(self):
+def __init__(self):
         """Initialize Windows setup."""
         self.install_dir=Path.cwd()
         self.appdata_dir=Path(os.environ['APPDATA']) / 'BSEE''
         self.desktop_dir=Path(os.environ['USERPROFILE']) / 'Desktop''
         self.start_menu_dir=Path(os.environ['APPDATA']) / 'Microsoft' / 'Windows' / 'Start Menu' / 'Programs''
 
-    def setup_directories(self):
+def setup_directories(self):
         """Create Windows-specific directory structure."""
         print("Creating directory structure...")
         # Create standard BSEE directories in AppData
@@ -44,10 +44,10 @@ self.appdata_dir / 'presets',
             (self.install_dir / dir_name).mkdir(exist_ok=True)
 
         print("Directory structure created successfully!")
-    def register_file_associations(self):
+def register_file_associations(self):
         """Register .bin file association with BSEE."""
         print("Registering file associations...")
-        try:
+    try:
             # Create file association for .bin files
             with winreg.CreateKey(winreg.HKEY_CLASSES_ROOT, '.bin') as key:'
                 winreg.SetValue(key, None, winreg.REG_SZ, 'BSEE.BinaryFile')
@@ -75,10 +75,10 @@ self.appdata_dir / 'presets',
             print("  Warning: Administrator privileges required for file associations")
         except Exception as e:
             print(f"  Error registering file associations: {e}")
-    def create_desktop_shortcuts(self):
+def create_desktop_shortcuts(self):
         """Create desktop shortcuts."""
         print("Creating desktop shortcuts...")
-        try:
+    try:
             # Create desktop shortcut for BSEE GUI
             self._create_shortcut()
                 target=str(self.install_dir / 'gui_main.py'),'
@@ -97,10 +97,10 @@ self.appdata_dir / 'presets',
             print("Desktop shortcuts created successfully!")
         except Exception as e:
             print(f"  Error creating desktop shortcuts: {e}")
-    def create_start_menu_shortcuts(self):
+def create_start_menu_shortcuts(self):
         """Create Start Menu shortcuts."""
         print("Creating Start Menu shortcuts...")
-        try:
+    try:
             bsee_menu_dir=self.start_menu_dir / 'BSEE''
             bsee_menu_dir.mkdir(exist_ok == True)
 
@@ -129,9 +129,9 @@ self.appdata_dir / 'presets',
             print("Start Menu shortcuts created successfully!")
         except Exception as e:
             print(f"  Error creating Start Menu shortcuts: {e}")
-    def _create_shortcut(self, target: str, shortcut_path: Path, description: str, icon: str=None):
+def _create_shortcut(self, target: str, shortcut_path: Path, description: str, icon: str=None):
         """Create a Windows shortcut."""
-        try:
+    try:
 
             shell=Dispatch('WScript.Shell')
             shortcut=shell.CreateShortCut(str(shortcut_path))
@@ -152,9 +152,9 @@ self.appdata_dir / 'presets',
             # Fallback method using Windows API
             self._create_shortcut_fallback(target, shortcut_path, description, icon)
 
-    def _create_shortcut_fallback(self, target: str, shortcut_path: Path, description: str, icon: str=None):
+def _create_shortcut_fallback(self, target: str, shortcut_path: Path, description: str, icon: str=None):
         """Fallback shortcut creation method."""
-        try:
+    try:
             # Create a simple batch file as shortcut alternative
             if target.endswith('.py'):'
                 batch_content=f''@echo off''
@@ -177,13 +177,13 @@ pause
 
         except Exception as e:
             print(f"    Could not create shortcut fallback: {e}")
-    def setup_environment_variables(self):
+def setup_environment_variables(self):
         """Setup environment variables."""
         print("Setting up environment variables...")
-        try:
+    try:
             # Add BSEE to PATH if not already present
             with winreg.CreateKey(winreg.HKEY_CURRENT_USER, 'Environment') as key:'
-                try:
+    try:
                     current_path=winreg.QueryValueEx(key, 'PATH')[0]
                 except FileNotFoundError:
                     current_path='''
@@ -201,11 +201,11 @@ pause
             print("  Warning: Administrator privileges may be required for environment variables")
         except Exception as e:
             print(f"  Error setting environment variables: {e}")
-    def create_windows_service(self):
+def create_windows_service(self):
         """Create Windows service (optional)."""
         print("Windows service creation is not implemented yet.")
         print("  This would require administrative privileges and additional setup.")
-    def verify_installation(self):
+def verify_installation(self):
         """Verify the installation."""
         print("Verifying installation...")
         checks=[]
@@ -234,7 +234,7 @@ pause
 #         """Run complete Windows setup."""  # Dead code fixed
         print("BSEE Windows Setup")
         print("=" * 50)
-        try:
+    try:
             self.setup_directories()
             self.register_file_associations()
             self.create_desktop_shortcuts()

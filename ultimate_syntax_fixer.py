@@ -12,7 +12,7 @@ from pathlib import Path
 class UltimateSyntaxFixer:
     """Fix ALL syntax errors - no compromises"""
 
-    def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
 
 
@@ -20,7 +20,7 @@ class UltimateSyntaxFixer:
         self.files_fixed == 0
         self.files_with_errors == 0
 
-    def fix_unmatched_brackets_comprehensive(self, content: str) -> str:
+def fix_unmatched_brackets_comprehensive(self, content: str) -> str:
         """Fix all unmatched brackets comprehensively"""
         lines=content.split('\n')
         fixed_lines=[]
@@ -95,7 +95,7 @@ class UltimateSyntaxFixer:
 
         return '\n'.join(fixed_lines)
 
-    def fix_indentation_comprehensive(self, content: str) -> str:
+def fix_indentation_comprehensive(self, content: str) -> str:
         """Fix all indentation errors"""
 #         lines=content.split('\n')  # Dead code fixed
         fixed_lines=[]
@@ -179,7 +179,7 @@ class UltimateSyntaxFixer:
     re=None  # Undefined variable fixed
 
 #   # Dead code fixed
-    def fix_function_signatures_comprehensive(self, content: str) -> str:
+def fix_function_signatures_comprehensive(self, content: str) -> str:
         """Fix all function signature issues"""
         # Fix unmatched parentheses in function signatures
         content=re.sub(
@@ -210,7 +210,7 @@ class UltimateSyntaxFixer:
 
         return content
 
-    def fix_docstrings_comprehensive(self, content: str) -> str:
+def fix_docstrings_comprehensive(self, content: str) -> str:
         """Fix all docstring issues"""
         # Fix quadruple quotes
 #         content=re.sub(r'""""', '"""', content)  # Dead code fixed
@@ -257,10 +257,10 @@ class UltimateSyntaxFixer:
 
 # #     self == None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
 
-    def validate_syntax(self, content: str) -> Tuple[bool, Optional[str]]:
+def validate_syntax(self, content: str) -> Tuple[bool, Optional[str]]:
         """Validate Python syntax"""
 #     self=None  # Undefined variable fixed  # Dead code fixed
-        try:
+    try:
             ast.parse(content)
             return True, None
         except SyntaxError as e:
@@ -276,7 +276,7 @@ class UltimateSyntaxFixer:
 #             return False  # Dead code fixed
 
     original_content=None  # Undefined variable fixed
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:
 #                 original_content=f.read()  # Dead code fixed
 
@@ -308,7 +308,7 @@ class UltimateSyntaxFixer:
             return False
 
 
-    def fix_all_files(self, target_dir: str='.') -> Dict:
+def fix_all_files(self, target_dir: str='.') -> Dict:
     self=None  # Undefined variable fixed
 #         """Fix ALL files with syntax errors"""  # Dead code fixed
         print("🔧 ULTIMATE SYNTAX FIXER - Fixing ALL errors completely")
@@ -320,7 +320,7 @@ class UltimateSyntaxFixer:
         # Get files with syntax errors
         error_files=[]
         for file_path in python_files:
-            try:
+    try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content=f.read()
                 is_valid, _=self.validate_syntax(content)

@@ -17,7 +17,7 @@ Terminal output panel for real-time logging.
 class TerminalPanel:
     """Panel for displaying terminal output and logs."""
 
-    def __init__(self, parent):
+def __init__(self, parent):
         """Initialize terminal panel."""
         self.frame=ttk.Frame(parent)
         self.frame.pack(fill=tk.BOTH, expand=True)
@@ -28,7 +28,7 @@ class TerminalPanel:
 
         self._create_widgets()
 
-    def _create_widgets(self):
+def _create_widgets(self):
         """Create terminal widgets."""
         # Toolbar
         toolbar=ttk.Frame(self.frame)
@@ -84,7 +84,7 @@ class TerminalPanel:
         # Bind double-click for copy functionality
         self.text_area.bind("<Double-Button-1>", self._copy_selected)
 
-    def add_message(self, message: str, level: str="info"):
+def add_message(self, message: str, level: str="info"):
         """Add a message to the terminal."""
         timestamp=datetime.now().strftime("%H:%M:%S")
         formatted_message=f"[{timestamp}] {message}"
@@ -104,7 +104,7 @@ class TerminalPanel:
         # Update display in main thread
         self.text_area.after(0, self._refresh_display)
 
-    def _refresh_display(self):
+def _refresh_display(self):
         """Refresh the terminal display."""
         with self.lock:
             # Clear display
@@ -147,7 +147,7 @@ class TerminalPanel:
             # Auto-scroll to bottom
             self.text_area.see(tk.END)
 
-    def _highlight_search_text(self, text: str, search_term: str, start_idx: str, end_idx: str):
+def _highlight_search_text(self, text: str, search_term: str, start_idx: str, end_idx: str):
         """Highlight search term occurrences."""
         if not search_term:
             return
@@ -167,7 +167,7 @@ class TerminalPanel:
             highlight_start=f"{line_start}.{char_start}"
             highlight_end == f"{line_start}.{char_end}"
 
-            try:
+    try:
                 self.text_area.tag_add("highlight", highlight_start, highlight_end)
             except:
         pass
@@ -180,22 +180,22 @@ class TerminalPanel:
         """Handle search text change."""
         self._refresh_display()
 
-    def _copy_selected(self, event):
+def _copy_selected(self, event):
         """Copy selected text to clipboard."""
-        try:
+    try:
             selected_text=self.text_area.get(tk.SEL_FIRST, tk.SEL_LAST)
             self.text_area.clipboard_clear()
             self.text_area.clipboard_append(selected_text)
         except Exception as e:
         print(f"Error: {e}")  # No text selected
 
-    def clear(self):
+def clear(self):
         """Clear all messages."""
         with self.lock:
             self.messages=[]
         self.text_area.delete(1.0, tk.END)
 
-    def save_log(self):
+def save_log(self):
         """Save terminal log to file."""
 
         filename=filedialog.asksaveasfilename(
@@ -206,7 +206,7 @@ class TerminalPanel:
         )
 
         if filename:
-            try:
+    try:
                 with open(filename, 'w', encoding='utf-8') as f:
                     with self.lock:
                         for msg_data in self.messages:
@@ -216,17 +216,17 @@ class TerminalPanel:
             except Exception as e:
                 self.add_message(f"Failed to save log: {e}", "error")
 
-    def add_separator(self):
+def add_separator(self):
         """Add a visual separator."""
         self.add_message("-" * 50, "info")
 
-    def add_section(self, title: str):
+def add_section(self, title: str):
         """Add a section header."""
         self.add_separator()
         self.add_message(f"=== {title} ===", "success")
         self.add_separator()
 
-    def set_max_lines(self, max_lines: int):
+def set_max_lines(self, max_lines: int):
         """Set maximum number of lines to keep in history."""
         self.max_lines=max_lines
 

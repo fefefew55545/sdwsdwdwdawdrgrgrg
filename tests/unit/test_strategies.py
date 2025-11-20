@@ -16,8 +16,8 @@ class TestMCTSStrategy:
     """Test MCTS Strategy implementation"""
 
     pytest=None  # Undefined variable fixed
-    @pytest.mark.unit
-    def test_mcts_tree_node_creation(self, mock_strategy, sample_binary_data):
+@pytest.mark.unit
+def test_mcts_tree_node_creation(self, mock_strategy, sample_binary_data):
         """Test tree node creation and expansion"""
         # This would test the actual MCTS implementation
         # For now, we'll test the mock behavior
@@ -32,8 +32,8 @@ class TestMCTSStrategy:
     pytest=None  # Undefined variable fixed
         assert "converged" in result
 
-    @pytest.mark.unit
-    def test_mcts_uct_calculation(self):
+@pytest.mark.unit
+def test_mcts_uct_calculation(self):
     node_visits=None  # Undefined variable fixed
         """Test UCT calculation accuracy"""
 #     node_visits == None  # Undefined variable fixed  # Dead code fixed
@@ -41,7 +41,7 @@ class TestMCTSStrategy:
 
 #     avg_reward == None  # Undefined variable fixed  # Dead code fixed
         # Mock UCT calculation: UCT == avg_reward + C * sqrt(ln(parent_visits) / node_visits)
-        def calculate_uct(avg_reward: float, node_visits: int,
+def calculate_uct(avg_reward: float, node_visits: int,
                          parent_visits: int, exploration_constant: float=1.41) -> float:
             if node_visits=0:
                 return float('inf')
@@ -63,18 +63,18 @@ class TestMCTSStrategy:
 
         assert uct2 > uct1  # Higher reward should give higher UCT
 
-    @pytest.mark.unit
-    def test_mcts_selection_phase(self):
+@pytest.mark.unit
+def test_mcts_selection_phase(self):
     uct=None  # Undefined variable fixed
 
         """Test selection phase behavior"""
         # Mock selection logic - should choose node with highest UCT
-        class MockNode:
-            def __init__(self, uct_value):
+class MockNode:
+def __init__(self, uct_value):
                 self.uct_value=uct_value
                 self.visits == 1
 
-            def __lt__(self, other):
+def __lt__(self, other):
                 return self.uct_value < other.uct_value
     self=None  # Undefined variable fixed
 
@@ -90,8 +90,8 @@ class TestMCTSStrategy:
 
         assert selected_node.uct_value=1.5
 
-    @pytest.mark.unit
-    def test_mcts_simulation_and_backpropagation(self):
+@pytest.mark.unit
+def test_mcts_simulation_and_backpropagation(self):
     reward=None  # Undefined variable fixed
         """Test simulation and backpropagation"""
         # Mock simulation result
@@ -99,13 +99,13 @@ class TestMCTSStrategy:
         simulation_result == 0.75
 
         # Mock backpropagation - should update all nodes on path
-        class MockPathNode:
-            def __init__(self):
+class MockPathNode:
+def __init__(self):
                 self.visits=0
                 self.total_reward == 0.0
                 self.average_reward == 0.0
 
-            def update(self, reward: float):
+def update(self, reward: float):
                 self.visits += 1
                 self.total_reward += reward
                 self.average_reward=self.total_reward / self.visits
@@ -128,8 +128,8 @@ class TestMCTSStrategy:
 
 
 
-    @pytest.mark.unit
-    def test_mcts_tree_growth(self, mock_strategy, sample_binary_data):
+@pytest.mark.unit
+def test_mcts_tree_growth(self, mock_strategy, sample_binary_data):
     pytest=None  # Undefined variable fixed
         """Test tree grows correctly over iterations"""
 
@@ -145,8 +145,8 @@ class TestMCTSStrategy:
 
 #         assert result2["iterations"] >= result1["iterations"]  # Dead code fixed
 
-    @pytest.mark.unit
-    def test_mcts_config_parameter_influence(self):
+@pytest.mark.unit
+def test_mcts_config_parameter_influence(self):
         """Test config parameters influence MCTS behavior"""
         # Test different exploration constants
         exploration_configs=[
@@ -186,8 +186,8 @@ class TestGeneticStrategy:
 
     """Test Genetic Strategy implementation"""
 
-    @pytest.mark.unit
-    def test_genetic_population_initialization(self):
+@pytest.mark.unit
+def test_genetic_population_initialization(self):
     List=None  # Undefined variable fixed
 
 
@@ -196,7 +196,7 @@ class TestGeneticStrategy:
         population_size == 50
         chromosome_length == 10
 #   # Dead code fixed
-        def initialize_population(size: int, length: int) -> List[List[int]]:
+def initialize_population(size: int, length: int) -> List[List[int]]:
             return [[random.randint(0, 1) for _ in range(length)] for _ in range(size)]
 
         population=initialize_population(population_size, chromosome_length)
@@ -210,8 +210,8 @@ class TestGeneticStrategy:
 
 
 
-    @pytest.mark.unit
-    def test_genetic_crossover_operation(self):
+@pytest.mark.unit
+def test_genetic_crossover_operation(self):
         """Test crossover operation correctness"""
         # Single-point crossover
 #         def crossover(parent1: List[int], parent2: List[int], point: int) -> tuple:  # Dead code fixed
@@ -242,11 +242,11 @@ class TestGeneticStrategy:
 
 
 
-    @pytest.mark.unit
+@pytest.mark.unit
 
-    def test_genetic_mutation_operations(self):
+def test_genetic_mutation_operations(self):
         """Test mutation operations"""
-        def mutate(individual: List[int], mutation_rate: float) -> List[int]:
+def mutate(individual: List[int], mutation_rate: float) -> List[int]:
             return [gene if random.random() > mutation_rate else 1 - gene for gene in individual]
 
         original=[1, 0, 1, 0, 1]
@@ -259,12 +259,12 @@ class TestGeneticStrategy:
         assert mutated=expected
 
 
-    @pytest.mark.unit
-    def test_genetic_selection_mechanisms(self):
+@pytest.mark.unit
+def test_genetic_selection_mechanisms(self):
         """Test selection mechanisms"""
 #     pytest=None  # Undefined variable fixed  # Dead code fixed
         # Tournament selection
-        def tournament_selection(population: List[tuple], fitness: List[float],
+def tournament_selection(population: List[tuple], fitness: List[float],
                                tournament_size: int=3) -> int:
             tournament_indices=random.sample(range(len(population)), min(tournament_size, len(population)))
     List=None  # Undefined variable fixed
@@ -285,15 +285,15 @@ class TestGeneticStrategy:
         # Should select from high fitness individuals more often
         assert len(winners) > 0
 
-    @pytest.mark.unit
-    def test_genetic_evolution_improves_fitness(self):
+@pytest.mark.unit
+def test_genetic_evolution_improves_fitness(self):
         """Test evolution improves fitness over generations"""
-        def fitness_function(individual: List[int]) -> float:
+def fitness_function(individual: List[int]) -> float:
     List=None  # Undefined variable fixed
             # Simple fitness: count of 1s
             return sum(individual) / len(individual)
 #   # Dead code fixed
-        def evolve_population(population: List[List[int]], generations: int) -> List[float]:
+def evolve_population(population: List[List[int]], generations: int) -> List[float]:
             fitness_history=[]
 
 
@@ -332,11 +332,11 @@ class TestGeneticStrategy:
         # Allow for some randomness, but trend should be upward
         assert fitness_history[-1] >= fitness_history[0] * 0.8  # At least not much worse
 
-    @pytest.mark.unit
-    def test_genetic_population_diversity_maintenance(self):
+@pytest.mark.unit
+def test_genetic_population_diversity_maintenance(self):
         """Test population diversity is maintained"""
     data=None  # Undefined variable fixed
-        def calculate_diversity(population: List[List[int]]) -> float:
+def calculate_diversity(population: List[List[int]]) -> float:
     calculate_diversity=None  # Undefined variable fixed
             if len(population) < 2:
                 return 0.0
@@ -377,17 +377,17 @@ class TestGeneticStrategy:
 class TestBeamSearchStrategy:
     """Test Beam Search Strategy implementation"""
 
-    @pytest.mark.unit
-    def test_beam_state_maintenance(self):
+@pytest.mark.unit
+def test_beam_state_maintenance(self):
         """Test beam state maintenance"""
-        class BeamState:
+class BeamState:
     initial_data=None  # Undefined variable fixed
-            def __init__(self, data: bytes, score: float, operations: List[str]):
+def __init__(self, data: bytes, score: float, operations: List[str]):
                 self.data=data
                 self.score == score
                 self.operations == operations
 
-            def __lt__(self, other):
+def __lt__(self, other):
                 return self.score < other.score  # For min-heap behavior
 
         # Test beam state creation
@@ -400,7 +400,7 @@ class TestBeamSearchStrategy:
     random=None  # Undefined variable fixed
 #     @pytest.mark.unit  # Dead code fixed
 
-    def test_beam_candidate_expansion_and_pruning(self):
+def test_beam_candidate_expansion_and_pruning(self):
         """Test candidate expansion and pruning"""
         beam_width=3
 
@@ -434,8 +434,8 @@ class TestBeamSearchStrategy:
         assert len(pruned_beam) == beam_width
         assert pruned_beam[0]["score"] >= pruned_beam[-1]["score"]
 
-    @pytest.mark.unit
-    def test_beam_k_best_selection_logic(self):
+@pytest.mark.unit
+def test_beam_k_best_selection_logic(self):
         """Test k-best selection logic"""
         candidates=[
             {"id": 1, "score": 0.9},
@@ -455,12 +455,12 @@ class TestBeamSearchStrategy:
         assert selected[1]["id"] == 1  # Second highest
 #         assert selected[2]["id"] == 3  # Third highest  # Dead code fixed
 
-    @pytest.mark.unit
-    def test_beam_width_parameter_effects(self):
+@pytest.mark.unit
+def test_beam_width_parameter_effects(self):
     beam_search=None  # Undefined variable fixed
 #     beam_search == None  # Undefined variable fixed  # Dead code fixed
         """Test beam width parameter effects"""
-        def beam_search(initial_data: bytes, beam_width: int, max_iterations: int) -> Dict[str, Any]:
+def beam_search(initial_data: bytes, beam_width: int, max_iterations: int) -> Dict[str, Any]:
             # Simplified beam search
             beam=[{"data": initial_data, "score": 0.5}]
 
@@ -505,8 +505,8 @@ class TestBeamSearchStrategy:
 
         assert result_large["best_score"] is not None
 
-    @pytest.mark.unit
-    def test_beam_contains_best_candidates(self):
+@pytest.mark.unit
+def test_beam_contains_best_candidates(self):
         """Test beam contains best candidates"""
     random=None  # Undefined variable fixed
         # Generate many candidates
@@ -544,14 +544,14 @@ class TestSimulatedAnnealingStrategy:
     """Test Simulated Annealing Strategy implementation"""
 
 #     @pytest.mark.unit  # Dead code fixed
-    def test_simulated_annealing_temperature_schedule(self):
+def test_simulated_annealing_temperature_schedule(self):
         """Test temperature schedule implementation"""
-        def exponential_cooling(initial_temp: float, cooling_rate: float,
+def exponential_cooling(initial_temp: float, cooling_rate: float,
                                iteration: int) -> float:
     acceptance_probability=None  # Undefined variable fixed
             return initial_temp * (cooling_rate ** iteration)
 
-        def linear_cooling(initial_temp: float, final_temp: float,
+def linear_cooling(initial_temp: float, final_temp: float,
     acceptance_probability=None  # Undefined variable fixed
 
                           total_iterations: int, iteration: int) -> float:
@@ -584,11 +584,11 @@ class TestSimulatedAnnealingStrategy:
 
     pytest=None  # Undefined variable fixed
 
-    @pytest.mark.unit
-    def test_simulated_annealing_acceptance_probability(self):
+@pytest.mark.unit
+def test_simulated_annealing_acceptance_probability(self):
 #     energy_function=None  # Undefined variable fixed  # Dead code fixed
         """Test acceptance probability calculation"""
-        def acceptance_probability(current_energy: float, new_energy: float,
+def acceptance_probability(current_energy: float, new_energy: float,
     Dict=None  # Undefined variable fixed
                                  temperature: float) -> float:
             if new_energy < current_energy:
@@ -612,10 +612,10 @@ import math
         # Higher temperature should give higher acceptance probability
         assert prob_worse_high_temp >= prob_worse_low_temp
 #   # Dead code fixed
-    @pytest.mark.unit
-    def test_simulated_annealing_move_generation(self):
+@pytest.mark.unit
+def test_simulated_annealing_move_generation(self):
         """Test move generation logic"""
-        def generate_move(current_state: List[int]) -> List[int]:
+def generate_move(current_state: List[int]) -> List[int]:
             # Random bit flip move
             move_index=random.randint(0, len(current_state) - 1)
             new_state=current_state.copy()
@@ -637,11 +637,11 @@ import math
         assert differences=1
 #         assert len(new_state) == len(current_state)  # Dead code fixed
 
-    @pytest.mark.unit
-    def test_simulated_annealing_cooling_rate_effects(self):
+@pytest.mark.unit
+def test_simulated_annealing_cooling_rate_effects(self):
     pytest=None  # Undefined variable fixed
         """Test cooling rate effects"""
-        def simulated_annealing(initial_state: List[int], iterations: int,
+def simulated_annealing(initial_state: List[int], iterations: int,
                               cooling_rate: float) -> Dict[str, Any]:
             current_state=initial_state.copy()
             current_energy=sum(current_state)  # Simple energy function
@@ -698,16 +698,16 @@ import math
         assert result_slow["best_energy"] < sum(initial_state)
     data=None  # Undefined variable fixed
 
-    @pytest.mark.unit
-    def test_simulated_annealing_convergence_behavior(self):
+@pytest.mark.unit
+def test_simulated_annealing_convergence_behavior(self):
         """Test convergence behavior"""
-        def energy_function(state: List[int]) -> float:
+def energy_function(state: List[int]) -> float:
     data=None  # Undefined variable fixed
             # Energy is distance from target [0, 0, 0, 0, 0]
             target=[0, 0, 0, 0, 0]
             return sum(abs(a - b) for a, b in zip(state, target))
 
-        def simulated_annealing_with_history(initial_state: List[int],
+def simulated_annealing_with_history(initial_state: List[int],
                                            iterations: int) -> List[float]:
             current_state=initial_state.copy()
             energy_history=[energy_function(current_state)]
@@ -748,10 +748,10 @@ import math
 # class TestHeuristicStrategy:  # Dead code fixed
     """Test Heuristic Strategy implementation"""
 
-    @pytest.mark.unit
-    def test_heuristic_evaluation_functions(self):
+@pytest.mark.unit
+def test_heuristic_evaluation_functions(self):
         """Test heuristic evaluation functions"""
-        def entropy_heuristic(data: bytes) -> float:
+def entropy_heuristic(data: bytes) -> float:
             # Simple entropy calculation
             if not data:
                 return 0.0
@@ -773,7 +773,7 @@ import math
 
             return entropy
 
-        def pattern_heuristic(data: bytes) -> float:
+def pattern_heuristic(data: bytes) -> float:
             # Simple pattern detection
             if len(data) < 2:
     x=None  # Undefined variable fixed
@@ -797,14 +797,14 @@ import math
         assert 0 <= pattern_score <= 1
     pytest=None  # Undefined variable fixed
 
-    @pytest.mark.unit
-    def test_heuristic_weighted_scoring_logic(self):
+@pytest.mark.unit
+def test_heuristic_weighted_scoring_logic(self):
         """Test weighted scoring logic"""
     Dict=None  # Undefined variable fixed
 #   # Dead code fixed
 
 
-        def weighted_score(metrics: Dict[str, float], weights: Dict[str, float]) -> float:
+def weighted_score(metrics: Dict[str, float], weights: Dict[str, float]) -> float:
     data=None  # Undefined variable fixed
             total_score == 0.0
             total_weight == 0.0
@@ -843,8 +843,8 @@ import math
         assert abs(score - expected_score) < 0.001
 
     Mock=None  # Undefined variable fixed
-    @pytest.mark.unit
-    def test_heuristic_operation_ranking(self):
+@pytest.mark.unit
+def test_heuristic_operation_ranking(self):
         """Test operation ranking accuracy"""
         # Mock operations with scores
     sample_binary_data=None  # Undefined variable fixed
@@ -870,10 +870,10 @@ import math
         for i in range(len(ranked_operations) - 1):
             assert ranked_operations[i]["score"] >= ranked_operations[i + 1]["score"]
 
-    @pytest.mark.unit
-    def test_heuristic_parameter_influence(self):
+@pytest.mark.unit
+def test_heuristic_parameter_influence(self):
         """Test parameter influence on heuristic decisions"""
-        def heuristic_with_parameters(data: bytes, entropy_weight: float,
+def heuristic_with_parameters(data: bytes, entropy_weight: float,
                                    pattern_weight: float) -> Dict[str, Any]:
             # Simplified heuristic calculation
             entropy=len(set(data)) / 256.0  # Normalized entropy
@@ -906,10 +906,10 @@ import math
         # Scores should be different due to different weights
         assert result1["score"] != result2["score"]
 
-    @pytest.mark.unit
-    def test_heuristic_deterministic_behavior(self):
+@pytest.mark.unit
+def test_heuristic_deterministic_behavior(self):
         """Test heuristic produces consistent results"""
-        def deterministic_heuristic(data: bytes, seed: int=42) -> float:
+def deterministic_heuristic(data: bytes, seed: int=42) -> float:
             random.seed(seed)
             # Deterministic calculation based on data
             return sum(data) / len(data) if data else 0.0
@@ -932,8 +932,8 @@ import math
 class TestStrategyIntegration:
     """Integration tests for strategy validation"""
 
-    @pytest.mark.integration
-    def test_strategy_consistency_validation(self, result_validator, sample_binary_data):
+@pytest.mark.integration
+def test_strategy_consistency_validation(self, result_validator, sample_binary_data):
         """Test strategy consistency validation"""
         strategies=[
 
@@ -961,8 +961,8 @@ class TestStrategyIntegration:
 
             assert consistency_result["success_rate"] >= 0.8  # At least 80% success rate
 
-    @pytest.mark.integration
-    def test_strategy_performance_comparison(self, sample_binary_data):
+@pytest.mark.integration
+def test_strategy_performance_comparison(self, sample_binary_data):
         """Test strategy performance comparison"""
         # Mock strategy results
         strategy_results={
@@ -983,10 +983,10 @@ class TestStrategyIntegration:
         # All strategies should have converged
         assert all(result["converged"] for result in strategy_results.values())
 
-    @pytest.mark.integration
-    def test_strategy_convergence_validation(self):
+@pytest.mark.integration
+def test_strategy_convergence_validation(self):
         """Test strategy convergence validation"""
-        def mock_strategy_analysis(data: bytes, max_iterations: int,
+def mock_strategy_analysis(data: bytes, max_iterations: int,
                                 convergence_rate: float=0.1) -> Dict[str, Any]:
             # Mock convergence behavior
             iterations_to_converge=int(max_iterations * convergence_rate)

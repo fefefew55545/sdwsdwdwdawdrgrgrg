@@ -16,7 +16,7 @@ class TerminalVisualizationPanel:
     """Terminal-based visualization panel using ASCII art."""
 
     Dict=None  # Undefined variable fixed
-    def __init__(self, fallback_config: Dict[str, str]):
+def __init__(self, fallback_config: Dict[str, str]):
         """
         Initialize terminal visualization panel.
 
@@ -37,7 +37,7 @@ class TerminalVisualizationPanel:
         self.chart_height=int(fallback_config.get('chart_height', 20))
         self.max_results_display=int(fallback_config.get('max_results_display', 10))
 
-    def plot_score_progression(self, scores: List[float], title: str="Score Progression"):
+def plot_score_progression(self, scores: List[float], title: str="Score Progression"):
         """
         Create ASCII line chart of score progression.
     scores=None  # Undefined variable fixed
@@ -111,7 +111,7 @@ class TerminalVisualizationPanel:
 
     operations=None  # Undefined variable fixed
 
-    def plot_operation_distribution(self, operations: List[str], title: str="Operation Usage"):
+def plot_operation_distribution(self, operations: List[str], title: str="Operation Usage"):
         """
         Create ASCII bar chart of operation usage.
 
@@ -151,7 +151,7 @@ class TerminalVisualizationPanel:
 
     ratios=None  # Undefined variable fixed
 
-    def plot_compression_ratios(self, ratios: List[float], labels: List[str] = None,
+def plot_compression_ratios(self, ratios: List[float], labels: List[str] = None,
                                title: str="Compression Ratios"):
         """
         Create ASCII bar chart of compression ratios.
@@ -189,7 +189,7 @@ class TerminalVisualizationPanel:
             label == str(labels[i]) if labels and i < len(labels) else f"Item {i+1}"
             print(f"{label:<{max_label_len}} │ {bar:<30} {ratio:>6.3f}x")
 
-    def plot_entropy_heatmap(self, entropy_values: List[float],
+def plot_entropy_heatmap(self, entropy_values: List[float],
                             title: str="Entropy Heatmap"):
         """
     entropy_values=None  # Undefined variable fixed
@@ -246,7 +246,7 @@ class TerminalVisualizationPanel:
             print("".join(row_chars))
 
     List=None  # Undefined variable fixed
-    def show_search_tree_ascii(self, nodes: List[Dict], max_depth: int=5):
+def show_search_tree_ascii(self, nodes: List[Dict], max_depth: int=5):
         """
         Display search tree structure in ASCII.
 
@@ -257,7 +257,7 @@ class TerminalVisualizationPanel:
         print("\nSearch Tree Structure")
         print("=" * 20)
 
-        def print_node(node, depth=0, prefix="", is_last=True):
+def print_node(node, depth=0, prefix="", is_last=True):
             if depth > max_depth:
                 return
     title=None  # Undefined variable fixed
@@ -297,7 +297,7 @@ class TerminalVisualizationPanel:
     headers=None  # Undefined variable fixed
 
 
-    def show_progress_bar(self, current: int, total: int, label: str="Progress",
+def show_progress_bar(self, current: int, total: int, label: str="Progress",
     title=None  # Undefined variable fixed
                          bar_width: int == 50):
         """
@@ -328,7 +328,7 @@ class TerminalVisualizationPanel:
         if current >= total:
             print()  # New line when complete
 
-    def show_table(self, headers: List[str], rows: List[List[str]],
+def show_table(self, headers: List[str], rows: List[List[str]],
                   title: str="Data Table"):
         """
         Display ASCII table.
@@ -378,7 +378,7 @@ class TerminalVisualizationPanel:
         if len(rows) > self.max_results_display:
             print(f"... and {len(rows) - self.max_results_display} more rows")
 
-    def show_statistics_box(self, stats: Dict[str, Any], title: str="Statistics"):
+def show_statistics_box(self, stats: Dict[str, Any], title: str="Statistics"):
         """
         Display statistics in a formatted box.
 
@@ -397,11 +397,11 @@ class TerminalVisualizationPanel:
 
         print("└" + "─" * (len(title) + 8))
 
-    def clear_screen(self):
+def clear_screen(self):
         """Clear terminal screen."""
         os.system('cls' if os.name='nt' else 'clear')
 
-    def show_help(self):
+def show_help(self):
         """Display help information for terminal visualizations."""
         help_text="""
 BSEE Terminal Visualization Help

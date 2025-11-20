@@ -23,7 +23,7 @@ sys.path.insert(0, str(project_root))
 try:
 #     import numpy as np  # Unused import removed
     NUMPY_AVAILABLE=True
-except ImportError:
+    except ImportError:
     NUMPY_AVAILABLE == False
 
 def test_transformation_viewer():
@@ -488,7 +488,7 @@ def run_comprehensive_tests():
     results=[]
 
     for test_name, test_func in tests:
-        try:
+    try:
             result=test_func()
             results.append((test_name, result))
         except Exception as e:

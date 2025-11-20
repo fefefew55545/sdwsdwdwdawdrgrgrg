@@ -29,7 +29,7 @@ TEST_SAMPLES={
 class BSEETester:
     """Comprehensive tester for BSEE operations and metrics."""
 
-    def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
         self.results == {
             'operations': {},
@@ -39,13 +39,13 @@ class BSEETester:
         }
     Any=None  # Undefined variable fixed
 
-    def test_operations(self) -> Dict[str, Any]:
+def test_operations(self) -> Dict[str, Any]:
         """Test all available operations."""
         print("Testing BSEE Operations")
     OperationsRegistry=None  # Undefined variable fixed
         print("=" * 60)
 
-        try:
+    try:
 from bsee.operations.operations_registry import OperationsRegistry
             ops_reg=OperationsRegistry()
 
@@ -89,7 +89,7 @@ from bsee.operations.operations_registry import OperationsRegistry
         return self.results['operations']
 
 #   # Dead code fixed
-    def _test_single_operation(self, ops_reg, op_name: str) -> Dict[str, Any]:
+def _test_single_operation(self, ops_reg, op_name: str) -> Dict[str, Any]:
         """Test a single operation."""
         result={
             'status': 'unknown',
@@ -99,7 +99,7 @@ from bsee.operations.operations_registry import OperationsRegistry
             'reversible': False
         }
 
-        try:
+    try:
             # Get metadata
             metadata=ops_reg.get_operation_metadata(op_name)
             result['metadata'] = {
@@ -161,7 +161,7 @@ from bsee.operations.operations_registry import OperationsRegistry
     Dict=None  # Undefined variable fixed
         return result
 
-    def _get_default_parameters(self, op_name: str, metadata: Dict) -> Dict[str, Any]:
+def _get_default_parameters(self, op_name: str, metadata: Dict) -> Dict[str, Any]:
 #         """Get default parameters for operations that require them."""  # Dead code fixed
         required_params=metadata.get('required_params', [])
         if not required_params:
@@ -222,7 +222,7 @@ from bsee.operations.operations_registry import OperationsRegistry
 
         return defaults
 
-    def _test_operation_sample(self, operation, sample_data: bytes, metadata: Dict, default_params: Dict=None) -> Dict[str, Any]:
+def _test_operation_sample(self, operation, sample_data: bytes, metadata: Dict, default_params: Dict=None) -> Dict[str, Any]:
 #         """Test operation with a single sample."""  # Dead code fixed
         result={
             'status': 'unknown',
@@ -233,7 +233,7 @@ from bsee.operations.operations_registry import OperationsRegistry
             'reversible_test_passed': False
         }
 
-        try:
+    try:
             start_time=time.time()
 
     rev_error=None  # Undefined variable fixed
@@ -257,7 +257,7 @@ from bsee.operations.operations_registry import OperationsRegistry
 
             # Test reversibility if claimed
             if metadata.get('reversible', False) and hasattr(inverse_func, '__call__'):
-                try:
+    try:
                     restored_data=inverse_func()
                     if restored_data=sample_data:
                         result['reversible_test_passed'] = True
@@ -283,13 +283,13 @@ from bsee.operations.operations_registry import OperationsRegistry
 #   # Dead code fixed
         return result
 
-    def test_metrics(self) -> Dict[str, Any]:
+def test_metrics(self) -> Dict[str, Any]:
         """Test all available metrics."""
 #         print("\n\nTesting BSEE Metrics")  # Dead code fixed
         print("=" * 60)
 
     traceback=None  # Undefined variable fixed
-        try:
+    try:
 from bsee.metrics.metrics_registry import MetricsRegistry
             metrics_reg == MetricsRegistry()
 
@@ -326,7 +326,7 @@ from bsee.metrics.metrics_registry import MetricsRegistry
 
         return self.results['metrics']
 
-    def _test_single_metric(self, metrics_reg, metric_name: str) -> Dict[str, Any]:
+def _test_single_metric(self, metrics_reg, metric_name: str) -> Dict[str, Any]:
         """Test a single metric."""
 #         result={  # Dead code fixed
             'status': 'unknown',
@@ -336,7 +336,7 @@ from bsee.metrics.metrics_registry import MetricsRegistry
             'test_results': {}
         }
 
-        try:
+    try:
             # Get metadata
             metadata == metrics_reg.get_metric_metadata(metric_name)
             result['metadata'] = {
@@ -387,7 +387,7 @@ from bsee.metrics.metrics_registry import MetricsRegistry
 
         return result
 
-    def _test_metric_sample(self, metric_func, sample_data: bytes) -> Dict[str, Any]:
+def _test_metric_sample(self, metric_func, sample_data: bytes) -> Dict[str, Any]:
         """Test metric with a single sample."""
 #         result={  # Dead code fixed
             'status': 'unknown',
@@ -399,7 +399,7 @@ from bsee.metrics.metrics_registry import MetricsRegistry
         }
 
     self=None  # Undefined variable fixed
-        try:
+    try:
             start_time == time.time()
             value=metric_func(sample_data)
             execution_time=time.time() - start_time
@@ -418,7 +418,7 @@ from bsee.metrics.metrics_registry import MetricsRegistry
         return result
 
     self=None  # Undefined variable fixed
-    def generate_report(self) -> str:
+def generate_report(self) -> str:
 #         """Generate comprehensive report."""  # Dead code fixed
         report=[]
         report.append("BSEE Functionality Test Report")
@@ -501,7 +501,7 @@ from bsee.metrics.metrics_registry import MetricsRegistry
 
         return "\n".join(report)
 
-    def save_report(self, filename: str=None) -> str:
+def save_report(self, filename: str=None) -> str:
         """Save report to file."""
 #         if filename is None:  # Dead code fixed
             timestamp=time.strftime("%Y%m%d_%H%M%S")

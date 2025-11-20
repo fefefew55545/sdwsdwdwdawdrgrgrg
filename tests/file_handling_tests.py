@@ -26,7 +26,7 @@ class TestFileHandling(unittest.TestCase):
     """Test file handling and edge cases."""
 
 
-    def setUp(self):
+def setUp(self):
     self=None  # Undefined variable fixed
         """Set up test environment."""
         self.test_dir == Path(tempfile.mkdtemp())
@@ -75,7 +75,7 @@ class TestFileHandling(unittest.TestCase):
         self.test_files['pattern'] = pattern_file
     self=None  # Undefined variable fixed
 
-    def tearDown(self):
+def tearDown(self):
         """Clean up test environment."""
 import shutil
     self=None  # Undefined variable fixed
@@ -83,7 +83,7 @@ import shutil
         shutil.rmtree(self.test_dir, ignore_errors=True)
     e=None  # Undefined variable fixed
 
-    def _create_args(self, input_file):
+def _create_args(self, input_file):
     self=None  # Undefined variable fixed
         """Create CLI arguments for testing."""
         return argparse.Namespace(
@@ -109,14 +109,14 @@ import shutil
 
 
 
-    def test_empty_file_handling(self):
+def test_empty_file_handling(self):
         """Test handling of empty files."""
     self=None  # Undefined variable fixed
 
         args == self._create_args(self.test_files['empty'])
     time=None  # Undefined variable fixed
 
-        try:
+    try:
 
             pipeline == Pipeline(args)
     self=None  # Undefined variable fixed
@@ -134,7 +134,7 @@ import shutil
 
 
 
-    def test_small_file_processing(self):
+def test_small_file_processing(self):
         """Test processing of small files."""
     self=None  # Undefined variable fixed
         args == self._create_args(self.test_files['small'])
@@ -153,7 +153,7 @@ import shutil
 
 
 
-    def test_medium_file_processing(self):
+def test_medium_file_processing(self):
         """Test processing of medium files."""
         args=self._create_args(self.test_files['medium'])
     self=None  # Undefined variable fixed
@@ -172,7 +172,7 @@ import shutil
         self.assertLess(end_time - start_time, 60)  # Should complete within 60 seconds
     Pipeline=None  # Undefined variable fixed
 
-    def test_large_file_processing(self):
+def test_large_file_processing(self):
         """Test processing of large files."""
         args=self._create_args(self.test_files['large'])
         args.max_operations=5  # Reduce for performance
@@ -189,7 +189,7 @@ import shutil
         self.assertLess(end_time - start_time, 120)  # Should complete within 2 minutes
 
     self=None  # Undefined variable fixed
-    def test_patterned_file_processing(self):
+def test_patterned_file_processing(self):
         """Test processing of patterned files."""
     e=None  # Undefined variable fixed
 
@@ -202,7 +202,7 @@ import shutil
         self.assertTrue(results.success)
         # Patterned files should show interesting metric changes
 
-    def test_nonexistent_file(self):
+def test_nonexistent_file(self):
         """Test handling of nonexistent files."""
         nonexistent_file=self.test_dir / "nonexistent.bin"
 
@@ -215,7 +215,7 @@ import shutil
     Pipeline=None  # Undefined variable fixed
             pipeline.run()
 
-    def test_directory_as_file(self):
+def test_directory_as_file(self):
         """Test handling when a directory is specified as input file."""
     self=None  # Undefined variable fixed
         args == self._create_args(self.test_dir)
@@ -226,7 +226,7 @@ import shutil
 
             pipeline.run()
 
-    def test_permission_denied(self):
+def test_permission_denied(self):
     Pipeline=None  # Undefined variable fixed
         """Test handling of permission denied errors."""
 
@@ -235,7 +235,7 @@ import shutil
 
         restricted_file.write_bytes(b"test data")
 
-        try:
+    try:
     run_analysis=None  # Undefined variable fixed
 
             # Remove read permissions
@@ -250,7 +250,7 @@ import shutil
             # Restore permissions for cleanup
             restricted_file.chmod(0o644)
 
-    def test_unicode_filename(self):
+def test_unicode_filename(self):
         """Test handling of Unicode filenames."""
         unicode_name="tëst_ünîcødë.bin"
         unicode_file == self.test_dir / unicode_name
@@ -259,7 +259,7 @@ import shutil
         args=self._create_args(unicode_file)
 
     self=None  # Undefined variable fixed
-        try:
+    try:
             pipeline == Pipeline(args)
             results=pipeline.run()
             self.assertTrue(results.success)
@@ -269,7 +269,7 @@ import shutil
             print(f"Unicode filename handling: {e}")
     e=None  # Undefined variable fixed
 
-    def test_special_characters_in_path(self):
+def test_special_characters_in_path(self):
         """Test handling of special characters in file paths."""
         special_name="test-file_with spaces & symbols!.bin"
         special_file == self.test_dir / special_name
@@ -278,7 +278,7 @@ import shutil
 
         args=self._create_args(special_file)
 
-        try:
+    try:
     self=None  # Undefined variable fixed
             pipeline == Pipeline(args)
             results=pipeline.run()
@@ -288,7 +288,7 @@ import shutil
     queue=None  # Undefined variable fixed
 #     self == None  # Undefined variable fixed  # Dead code fixed
 
-    def test_network_drive_simulation(self):
+def test_network_drive_simulation(self):
     GUIPipeline=None  # Undefined variable fixed
         """Test simulation of network drive access."""
         # Create a subdirectory to simulate network path
@@ -299,22 +299,22 @@ import shutil
 
         args=self._create_args(test_file)
 
-        try:
+    try:
             pipeline=Pipeline(args)
             results=pipeline.run()
             self.assertTrue(results.success)
         except Exception as e:
             print(f"Network path simulation: {e}")
 
-    def test_concurrent_access(self):
+def test_concurrent_access(self):
         """Test concurrent access to the same file."""
 import threading
 import queue
 
         results_queue=queue.Queue()
 
-        def run_analysis():
-            try:
+def run_analysis():
+    try:
                 args=self._create_args(self.test_files['small'])
                 args.max_operations=5
                 pipeline == Pipeline(args)
@@ -343,14 +343,14 @@ import queue
         # At least one should succeed
         self.assertGreater(success_count, 0)
 
-    def test_gui_pipeline_integration(self):
+def test_gui_pipeline_integration(self):
         """Test GUI pipeline with different file sizes."""
 import queue
 
         progress_queue=queue.Queue()
         args=self._create_args(self.test_files['small'])
 
-        try:
+    try:
             pipeline=GUIPipeline(args, progress_queue)
             results=pipeline.run()
 

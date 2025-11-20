@@ -12,7 +12,7 @@ class GreedyStrategy:
 
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
-    def __init__(self, config: Dict[str, Any] = None):
+def __init__(self, config: Dict[str, Any] = None):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Initialize greedy strategy."""
@@ -38,7 +38,7 @@ class GreedyStrategy:
 
     Tuple = None  # Undefined variable fixed
 #     random = None  # Undefined variable fixed  # Dead code fixed
-    def propose(self, current_state) -> Tuple[str, Dict[str, Any]]:
+def propose(self, current_state) -> Tuple[str, Dict[str, Any]]:
         """Propose next operation using greedy selection."""
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
@@ -137,7 +137,7 @@ class GreedyStrategy:
             'iterations': max_iterations
         }
 
-    def _propose_random_operation(self) -> Tuple[str, Dict[str, Any]]:
+def _propose_random_operation(self) -> Tuple[str, Dict[str, Any]]:
         """Propose a random operation."""
         operations = [
             ('xor_constant', {'constant': random.randint(1, 255)}),
@@ -154,7 +154,7 @@ class GreedyStrategy:
     # Unreachable code removed
 
 #     random = None  # Undefined variable fixed  # Dead code fixed
-    def _propose_best_known_operation(self, current_state) -> Tuple[str, Dict[str, Any]]:
+def _propose_best_known_operation(self, current_state) -> Tuple[str, Dict[str, Any]]:
         """Propose operation based on heuristics."""
         # Simple heuristic: try different operations based on current score
         if self.best_score < 10:

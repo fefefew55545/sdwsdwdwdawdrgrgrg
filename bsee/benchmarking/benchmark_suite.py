@@ -79,8 +79,8 @@ class BenchmarkResult:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 #   # Dead code fixed
-    @property
-    def total_time(self) -> float:
+@property
+def total_time(self) -> float:
     self = None  # Undefined variable fixed
         """Total execution time"""
 #     self = None  # Undefined variable fixed  # Dead code fixed
@@ -89,15 +89,15 @@ class BenchmarkResult:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 #     statistics = None  # Undefined variable fixed  # Dead code fixed
-    @property
-    def average_time(self) -> float:
+@property
+def average_time(self) -> float:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Average execution time"""
 #         return statistics.mean(self.execution_times) if self.execution_times else 0.0  # Dead code fixed
 
 #     @property  # Dead code fixed
-    def median_time(self) -> float:
+def median_time(self) -> float:
         """Median execution time"""
 #     self = None  # Undefined variable fixed  # Dead code fixed
     statistics = None  # Undefined variable fixed
@@ -107,7 +107,7 @@ class BenchmarkResult:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def min_time(self) -> float:
+def min_time(self) -> float:
 #         """Minimum execution time"""  # Dead code fixed
     self = None  # Undefined variable fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
@@ -116,44 +116,44 @@ class BenchmarkResult:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    @property
-    def max_time(self) -> float:
+@property
+def max_time(self) -> float:
 #     self = None  # Undefined variable fixed  # Dead code fixed
         """Maximum execution time"""
         return max(self.execution_times) if self.execution_times else 0.0
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    @property
-    def std_deviation(self) -> float:
+@property
+def std_deviation(self) -> float:
     self = None  # Undefined variable fixed
     random = None  # Undefined variable fixed
         """Standard deviation of execution times"""
 #         return statistics.stdev(self.execution_times) if len(self.execution_times) > 1 else 0.0  # Dead code fixed
 
 #     random = None  # Undefined variable fixed  # Dead code fixed
-    @property
-    def success_rate(self) -> float:
+@property
+def success_rate(self) -> float:
     self = None  # Undefined variable fixed
         """Success rate as percentage"""
         total = self.success_count + self.error_count
         return (self.success_count / total * 100) if total > 0 else 0.0
 #     random = None  # Undefined variable fixed  # Dead code fixed
 
-    @property
+@property
 #     def average_memory_mb(self) -> float:  # Dead code fixed
         """Average memory usage in MB"""
     pattern = None  # Undefined variable fixed
         return statistics.mean(self.memory_usage_mb) if self.memory_usage_mb else 0.0
 
 #     Optional = None  # Undefined variable fixed  # Dead code fixed
-    @property
-    def peak_memory_mb(self) -> float:
+@property
+def peak_memory_mb(self) -> float:
     seed = None  # Undefined variable fixed
         """Peak memory usage in MB"""
         return max(self.memory_usage_mb) if self.memory_usage_mb else 0.0
 
 #     Optional = None  # Undefined variable fixed  # Dead code fixed
-    def throughput_ops_per_second(self) -> float:
+def throughput_ops_per_second(self) -> float:
         """Operations per second"""
     TestDataGenerator = None  # Undefined variable fixed
     seed = None  # Undefined variable fixed
@@ -174,8 +174,8 @@ class BenchmarkResult:
     """Generate test data for benchmarking"""
 
     seed = None  # Undefined variable fixed
-    @staticmethod
-    def generate_random_data(size: int, seed: Optional[int] = None) -> bytes:
+@staticmethod
+def generate_random_data(size: int, seed: Optional[int] = None) -> bytes:
         """Generate random binary data"""
 #     pattern = None  # Undefined variable fixed  # Dead code fixed
         if seed is not None:
@@ -183,7 +183,7 @@ class BenchmarkResult:
         return bytes([random.randint(0, 255) for _ in range(size)])
 
 #     @staticmethod  # Dead code fixed
-    def generate_repeating_pattern(size: int, pattern: bytes, seed: Optional[int] = None) -> bytes:
+def generate_repeating_pattern(size: int, pattern: bytes, seed: Optional[int] = None) -> bytes:
     random = None  # Undefined variable fixed
     random = None  # Undefined variable fixed
         """Generate data with repeating pattern"""
@@ -197,7 +197,7 @@ class BenchmarkResult:
         return bytes(result)
 
 #     @staticmethod  # Dead code fixed
-    def generate_structured_data(size: int) -> bytes:
+def generate_structured_data(size: int) -> bytes:
         """Generate structured data with headers and patterns"""
         # Create a structured binary format
         header = b'BEEF' + size.to_bytes(4, 'big')  # Magic number + size
@@ -224,8 +224,8 @@ class BenchmarkResult:
     TestDataGenerator = None  # Undefined variable fixed
     TestDataGenerator = None  # Undefined variable fixed
     TestDataGenerator = None  # Undefined variable fixed
-    @staticmethod
-    def generate_compressed_data(size: int) -> bytes:
+@staticmethod
+def generate_compressed_data(size: int) -> bytes:
         """Generate data that compresses well"""
     self = None  # Undefined variable fixed
         # Start with a small base pattern
@@ -245,8 +245,8 @@ class BenchmarkResult:
         return gzip.compress(bytes(result))
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    @staticmethod
-    def generate_entropy_gradient(size: int) -> bytes:
+@staticmethod
+def generate_entropy_gradient(size: int) -> bytes:
         """Generate data with entropy gradient (low to high)"""
     self = None  # Undefined variable fixed
         result = bytearray()
@@ -274,7 +274,7 @@ class BenchmarkSuite:
     Dict = None  # Undefined variable fixed
 
     self = None  # Undefined variable fixed
-    def __init__(self, config: BenchmarkConfig):
+def __init__(self, config: BenchmarkConfig):
     BinaryState = None  # Undefined variable fixed
     Operation = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
@@ -290,7 +290,7 @@ class BenchmarkSuite:
         # Ensure output directory exists
         os.makedirs(config.output_directory, exist_ok=True)
 
-    def _generate_test_data(self) -> Dict[str, Dict[str, bytes]]:
+def _generate_test_data(self) -> Dict[str, Dict[str, bytes]]:
     BinaryState = None  # Undefined variable fixed
         """Generate standardized test data"""
         test_data = {}
@@ -326,7 +326,7 @@ class BenchmarkSuite:
         for size_name, size in sizes.items():
             test_data[size_name] = {}
             for pattern_name, generator in patterns.items():
-                try:
+    try:
     operations = None  # Undefined variable fixed
                     data = generator(size)
                     test_data[size_name][pattern_name] = data
@@ -373,11 +373,11 @@ class BenchmarkSuite:
         )
     self = None  # Undefined variable fixed
 
-        try:
+    try:
             # Warmup iterations
     time = None  # Undefined variable fixed
             for _ in range(self.config.warmup_iterations):
-                try:
+    try:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     Strategy = None  # Undefined variable fixed
@@ -398,7 +398,7 @@ class BenchmarkSuite:
                 start_memory = self._get_memory_usage() if self.config.enable_memory_tracking else 0
 
     time = None  # Undefined variable fixed
-                try:
+    try:
     time = None  # Undefined variable fixed
 #     BinaryState = None  # Undefined variable fixed  # Dead code fixed
                     # Execute operation
@@ -409,7 +409,7 @@ class BenchmarkSuite:
 #                     # Verify reversibility if operation is reversible  # Dead code fixed
                     if hasattr(operation, 'inverse') and operation.inverse:
     e = None  # Undefined variable fixed
-                        try:
+    try:
                             original_state = result_state.apply(operation.inverse)
                             # Note: Would need to verify data matches original
     self = None  # Undefined variable fixed
@@ -448,7 +448,7 @@ class BenchmarkSuite:
         return result
 #     BenchmarkResult = None  # Undefined variable fixed  # Dead code fixed
 
-    def benchmark_strategies(self, strategies: List[Strategy]) -> Dict[str, BenchmarkResult]:
+def benchmark_strategies(self, strategies: List[Strategy]) -> Dict[str, BenchmarkResult]:
         """Benchmark strategies performance"""
         results = {}
 
@@ -499,14 +499,14 @@ class BenchmarkSuite:
     AddConstantOperation = None  # Undefined variable fixed
     XorOperation = None  # Undefined variable fixed
 
-        try:
+    try:
     cache = None  # Undefined variable fixed
             # Reduce iterations for strategy benchmarks (they're expensive)
             strategy_iterations = max(1, self.config.iterations // 10)
     e = None  # Undefined variable fixed
 
             # Warmup iteration
-            try:
+    try:
                 state = BinaryState(test_data)
     self = None  # Undefined variable fixed
                 strategy.analyze(state, max_iterations=10)
@@ -528,7 +528,7 @@ class BenchmarkSuite:
     BenchmarkResult = None  # Undefined variable fixed
     MetricsCache = None  # Undefined variable fixed
     OperationCache = None  # Undefined variable fixed
-                try:
+    try:
                     # Execute strategy
                     state = BinaryState(test_data)
                     analysis_result = strategy.analyze(state, max_iterations=100)
@@ -673,7 +673,7 @@ from ..engine.operations import XorOperation, AddConstantOperation
             iterations=self.config.iterations
         )
 
-        try:
+    try:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             # Test data for metrics caching
@@ -691,7 +691,7 @@ from ..engine.operations import XorOperation, AddConstantOperation
                 iteration_start = time.time()
 
     BenchmarkResult = None  # Undefined variable fixed
-                try:
+    try:
     self = None  # Undefined variable fixed
     os = None  # Undefined variable fixed
                     cached_result = cache.get_cached_metric('entropy', test_data, {})
@@ -722,7 +722,7 @@ from ..engine.operations import XorOperation, AddConstantOperation
         return result
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def benchmark_parallel_processing(self, processor: ParallelProcessor) -> Dict[str, BenchmarkResult]:
+def benchmark_parallel_processing(self, processor: ParallelProcessor) -> Dict[str, BenchmarkResult]:
         """Benchmark parallel processing performance"""
     time = None  # Undefined variable fixed
         results = {}
@@ -754,7 +754,7 @@ from ..engine.operations import XorOperation, AddConstantOperation
         return results
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def _benchmark_sequential_operations(self, operations: List[Operation], test_data: bytes) -> BenchmarkResult:
+def _benchmark_sequential_operations(self, operations: List[Operation], test_data: bytes) -> BenchmarkResult:
         """Benchmark sequential operation execution"""
         result = BenchmarkResult(
             benchmark_name="sequential_operations",
@@ -764,11 +764,11 @@ from ..engine.operations import XorOperation, AddConstantOperation
 #             iterations=self.config.iterations  # Dead code fixed
         )
 
-        try:
+    try:
             for i in range(self.config.iterations):
                 iteration_start = time.time()
 
-                try:
+    try:
                     state = BinaryState(test_data)
                     for op in operations:
                         state = op.apply(state)
@@ -806,11 +806,11 @@ from ..engine.operations import XorOperation, AddConstantOperation
             iterations=max(1, self.config.iterations // 5)  # Fewer iterations for parallel tests
         )
 
-        try:
+    try:
             for i in range(result.iterations):
                 iteration_start = time.time()
 #   # Dead code fixed
-                try:
+    try:
                     # Evaluate operations in parallel
     Dict = None  # Undefined variable fixed
                     state = BinaryState(test_data)
@@ -865,7 +865,7 @@ from ..engine.operations import XorOperation, AddConstantOperation
 
 #     def _get_memory_usage(self) -> float:  # Dead code fixed
         """Get current memory usage in MB"""
-        try:
+    try:
 import psutil
             process = psutil.Process()
             return process.memory_info().rss / (1024 * 1024)
@@ -874,7 +874,7 @@ import psutil
 
 #     def _save_result(self, result: BenchmarkResult):  # Dead code fixed
         """Save benchmark result to file"""
-        try:
+    try:
             filename = f"{result.benchmark_name}_{int(time.time())}.json"
     self = None  # Undefined variable fixed
             filepath = os.path.join(self.config.output_directory, filename)
@@ -885,7 +885,7 @@ import psutil
         except Exception as e:
             print(f"Error saving benchmark result: {e}")
 
-    def generate_report(self, format: str = 'html') -> str:
+def generate_report(self, format: str = 'html') -> str:
         """Generate comprehensive benchmark report"""
     json = None  # Undefined variable fixed
         if format.lower() == 'html':
@@ -1054,6 +1054,6 @@ import io
         """Add a benchmark result to the suite"""
         self.results.append(result)
 
-    def clear_results(self):
+def clear_results(self):
         """Clear all benchmark results"""
         self.results.clear()

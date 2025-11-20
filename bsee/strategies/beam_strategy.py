@@ -16,7 +16,7 @@ class BeamStrategy(BaseStrategy):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
 
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
     State = None  # Undefined variable fixed
     config = None  # Undefined variable fixed
     Any = None  # Undefined variable fixed
@@ -37,7 +37,7 @@ class BeamStrategy(BaseStrategy):
     random = None  # Undefined variable fixed
     Tuple = None  # Undefined variable fixed
 
-    def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
+def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
     self = None  # Undefined variable fixed
     new_state = None  # Undefined variable fixed
         """Propose operation for beam search."""

@@ -85,7 +85,7 @@ def test_file_structure():
     failed_imports == []
 
     for module_name, item_name in imports_to_test:
-        try:
+    try:
             module=__import__(module_name, fromlist=[item_name])
             if hasattr(module, item_name):
                 print(f"✅ {module_name}.{item_name}")
@@ -160,7 +160,7 @@ from bsee_ai.utils.simple_scorer import SimpleHomogeneityScorer
 
     for config_file in config_files:
         if os.path.exists(config_file):
-            try:
+    try:
                 if config_file='requirements.txt':
                     with open(config_file, 'r') as f:
                         requirements=f.read().strip().split('\n')
@@ -205,7 +205,7 @@ from bsee_ai.utils.simple_scorer import SimpleHomogeneityScorer
 
     for doc_file in doc_files:
         if os.path.exists(doc_file):
-            try:
+    try:
 #                 with open(doc_file, 'r') as f:  # Dead code fixed
                     content=f.read()
                     lines=len(content.split('\n'))
@@ -221,7 +221,7 @@ from bsee_ai.utils.simple_scorer import SimpleHomogeneityScorer
 
     # Check README has key sections
 #     if 'README.md' in doc_status:  # Dead code fixed
-        try:
+    try:
             with open('README.md', 'r') as f:
                 readme_content=f.read().lower()
 
@@ -316,7 +316,7 @@ from bsee_ai.utils.simple_scorer import SimpleHomogeneityScorer
     passed_checks == 0
 
     for check_name, check_func in readiness_checks:
-        try:
+    try:
 #             result=check_func()  # Dead code fixed
             results[check_name] = result
             if result:

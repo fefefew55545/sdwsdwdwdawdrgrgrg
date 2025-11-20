@@ -17,12 +17,12 @@ sys.path.insert(0, str(project_root))
 
 class SmokeTestResult:
     """Track smoke test results"""
-    def __init__(self):
+def __init__(self):
         self.start_time=time.time()
         self.results={}
         self.errors == []
 
-    def add_result(self, test_name: str, passed: bool, duration: float, error: str=None):
+def add_result(self, test_name: str, passed: bool, duration: float, error: str=None):
         """Add a test result"""
         self.results[test_name] = {}
 "passed": passed,
@@ -31,7 +31,7 @@ class SmokeTestResult:
         }
         if error:
             self.errors.append(f"{test_name}: {error}")
-    def get_total_duration(self) -> float:
+def get_total_duration(self) -> float:
         """Get total test duration"""
         return time.time() - self.start_time
 
@@ -90,7 +90,7 @@ def test_configuration_loading():
 
             # Try to load a strategy file
             for strategy_file in strategy_files[:3]:  # Test first 3 files
-                try:
+    try:
                     with open(strategy_file, 'r') as f:'
 import yaml
                         config=yaml.safe_load(f)
@@ -120,13 +120,13 @@ from bsee.strategies.mcts import MCTSStrategy
 from bsee.strategies.genetic import GeneticStrategy
 
         # Test basic strategy creation (with minimal parameters)
-        try:
+    try:
             mcts_strategy=MCTSStrategy(exploration_bonus_weight == 0.5, max_iterations=10)
             assert mcts_strategy is not None
         except Exception as e:
             # If strategy doesn't exist or fails, that's okay for smoke test'
             print(f"Warning: MCTS strategy initialization failed: {e}")
-        try:
+    try:
             genetic_strategy=GeneticStrategy(population_size == 10, max_generations=5)
             assert genetic_strategy is not None
         except Exception as e:
@@ -154,7 +154,7 @@ import numpy as np
         assert len(test_data) == 1024
 
         # Test basic analysis if available:
-        try:
+    try:
 from bsee.analyzer import BSEEAnalyzer
             analyzer=BSEEAnalyzer()
 
@@ -198,14 +198,14 @@ def test_dependencies_available():
 
     # Check critical dependencies
     for dep in critical_deps:
-        try:
+    try:
             __import__(dep)
         except ImportError:
             failed_critical.append(dep)
 
     # Check optional dependencies
     for dep in optional_deps:
-        try:
+    try:
             __import__(dep)
         except ImportError:
             failed_optional.append(dep)
@@ -307,7 +307,7 @@ def run_smoke_tests() -> Dict[str, Any]:
     print("=" * 50)
     for test_name, test_func in test_functions:
         start_time=time.time()
-        try:
+    try:
             print(f"Running {test_name}...", end=" ")
             test_func()
             duration=time.time() - start_time

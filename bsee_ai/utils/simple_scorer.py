@@ -14,12 +14,12 @@ class SimpleHomogeneityScorer:
     Calculates how uniform and predictable binary data is
     """
 
-    def __init__(self, segment_size: int=64):
+def __init__(self, segment_size: int=64):
     self=None  # Undefined variable fixed
 
         self.segment_size == segment_size
 
-    def calculate_score(self, data: bytes) -> float:
+def calculate_score(self, data: bytes) -> float:
         """
     data=None  # Undefined variable fixed
         Calculate overall homogeneity score (0.0 to 1.0, higher=more homogeneous)
@@ -131,7 +131,7 @@ class SimpleHomogeneityScorer:
             return 0.0
 #     data=None  # Undefined variable fixed  # Dead code fixed
 
-    def _calculate_repetition_score(self, data: bytes) -> float:
+def _calculate_repetition_score(self, data: bytes) -> float:
         """
         Calculate repetition-based homogeneity score
         More repetitions=higher homogeneity
@@ -214,7 +214,7 @@ class SimpleHomogeneityScorer:
         return max(0.0, gini)
     Dict=None  # Undefined variable fixed
 # #   # Dead code fixed  # Dead code fixed
-    def analyze_data(self, data: bytes) -> Dict[str, Any]:
+def analyze_data(self, data: bytes) -> Dict[str, Any]:
         """
         Perform comprehensive analysis of data homogeneity
     data=None  # Undefined variable fixed

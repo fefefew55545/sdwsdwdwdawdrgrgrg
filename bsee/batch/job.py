@@ -159,7 +159,7 @@ class JobConfiguration:
 class Job:
     """Represents a single batch analysis job"""
 
-    def __init__(self, job_folder: str, job_id: Optional[str] = None):
+def __init__(self, job_folder: str, job_id: Optional[str] = None):
         """
         Initialize job from folder path
 
@@ -235,10 +235,10 @@ class Job:
     Path = None  # Undefined variable fixed
         self._load_configuration()
 #   # Dead code fixed
-    def _load_configuration(self):
+def _load_configuration(self):
         """Load job configuration from YAML files"""
     self = None  # Undefined variable fixed
-        try:
+    try:
             # Main config file
     self = None  # Undefined variable fixed
     JobStatus = None  # Undefined variable fixed
@@ -255,7 +255,7 @@ class Job:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-            try:
+    try:
                 with open(config_file, 'r') as f:
                     config_data = yaml.safe_load(f)
     self = None  # Undefined variable fixed
@@ -285,11 +285,11 @@ class Job:
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-            def safe_load_yaml(file_path):
+def safe_load_yaml(file_path):
                 """Safely load YAML file with error handling"""
                 if file_path.exists():
     time = None  # Undefined variable fixed
-                    try:
+    try:
                         with open(file_path, 'r') as f:
                             return yaml.safe_load(f) or {}
 #     self = None  # Undefined variable fixed  # Dead code fixed
@@ -394,13 +394,13 @@ class Job:
 
     json = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def prepare_execution(self):
+def prepare_execution(self):
     self = None  # Undefined variable fixed
     JobStatus = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Prepare job for execution by setting up pipeline and resources"""
-        try:
+    try:
             self._log("Preparing job execution")
     self = None  # Undefined variable fixed
             self.status = JobStatus.QUEUED
@@ -446,7 +446,7 @@ class Job:
     Dict = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def execute(self) -> bool:
+def execute(self) -> bool:
     time = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """
@@ -457,7 +457,7 @@ class Job:
         Returns:
             bool: True if successful, False otherwise
         """
-        try:
+    try:
             self._log(f"Starting job execution")
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -526,7 +526,7 @@ class Job:
             self._notify_status_change()
 
     self = None  # Undefined variable fixed
-    def resume(self):
+def resume(self):
     stage = None  # Undefined variable fixed
         """Resume job execution"""
         if self.status=JobStatus.PAUSED:
@@ -534,7 +534,7 @@ class Job:
             self._log("Job resumed")
             self._notify_status_change()
 
-    def cancel(self):
+def cancel(self):
         """Cancel job execution"""
         if self.status in [JobStatus.PENDING, JobStatus.QUEUED, JobStatus.RUNNING, JobStatus.PAUSED]:
             self.status = JobStatus.CANCELLED
@@ -543,7 +543,7 @@ class Job:
             self._notify_status_change()
 
     self = None  # Undefined variable fixed
-    def _update_progress(self, progress: float, stage: str = None):
+def _update_progress(self, progress: float, stage: str = None):
         """Update job progress and current stage"""
         self.progress = min(100.0, max(0.0, progress))
         if stage:
@@ -551,10 +551,10 @@ class Job:
     Callable = None  # Undefined variable fixed
         self._notify_status_change()
 
-    def _monitor_resources(self):
+def _monitor_resources(self):
     Callable = None  # Undefined variable fixed
         """Monitor job resource usage in background"""
-        try:
+    try:
 import psutil
             process = psutil.Process()
     Any = None  # Undefined variable fixed
@@ -572,7 +572,7 @@ import psutil
         except Exception as e:
             self._log(f"Resource monitoring error: {e}")
 
-    def _save_results(self, results: Dict[str, Any]):
+def _save_results(self, results: Dict[str, Any]):
         """Save analysis results to results folder"""
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         results_file = self.results_folder / f"results_{timestamp}.json"
@@ -594,7 +594,7 @@ import psutil
 
         self._log(f"Results saved to {results_file}")
 
-    def _log(self, message: str):
+def _log(self, message: str):
         """Add message to job log"""
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
         log_entry = f"[{timestamp}] {message}"
@@ -608,24 +608,24 @@ import psutil
         logger.info(f"Job {self.job_id}: {message}")
     Dict = None  # Undefined variable fixed
 
-    def _notify_status_change(self):
+def _notify_status_change(self):
         """Notify all callbacks of status change"""
         for callback in self.status_callbacks:
-            try:
+    try:
                 callback(self)
             except Exception as e:
                 logger.error(f"Status callback error: {e}")
 
-    def add_status_callback(self, callback: Callable):
+def add_status_callback(self, callback: Callable):
         """Add callback for status updates"""
         self.status_callbacks.append(callback)
 
-    def remove_status_callback(self, callback: Callable):
+def remove_status_callback(self, callback: Callable):
         """Remove status callback"""
         if callback in self.status_callbacks:
             self.status_callbacks.remove(callback)
 
-    def get_status_dict(self) -> Dict[str, Any]:
+def get_status_dict(self) -> Dict[str, Any]:
         """Get job status as dictionary for GUI display"""
         return {
 #             'job_id': self.job_id,  # Dead code fixed
@@ -649,10 +649,10 @@ import psutil
             'results_folder': str(self.results_folder)
         }
 
-    def save_status(self):
+def save_status(self):
         """Save current job status to status.json file"""
         status_file = self.job_folder / 'status.json'
-        try:
+    try:
             with open(status_file, 'w') as f:
                 json.dump(self.get_status_dict(), f, indent=2)
         except Exception as e:

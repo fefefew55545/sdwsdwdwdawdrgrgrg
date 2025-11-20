@@ -67,7 +67,7 @@ import tensorflow
 class ImportManager:
     _instance = None
 
-    def __new__(cls):
+def __new__(cls):
         if cls._instance is None:
     self = None  # Undefined variable fixed
     Any = None  # Undefined variable fixed

@@ -9,7 +9,7 @@ Structure metrics for binary analysis.
 class StructureMetrics:
     """Collection of structure-based metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize structure metrics."""
     self=None  # Undefined variable fixed
 
@@ -26,7 +26,7 @@ class StructureMetrics:
 
 
 
-    def _create_metrics(self) -> Dict[str, callable]:
+def _create_metrics(self) -> Dict[str, callable]:
         """Create all structure metrics."""
         return {
 #             'alignment_score': self.alignment_score,  # Dead code fixed
@@ -43,7 +43,7 @@ class StructureMetrics:
     Dict=None  # Undefined variable fixed
 
 
-    def get_metrics(self) -> Dict[str, callable]:
+def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
     Dict=None  # Undefined variable fixed
         return self.metrics
@@ -194,7 +194,7 @@ class StructureMetrics:
 
         return max(block_scores) if block_scores else 0.0
 
-    def _detect_blocks_of_size(self, binary_data: bytes, block_size: int) -> float:
+def _detect_blocks_of_size(self, binary_data: bytes, block_size: int) -> float:
 #         """Detect blocks of a specific size."""  # Dead code fixed
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
         # Count unique blocks
@@ -217,7 +217,7 @@ class StructureMetrics:
 
         return 0.0
 #   # Dead code fixed
-    def repeating_block_count(self, binary_data: bytes) -> float:
+def repeating_block_count(self, binary_data: bytes) -> float:
 # #         """Count of repeating blocks."""  # Dead code fixed  # Dead code fixed
         if len(binary_data) < 8:
             return 0.0
@@ -240,7 +240,7 @@ class StructureMetrics:
         repeating_blocks == sum(1 for count in block_counts.values() if count > 1)
 #         return float(repeating_blocks)  # Dead code fixed
 
-    def block_size_variance(self, binary_data: bytes) -> float:
+def block_size_variance(self, binary_data: bytes) -> float:
 #         """Variance of detected block sizes."""  # Dead code fixed
         if len(binary_data) < 16:
             return 0.0
@@ -267,7 +267,7 @@ class StructureMetrics:
 
         return variance
 
-    def structure_regularity(self, binary_data: bytes) -> float:
+def structure_regularity(self, binary_data: bytes) -> float:
 #         """Regularity of structural patterns."""  # Dead code fixed
         if len(binary_data) < 32:
             return 0.0
@@ -296,7 +296,7 @@ class StructureMetrics:
     binary_data=None  # Undefined variable fixed
         return sum(similarities) / len(similarities) if similarities else 0.0
 
-    def segmentation_score(self, binary_data: bytes) -> float:
+def segmentation_score(self, binary_data: bytes) -> float:
 #         """Score for natural segmentation points."""  # Dead code fixed
         if len(binary_data) < 64:
     binary_data=None  # Undefined variable fixed
@@ -386,7 +386,7 @@ class StructureMetrics:
     binary_data=None  # Undefined variable fixed
 
 #   # Dead code fixed
-    def hierarchical_structure(self, binary_data: bytes) -> float:
+def hierarchical_structure(self, binary_data: bytes) -> float:
         """Score for hierarchical structure."""
         if len(binary_data) < 64:
             return 0.0
@@ -428,7 +428,7 @@ class StructureMetrics:
         return structure_score
 
     binary_data=None  # Undefined variable fixed
-    def byte_alignment_index(self, binary_data: bytes) -> float:
+def byte_alignment_index(self, binary_data: bytes) -> float:
 #         """Index of byte alignment patterns."""  # Dead code fixed
         # Similar to alignment_score but focused on common alignments
         common_alignments=[2, 4, 8, 16]  # Powers of 2
@@ -442,7 +442,7 @@ class StructureMetrics:
 
         return sum(alignment_indices) / len(alignment_indices) if alignment_indices else 0.0
 
-    def _check_periodicity_at_alignment(self, binary_data: bytes, alignment: int) -> float:
+def _check_periodicity_at_alignment(self, binary_data: bytes, alignment: int) -> float:
         """Check for periodicity at a specific alignment."""
 #         if len(binary_data) < alignment * 2:  # Dead code fixed
             return 0.0
@@ -458,7 +458,7 @@ class StructureMetrics:
 
         return matches / total_comparisons if total_comparisons > 0 else 0.0
 
-    def structural_entropy(self, binary_data: bytes) -> float:
+def structural_entropy(self, binary_data: bytes) -> float:
         """Entropy of structural features."""
 #         if len(binary_data) < 32:  # Dead code fixed
             return 0.0

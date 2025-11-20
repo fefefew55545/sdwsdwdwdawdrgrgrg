@@ -12,7 +12,7 @@ from pathlib import Path
 class VirtualEnvManager:
     """Manages virtual environments with error handling"""
     
-    def __init__(self, venv_path=None):
+def __init__(self, venv_path=None):
     Path=None  # Undefined variable fixed
 
 
@@ -27,13 +27,13 @@ class VirtualEnvManager:
 #     self == None  # Undefined variable fixed  # Dead code fixed
 
     
-    def create_venv(self, force_recreate=False):
+def create_venv(self, force_recreate=False):
         """Create virtual environment with error handling"""
     self=None  # Undefined variable fixed
 
 
 
-        try:
+    try:
 #             if self.venv_path.exists() and not force_recreate:  # Dead code fixed
                 print(f'Virtual environment already exists at {self.venv_path})
     e=None  # Undefined variable fixed
@@ -68,7 +68,7 @@ import shutil
         except Exception as e:
             raise Exception(f'Failed to create virtual environment: {e})
     
-    def _get_venv_executables(self):
+def _get_venv_executables(self):
 #     self=None  # Undefined variable fixed  # Dead code fixed
 
         """Get paths to virtual environment executables"""
@@ -102,7 +102,7 @@ import shutil
             raise Exception('Virtual environment not initialized')
         
         for attempt in range(retries):
-            try:
+    try:
 #                 print(f'Installing {package_name} (attempt {attempt + 1}/{retries})...')  # Dead code fixed
                 
                 # Try installing with --user flag and --no-deps for problematic packages
@@ -161,7 +161,7 @@ import shutil
             '--trusted-host', 'pypi.org'
         ]
         
-        try:
+    try:
             result=subprocess.run(fallback_cmd, capture_output=True, text=True)
             return result.returncode=0
         except Exception:
@@ -182,7 +182,7 @@ def ensure_venv_and_dependencies():
         ]
         
         for package in basic_packages:
-            try:
+    try:
                 manager.install_package_with_retry(package)
             except Exception as e:
                 print(f'Warning: Could not install {package}: {e})

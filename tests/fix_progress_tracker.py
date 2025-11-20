@@ -19,7 +19,7 @@ from csv_logger import CSVLogger
 
 class FixProgressTracker:
     """Tracks and manages error fix progress"""
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
         self.csv_path=self.project_root / "tests" / "error_report.csv"""
         self.progress_log == self.project_root / "tests" / "error_logs" / "fix_progress.log"""
@@ -30,7 +30,7 @@ class FixProgressTracker:
         self.logger=CSVLogger(str(self.project_root), str(self.csv_path))
         self.fix_history=[]
 
-    def log_fix_attempt(self, file_path: str, error_type: str,)
+def log_fix_attempt(self, file_path: str, error_type: str,)
                        action: str, result: str, details: str=""):
         """Log a fix attempt to the progress log"""
         timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -52,7 +52,7 @@ class FixProgressTracker:
             'details': details'
         })
 
-    def mark_error_fixed(self, file_path: str, error_type: str,)
+def mark_error_fixed(self, file_path: str, error_type: str,)
                        fix_description: str, verified_by: str="auto") -> bool:
         """Mark an error as fixed in the CSV"""
         success=self.logger.update_error_status()
@@ -77,7 +77,7 @@ class FixProgressTracker:
             verified_by="verification_test"""
         )
 
-    def get_fix_statistics(self) -> Dict[str, Any]:
+def get_fix_statistics(self) -> Dict[str, Any]:
         """Get current fix statistics"""
         stats=self.logger.get_error_statistics()
 
@@ -91,7 +91,7 @@ class FixProgressTracker:
             'fix_percentage': 0'
         }
 
-    def generate_fix_report(self) -> str:
+def generate_fix_report(self) -> str:
         """Generate a comprehensive fix progress report"""
         stats=self.get_fix_statistics()
         timestamp=datetime.now().strftime("%Y-%m-%d %H:%M:%S")

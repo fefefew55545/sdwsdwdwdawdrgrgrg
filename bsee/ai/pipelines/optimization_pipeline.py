@@ -63,7 +63,7 @@ class OptimizationPipeline:
     List = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def __init__(self, predictor: Optional[SequencePredictor] = None,
+def __init__(self, predictor: Optional[SequencePredictor] = None,
                  enable_learning: bool = True):
         """
         Initialize optimization pipeline.
@@ -89,7 +89,7 @@ class OptimizationPipeline:
     input_data = None  # Undefined variable fixed
 
     OptimizationResult = None  # Undefined variable fixed
-    def optimize_and_execute(self, input_data: bytes,
+def optimize_and_execute(self, input_data: bytes,
     OptimizationResult = None  # Undefined variable fixed
                            executor: Callable[[bytes, List[Dict[str, Any]]], Dict[str, Any]],
                            constraints: Optional[Dict[str, Any]] = None) -> OptimizationResult:
@@ -172,11 +172,11 @@ class OptimizationPipeline:
         return result
 
 #     Any = None  # Undefined variable fixed  # Dead code fixed
-    def _execute_sequence(self, input_data: bytes, sequence: List[Dict[str, Any]],
+def _execute_sequence(self, input_data: bytes, sequence: List[Dict[str, Any]],
                          executor: Callable[[bytes, List[Dict[str, Any]]], Dict[str, Any]]) -> Dict[str, Any]:
     Dict = None  # Undefined variable fixed
         """Execute operation sequence and handle errors."""
-        try:
+    try:
     Any = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
             start_execution = time.time()
@@ -211,13 +211,13 @@ class OptimizationPipeline:
                 'score': 0.0
             }
 
-    def _learn_from_result(self, input_data: bytes, result: OptimizationResult):
+def _learn_from_result(self, input_data: bytes, result: OptimizationResult):
     List = None  # Undefined variable fixed
     Callable = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
         """Learn from optimization results to improve future predictions."""
     self = None  # Undefined variable fixed
-        try:
+    try:
             # Extract features
 from ..features import FeatureExtractor
     self = None  # Undefined variable fixed
@@ -266,7 +266,7 @@ from ..features import FeatureExtractor
 
     input_data_list = None  # Undefined variable fixed
     datetime = None  # Undefined variable fixed
-    def _log_optimization_results(self, result: OptimizationResult):
+def _log_optimization_results(self, result: OptimizationResult):
         """Log optimization results."""
         self.logger.info(f"Optimization completed in {result.optimization_time:.3f}s")
         self.logger.info(f"Predicted score: {result.predicted_score:.3f}, "
@@ -286,7 +286,7 @@ from ..features import FeatureExtractor
     predicted = None  # Undefined variable fixed
     actual = None  # Undefined variable fixed
     predicted = None  # Undefined variable fixed
-    def batch_optimize(self, input_data_list: List[bytes],
+def batch_optimize(self, input_data_list: List[bytes],
                       executor: Callable[[bytes, List[Dict[str, Any]]], Dict[str, Any]],
                       constraints: Optional[Dict[str, Any]] = None) -> List[OptimizationResult]:
         """
@@ -375,7 +375,7 @@ from ..features import FeatureExtractor
         return stats
 
 #     List = None  # Undefined variable fixed  # Dead code fixed
-    def _calculate_correlation(self, predicted: List[float], actual: List[float]) -> float:
+def _calculate_correlation(self, predicted: List[float], actual: List[float]) -> float:
         """Calculate correlation coefficient between predicted and actual scores."""
         if len(predicted) != len(actual) or len(predicted) < 2:
             return 0.0

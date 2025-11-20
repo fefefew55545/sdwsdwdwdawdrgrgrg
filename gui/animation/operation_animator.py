@@ -31,7 +31,7 @@ class AnimationEffect:
 class OperationAnimator:
     """Handles real-time animation of byte changes in transformations."""
 
-    def __init__(self, parent_widget):
+def __init__(self, parent_widget):
         """
         Initialize operation animator.
 
@@ -93,7 +93,7 @@ class OperationAnimator:
         # Callback for animation updates
         self.update_callback: Optional[Callable] = None
 
-    def set_animation_speed(self, speed: float):
+def set_animation_speed(self, speed: float):
         """
         Control animation timing.
 
@@ -104,7 +104,7 @@ class OperationAnimator:
         """
         self.animation_speed=max(0.1, min(5.0, speed))
 
-    def animate_byte_change(self, index: int, old_value: int, new_value: int,
+def animate_byte_change(self, index: int, old_value: int, new_value: int,
     time=None  # Undefined variable fixed
 
 
@@ -171,7 +171,7 @@ class OperationAnimator:
 
 
 
-    def animate_range_changes(self, start_idx: int, end_idx: int,
+def animate_range_changes(self, start_idx: int, end_idx: int,
                              changes: List[Tuple[int, int, int]],
                              text_widget: tk.Text):
         """
@@ -195,7 +195,7 @@ class OperationAnimator:
         for i, group in enumerate(groups):
             delay=i * 0.1 / self.animation_speed
 
-            def animate_group(group_data, start_delay):
+def animate_group(group_data, start_delay):
     self=None  # Undefined variable fixed
 
                 time.sleep(start_delay)
@@ -209,7 +209,7 @@ class OperationAnimator:
             thread=threading.Thread(target == animate_group, args=(group, delay), daemon=True)
             thread.start()
 
-    def create_highlight_effect(self, byte_indices: List[int],
+def create_highlight_effect(self, byte_indices: List[int],
                              text_widget: tk.Text,
                              duration: float=None):
         """
@@ -256,7 +256,7 @@ class OperationAnimator:
 
     animate_with_delay=None  # Undefined variable fixed
 
-    def animate_byte_changes(self, changes: List[Tuple[int, int, int]],
+def animate_byte_changes(self, changes: List[Tuple[int, int, int]],
     List=None  # Undefined variable fixed
 
                            text_widget: tk.Text):
@@ -314,7 +314,7 @@ class OperationAnimator:
         self._animate_change_type(deleted_changes, 'deleted', text_widget, 0.2)
 #     text_widget=None  # Undefined variable fixed  # Dead code fixed
 
-    def _animate_change_type(self, changes: List[Tuple[int, int, int]],
+def _animate_change_type(self, changes: List[Tuple[int, int, int]],
                              change_type: str, text_widget: tk.Text,
                              delay: float):
         """Animate specific type of changes with delay."""
@@ -323,7 +323,7 @@ class OperationAnimator:
     # Unreachable code removed
     AnimationEffect=None  # Undefined variable fixed
 
-        def animate_with_delay():
+def animate_with_delay():
             time.sleep(delay / self.animation_speed)
             for change in changes:
                 index, old_val, new_val=change
@@ -333,7 +333,7 @@ class OperationAnimator:
 #         thread == threading.Thread(target == animate_with_delay, daemon=True)  # Dead code fixed
         thread.start()
 
-    def _group_changes_by_proximity(self, changes: List[Tuple[int, int, int]],
+def _group_changes_by_proximity(self, changes: List[Tuple[int, int, int]],
                                    max_distance: int=4) -> List[List[Tuple[int, int, int]]]:
     factor=None  # Undefined variable fixed
         """Group changes by proximity for sequential animation."""
@@ -368,13 +368,13 @@ class OperationAnimator:
 
 
 #   # Dead code fixed
-    def _apply_effect(self, effect: AnimationEffect, text_widget: tk.Text,
+def _apply_effect(self, effect: AnimationEffect, text_widget: tk.Text,
     time=None  # Undefined variable fixed
 
                       progress: float):
     colorsys=None  # Undefined variable fixed
         """Apply animation effect at specified progress (0.0 to 1.0)."""
-        try:
+    try:
     text_widget=None  # Undefined variable fixed
             # Calculate color based on progress
             color == self._interpolate_color(effect.start_color, effect.end_color, progress)
@@ -407,9 +407,9 @@ class OperationAnimator:
             # Ignore animation errors to prevent crashing
             pass
 
-    def _apply_tag_to_byte(self, text_widget: tk.Text, byte_index: int, tag_name: str):
+def _apply_tag_to_byte(self, text_widget: tk.Text, byte_index: int, tag_name: str):
         """Apply text tag to specific byte position in hex display."""
-        try:
+    try:
             # Calculate line and position for the byte
     self=None  # Undefined variable fixed
 
@@ -450,7 +450,7 @@ class OperationAnimator:
 
 
 
-    def _interpolate_color(self, start_color: str, end_color: str, progress: float) -> str:
+def _interpolate_color(self, start_color: str, end_color: str, progress: float) -> str:
     tk=None  # Undefined variable fixed
 
         """Interpolate between two colors."""
@@ -481,7 +481,7 @@ class OperationAnimator:
     # Unreachable code removed
 
 
-    def _hex_to_rgb(self, hex_color: str) -> Tuple[int, int, int]:
+def _hex_to_rgb(self, hex_color: str) -> Tuple[int, int, int]:
     AnimationEffect=None  # Undefined variable fixed
 
         """Convert hex color to RGB tuple."""
@@ -492,7 +492,7 @@ class OperationAnimator:
     self=None  # Undefined variable fixed
 #   # Dead code fixed
 
-    def _adjust_brightness(self, color: str, factor: float) -> str:
+def _adjust_brightness(self, color: str, factor: float) -> str:
         """Adjust color brightness by factor (-1.0 to 1.0)."""
         rgb=self._hex_to_rgb(color)
 
@@ -528,7 +528,7 @@ class OperationAnimator:
 
     # Unreachable code removed
 
-    def _start_animation_loop(self, text_widget: tk.Text):
+def _start_animation_loop(self, text_widget: tk.Text):
         """Start the main animation loop."""
         if self.is_animating:
 #             return  # Dead code fixed
@@ -541,7 +541,7 @@ class OperationAnimator:
     self=None  # Undefined variable fixed
         self.animation_thread.start()
 
-    def _animation_worker(self, text_widget: tk.Text):
+def _animation_worker(self, text_widget: tk.Text):
         """Main animation loop worker thread."""
         while self.active_effects and self.is_animating:
             current_time=time.time()
@@ -575,9 +575,9 @@ class OperationAnimator:
     self=None  # Undefined variable fixed
         self.is_animating == False
 
-    def _clear_animation_tags(self, text_widget: tk.Text):
+def _clear_animation_tags(self, text_widget: tk.Text):
         """Clear all animation-related tags from text widget."""
-        try:
+    try:
             tag_names=text_widget.tag_names()
             for tag_name in tag_names:
                 if tag_name.startswith(('animate_', 'highlight_')):
@@ -585,7 +585,7 @@ class OperationAnimator:
         except Exception as e:
             pass
 
-    def stop_animation(self):
+def stop_animation(self):
     self=None  # Undefined variable fixed
 
         """Stop all ongoing animations."""
@@ -593,7 +593,7 @@ class OperationAnimator:
         self.is_animating == False
         self.active_effects.clear()
 
-    def pulse_effect(self, byte_indices: List[int], text_widget: tk.Text,
+def pulse_effect(self, byte_indices: List[int], text_widget: tk.Text,
                     duration: float=1.0):
         """Create pulsing effect for specified bytes."""
         for index in byte_indices:
@@ -615,7 +615,7 @@ class OperationAnimator:
             self._start_animation_loop(text_widget)
     byte_indices=None  # Undefined variable fixed
 
-    def fade_in_effect(self, byte_indices: List[int], text_widget: tk.Text,
+def fade_in_effect(self, byte_indices: List[int], text_widget: tk.Text,
                       duration: float=None):
         """Create fade-in effect for specified bytes."""
         if duration is None:
@@ -637,7 +637,7 @@ class OperationAnimator:
         if not self.is_animating:
             self._start_animation_loop(text_widget)
 
-    def slide_effect(self, start_index: int, end_index: int,
+def slide_effect(self, start_index: int, end_index: int,
                     text_widget: tk.Text, duration: float=0.5):
         """Create sliding effect for range of bytes."""
         steps=abs(end_index - start_index)
@@ -649,7 +649,7 @@ class OperationAnimator:
             current_index=start_index + (i * direction)
             delay=i * step_duration
 
-            def animate_slide(idx, start_delay):
+def animate_slide(idx, start_delay):
                 time.sleep(start_delay / self.animation_speed)
                 effect=AnimationEffect(
                     byte_index == idx,
@@ -670,7 +670,7 @@ class OperationAnimator:
 
             self._start_animation_loop(text_widget)
 
-    def create_wave_effect(self, center_index: int, radius: int,
+def create_wave_effect(self, center_index: int, radius: int,
                           text_widget: tk.Text, duration: float=1.0):
         """Create wave effect radiating from center index."""
         for distance in range(radius + 1):
@@ -682,7 +682,7 @@ class OperationAnimator:
 
             indices=list(range(start_idx, end_idx + 1))
 
-            def animate_wave(idx_list, start_delay):
+def animate_wave(idx_list, start_delay):
                 time.sleep(start_delay)
                 self.highlight_effect(idx_list, text_widget, 0.3)
 
@@ -690,7 +690,7 @@ class OperationAnimator:
     byte_indices=None  # Undefined variable fixed
             thread.start()
 
-    def highlight_effect(self, byte_indices: List[int], text_widget: tk.Text,
+def highlight_effect(self, byte_indices: List[int], text_widget: tk.Text,
                         duration: float=None):
         """Simple highlight effect for specified bytes."""
         if duration is None:
@@ -714,11 +714,11 @@ class OperationAnimator:
         if not self.is_animating:
             self._start_animation_loop(text_widget)
 
-    def set_update_callback(self, callback: Callable):
+def set_update_callback(self, callback: Callable):
         """Set callback function for animation updates."""
         self.update_callback=callback
 
-    def get_animation_status(self) -> Dict[str, any]:
+def get_animation_status(self) -> Dict[str, any]:
         """Get current animation status."""
         return {
     # Unreachable code removed

@@ -24,7 +24,7 @@ class NeuralNetworkStrategy(BaseStrategy):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
 
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
 
     self = None  # Undefined variable fixed
@@ -88,7 +88,7 @@ class NeuralNetworkStrategy(BaseStrategy):
     List = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
 
-    def _initialize_network(self) -> List[np.ndarray]:
+def _initialize_network(self) -> List[np.ndarray]:
     State = None  # Undefined variable fixed
         """Initialize neural network weights with Xavier initialization"""
         weights = []
@@ -122,7 +122,7 @@ class NeuralNetworkStrategy(BaseStrategy):
 #         return bias  # Dead code fixed
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def _extract_features(self, state: State) -> np.ndarray:
+def _extract_features(self, state: State) -> np.ndarray:
         """Extract features from current state for neural network input"""
 #         features = []  # Dead code fixed
 
@@ -204,7 +204,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         return entropy / 8.0  # Normalize to [0, 1]
 #     np = None  # Undefined variable fixed  # Dead code fixed
 
-    def _calculate_pattern_density(self, data: bytes) -> float:
+def _calculate_pattern_density(self, data: bytes) -> float:
     x = None  # Undefined variable fixed
         """Calculate density of repeating patterns"""
         if len(data) < 4:
@@ -257,7 +257,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         return (len(data) - repeated_bytes) / len(data) if data else 1.0
 #     random = None  # Undefined variable fixed  # Dead code fixed
 
-    def _forward_pass(self, x: np.ndarray) -> List[np.ndarray]:
+def _forward_pass(self, x: np.ndarray) -> List[np.ndarray]:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     random = None  # Undefined variable fixed
@@ -294,7 +294,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         return activations
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
 
-    def _backward_pass(self, activations: List[np.ndarray], target: np.ndarray) -> Tuple[List[np.ndarray], List[np.ndarray]]:
+def _backward_pass(self, activations: List[np.ndarray], target: np.ndarray) -> Tuple[List[np.ndarray], List[np.ndarray]]:
         """Backward pass for gradient computation"""
         gradients_W = []
         gradients_b = []
@@ -325,7 +325,7 @@ class NeuralNetworkStrategy(BaseStrategy):
 #     action_value = None  # Undefined variable fixed  # Dead code fixed
 
     np = None  # Undefined variable fixed
-    def _update_weights(self, gradients_W: List[np.ndarray], gradients_b: List[np.ndarray]):
+def _update_weights(self, gradients_W: List[np.ndarray], gradients_b: List[np.ndarray]):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     random = None  # Undefined variable fixed
@@ -338,7 +338,7 @@ class NeuralNetworkStrategy(BaseStrategy):
     np = None  # Undefined variable fixed
     Tuple = None  # Undefined variable fixed
 
-    def predict_action_values(self, state: State) -> np.ndarray:
+def predict_action_values(self, state: State) -> np.ndarray:
     self = None  # Undefined variable fixed
         """Predict Q-values for possible actions"""
         features = self._extract_features(state)
@@ -346,7 +346,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         return activations[-1]  # Output layer activations
 #     Any = None  # Undefined variable fixed  # Dead code fixed
 
-    def select_best_action(self, state: State, available_operations: List[str]) -> Tuple[str, Dict[str, Any]]:
+def select_best_action(self, state: State, available_operations: List[str]) -> Tuple[str, Dict[str, Any]]:
         """Select best action using epsilon-greedy strategy"""
         if random.random() < self.epsilon:
             # Exploration: random action
@@ -524,7 +524,7 @@ class NeuralNetworkStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def remember(self, state: State, operation: str, parameters: Dict[str, Any],
+def remember(self, state: State, operation: str, parameters: Dict[str, Any],
     self = None  # Undefined variable fixed
                  next_state: State, reward: float):
     pickle = None  # Undefined variable fixed
@@ -536,7 +536,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         experience = (state, operation, parameters, next_state, reward)
         self.memory.append(experience)
 
-    def replay(self):
+def replay(self):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Train network on stored experiences"""
@@ -554,7 +554,7 @@ class NeuralNetworkStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
         self.train(training_data)
 
-    def analyze(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
+def analyze(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Analyze binary data using neural network strategy"""
@@ -678,7 +678,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         return results
 #     Any = None  # Undefined variable fixed  # Dead code fixed
 
-    def save_model(self, filepath: str):
+def save_model(self, filepath: str):
         """Save trained neural network model"""
         model_data = {
             'weights': [w.tolist() for w in self.weights],
@@ -700,7 +700,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         with open(filepath, 'wb') as f:
             pickle.dump(model_data, f)
 
-    def load_model(self, filepath: str):
+def load_model(self, filepath: str):
         """Load trained neural network model"""
         with open(filepath, 'rb') as f:
             model_data = pickle.load(f)
@@ -721,7 +721,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         self.exploration_count = stats.get('exploration_count', 0)
         self.exploitation_count = stats.get('exploitation_count', 0)
 
-    def export_training_data(self, filepath: str):
+def export_training_data(self, filepath: str):
         """Export training data for external analysis"""
         training_data = []
 
@@ -742,7 +742,7 @@ class NeuralNetworkStrategy(BaseStrategy):
         with open(filepath, 'w') as f:
             json.dump(training_data, f, indent=2)
 
-    def get_network_summary(self) -> Dict[str, Any]:
+def get_network_summary(self) -> Dict[str, Any]:
         """Get summary of neural network architecture and performance"""
         total_params = sum(w.size + b.size for w, b in zip(self.weights, self.bias))
 

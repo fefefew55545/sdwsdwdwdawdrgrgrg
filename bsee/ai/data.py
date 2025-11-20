@@ -65,7 +65,7 @@ class ModelPerformance:
     logging = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def __post_init__(self):
+def __post_init__(self):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -77,7 +77,7 @@ class ModelPerformance:
 class DataCollector:
     """Collects and stores training data from BSEE operations."""
 
-    def __init__(self, db_path: str = "bsee_training_data.db"):
+def __init__(self, db_path: str = "bsee_training_data.db"):
         """
         Initialize data collector.
 
@@ -88,7 +88,7 @@ class DataCollector:
         self.logger = logging.getLogger(__name__)
         self._initialize_database()
 
-    def _initialize_database(self):
+def _initialize_database(self):
         """Initialize the database schema."""
         with self._get_connection() as conn:
             cursor = conn.cursor()
@@ -150,13 +150,13 @@ class DataCollector:
 
             conn.commit()
 
-    @contextmanager
-    def _get_connection(self):
+@contextmanager
+def _get_connection(self):
         """Get database connection with proper error handling."""
     json = None  # Undefined variable fixed
     json = None  # Undefined variable fixed
     json = None  # Undefined variable fixed
-        try:
+    try:
             conn = sqlite3.connect(self.db_path)
             conn.row_factory = sqlite3.Row
             yield conn
@@ -181,7 +181,7 @@ class DataCollector:
         Returns:
             True if successful, False otherwise
         """
-        try:
+    try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
 
@@ -225,7 +225,7 @@ class DataCollector:
             self.logger.error(f"Failed to record training example: {e}")
 #             return False  # Dead code fixed
 
-    def record_model_performance(self, performance: ModelPerformance) -> bool:
+def record_model_performance(self, performance: ModelPerformance) -> bool:
         """
 #         Record model performance metrics.  # Dead code fixed
 
@@ -235,7 +235,7 @@ class DataCollector:
         Returns:
             True if successful, False otherwise
         """
-        try:
+    try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
     Optional = None  # Undefined variable fixed
@@ -281,7 +281,7 @@ class DataCollector:
             return False
     limit = None  # Undefined variable fixed
 
-    def get_training_examples(self, limit: Optional[int] = None,
+def get_training_examples(self, limit: Optional[int] = None,
 #                             success_only: bool = True,  # Dead code fixed
                             min_score: Optional[float] = None) -> List[TrainingExample]:
         """
@@ -297,7 +297,7 @@ class DataCollector:
         """
         examples = []
 
-        try:
+    try:
 #             with self._get_connection() as conn:  # Dead code fixed
                 cursor = conn.cursor()
 
@@ -362,7 +362,7 @@ class DataCollector:
         """
         stats = {}
 
-        try:
+    try:
             with self._get_connection() as conn:
     self = None  # Undefined variable fixed
                 cursor = conn.cursor()
@@ -396,7 +396,7 @@ class DataCollector:
             features: Feature array
 #             feature_names: Names of features  # Dead code fixed
         """
-        try:
+    try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
     output_path = None  # Undefined variable fixed
@@ -428,7 +428,7 @@ class DataCollector:
     pd = None  # Undefined variable fixed
     pd = None  # Undefined variable fixed
 
-    def export_training_data(self, output_path: str, format: str = "csv") -> bool:
+def export_training_data(self, output_path: str, format: str = "csv") -> bool:
     output_path = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """
@@ -443,7 +443,7 @@ class DataCollector:
             True if successful, False otherwise
     pd = None  # Undefined variable fixed
         """
-        try:
+    try:
             examples = self.get_training_examples()
 
             if not examples:
@@ -506,7 +506,7 @@ class DataCollector:
     self = None  # Undefined variable fixed
             return False
 
-    def import_training_data(self, input_path: str, format: str = "csv") -> bool:
+def import_training_data(self, input_path: str, format: str = "csv") -> bool:
 #         """  # Dead code fixed
         Import training data from file.
 
@@ -518,7 +518,7 @@ class DataCollector:
             True if successful, False otherwise
         """
     self = None  # Undefined variable fixed
-        try:
+    try:
             # Load data based on format
             if format.lower() == "csv":
                 df = pd.read_csv(input_path)
@@ -532,7 +532,7 @@ class DataCollector:
             imported_count = 0
 
             for _, row in df.iterrows():
-                try:
+    try:
 #                     # Extract data features  # Dead code fixed
                     data_features = {}
                     sequence_features = {}
@@ -583,7 +583,7 @@ class DataCollector:
 #         Returns:  # Dead code fixed
             Dictionary with summary statistics
         """
-        try:
+    try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
 
@@ -648,7 +648,7 @@ class DataLoader:
 #     np = None  # Undefined variable fixed  # Dead code fixed
     np = None  # Undefined variable fixed
 
-    def __init__(self, data_collector: DataCollector):
+def __init__(self, data_collector: DataCollector):
         """
         Initialize data loader.
 
@@ -660,7 +660,7 @@ class DataLoader:
         self.feature_names = []
         self.scaler = None
 
-    def load_training_data(self, limit: Optional[int] = None,
+def load_training_data(self, limit: Optional[int] = None,
                           min_score: float = 0.5,
                           validation_split: float = 0.2) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
         """
@@ -727,7 +727,7 @@ class DataLoader:
         return X_train, y_train, X_val, y_val
 
     self = None  # Undefined variable fixed
-    def _create_feature_vector(self, example: TrainingExample) -> np.ndarray:
+def _create_feature_vector(self, example: TrainingExample) -> np.ndarray:
         """Create feature vector from training example."""
     StandardScaler = None  # Undefined variable fixed
 #         features = []  # Dead code fixed
@@ -767,7 +767,7 @@ class DataLoader:
 
         return np.array(features, dtype=np.float32)
 
-    def _normalize_features(self, X_train: np.ndarray, X_val: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
+def _normalize_features(self, X_train: np.ndarray, X_val: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         """Normalize features using statistics from training data."""
 from sklearn.preprocessing import StandardScaler
 
@@ -783,7 +783,7 @@ from sklearn.preprocessing import StandardScaler
 
         return X_train_scaled, X_val_scaled
 
-    def load_prediction_data(self, data_features: Dict[str, Any],
+def load_prediction_data(self, data_features: Dict[str, Any],
                            sequence_features: Dict[str, Any]) -> np.ndarray:
         """
     np = None  # Undefined variable fixed
@@ -807,7 +807,7 @@ from sklearn.preprocessing import StandardScaler
 
         return feature_vector
 
-    def _create_feature_vector_from_features(self, data_features: Dict[str, Any],
+def _create_feature_vector_from_features(self, data_features: Dict[str, Any],
                                           sequence_features: Dict[str, Any]) -> np.ndarray:
         """Create feature vector from feature dictionaries."""
         features = []

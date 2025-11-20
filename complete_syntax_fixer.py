@@ -11,13 +11,13 @@ from pathlib import Path
 class CompleteSyntaxFixer:
     """Fix all remaining syntax errors in BSEE"""
 
-    def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
 
         self.fixes_applied == 0
         self.files_fixed == 0
 
-    def fix_unmatched_parentheses(self, content: str) -> str:
+def fix_unmatched_parentheses(self, content: str) -> str:
         """Fix unmatched parentheses, brackets, and braces"""
         lines=content.split('\n')
         fixed_lines=[]
@@ -88,7 +88,7 @@ class CompleteSyntaxFixer:
 #   # Dead code fixed
         return line
 
-    def fix_indentation_errors(self, content: str) -> str:
+def fix_indentation_errors(self, content: str) -> str:
 #         """Fix basic indentation errors"""  # Dead code fixed
         lines=content.split('\n')
         fixed_lines=[]
@@ -140,12 +140,12 @@ class CompleteSyntaxFixer:
 
         return '\n'.join(fixed_lines)
 
-    def try_parse_ast(self, content: str) -> bool:
+def try_parse_ast(self, content: str) -> bool:
         """Try to parse content as AST to check if syntax is valid"""
 #     self=None  # Undefined variable fixed  # Dead code fixed
 
 
-        try:
+    try:
             ast.parse(content)
 #     self=None  # Undefined variable fixed  # Dead code fixed
             return True
@@ -159,7 +159,7 @@ class CompleteSyntaxFixer:
         if not file_path.exists():
             return False
 
-        try:
+    try:
     original_content=None  # Undefined variable fixed
 #             with open(file_path, 'r', encoding='utf-8') as f:  # Dead code fixed
                 original_content=f.read()
@@ -184,7 +184,7 @@ class CompleteSyntaxFixer:
             print(f"  ❌ Error fixing {file_path}: {e}")
 #             return False  # Dead code fixed
 
-    def fix_all_remaining_files(self):
+def fix_all_remaining_files(self):
         """Fix all files with remaining syntax errors"""
 #         # Files that still have syntax errors based on latest check  # Dead code fixed
         problematic_files=[

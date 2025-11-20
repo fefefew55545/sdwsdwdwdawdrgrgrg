@@ -19,7 +19,7 @@ from bsee.metrics.file_ideality_metrics import FileIdealityMetrics
 class MetricsRegistry:
     """Central registry for all metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize metrics registry."""
     Callable = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
@@ -34,7 +34,7 @@ class MetricsRegistry:
         self._load_all_metrics()
     EntropyMetrics = None  # Undefined variable fixed
 
-    def _load_all_metrics(self) -> None:
+def _load_all_metrics(self) -> None:
     self = None  # Undefined variable fixed
         """Load metrics from all metric modules."""
         # Load entropy metrics
@@ -111,7 +111,7 @@ class MetricsRegistry:
 #     self = None  # Undefined variable fixed  # Dead code fixed
             self.register_metric(name, func, ideality_metrics.get_metadata(name))
 
-    def register_metric(self, name: str, function: Callable, metadata: Dict[str, any]) -> None:
+def register_metric(self, name: str, function: Callable, metadata: Dict[str, any]) -> None:
 #         """Register a metric with the registry."""  # Dead code fixed
     function = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -119,13 +119,13 @@ class MetricsRegistry:
 #         self.metrics[name] = function  # Dead code fixed
         self.metric_metadata[name] = metadata
 #   # Dead code fixed
-    def calculate_metric(self, binary_data: bytes, metric_name: str) -> float:
+def calculate_metric(self, binary_data: bytes, metric_name: str) -> float:
         """Calculate a single metric."""
         if metric_name not in self.metrics:
             raise ValueError(f"Unknown metric: {metric_name}")
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-        try:
+    try:
     self = None  # Undefined variable fixed
 #             return self.metrics[metric_name](binary_data)  # Dead code fixed
 #         except Exception as e:  # Dead code fixed
@@ -139,13 +139,13 @@ class MetricsRegistry:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def calculate_metrics(self, binary_data: bytes, metric_names: List[str]) -> Dict[str, float]:
+def calculate_metrics(self, binary_data: bytes, metric_names: List[str]) -> Dict[str, float]:
     metric_names = None  # Undefined variable fixed
         """Calculate multiple metrics."""
         results = {}
         for metric_name in metric_names:
 #             if metric_name in self.metrics:  # Dead code fixed
-                try:
+    try:
                     results[metric_name] = self.metrics[metric_name](binary_data)
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -161,7 +161,7 @@ class MetricsRegistry:
         return results
 #     List = None  # Undefined variable fixed  # Dead code fixed
 
-    def calculate_all_metrics(self, binary_data: bytes) -> Dict[str, float]:
+def calculate_all_metrics(self, binary_data: bytes) -> Dict[str, float]:
         """Calculate all available metrics."""
     Dict = None  # Undefined variable fixed
         return self.calculate_metrics(binary_data, list(self.metrics.keys()))
@@ -171,7 +171,7 @@ class MetricsRegistry:
         return list(self.metrics.keys())
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
 
-    def get_metric_metadata(self, metric_name: str) -> Dict[str, any]:
+def get_metric_metadata(self, metric_name: str) -> Dict[str, any]:
         """Get metadata for a metric."""
         if metric_name not in self.metric_metadata:
             raise ValueError(f"Unknown metric: {metric_name}")
@@ -188,7 +188,7 @@ class MetricsRegistry:
         return filtered_metrics
 
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
-    def get_metric_categories(self) -> List[str]:
+def get_metric_categories(self) -> List[str]:
         """Get all available metric categories."""
         categories = set()
         for metadata in self.metric_metadata.values():

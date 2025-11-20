@@ -15,7 +15,7 @@ class AnnealingStrategy(BaseStrategy):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
     """Simulated annealing strategy."""
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
     config = None  # Undefined variable fixed
     config = None  # Undefined variable fixed
     config = None  # Undefined variable fixed
@@ -47,7 +47,7 @@ class AnnealingStrategy(BaseStrategy):
     random = None  # Undefined variable fixed
     math = None  # Undefined variable fixed
 #     new_state = None  # Undefined variable fixed  # Dead code fixed
-    def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
+def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Propose operation with temperature-dependent randomness."""

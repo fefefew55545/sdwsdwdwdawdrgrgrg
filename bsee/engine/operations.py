@@ -18,16 +18,16 @@ class Operation(ABC):
     config = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     name = None  # Undefined variable fixed
-    def __init__(self, name: str, config: Optional[Dict[str, Any]] = None):
+def __init__(self, name: str, config: Optional[Dict[str, Any]] = None):
         self.name = name
         self.config = config or {}
     self = None  # Undefined variable fixed
     abstractmethod = None  # Undefined variable fixed
 
-    @abstractmethod
-    def apply(self, state):
+@abstractmethod
+def apply(self, state):
         """Apply the operation to a binary state"""
         pass
 
-    def __str__(self):
+def __str__(self):
         return f"Operation({self.name})"

@@ -23,14 +23,14 @@ from windows_simulator import WindowsSimulator
 
 class TestErrorDetector:
     """Test cases for ErrorDetector"""
-    def test_init(self):
+def test_init(self):
         """Test ErrorDetector initialization"""
         detector=ErrorDetector()
         assert detector.project_root.exists()
         assert detector.errors=[]
         assert detector.python_files == []
 
-    def test_find_python_files(self, tmp_path):
+def test_find_python_files(self, tmp_path):
         """Test finding Python files in a directory"""
         # Create test Python files
         (tmp_path / "test1.py").touch()
@@ -50,7 +50,7 @@ class TestErrorDetector:
         assert "test2.py" in file_names
         assert "test3.py" in file_names
 
-    def test_check_syntax_error(self, tmp_path):
+def test_check_syntax_error(self, tmp_path):
         """Test syntax error detection"""
         # Create a file with syntax error
         syntax_error_file=tmp_path / "syntax_error.py"""
@@ -62,7 +62,7 @@ class TestErrorDetector:
         assert error['error_type'] == 'SyntaxError''
         assert 'Missing colon' in error['error_message'] or 'invalid syntax' in error['error_message']
 
-    def test_check_syntax_valid(self, tmp_path):
+def test_check_syntax_valid(self, tmp_path):
         """Test syntax checking with valid Python"""
         valid_file=tmp_path / "valid.py"""
         valid_file.write_text("def test():\n    print('test')\n    if True:\n        print('valid')")
@@ -71,7 +71,7 @@ class TestErrorDetector:
 
         assert error is None
 
-    def test_check_import_error_missing_module(self, tmp_path):
+def test_check_import_error_missing_module(self, tmp_path):
         """Test import error detection with missing module"""
         import_error_file=tmp_path / "import_error.py"""
         import_error_file.write_text("import definitely_nonexistent_module_12345")
@@ -81,7 +81,7 @@ class TestErrorDetector:
         # Should handle missing module gracefully during spec creation
         assert error is None  # Spec creation doesn't actually import''
 
-    def test_analyze_file_with_syntax_error(self, tmp_path):
+def test_analyze_file_with_syntax_error(self, tmp_path):
         """Test analyzing a file with syntax error"""
         error_file=tmp_path / "error.py"""
         error_file.write_text("def test():\n    print('test')\n    if True  # Missing colon")
@@ -91,7 +91,7 @@ class TestErrorDetector:
         assert len(errors) == 1
         assert errors[0]['error_type'] == 'SyntaxError''
 
-    def test_analyze_project(self, tmp_path):
+def test_analyze_project(self, tmp_path):
         """Test analyzing an entire project"""
         # Create test files
         (tmp_path / "good.py").write_text("print('hello')")
@@ -103,7 +103,7 @@ class TestErrorDetector:
         syntax_errors=[e for e in errors if e['error_type'] == 'SyntaxError']
         assert len(syntax_errors) >= 1
 
-    def test_get_error_summary(self):
+def test_get_error_summary(self):
         """Test error summary generation"""
         detector=ErrorDetector()
         detector.errors=[
@@ -121,14 +121,14 @@ class TestErrorDetector:
 
 class TestCSVLogger:
     """Test cases for CSVLogger"""
-    def test_init(self, tmp_path):
+def test_init(self, tmp_path):
         """Test CSVLogger initialization"""
         csv_path=tmp_path / "test_report.csv"""
         logger == CSVLogger(str(tmp_path), str(csv_path))
         assert logger.project_root=tmp_path.resolve()
         assert logger.csv_path=csv_path
 
-    def test_create_error_report(self, tmp_path):
+def test_create_error_report(self, tmp_path):
         """Test creating CSV error report"""
         csv_path=tmp_path / "test_report.csv"""
         logger == CSVLogger(str(tmp_path), str(csv_path))
@@ -161,7 +161,7 @@ class TestCSVLogger:
         assert rows[1]['file_path'] == 'test2.py''
         assert rows[1]['error_type'] == 'ImportError''
 
-    def test_determine_priority(self):
+def test_determine_priority(self):
         """Test priority determination"""
         logger=CSVLogger()
         assert logger._determine_priority('SyntaxError') == 'HIGH''
@@ -170,7 +170,7 @@ class TestCSVLogger:
         assert logger._determine_priority('Warning') == 'LOW''
         assert logger._determine_priority('UnknownError') == 'MEDIUM''
 
-    def test_suggest_fix(self):
+def test_suggest_fix(self):
         """Test fix suggestions"""
         logger=CSVLogger()
 
@@ -186,7 +186,7 @@ class TestCSVLogger:
         fix=logger._suggest_fix(error)
         assert 'Fix syntax error' in fix'
 
-    def test_get_error_statistics(self, tmp_path):
+def test_get_error_statistics(self, tmp_path):
         """Test getting error statistics from CSV"""
         csv_path=tmp_path / "test_report.csv"""
         logger == CSVLogger(str(tmp_path), str(csv_path))
@@ -207,7 +207,7 @@ class TestCSVLogger:
         assert stats['by_type']['ImportError'] == 1'
         assert stats['by_type']['RuntimeError'] == 1'
 
-    def test_generate_summary_report(self, tmp_path):
+def test_generate_summary_report(self, tmp_path):
         """Test generating text summary report"""
         csv_path=tmp_path / "test_report.csv"""
         logger == CSVLogger(str(tmp_path), str(csv_path))
@@ -225,7 +225,7 @@ class TestCSVLogger:
         assert 'DETECTED' in summary'
         assert 'FIXED' in summary'
 
-    def test_export_filtered_report(self, tmp_path):
+def test_export_filtered_report(self, tmp_path):
         """Test exporting filtered CSV report"""
         csv_path=tmp_path / "test_report.csv"""
         logger == CSVLogger(str(tmp_path), str(csv_path))
@@ -254,13 +254,13 @@ class TestCSVLogger:
 
 class TestWindowsSimulator:
     """Test cases for WindowsSimulator"""
-    def test_init(self):
+def test_init(self):
         """Test WindowsSimulator initialization"""
         simulator=WindowsSimulator()
         assert simulator.project_root.exists()
         assert simulator.simulation_results=[]
 
-    def test_simulate_missing_dll(self, tmp_path):
+def test_simulate_missing_dll(self, tmp_path):
         """Test missing DLL simulation"""
         # Create a file with DLL-dependent imports
         dll_file=tmp_path / "test_dll.py"""
@@ -278,7 +278,7 @@ import cv2
         assert any('tkinter' in msg for msg in error_modules)
         assert any('cv2' in msg for msg in error_modules)
 
-    def test_simulate_path_issues(self, tmp_path):
+def test_simulate_path_issues(self, tmp_path):
         """Test PATH issues simulation"""
         path_file=tmp_path / "test_path.py"""
         path_file.write_text("""")
@@ -294,7 +294,7 @@ os.system('python --version')
         error_messages=[e['error_message'] for e in errors]
         assert any('git' in msg for msg in error_messages)
 
-    def test_simulate_gui_display_issues(self, tmp_path):
+def test_simulate_gui_display_issues(self, tmp_path):
         """Test GUI display issues simulation"""
         gui_file=tmp_path / "test_gui.py"""
         gui_file.write_text("""")
@@ -311,7 +311,7 @@ import matplotlib.pyplot as plt
         assert any('tkinter' in msg for msg in error_modules)
         assert any('matplotlib' in msg for msg in error_modules)
 
-    def test_simulate_network_connectivity_issues(self, tmp_path):
+def test_simulate_network_connectivity_issues(self, tmp_path):
         """Test network connectivity issues simulation"""
         network_file=tmp_path / "test_network.py"""
         network_file.write_text("""")
@@ -328,7 +328,7 @@ import urllib.request
         assert any('requests' in msg for msg in error_modules)
         assert any('urllib' in msg for msg in error_modules)
 
-    def test_simulate_bsee_batch_issues(self, tmp_path):
+def test_simulate_bsee_batch_issues(self, tmp_path):
         """Test BSEE.bat issues simulation"""
         # Create mock BSEE.bat
         scripts_dir=tmp_path / "scripts"""
@@ -347,7 +347,7 @@ pip install -r requirements.txt
         error_types=[e['error_type'] for e in errors]
         assert 'PackageInstallIssue' in error_types'
 
-    def test_get_simulation_summary(self):
+def test_get_simulation_summary(self):
         """Test simulation summary generation"""
         simulator=WindowsSimulator()
         simulator.simulation_results=[]
@@ -366,7 +366,7 @@ pip install -r requirements.txt
 
 class TestIntegration:
     """Integration tests for the complete error detection system"""
-    def test_end_to_end_workflow(self, tmp_path):
+def test_end_to_end_workflow(self, tmp_path):
         """Test complete end-to-end error detection workflow"""
         # Create test project with various error types
         (tmp_path / "syntax_error.py").write_text("def test():\n    if True  # Missing colon")

@@ -18,7 +18,7 @@ class Pipeline:
     Optional = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
-    def __init__(self, strategy_config: Optional[Dict[str, Any]] = None,
+def __init__(self, strategy_config: Optional[Dict[str, Any]] = None,
                  cost_model: Optional[Dict[str, Any]] = None,
                  metrics_config: Optional[Dict[str, Any]] = None,
                  **kwargs):
@@ -44,7 +44,7 @@ class Pipeline:
         self.kwargs = kwargs
     Dict = None  # Undefined variable fixed
 
-    def analyze_files(self, input_files: List[Path], progress_callback: Optional[Callable] = None) -> Dict[str, Any]:
+def analyze_files(self, input_files: List[Path], progress_callback: Optional[Callable] = None) -> Dict[str, Any]:
         """
     input_files = None  # Undefined variable fixed
         Analyze input files and return results.
@@ -68,7 +68,7 @@ class Pipeline:
         }
 #   # Dead code fixed
         for i, file_path in enumerate(input_files):
-            try:
+    try:
                 # Process each file
                 file_result = self._analyze_single_file(file_path)
     input_files = None  # Undefined variable fixed
@@ -112,7 +112,7 @@ class Pipeline:
             Dict containing analysis results for the file
         """
     e = None  # Undefined variable fixed
-        try:
+    try:
             # Check if file exists
             if not file_path.exists():
                 raise FileNotFoundError(f"File not found: {file_path}")
@@ -150,7 +150,7 @@ class Pipeline:
                 'error': str(e)
             }
 
-    def _calculate_entropy(self, data: bytes) -> float:
+def _calculate_entropy(self, data: bytes) -> float:
         """
         Calculate Shannon entropy of data.
 

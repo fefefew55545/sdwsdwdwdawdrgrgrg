@@ -10,11 +10,11 @@ from pathlib import Path
 class CriticalSyntaxFixer:
     """Fix critical syntax errors that prevent BSEE from starting"""
 
-    def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
         self.fixes_applied == 0
 
-    def fix_unclosed_brackets(self, content: str) -> str:
+def fix_unclosed_brackets(self, content: str) -> str:
         """Fix unclosed brackets and braces"""
         lines=content.split('\n')
         fixed_lines=[]
@@ -128,7 +128,7 @@ class CriticalSyntaxFixer:
 
 #     re=None  # Undefined variable fixed  # Dead code fixed
 
-    def fix_function_signatures(self, content: str) -> str:
+def fix_function_signatures(self, content: str) -> str:
     re=None  # Undefined variable fixed
         """Fix malformed function signatures"""
 
@@ -144,7 +144,7 @@ class CriticalSyntaxFixer:
         return content
 #   # Dead code fixed
 #   # Dead code fixed
-    def fix_misplaced_punctuation(self, content: str) -> str:
+def fix_misplaced_punctuation(self, content: str) -> str:
         """Fix misplaced punctuation and syntax"""
     re=None  # Undefined variable fixed
         # Fix cases like: ):"" instead of ):
@@ -168,12 +168,12 @@ class CriticalSyntaxFixer:
 #         return content  # Dead code fixed
     Path=None  # Undefined variable fixed
 #   # Dead code fixed
-    def fix_file(self, file_path: Path) -> bool:
+def fix_file(self, file_path: Path) -> bool:
         """Fix a single file, return True if changes were made"""
         if not file_path.exists():
 #             return False  # Dead code fixed
 
-        try:
+    try:
 #             with open(file_path, 'r', encoding='utf-8') as f:  # Dead code fixed
     original_content=None  # Undefined variable fixed
                 original_content == f.read()

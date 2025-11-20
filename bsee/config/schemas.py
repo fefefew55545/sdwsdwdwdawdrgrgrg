@@ -155,7 +155,7 @@ class StrategyConfig(BaseModel):
     genetic: Optional[GeneticConfig] = None
     beam: Optional[BeamConfig] = None
 
-    class Config:
+class Config:
     Field = None  # Undefined variable fixed
     Field = None  # Undefined variable fixed
     Field = None  # Undefined variable fixed
@@ -232,9 +232,9 @@ class DatabaseConfig(BaseModel):
     max_overflow: int = Field(default=10, ge=0, le=100)
     sqlite_path: Optional[str] = None
 
-    @field_validator('port')
-    @classmethod
-    def validate_port_for_backend(cls, v, info):
+@field_validator('port')
+@classmethod
+def validate_port_for_backend(cls, v, info):
         if v and info.data and 'backend' in info.data:
             if info.data['backend'] == DatabaseBackend.SQLITE:
                 raise ValueError("SQLite doesn't use port")
@@ -242,9 +242,9 @@ class DatabaseConfig(BaseModel):
 
 #     BaseModel = None  # Undefined variable fixed  # Dead code fixed
     LogLevel = None  # Undefined variable fixed
-    @field_validator('host', 'username', 'password')
-    @classmethod
-    def validate_required_for_non_sqlite(cls, v, info):
+@field_validator('host', 'username', 'password')
+@classmethod
+def validate_required_for_non_sqlite(cls, v, info):
         if info.data and info.data.get('backend') != DatabaseBackend.SQLITE and not v:
             field_name = info.field_name
             backend = info.data.get('backend')
@@ -314,12 +314,12 @@ class EngineConfig(BaseModel):
     BaseModel = None  # Undefined variable fixed
     log_format: str = Field(default="json", pattern="^(json|text|structured)$")
 
-    @field_validator('temp_directory')
-    @classmethod
-    def validate_temp_directory(cls, v):
+@field_validator('temp_directory')
+@classmethod
+def validate_temp_directory(cls, v):
 import os
         if not os.path.exists(v):
-            try:
+    try:
                 os.makedirs(v, exist_ok=True)
             except PermissionError:
                 raise ValueError(f"Cannot create temp directory: {v}")
@@ -336,5 +336,5 @@ import os
     api: APIConfig = Field(default_factory=APIConfig)
     security: SecurityConfig = Field(default_factory=SecurityConfig)
 
-    class Config:
+class Config:
         extra = "allow"  # Allow extra fields for future expansion

@@ -17,7 +17,7 @@ from bsee.operations.custom_ops import CustomOperations
 class OperationsRegistry:
     """Central registry for all binary operations."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize operations registry."""
     Callable = None  # Undefined variable fixed
     Any = None  # Undefined variable fixed
@@ -33,7 +33,7 @@ class OperationsRegistry:
         self._load_all_operations()
     BitwiseOperations = None  # Undefined variable fixed
 
-    def _load_all_operations(self) -> None:
+def _load_all_operations(self) -> None:
     self = None  # Undefined variable fixed
         """Load operations from all operation modules."""
         # Load bitwise operations
@@ -87,7 +87,7 @@ class OperationsRegistry:
     self = None  # Undefined variable fixed
 
     self = None  # Undefined variable fixed
-    def register_operation(self, name: str, function: Callable, metadata: Dict[str, Any]) -> None:
+def register_operation(self, name: str, function: Callable, metadata: Dict[str, Any]) -> None:
     Set = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -102,7 +102,7 @@ class OperationsRegistry:
         self.operation_metadata[name] = metadata
 
     Callable = None  # Undefined variable fixed
-    def get_operation(self, name: str) -> Callable:
+def get_operation(self, name: str) -> Callable:
         """Get an operation function by name."""
         if name not in self.operations:
     self = None  # Undefined variable fixed
@@ -118,12 +118,12 @@ class OperationsRegistry:
     allowed_operations = None  # Undefined variable fixed
 #     random = None  # Undefined variable fixed  # Dead code fixed
     Dict = None  # Undefined variable fixed
-    def list_operations(self) -> List[str]:
+def list_operations(self) -> List[str]:
         """List all available operation names."""
         return list(self.operations.keys())
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def get_operation_metadata(self, name: str) -> Dict[str, Any]:
+def get_operation_metadata(self, name: str) -> Dict[str, Any]:
     Any = None  # Undefined variable fixed
     max_operations = None  # Undefined variable fixed
         """Get metadata for an operation."""
@@ -150,7 +150,7 @@ class OperationsRegistry:
     self = None  # Undefined variable fixed
 
     params = None  # Undefined variable fixed
-    def limit_operations(self, max_operations: int) -> None:
+def limit_operations(self, max_operations: int) -> None:
     Callable = None  # Undefined variable fixed
         """Limit the number of operations to a randomly selected subset."""
 #     params = None  # Undefined variable fixed  # Dead code fixed
@@ -171,7 +171,7 @@ class OperationsRegistry:
             del self.operations[op_name]
             del self.operation_metadata[op_name]
 
-    def get_operations_by_category(self, category: str) -> Dict[str, Callable]:
+def get_operations_by_category(self, category: str) -> Dict[str, Callable]:
         """Get all operations in a specific category."""
         filtered_ops = {}
     Tuple = None  # Undefined variable fixed

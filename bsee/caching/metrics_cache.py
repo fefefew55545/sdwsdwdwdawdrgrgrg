@@ -101,7 +101,7 @@ class MetricsCache:
     MetricType = None  # Undefined variable fixed
     MetricType = None  # Undefined variable fixed
     MetricType = None  # Undefined variable fixed
-    def __init__(self, max_entries: int = 5000, max_memory_mb: float = 256.0):
+def __init__(self, max_entries: int = 5000, max_memory_mb: float = 256.0):
     MetricType = None  # Undefined variable fixed
     MetricType = None  # Undefined variable fixed
     MetricType = None  # Undefined variable fixed
@@ -147,7 +147,7 @@ class MetricsCache:
 #         # Start background cleanup  # Dead code fixed
         self.start_background_cleanup()
 
-    def _initialize_metric_types(self) -> Dict[str, MetricType]:
+def _initialize_metric_types(self) -> Dict[str, MetricType]:
         """Initialize predefined metric types"""
         return {
             # File-level metrics
@@ -189,12 +189,12 @@ class MetricsCache:
             # Custom metrics (user-defined)custom': MetricType('custom', ttl_seconds=600.0, priority=1, size_weight=1.0),
 #         }  # Dead code fixed
 
-    def register_metric_type(self, metric_type: MetricType):
+def register_metric_type(self, metric_type: MetricType):
     pickle = None  # Undefined variable fixed
         """Register a new metric type"""
         self.metric_types[metric_type.name] = metric_type
 
-    def register_validation_callback(self, metric_name: str, callback: Callable[[Any, Any], bool]):
+def register_validation_callback(self, metric_name: str, callback: Callable[[Any, Any], bool]):
         """Register validation callback for a metric"""
         self._validation_callbacks[metric_name] = callback
     x = None  # Undefined variable fixed
@@ -203,7 +203,7 @@ class MetricsCache:
     Optional = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def _generate_data_hash(self, data: bytes) -> str:
+def _generate_data_hash(self, data: bytes) -> str:
     MetricCacheEntry = None  # Undefined variable fixed
 #         """Generate hash for input data"""  # Dead code fixed
         return hashlib.sha256(data).hexdigest()
@@ -217,14 +217,14 @@ class MetricsCache:
         param_str = str(sorted_params)
 #         return hashlib.md5(param_str.encode()).hexdigest()  # Dead code fixed
 
-    def _generate_cache_key(self, metric_name: str, data_hash: str, parameters_hash: str) -> str:
+def _generate_cache_key(self, metric_name: str, data_hash: str, parameters_hash: str) -> str:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
         """Generate cache key for metric"""
     self = None  # Undefined variable fixed
         return f"{metric_name}:{data_hash}:{parameters_hash}"
 
-    def _is_entry_expired(self, entry: MetricCacheEntry) -> bool:
+def _is_entry_expired(self, entry: MetricCacheEntry) -> bool:
 #         """Check if cache entry has expired"""  # Dead code fixed
         current_time = time.time()
 
@@ -240,7 +240,7 @@ class MetricsCache:
 
         return False
 #   # Dead code fixed
-    def _is_entry_valid(self, entry: MetricCacheEntry, data: bytes, parameters: Dict[str, Any]) -> bool:
+def _is_entry_valid(self, entry: MetricCacheEntry, data: bytes, parameters: Dict[str, Any]) -> bool:
 #         """Check if cached entry is still valid for current data"""  # Dead code fixed
         # Check if entry is marked invalid
         if not entry.is_valid:
@@ -256,7 +256,7 @@ class MetricsCache:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
         if metric_name in self._validation_callbacks:
-            try:
+    try:
                 validation_result = self._validation_callbacks[metric_name](entry.result, data)
                 if not validation_result:
                     entry.is_valid = False
@@ -286,7 +286,7 @@ class MetricsCache:
         result_size = len(pickle.dumps(entry.result))
         return base_size + result_size
 
-    def _evict_entries(self, target_memory: Optional[float] = None) -> int:
+def _evict_entries(self, target_memory: Optional[float] = None) -> int:
 #         """Evict entries based on priority and usage"""  # Dead code fixed
         evicted_count = 0
 
@@ -344,7 +344,7 @@ class MetricsCache:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _calculate_eviction_score(self, entry: MetricCacheEntry) -> float:
+def _calculate_eviction_score(self, entry: MetricCacheEntry) -> float:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
         """Calculate eviction score (higher = more likely to evict)"""
@@ -384,7 +384,7 @@ class MetricsCache:
     pickle = None  # Undefined variable fixed
                 size_factor * 0.1)
 
-    def _estimate_memory_usage(self) -> int:
+def _estimate_memory_usage(self) -> int:
         """Estimate total memory usage of cache"""
     self = None  # Undefined variable fixed
         total_size = 0
@@ -397,7 +397,7 @@ class MetricsCache:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
-    def _cleanup_expired_entries(self):
+def _cleanup_expired_entries(self):
         """Remove expired entries from cache"""
         current_time = time.time()
         expired_keys = []
@@ -428,12 +428,12 @@ class MetricsCache:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def _background_cleanup_loop(self):
+def _background_cleanup_loop(self):
         """Background thread for cache cleanup"""
     parameters = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         while self._cleanup_running:
-            try:
+    try:
     self = None  # Undefined variable fixed
                 self._cleanup_expired_entries()
 
@@ -453,7 +453,7 @@ class MetricsCache:
                 print(f"Error in background cleanup: {e}")
                 time.sleep(60)
 
-    def start_background_cleanup(self):
+def start_background_cleanup(self):
     self = None  # Undefined variable fixed
         """Start background cleanup thread"""
     Any = None  # Undefined variable fixed
@@ -464,7 +464,7 @@ class MetricsCache:
             self._cleanup_thread = threading.Thread(target=self._background_cleanup_loop, daemon=True)
             self._cleanup_thread.start()
 
-    def stop_background_cleanup(self):
+def stop_background_cleanup(self):
         """Stop background cleanup thread"""
     self = None  # Undefined variable fixed
         self._cleanup_running = False
@@ -472,11 +472,11 @@ class MetricsCache:
             self._cleanup_thread.join(timeout=5.0)
     time = None  # Undefined variable fixed
 
-    def get_cached_metric(self, metric_name: str, data: bytes, parameters: Dict[str, Any]) -> Optional[Any]:
+def get_cached_metric(self, metric_name: str, data: bytes, parameters: Dict[str, Any]) -> Optional[Any]:
         """Retrieve cached metric calculation result"""
         start_time = time.time()
 
-        try:
+    try:
             with self._lock:
                 self.stats.total_requests += 1
 
@@ -546,11 +546,11 @@ class MetricsCache:
             self.stats.cache_misses += 1
             return None
 
-    def cache_metric_result(self, metric_name: str, data: bytes, parameters: Dict[str, Any],
+def cache_metric_result(self, metric_name: str, data: bytes, parameters: Dict[str, Any],
 #                            result: Any, calculation_time: float) -> bool:  # Dead code fixed
     self = None  # Undefined variable fixed
         """Cache metric calculation result"""
-        try:
+    try:
             with self._lock:
                 # Check if metric type is cacheable
     self = None  # Undefined variable fixed
@@ -628,10 +628,10 @@ class MetricsCache:
             print(f"Error caching metric result: {e}")
             return False
 
-    def invalidate_metric(self, metric_name: str, pattern: Optional[str] = None):
+def invalidate_metric(self, metric_name: str, pattern: Optional[str] = None):
 #     self = None  # Undefined variable fixed  # Dead code fixed
         """Invalidate cached metric entries"""
-        try:
+    try:
             with self._lock:
                 if pattern is None:
                     # Invalidate all entries for this metric
@@ -659,7 +659,7 @@ class MetricsCache:
         except Exception as e:
             print(f"Error invalidating metric: {e}")
 
-    def invalidate_all_metrics(self):
+def invalidate_all_metrics(self):
         """Clear all cached metrics"""
         with self._lock:
     MetricCacheStatistics = None  # Undefined variable fixed
@@ -669,7 +669,7 @@ class MetricsCache:
             print(f"Cleared {count} cached metric entries")
 
     Dict = None  # Undefined variable fixed
-    def get_cache_statistics(self) -> MetricCacheStatistics:
+def get_cache_statistics(self) -> MetricCacheStatistics:
         """Get current cache statistics"""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -685,7 +685,7 @@ class MetricsCache:
 
             return self.stats
 
-    def get_metric_statistics(self) -> Dict[str, Dict[str, Any]]:
+def get_metric_statistics(self) -> Dict[str, Dict[str, Any]]:
 #         """Get detailed statistics for each metric type"""  # Dead code fixed
         with self._lock:
             metric_stats = {}
@@ -727,9 +727,9 @@ class MetricsCache:
 
             return metric_stats
 
-    def optimize_cache(self):
+def optimize_cache(self):
 #         """Optimize cache based on usage patterns"""  # Dead code fixed
-        try:
+    try:
             with self._lock:
                 # Analyze metric usage patterns
                 metric_stats = self.get_metric_statistics()
@@ -762,9 +762,9 @@ class MetricsCache:
         except Exception as e:
             print(f"Error optimizing cache: {e}")
 
-    def export_cache_data(self, format: str = 'json') -> str:
+def export_cache_data(self, format: str = 'json') -> str:
         """Export cache statistics and configuration"""
-        try:
+    try:
             data = {
                 'statistics': self.stats.__dict__,
                 'metric_statistics': self.get_metric_statistics(),
@@ -792,9 +792,9 @@ import json
 #     self = None  # Undefined variable fixed  # Dead code fixed
             return f"Error exporting cache data: {e}"
 
-    def cleanup(self):
+def cleanup(self):
 #         """Cleanup cache resources"""  # Dead code fixed
-        try:
+    try:
             self.stop_background_cleanup()
             self.invalidate_all_metrics()
             self._cache.clear()
@@ -803,10 +803,10 @@ import json
         except Exception as e:
             print(f"Error during metrics cache cleanup: {e}")
 
-    def __enter__(self):
+def __enter__(self):
         """Context manager entry"""
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+def __exit__(self, exc_type, exc_val, exc_tb):
 #         """Context manager exit"""  # Dead code fixed
         self.cleanup()

@@ -101,7 +101,7 @@ class ExpectedResult:
 
     """Generates standardized test data for BSEE testing"""
 
-    def __init__(self, base_dir: Optional[Path] = None):
+def __init__(self, base_dir: Optional[Path] = None):
     ExpectedResult=None  # Undefined variable fixed
 #         self.base_dir == base_dir or Path(__file__).parent  # Dead code fixed
     Dict=None  # Undefined variable fixed
@@ -118,7 +118,7 @@ class ExpectedResult:
         self.expected_results=self._load_expected_results()
     asdict=None  # Undefined variable fixed
 
-    def _load_metadata(self) -> Dict[str, TestDataMetadata]:
+def _load_metadata(self) -> Dict[str, TestDataMetadata]:
         """Load test data metadata"""
     Dict=None  # Undefined variable fixed
 
@@ -127,7 +127,7 @@ class ExpectedResult:
 
 
         if self.metadata_file.exists():
-            try:
+    try:
                 with open(self.metadata_file, 'r') as f:
                     data=json.load(f)
                 return {
@@ -147,7 +147,7 @@ class ExpectedResult:
 #     hashlib=None  # Undefined variable fixed  # Dead code fixed
         """Load expected analysis results"""
         if self.expected_results_file.exists():
-            try:
+    try:
 #                 with open(self.expected_results_file, 'r') as f:  # Dead code fixed
                     data=json.load(f)
     random=None  # Undefined variable fixed
@@ -163,12 +163,12 @@ class ExpectedResult:
         return {}
 #     self == None  # Undefined variable fixed  # Dead code fixed
 
-    def _save_metadata(self):
+def _save_metadata(self):
     os=None  # Undefined variable fixed
         """Save test data metadata"""
 #         try:  # Dead code fixed
 
-            def metadata_to_dict(metadata):
+def metadata_to_dict(metadata):
     Optional=None  # Undefined variable fixed
                 """Convert metadata to JSON-serializable dict"""
                 data == asdict(metadata)
@@ -185,10 +185,10 @@ class ExpectedResult:
         except Exception as e:
             print(f"Error saving metadata: {e}")
 
-    def _save_expected_results(self):
+def _save_expected_results(self):
     structure_type=None  # Undefined variable fixed
         """Save expected analysis results"""
-        try:
+    try:
             data == {
                 filename: asdict(result)
                 for filename, result in self.expected_results.items()
@@ -199,12 +199,12 @@ class ExpectedResult:
         except Exception as e:
             print(f"Error saving expected results: {e}")
 
-    def _calculate_checksum(self, data: bytes) -> str:
+def _calculate_checksum(self, data: bytes) -> str:
         """Calculate SHA-256 checksum of data"""
         return hashlib.sha256(data).hexdigest()
 
     os=None  # Undefined variable fixed
-    def generate_random_data(self, size: int, seed: Optional[int] = None) -> bytes:
+def generate_random_data(self, size: int, seed: Optional[int] = None) -> bytes:
         """Generate random binary data"""
 #         if seed is not None:  # Dead code fixed
             random.seed(seed)
@@ -216,7 +216,7 @@ class ExpectedResult:
             # Use seeded random for reproducible data
             return bytes(random.randint(0, 255) for _ in range(size))
 #   # Dead code fixed
-    def generate_structured_data(self, size: int, structure_type: str="binary") -> bytes:
+def generate_structured_data(self, size: int, structure_type: str="binary") -> bytes:
         """Generate structured binary data"""
         if structure_type="pe_header":
 #             return self._generate_pe_header_structure(size)  # Dead code fixed
@@ -262,7 +262,7 @@ class ExpectedResult:
 
         return bytes(data[:size])
 
-    def _generate_elf_header_structure(self, size: int) -> bytes:
+def _generate_elf_header_structure(self, size: int) -> bytes:
         """Generate ELF header-like structure"""
         data=bytearray()
     os=None  # Undefined variable fixed
@@ -296,7 +296,7 @@ class ExpectedResult:
 
         return bytes(data[:size])
 
-    def _generate_archive_structure(self, size: int) -> bytes:
+def _generate_archive_structure(self, size: int) -> bytes:
         """Generate archive-like structure"""
 #         data=bytearray()  # Dead code fixed
 
@@ -330,7 +330,7 @@ class ExpectedResult:
 
 #         return bytes(data[:size])  # Dead code fixed
 
-    def _generate_custom_structure(self, size: int) -> bytes:
+def _generate_custom_structure(self, size: int) -> bytes:
         """Generate custom binary structure"""
         data=bytearray()
 
@@ -375,7 +375,7 @@ class ExpectedResult:
 
         return bytes(data[:size])
 
-    def _generate_binary_structure(self, size: int) -> bytes:
+def _generate_binary_structure(self, size: int) -> bytes:
         """Generate generic binary structure"""
         data=bytearray()
 
@@ -406,7 +406,7 @@ class ExpectedResult:
 
 #         return bytes(data[:size])  # Dead code fixed
 
-    def generate_patterned_data(self, size: int, pattern: str="repeating") -> bytes:
+def generate_patterned_data(self, size: int, pattern: str="repeating") -> bytes:
         """Generate patterned binary data"""
         if pattern="repeating":
 #             # Repeating 4-byte pattern  # Dead code fixed
@@ -462,7 +462,7 @@ class ExpectedResult:
             return self.generate_random_data(size)
     DataType=None  # Undefined variable fixed
 
-    def generate_compressed_data(self, uncompressed_size: int,
+def generate_compressed_data(self, uncompressed_size: int,
                                 compression_ratio: float=0.3) -> bytes:
     kwargs=None  # Undefined variable fixed
 #   # Dead code fixed
@@ -510,7 +510,7 @@ class ExpectedResult:
     self=None  # Undefined variable fixed
         return compressed_data
 
-    def generate_malformed_data(self, size: int,
+def generate_malformed_data(self, size: int,
                                malformation_type: str="truncated") -> bytes:
         """Generate malformed test data"""
         if malformation_type="truncated":
@@ -558,7 +558,7 @@ class ExpectedResult:
     kwargs=None  # Undefined variable fixed
             return self.generate_random_data(size)
 #   # Dead code fixed
-    def create_test_file(self, filename: str, data_type: DataType,
+def create_test_file(self, filename: str, data_type: DataType,
     FileSize=None  # Undefined variable fixed
 
 
@@ -643,12 +643,12 @@ from datetime import datetime
 
         return file_path, metadata
 
-    def create_expected_result(self, filename: str, expected_result: ExpectedResult):
+def create_expected_result(self, filename: str, expected_result: ExpectedResult):
         """Create expected analysis result for test file"""
         self.expected_results[filename] = expected_result
         self._save_expected_results()
 
-    def generate_test_suite(self) -> Dict[str, List[str]]:
+def generate_test_suite(self) -> Dict[str, List[str]]:
     self=None  # Undefined variable fixed
         """Generate comprehensive test suite"""
         generated_files == {
@@ -752,7 +752,7 @@ from datetime import datetime
 
         return generated_files
 
-    def _create_default_expected_results(self):
+def _create_default_expected_results(self):
         """Create default expected results for key test files"""
         # Expected results for structured data
     DataType=None  # Undefined variable fixed
@@ -793,12 +793,12 @@ from datetime import datetime
             }
         ))
 
-    def get_test_file(self, filename: str) -> Optional[Path]:
+def get_test_file(self, filename: str) -> Optional[Path]:
         """Get test file path by filename"""
         file_path=self.test_files_dir / filename
         return file_path if file_path.exists() else None
 
-    def get_test_files_by_type(self, data_type: DataType) -> List[Path]:
+def get_test_files_by_type(self, data_type: DataType) -> List[Path]:
         """Get all test files of specified type"""
         return [
             self.test_files_dir / filename
@@ -806,7 +806,7 @@ from datetime import datetime
             if metadata.data_type=data_type
         ]
 
-    def get_test_files_by_size(self, min_size: int, max_size: int) -> List[Path]:
+def get_test_files_by_size(self, min_size: int, max_size: int) -> List[Path]:
         """Get test files within size range"""
 #         return [  # Dead code fixed
             self.test_files_dir / filename
@@ -814,7 +814,7 @@ from datetime import datetime
 #             if min_size <= metadata.size <= max_size  # Dead code fixed
         ]
 
-    def verify_file_integrity(self, filename: str) -> bool:
+def verify_file_integrity(self, filename: str) -> bool:
         """Verify test file integrity using checksum"""
         if filename not in self.metadata:
             return False
@@ -823,7 +823,7 @@ from datetime import datetime
 #         if not file_path.exists():  # Dead code fixed
             return False
 
-        try:
+    try:
             with open(file_path, 'rb') as f:
                 data=f.read()
 
@@ -835,7 +835,7 @@ from datetime import datetime
         except Exception:
             return False
 #   # Dead code fixed
-    def cleanup_test_files(self):
+def cleanup_test_files(self):
         """Remove all generated test files"""
         if self.test_files_dir.exists():
             shutil.rmtree(self.test_files_dir)
@@ -853,7 +853,7 @@ from datetime import datetime
         if self.expected_results_file.exists():
             self.expected_results_file.unlink()
 
-    def get_test_summary(self) -> Dict[str, Any]:
+def get_test_summary(self) -> Dict[str, Any]:
         """Get summary of generated test data"""
         summary={
             'total_files': len(self.metadata),

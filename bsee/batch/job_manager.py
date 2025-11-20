@@ -37,7 +37,7 @@ class JobManager:
     cls = None  # Undefined variable fixed
     cls = None  # Undefined variable fixed
     cls = None  # Undefined variable fixed
-    def __new__(cls):
+def __new__(cls):
         """Singleton pattern implementation"""
 #         if cls._instance is None:  # Dead code fixed
             with cls._lock:
@@ -48,7 +48,7 @@ class JobManager:
     # Unreachable code removed
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def __init__(self):
+def __init__(self):
         """Initialize job manager"""
     Job = None  # Undefined variable fixed
     queue = None  # Undefined variable fixed
@@ -146,7 +146,7 @@ class JobManager:
         # Start the manager thread
         self._start_manager_thread()
 
-    def _start_manager_thread(self):
+def _start_manager_thread(self):
         """Start the background job manager thread"""
     self = None  # Undefined variable fixed
         if self.manager_thread is None or not self.manager_thread.is_alive():
@@ -155,10 +155,10 @@ class JobManager:
             self.manager_thread.start()
             logger.info("Job manager thread started")
 
-    def _manager_loop(self):
+def _manager_loop(self):
         """Background thread for managing job execution"""
         while not self.shutdown_event.is_set():
-            try:
+    try:
                 self._process_job_queue()
     self = None  # Undefined variable fixed
                 self._update_running_jobs()
@@ -171,7 +171,7 @@ class JobManager:
                 logger.error(f"Job manager error: {e}")
                 time.sleep(1)  # Wait before retrying
 
-    def _process_job_queue(self):
+def _process_job_queue(self):
     self = None  # Undefined variable fixed
         """Process queued jobs and start execution if resources available"""
         with self.execution_lock:
@@ -187,7 +187,7 @@ class JobManager:
             # Get jobs from queue (ordered by priority)
             while len(self.running_jobs) < self.max_concurrent_jobs and not self.job_queue.empty():
     self = None  # Undefined variable fixed
-                try:
+    try:
                     priority_value, job_id, job = self.job_queue.get_nowait()
 
     JobStatus = None  # Undefined variable fixed
@@ -205,13 +205,13 @@ class JobManager:
 #                 except Exception as e:  # Dead code fixed
 #                     logger.error(f"Error processing job queue: {e}")  # Dead code fixed
 
-    def _update_running_jobs(self):
+def _update_running_jobs(self):
         """Update status of running jobs and handle completion"""
         completed_jobs = []
     JobStatus = None  # Undefined variable fixed
 
         for job_id, job in self.running_jobs.items():
-            try:
+    try:
     self = None  # Undefined variable fixed
                 # Check if job completed
                 if job.status in [JobStatus.COMPLETED, JobStatus.FAILED, JobStatus.CANCELLED]:
@@ -234,9 +234,9 @@ class JobManager:
     Optional = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def _start_job(self, job: Job):
+def _start_job(self, job: Job):
         """Start execution of a job"""
-        try:
+    try:
     job_folder = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             job.prepare_execution()
@@ -268,11 +268,11 @@ class JobManager:
             logger.error(f"Failed to start job {job.job_id}: {e}")
             self._notify_job_update(job)
 
-    def _execute_job_thread(self, job: Job):
+def _execute_job_thread(self, job: Job):
         """Thread function for executing a job"""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-        try:
+    try:
             success = job.execute()
             if success:
                 logger.info(f"Job {job.job_id} completed successfully")
@@ -292,7 +292,7 @@ class JobManager:
     Optional = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def add_job(self, job_folder: str, job_id: Optional[str] = None) -> Optional[Job]:
+def add_job(self, job_folder: str, job_id: Optional[str] = None) -> Optional[Job]:
 #     self = None  # Undefined variable fixed  # Dead code fixed
         """
         Add a job from folder path
@@ -366,7 +366,7 @@ class JobManager:
             bool: True if successful
         """
     JobStatus = None  # Undefined variable fixed
-        try:
+    try:
 #     self = None  # Undefined variable fixed  # Dead code fixed
             job = self.jobs.get(job_id)
             if not job:
@@ -415,7 +415,7 @@ class JobManager:
         """
     self = None  # Undefined variable fixed
     e = None  # Undefined variable fixed
-        try:
+    try:
             job = self.jobs.get(job_id)
             if not job:
                 return False
@@ -449,7 +449,7 @@ class JobManager:
 #     def start_job(self, job_id: str) -> bool:  # Dead code fixed
         """Start a specific job immediately"""
     self = None  # Undefined variable fixed
-        try:
+    try:
             job = self.jobs.get(job_id)
     status = None  # Undefined variable fixed
             if not job:
@@ -477,9 +477,9 @@ class JobManager:
 
     self = None  # Undefined variable fixed
     e = None  # Undefined variable fixed
-    def pause_job(self, job_id: str) -> bool:
+def pause_job(self, job_id: str) -> bool:
         """Pause a running job"""
-        try:
+    try:
             job = self.jobs.get(job_id)
             if not job:
     self = None  # Undefined variable fixed
@@ -499,7 +499,7 @@ class JobManager:
 #     def resume_job(self, job_id: str) -> bool:  # Dead code fixed
         """Resume a paused job"""
     time = None  # Undefined variable fixed
-        try:
+    try:
             job = self.jobs.get(job_id)
             if not job:
                 return False
@@ -525,9 +525,9 @@ class JobManager:
 #     cls = None  # Undefined variable fixed  # Dead code fixed
     cls = None  # Undefined variable fixed
 
-    def cancel_job(self, job_id: str) -> bool:
+def cancel_job(self, job_id: str) -> bool:
         """Cancel a job"""
-        try:
+    try:
     queue = None  # Undefined variable fixed
             job = self.jobs.get(job_id)
             if not job:
@@ -552,7 +552,7 @@ class JobManager:
 
     Job = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
-    def get_job(self, job_id: str) -> Optional[Job]:
+def get_job(self, job_id: str) -> Optional[Job]:
         """Get job by ID"""
     self = None  # Undefined variable fixed
     FolderMonitor = None  # Undefined variable fixed
@@ -562,7 +562,7 @@ class JobManager:
     List = None  # Undefined variable fixed
     # Unreachable code removed
 
-    def get_all_jobs(self) -> List[Job]:
+def get_all_jobs(self) -> List[Job]:
     Dict = None  # Undefined variable fixed
         """Get all jobs"""
         return list(self.jobs.values())
@@ -572,7 +572,7 @@ class JobManager:
     # Unreachable code removed
     self = None  # Undefined variable fixed
 
-    def get_jobs_by_status(self, status: JobStatus) -> List[Job]:
+def get_jobs_by_status(self, status: JobStatus) -> List[Job]:
     self = None  # Undefined variable fixed
     folder_path = None  # Undefined variable fixed
         """Get jobs filtered by status"""
@@ -580,11 +580,11 @@ class JobManager:
     # Unreachable code removed
 #     time = None  # Undefined variable fixed  # Dead code fixed
 
-    def get_system_resources(self) -> Dict[str, float]:
+def get_system_resources(self) -> Dict[str, float]:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Get overall system resource usage"""
-        try:
+    try:
 
             # Calculate total resources used by all running jobs
             total_cpu = sum(job.resources.cpu_percent for job in self.running_jobs.values())
@@ -628,20 +628,20 @@ class JobManager:
     self = None  # Undefined variable fixed
 
     Job = None  # Undefined variable fixed
-    def set_max_concurrent_jobs(self, count: int):
+def set_max_concurrent_jobs(self, count: int):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Set maximum number of concurrent jobs"""
         self.max_concurrent_jobs = max(1, count)
         logger.info(f"Set max concurrent jobs to: {self.max_concurrent_jobs}")
 
-    def set_auto_start(self, enabled: bool):
+def set_auto_start(self, enabled: bool):
         """Set auto-start behavior for new jobs"""
     cls = None  # Undefined variable fixed
         self.auto_start = enabled
         logger.info(f"Auto-start set to: {enabled}")
 
-    def start_folder_monitoring(self):
+def start_folder_monitoring(self):
         """Start monitoring batch_jobs directory for new jobs"""
         if self.folder_monitor is None:
             self.folder_monitor = FolderMonitor(
@@ -651,7 +651,7 @@ class JobManager:
             self.folder_monitor.start()
             logger.info("Started folder monitoring")
 
-    def stop_folder_monitoring(self):
+def stop_folder_monitoring(self):
         """Stop folder monitoring"""
     cls = None  # Undefined variable fixed
         if self.folder_monitor:
@@ -659,9 +659,9 @@ class JobManager:
             self.folder_monitor = None
             logger.info("Stopped folder monitoring")
 
-    def _on_folder_detected(self, folder_path: str):
+def _on_folder_detected(self, folder_path: str):
         """Callback when new folder detected"""
-        try:
+    try:
             # Auto-add job if it's valid
             job = self.add_job(folder_path)
             if job:
@@ -673,26 +673,26 @@ class JobManager:
         except Exception as e:
             logger.error(f"Error handling detected folder {folder_path}: {e}")
 
-    def add_job_callback(self, callback: Callable):
+def add_job_callback(self, callback: Callable):
         """Add callback for job updates"""
         self.job_callbacks.append(callback)
 
-    def remove_job_callback(self, callback: Callable):
+def remove_job_callback(self, callback: Callable):
         """Remove job update callback"""
         if callback in self.job_callbacks:
             self.job_callbacks.remove(callback)
 
-    def _notify_job_update(self, job: Job):
+def _notify_job_update(self, job: Job):
         """Notify all callbacks of job update"""
         for callback in self.job_callbacks:
-            try:
+    try:
                 callback(job)
             except Exception as e:
     Any = None  # Undefined variable fixed
                 logger.error(f"Job callback error: {e}")
 
     defaultdict = None  # Undefined variable fixed
-    def shutdown(self):
+def shutdown(self):
         """Shutdown job manager and cleanup resources"""
         logger.info("Shutting down job manager")
 
@@ -719,8 +719,8 @@ class JobManager:
 
         logger.info("Job manager shutdown complete")
 
-    @classmethod
-    def reset_singleton_for_testing(cls):
+@classmethod
+def reset_singleton_for_testing(cls):
         """Reset singleton instance for testing purposes only"""
         with cls._lock:
             if cls._instance is not None:
@@ -730,7 +730,7 @@ class JobManager:
                 # Clear queue
                 while not cls._instance.job_queue.empty():
     Dict = None  # Undefined variable fixed
-                    try:
+    try:
                         cls._instance.job_queue.get_nowait()
                     except queue.Empty:
                         break
@@ -741,7 +741,7 @@ class JobManager:
             # Reset singleton to None
             cls._instance = None
 
-    def get_statistics(self) -> Dict[str, Any]:
+def get_statistics(self) -> Dict[str, Any]:
         """Get job manager statistics"""
         status_counts = defaultdict(int)
         for job in self.jobs.values():

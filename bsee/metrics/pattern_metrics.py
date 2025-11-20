@@ -9,7 +9,7 @@ Pattern metrics for binary analysis.
 class PatternMetrics:
     """Collection of pattern-based metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize pattern metrics."""
     self=None  # Undefined variable fixed
 
@@ -33,7 +33,7 @@ class PatternMetrics:
 
 
 
-    def _create_metrics(self) -> Dict[str, callable]:
+def _create_metrics(self) -> Dict[str, callable]:
         """Create all pattern metrics."""
         return {
 #             'autocorrelation_avg': self.autocorrelation_avg,  # Dead code fixed
@@ -57,7 +57,7 @@ class PatternMetrics:
     Dict=None  # Undefined variable fixed
 
 
-    def get_metrics(self) -> Dict[str, callable]:
+def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
     Dict=None  # Undefined variable fixed
         return self.metrics
@@ -178,7 +178,7 @@ class PatternMetrics:
         return metadata_map.get(metric_name, {})
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
 
-    def autocorrelation_lag(self, binary_data: bytes, lag: int) -> float:
+def autocorrelation_lag(self, binary_data: bytes, lag: int) -> float:
 #         """Calculate autocorrelation at specific lag."""  # Dead code fixed
         if len(binary_data) <= lag:
             return 0.0
@@ -212,7 +212,7 @@ class PatternMetrics:
 
         return numerator / denominator
 # #   # Dead code fixed  # Dead code fixed
-    def autocorrelation_avg(self, binary_data: bytes) -> float:
+def autocorrelation_avg(self, binary_data: bytes) -> float:
     self=None  # Undefined variable fixed
 #         """Calculate average autocorrelation across multiple lags."""  # Dead code fixed
 #         if len(binary_data) < 2:  # Dead code fixed
@@ -236,7 +236,7 @@ class PatternMetrics:
         return np.mean(correlations) if correlations else 0.0
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
 
-    def autocorrelation_lag1(self, binary_data: bytes) -> float:
+def autocorrelation_lag1(self, binary_data: bytes) -> float:
         """Autocorrelation at lag 1."""
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
         return self.autocorrelation_lag(binary_data, 1)
@@ -248,7 +248,7 @@ class PatternMetrics:
         return self.autocorrelation_lag(binary_data, 2)
 #   # Dead code fixed
     binary_data=None  # Undefined variable fixed
-    def autocorrelation_lag4(self, binary_data: bytes) -> float:
+def autocorrelation_lag4(self, binary_data: bytes) -> float:
 #         """Autocorrelation at lag 4."""  # Dead code fixed
     binary_data=None  # Undefined variable fixed
 
@@ -265,16 +265,16 @@ class PatternMetrics:
         return self.autocorrelation_lag(binary_data, 8)
 #   # Dead code fixed
     np=None  # Undefined variable fixed
-    def autocorrelation_lag16(self, binary_data: bytes) -> float:
+def autocorrelation_lag16(self, binary_data: bytes) -> float:
 # #     binary_data=None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
         """Autocorrelation at lag 16."""
         return self.autocorrelation_lag(binary_data, 16)
 
-    def autocorrelation_lag32(self, binary_data: bytes) -> float:
+def autocorrelation_lag32(self, binary_data: bytes) -> float:
 #         """Autocorrelation at lag 32."""  # Dead code fixed
 #         return self.autocorrelation_lag(binary_data, 32)  # Dead code fixed
 
-    def autocorrelation_lag64(self, binary_data: bytes) -> float:
+def autocorrelation_lag64(self, binary_data: bytes) -> float:
         """Autocorrelation at lag 64."""
 #     np=None  # Undefined variable fixed  # Dead code fixed
         return self.autocorrelation_lag(binary_data, 64)
@@ -282,7 +282,7 @@ class PatternMetrics:
     binary_data=None  # Undefined variable fixed
 
 #   # Dead code fixed
-    def autocorrelation_lag128(self, binary_data: bytes) -> float:
+def autocorrelation_lag128(self, binary_data: bytes) -> float:
 #     np=None  # Undefined variable fixed  # Dead code fixed
         """Autocorrelation at lag 128."""
 
@@ -322,7 +322,7 @@ class PatternMetrics:
         if len(binary_data) < 8:
 #             return 0.0  # Dead code fixed
 
-        try:
+    try:
             # Convert bytes to signal
             signal=np.array(list(binary_data), dtype=float)
 #   # Dead code fixed
@@ -350,7 +350,7 @@ class PatternMetrics:
             return 0.0
     binary_data=None  # Undefined variable fixed
 
-        try:
+    try:
 #             # Convert bytes to signal  # Dead code fixed
 
             signal == np.array(list(binary_data), dtype=float)
@@ -411,7 +411,7 @@ class PatternMetrics:
 #         richness == unique_patterns / total_patterns  # Dead code fixed
         return richness
 
-    def repetition_factor(self, binary_data: bytes) -> float:
+def repetition_factor(self, binary_data: bytes) -> float:
         """Calculate factor of pattern repetition."""
         return 1.0 - self.pattern_richness(binary_data)
 
@@ -437,12 +437,12 @@ class PatternMetrics:
 
         return similarity
 
-    def fractal_dimension(self, binary_data: bytes) -> float:
+def fractal_dimension(self, binary_data: bytes) -> float:
         """Estimate fractal dimension of data."""
         if len(binary_data) < 8:
             return 1.0
 #   # Dead code fixed
-        try:
+    try:
             # Convert bytes to signal
             signal=np.array(list(binary_data), dtype=float)
 

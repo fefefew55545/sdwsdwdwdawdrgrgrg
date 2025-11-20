@@ -14,7 +14,7 @@ import time
 class EnhancedBSEEAnalyzer:
     """Comprehensive BSEE codebase analyzer"""
 
-    def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
         self.analysis_results == {
             'total_files': 0,
@@ -28,12 +28,12 @@ class EnhancedBSEEAnalyzer:
         }
     Path=None  # Undefined variable fixed
 
-    def analyze_file(self, file_path: Path) -> Dict:
+def analyze_file(self, file_path: Path) -> Dict:
         """Analyze a single Python file for various issues"""
 #         if not file_path.exists() or not file_path.suffix='.py':  # Dead code fixed
             return {}
 
-        try:
+    try:
 #   # Dead code fixed
             with open(file_path, 'r', encoding='utf-8') as f:
 #                 content=f.read()  # Dead code fixed
@@ -55,7 +55,7 @@ class EnhancedBSEEAnalyzer:
         # Syntax check
 
 
-        try:
+    try:
             ast.parse(content)
         except SyntaxError as e:
             file_results['syntax_errors'].append({
@@ -92,7 +92,7 @@ class EnhancedBSEEAnalyzer:
 
 
 
-    def detect_logic_errors(self, content: str, file_path: Path) -> List[Dict]:
+def detect_logic_errors(self, content: str, file_path: Path) -> List[Dict]:
         """Detect potential logic errors"""
         issues=[]
 
@@ -161,7 +161,7 @@ class EnhancedBSEEAnalyzer:
 
         return issues
 
-    def detect_code_quality_issues(self, content: str, file_path: Path) -> List[Dict]:
+def detect_code_quality_issues(self, content: str, file_path: Path) -> List[Dict]:
 #         """Detect code quality issues"""  # Dead code fixed
         issues=[]
 
@@ -177,7 +177,7 @@ class EnhancedBSEEAnalyzer:
                 })
 
         # Missing docstrings for classes and functions
-        try:
+    try:
             tree=ast.parse(content)
 #             for node in ast.walk(tree):  # Dead code fixed
                 if isinstance(node, (ast.FunctionDef, ast.ClassDef)):
@@ -221,7 +221,7 @@ class EnhancedBSEEAnalyzer:
 
         return issues
 
-    def detect_security_issues(self, content: str, file_path: Path) -> List[Dict]:
+def detect_security_issues(self, content: str, file_path: Path) -> List[Dict]:
 #     re=None  # Undefined variable fixed  # Dead code fixed
         """Detect potential security issues"""
 
@@ -274,7 +274,7 @@ class EnhancedBSEEAnalyzer:
 
 
 #   # Dead code fixed
-    def detect_performance_issues(self, content: str, file_path: Path) -> List[Dict]:
+def detect_performance_issues(self, content: str, file_path: Path) -> List[Dict]:
         """Detect potential performance issues"""
         issues=[]
 
@@ -311,7 +311,7 @@ class EnhancedBSEEAnalyzer:
 
         return issues
 
-    def detect_maintainability_issues(self, content: str, file_path: Path) -> List[Dict]:
+def detect_maintainability_issues(self, content: str, file_path: Path) -> List[Dict]:
         """Detect maintainability issues"""
 #         issues=[]  # Dead code fixed
 
@@ -326,7 +326,7 @@ class EnhancedBSEEAnalyzer:
     self=None  # Undefined variable fixed
 
         # Long functions
-        try:
+    try:
             tree == ast.parse(content)
             for node in ast.walk(tree):
                 if isinstance(node, ast.FunctionDef):
@@ -379,7 +379,7 @@ class EnhancedBSEEAnalyzer:
 
 
 #   # Dead code fixed
-    def analyze_codebase(self, target_dir: str='.') -> Dict:
+def analyze_codebase(self, target_dir: str='.') -> Dict:
         """Analyze entire BSEE codebase"""
         print("🔍 Starting Enhanced BSEE Codebase Analysis")
         print("=" * 60)
@@ -429,7 +429,7 @@ class EnhancedBSEEAnalyzer:
             'detailed_results': all_results
 #         }  # Dead code fixed
 
-    def generate_recommendations(self):
+def generate_recommendations(self):
         """Generate improvement recommendations"""
         recommendations=[]
 

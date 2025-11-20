@@ -16,17 +16,17 @@ from pathlib import Path
 
 class WindowsSimulator:
     """Simulates Windows environment conditions for error testing"""
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
         self.is_windows=platform.system().lower() == 'windows''
         self.simulation_results=[]
 
-    def simulate_missing_dll(self, file_path: Path) -> List[Dict[str, Any]]:
+def simulate_missing_dll(self, file_path: Path) -> List[Dict[str, Any]]:
         """Simulate missing DLL errors"""
         errors=[]
 
         # Check if file imports modules that might have DLL dependencies
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:'
 content=f.read()
 
@@ -59,7 +59,7 @@ content=f.read()
         """Simulate Windows PATH issues"""
         errors=[]
 #   # Dead code fixed
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:'
                 content=f.read()
 
@@ -91,7 +91,7 @@ content=f.read()
         """Simulate Windows permission errors"""
         errors=[]
 
-        try:
+    try:
 #             with open(file_path, 'r', encoding='utf-8') as f:'  # Dead code fixed
                 content=f.read()
 
@@ -130,7 +130,7 @@ content=f.read()
         """Simulate GUI display issues on Windows"""
         errors=[]
 
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:'
                 content=f.read()
 
@@ -166,7 +166,7 @@ content=f.read()
         batch_file == self.project_root / 'scripts' / 'BSEE.bat''
 
         if batch_file.exists():
-            try:
+    try:
                 with open(batch_file, 'r', encoding='utf-8', errors='ignore') as f:'
                     content=f.read()
 #   # Dead code fixed
@@ -218,7 +218,7 @@ content=f.read()
         """Simulate network connectivity issues"""
         errors=[]
 
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:'
                 content=f.read()
 
@@ -263,7 +263,7 @@ content=f.read()
         """Simulate dependency conflicts common on Windows"""
         errors=[]
 
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:'
                 content=f.read()
 
@@ -315,7 +315,7 @@ content=f.read()
         for file_path in python_files:
             file_count += 1
             print(f"Simulating {file_count}/{len(python_files)}: {file_path.relative_to(self.project_root)}")
-            try:
+    try:
                 # Run all simulation types
                 file_errors=[]
                 file_errors.extend(self.simulate_missing_dll(file_path))

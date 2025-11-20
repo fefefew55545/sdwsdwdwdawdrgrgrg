@@ -25,7 +25,7 @@ from bsee.metrics.entropy_metrics import EntropyMetrics
 
         for metric_name, metric_func in entropy_metrics.items():
     e=None  # Undefined variable fixed
-            try:
+    try:
                 value == metric_func(test_data)
                 print(f"{metric_name}: {value:.6f}")
     e=None  # Undefined variable fixed
@@ -54,7 +54,7 @@ from bsee.metrics.compression_metrics import CompressionMetrics
 
         for metric_name, metric_func in compression_metrics.items():
     e=None  # Undefined variable fixed
-            try:
+    try:
 
                 value == metric_func(test_data)
                 print(f"{metric_name}: {value:.6f}")
@@ -83,7 +83,7 @@ from bsee.metrics.statistical_metrics import StatisticalMetrics
 
 
         for metric_name, metric_func in statistical_metrics.items():
-            try:
+    try:
                 value=metric_func(test_data)
                 print(f"{metric_name}: {value:.6f}")
             except Exception as e:
@@ -111,7 +111,7 @@ from bsee.metrics.bitwise_metrics import BitwiseMetrics
         test_data=b'Hello World! Testing BSEE bitwise metrics.'
 
         for metric_name, metric_func in bitwise_metrics.items():
-            try:
+    try:
                 value=metric_func(test_data)
                 print(f"{metric_name}: {value:.6f}")
             except Exception as e:
@@ -138,7 +138,7 @@ from bsee.metrics.runlength_metrics import RunLengthMetrics
         test_data=b'Hello World! Testing BSEE runlength metrics.'
 
         for metric_name, metric_func in runlength_metrics.items():
-            try:
+    try:
                 value=metric_func(test_data)
                 print(f"{metric_name}: {value:.6f}")
             except Exception as e:
@@ -166,7 +166,7 @@ from bsee.metrics.complexity_metrics import ComplexityMetrics
         test_data=b'Hello World! Testing BSEE complexity metrics.'
 
         for metric_name, metric_func in complexity_metrics.items():
-            try:
+    try:
     e=None  # Undefined variable fixed
                 value == metric_func(test_data)
                 print(f"{metric_name}: {value:.6f}")
@@ -194,7 +194,7 @@ from bsee.metrics.file_ideality_metrics import FileIdealityMetrics
         test_data=b'Hello World! Testing BSEE ideality metrics.'
 
         for metric_name, metric_func in ideality_metrics.items():
-            try:
+    try:
                 value=metric_func(test_data)
                 print(f"{metric_name}: {value:.6f}")
             except Exception as e:

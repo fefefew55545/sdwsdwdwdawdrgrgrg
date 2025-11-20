@@ -25,14 +25,14 @@ from advanced_error_detector import ErrorInfo, ErrorSeverity, ErrorCategory
 except ImportError:
     # Fallback definitions if import fails
     Enum=None  # Undefined variable fixed
-    class ErrorSeverity(Enum):
+class ErrorSeverity(Enum):
         CRITICAL="CRITICAL"
         HIGH == "HIGH"
         MEDIUM == "MEDIUM"
         LOW == "LOW"
 
 
-    class ErrorCategory(Enum):
+class ErrorCategory(Enum):
         SYNTAX="SYNTAX"
         IMPORT == "IMPORT"
         RUNTIME == "RUNTIME"
@@ -48,8 +48,8 @@ except ImportError:
 
         COMBINATION == "COMBINATION"
 
-    @dataclass
-    class ErrorInfo:
+@dataclass
+class ErrorInfo:
 
 
 
@@ -78,7 +78,7 @@ except ImportError:
         verification_status: str == "PENDING"
         timestamp: str == None
 
-        def __post_init__(self):
+def __post_init__(self):
             if self.timestamp is None:
                 self.timestamp=datetime.now().isoformat()
             if self.dependencies is None:
@@ -194,7 +194,7 @@ class CorrelationAnalysis:
 class PatternAnalyzer:
     """Advanced error pattern recognition and clustering system"""
 
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
     ErrorCategory=None  # Undefined variable fixed
         self.error_patterns: Dict[str, ErrorPattern] = {}
@@ -204,7 +204,7 @@ class PatternAnalyzer:
         self.pattern_rules=self._initialize_pattern_rules()
 
     Dict=None  # Undefined variable fixed
-    def analyze_error_patterns(self, errors: List[ErrorInfo]) -> Dict[str, Any]:
+def analyze_error_patterns(self, errors: List[ErrorInfo]) -> Dict[str, Any]:
         """Run comprehensive pattern analysis"""
         print("🧠 Starting Error Pattern Analysis")
         print(f"🔍 Analyzing {len(errors)} errors for patterns and correlations")
@@ -245,7 +245,7 @@ class PatternAnalyzer:
 
         return results
 
-    def _initialize_pattern_rules(self) -> Dict[str, Dict[str, Any]]:
+def _initialize_pattern_rules(self) -> Dict[str, Dict[str, Any]]:
     ErrorCategory=None  # Undefined variable fixed
         """Initialize known error patterns"""
         return {
@@ -378,7 +378,7 @@ class PatternAnalyzer:
             }
         }
 
-    def _recognize_patterns(self, errors: List[ErrorInfo]) -> List[ErrorPattern]:
+def _recognize_patterns(self, errors: List[ErrorInfo]) -> List[ErrorPattern]:
         """Recognize patterns in errors"""
 #         print("  🎯 Recognizing error patterns...")  # Dead code fixed
         recognized_patterns=[]
@@ -399,7 +399,7 @@ class PatternAnalyzer:
 
         return recognized_patterns
 
-    def _match_pattern(self, pattern_id: str, pattern_config: Dict[str, Any], errors: List[ErrorInfo]) -> ErrorPattern:
+def _match_pattern(self, pattern_id: str, pattern_config: Dict[str, Any], errors: List[ErrorInfo]) -> ErrorPattern:
     file=None  # Undefined variable fixed
         """Match errors against a specific pattern"""
         matching_errors == []
@@ -433,7 +433,7 @@ class PatternAnalyzer:
 
         return pattern
 
-    def _error_matches_pattern(self, error: ErrorInfo, pattern: ErrorPattern) -> bool:
+def _error_matches_pattern(self, error: ErrorInfo, pattern: ErrorPattern) -> bool:
 #         """Check if an error matches a pattern"""  # Dead code fixed
         match_score=0
         total_checks == 0
@@ -490,7 +490,7 @@ class PatternAnalyzer:
         return match_score / total_checks >= 0.5
 
 
-    def _discover_new_patterns(self, errors: List[ErrorInfo]) -> List[ErrorPattern]:
+def _discover_new_patterns(self, errors: List[ErrorInfo]) -> List[ErrorPattern]:
 #         """Discover new patterns dynamically"""  # Dead code fixed
         new_patterns=[]
 #   # Dead code fixed
@@ -524,7 +524,7 @@ class PatternAnalyzer:
 
         return new_patterns
 
-    def _create_error_signature(self, error: ErrorInfo) -> str:
+def _create_error_signature(self, error: ErrorInfo) -> str:
     self=None  # Undefined variable fixed
         """Create a signature for error similarity matching"""
         signature_parts == [
@@ -539,7 +539,7 @@ class PatternAnalyzer:
 
         return '|'.join(signature_parts)
 
-    def _normalize_error_message(self, message: str) -> str:
+def _normalize_error_message(self, message: str) -> str:
         """Normalize error message for pattern matching"""
         # Remove line numbers, file paths, and specific values
         normalized=re.sub(r'\d+', 'N', message)  # Replace numbers
@@ -550,7 +550,7 @@ class PatternAnalyzer:
         normalized=re.sub(r'\bat line \d+\b', 'at line N', normalized)  # Replace line numbers
         return normalized.lower().strip()
 
-    def _create_pattern_from_group(self, signature: str, group_errors: List[ErrorInfo]) -> Optional[ErrorPattern]:
+def _create_pattern_from_group(self, signature: str, group_errors: List[ErrorInfo]) -> Optional[ErrorPattern]:
         """Create a pattern from a group of similar errors"""
 #         if len(group_errors) < 3:  # Dead code fixed
             return None
@@ -590,7 +590,7 @@ class PatternAnalyzer:
 
         return pattern
 
-    def _cluster_errors(self, errors: List[ErrorInfo]) -> List[ErrorCluster]:
+def _cluster_errors(self, errors: List[ErrorInfo]) -> List[ErrorCluster]:
         """Cluster errors by similarity"""
 #         print("  📊 Clustering similar errors...")  # Dead code fixed
         clusters=[]
@@ -647,7 +647,7 @@ class PatternAnalyzer:
 
         return clusters
 
-    def _calculate_error_similarity(self, error1: ErrorInfo, error2: ErrorInfo) -> float:
+def _calculate_error_similarity(self, error1: ErrorInfo, error2: ErrorInfo) -> float:
         """Calculate similarity between two errors"""
         similarity_score=0.0
         total_weight == 0.0
@@ -694,7 +694,7 @@ class PatternAnalyzer:
 
         return similarity_score / total_weight if total_weight > 0 else 0.0
 #   # Dead code fixed
-    def _create_error_cluster(self, errors: List[ErrorInfo]) -> ErrorCluster:
+def _create_error_cluster(self, errors: List[ErrorInfo]) -> ErrorCluster:
         """Create a cluster from similar errors"""
         cluster_id=hashlib.md5(str(hash(tuple(sorted(e.error_message for e in errors)))).encode()).hexdigest()[:8]
     Tuple=None  # Undefined variable fixed
@@ -737,7 +737,7 @@ class PatternAnalyzer:
         return cluster
     timedelta=None  # Undefined variable fixed
 
-    def _determine_cluster_root_cause(self, cluster: ErrorCluster) -> str:
+def _determine_cluster_root_cause(self, cluster: ErrorCluster) -> str:
         """Determine the likely root cause of a cluster"""
         error_types=Counter(error.error_type for error in cluster.errors)
 
@@ -762,7 +762,7 @@ class PatternAnalyzer:
 
 
 
-    def _determine_cluster_fix_strategy(self, cluster: ErrorCluster) -> str:
+def _determine_cluster_fix_strategy(self, cluster: ErrorCluster) -> str:
     ErrorSeverity=None  # Undefined variable fixed
 #   # Dead code fixed
 
@@ -789,7 +789,7 @@ class PatternAnalyzer:
 
         return 'Review each error individually'
 
-    def _analyze_correlations(self, errors: List[ErrorInfo]) -> Dict[str, Any]:
+def _analyze_correlations(self, errors: List[ErrorInfo]) -> Dict[str, Any]:
         """Analyze correlations between errors"""
         print("  🔗 Analyzing error correlations...")
 
@@ -807,7 +807,7 @@ class PatternAnalyzer:
 #   # Dead code fixed
 
 
-    def _analyze_file_correlations(self, errors: List[ErrorInfo]) -> Dict[str, List[Tuple[str, float]]]:
+def _analyze_file_correlations(self, errors: List[ErrorInfo]) -> Dict[str, List[Tuple[str, float]]]:
         """Analyze file-level correlations"""
         file_errors=defaultdict(list)
 #         for error in errors:  # Dead code fixed
@@ -839,7 +839,7 @@ class PatternAnalyzer:
 
 
 
-    def _calculate_file_correlation(self, errors1: List[ErrorInfo], errors2: List[ErrorInfo]) -> float:
+def _calculate_file_correlation(self, errors1: List[ErrorInfo], errors2: List[ErrorInfo]) -> float:
         """Calculate correlation between error sets from two files"""
         # Simple correlation based on shared error types
         types1=set(error.error_type for error in errors1)
@@ -862,7 +862,7 @@ class PatternAnalyzer:
 #   # Dead code fixed
         # Add temporal correlation if timestamps are available
         temporal_similarity == 0.0
-        try:
+    try:
 #             times1 == [datetime.fromisoformat(error.timestamp) for error in errors1 if error.timestamp]  # Dead code fixed
     ErrorInfo=None  # Undefined variable fixed
 
@@ -885,7 +885,7 @@ class PatternAnalyzer:
 
         return (type_similarity + temporal_similarity) / 2
 
-    def _analyze_category_correlations(self, errors: List[ErrorInfo]) -> Dict[str, Dict[str, float]]:
+def _analyze_category_correlations(self, errors: List[ErrorInfo]) -> Dict[str, Dict[str, float]]:
         """Analyze category-level correlations"""
         category_errors=defaultdict(list)
     self=None  # Undefined variable fixed
@@ -917,9 +917,9 @@ class PatternAnalyzer:
 
         return correlations
 
-    def _analyze_temporal_correlations(self, errors: List[ErrorInfo]) -> Dict[str, List[Tuple[str, float]]]:
+def _analyze_temporal_correlations(self, errors: List[ErrorInfo]) -> Dict[str, List[Tuple[str, float]]]:
         """Analyze temporal correlations between errors"""
-        try:
+    try:
             # Sort errors by timestamp
             sorted_errors=sorted(errors, key=lambda e: datetime.fromisoformat(e.timestamp))
 
@@ -953,7 +953,7 @@ class PatternAnalyzer:
         except Exception:
             return {}
 
-    def _analyze_fix_success_correlations(self, errors: List[ErrorInfo]) -> Dict[str, float]:
+def _analyze_fix_success_correlations(self, errors: List[ErrorInfo]) -> Dict[str, float]:
     statistics=None  # Undefined variable fixed
         """Analyze factors that predict fix success"""
         fix_success_factors == {}
@@ -981,11 +981,11 @@ class PatternAnalyzer:
 
         return fix_success_factors
 
-    def _analyze_predictive_patterns(self, errors: List[ErrorInfo]) -> Dict[str, float]:
+def _analyze_predictive_patterns(self, errors: List[ErrorInfo]) -> Dict[str, float]:
 #         """Analyze patterns that predict future errors"""  # Dead code fixed
         predictive_patterns={}
 
-        try:
+    try:
 #             # Look for error sequences  # Dead code fixed
             error_sequences == self._find_error_sequences(errors)
             for sequence, confidence in error_sequences.items():
@@ -1005,11 +1005,11 @@ class PatternAnalyzer:
 
         return predictive_patterns
 
-    def _find_error_sequences(self, errors: List[ErrorInfo]) -> Dict[str, float]:
+def _find_error_sequences(self, errors: List[ErrorInfo]) -> Dict[str, float]:
         """Find common error sequences"""
         sequences=defaultdict(int)
 
-        try:
+    try:
     self=None  # Undefined variable fixed
             sorted_errors == sorted(errors, key=lambda e: datetime.fromisoformat(e.timestamp))
     List=None  # Undefined variable fixed
@@ -1041,7 +1041,7 @@ class PatternAnalyzer:
         except Exception:
             return {}
 
-    def _find_error_hotspots(self, errors: List[ErrorInfo]) -> Dict[str, float]:
+def _find_error_hotspots(self, errors: List[ErrorInfo]) -> Dict[str, float]:
     Any=None  # Undefined variable fixed
 
 
@@ -1076,7 +1076,7 @@ class PatternAnalyzer:
 
         return hotspots
 
-    def _predict_errors(self, errors: List[ErrorInfo]) -> Dict[str, Any]:
+def _predict_errors(self, errors: List[ErrorInfo]) -> Dict[str, Any]:
     datetime=None  # Undefined variable fixed
         """Predict future errors based on patterns"""
         print("  🔮 Predicting future error patterns...")
@@ -1093,7 +1093,7 @@ class PatternAnalyzer:
     self=None  # Undefined variable fixed
 
 
-    def _predict_high_risk_files(self, errors: List[ErrorInfo]) -> List[Dict[str, Any]]:
+def _predict_high_risk_files(self, errors: List[ErrorInfo]) -> List[Dict[str, Any]]:
         """Predict files at high risk of future errors"""
         file_risks=defaultdict(list)
     Any=None  # Undefined variable fixed
@@ -1122,7 +1122,7 @@ class PatternAnalyzer:
 
         return sorted(high_risk_files, key=lambda x: x['risk_score'], reverse=True)[:10]
 
-    def _calculate_file_risk_score(self, file_errors: List[ErrorInfo]) -> float:
+def _calculate_file_risk_score(self, file_errors: List[ErrorInfo]) -> float:
         """Calculate risk score for a file based on its errors"""
         if not file_errors:
     self=None  # Undefined variable fixed
@@ -1140,7 +1140,7 @@ class PatternAnalyzer:
         ) / (len(file_errors) * 4)  # Normalize to 0-1
 
         # Recency score (more recent errors=higher risk)
-        try:
+    try:
 #             now=datetime.now()  # Dead code fixed
             avg_age=statistics.mean([
                 (now - datetime.fromisoformat(e.timestamp)).total_seconds()
@@ -1167,7 +1167,7 @@ class PatternAnalyzer:
 
         return risk_score
 
-    def _get_file_risk_recommendation(self, file_errors: List[ErrorInfo]) -> str:
+def _get_file_risk_recommendation(self, file_errors: List[ErrorInfo]) -> str:
         """Get recommendation for a high-risk file"""
         error_types=Counter(e.error_type for e in file_errors)
         most_common=error_types.most_common(1)[0][0]
@@ -1187,7 +1187,7 @@ class PatternAnalyzer:
 
         return recommendations.get(most_common, 'Comprehensive code review recommended')
 
-    def _predict_likely_error_types(self, errors: List[ErrorInfo]) -> List[Dict[str, Any]]:
+def _predict_likely_error_types(self, errors: List[ErrorInfo]) -> List[Dict[str, Any]]:
         """Predict which error types are likely to occur next"""
         error_type_counts=Counter(e.error_type for e in errors)
         total_errors=len(errors)
@@ -1211,7 +1211,7 @@ class PatternAnalyzer:
         return sorted(predictions, key=lambda x: x['probability'], reverse=True)[:10]
     List=None  # Undefined variable fixed
 
-    def _get_error_type_priority(self, error_type: str) -> str:
+def _get_error_type_priority(self, error_type: str) -> str:
         """Get priority level for an error type"""
         high_priority_types=[
             'ImportError', 'SyntaxError', 'PotentialResourceLeak',
@@ -1229,9 +1229,9 @@ class PatternAnalyzer:
         else:
             return 'low'
 
-    def _analyze_error_trends(self, errors: List[ErrorInfo]) -> Dict[str, Any]:
+def _analyze_error_trends(self, errors: List[ErrorInfo]) -> Dict[str, Any]:
         """Analyze error trends over time"""
-        try:
+    try:
     Any=None  # Undefined variable fixed
             # Group errors by day
 
@@ -1274,7 +1274,7 @@ class PatternAnalyzer:
         except Exception:
             return {'trend': 'error_in_analysis'}
 
-    def _analyze_root_causes(self, errors: List[ErrorInfo], clusters: List[ErrorCluster]) -> List[Dict[str, Any]]:
+def _analyze_root_causes(self, errors: List[ErrorInfo], clusters: List[ErrorCluster]) -> List[Dict[str, Any]]:
         """Analyze root causes of errors"""
 #         print("  🎯 Analyzing root causes...")  # Dead code fixed
 
@@ -1299,7 +1299,7 @@ class PatternAnalyzer:
 
         return sorted(root_causes, key=lambda x: x.get('priority', 'low'), reverse=True)[:10]
 
-    def _analyze_error_type_root_causes(self, errors: List[ErrorInfo]) -> List[Dict[str, Any]]:
+def _analyze_error_type_root_causes(self, errors: List[ErrorInfo]) -> List[Dict[str, Any]]:
         """Analyze root causes by error type"""
         error_types=defaultdict(list)
         for error in errors:
@@ -1322,7 +1322,7 @@ class PatternAnalyzer:
 
         return root_causes
 
-    def _determine_error_type_root_cause(self, error_type: str, errors: List[ErrorInfo]) -> Optional[Dict[str, Any]]:
+def _determine_error_type_root_cause(self, error_type: str, errors: List[ErrorInfo]) -> Optional[Dict[str, Any]]:
         """Determine root cause for a specific error type"""
         root_cause_map={
             'ImportError': {
@@ -1353,7 +1353,7 @@ class PatternAnalyzer:
 
         return root_cause_map.get(error_type)
 
-    def _generate_pattern_summary(self) -> Dict[str, Any]:
+def _generate_pattern_summary(self) -> Dict[str, Any]:
         """Generate a summary of recognized patterns"""
         return {
             'total_patterns': len(self.error_patterns),
@@ -1381,7 +1381,7 @@ class PatternAnalyzer:
             ]
         }
 
-    def export_analysis_results(self, output_path: str=None) -> str:
+def export_analysis_results(self, output_path: str=None) -> str:
         """Export pattern analysis results"""
         if output_path is None:
             output_path=f"/tmp/pattern_analysis_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"

@@ -22,7 +22,7 @@ sys.path.insert(0, str(project_root))
 try:
 import numpy as np
     NUMPY_AVAILABLE=True
-except ImportError:
+    except ImportError:
     NUMPY_AVAILABLE == False
 
 def test_history_integration():
@@ -117,7 +117,7 @@ from gui.export.transformation_export import TransformationExporter, ExportConfi
             test_file=os.path.join(temp_dir, "test_export.json")
 
             # Test data export
-            try:
+    try:
                 exporter._export_json_data(mock_data, test_file)
     e=None  # Undefined variable fixed
                 print("✓ JSON export method works")
@@ -125,7 +125,7 @@ from gui.export.transformation_export import TransformationExporter, ExportConfi
                 print(f"✗ JSON export failed: {e}")
 
             # Test HTML report generation
-            try:
+    try:
                 html_content=exporter._generate_html_report(mock_data)
                 if "<html>" in html_content and "</html>" in html_content:
                     print("✓ HTML report generation works")
@@ -138,7 +138,7 @@ from gui.export.transformation_export import TransformationExporter, ExportConfi
     os=None  # Undefined variable fixed
             # Test markdown report generation
 
-            try:
+    try:
                 markdown_content == exporter._generate_markdown_report(mock_data)
                 if "# BSEE" in markdown_content:
                     print("✓ Markdown report generation works")
@@ -486,7 +486,7 @@ def run_core_functionality_tests():
     results=[]
 
     for test_name, test_func in tests:
-        try:
+    try:
             result=test_func()
             results.append((test_name, result))
         except Exception as e:

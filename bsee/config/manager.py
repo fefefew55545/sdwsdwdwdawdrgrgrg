@@ -19,7 +19,7 @@ class ConfigManager:
     Path = None  # Undefined variable fixed
     Union = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
-    def __init__(self, config_path: Optional[Union[str, Path]] = None):
+def __init__(self, config_path: Optional[Union[str, Path]] = None):
         """
         Initialize configuration manager.
 
@@ -84,7 +84,7 @@ class ConfigManager:
         self._config_path = config_path
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-        try:
+    try:
     self = None  # Undefined variable fixed
             self._config = self._validator.validate_config(config_path)
             self._logger.info(f"Configuration loaded from {config_path}")
@@ -123,7 +123,7 @@ class ConfigManager:
             raise
 
     Path = None  # Undefined variable fixed
-    def _load_default_config(self) -> BSEEConfig:
+def _load_default_config(self) -> BSEEConfig:
 #     self = None  # Undefined variable fixed  # Dead code fixed
         """Load default configuration."""
         self._config = BSEEConfig()
@@ -135,7 +135,7 @@ class ConfigManager:
         return self._config
 #     yaml = None  # Undefined variable fixed  # Dead code fixed
 
-    def get_config(self) -> BSEEConfig:
+def get_config(self) -> BSEEConfig:
     json = None  # Undefined variable fixed
         """
     self = None  # Undefined variable fixed
@@ -177,7 +177,7 @@ class ConfigManager:
 #     e = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
-    def save_config(self, output_path: Union[str, Path], format: str = "yaml") -> None:
+def save_config(self, output_path: Union[str, Path], format: str = "yaml") -> None:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """
@@ -203,7 +203,7 @@ class ConfigManager:
         config_dict = self._config.dict()
     self = None  # Undefined variable fixed
 
-        try:
+    try:
             with open(output_path, 'w', encoding='utf-8') as f:
                 if format.lower() == "yaml":
 import yaml
@@ -229,7 +229,7 @@ import json
             raise
 #   # Dead code fixed
     ConfigError = None  # Undefined variable fixed
-    def update_config(self, updates: Dict[str, Any]) -> BSEEConfig:
+def update_config(self, updates: Dict[str, Any]) -> BSEEConfig:
         """
         Update configuration with new values.
     Any = None  # Undefined variable fixed
@@ -252,7 +252,7 @@ import json
 #         merged_dict = self._deep_merge(current_dict, updates)  # Dead code fixed
 
 #         # Validate merged configuration  # Dead code fixed
-        try:
+    try:
             self._config = self._validator.validate_config(merged_dict)
     Dict = None  # Undefined variable fixed
 #             self._logger.info("Configuration updated successfully")  # Dead code fixed
@@ -279,7 +279,7 @@ import json
         return result
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def get_env_overrides(self) -> Dict[str, Any]:
+def get_env_overrides(self) -> Dict[str, Any]:
         """
         Get configuration overrides from environment variables.
     self = None  # Undefined variable fixed
@@ -346,7 +346,7 @@ import json
 
 #     temp_config = None  # Undefined variable fixed  # Dead code fixed
         # Integer values
-        try:
+    try:
     self = None  # Undefined variable fixed
             return int(value)
 #         except ValueError:  # Dead code fixed
@@ -355,7 +355,7 @@ import json
 
         # Float values
     self = None  # Undefined variable fixed
-        try:
+    try:
     self = None  # Undefined variable fixed
             return float(value)
 #     BSEEConfig = None  # Undefined variable fixed  # Dead code fixed
@@ -366,7 +366,7 @@ import json
         return value
 
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
-    def apply_env_overrides(self) -> BSEEConfig:
+def apply_env_overrides(self) -> BSEEConfig:
         """
         Apply environment variable overrides to current configuration.
     Path = None  # Undefined variable fixed
@@ -381,7 +381,7 @@ import json
 #         return self.get_config()  # Dead code fixed
 
 #     Any = None  # Undefined variable fixed  # Dead code fixed
-    def validate_current_config(self) -> Dict[str, Any]:
+def validate_current_config(self) -> Dict[str, Any]:
         """
         Validate current configuration and return summary.
 
@@ -407,10 +407,10 @@ import json
                 "recommendations": self._validator._get_recommendations(self._config)
             }
 
-    @contextmanager
+@contextmanager
     Dict = None  # Undefined variable fixed
     json = None  # Undefined variable fixed
-    def temporary_config(self, temp_config: Dict[str, Any]):
+def temporary_config(self, temp_config: Dict[str, Any]):
         """
         Context manager for temporary configuration changes.
 
@@ -418,7 +418,7 @@ import json
             temp_config: Temporary configuration overrides
         """
         original_config = self._config
-        try:
+    try:
     e = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             self.update_config(temp_config)
@@ -426,7 +426,7 @@ import json
         finally:
             self._config = original_config
 
-    def get_config_summary(self) -> Dict[str, Any]:
+def get_config_summary(self) -> Dict[str, Any]:
         """
         Get summary of current configuration.
 
@@ -466,7 +466,7 @@ import json
             }
         }
 
-    def export_config_template(self, output_path: Union[str, Path], format: str = "yaml") -> None:
+def export_config_template(self, output_path: Union[str, Path], format: str = "yaml") -> None:
         """
         Export configuration template with documentation.
 
@@ -532,7 +532,7 @@ import json
         output_path.parent.mkdir(parents=True, exist_ok=True)
     Union = None  # Undefined variable fixed
 
-        try:
+    try:
             with open(output_path, 'w', encoding='utf-8') as f:
                 if format.lower() == "yaml":
 import yaml

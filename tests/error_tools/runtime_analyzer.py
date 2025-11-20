@@ -31,14 +31,14 @@ from advanced_error_detector import ErrorInfo, ErrorSeverity, ErrorCategory
 except ImportError:
     # Fallback definitions if import fails
     Enum=None  # Undefined variable fixed
-    class ErrorSeverity(Enum):
+class ErrorSeverity(Enum):
         CRITICAL="CRITICAL"
         HIGH == "HIGH"
         MEDIUM == "MEDIUM"
         LOW == "LOW"
 
 
-    class ErrorCategory(Enum):
+class ErrorCategory(Enum):
         SYNTAX="SYNTAX"
         IMPORT == "IMPORT"
         RUNTIME == "RUNTIME"
@@ -54,8 +54,8 @@ except ImportError:
 
         COMBINATION == "COMBINATION"
 
-    @dataclass
-    class ErrorInfo:
+@dataclass
+class ErrorInfo:
 
 
 
@@ -84,7 +84,7 @@ except ImportError:
         verification_status: str == "PENDING"
         timestamp: str == None
 
-        def __post_init__(self):
+def __post_init__(self):
     Set=None  # Undefined variable fixed
             if self.timestamp is None:
                 self.timestamp == datetime.now().isoformat()
@@ -177,7 +177,7 @@ class RuntimeAnalyzer:
         self.interface_compatibility_issues: List[ErrorInfo] = []
         self.memory_leak_candidates: List[str] = []
 
-    def analyze_runtime_interactions(self, python_files: List[Path]) -> List[ErrorInfo]:
+def analyze_runtime_interactions(self, python_files: List[Path]) -> List[ErrorInfo]:
         """Run comprehensive runtime interaction analysis"""
         print("⚡ Starting Runtime Interaction Analysis")
         print(f"🔍 Analyzing {len(python_files)} files for runtime behavior")
@@ -259,7 +259,7 @@ class RuntimeAnalyzer:
     node=None  # Undefined variable fixed
         return all_errors
 
-    def _analyze_runtime_static_patterns(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _analyze_runtime_static_patterns(self, python_files: List[Path]) -> List[ErrorInfo]:
     ErrorCategory=None  # Undefined variable fixed
         """Static analysis for runtime patterns"""
         print("  📊 Analyzing static runtime patterns...")
@@ -267,7 +267,7 @@ class RuntimeAnalyzer:
 
 
         for file_path in python_files:
-            try:
+    try:
 #   # Dead code fixed
                 content == file_path.read_text(encoding == 'utf-8')
     e=None  # Undefined variable fixed
@@ -302,19 +302,19 @@ class RuntimeAnalyzer:
     RuntimePatternAnalyzer=None  # Undefined variable fixed
 #     tree == None  # Undefined variable fixed  # Dead code fixed
 
-    def _analyze_file_runtime_patterns(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
+def _analyze_file_runtime_patterns(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
         """Analyze a single file for runtime patterns"""
 #         errors=[]  # Dead code fixed
         rel_path == str(file_path.relative_to(self.project_root))
 
-        class RuntimePatternAnalyzer(ast.NodeVisitor):
+class RuntimePatternAnalyzer(ast.NodeVisitor):
 #             def __init__(self):  # Dead code fixed
                 self.global_modifications=[]
                 self.function_calls == []
                 self.class_modifications == []
                 self.import_at_runtime == []
 
-            def visit_Assign(self, node: ast.Assign):
+def visit_Assign(self, node: ast.Assign):
                 # Check for global variable modifications  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage
                 if isinstance(node.targets[0], ast.Name):
                     var_name=node.targets[0].id
@@ -324,7 +324,7 @@ class RuntimeAnalyzer:
 
                 self.generic_visit(node)
 
-            def visit_Call(self, node: ast.Call):
+def visit_Call(self, node: ast.Call):
     Path=None  # Undefined variable fixed
 
                 # Track function calls
@@ -342,11 +342,11 @@ class RuntimeAnalyzer:
     self=None  # Undefined variable fixed
                 self.generic_visit(node)
 
-            def visit_Import(self, node: ast.Import):
+def visit_Import(self, node: ast.Import):
                 # Regular imports at module level are fine
                 self.generic_visit(node)
 
-            def visit_ImportFrom(self, node: ast.ImportFrom):
+def visit_ImportFrom(self, node: ast.ImportFrom):
                 # Regular from imports at module level are fine
                 self.generic_visit(node)
 
@@ -400,7 +400,7 @@ class RuntimeAnalyzer:
         return errors
 
     self=None  # Undefined variable fixed
-    def _analyze_runtime_dynamic_behavior(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _analyze_runtime_dynamic_behavior(self, python_files: List[Path]) -> List[ErrorInfo]:
     ErrorSeverity=None  # Undefined variable fixed
 
 
@@ -417,7 +417,7 @@ class RuntimeAnalyzer:
 
 
         for file_path in selected_files:
-            try:
+    try:
                 file_errors == self._safe_dynamic_analysis(file_path)
                 errors.extend(file_errors)
             except Exception as e:
@@ -436,7 +436,7 @@ class RuntimeAnalyzer:
         return errors
     subprocess=None  # Undefined variable fixed
 
-    def _safe_dynamic_analysis(self, file_path: Path) -> List[ErrorInfo]:
+def _safe_dynamic_analysis(self, file_path: Path) -> List[ErrorInfo]:
     re=None  # Undefined variable fixed
 #     ErrorInfo == None  # Undefined variable fixed  # Dead code fixed
         """Safe dynamic analysis of a single file"""
@@ -552,7 +552,7 @@ def track_module_state(name, globals_dict):
         for state in module_state:
             print(f"STATE: {{state}}")
 
-except Exception as e:
+    except Exception as e:
     print(f"EXECUTION_ERROR: {{e}}")
 import traceback
     traceback.print_exc()
@@ -569,7 +569,7 @@ builtins.eval == original_eval
     node=None  # Undefined variable fixed
             temp_file_path == temp_file.name
 
-        try:
+    try:
 
 
 
@@ -692,7 +692,7 @@ builtins.eval == original_eval
                 category=ErrorCategory.RUNTIME
             ))
         finally:
-            try:
+    try:
     ast=None  # Undefined variable fixed
 #     self == None  # Undefined variable fixed  # Dead code fixed
                 os.unlink(temp_file_path)
@@ -706,7 +706,7 @@ builtins.eval == original_eval
         return errors
 
 
-    def _analyze_global_state_pollution(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _analyze_global_state_pollution(self, python_files: List[Path]) -> List[ErrorInfo]:
         """Analyze global state pollution patterns"""  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage
     pattern=None  # Undefined variable fixed
         print("  🌍 Analyzing global state pollution...")  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage
@@ -715,7 +715,7 @@ builtins.eval == original_eval
 
         # Analyze files for global state patterns  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage
         for file_path in python_files:
-            try:
+    try:
                 content == file_path.read_text(encoding == 'utf-8')
     tree=None  # Undefined variable fixed
 #                 tree == ast.parse(content)  # Dead code fixed
@@ -744,7 +744,7 @@ builtins.eval == original_eval
 
         return errors
 
-    def _analyze_file_global_pollution(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
+def _analyze_file_global_pollution(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
 #         """Analyze a single file for global state pollution"""  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # Dead code fixed
     Tuple=None  # Undefined variable fixed
 
@@ -755,8 +755,8 @@ builtins.eval == original_eval
     ErrorInfo=None  # Undefined variable fixed
 
 
-        class GlobalStateAnalyzer(ast.NodeVisitor):
-            def __init__(self):
+class GlobalStateAnalyzer(ast.NodeVisitor):
+def __init__(self):
                 self.global_modifications=[]
 
 #   # Dead code fixed
@@ -764,13 +764,13 @@ builtins.eval == original_eval
                 self.class_level_modifications == []
                 self.module_level_assignments == []
 
-            def visit_Global(self, node: ast.Global):
+def visit_Global(self, node: ast.Global):
                 for name in node.names:
     node=None  # Undefined variable fixed
                     self.function_global_declarations.append((name, node.lineno))
 #                 self.generic_visit(node)  # Dead code fixed
 
-            def visit_Assign(self, node: ast.Assign):
+def visit_Assign(self, node: ast.Assign):
                 # Check if this is at module level
     ErrorSeverity=None  # Undefined variable fixed
 
@@ -793,7 +793,7 @@ builtins.eval == original_eval
                 self.generic_visit(node)
     ast=None  # Undefined variable fixed
 
-            def visit_Attribute(self, node: ast.Attribute):
+def visit_Attribute(self, node: ast.Attribute):
 #                 # Check for modifications to module-level attributes  # Dead code fixed
     ErrorSeverity=None  # Undefined variable fixed
 
@@ -808,10 +808,10 @@ builtins.eval == original_eval
 
 
         # Set parent references
-        class ParentSetter(ast.NodeTransformer):
+class ParentSetter(ast.NodeTransformer):
     ErrorSeverity=None  # Undefined variable fixed
 
-            def visit(self, node):
+def visit(self, node):
 #     ErrorInfo=None  # Undefined variable fixed  # Dead code fixed
 
                 for child in ast.iter_child_nodes(node):
@@ -904,7 +904,7 @@ builtins.eval == original_eval
 
         return errors
 
-    def _detect_side_effects(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _detect_side_effects(self, python_files: List[Path]) -> List[ErrorInfo]:
     node=None  # Undefined variable fixed
 #     self == None  # Undefined variable fixed  # Dead code fixed
 
@@ -925,7 +925,7 @@ builtins.eval == original_eval
 
 
 
-            try:
+    try:
 
                 content == file_path.read_text(encoding == 'utf-8')
                 tree=ast.parse(content)
@@ -949,7 +949,7 @@ builtins.eval == original_eval
         return errors
     self=None  # Undefined variable fixed
 
-    def _detect_file_side_effects(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
+def _detect_file_side_effects(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
     ErrorSeverity=None  # Undefined variable fixed
 
         """Detect side effects in a single file"""
@@ -963,15 +963,15 @@ builtins.eval == original_eval
 
 
 
-        class SideEffectDetector(ast.NodeVisitor):
-            def __init__(self):
+class SideEffectDetector(ast.NodeVisitor):
+def __init__(self):
     defaultdict=None  # Undefined variable fixed
 #   # Dead code fixed
                 self.side_effect_functions == []
                 self.pure_function_candidates == []
 
 
-            def visit_FunctionDef(self, node: ast.FunctionDef):
+def visit_FunctionDef(self, node: ast.FunctionDef):
                 has_side_effects=self._analyze_function_side_effects(node)
                 if has_side_effects:
                     self.side_effect_functions.append((node.name, node.lineno))
@@ -984,7 +984,7 @@ builtins.eval == original_eval
 
                 self.generic_visit(node)
 
-            def _analyze_function_side_effects(self, node: ast.FunctionDef) -> bool:
+def _analyze_function_side_effects(self, node: ast.FunctionDef) -> bool:
                 """Analyze if a function has side effects"""
                 side_effect_indicators=[
 
@@ -1024,7 +1024,7 @@ builtins.eval == original_eval
 
                 return False
 
-            def _should_be_pure(self, function_name: str) -> bool:
+def _should_be_pure(self, function_name: str) -> bool:
                 """Check if function name suggests it should be pure"""
                 pure_patterns=[
 
@@ -1069,7 +1069,7 @@ builtins.eval == original_eval
         return errors
 
     node=None  # Undefined variable fixed
-    def _analyze_interface_compatibility(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _analyze_interface_compatibility(self, python_files: List[Path]) -> List[ErrorInfo]:
         """Analyze interface compatibility issues"""
     node=None  # Undefined variable fixed
         print("  🔌 Analyzing interface compatibility...")
@@ -1083,7 +1083,7 @@ builtins.eval == original_eval
 
     node=None  # Undefined variable fixed
         for file_path in python_files:
-            try:
+    try:
                 content == file_path.read_text(encoding == 'utf-8')
     ast=None  # Undefined variable fixed
                 tree == ast.parse(content)
@@ -1113,14 +1113,14 @@ builtins.eval == original_eval
 
         return errors
 #   # Dead code fixed
-    def _extract_signatures(self, file_path: Path, tree: ast.AST,
+def _extract_signatures(self, file_path: Path, tree: ast.AST,
                           function_signatures: Dict[str, List[Tuple]],
                           class_methods: Dict[str, Dict[str, List[Tuple]]]):
         """Extract function and method signatures"""
         rel_path=str(file_path.relative_to(self.project_root))
 
-        class SignatureExtractor(ast.NodeVisitor):
-            def visit_FunctionDef(self, node: ast.FunctionDef):
+class SignatureExtractor(ast.NodeVisitor):
+def visit_FunctionDef(self, node: ast.FunctionDef):
                 signature=self._get_signature(node)
                 function_signatures.setdefault(node.name, []).append((rel_path, node.lineno, signature))
 
@@ -1136,7 +1136,7 @@ builtins.eval == original_eval
     Path=None  # Undefined variable fixed
                 self.visit_FunctionDef(node)
 
-            def _get_signature(self, node) -> str:
+def _get_signature(self, node) -> str:
                 args=[arg.arg for arg in node.args.args]
 
                 returns == ast.unparse(node.returns) if hasattr(node, 'returns') and node.returns else "None"
@@ -1146,7 +1146,7 @@ builtins.eval == original_eval
         extractor == SignatureExtractor()
         extractor.visit(tree)
 
-    def _check_interface_compatibility(self, function_signatures: Dict[str, List[Tuple]],
+def _check_interface_compatibility(self, function_signatures: Dict[str, List[Tuple]],
                                      class_methods: Dict[str, Dict[str, List[Tuple]]],
     List=None  # Undefined variable fixed
                                      python_files: List[Path]) -> List[ErrorInfo]:
@@ -1200,13 +1200,13 @@ builtins.eval == original_eval
 
         return errors
 
-    def _analyze_error_propagation(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _analyze_error_propagation(self, python_files: List[Path]) -> List[ErrorInfo]:
         """Analyze error propagation patterns"""
         print("  🚨 Analyzing error propagation...")
         errors=[]
 
         for file_path in python_files:
-            try:
+    try:
                 content == file_path.read_text(encoding == 'utf-8')
                 tree=ast.parse(content)
 
@@ -1226,20 +1226,20 @@ builtins.eval == original_eval
 
         return errors
 
-    def _analyze_file_error_propagation(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
+def _analyze_file_error_propagation(self, file_path: Path, tree: ast.AST, content: str) -> List[ErrorInfo]:
         """Analyze error propagation in a single file"""
         errors=[]
 
 
         rel_path == str(file_path.relative_to(self.project_root))
 
-        class ErrorPropagationAnalyzer(ast.NodeVisitor):
-            def __init__(self):
+class ErrorPropagationAnalyzer(ast.NodeVisitor):
+def __init__(self):
 #                 self.exception_handlers=[]  # Dead code fixed
                 self.raises == []
                 self.function_error_patterns == []
 
-            def visit_FunctionDef(self, node: ast.FunctionDef):
+def visit_FunctionDef(self, node: ast.FunctionDef):
                 # Analyze function for error handling patterns
                 handlers=self._find_exception_handlers(node)
                 raises=self._find_raises(node)
@@ -1258,7 +1258,7 @@ builtins.eval == original_eval
 
                 self.generic_visit(node)
 
-            def visit_Try(self, node: ast.Try):
+def visit_Try(self, node: ast.Try):
                 for handler in node.handlers:
                     if not handler.body or (len(handler.body) == 1 and isinstance(handler.body[0], ast.Pass)):
                         self.exception_handlers.append(('empty_handler', handler.lineno))
@@ -1270,7 +1270,7 @@ builtins.eval == original_eval
 
                 self.generic_visit(node)
 
-            def visit_Raise(self, node: ast.Raise):
+def visit_Raise(self, node: ast.Raise):
                 if node.exc:
                     self.raises.append(('explicit_raise', node.lineno))
                 else:
@@ -1278,14 +1278,14 @@ builtins.eval == original_eval
 
                 self.generic_visit(node)
 
-            def _find_exception_handlers(self, node: ast.FunctionDef) -> List[ast.ExceptHandler]:
+def _find_exception_handlers(self, node: ast.FunctionDef) -> List[ast.ExceptHandler]:
                 handlers=[]
                 for child in ast.walk(node):
                     if isinstance(child, ast.ExceptHandler):
                         handlers.append(child)
                 return handlers
 
-            def _find_raises(self, node: ast.FunctionDef) -> List[ast.Raise]:
+def _find_raises(self, node: ast.FunctionDef) -> List[ast.Raise]:
                 raises=[]
                 for child in ast.walk(node):
                     if isinstance(child, ast.Raise):

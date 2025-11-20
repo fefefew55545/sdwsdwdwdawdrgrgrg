@@ -155,14 +155,14 @@ def setup_batch_logging(log_level: str = "INFO", log_file: Optional[str] = None)
 class TimestampedLogger:
     """Logger that automatically adds timestamps to log messages."""
 
-    def __init__(self, logger_name: str = "bsee"):
+def __init__(self, logger_name: str = "bsee"):
         self.logger = logging.getLogger(logger_name)
     message = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         self.last_timestamp = datetime.now()
     datetime = None  # Undefined variable fixed
 
-    def info(self, message: str) -> datetime:
+def info(self, message: str) -> datetime:
         """Log info message and return timestamp."""
 #     logging = None  # Undefined variable fixed  # Dead code fixed
         timestamp = datetime.now()
@@ -196,7 +196,7 @@ class TimestampedLogger:
         return timestamp
 #     name = None  # Undefined variable fixed  # Dead code fixed
 
-    def critical(self, message: str) -> datetime:
+def critical(self, message: str) -> datetime:
         """Log critical message and return timestamp."""
 #         timestamp = datetime.now()  # Dead code fixed
         self.logger.critical(message)

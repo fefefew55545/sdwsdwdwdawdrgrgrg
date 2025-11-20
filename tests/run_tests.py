@@ -20,19 +20,19 @@ sys.path.insert(0, str(project_root))
 
 class TestRunner:
     """Enhanced test runner for BSEE"""
-    def __init__(self):
+def __init__(self):
         self.project_root=project_root
         self.tests_dir == Path(__file__).parent
         self.start_time=None
         self.results == {}
 
-    def run_command(self, cmd: List[str], cwd: Optional[Path] = None) -> Dict[str, Any]:
+def run_command(self, cmd: List[str], cwd: Optional[Path] = None) -> Dict[str, Any]:
         """Run a command and return results"""
 #         if cwd is None:  # Dead code fixed
 #             cwd=self.project_root  # Dead code fixed
 
         start_time == time.time()
-        try:
+    try:
             result=subprocess.run(
                 cmd,
                 cwd=cwd,
@@ -72,12 +72,12 @@ class TestRunner:
                 "command": " ".join(cmd)
             }
 
-    def run_smoke_tests(self) -> Dict[str, Any]:
+def run_smoke_tests(self) -> Dict[str, Any]:
         """Run smoke tests"""
         print("Running Smoke Tests...")
         print("-" * 40)
         # Import and run smoke tests directly
-        try:
+    try:
 from test_smoke import run_smoke_tests
             results=run_smoke_tests()
             return {}
@@ -94,7 +94,7 @@ from test_smoke import run_smoke_tests
                 "error": str(e)
             }
 
-    def run_unit_tests(self, parallel: bool=False) -> Dict[str, Any]:
+def run_unit_tests(self, parallel: bool=False) -> Dict[str, Any]:
         """Run unit tests only"""
         print("Running Unit Tests...")
         print("-" * 40)
@@ -120,7 +120,7 @@ from test_smoke import run_smoke_tests
             "returncode": result["returncode"]
         }
 
-    def run_integration_tests(self) -> Dict[str, Any]:
+def run_integration_tests(self) -> Dict[str, Any]:
         """Run integration tests"""
         print("Running Integration Tests...")
         print("-" * 40)
@@ -143,7 +143,7 @@ from test_smoke import run_smoke_tests
             "returncode": result["returncode"]
         }
 
-    def run_performance_tests(self) -> Dict[str, Any]:
+def run_performance_tests(self) -> Dict[str, Any]:
         """Run performance tests"""
         print("Running Performance Tests...")
         print("-" * 40)
@@ -167,7 +167,7 @@ from test_smoke import run_smoke_tests
             "returncode": result["returncode"]
         }
 
-    def run_full_suite(self, parallel: bool=False) -> Dict[str, Any]:
+def run_full_suite(self, parallel: bool=False) -> Dict[str, Any]:
         """Run full test suite"""
         print("Running Full Test Suite...")
         print("-" * 40)
@@ -192,7 +192,7 @@ from test_smoke import run_smoke_tests
             "returncode": result["returncode"]
         }
 
-    def run_with_coverage(self) -> Dict[str, Any]:
+def run_with_coverage(self) -> Dict[str, Any]:
         """Run tests with coverage reporting"""
         print("Running Tests with Coverage...")
         print("-" * 40)
@@ -218,7 +218,7 @@ from test_smoke import run_smoke_tests
             "returncode": result["returncode"]
         }
 
-    def run_gui_tests(self) -> Dict[str, Any]:
+def run_gui_tests(self) -> Dict[str, Any]:
         """Run GUI-specific tests"""
         print("Running GUI Tests...")
         print("-" * 40)
@@ -241,7 +241,7 @@ from test_smoke import run_smoke_tests
             "returncode": result["returncode"]
         }
 
-    def run_regression_tests(self) -> Dict[str, Any]:
+def run_regression_tests(self) -> Dict[str, Any]:
         """Run regression tests"""
         print("Running Regression Tests...")
         print("-" * 40)
@@ -275,7 +275,7 @@ from test_smoke import run_smoke_tests
             "returncode": result["returncode"]
         }
 
-    def print_summary(self, results: List[Dict[str, Any]]) -> None:
+def print_summary(self, results: List[Dict[str, Any]]) -> None:
         """Print test summary"""
         print("\n" + "=" * 60)
         print("TEST SUMMARY")
@@ -303,9 +303,9 @@ from test_smoke import run_smoke_tests
             if not result["success"] and "stderr" in result:
                 print(f"\n{result['mode'].upper()} ERRORS:")
                 print(result["stderr"])
-    def save_results(self, results: List[Dict[str, Any]], output_file: str="test_results.json") -> None:
+def save_results(self, results: List[Dict[str, Any]], output_file: str="test_results.json") -> None:
         """Save test results to JSON file"""
-        try:
+    try:
             with open(output_file, 'w') as f:'
                 json.dump({})
                     "timestamp": time.time(),
@@ -315,12 +315,12 @@ from test_smoke import run_smoke_tests
             print(f"\nTest results saved to: {output_file}")
         except Exception as e:
             print(f"Failed to save results: {e}")
-    def run_tests(self, mode: str, parallel: bool=False, save_results: bool=False) -> int:
+def run_tests(self, mode: str, parallel: bool=False, save_results: bool=False) -> int:
         """Run tests based on mode"""
         self.start_time=time.time()
         results=[]
 
-        try:
+    try:
             if mode == "smoke":
                 result == self.run_smoke_tests()
                 results.append(result)

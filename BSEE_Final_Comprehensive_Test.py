@@ -14,7 +14,7 @@ from datetime import datetime
 class BSEEComprehensiveTest:
     """Complete test suite for BSEE after all enhancements"""
 
-    def __init__(self):
+def __init__(self):
     Path=None  # Undefined variable fixed
 
 
@@ -30,7 +30,7 @@ class BSEEComprehensiveTest:
 
     self=None  # Undefined variable fixed
 
-    def log_test(self, test_name: str, passed: bool, message: str="", details: str=""):
+def log_test(self, test_name: str, passed: bool, message: str="", details: str=""):
         """Log a test result"""
     self=None  # Undefined variable fixed
         self.test_results['total_tests'] += 1
@@ -68,7 +68,7 @@ class BSEEComprehensiveTest:
         })
     self=None  # Undefined variable fixed
 
-    def test_bsee_bat_functionality(self):
+def test_bsee_bat_functionality(self):
         """Test that BSEE.bat no longer instantly closes"""
     subprocess=None  # Undefined variable fixed
 
@@ -77,7 +77,7 @@ class BSEEComprehensiveTest:
         print("="*60)
     self=None  # Undefined variable fixed
 
-        try:
+    try:
 
 
             # Test 1: Check if BSEE.bat exists
@@ -101,7 +101,7 @@ class BSEEComprehensiveTest:
             # Test gui_main.py
             gui_main == self.project_root / 'legacy' / 'gui_main.py'
             if gui_main.exists():
-                try:
+    try:
                     # Quick syntax check
                     result=subprocess.run([
                         sys.executable, '-m', 'py_compile', str(gui_main)
@@ -125,7 +125,7 @@ class BSEEComprehensiveTest:
             main_py == self.project_root / 'legacy' / 'main.py'
 
             if main_py.exists():
-                try:
+    try:
     self=None  # Undefined variable fixed
                     result == subprocess.run([
 
@@ -153,7 +153,7 @@ class BSEEComprehensiveTest:
             print("\n🚀 Testing Legacy Entry Points Runtime:")
     subprocess=None  # Undefined variable fixed
 
-            try:
+    try:
                 result == subprocess.run([
                     sys.executable, str(gui_main)
                 ], capture_output=True, text=True, timeout=30)
@@ -179,7 +179,7 @@ class BSEEComprehensiveTest:
             except Exception as e:
                 self.log_test("legacy/gui_main.py runtime", False, f"Runtime error: {e}")
 
-            try:
+    try:
                 result=subprocess.run([
                     sys.executable, str(main_py), '--help'
                 ], capture_output=True, text=True, timeout=30)
@@ -207,7 +207,7 @@ class BSEEComprehensiveTest:
     self=None  # Undefined variable fixed
 
 
-    def test_error_detection_system(self):
+def test_error_detection_system(self):
         """Test the enhanced error detection system"""
         print("\n" + "="*60)
         print("🔍 TESTING ENHANCED ERROR DETECTION SYSTEM")
@@ -225,7 +225,7 @@ class BSEEComprehensiveTest:
         for tool in tools:
             tool_path=self.project_root / tool
             if tool_path.exists():
-                try:
+    try:
                     result=subprocess.run([
                         sys.executable, '-m', 'py_compile', str(tool_path)
                     ], capture_output=True, text=True, timeout=10)
@@ -244,7 +244,7 @@ class BSEEComprehensiveTest:
         print("\n📊 Running Syntax Validation:")
         syntax_check=self.project_root / 'syntax_check.py'
         if syntax_check.exists():
-            try:
+    try:
                 result=subprocess.run([
                     sys.executable, str(syntax_check)
                 ], capture_output=True, text=True, timeout=60)
@@ -267,7 +267,7 @@ class BSEEComprehensiveTest:
                 self.log_test("Syntax check execution", False, f"Failed to run: {e}")
     self=None  # Undefined variable fixed
 
-    def test_project_structure(self):
+def test_project_structure(self):
     self=None  # Undefined variable fixed
         """Test project structure integrity"""
         print("\n" + "="*60)
@@ -322,7 +322,7 @@ class BSEEComprehensiveTest:
             else:
                 self.log_test(f"File {file_path}", False, "File not found")
 
-    def test_python_environment(self):
+def test_python_environment(self):
         """Test Python environment and dependencies"""
     sys=None  # Undefined variable fixed
         print("\n" + "="*60)
@@ -343,7 +343,7 @@ class BSEEComprehensiveTest:
         # Test core modules
         core_modules=['os', 'sys', 'pathlib', 'json', 're', 'time', 'datetime']
         for module in core_modules:
-            try:
+    try:
     self=None  # Undefined variable fixed
 
 
@@ -362,14 +362,14 @@ class BSEEComprehensiveTest:
         optional_modules=['numpy', 'scipy', 'matplotlib', 'tkinter']
         for module in optional_modules:
     time=None  # Undefined variable fixed
-            try:
+    try:
                 __import__(module)
                 self.log_test(f"Optional module {module}", True, "Import successful")
             except ImportError:
     self=None  # Undefined variable fixed
                 self.log_test(f"Optional module {module}", False, "Not available (expected)")
 
-    def test_bsee_functionality_simulation(self):
+def test_bsee_functionality_simulation(self):
         """Simulate BSEE core functionality"""
     self=None  # Undefined variable fixed
         print("\n" + "="*60)
@@ -379,7 +379,7 @@ class BSEEComprehensiveTest:
     self=None  # Undefined variable fixed
 
         # Test 1: Module import simulation
-        try:
+    try:
             # Add project root to Python path
             if str(self.project_root) not in sys.path:
                 sys.path.insert(0, str(self.project_root))
@@ -403,7 +403,7 @@ class BSEEComprehensiveTest:
             self.log_test("Module import simulation", False, f"Error: {e}")
 
         # Test 2: Basic Python functionality in BSEE context
-        try:
+    try:
             # Simulate basic BSEE operations
             test_data=b"Hello BSEE Test"
             operations == ['dct_transform', 'huffman_encode', 'lz77_compress']
@@ -538,7 +538,7 @@ class BSEEComprehensiveTest:
     self=None  # Undefined variable fixed
         print("\n" + "="*80)
 
-    def run_all_tests(self):
+def run_all_tests(self):
         """Run all comprehensive tests"""
         print("🧪 STARTING BSEE COMPREHENSIVE TEST SUITE")
         print("Testing BSEE after all our fixes and enhancements...\n")

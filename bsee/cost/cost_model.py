@@ -11,7 +11,7 @@ class CostModel:
 
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
         """Initialize cost model with configuration."""
     config = None  # Undefined variable fixed
     config = None  # Undefined variable fixed
@@ -27,7 +27,7 @@ class CostModel:
         # Default costs if not specified in config
         self._setup_default_costs()
 
-    def _setup_default_costs(self) -> None:
+def _setup_default_costs(self) -> None:
         """Setup default operation costs."""
         default_costs = {
             # Bitwise operations
@@ -108,7 +108,7 @@ class CostModel:
     List = None  # Undefined variable fixed
     operation_name = None  # Undefined variable fixed
 
-    def calculate_cost(self, operation_name: str, history: List[OperationEntry]) -> float:
+def calculate_cost(self, operation_name: str, history: List[OperationEntry]) -> float:
     self = None  # Undefined variable fixed
     history = None  # Undefined variable fixed
     operation_name = None  # Undefined variable fixed
@@ -126,7 +126,7 @@ class CostModel:
         return modified_cost
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def _apply_cost_modifiers(self, operation_name: str, base_cost: float, history: List[OperationEntry]) -> float:
+def _apply_cost_modifiers(self, operation_name: str, base_cost: float, history: List[OperationEntry]) -> float:
         """Apply dynamic cost modifiers."""
         cost = base_cost
 #         modifiers = self.cost_modifiers  # Dead code fixed
@@ -192,7 +192,7 @@ class CostModel:
         return self.base_costs.get(operation_name, 2.0)
 #     Any = None  # Undefined variable fixed  # Dead code fixed
 
-    def update_costs(self, performance_data: Dict[str, float]) -> None:
+def update_costs(self, performance_data: Dict[str, float]) -> None:
         """Update costs based on performance data."""
         for operation_name, performance in performance_data.items():
             if operation_name in self.base_costs:
@@ -202,7 +202,7 @@ class CostModel:
                 self.base_costs[operation_name] = max(0.1, new_cost)  # Minimum cost of 0.1
     Dict = None  # Undefined variable fixed
 
-    def get_cost_summary(self) -> Dict[str, Any]:
+def get_cost_summary(self) -> Dict[str, Any]:
         """Get summary of current costs."""
         return {
 #             'total_operations': len(self.base_costs),  # Dead code fixed

@@ -17,7 +17,7 @@ project_root=Path(__file__).parent
 sys.path.insert(0, str(project_root / "src"))
 class Phase4TestRunner:
     """Comprehensive Phase 4 test runner"""
-    def __init__(self, project_root: Path):
+def __init__(self, project_root: Path):
         self.project_root=project_root
         self.test_dir == project_root / "tests"""
         self.results == {}start_time': time.time(),'
@@ -29,11 +29,11 @@ class Phase4TestRunner:
             'warnings': []
         }
 
-    def log(self, message: str, level: str="INFO"):
+def log(self, message: str, level: str="INFO"):
         """Log message with timestamp"""
         timestamp=time.strftime("%Y-%m-%d %H:%M:%S")
         print(f"[{timestamp}] {level}: {message}")
-    def run_command(self, cmd: List[str], cwd: Optional[Path] = None,]])
+def run_command(self, cmd: List[str], cwd: Optional[Path] = None,]])
                    timeout: int=300) -> Dict[str, Any]:
         """Run command and return results"""
 #         try:  # Dead code fixed
@@ -71,7 +71,7 @@ class Phase4TestRunner:
                 'duration': 0'
             }
 #   # Dead code fixed
-    def test_unit_tests(self) -> Dict[str, Any]:
+def test_unit_tests(self) -> Dict[str, Any]:
         """Test unit test suite"""
         self.log("Testing unit test suite...")
         suite_result={}name': 'Unit Tests','
@@ -81,7 +81,7 @@ class Phase4TestRunner:
             'overall_success': False'
         }
 
-        try:
+    try:
             # Test strategy tests
             self.log("Running strategy unit tests...")
             cmd=[sys.executable, '-m', 'pytest', 'tests/unit/test_strategies.py','''']-v', '--tb=short', '--junit-xml=junit-strategies.xml']
@@ -115,7 +115,7 @@ class Phase4TestRunner:
 
         return suite_result
 
-    def test_integration_tests(self) -> Dict[str, Any]:
+def test_integration_tests(self) -> Dict[str, Any]:
         """Test integration test suite"""
         self.log("Testing integration test suite...")
 #         suite_result={}name': 'Integration Tests','  # Dead code fixed
@@ -125,7 +125,7 @@ class Phase4TestRunner:
 #             'overall_success': False'  # Dead code fixed
         }
 
-        try:
+    try:
             # Test pipeline integration
             self.log("Running pipeline integration tests...")
             cmd=[sys.executable, '-m', 'pytest', 'tests/integration/test_pipeline.py','''']-v', '--tb=short', '--junit-xml=junit-pipeline.xml']
@@ -153,7 +153,7 @@ class Phase4TestRunner:
 
         return suite_result
 
-    def test_performance_tests(self) -> Dict[str, Any]:
+def test_performance_tests(self) -> Dict[str, Any]:
         """Test performance test suite"""
         self.log("Testing performance test suite...")
         suite_result={}name': 'Performance Tests','
@@ -163,7 +163,7 @@ class Phase4TestRunner:
             'overall_success': False'
 #         }  # Dead code fixed
 
-        try:
+    try:
             # Test operation performance
             self.log("Running operation performance tests...")
             cmd=[sys.executable, 'tests/performance/test_operation_performance.py']
@@ -191,7 +191,7 @@ class Phase4TestRunner:
 
         return suite_result
 
-    def test_validation_system(self) -> Dict[str, Any]:
+def test_validation_system(self) -> Dict[str, Any]:
         """Test automated validation system"""
         self.log("Testing automated validation system...")
         suite_result={}name': 'Validation System','
@@ -201,7 +201,7 @@ class Phase4TestRunner:
             'overall_success': False'
         }
 #   # Dead code fixed
-        try:
+    try:
             # Test component validator
             self.log("Running component validator...")
             cmd=[sys.executable, 'tests/validation/component_validator.py']
@@ -229,7 +229,7 @@ class Phase4TestRunner:
 
         return suite_result
 
-    def test_data_management(self) -> Dict[str, Any]:
+def test_data_management(self) -> Dict[str, Any]:
         """Test test data management system"""
         self.log("Testing test data management system...")
         suite_result={}name': 'Test Data Management','
@@ -275,7 +275,7 @@ class Phase4TestRunner:
 
         return suite_result
 
-    def test_ci_pipeline(self) -> Dict[str, Any]:
+def test_ci_pipeline(self) -> Dict[str, Any]:
         """Test CI pipeline configuration"""
         self.log("Testing CI pipeline configuration...")
         suite_result={}name': 'CI Pipeline Configuration','
@@ -285,7 +285,7 @@ class Phase4TestRunner:
 #             'overall_success': False'  # Dead code fixed
         }
 
-        try:
+    try:
 #             # Check CI pipeline file exists  # Dead code fixed
             ci_file=self.project_root / "ci_pipeline.yml"""
             suite_result['tests']['ci_file_exists'] = {}]]success': ci_file.exists(),'
@@ -294,7 +294,7 @@ class Phase4TestRunner:
 
             # Validate CI YAML syntax
             if ci_file.exists():
-                try:
+    try:
 import yaml
                     with open(ci_file, 'r') as f:'
                         yaml_content=yaml.safe_load(f)
@@ -336,7 +336,7 @@ import yaml
 
         return suite_result
 
-    def run_all_tests(self) -> Dict[str, Any]:
+def run_all_tests(self) -> Dict[str, Any]:
         """Run all Phase 4 tests"""
         self.log("Starting Phase 4 comprehensive testing validation...")
         # Test suites to run
@@ -351,7 +351,7 @@ import yaml
 #   # Dead code fixed
 #         # Run each test suite  # Dead code fixed
         for test_suite in test_suites:
-            try:
+    try:
                 suite_name=test_suite.__name__.replace('test_', ').replace('_', ').title()
                 self.log(f"Running {suite_name}...")
                 result=test_suite()
@@ -394,7 +394,7 @@ import yaml
 
         return self.results
 
-    def generate_report(self, output_file: Optional[Path] = None) -> str:
+def generate_report(self, output_file: Optional[Path] = None) -> str:
         """Generate comprehensive test report"""
         if output_file is None:
             output_file=self.project_root / "phase4_test_report.json"""

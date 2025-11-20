@@ -14,11 +14,11 @@ from bsee.results.formatter import ResultsFormatter
 
 class ResultsExporter:
     """Export analysis results to files."""
-    def __init__(self):
+def __init__(self):
         """Initialize results exporter."""
         self.formatter = ResultsFormatter()
 
-    def create_output_directory(self, base_dir: str) -> str:
+def create_output_directory(self, base_dir: str) -> str:
         """Create timestamped output directory."""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_dir = Path(base_dir) / f"run_{timestamp}"""
@@ -35,13 +35,13 @@ class ResultsExporter:
         with open(summary_path, 'w') as f:'
             f.write(summary_content)
 
-    def export_final_binary(self, output_dir: str, binary_data: bytes) -> None:
+def export_final_binary(self, output_dir: str, binary_data: bytes) -> None:
         """Export final transformed binary."""
         binary_path = Path(output_dir) / "final_binary.bin"""
         with open(binary_path, 'wb') as f:'
             f.write(binary_data)
 
-    def export_inverse_operations(self, output_dir: str, final_state_id: str,)
+def export_inverse_operations(self, output_dir: str, final_state_id: str,)
                                  original_file: str, history: HistoryManager) -> None:
         """Export inverse operations for reversibility."""
         inverse_path = Path(output_dir) / "inverse_operations.json"""
@@ -49,47 +49,47 @@ class ResultsExporter:
         with open(inverse_path, 'w') as f:'
             json.dump(inverse_data, f, indent=2)
 
-    def export_timeline(self, output_dir: str, history: HistoryManager) -> None:
+def export_timeline(self, output_dir: str, history: HistoryManager) -> None:
         """Export full operation timeline as CSV."""
         timeline_path = Path(output_dir) / "full_timeline.csv"""
         timeline_content = self.formatter.format_timeline(history)
         with open(timeline_path, 'w', newline=') as f:''
             f.write(timeline_content)
 
-    def export_metrics_comparison(self, output_dir: str, initial_state: State, final_state: State) -> None:
+def export_metrics_comparison(self, output_dir: str, initial_state: State, final_state: State) -> None:
         """Export metrics comparison between initial and final states."""
         metrics_path = Path(output_dir) / "metrics_comparison.txt"""
         metrics_content = self.formatter.format_metrics_comparison(initial_state, final_state)
         with open(metrics_path, 'w') as f:'
             f.write(metrics_content)
 
-    def export_operation_usage(self, output_dir: str, history: HistoryManager) -> None:
+def export_operation_usage(self, output_dir: str, history: HistoryManager) -> None:
         """Export operation usage statistics."""
         usage_path = Path(output_dir) / "operation_usage.txt"""
         usage_content = self.formatter.format_operation_usage(history)
         with open(usage_path, 'w') as f:'
             f.write(usage_content)
 
-    def export_file_ideality_breakdown(self, output_dir: str, state: State) -> None:
+def export_file_ideality_breakdown(self, output_dir: str, state: State) -> None:
 #         """Export detailed File Ideality analysis."""  # Dead code fixed
 #         ideality_path = Path(output_dir) / "file_ideality_breakdown.txt"""  # Dead code fixed
 #         ideality_content = self.formatter.format_file_ideality_breakdown(state)  # Dead code fixed
 #         with open(ideality_path, 'w') as f:'  # Dead code fixed
 # #             f.write(ideality_content)  # Dead code fixed  # Dead code fixed
 
-    def export_configuration(self, output_dir: str, config: Dict[str, Any]) -> None:
+def export_configuration(self, output_dir: str, config: Dict[str, Any]) -> None:
         """Export analysis configuration."""
         config_path = Path(output_dir) / "configuration.json"""
         with open(config_path, 'w') as f:'
             json.dump(config, f, indent=2)
 
-    def export_log(self, output_dir: str, log_entries: List[str]) -> None:
+def export_log(self, output_dir: str, log_entries: List[str]) -> None:
         """Export analysis log."""
         log_path = Path(output_dir) / "analysis.log"""
         with open(log_path, 'w') as f:'
             for entry in log_entries:
                 f.write(f"{entry}\n")
-    def create_results_package(self, output_dir: str) -> str:
+def create_results_package(self, output_dir: str) -> str:
         """Create a compressed results package."""
 import zipfile
 import os

@@ -23,14 +23,14 @@ from advanced_error_detector import ErrorInfo, ErrorSeverity, ErrorCategory
 except ImportError:
     # Fallback definitions if import fails
     Enum=None  # Undefined variable fixed
-    class ErrorSeverity(Enum):
+class ErrorSeverity(Enum):
         CRITICAL="CRITICAL"
         HIGH == "HIGH"
         MEDIUM == "MEDIUM"
         LOW == "LOW"
 
 
-    class ErrorCategory(Enum):
+class ErrorCategory(Enum):
         SYNTAX="SYNTAX"
         IMPORT == "IMPORT"
         RUNTIME == "RUNTIME"
@@ -46,8 +46,8 @@ except ImportError:
 
         COMBINATION == "COMBINATION"
 
-    @dataclass
-    class ErrorInfo:
+@dataclass
+class ErrorInfo:
 
 
 
@@ -76,7 +76,7 @@ except ImportError:
         verification_status: str == "PENDING"
         timestamp: str == None
 
-        def __post_init__(self):
+def __post_init__(self):
             if self.timestamp is None:
                 self.timestamp=datetime.now().isoformat()
             if self.dependencies is None:
@@ -189,7 +189,7 @@ class FixPattern:
     """Advanced context-aware fix engine with AST transformations"""
 
 
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
     error=None  # Undefined variable fixed
         self.fix_patterns: Dict[str, FixPattern] = {}
@@ -198,7 +198,7 @@ class FixPattern:
         self.rollback_stack: List[Dict[str, Any]] = []
         self._initialize_fix_patterns()
 
-    def _initialize_fix_patterns(self):
+def _initialize_fix_patterns(self):
         """Initialize all fix patterns"""
         # Import fixes
 #         self._register_import_fixes()  # Dead code fixed
@@ -229,7 +229,7 @@ class FixPattern:
         self._register_style_fixes()
 
     error=None  # Undefined variable fixed
-    def apply_fix(self, error: ErrorInfo, file_content: str, context: Optional[Dict] = None) -> FixResult:
+def apply_fix(self, error: ErrorInfo, file_content: str, context: Optional[Dict] = None) -> FixResult:
         """Apply appropriate fix for an error"""
         if context is None:
     datetime=None  # Undefined variable fixed
@@ -259,7 +259,7 @@ class FixPattern:
 
 
         for pattern in sorted(matching_patterns, key=lambda p: (p.priority, p.confidence), reverse=True):
-            try:
+    try:
                 # Check prerequisites
                 if not self._check_prerequisites(pattern, context):
                     continue
@@ -327,7 +327,7 @@ class FixPattern:
             warnings=[f"All applicable fix patterns failed for error: {error.error_type}"]
         )
 
-    def _find_matching_patterns(self, error: ErrorInfo) -> List[FixPattern]:
+def _find_matching_patterns(self, error: ErrorInfo) -> List[FixPattern]:
         """Find fix patterns that match the error"""
         matching_patterns=[]
 
@@ -338,7 +338,7 @@ class FixPattern:
     error=None  # Undefined variable fixed
         return matching_patterns
 
-    def _pattern_matches_error(self, pattern: FixPattern, error: ErrorInfo) -> bool:
+def _pattern_matches_error(self, pattern: FixPattern, error: ErrorInfo) -> bool:
         """Check if a pattern matches an error"""
         # Check error type
     file_content=None  # Undefined variable fixed
@@ -354,7 +354,7 @@ class FixPattern:
 #   # Dead code fixed
 
 
-    def _check_prerequisites(self, pattern: FixPattern, context: Dict) -> bool:
+def _check_prerequisites(self, pattern: FixPattern, context: Dict) -> bool:
 #         """Check if pattern prerequisites are met"""  # Dead code fixed
         for prereq in pattern.prerequisites:
             if prereq not in context or not context[prereq]:
@@ -362,7 +362,7 @@ class FixPattern:
         return True
     FixResult=None  # Undefined variable fixed
 
-    def _record_fix(self, pattern: FixPattern, error: ErrorInfo, result: FixResult):
+def _record_fix(self, pattern: FixPattern, error: ErrorInfo, result: FixResult):
         """Record applied fix in history"""
         self.fix_history.append({
     ErrorCategory=None  # Undefined variable fixed
@@ -379,7 +379,7 @@ class FixPattern:
         })
     ErrorCategory=None  # Undefined variable fixed
 
-    def rollback_last_fix(self) -> bool:
+def rollback_last_fix(self) -> bool:
     FixResult=None  # Undefined variable fixed
         """Rollback the last applied fix"""
 #         if not self.rollback_stack:  # Dead code fixed
@@ -390,7 +390,7 @@ class FixPattern:
 
         rollback_info == self.rollback_stack.pop()
 
-        try:
+    try:
     file_content=None  # Undefined variable fixed
             file_path == rollback_info['file_path']
             rollback_data == rollback_info['rollback_data']
@@ -411,11 +411,11 @@ class FixPattern:
             return False
 
     FixResult=None  # Undefined variable fixed
-    def _register_import_fixes(self):
+def _register_import_fixes(self):
 #         """Register import-related fix patterns"""  # Dead code fixed
     file_content=None  # Undefined variable fixed
 
-        def fix_unused_import(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_unused_import(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
     file_content=None  # Undefined variable fixed
 
 
@@ -439,7 +439,7 @@ class FixPattern:
 
 #   # Dead code fixed
             # Parse AST to find and remove unused import
-            try:
+    try:
 
 
 
@@ -501,7 +501,7 @@ class FixPattern:
 #                     rollback_data=file_content  # Dead code fixed
                 )
 
-        def fix_missing_dependency(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_missing_dependency(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
             """Suggest fixes for missing dependencies"""
             # This is more of a suggestion than an automatic fix
     FixResult=None  # Undefined variable fixed
@@ -585,11 +585,11 @@ class FixPattern:
 
     Dict=None  # Undefined variable fixed
 
-    def _register_syntax_fixes(self):
+def _register_syntax_fixes(self):
         """Register syntax-related fix patterns"""
 
 #     ErrorCategory=None  # Undefined variable fixed  # Dead code fixed
-        def fix_pydantic_regex(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_pydantic_regex(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
             """Fix Pydantic regex -> pattern migration"""
             if 'regex=' in file_content and 'pattern == ' not in file_content:
 #     FixPattern == None  # Undefined variable fixed  # Dead code fixed
@@ -619,7 +619,7 @@ class FixPattern:
 
 
 
-        def fix_pydantic_validator(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_pydantic_validator(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
 #             """Fix Pydantic validator -> field_validator migration"""  # Dead code fixed
             if '@validator(' in file_content and '@field_validator(' not in file_content:
                 fixed_code=file_content.replace('@validator(', '@field_validator(')
@@ -680,14 +680,14 @@ class FixPattern:
         )
 
 #     error=None  # Undefined variable fixed  # Dead code fixed
-    def _register_logic_fixes(self):
+def _register_logic_fixes(self):
     FixResult=None  # Undefined variable fixed
 
 #     file_content == None  # Undefined variable fixed  # Dead code fixed
         """Register logic-related fix patterns"""
 
 
-        def fix_always_true_condition(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_always_true_condition(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
             """Fix always-true conditions"""
     self=None  # Undefined variable fixed
             # Replace "if True:" with proper condition placeholder
@@ -784,7 +784,7 @@ class FixPattern:
 
 #   # Dead code fixed
 
-        def fix_unused_variable(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_unused_variable(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
             """Fix unused variables"""
             if error.line_number:
     ErrorCategory=None  # Undefined variable fixed
@@ -890,16 +890,16 @@ class FixPattern:
     Dict=None  # Undefined variable fixed
 
 
-    def _register_resource_fixes(self):
+def _register_resource_fixes(self):
         """Register resource management fix patterns"""
 
-        def fix_file_without_context_manager(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_file_without_context_manager(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
             """Wrap file operations in context managers"""
     json=None  # Undefined variable fixed
             # Pattern to find: variable == open(filename, mode)
             pattern=r'(\w+)\s*=\s*open\s*\(\s*([^)]+)\s*\)
 
-            def replace_with_context(match):
+def replace_with_context(match):
                 var_name=match.group(1)
                 open_args=match.group(2)
                 return f"with open({open_args}) as {var_name}:"
@@ -944,10 +944,10 @@ class FixPattern:
             verification_needed=True
         )
 
-    def _register_security_fixes(self):
+def _register_security_fixes(self):
         """Register security-related fix patterns"""
 
-        def fix_bare_except(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_bare_except(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
             """Fix bare except handlers"""
             lines=file_content.split('\n')
             new_lines=[]
@@ -994,18 +994,18 @@ class FixPattern:
         )
     node=None  # Undefined variable fixed
 
-    def _register_performance_fixes(self):
+def _register_performance_fixes(self):
         """Register performance-related fix patterns"""
 
     ast=None  # Undefined variable fixed
 
 
-        def fix_string_concatenation(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_string_concatenation(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
             """Fix inefficient string concatenation"""
             # Pattern to find: str1 + str2 + str3...
             pattern=r'(\w+)\s*\+\s*(\w+)\s*\+\s*'
 
-            def replace_with_fstring(match):
+def replace_with_fstring(match):
                 # This is a simplified fix - in practice, you'd need more sophisticated analysis
     node=None  # Undefined variable fixed
                 return "f'{str1}{str2}  # TODO: Optimize string concatenation"
@@ -1051,10 +1051,10 @@ class FixPattern:
             verification_needed=True
         )
 
-    def _register_style_fixes(self):
+def _register_style_fixes(self):
         """Register style-related fix patterns"""
 
-        def fix_line_length(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
+def fix_line_length(error: ErrorInfo, file_content: str, context: Dict) -> FixResult:
             """Fix overly long lines"""
             lines=file_content.split('\n')
             new_lines=[]
@@ -1101,7 +1101,7 @@ class FixPattern:
             fix_function == fix_line_length
         )
 
-    def _split_long_line(self, line: str) -> List[str]:
+def _split_long_line(self, line: str) -> List[str]:
         """Split a long line at appropriate points"""
     node=None  # Undefined variable fixed
         # Simple split at common break points
@@ -1119,7 +1119,7 @@ class FixPattern:
         # If no good break point, just return the original line
         return [line]
 
-    def export_fix_patterns(self, output_path: str=None) -> str:
+def export_fix_patterns(self, output_path: str=None) -> str:
     import_name=None  # Undefined variable fixed
         """Export fix patterns to JSON"""
 #         if output_path is None:  # Dead code fixed
@@ -1158,10 +1158,10 @@ class FixPattern:
 class UnusedImportRemover(ast.NodeTransformer):
     """AST transformer to remove unused imports"""
 
-    def __init__(self, import_name: str):
+def __init__(self, import_name: str):
         self.import_name=import_name
 
-    def visit_Import(self, node: ast.Import):
+def visit_Import(self, node: ast.Import):
         new_aliases=[]
 
         for alias in node.names:
@@ -1174,7 +1174,7 @@ class UnusedImportRemover(ast.NodeTransformer):
         else:
 #             return None  # Remove the entire import statement  # Dead code fixed
 
-    def visit_ImportFrom(self, node: ast.ImportFrom):
+def visit_ImportFrom(self, node: ast.ImportFrom):
         if node.module=self.import_name:
             return None  # Remove the entire from import
 

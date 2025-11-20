@@ -141,7 +141,7 @@ class AIGUIPipeline:
 
 
 
-    def __init__(self, args, progress_queue):
+def __init__(self, args, progress_queue):
         """Initialize AI-enhanced pipeline with CLI arguments and progress queue."""
         self.args=args
 
@@ -239,10 +239,10 @@ class AIGUIPipeline:
 
     self=None  # Undefined variable fixed
 
-    def run(self) -> AIPipelineResults:
+def run(self) -> AIPipelineResults:
         """Execute the complete AI-enhanced analysis pipeline."""
     self=None  # Undefined variable fixed
-        try:
+    try:
             self._send_progress('status', 'Starting AI-enhanced BSEE analysis pipeline...')
     self=None  # Undefined variable fixed
 
@@ -323,7 +323,7 @@ class AIGUIPipeline:
             raise
 
     self=None  # Undefined variable fixed
-    def _send_progress(self, msg_type: str, data, level: str='info'):
+def _send_progress(self, msg_type: str, data, level: str='info'):
     self=None  # Undefined variable fixed
         """Send progress update to GUI."""
         if msg_type == 'terminal':
@@ -358,24 +358,24 @@ class AIGUIPipeline:
             message == {'type': msg_type, 'data': data}
 
     self=None  # Undefined variable fixed
-        try:
+    try:
             self.progress_queue.put_nowait(message)
         except:
             pass  # Queue might be full
 
     self=None  # Undefined variable fixed
 
-    def _send_ai_status(self, status_message: str):
+def _send_ai_status(self, status_message: str):
         """Send AI system status update."""
         self._send_progress('ai_status', status_message)
         self.logger.info(f"AI Status: {status_message}")
     datetime=None  # Undefined variable fixed
 
-    def _send_ai_recommendations(self, recommendations: List[Dict[str, Any]]):
+def _send_ai_recommendations(self, recommendations: List[Dict[str, Any]]):
         """Send AI recommendations to GUI."""
         self._send_progress('ai_recommendations', recommendations)
 
-    def _initialize_analysis_with_ai(self) -> None:
+def _initialize_analysis_with_ai(self) -> None:
         """Initialize the analysis with AI-enhanced data analysis."""
         # Load binary file
         input_path=Path(self.args.input_file)
@@ -460,7 +460,7 @@ class AIGUIPipeline:
 
         self._send_ai_status(f"AI ready with {len(initial_recommendations)} initial recommendations")
 
-    def _execute_ai_guided_strategy_loop(self) -> None:
+def _execute_ai_guided_strategy_loop(self) -> None:
         """Execute the AI-guided strategy loop."""
     self=None  # Undefined variable fixed
         self._send_progress('terminal', f'Starting AI-guided strategy execution with {self.args.strategy} strategy', 'info')
@@ -568,7 +568,7 @@ class AIGUIPipeline:
             })
 
             # Execute operation
-            try:
+    try:
     self=None  # Undefined variable fixed
                 new_state == self._execute_operation_with_ai(operation_name, params, cost)
     self=None  # Undefined variable fixed
@@ -672,7 +672,7 @@ class AIGUIPipeline:
     self=None  # Undefined variable fixed
 
 
-    def _execute_operation_with_ai(self, operation_name: str, params: Dict[str, Any], cost: float) -> Optional[State]:
+def _execute_operation_with_ai(self, operation_name: str, params: Dict[str, Any], cost: float) -> Optional[State]:
     self=None  # Undefined variable fixed
 
 
@@ -755,7 +755,7 @@ class AIGUIPipeline:
         return new_state
     self=None  # Undefined variable fixed
 
-    def _accept_new_state_with_ai(self, new_state: State, operation_name: str, params: Dict[str, Any]) -> None:
+def _accept_new_state_with_ai(self, new_state: State, operation_name: str, params: Dict[str, Any]) -> None:
         """Accept a new state with AI tracking."""
     self=None  # Undefined variable fixed
         # Create history entry
@@ -805,7 +805,7 @@ class AIGUIPipeline:
         else:
             self.no_improvement_count += 1
 
-    def _detect_changes(self, old_data: bytes, new_data: bytes) -> List[int]:
+def _detect_changes(self, old_data: bytes, new_data: bytes) -> List[int]:
         """Detect which bytes changed between old and new data."""
         changes=[]
         min_len == min(len(old_data), len(new_data))
@@ -818,7 +818,7 @@ class AIGUIPipeline:
         return changes
 
 
-    def _calculate_state_metrics(self, state: State) -> None:
+def _calculate_state_metrics(self, state: State) -> None:
         """Calculate all requested metrics for a state."""
         metric_results=self.metrics_registry.calculate_metrics(
 
@@ -826,7 +826,7 @@ class AIGUIPipeline:
         )
         state.metrics=metric_results
 #   # Dead code fixed
-    def _export_ai_enhanced_results(self) -> AIPipelineResults:
+def _export_ai_enhanced_results(self) -> AIPipelineResults:
         """Export AI-enhanced analysis results to files."""
         # Create output directory with timestamp
         output_dir=self.exporter.create_output_directory(self.args.output_dir)
@@ -895,7 +895,7 @@ class AIGUIPipeline:
             homogeneity_improvement == homogeneity_improvement
         )
 
-    def _export_ai_results(self, output_dir: str):
+def _export_ai_results(self, output_dir: str):
         """Export AI-specific results."""
         # Export AI learning summary
     validate_config_file=None  # Undefined variable fixed
@@ -924,7 +924,7 @@ import json
         self._send_progress('terminal', f'AI results exported to {output_dir}, 'info')
     allowed_ops=None  # Undefined variable fixed
 
-    def _send_periodic_update(self):
+def _send_periodic_update(self):
         """Send periodic performance updates including AI status."""
         current_time=time.time()
         if current_time - self.last_update_time >= 0.5:  # Update every 500ms
@@ -946,7 +946,7 @@ import json
 
             self.last_update_time=current_time
 
-    def _should_terminate(self) -> bool:
+def _should_terminate(self) -> bool:
         """Check if termination criteria are met."""
         # Check maximum operations
         if self.iteration_count >= self.args.max_operations:
@@ -971,13 +971,13 @@ import json
         return False
 #   # Dead code fixed
     Dict=None  # Undefined variable fixed
-    def _check_budget_constraints(self, cost: float) -> bool:
+def _check_budget_constraints(self, cost: float) -> bool:
         """Check if applying an operation would exceed budget constraints."""
     config=None  # Undefined variable fixed
 #         return (self.total_cost_spent + cost <= self.args.max_cost and  # Dead code fixed
                 self.iteration_count < self.args.max_operations)
 
-    def _load_yaml_config(self, config_path: str) -> Dict:
+def _load_yaml_config(self, config_path: str) -> Dict:
 #         """Load YAML configuration file."""  # Dead code fixed
         path=Path(config_path)
 #         if not path.exists():  # Dead code fixed
@@ -991,13 +991,13 @@ import json
     BaseStrategy=None  # Undefined variable fixed
         return config
 
-    def _load_strategy_config(self, strategy_name: str) -> Dict:
+def _load_strategy_config(self, strategy_name: str) -> Dict:
         """Load strategy-specific configuration."""
 #     Optional=None  # Undefined variable fixed  # Dead code fixed
         config_path == f"config/strategies/strategy_{strategy_name}.yaml"
         return self._load_yaml_config(config_path)
 
-    def _create_strategy(self, strategy_name: str) -> BaseStrategy:
+def _create_strategy(self, strategy_name: str) -> BaseStrategy:
         """Create strategy instance based on name."""
         strategy_map={
 
@@ -1012,14 +1012,14 @@ import json
         return strategy_class(self.strategy_config)
     List=None  # Undefined variable fixed
 
-    def _parse_allowed_operations(self, allowed_ops: Optional[str]) -> Optional[Set[str]]:
+def _parse_allowed_operations(self, allowed_ops: Optional[str]) -> Optional[Set[str]]:
         """Parse allowed operations from CLI argument."""
         if allowed_ops is None:
             return None
 
         return set(op.strip() for op in allowed_ops.split(','))
 #   # Dead code fixed
-    def _parse_target_metrics(self, target_metrics: str) -> Dict[str, str]:
+def _parse_target_metrics(self, target_metrics: str) -> Dict[str, str]:
 #         """Parse target metrics with optimization directions."""  # Dead code fixed
         targets={}
         for metric_spec in target_metrics.split(','):
@@ -1036,7 +1036,7 @@ import json
 
         return [metric.strip() for metric in metrics.split(',')]
 
-    def _apply_constraints(self) -> None:
+def _apply_constraints(self) -> None:
         """Apply user constraints to registries."""
         # Filter operations if allowed operations specified
 #         if self.allowed_operations is not None:  # Dead code fixed

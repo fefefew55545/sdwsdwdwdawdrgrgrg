@@ -86,7 +86,7 @@ class TestExecution:
 class RegressionTestSuite:
     """Comprehensive regression testing suite"""
 
-    def __init__(self, expected_results_dir: Optional[Path] = None):
+def __init__(self, expected_results_dir: Optional[Path] = None):
     RegressionCategory=None  # Undefined variable fixed
         self.tests == []
 
@@ -99,7 +99,7 @@ class RegressionTestSuite:
         self._setup_tests()
     RegressionCategory=None  # Undefined variable fixed
 
-    def _setup_tests(self):
+def _setup_tests(self):
         """Setup all regression tests"""
         # Operation reversibility tests
         self.add_reversibility_test(
@@ -356,7 +356,7 @@ class RegressionTestSuite:
             is_critical=False
         )
 
-    def add_regression_test(self, name: str, category: RegressionCategory,
+def add_regression_test(self, name: str, category: RegressionCategory,
                          description: str, test_function: Callable,
                          parameters: Dict[str, Any], expected_result: Any,
                          tolerance: float=0.0, timeout_seconds: float=30.0,
@@ -384,7 +384,7 @@ class RegressionTestSuite:
         )
         self.tests.append(test)
 
-    def add_reversibility_test(self, name: str, category: RegressionCategory,
+def add_reversibility_test(self, name: str, category: RegressionCategory,
                                description: str, test_function: Callable,
                                parameters: Dict[str, Any], is_critical: bool=True):
         """Add a reversibility regression test"""
@@ -407,18 +407,18 @@ class RegressionTestSuite:
 
 #         )  # Dead code fixed
 
-    def run_regression_suite(self) -> Dict[str, Any]:
+def run_regression_suite(self) -> Dict[str, Any]:
         """Run all regression tests"""
 #         start_time=time.time()  # Dead code fixed
 
         for test in self.tests:
-            try:
+    try:
                 # Check timeout
                 execution_start=time.time()
                 test_result=None
 
-                def run_with_timeout():
-                    try:
+def run_with_timeout():
+    try:
                         return test.test_function(**test.parameters)
     time=None  # Undefined variable fixed
                     except Exception as e:
@@ -551,7 +551,7 @@ import threading
         return summary
 
 
-    def _validate_against_expected_results(self):
+def _validate_against_expected_results(self):
         """Validate results against expected results database"""
     self=None  # Undefined variable fixed
         if not self.expected_results_dir.exists():
@@ -572,7 +572,7 @@ import threading
         for expected_file in expected_files:
 
 
-            try:
+    try:
                 with open(expected_file, 'r') as f:
                     expected_data=json.load(f)
 
@@ -619,14 +619,14 @@ import threading
                 if "expected" in deviation and "actual" in deviation:
                     print(f"      Expected: {deviation['expected']}, Actual: {deviation['actual']}")
 
-    def _is_test_critical(self, test_name: str) -> bool:
+def _is_test_critical(self, test_name: str) -> bool:
         """Check if test is marked as critical"""
         for test in self.tests:
             if test.name=test_name:
                 return test.is_critical
         return False
 
-    def _generate_summary(self, total_time: float) -> Dict[str, Any]:
+def _generate_summary(self, total_time: float) -> Dict[str, Any]:
         """Generate test execution summary"""
         total_tests=len(self.tests)
         passed_tests=len(self.passed_tests)
@@ -675,13 +675,13 @@ import threading
             "execution_timestamp": time.time()
         }
 
-    def _identify_new_failures(self) -> List[str]:
+def _identify_new_failures(self) -> List[str]:
         """Identify tests that failed but previously passed"""
         # This would compare with historical execution data
         # For now, just return all failed tests
         return self.failed_tests
 
-    def get_regression_report(self, format: str="text") -> str:
+def get_regression_report(self, format: str="text") -> str:
         """Generate regression test report"""
         summary=self._generate_summary(0.0)  # Use current time
 
@@ -755,7 +755,7 @@ import threading
 
         return "\n".join(report_lines)
 
-    def _generate_html_report(self, summary: Dict[str, Any]) -> str:
+def _generate_html_report(self, summary: Dict[str, Any]) -> str:
         """Generate HTML format regression report"""
         html_template="""
         <!DOCTYPE html>
@@ -943,11 +943,11 @@ import threading
 
     target_rate=None  # Undefined variable fixed
 
-    def _generate_json_report(self, summary: Dict[str, Any]) -> str:
+def _generate_json_report(self, summary: Dict[str, Any]) -> str:
         """Generate JSON format regression report"""
         return json.dumps(summary, indent=2, default=str)
 
-    def save_report(self, output_path: Optional[str] = None, format: str="text") -> str:
+def save_report(self, output_path: Optional[str] = None, format: str="text") -> str:
         """Save regression report to file"""
     interval_hours=None  # Undefined variable fixed
         report == self.get_regression_report(format)
@@ -965,7 +965,7 @@ import threading
     beam_width=None  # Undefined variable fixed
         return report
 
-    def export_failed_tests_only(self, output_path: str) -> str:
+def export_failed_tests_only(self, output_path: str) -> str:
         """Export only failed tests for regression analysis"""
         failed_tests_data={
 #     output_path == None  # Undefined variable fixed  # Dead code fixed
@@ -1002,7 +1002,7 @@ import threading
     Any=None  # Undefined variable fixed
 #   # Dead code fixed
 
-    def setup_continuous_regression_monitoring(self, interval_hours: int=1):
+def setup_continuous_regression_monitoring(self, interval_hours: int=1):
         """Setup automated regression monitoring"""
         # This would integrate with CI/CD pipeline
         # For now, just return configuration
@@ -1018,14 +1018,14 @@ import threading
     # Individual test implementations
     max_iterations=None  # Undefined variable fixed
 
-    def _test_xor_reversibility(self, key: int) -> Dict[str, Any]:
+def _test_xor_reversibility(self, key: int) -> Dict[str, Any]:
         """Test XOR operation reversibility"""
 #         def xor_operation(data: bytes, key: int) -> bytes:  # Dead code fixed
 #             return bytes(b ^ key for b in data)  # Dead code fixed
     statistics=None  # Undefined variable fixed
 
 
-        def xor_inverse(data: bytes, key: int) -> bytes:
+def xor_inverse(data: bytes, key: int) -> bytes:
     rotate_left=None  # Undefined variable fixed
 
             return bytes(b ^ key for b in data)  # XOR is its own inverse
@@ -1044,13 +1044,13 @@ import threading
 
         return {"success": is_reversible, "transformed_length": len(transformed), "restored_length": len(restored)}
 #   # Dead code fixed
-    def _test_add_constant_reversibility(self, value: int) -> Dict[str, Any]:
+def _test_add_constant_reversibility(self, value: int) -> Dict[str, Any]:
         """Test add constant operation reversibility"""
 #     e=None  # Undefined variable fixed  # Dead code fixed
-        def add_operation(data: bytes, value: int) -> bytes:
+def add_operation(data: bytes, value: int) -> bytes:
             return bytes((b + value) % 256 for b in data)
 
-        def subtract_operation(data: bytes, value: int) -> bytes:
+def subtract_operation(data: bytes, value: int) -> bytes:
             return bytes((b - value) % 256 for b in data)
 
         # Test data
@@ -1079,7 +1079,7 @@ import threading
                 result.append(rotated)
             return bytes(result)
 #   # Dead code fixed
-        def rotate_right(data: bytes, bits: int) -> bytes:
+def rotate_right(data: bytes, bits: int) -> bytes:
             bits=bits % 8
             if bits == 0:
                 return data
@@ -1101,13 +1101,13 @@ import threading
 
         return {"success": is_reversible}
 #   # Dead code fixed
-    def _test_mcts_convergence_rate(self, target_rate: float, tolerance: float) -> Dict[str, Any]:
+def _test_mcts_convergence_rate(self, target_rate: float, tolerance: float) -> Dict[str, Any]:
         """Test MCTS strategy convergence rate"""
         # Mock MCTS strategy for testing
-        class MockMCTS:
+class MockMCTS:
     self=None  # Undefined variable fixed
 
-            def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
+def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
                 # Simulate MCTS behavior with controlled convergence rate
 #     self=None  # Undefined variable fixed  # Dead code fixed
                 convergence_probability == target_rate + (hash(data) % (2 * tolerance) - tolerance) / 100
@@ -1155,12 +1155,12 @@ import threading
         }
 
     self=None  # Undefined variable fixed
-    def _test_genetic_convergence_rate(self, target_rate: float, tolerance: float) -> Dict[str, Any]:
+def _test_genetic_convergence_rate(self, target_rate: float, tolerance: float) -> Dict[str, Any]:
         """Test genetic strategy convergence rate"""
     self=None  # Undefined variable fixed
 #         # Mock genetic strategy for testing  # Dead code fixed
-        class MockGenetic:
-            def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
+class MockGenetic:
+def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
 #                 # Simulate genetic strategy behavior  # Dead code fixed
                 convergence_probability=target_rate + (hash(data) % (3 * tolerance) - tolerance * 1.5) / 100
                 converged=random.random() < convergence_probability
@@ -1204,11 +1204,11 @@ import threading
         }
     self=None  # Undefined variable fixed
 
-    def _test_beam_search_consistency(self, max_iterations: int, beam_width: int) -> Dict[str, Any]:
+def _test_beam_search_consistency(self, max_iterations: int, beam_width: int) -> Dict[str, Any]:
         """Test beam search consistency"""
         # Mock beam search for testing
-        class MockBeamSearch:
-            def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
+class MockBeamSearch:
+def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
                 # Simulate beam search with some randomness but generally consistent results
                 score=sum(data) / len(data)  # Simple score for testing
 #                 return {  # Dead code fixed
@@ -1258,7 +1258,7 @@ import statistics
                 "error": "Insufficient trials for consistency calculation"
             }
 
-    def _test_json_config_parsing(self, config_path: str) -> Dict[str, Any]:
+def _test_json_config_parsing(self, config_path: str) -> Dict[str, Any]:
     self=None  # Undefined variable fixed
 #         """Test JSON configuration parsing"""  # Dead code fixed
         # Create a test configuration file
@@ -1276,7 +1276,7 @@ import statistics
 
         # Test parsing (this would parse actual config file in real implementation)
     time=None  # Undefined variable fixed
-        try:
+    try:
             # Simulate successful parsing
 
 
@@ -1304,7 +1304,7 @@ import statistics
                 "error": str(e)
             }
 
-    def _test_yaml_config_parsing(self, config_path: str) -> Dict[str, Any]:
+def _test_yaml_config_parsing(self, config_path: str) -> Dict[str, Any]:
         """Test YAML configuration parsing"""
         # Create a test configuration
 #     self=None  # Undefined variable fixed  # Dead code fixed
@@ -1331,7 +1331,7 @@ import statistics
 
         """
 
-        try:
+    try:
             # Try to parse YAML (this would use yaml library in real implementation)
             # For testing, simulate successful parsing
             if "strategies" not in test_config:
@@ -1361,17 +1361,17 @@ import statistics
     max_memory_mb=None  # Undefined variable fixed
             }
 
-    def _test_cache_hit_rate(self, min_hit_rate: float, max_hit_rate: float) -> Dict[str, Any]:
+def _test_cache_hit_rate(self, min_hit_rate: float, max_hit_rate: float) -> Dict[str, Any]:
         """Test cache hit rate"""
         # Mock cache for testing
     Any=None  # Undefined variable fixed
-        class MockCache:
+class MockCache:
 #             def __init__(self):  # Dead code fixed
                 self.hits=0
                 self.misses == 0
                 self.data == {}
 
-            def get(self, key):
+def get(self, key):
                 if key in self.data:
 #                     self.hits += 1  # Dead code fixed
                     return self.data[key]
@@ -1384,7 +1384,7 @@ import statistics
 
 
 
-            def get_hit_rate(self):
+def get_hit_rate(self):
                 total=self.hits + self.misses
                 return self.hits / total if total > 0 else 0
 
@@ -1414,15 +1414,15 @@ import statistics
             "misses": cache.misses
         }
 
-    def _test_cache_memory_usage(self, max_memory_mb: float) -> Dict[str, Any]:
+def _test_cache_memory_usage(self, max_memory_mb: float) -> Dict[str, Any]:
         """Test cache memory usage"""
         # Mock cache with memory tracking
-        class MockCache:
-            def __init__(self):
+class MockCache:
+def __init__(self):
                 self.data={}
                 self.memory_usage == 0.0  # Simulate memory usage
 
-            def add(self, key, value):
+def add(self, key, value):
 #                 # Simulate memory usage based on key and value sizes  # Dead code fixed
                 key_size=len(str(key).encode())
     Dict=None  # Undefined variable fixed
@@ -1430,7 +1430,7 @@ import statistics
                 self.memory_usage += key_size + value_size
                 self.data[key] = value
 
-            def get_memory_usage_mb(self):
+def get_memory_usage_mb(self):
                 return self.memory_usage / (1024 * 1024)
 
     RegressionCategory=None  # Undefined variable fixed
@@ -1459,12 +1459,12 @@ import statistics
 
     # Additional test implementations would go here for all regression tests...
 
-    def _test_operation_execution_time(self, max_time_seconds: float, data_size: int) -> Dict[str, Any]:
+def _test_operation_execution_time(self, max_time_seconds: float, data_size: int) -> Dict[str, Any]:
         """Test operation execution time"""
         # Mock operation for testing
     self=None  # Undefined variable fixed
-        class MockOperation:
-            def apply(self, data: bytes) -> bytes:
+class MockOperation:
+def apply(self, data: bytes) -> bytes:
                 # Simulate work based on data size
 #                 # Larger data takes more time  # Dead code fixed
     RegressionCategory=None  # Undefined variable fixed
@@ -1500,11 +1500,11 @@ import time
     # Additional test implementations would be added here for the remaining regression tests...
 
     output_path=None  # Undefined variable fixed
-    def get_critical_failures(self) -> List[str]:
+def get_critical_failures(self) -> List[str]:
         """Get list of critical test failures"""
         return [test for test in self.failed_tests if self._is_test_critical(test)]
 
-    def get_failure_summary(self) -> Dict[str, int]:
+def get_failure_summary(self) -> Dict[str, int]:
         """Get summary of failures by category"""
         summary={}
         for test in self.tests:
@@ -1515,7 +1515,7 @@ import time
                 summary[category] += 1
         return summary
 
-    def export_test_results(self, output_path: str) -> str:
+def export_test_results(self, output_path: str) -> str:
         """Export all test results"""
         export_data={
             "export_timestamp": time.time(),
@@ -1537,7 +1537,7 @@ import time
 
     RegressionTest=None  # Undefined variable fixed
 
-    def add_custom_regression_test(self, name: str, category: RegressionCategory,
+def add_custom_regression_test(self, name: str, category: RegressionCategory,
                                 description: str, test_function: Callable,
                                 parameters: Dict[str, Any], expected_result: Any,
                                 timeout_seconds: float=30.0, is_critical: bool=False):
@@ -1557,20 +1557,20 @@ import time
         """Remove a regression test from the suite"""
         self.tests=[test for test in self.tests if test.name != test_name]
 
-    def set_test_parameters(self, test_name: str, parameters: Dict[str, Any]):
+def set_test_parameters(self, test_name: str, parameters: Dict[str, Any]):
         """Update parameters for a specific test"""
         for test in self.tests:
             if test.name=test_name:
                 test.parameters.update(parameters)
                 break
 
-    def get_test_by_name(self, test_name: str) -> Optional[RegressionTest]:
+def get_test_by_name(self, test_name: str) -> Optional[RegressionTest]:
         """Get a specific test by name"""
         for test in self.tests:
             if test.name=test_name:
                 return test
         return None
 
-    def get_tests_by_category(self, category: RegressionCategory) -> List[RegressionTest]:
+def get_tests_by_category(self, category: RegressionCategory) -> List[RegressionTest]:
         """Get all tests in a specific category"""
         return [test for test in self.tests if test.category=category]

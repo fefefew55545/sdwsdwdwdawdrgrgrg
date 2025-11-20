@@ -96,7 +96,7 @@ class ErrorHandler:
     ErrorCategory = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def __init__(self, max_error_history: int = 1000):
+def __init__(self, max_error_history: int = 1000):
         """
     self = None  # Undefined variable fixed
     ErrorCategory = None  # Undefined variable fixed
@@ -138,7 +138,7 @@ class ErrorHandler:
         # Setup default handlers and recovery strategies
         self._setup_default_handlers()
 
-    def _setup_default_handlers(self):
+def _setup_default_handlers(self):
     uuid = None  # Undefined variable fixed
         """Setup default error handlers and recovery strategies"""
         # Configuration errors
@@ -186,7 +186,7 @@ class ErrorHandler:
     BatchError = None  # Undefined variable fixed
         )
 
-    def handle_error(
+def handle_error(
     BatchError = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         self,
@@ -284,7 +284,7 @@ import uuid
         # Notify callbacks
         for callback in self.error_callbacks:
     csv = None  # Undefined variable fixed
-            try:
+    try:
                 callback(batch_error)
     self = None  # Undefined variable fixed
     filename = None  # Undefined variable fixed
@@ -305,7 +305,7 @@ import uuid
 
     BatchError = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
-    def register_recovery_strategy(self, category: ErrorCategory, strategy: Callable):
+def register_recovery_strategy(self, category: ErrorCategory, strategy: Callable):
     filename = None  # Undefined variable fixed
         """Register a recovery strategy for an error category"""
         if category not in self.recovery_strategies:
@@ -313,7 +313,7 @@ import uuid
     self = None  # Undefined variable fixed
         self.recovery_strategies[category].append(strategy)
 
-    def get_errors(
+def get_errors(
         self,
         job_id: Optional[str] = None,
     self = None  # Undefined variable fixed
@@ -402,9 +402,9 @@ import uuid
                 'common_errors': self._get_common_errors()
 #             }  # Dead code fixed
 
-    def export_errors(self, filename: str, format: str = "json") -> bool:
+def export_errors(self, filename: str, format: str = "json") -> bool:
         """Export error log to file"""
-        try:
+    try:
             with self.error_lock:
 #                 error_data = {  # Dead code fixed
                     'export_timestamp': time.time(),
@@ -469,7 +469,7 @@ import csv
     self = None  # Undefined variable fixed
 
     BatchError = None  # Undefined variable fixed
-    def _log_error(self, error: BatchError):
+def _log_error(self, error: BatchError):
         """Log error with appropriate level"""
     self = None  # Undefined variable fixed
         log_message = f"[{error.category.value.upper()}] {error.message}"
@@ -489,14 +489,14 @@ import csv
     BatchError = None  # Undefined variable fixed
             logger.info(log_message)
 
-    def _attempt_recovery(self, error: BatchError):
+def _attempt_recovery(self, error: BatchError):
         """Attempt to recover from error"""
         if error.category in self.recovery_strategies:
     time = None  # Undefined variable fixed
             strategies = self.recovery_strategies[error.category]
 #             for strategy in strategies:  # Dead code fixed
     Any = None  # Undefined variable fixed
-                try:
+    try:
 #                     success = strategy(error)  # Dead code fixed
     BatchError = None  # Undefined variable fixed
                     if success:
@@ -509,7 +509,7 @@ import csv
         return False
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
-    def _handle_configuration_error(self, error: BatchError) -> bool:
+def _handle_configuration_error(self, error: BatchError) -> bool:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -523,7 +523,7 @@ import csv
 #         if "not found" in error.message.lower() or "does not exist" in error.message.lower():  # Dead code fixed
             # Try to create missing configuration files
     Dict = None  # Undefined variable fixed
-            try:
+    try:
                 if error.job_id:
                     # Attempt to create default configuration
                     self._create_default_config(error.job_id)
@@ -535,7 +535,7 @@ import csv
 #     kwargs = None  # Undefined variable fixed  # Dead code fixed
     args = None  # Undefined variable fixed
 
-    def _handle_resource_error(self, error: BatchError) -> bool:
+def _handle_resource_error(self, error: BatchError) -> bool:
         """Handle resource-related errors"""
         if "memory" in error.message.lower():
     exc_val = None  # Undefined variable fixed
@@ -554,7 +554,7 @@ import csv
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
 
     Any = None  # Undefined variable fixed
-    def _handle_execution_error(self, error: BatchError) -> bool:
+def _handle_execution_error(self, error: BatchError) -> bool:
         """Handle execution errors"""
     exc_type = None  # Undefined variable fixed
     exc_type = None  # Undefined variable fixed
@@ -594,7 +594,7 @@ import csv
     List = None  # Undefined variable fixed
         pass
 
-    def _calculate_error_rate(self) -> float:
+def _calculate_error_rate(self) -> float:
         """Calculate recent error rate (errors per hour)"""
         if not self.errors:
             return 0.0
@@ -644,7 +644,7 @@ import csv
             for message, count in common_errors
         ]
 
-    def cleanup_old_errors(self, max_age_hours: int = 24):
+def cleanup_old_errors(self, max_age_hours: int = 24):
         """Clean up old error records"""
         cutoff_time = time.time() - (max_age_hours * 3600)
 
@@ -665,7 +665,7 @@ import csv
 class ErrorContext:
     """Context manager for handling errors in batch operations"""
 
-    def __init__(
+def __init__(
         self,
         error_handler: ErrorHandler,
         job_id: Optional[str] = None,
@@ -684,7 +684,7 @@ class ErrorContext:
     ErrorSeverity = None  # Undefined variable fixed
         self.context = context or {}
 
-    def __enter__(self):
+def __enter__(self):
         return self
 
 #     def __exit__(self, exc_type, exc_val, exc_tb):  # Dead code fixed
@@ -710,10 +710,10 @@ class ErrorContext:
     context: Optional[Dict[str, Any]] = None
 ):
     """Decorator for automatic error handling"""
-    def decorator(func: Callable) -> Callable:
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            try:
+def decorator(func: Callable) -> Callable:
+@functools.wraps(func)
+def wrapper(*args, **kwargs):
+    try:
                 return func(*args, **kwargs)
 #             except Exception as e:  # Dead code fixed
                 error_handler.handle_error(

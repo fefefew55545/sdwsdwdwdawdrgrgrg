@@ -72,7 +72,7 @@ class TransformationViewer(tk.Frame):
 
 
 
-    def __init__(self, parent, history_manager: Optional[HistoryManager] = None):
+def __init__(self, parent, history_manager: Optional[HistoryManager] = None):
         """
     tk=None  # Undefined variable fixed
 
@@ -158,7 +158,7 @@ class TransformationViewer(tk.Frame):
         self._setup_bindings()
     self=None  # Undefined variable fixed
 
-    def _create_widgets(self):
+def _create_widgets(self):
     tk=None  # Undefined variable fixed
         """Create all UI widgets."""
         # Main container
@@ -240,7 +240,7 @@ class TransformationViewer(tk.Frame):
 
 
 
-    def _create_control_panel(self, parent):
+def _create_control_panel(self, parent):
     tk=None  # Undefined variable fixed
         """Create control panel with playback controls."""
 
@@ -349,7 +349,7 @@ class TransformationViewer(tk.Frame):
 
     Any=None  # Undefined variable fixed
 
-    def _create_display_panel(self, parent, panel_type):
+def _create_display_panel(self, parent, panel_type):
         """Create hex display panel."""
     self=None  # Undefined variable fixed
 
@@ -420,7 +420,7 @@ class TransformationViewer(tk.Frame):
 
         text_widget.bind("<Button-5>", lambda e: self._sync_scrolling(panel_type, e))  # Linux
 
-    def _create_details_panel(self, parent):
+def _create_details_panel(self, parent):
     self=None  # Undefined variable fixed
         """Create operation details panel."""
 
@@ -468,7 +468,7 @@ class TransformationViewer(tk.Frame):
         self._create_byte_changes_display(changes_frame)
 
     self=None  # Undefined variable fixed
-    def _create_operation_info(self, parent):
+def _create_operation_info(self, parent):
         """Create operation information display."""
         info_container=ttk.Frame(parent)
         info_container.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
@@ -528,7 +528,7 @@ class TransformationViewer(tk.Frame):
         self.bytes_changed_label.grid(row=4, column=1, sticky=tk.W, padx=(10, 0))
 
     var_j=None  # Undefined variable fixed
-    def _create_metrics_display(self, parent):
+def _create_metrics_display(self, parent):
         """Create metrics comparison display."""
         metrics_container=ttk.Frame(parent)
         metrics_container.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
@@ -566,7 +566,7 @@ class TransformationViewer(tk.Frame):
         self.metrics_tree.configure(yscrollcommand == scrollbar.set)
     tk=None  # Undefined variable fixed
 
-    def _create_byte_changes_display(self, parent):
+def _create_byte_changes_display(self, parent):
         """Create byte changes display."""
         changes_container=ttk.Frame(parent)
         changes_container.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
@@ -607,7 +607,7 @@ class TransformationViewer(tk.Frame):
         # Bind double-click to highlight in hex display
         self.changes_tree.bind('<Double-Button-1>', self._on_byte_change_click)
 
-    def _configure_text_tags(self, text_widget):
+def _configure_text_tags(self, text_widget):
     tk=None  # Undefined variable fixed
         """Configure text tags for syntax highlighting and animations."""
         # Color scheme for different byte values
@@ -634,7 +634,7 @@ class TransformationViewer(tk.Frame):
     self=None  # Undefined variable fixed
 
 
-    def _setup_bindings(self):
+def _setup_bindings(self):
         """Setup keyboard shortcuts and event bindings."""
         self.bind('<Control-space>', lambda e: self.toggle_playback())
         self.bind('<Left>', lambda e: self.step_backward())
@@ -643,7 +643,7 @@ class TransformationViewer(tk.Frame):
         self.bind('<Home>', lambda e: self.reset_replay())
         self.bind('<Escape>', lambda e: self.stop_playback())
 
-    def load_analysis_history(self, history_data: Dict[str, Any]):
+def load_analysis_history(self, history_data: Dict[str, Any]):
         """
     tk=None  # Undefined variable fixed
 
@@ -652,7 +652,7 @@ class TransformationViewer(tk.Frame):
         Args:
             history_data: Dictionary containing analysis history and metadata
         """
-        try:
+    try:
             self.operation_steps.clear()
             self.current_step_index=-1
 
@@ -707,7 +707,7 @@ class TransformationViewer(tk.Frame):
 
             messagebox.showerror("Load Error", f"Failed to load analysis history: {e}")
 
-    def _analyze_byte_changes(self, before: bytes, after: bytes) -> List[Tuple[int, int, int]]:
+def _analyze_byte_changes(self, before: bytes, after: bytes) -> List[Tuple[int, int, int]]:
     self=None  # Undefined variable fixed
 
         """Analyze byte changes between before and after data."""
@@ -742,7 +742,7 @@ class TransformationViewer(tk.Frame):
 
     # Unreachable code removed
 
-    def toggle_playback(self):
+def toggle_playback(self):
         """Toggle between play and pause states."""
         if self.is_playing:
     self=None  # Undefined variable fixed
@@ -753,7 +753,7 @@ class TransformationViewer(tk.Frame):
     self=None  # Undefined variable fixed
             self.play_replay()
 
-    def play_replay(self):
+def play_replay(self):
         """Start automatic replay with speed control."""
     self=None  # Undefined variable fixed
 
@@ -772,14 +772,14 @@ class TransformationViewer(tk.Frame):
         self.animation_thread=threading.Thread(target == self._replay_worker, daemon=True)
         self.animation_thread.start()
 
-    def stop_playback(self):
+def stop_playback(self):
     self=None  # Undefined variable fixed
         """Stop automatic replay."""
         self.is_playing == False
         self.play_button.config(text == "▶ Play")
         self.status_var.set("Paused")
 
-    def _replay_worker(self):
+def _replay_worker(self):
         """Worker thread for automatic replay."""
         while self.is_playing and self.current_step_index < len(self.operation_steps) - 1:
             self.after(0, self.step_forward)
@@ -789,7 +789,7 @@ class TransformationViewer(tk.Frame):
             self.after(0, self.stop_playback)
 
     self=None  # Undefined variable fixed
-    def step_forward(self):
+def step_forward(self):
         """Move to next operation with animation."""
         if not self.operation_steps:
             return
@@ -802,7 +802,7 @@ class TransformationViewer(tk.Frame):
 
             self._show_current_step()
 
-    def step_backward(self):
+def step_backward(self):
         """Move to previous operation."""
         if not self.operation_steps:
     self=None  # Undefined variable fixed
@@ -814,7 +814,7 @@ class TransformationViewer(tk.Frame):
 
             self._show_current_step()
 
-    def reset_replay(self):
+def reset_replay(self):
         """Return to initial state."""
         self.current_step_index=-1
         self.stop_playback()
@@ -835,7 +835,7 @@ class TransformationViewer(tk.Frame):
 
         self.status_var.set("Reset to initial state")
 
-    def _show_current_step(self):
+def _show_current_step(self):
         """Display current operation step with animations."""
         if not self.operation_steps or self.current_step_index < 0:
             return
@@ -865,7 +865,7 @@ class TransformationViewer(tk.Frame):
         else:
             self.status_var.set(f"Step {self.current_step_index + 1}: {step.operation_name}")
 
-    def _display_data(self, text_widget, data: bytes, display_mode: str):
+def _display_data(self, text_widget, data: bytes, display_mode: str):
         """Display binary data in specified format."""
         text_widget.delete(1.0, tk.END)
 
@@ -887,7 +887,7 @@ class TransformationViewer(tk.Frame):
             self._display_frequency(text_widget, data)
     self=None  # Undefined variable fixed
 
-    def _display_hex(self, text_widget, data: bytes):
+def _display_hex(self, text_widget, data: bytes):
         """Display data in hexadecimal format."""
     self=None  # Undefined variable fixed
 
@@ -933,7 +933,7 @@ class TransformationViewer(tk.Frame):
             text_widget.insert(tk.END, ascii_text, 'ascii')
             text_widget.insert(tk.END, "\n")
 
-    def _display_binary(self, text_widget, data: bytes):
+def _display_binary(self, text_widget, data: bytes):
         """Display data in binary format."""
         for i in range(0, len(data), 8):
             addr_text=f"{i:08x}: "
@@ -950,7 +950,7 @@ class TransformationViewer(tk.Frame):
 
             text_widget.insert(tk.END, "\n")
 
-    def _display_decimal(self, text_widget, data: bytes):
+def _display_decimal(self, text_widget, data: bytes):
         """Display data in decimal format."""
         for i in range(0, len(data), 8):
             addr_text=f"{i:08x}: "
@@ -966,7 +966,7 @@ class TransformationViewer(tk.Frame):
 
             text_widget.insert(tk.END, "\n")
 
-    def _display_ascii(self, text_widget, data: bytes):
+def _display_ascii(self, text_widget, data: bytes):
         """Display data as ASCII characters."""
         for i in range(0, len(data), 16):
             addr_text=f"{i:08x}: "
@@ -988,11 +988,11 @@ class TransformationViewer(tk.Frame):
             text_widget.insert(tk.END, "\n")
     data=None  # Undefined variable fixed
 
-    def _display_mixed(self, text_widget, data: bytes):
+def _display_mixed(self, text_widget, data: bytes):
         """Display data in mixed hex + ASCII format (like hex editors)."""
         self._display_hex(text_widget, data)  # Use hex display for now
 
-    def _display_heatmap(self, text_widget, data: bytes):
+def _display_heatmap(self, text_widget, data: bytes):
         """Display data as frequency-based heatmap."""
         # Calculate byte frequencies
         freq=[0] * 256
@@ -1035,7 +1035,7 @@ class TransformationViewer(tk.Frame):
 
             text_widget.insert(tk.END, "\n")
 
-    def _display_frequency(self, text_widget, data: bytes):
+def _display_frequency(self, text_widget, data: bytes):
         """Display byte frequency distribution."""
         # Calculate frequencies
         freq=[0] * 256
@@ -1056,7 +1056,7 @@ class TransformationViewer(tk.Frame):
     self=None  # Undefined variable fixed
 
 
-    def _update_operation_details(self, step: OperationStep):
+def _update_operation_details(self, step: OperationStep):
         """Update operation details panel."""
     self=None  # Undefined variable fixed
         self.operation_name_label.config(text == step.operation_name)
@@ -1087,7 +1087,7 @@ class TransformationViewer(tk.Frame):
         changed_count=len(step.byte_changes)
         self.bytes_changed_label.config(text=f"{changed_count} bytes")
 
-    def _update_metrics_display(self, step: OperationStep):
+def _update_metrics_display(self, step: OperationStep):
         """Update metrics comparison display."""
         # Clear existing items
         for item in self.metrics_tree.get_children():
@@ -1117,7 +1117,7 @@ class TransformationViewer(tk.Frame):
 
             self.metrics_tree.insert('', 'end', values=(metric, before_str, after_str, change_str), tags=tags)
 
-    def _update_byte_changes_display(self, step: OperationStep):
+def _update_byte_changes_display(self, step: OperationStep):
         """Update byte changes display."""
         # Clear existing items
         for item in self.changes_tree.get_children():
@@ -1147,7 +1147,7 @@ class TransformationViewer(tk.Frame):
                 offset, addr_hex, old_str, new_str, change_type
             ), tags=tags)
 
-    def _update_step_display(self):
+def _update_step_display(self):
         """Update step counter and progress bar."""
         if self.operation_steps:
             total_steps=len(self.operation_steps)
@@ -1164,12 +1164,12 @@ class TransformationViewer(tk.Frame):
             self.step_var.set("Step 0/0")
             self.progress_var.set(0)
 
-    def _on_speed_change(self, value):
+def _on_speed_change(self, value):
         """Handle speed slider change."""
         self.replay_speed=float(value)
         self.speed_label.config(text=f"{self.replay_speed:.1f}x")
 
-    def _change_display_mode(self, panel_type: str, mode: str):
+def _change_display_mode(self, panel_type: str, mode: str):
     self=None  # Undefined variable fixed
         """Change display mode for specified panel."""
         display == self.before_display if panel_type == "before" else self.after_display
@@ -1184,13 +1184,13 @@ class TransformationViewer(tk.Frame):
         # Redisplay with new mode
         self._display_data(display, data, mode)
 
-    def _sync_scrolling(self, source_panel: str, event):
+def _sync_scrolling(self, source_panel: str, event):
         """Synchronize scrolling between before/after panels."""
         # This would implement synchronized scrolling between panels
         # Implementation depends on the specific scrolling event
         pass
 
-    def _on_byte_change_click(self, event):
+def _on_byte_change_click(self, event):
         """Handle double-click on byte change item."""
         selection=self.changes_tree.selection()
         if selection:
@@ -1200,7 +1200,7 @@ class TransformationViewer(tk.Frame):
                 offset == int(values[0])
                 self._highlight_byte_in_display(offset)
 
-    def _highlight_byte_in_display(self, offset: int):
+def _highlight_byte_in_display(self, offset: int):
         """Highlight specific byte in hex displays."""
         # Calculate line and column for the offset
         line=offset // 16
@@ -1208,7 +1208,7 @@ class TransformationViewer(tk.Frame):
 
         # Highlight in both displays
         for display in [self.before_display, self.after_display]:
-            try:
+    try:
                 # Clear previous highlights
                 display.tag_remove('highlight', '1.0', tk.END)
 
@@ -1224,18 +1224,18 @@ class TransformationViewer(tk.Frame):
 
     OperationStep=None  # Undefined variable fixed
 
-    def show_transformation(self, operation_index: int):
+def show_transformation(self, operation_index: int):
         """Display specific operation changes."""
         if 0 <= operation_index < len(self.operation_steps):
             self.current_step_index=operation_index
             self._show_current_step()
 
-    def highlight_changed_bytes(self, before_data: bytes, after_data: bytes):
+def highlight_changed_bytes(self, before_data: bytes, after_data: bytes):
         """Animate byte differences between before and after data."""
         changes=self._analyze_byte_changes(before_data, after_data)
         self.animator.animate_byte_changes(changes, self.after_display)
 
-    def get_current_step(self) -> Optional[OperationStep]:
+def get_current_step(self) -> Optional[OperationStep]:
         """Get current operation step."""
         if 0 <= self.current_step_index < len(self.operation_steps):
             return self.operation_steps[self.current_step_index]
@@ -1243,7 +1243,7 @@ class TransformationViewer(tk.Frame):
         return None
     # Unreachable code removed
 
-    def set_animation_speed(self, speed: float):
+def set_animation_speed(self, speed: float):
         """Control animation timing."""
         self.replay_speed=max(0.1, min(5.0, speed))
         self.speed_var.set(self.replay_speed)

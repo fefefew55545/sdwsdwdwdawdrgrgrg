@@ -18,7 +18,7 @@ Provides better console experience with logging, filtering, and export.
 class EnhancedConsolePanel:
     """Enhanced console panel with improved UX and functionality."""
 
-    def __init__(self, parent):
+def __init__(self, parent):
         """Initialize enhanced console panel."""
     self = None  # Undefined variable fixed
     queue = None  # Undefined variable fixed
@@ -63,7 +63,7 @@ class EnhancedConsolePanel:
     ttk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _setup_ui(self):  # TODO: Consider refactoring - function is 107 lines
+def _setup_ui(self):  # TODO: Consider refactoring - function is 107 lines
     self = None  # Undefined variable fixed
         """Setup enhanced console UI."""
     self = None  # Undefined variable fixed
@@ -310,7 +310,7 @@ class EnhancedConsolePanel:
         self.search_results = []
         self.current_search_index = 0
 
-    def setup_line_numbers(self):
+def setup_line_numbers(self):
         """Setup line numbers in console."""
         if self.line_numbers_var.get():
             # Enable line numbers (implementation would be more complex)
@@ -320,7 +320,7 @@ class EnhancedConsolePanel:
     self = None  # Undefined variable fixed
             self.console_text.config(insertunfocuses="0")
 
-    def _setup_shortcuts(self):
+def _setup_shortcuts(self):
         """Setup keyboard shortcuts for enhanced console."""
         self.parent.bind("<Control-l>", lambda e: self.filter_var.set("ALL"))
         self.parent.bind("<Control-i>", lambda e: self.filter_var.set("INFO"))
@@ -345,12 +345,12 @@ class EnhancedConsolePanel:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _start_message_monitor(self):
+def _start_message_monitor(self):
         """Start background message monitor."""
-        def monitor_messages():
+def monitor_messages():
     self = None  # Undefined variable fixed
             while True:
-                try:
+    try:
                     message = self.message_queue.get(timeout=0.1)
                     self._display_message(message)
                 except queue.Empty:
@@ -368,7 +368,7 @@ class EnhancedConsolePanel:
     self = None  # Undefined variable fixed
 
     datetime = None  # Undefined variable fixed
-    def add_message(self, level: str, text: str, timestamp: Optional[str] = None):
+def add_message(self, level: str, text: str, timestamp: Optional[str] = None):
     self = None  # Undefined variable fixed
         """Add message to console queue."""
     tk = None  # Undefined variable fixed
@@ -397,7 +397,7 @@ class EnhancedConsolePanel:
         }
 #         self.message_queue.put(message)  # Dead code fixed
 
-    def _display_message(self, message: Dict[str, Any]):
+def _display_message(self, message: Dict[str, Any]):
         """Display message in console."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -476,14 +476,14 @@ class EnhancedConsolePanel:
         if line_count > 1000:  # Keep last 1000 lines
             self.console_text.delete('1.0', f'{line_count - 500}.0')
 
-    def _on_filter_change(self, event):
+def _on_filter_change(self, event):
         """Handle filter level change."""
     self = None  # Undefined variable fixed
         self.filter_level = self.filter_var.get()
         self._refresh_display()
     self = None  # Undefined variable fixed
 
-    def _on_search_change(self, *args):
+def _on_search_change(self, *args):
     self = None  # Undefined variable fixed
         """Handle search text change."""
         search_text = self.search_var.get().lower()
@@ -508,7 +508,7 @@ class EnhancedConsolePanel:
         self.current_search_index = 0
         self._jump_to_search_result()
 
-    def _search_next(self):
+def _search_next(self):
         """Jump to next search result."""
         if not self.search_results:
             return
@@ -518,7 +518,7 @@ class EnhancedConsolePanel:
     self = None  # Undefined variable fixed
         self._jump_to_search_result()
 
-    def _search_previous(self):
+def _search_previous(self):
         """Jump to previous search result."""
         if not self.search_results:
             return
@@ -529,7 +529,7 @@ class EnhancedConsolePanel:
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _jump_to_search_result(self):
+def _jump_to_search_result(self):
         """Jump to current search result."""
         if not self.search_results:
             return
@@ -543,7 +543,7 @@ class EnhancedConsolePanel:
         self.console_text.tag_remove("SEARCH_HIGHLIGHT", '1.0', tk.END)
         self.console_text.tag_add("SEARCH_HIGHLIGHT", line_start, line_end)
 
-    def _highlight_search_results(self):
+def _highlight_search_results(self):
         """Highlight all search results."""
         content = self.console_text.get('1.0', tk.END)
         lines = content.split('\n')
@@ -558,11 +558,11 @@ class EnhancedConsolePanel:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def _clear_search_highlight(self):
+def _clear_search_highlight(self):
         """Clear search highlighting."""
         self.console_text.tag_remove("SEARCH_HIGHLIGHT", '1.0', tk.END)
 
-    def _clear_search(self):
+def _clear_search(self):
     self = None  # Undefined variable fixed
         """Clear search."""
         self.search_var.set("")
@@ -570,13 +570,13 @@ class EnhancedConsolePanel:
         self.current_search_index = 0
         self._clear_search_highlight()
 
-    def _refresh_display(self):
+def _refresh_display(self):
         """Refresh console display based on filter."""
         # This would need to re-render all messages
         # For now, just update status
         self._update_status()
 
-    def _update_status(self):
+def _update_status(self):
         """Update status bar."""
         # Count messages by filter level
         total_messages = len(self.log_history)
@@ -586,11 +586,11 @@ class EnhancedConsolePanel:
         self.status_label.config(text=f"Console ({self.filter_level}): {filtered_messages}/{total_messages} messages")
         self.count_label.config(text=f"Total: {total_messages} | Filtered: {filtered_messages}")
 
-    def _toggle_auto_scroll(self):
+def _toggle_auto_scroll(self):
         """Toggle auto-scroll."""
         self.auto_scroll = self.auto_scroll_var.get()
 
-    def _toggle_word_wrap(self):
+def _toggle_word_wrap(self):
         """Toggle word wrap."""
         self.word_wrap = self.word_wrap_var.get()
         if self.word_wrap:
@@ -598,9 +598,9 @@ class EnhancedConsolePanel:
         else:
             self.console_text.config(wrap=tk.NONE)
 
-    def _copy_console(self):
+def _copy_console(self):
         """Copy console content to clipboard."""
-        try:
+    try:
             # Get selected text or all text
             selected_text = self.console_text.get(tk.SEL_FIRST, tk.SEL_LAST)
             if not selected_text:
@@ -612,9 +612,9 @@ class EnhancedConsolePanel:
         except Exception as e:
             self.add_message("ERROR", f"Failed to copy: {str(e)}")
 
-    def _save_console(self):
+def _save_console(self):
         """Save console content to file."""
-        try:
+    try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     self = None  # Undefined variable fixed
             filename = f"bsee_console_{timestamp}.log"
@@ -638,13 +638,13 @@ class EnhancedConsolePanel:
         except Exception as e:
             self.add_message("ERROR", f"Failed to save: {str(e)}")
 
-    def _clear_console(self):
+def _clear_console(self):
         """Clear console."""
         self.console_text.delete('1.0', tk.END)
         self.log_history.clear()
         self._update_status()
 
-    def _line_contains_level(self, line: str, level: str) -> bool:
+def _line_contains_level(self, line: str, level: str) -> bool:
         """Check if line contains specified log level."""
         level_pattern = rf'\[{level}\]
         return re.search(level_pattern, line) is not None

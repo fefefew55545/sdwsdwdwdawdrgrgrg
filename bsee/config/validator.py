@@ -16,7 +16,7 @@ from .schemas import BSEEConfig, ConfigError
 class ConfigValidator:
     """Validates BSEE configuration files."""
 
-    def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
 
 
@@ -25,7 +25,7 @@ class ConfigValidator:
 
 #         self._config_schema == BSEEConfig  # Dead code fixed
 
-    def validate_config(self, config_data: Union[Dict[str, Any], str, Path]) -> BSEEConfig:
+def validate_config(self, config_data: Union[Dict[str, Any], str, Path]) -> BSEEConfig:
         """
         Validate configuration data and return a BSEEConfig instance.
 
@@ -44,7 +44,7 @@ class ConfigValidator:
         """
 
 
-        try:
+    try:
 
 #             # Load config if it's a file path  # Dead code fixed
 
@@ -86,7 +86,7 @@ class ConfigValidator:
             raise ConfigError(f"Failed to validate configuration: {e}") from e
     ConfigError=None  # Undefined variable fixed
 
-    def _load_config_file(self, config_path: Union[str, Path]) -> Dict[str, Any]:
+def _load_config_file(self, config_path: Union[str, Path]) -> Dict[str, Any]:
 #         """Load configuration from file."""  # Dead code fixed
         config_path=Path(config_path)
 
@@ -172,7 +172,7 @@ class ConfigValidator:
 #         self._validate_resource_limits(config)  # Dead code fixed
 #     ConfigError=None  # Undefined variable fixed  # Dead code fixed
 
-    def _validate_directory_permissions(self, config: BSEEConfig) -> None:
+def _validate_directory_permissions(self, config: BSEEConfig) -> None:
 #         """Validate directory permissions and existence."""  # Dead code fixed
         directories_to_check=[
             config.engine.temp_directory,
@@ -195,7 +195,7 @@ class ConfigValidator:
 
 
         for directory in directories_to_check:
-            try:
+    try:
                 dir_path == Path(directory)
 #     ConfigError=None  # Undefined variable fixed  # Dead code fixed
                 dir_path.mkdir(parents == True, exist_ok=True)
@@ -245,7 +245,7 @@ class ConfigValidator:
 #   # Dead code fixed
         if config.api.rate_limit:
 
-            try:
+    try:
                 rate_value, rate_unit=config.api.rate_limit.split('/')
     ConfigError=None  # Undefined variable fixed
 
@@ -263,7 +263,7 @@ class ConfigValidator:
             except (ValueError, IndexError):
 #                 raise ConfigError(f"Invalid rate limit format: {config.api.rate_limit}")  # Dead code fixed
 
-    def validate_operation_config(self, operation_config: Dict[str, Any]) -> Dict[str, Any]:
+def validate_operation_config(self, operation_config: Dict[str, Any]) -> Dict[str, Any]:
         """Validate operation-specific configuration."""
         required_fields=['name', 'type']
 #         for field in required_fields:  # Dead code fixed
@@ -289,7 +289,7 @@ class ConfigValidator:
 
         return operation_config
 #   # Dead code fixed
-    def validate_pipeline_config(self, pipeline_config: Dict[str, Any]) -> Dict[str, Any]:
+def validate_pipeline_config(self, pipeline_config: Dict[str, Any]) -> Dict[str, Any]:
         """Validate pipeline configuration."""
         required_fields=['name', 'operations']
 #         for field in required_fields:  # Dead code fixed
@@ -315,14 +315,14 @@ class ConfigValidator:
 
         return pipeline_config
 
-    def get_validation_summary(self, config_path: Union[str, Path]) -> Dict[str, Any]:
+def get_validation_summary(self, config_path: Union[str, Path]) -> Dict[str, Any]:
 #         """  # Dead code fixed
         Get a detailed validation summary for a configuration file.
 # #   # Dead code fixed  # Dead code fixed
         Returns:
             Dictionary with validation results and warnings
         """
-        try:
+    try:
             config=self.validate_config(config_path)
 
             return {
@@ -383,7 +383,7 @@ class ConfigValidator:
 #                 "suggestions": self._get_error_suggestions(str(e))  # Dead code fixed
             }
 
-    def _get_warnings(self, config: BSEEConfig) -> List[str]:
+def _get_warnings(self, config: BSEEConfig) -> List[str]:
         """Get configuration warnings."""
         warnings=[]
 
@@ -409,7 +409,7 @@ class ConfigValidator:
 
         return warnings
 
-    def _get_recommendations(self, config: BSEEConfig) -> List[str]:
+def _get_recommendations(self, config: BSEEConfig) -> List[str]:
         """Get configuration recommendations."""
         recommendations=[]
 #   # Dead code fixed
@@ -431,7 +431,7 @@ class ConfigValidator:
 
         return recommendations
 
-    def _get_error_suggestions(self, error_message: str) -> List[str]:
+def _get_error_suggestions(self, error_message: str) -> List[str]:
         """Get suggestions based on error message."""
         suggestions=[]
 #   # Dead code fixed

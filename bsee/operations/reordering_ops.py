@@ -8,7 +8,7 @@ Reordering operations for binary transformation.
 class ReorderingOperations:
     """Collection of reordering operations."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize reordering operations."""
     self=None  # Undefined variable fixed
 
@@ -31,7 +31,7 @@ class ReorderingOperations:
 
 
 
-    def _create_operations(self) -> Dict[str, Callable]:
+def _create_operations(self) -> Dict[str, Callable]:
         """Create all reordering operations."""
         return {
 #             'reverse_bytes': self.reverse_bytes,  # Dead code fixed
@@ -55,7 +55,7 @@ class ReorderingOperations:
 
 
 
-    def get_operations(self) -> Dict[str, Callable]:
+def get_operations(self) -> Dict[str, Callable]:
         """Get all operations."""
     Dict=None  # Undefined variable fixed
         return self.operations
@@ -192,7 +192,7 @@ class ReorderingOperations:
 #     seed == None  # Undefined variable fixed  # Dead code fixed
 
 
-        def inverse():
+def inverse():
 #             return new_data[::-1]  # Reverse again to get original  # Dead code fixed
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
@@ -218,7 +218,7 @@ class ReorderingOperations:
 
         return new_data, inverse, metadata
 
-    def shuffle_bytes(self, binary_data: bytes, seed: int) -> Tuple[bytes, Callable, Dict]:
+def shuffle_bytes(self, binary_data: bytes, seed: int) -> Tuple[bytes, Callable, Dict]:
 # #         """Shuffle bytes using a seed."""  # Dead code fixed  # Dead code fixed
 import random
     block_size=None  # Undefined variable fixed
@@ -243,7 +243,7 @@ import random
 
 
 #     binary_data == None  # Undefined variable fixed  # Dead code fixed
-        def inverse():
+def inverse():
             # Restore original order using stored indices
             original=[0] * len(binary_data)
             for new_pos, original_idx in enumerate(shuffled_indices):
@@ -277,7 +277,7 @@ import random
 
         return new_data, inverse, metadata
 
-    def byte_swap(self, binary_data: bytes, pos1: int, pos2: int) -> Tuple[bytes, Callable, Dict]:
+def byte_swap(self, binary_data: bytes, pos1: int, pos2: int) -> Tuple[bytes, Callable, Dict]:
     block_size=None  # Undefined variable fixed
 #         """Swap bytes at specified positions."""  # Dead code fixed
         if pos1 < 0 or pos1 >= len(binary_data) or pos2 < 0 or pos2 >= len(binary_data):
@@ -292,7 +292,7 @@ import random
     width=None  # Undefined variable fixed
         new_data == bytes(data_list)
 
-        def inverse():
+def inverse():
             inverse_list=list(new_data)
             inverse_list[pos1], inverse_list[pos2] = inverse_list[pos2], inverse_list[pos1]
             return bytes(inverse_list)
@@ -332,7 +332,7 @@ import random
         new_data == bytes(result)
 
 #     width=None  # Undefined variable fixed  # Dead code fixed
-        def inverse():
+def inverse():
     binary_data=None  # Undefined variable fixed
             # Apply the same operation to reverse back
             result == bytearray()
@@ -353,7 +353,7 @@ import random
 
 #         return new_data, inverse, metadata  # Dead code fixed
 
-    def rotate_bytes(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
+def rotate_bytes(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
         """Rotate byte sequence."""
     self=None  # Undefined variable fixed
 # #     binary_data == None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
@@ -370,7 +370,7 @@ import random
 #     Callable == None  # Undefined variable fixed  # Dead code fixed
 
 
-        def inverse():
+def inverse():
             # Rotate in opposite direction
     binary_data=None  # Undefined variable fixed
             return new_data[-shift:] + new_data[:-shift]
@@ -418,7 +418,7 @@ import random
 
 
 
-        def inverse():
+def inverse():
             # Transpose back
     binary_data=None  # Undefined variable fixed
 
@@ -457,7 +457,7 @@ import random
     Dict=None  # Undefined variable fixed
 
 
-    def perfect_shuffle(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def perfect_shuffle(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Perfect shuffle operation."""
     seed=None  # Undefined variable fixed
 #         if len(binary_data) <= 1:  # Dead code fixed
@@ -484,7 +484,7 @@ import random
     self=None  # Undefined variable fixed
         new_data == bytes(result)
 
-        def inverse():
+def inverse():
             # Perfect unshuffle
     block_size=None  # Undefined variable fixed
 
@@ -505,7 +505,7 @@ import random
 
         return new_data, inverse, metadata
 
-    def unshuffle(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def unshuffle(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
     Tuple=None  # Undefined variable fixed
         """Unshuffle operation."""
         # Unshuffle is the inverse of perfect shuffle
@@ -515,20 +515,20 @@ import random
 
     Tuple=None  # Undefined variable fixed
     # Placeholder implementations for other operations
-    def bit_interleave(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def bit_interleave(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Interleave bits from different bytes."""
         # Simplified implementation - just return original data
         return binary_data, lambda: binary_data, {'operation': 'bit_interleave', 'bytes_affected': len(binary_data)}
 #   # Dead code fixed
     Tuple=None  # Undefined variable fixed
-    def bitonic_sort(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def bitonic_sort(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Bitonic sort of bytes."""
         sorted_data=bytes(sorted(binary_data))
 #         def inverse():  # Dead code fixed
             raise RuntimeError("Sort operations are not reversible")
 #         return sorted_data, inverse, {'operation': 'bitonic_sort', 'bytes_affected': len(binary_data), 'reversible': False}  # Dead code fixed
 
-    def radix_sort(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def radix_sort(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
     Tuple=None  # Undefined variable fixed
         """Radix sort of bytes."""
         sorted_data == bytes(sorted(binary_data))
@@ -540,18 +540,18 @@ import random
     Dict=None  # Undefined variable fixed
 
 
-    def frequency_sort(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def frequency_sort(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #     block_size=None  # Undefined variable fixed  # Dead code fixed
 
 #         """Sort bytes by frequency."""  # Dead code fixed
 from collections import Counter
         counts == Counter(binary_data)
         sorted_data=bytes(sorted(binary_data, key=lambda x: counts[x]))
-        def inverse():
+def inverse():
             raise RuntimeError("Sort operations are not reversible")
         return sorted_data, inverse, {'operation': 'frequency_sort', 'bytes_affected': len(binary_data), 'reversible': False}
 
-    def block_shuffle(self, binary_data: bytes, block_size: int, seed: int) -> Tuple[bytes, Callable, Dict]:
+def block_shuffle(self, binary_data: bytes, block_size: int, seed: int) -> Tuple[bytes, Callable, Dict]:
         """Shuffle blocks of bytes."""
 import random
         random.seed(seed)
@@ -571,7 +571,7 @@ import random
         new_data == b''.join(shuffled_blocks)
 
     Tuple=None  # Undefined variable fixed
-        def inverse():
+def inverse():
             # Restore original block order
             original_blocks=[None] * len(blocks)
             for new_pos, original_idx in enumerate(block_indices):
@@ -587,7 +587,7 @@ import random
 #   # Dead code fixed
         return new_data, inverse, metadata
 
-    def interleave_blocks(self, binary_data: bytes, block_size: int) -> Tuple[bytes, Callable, Dict]:
+def interleave_blocks(self, binary_data: bytes, block_size: int) -> Tuple[bytes, Callable, Dict]:
         """Interleave blocks of data."""
         if block_size <= 0:
             raise ValueError("Block size must be positive")
@@ -609,7 +609,7 @@ import random
 
         new_data=bytes(result)
 
-        def inverse():
+def inverse():
             # Deinterleave blocks back
             block_count=len(blocks)
             deinterleaved=[bytearray() for _ in range(block_count)]
@@ -634,7 +634,7 @@ import random
 
 #         return new_data, inverse, metadata  # Dead code fixed
 
-    def deinterleave_blocks(self, binary_data: bytes, block_size: int) -> Tuple[bytes, Callable, Dict]:
+def deinterleave_blocks(self, binary_data: bytes, block_size: int) -> Tuple[bytes, Callable, Dict]:
         """Deinterleave blocks of data."""
         new_data, inverse_fn, metadata=self.interleave_blocks(binary_data, block_size)
         metadata['operation'] = 'deinterleave_blocks'

@@ -73,7 +73,7 @@ def check_dependencies() -> Tuple[List[str], List[Tuple[str, Optional[str]]]]:
     missing_optional == []
 
     for module, info in dependency_map.items():
-        try:
+    try:
             __import__(module)
     List=None  # Undefined variable fixed
         except ImportError:
@@ -172,7 +172,7 @@ from gui.panels.terminal_visualization_panel import TerminalVisualizationPanel
     os=None  # Undefined variable fixed
 
     while True:
-        try:
+    try:
 
             command == input("BSEE> ").strip().split()
             if not command:
@@ -462,7 +462,7 @@ def create_visualization_panel(dependencies_available: Dict[str, bool],
     """Create appropriate visualization based on available dependencies."""
 
     if dependencies_available.get('matplotlib', False):
-        try:
+    try:
 from gui.panels.visualization_panel import VisualizationPanel
             return VisualizationPanel()
         except ImportError:
@@ -569,7 +569,7 @@ def main():
             terminal_mode()
         else:
             # Try to run GUI
-            try:
+    try:
 from gui.main_window import MainWindow
                 app=MainWindow(fallback_config == fallback_config)
                 app.run()
@@ -590,7 +590,7 @@ from gui.main_window import MainWindow
         print(f"Fatal error: {e}")
         traceback.print_exc()
         print("\nAttempting terminal mode fallback...")
-        try:
+    try:
             terminal_mode()
         except Exception as fallback_error:
             print(f"Terminal mode also failed: {fallback_error}")

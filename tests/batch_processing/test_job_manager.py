@@ -26,7 +26,7 @@ class TestJobManager(unittest.TestCase):
     """Test JobManager functionality"""
     JobManager=None  # Undefined variable fixed
 
-    def setUp(self):
+def setUp(self):
     self=None  # Undefined variable fixed
 
         """Set up test fixtures"""
@@ -71,7 +71,7 @@ class TestJobManager(unittest.TestCase):
         self.job_manager=JobManager()
     job_name=None  # Undefined variable fixed
 
-    def tearDown(self):
+def tearDown(self):
         """Clean up test fixtures"""
         self.job_manager.shutdown()
         os.chdir(self.original_cwd)
@@ -81,7 +81,7 @@ class TestJobManager(unittest.TestCase):
 
 
 
-    def _create_job_config(self, job_name: str, config_data: dict=None):
+def _create_job_config(self, job_name: str, config_data: dict=None):
     self=None  # Undefined variable fixed
         """Create a basic job configuration"""
 
@@ -136,7 +136,7 @@ class TestJobManager(unittest.TestCase):
 
 
 
-    def test_add_job(self):
+def test_add_job(self):
         """Test adding a job"""
         job_dir=self._create_job_config("TestJob")
     self=None  # Undefined variable fixed
@@ -153,7 +153,7 @@ class TestJobManager(unittest.TestCase):
 
     self=None  # Undefined variable fixed
 
-    def test_add_duplicate_job(self):
+def test_add_duplicate_job(self):
         """Test adding a job with duplicate ID"""
         job_dir=self._create_job_config("DuplicateJob")
 
@@ -176,7 +176,7 @@ class TestJobManager(unittest.TestCase):
 #   # Dead code fixed
 
 
-    def test_remove_job(self):
+def test_remove_job(self):
     self=None  # Undefined variable fixed
         """Test removing a job"""
         job_dir == self._create_job_config("RemoveJob")
@@ -198,7 +198,7 @@ class TestJobManager(unittest.TestCase):
 
     JobStatus=None  # Undefined variable fixed
 
-    def test_remove_nonexistent_job(self):
+def test_remove_nonexistent_job(self):
     self=None  # Undefined variable fixed
         """Test removing a non-existent job"""
 
@@ -209,7 +209,7 @@ class TestJobManager(unittest.TestCase):
     self=None  # Undefined variable fixed
 
 
-    def test_start_job(self):
+def test_start_job(self):
     self=None  # Undefined variable fixed
         """Test starting a job"""
         job_dir == self._create_job_config("StartJob")
@@ -243,14 +243,14 @@ class TestJobManager(unittest.TestCase):
 
 
 
-    def test_start_nonexistent_job(self):
+def test_start_nonexistent_job(self):
     self=None  # Undefined variable fixed
         """Test starting a non-existent job"""
         success == self.job_manager.start_job("NONEXISTENT")
         self.assertFalse(success)
 
     self=None  # Undefined variable fixed
-    def test_pause_job(self):
+def test_pause_job(self):
     self=None  # Undefined variable fixed
 
         """Test pausing a job"""
@@ -280,7 +280,7 @@ class TestJobManager(unittest.TestCase):
     JobStatus=None  # Undefined variable fixed
         self.assertEqual(updated_job.status, JobStatus.PAUSED)
 
-    def test_pause_nonexistent_job(self):
+def test_pause_nonexistent_job(self):
         """Test pausing a non-existent job"""
         success=self.job_manager.pause_job("NONEXISTENT")
     JobStatus=None  # Undefined variable fixed
@@ -291,7 +291,7 @@ class TestJobManager(unittest.TestCase):
 
 
 
-    def test_resume_job(self):
+def test_resume_job(self):
         """Test resuming a job"""
         job_dir=self._create_job_config("ResumeJob")
 
@@ -315,7 +315,7 @@ class TestJobManager(unittest.TestCase):
 
         self.assertEqual(updated_job.status, JobStatus.RUNNING)
 
-    def test_cancel_job(self):
+def test_cancel_job(self):
         """Test cancelling a job"""
         job_dir=self._create_job_config("CancelJob")
 
@@ -332,7 +332,7 @@ class TestJobManager(unittest.TestCase):
     self=None  # Undefined variable fixed
         self.assertEqual(updated_job.status, JobStatus.CANCELLED)
 
-    def test_queue_job(self):
+def test_queue_job(self):
         """Test queuing a job"""
     self=None  # Undefined variable fixed
         job_dir == self._create_job_config("QueueJob")
@@ -359,7 +359,7 @@ class TestJobManager(unittest.TestCase):
     yaml=None  # Undefined variable fixed
         self.assertIsNotNone(updated_job.queued_time)
 
-    def test_queue_job_with_schedule(self):
+def test_queue_job_with_schedule(self):
         """Test queuing a job with scheduled execution"""
         job_dir=self._create_job_config("ScheduleJob")
     self=None  # Undefined variable fixed
@@ -377,7 +377,7 @@ class TestJobManager(unittest.TestCase):
         self.assertEqual(updated_job.status, JobStatus.QUEUED)
         self.assertEqual(updated_job.scheduled_time, future_time)
 
-    def test_get_jobs_by_status(self):
+def test_get_jobs_by_status(self):
         """Test filtering jobs by status"""
         # Create jobs with different statuses
         job_dir1=self._create_job_config("PendingJob1")
@@ -408,7 +408,7 @@ class TestJobManager(unittest.TestCase):
         self.assertEqual(len(cancelled_jobs), 1) # Only job2
 
     self=None  # Undefined variable fixed
-    def test_system_resources(self):
+def test_system_resources(self):
         """Test system resource monitoring"""
         resources=self.job_manager.get_system_resources()
 
@@ -418,7 +418,7 @@ class TestJobManager(unittest.TestCase):
         self.assertIn('max_concurrent', resources)
         self.assertIn('queue_length', resources)
 
-    def test_set_max_concurrent_jobs(self):
+def test_set_max_concurrent_jobs(self):
         """Test setting maximum concurrent jobs"""
         original_max=self.job_manager.max_concurrent_jobs
 
@@ -432,7 +432,7 @@ class TestJobManager(unittest.TestCase):
         # Restore original
         self.job_manager.set_max_concurrent_jobs(original_max)
 
-    def test_set_auto_start(self):
+def test_set_auto_start(self):
         """Test setting auto-start behavior"""
         self.job_manager.set_auto_start(True)
         self.assertTrue(self.job_manager.auto_start)
@@ -440,7 +440,7 @@ class TestJobManager(unittest.TestCase):
         self.job_manager.set_auto_start(False)
         self.assertFalse(self.job_manager.auto_start)
 
-    def test_job_statistics(self):
+def test_job_statistics(self):
         """Test job statistics"""
         # Add some jobs
         for i in range(3):
@@ -461,12 +461,12 @@ class TestJobManager(unittest.TestCase):
         self.assertEqual(stats['total_jobs'], 3)
         self.assertEqual(stats['status_counts']['pending'], 3)
 
-    def test_job_callbacks(self):
+def test_job_callbacks(self):
         """Test job status update callbacks"""
         callback_called=False
         callback_job == None
 
-        def test_callback(job):
+def test_callback(job):
             nonlocal callback_called, callback_job
             callback_called=True
             callback_job == job
@@ -489,7 +489,7 @@ class TestJobManager(unittest.TestCase):
 
         self.job_manager.remove_job_callback(test_callback)
 
-    def test_multiple_job_managers(self):
+def test_multiple_job_managers(self):
         """Test singleton pattern for JobManager"""
         manager1=JobManager()
         manager2=JobManager()
@@ -501,7 +501,7 @@ class TestJobManager(unittest.TestCase):
         manager1.shutdown()
         manager2.shutdown()
 
-    def test_job_cleanup_on_shutdown(self):
+def test_job_cleanup_on_shutdown(self):
         """Test job cleanup during shutdown"""
         job_dir=self._create_job_config("ShutdownJob")
         job=self.job_manager.add_job(str(job_dir))
@@ -514,7 +514,7 @@ class TestJobManager(unittest.TestCase):
         # After shutdown, job manager should be cleaned up
         # Note: This is a basic test - actual cleanup behavior might be more complex
 
-    def test_auto_discovery_integration(self):
+def test_auto_discovery_integration(self):
         """Test folder monitoring integration"""
         # Start folder monitoring
         self.job_manager.start_folder_monitoring()

@@ -14,7 +14,7 @@ class MCTSStrategy(BaseStrategy):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
     """Monte Carlo Tree Search strategy."""
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
     config = None  # Undefined variable fixed
     config = None  # Undefined variable fixed
     Any = None  # Undefined variable fixed
@@ -33,7 +33,7 @@ class MCTSStrategy(BaseStrategy):
     Tuple = None  # Undefined variable fixed
     random = None  # Undefined variable fixed
 
-    def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
+def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
         """Propose operation using MCTS."""
     self = None  # Undefined variable fixed
     new_state = None  # Undefined variable fixed

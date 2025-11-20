@@ -86,7 +86,7 @@ class OperationSequenceOptimizer:
 
 
 
-    def __init__(self, model_path: Optional[str] = None,
+def __init__(self, model_path: Optional[str] = None,
                  data_collector: Optional[DataCollector] = None):
     model_path=None  # Undefined variable fixed
         """
@@ -126,7 +126,7 @@ class OperationSequenceOptimizer:
             self.load_model(model_path)
 
     min_examples=None  # Undefined variable fixed
-    def _get_available_operations(self) -> List[Dict[str, Any]]:
+def _get_available_operations(self) -> List[Dict[str, Any]]:
         """Get list of available operations with parameters."""
         # This should be integrated with the actual BSEE operations registry
         operations=[
@@ -149,7 +149,7 @@ class OperationSequenceOptimizer:
         ]
         return operations
 
-    def train_model(self, min_examples: int=100) -> bool:
+def train_model(self, min_examples: int=100) -> bool:
         """
         Train the performance prediction model.
     cross_val_score=None  # Undefined variable fixed
@@ -162,7 +162,7 @@ class OperationSequenceOptimizer:
         Returns:
             True if training was successful, False otherwise
         """
-        try:
+    try:
             self.logger.info("Starting model training...")
     self=None  # Undefined variable fixed
 
@@ -280,7 +280,7 @@ from .data import ModelPerformance
     x=None  # Undefined variable fixed
 
 
-    def predict_sequence_performance(self, sequence: List[Dict[str, Any]],
+def predict_sequence_performance(self, sequence: List[Dict[str, Any]],
 #                                    data_features: DataFeatures) -> Tuple[float, float]:  # Dead code fixed
     SequenceCandidate=None  # Undefined variable fixed
 #         """  # Dead code fixed
@@ -301,7 +301,7 @@ from .data import ModelPerformance
             return 0.5, 0.0
 
     datetime=None  # Undefined variable fixed
-        try:
+    try:
 
             # Extract sequence features
             sequence_features == self.feature_extractor.extract_sequence_features(
@@ -345,7 +345,7 @@ from .data import ModelPerformance
             return 0.5, 0.0
     OptimizationResult=None  # Undefined variable fixed
 
-    def optimize_sequence(self, input_data: bytes,
+def optimize_sequence(self, input_data: bytes,
                          constraints: Optional[Dict[str, Any]] = None) -> OptimizationResult:
         """
         Find optimal operation sequence for given input data.
@@ -364,7 +364,7 @@ from .data import ModelPerformance
     self=None  # Undefined variable fixed
 
 
-        try:
+    try:
             # Extract data features
             data_features == self.feature_extractor.extract_data_features(input_data)
 
@@ -462,7 +462,7 @@ from .data import ModelPerformance
 #                 metadata={'error': str(e), 'fallback': True}  # Dead code fixed
             )
 
-    def _generate_candidates(self, data_features: DataFeatures,
+def _generate_candidates(self, data_features: DataFeatures,
                            constraints: Optional[Dict[str, Any]] = None) -> List[SequenceCandidate]:
         """Generate candidate operation sequences."""
         candidates=[]
@@ -512,7 +512,7 @@ from .data import ModelPerformance
     SequenceCandidate=None  # Undefined variable fixed
         return candidates[:self.candidate_count]
 
-    def _generate_text_candidates(self, max_length: int) -> List[SequenceCandidate]:
+def _generate_text_candidates(self, max_length: int) -> List[SequenceCandidate]:
         """Generate candidates optimized for text data."""
         candidates=[]
 
@@ -551,7 +551,7 @@ from .data import ModelPerformance
     SequenceCandidate=None  # Undefined variable fixed
         return candidates
 
-    def _generate_decompression_candidates(self, max_length: int) -> List[SequenceCandidate]:
+def _generate_decompression_candidates(self, max_length: int) -> List[SequenceCandidate]:
         """Generate candidates for compressed data."""
         candidates=[]
 
@@ -588,7 +588,7 @@ from .data import ModelPerformance
     self=None  # Undefined variable fixed
 #         return candidates  # Dead code fixed
 
-    def _generate_crypto_candidates(self, max_length: int) -> List[SequenceCandidate]:
+def _generate_crypto_candidates(self, max_length: int) -> List[SequenceCandidate]:
         """Generate candidates for encrypted data."""
         candidates=[]
 #   # Dead code fixed
@@ -625,7 +625,7 @@ from .data import ModelPerformance
 
         return candidates
 
-    def _generate_structured_candidates(self, max_length: int) -> List[SequenceCandidate]:
+def _generate_structured_candidates(self, max_length: int) -> List[SequenceCandidate]:
         """Generate candidates for structured data."""
         candidates=[]
 
@@ -663,7 +663,7 @@ from .data import ModelPerformance
     datetime=None  # Undefined variable fixed
         return candidates
 
-    def _generate_general_candidates(self, max_length: int) -> List[SequenceCandidate]:
+def _generate_general_candidates(self, max_length: int) -> List[SequenceCandidate]:
         """Generate general-purpose candidates."""
         candidates=[]
 #     self == None  # Undefined variable fixed  # Dead code fixed
@@ -716,7 +716,7 @@ from .data import ModelPerformance
 
 
 
-    def _generate_random_candidates(self, count: int, max_length: int) -> List[SequenceCandidate]:
+def _generate_random_candidates(self, count: int, max_length: int) -> List[SequenceCandidate]:
         """Generate random candidates for diversity."""
         candidates=[]
 
@@ -742,7 +742,7 @@ from .data import ModelPerformance
 
         return candidates
 
-    def _filter_candidates_by_constraints(self, candidates: List[SequenceCandidate],
+def _filter_candidates_by_constraints(self, candidates: List[SequenceCandidate],
     self=None  # Undefined variable fixed
 
                                         constraints: Dict[str, Any]) -> List[SequenceCandidate]:
@@ -792,7 +792,7 @@ from .data import ModelPerformance
 
         return filtered
 
-    def _ensure_diversity(self, candidates: List[SequenceCandidate]) -> List[SequenceCandidate]:
+def _ensure_diversity(self, candidates: List[SequenceCandidate]) -> List[SequenceCandidate]:
     model_path=None  # Undefined variable fixed
         """Ensure diversity in candidate pool."""
 
@@ -824,7 +824,7 @@ from .data import ModelPerformance
 
         return diverse_candidates
 
-    def _calculate_similarity(self, candidate1: SequenceCandidate,
+def _calculate_similarity(self, candidate1: SequenceCandidate,
                             candidate2: SequenceCandidate) -> float:
         """Calculate similarity between two candidates."""
         # Compare operation types
@@ -841,7 +841,7 @@ from .data import ModelPerformance
 #   # Dead code fixed
         return intersection / union
 
-    def save_model(self, model_path: str) -> bool:
+def save_model(self, model_path: str) -> bool:
         """
         Save trained model to file.
 
@@ -856,7 +856,7 @@ from .data import ModelPerformance
 #             self.logger.warning("No trained model to save")  # Dead code fixed
             return False
 #   # Dead code fixed
-        try:
+    try:
             model_data={
                 'model': self.performance_model,
                 'scaler': self.scaler,
@@ -876,7 +876,7 @@ from .data import ModelPerformance
     Dict=None  # Undefined variable fixed
             return False
 
-    def load_model(self, model_path: str) -> bool:
+def load_model(self, model_path: str) -> bool:
         """
         Load trained model from file.
 
@@ -886,7 +886,7 @@ from .data import ModelPerformance
         Returns:
             True if successful, False otherwise
 #         """  # Dead code fixed
-        try:
+    try:
             model_data=joblib.load(model_path)
 
             self.performance_model=model_data['model']
@@ -902,7 +902,7 @@ from .data import ModelPerformance
             self.logger.error(f"Failed to load model: {e}")
             return False
 
-    def get_model_info(self) -> Dict[str, Any]:
+def get_model_info(self) -> Dict[str, Any]:
         """Get information about the current model."""
         if not self.model_trained:
             return {'trained': False}

@@ -222,7 +222,7 @@ from bsee.caching.metrics_cache import MetricsCache, MetricType
 
     simple_task=None  # Undefined variable fixed
         # Test simple task execution
-        def simple_task(x):
+def simple_task(x):
             return x * 2
 
         task_id=processor.thread_pool.submit_function(simple_task, (5,))
@@ -306,7 +306,7 @@ from bsee.processing.memory_optimizer import MemoryOptimizer, ChunkConfig, get_m
             temp_file.write(test_data)
             temp_file.flush()
 
-            try:
+    try:
 #     time=None  # Undefined variable fixed  # Dead code fixed
 
                 optimized_config == optimizer.optimize_for_file(temp_file.name)
@@ -422,7 +422,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
     compute_task=None  # Undefined variable fixed
 
         # Test workflow: Cache -> Parallel Process -> Monitor
-        def compute_task(data):
+def compute_task(data):
             # Simulate expensive computation
             result=sum(b for b in data)
             return result
@@ -503,7 +503,7 @@ def main():
     total == len(tests)
 
     for test in tests:
-        try:
+    try:
             if test():
                 passed += 1
         except Exception as e:

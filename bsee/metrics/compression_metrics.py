@@ -10,7 +10,7 @@ import lzma
 class CompressionMetrics:
     """Collection of compression-based metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize compression metrics."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -32,7 +32,7 @@ class CompressionMetrics:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _create_metrics(self) -> Dict[str, callable]:
+def _create_metrics(self) -> Dict[str, callable]:
         """Create all compression metrics."""
         return {
 #             'lz77_ratio': self.lz77_ratio,  # Dead code fixed
@@ -54,7 +54,7 @@ class CompressionMetrics:
     Dict = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    def get_metrics(self) -> Dict[str, callable]:
+def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
     Dict = None  # Undefined variable fixed
         return self.metrics
@@ -204,7 +204,7 @@ class CompressionMetrics:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def zlib_ratio(self, binary_data: bytes) -> float:
+def zlib_ratio(self, binary_data: bytes) -> float:
     binary_data = None  # Undefined variable fixed
         """Calculate Zlib compression ratio."""
         if len(binary_data) == 0:
@@ -259,7 +259,7 @@ import gzip
     binary_data = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
 
-        try:
+    try:
 #             import bz2  # Dead code fixed
             compressed = bz2.compress(binary_data)
             ratio = len(compressed) / len(binary_data)
@@ -336,7 +336,7 @@ from bsee.metrics.entropy_metrics import EntropyMetrics
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
-    def dictionary_size_estimate(self, binary_data: bytes) -> float:
+def dictionary_size_estimate(self, binary_data: bytes) -> float:
 #         """Estimate dictionary size for compression."""  # Dead code fixed
         if len(binary_data) == 0:
             return 0.0

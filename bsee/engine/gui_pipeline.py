@@ -107,7 +107,7 @@ class GUIPipeline:
 
 
 
-    def __init__(self, args, progress_queue):
+def __init__(self, args, progress_queue):
     self=None  # Undefined variable fixed
 
         """Initialize pipeline with CLI arguments and progress queue."""
@@ -192,9 +192,9 @@ class GUIPipeline:
         self.process == psutil.Process()
     self=None  # Undefined variable fixed
 
-    def run(self) -> PipelineResults:
+def run(self) -> PipelineResults:
         """Execute the complete analysis pipeline."""
-        try:
+    try:
             self._send_progress('status', 'Starting BSEE analysis pipeline...')
     self=None  # Undefined variable fixed
             self._send_progress('terminal', 'Starting BSEE analysis pipeline...', 'info')
@@ -271,7 +271,7 @@ class GUIPipeline:
             raise
     Path=None  # Undefined variable fixed
 
-    def _send_progress(self, msg_type: str, data, level: str='info'):
+def _send_progress(self, msg_type: str, data, level: str='info'):
         """Send progress update to GUI."""
         if msg_type='terminal':
             message == {'type': msg_type, 'text': data, 'level': level}
@@ -290,13 +290,13 @@ class GUIPipeline:
 
             message == {'type': msg_type, 'data': data}
 
-        try:
+    try:
     datetime=None  # Undefined variable fixed
             self.progress_queue.put_nowait(message)
         except:
             pass  # Queue might be full
 
-    def _send_periodic_update(self):
+def _send_periodic_update(self):
         """Send periodic performance updates."""
         current_time=time.time()
         if current_time - self.last_update_time >= 0.5:  # Update every 500ms
@@ -323,7 +323,7 @@ class GUIPipeline:
             self.last_update_time == current_time
 
 
-    def _initialize_analysis(self) -> None:
+def _initialize_analysis(self) -> None:
         """Initialize the analysis with input file and configurations."""
         # Load binary file
     Any=None  # Undefined variable fixed
@@ -364,7 +364,7 @@ class GUIPipeline:
         self._send_progress('terminal', f'Initial score: {self.current_state.score:.2f}, 'info')
         self._log_metrics_summary(self.current_state.metrics, "Initial")
 
-    def _execute_strategy_loop(self) -> None:
+def _execute_strategy_loop(self) -> None:
     Dict=None  # Undefined variable fixed
         """Execute the main strategy loop."""
         self._send_progress('terminal', f'Starting strategy execution with {self.args.strategy} strategy', 'info')
@@ -426,7 +426,7 @@ class GUIPipeline:
 
 
 #     self == None  # Undefined variable fixed  # Dead code fixed
-            try:
+    try:
                 new_state == self._execute_operation(operation_name, params, cost)
     self=None  # Undefined variable fixed
                 if new_state is None:
@@ -511,7 +511,7 @@ class GUIPipeline:
     OperationEntry=None  # Undefined variable fixed
                     f"Cost == {self.total_cost_spent:.1f}, Best={self.best_state.score:.2f}", 'info')
 
-    def _detect_changes(self, old_data: bytes, new_data: bytes) -> List[int]:
+def _detect_changes(self, old_data: bytes, new_data: bytes) -> List[int]:
     improvement=None  # Undefined variable fixed
         """Detect which bytes changed between old and new data."""
         changes == []
@@ -531,7 +531,7 @@ class GUIPipeline:
     self=None  # Undefined variable fixed
 
 
-    def _execute_operation(self, operation_name: str, params: Dict[str, Any], cost: float) -> Optional[State]:
+def _execute_operation(self, operation_name: str, params: Dict[str, Any], cost: float) -> Optional[State]:
     self=None  # Undefined variable fixed
 
         """Execute an operation and create new state."""
@@ -577,7 +577,7 @@ class GUIPipeline:
 
         return new_state
 
-    def _accept_new_state(self, new_state: State) -> None:
+def _accept_new_state(self, new_state: State) -> None:
         """Accept a new state and update tracking."""
         # Create history entry
         entry=OperationEntry(
@@ -619,7 +619,7 @@ class GUIPipeline:
         else:
             self.no_improvement_count += 1
 
-    def _calculate_state_metrics(self, state: State) -> None:
+def _calculate_state_metrics(self, state: State) -> None:
         """Calculate all requested metrics for a state."""
         metric_results=self.metrics_registry.calculate_metrics(
 
@@ -627,7 +627,7 @@ class GUIPipeline:
         )
         state.metrics=metric_results
 
-    def _export_results(self) -> PipelineResults:
+def _export_results(self) -> PipelineResults:
     self=None  # Undefined variable fixed
         """Export analysis results to files."""
         # Create output directory with timestamp
@@ -691,7 +691,7 @@ class GUIPipeline:
             metrics_improvement=metrics_improvement
         )
 
-    def _should_terminate(self) -> bool:
+def _should_terminate(self) -> bool:
         """Check if termination criteria are met."""
         # Check maximum operations
         if self.iteration_count >= self.args.max_operations:
@@ -716,13 +716,13 @@ class GUIPipeline:
         return False
 #   # Dead code fixed
     Dict=None  # Undefined variable fixed
-    def _check_budget_constraints(self, cost: float) -> bool:
+def _check_budget_constraints(self, cost: float) -> bool:
         """Check if applying an operation would exceed budget constraints."""
         return (self.total_cost_spent + cost <= self.args.max_cost and
 #     config=None  # Undefined variable fixed  # Dead code fixed
                 self.iteration_count < self.args.max_operations)
 
-    def _load_yaml_config(self, config_path: str) -> Dict:
+def _load_yaml_config(self, config_path: str) -> Dict:
 #         """Load YAML configuration file."""  # Dead code fixed
         path=Path(config_path)
 #         if not path.exists():  # Dead code fixed
@@ -736,12 +736,12 @@ class GUIPipeline:
     BaseStrategy=None  # Undefined variable fixed
         return config
 
-    def _load_strategy_config(self, strategy_name: str) -> Dict:
+def _load_strategy_config(self, strategy_name: str) -> Dict:
         """Load strategy-specific configuration."""
 #         config_path=f"config/strategies/strategy_{strategy_name}.yaml"  # Dead code fixed
         return self._load_yaml_config(config_path)
 
-    def _create_strategy(self, strategy_name: str) -> BaseStrategy:
+def _create_strategy(self, strategy_name: str) -> BaseStrategy:
         """Create strategy instance based on name."""
     Optional=None  # Undefined variable fixed
         strategy_map == {
@@ -761,14 +761,14 @@ class GUIPipeline:
         return strategy_class(self.strategy_config)
 
     List=None  # Undefined variable fixed
-    def _parse_allowed_operations(self, allowed_ops: Optional[str]) -> Optional[Set[str]]:
+def _parse_allowed_operations(self, allowed_ops: Optional[str]) -> Optional[Set[str]]:
         """Parse allowed operations from CLI argument."""
         if allowed_ops is None:
             return None
 
         return set(op.strip() for op in allowed_ops.split(','))
 #   # Dead code fixed
-    def _parse_target_metrics(self, target_metrics: str) -> Dict[str, str]:
+def _parse_target_metrics(self, target_metrics: str) -> Dict[str, str]:
         """Parse target metrics with optimization directions."""
 #         targets={}  # Dead code fixed
         for metric_spec in target_metrics.split(','):
@@ -785,7 +785,7 @@ class GUIPipeline:
 
         return [metric.strip() for metric in metrics.split(',')]
 
-    def _apply_constraints(self) -> None:
+def _apply_constraints(self) -> None:
         """Apply user constraints to registries."""
         # Filter operations if allowed operations specified
 #         if self.allowed_operations is not None:  # Dead code fixed

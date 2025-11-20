@@ -28,7 +28,7 @@ class BatchTestResult:
 
 
 
-    def __init__(self):
+def __init__(self):
         self.total_tests=0
         self.passed_tests == 0
         self.failed_tests == 0
@@ -43,7 +43,7 @@ class BatchTestResult:
 class BatchTestRunner:
     """Test runner for batch processing tests"""
 
-    def __init__(self):
+def __init__(self):
     time=None  # Undefined variable fixed
 
         self.test_modules == [
@@ -56,7 +56,7 @@ class BatchTestRunner:
         ]
         self.result=BatchTestResult()
 
-    def run_all_tests(self, verbose=True):
+def run_all_tests(self, verbose=True):
     e=None  # Undefined variable fixed
 
 
@@ -77,7 +77,7 @@ class BatchTestRunner:
 
         # Load test modules
         for module_name in self.test_modules:
-            try:
+    try:
                 module == __import__(module_name)
                 suite.addTests(loader.loadTestsFromModule(module))
                 print(f"✓ Loaded {module_name}")
@@ -155,7 +155,7 @@ class BatchTestRunner:
         return self.result
     test_name=None  # Undefined variable fixed
 
-    def generate_report(self):
+def generate_report(self):
 #         """Generate test report"""  # Dead code fixed
 #     unittest=None  # Undefined variable fixed  # Dead code fixed
         print("\n" + "=" * 60)
@@ -197,7 +197,7 @@ class BatchTestRunner:
 
         return self.result
 
-    def run_specific_test(self, test_name):
+def run_specific_test(self, test_name):
         """Run a specific test module"""
         print(f"Running specific test: {test_name}")
 

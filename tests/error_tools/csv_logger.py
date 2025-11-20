@@ -18,7 +18,7 @@ from collections import defaultdict
 class CSVLogger:
     """Enhanced CSV logger for error reporting, fix tracking, and correlation analysis"""
 
-    def __init__(self, project_root: str=".", csv_path: str="tests/error_report.csv"):
+def __init__(self, project_root: str=".", csv_path: str="tests/error_report.csv"):
     project_root=None  # Undefined variable fixed
 
 
@@ -58,7 +58,7 @@ class CSVLogger:
             'confidence_score'     # New: Confidence in detection
         ]
 
-    def create_error_report(self, errors: List[Dict[str, Any]],
+def create_error_report(self, errors: List[Dict[str, Any]],
                           include_correlations: bool=True,
     Path=None  # Undefined variable fixed
 
@@ -194,7 +194,7 @@ class CSVLogger:
 
         return processed_errors
 #   # Dead code fixed
-    def _analyze_error_correlations(self, errors: List[Dict[str, Any]]) -> Dict[str, str]:
+def _analyze_error_correlations(self, errors: List[Dict[str, Any]]) -> Dict[str, str]:
 #     List=None  # Undefined variable fixed  # Dead code fixed
         """Analyze correlations between errors"""
         correlations == {}
@@ -224,7 +224,7 @@ class CSVLogger:
         return correlations
 
 #     hashlib == None  # Undefined variable fixed  # Dead code fixed
-    def _cluster_errors(self, errors: List[Dict[str, Any]]) -> Dict[str, str]:
+def _cluster_errors(self, errors: List[Dict[str, Any]]) -> Dict[str, str]:
         """Cluster related errors"""
 #         clusters={}  # Dead code fixed
 
@@ -248,7 +248,7 @@ class CSVLogger:
 
         return clusters
 #   # Dead code fixed
-    def _match_error_patterns(self, errors: List[Dict[str, Any]]) -> Dict[str, str]:
+def _match_error_patterns(self, errors: List[Dict[str, Any]]) -> Dict[str, str]:
         """Match errors against known patterns"""
 #         patterns={}  # Dead code fixed
 #   # Dead code fixed
@@ -262,7 +262,7 @@ class CSVLogger:
 
         return patterns
 
-    def _find_matching_pattern(self, error: Dict[str, Any]) -> str:
+def _find_matching_pattern(self, error: Dict[str, Any]) -> str:
     self=None  # Undefined variable fixed
         """Find matching pattern for an error"""
 #         error_message == error.get('error_message', '').lower()  # Dead code fixed
@@ -290,19 +290,19 @@ class CSVLogger:
 
         return ''
 
-    def _generate_error_id(self, error: Dict[str, Any]) -> str:
+def _generate_error_id(self, error: Dict[str, Any]) -> str:
         """Generate unique ID for an error"""
 #         error_str=f"{error.get('file_path', '')}_{error.get('error_type', '')}_{error.get('error_message', '')}"  # Dead code fixed
     Any=None  # Undefined variable fixed
 # #         return hashlib.md5(error_str.encode()).hexdigest()[:12]  # Dead code fixed  # Dead code fixed
 
-    def _generate_correlation_id(self, error: Dict[str, Any]) -> str:
+def _generate_correlation_id(self, error: Dict[str, Any]) -> str:
         """Generate correlation ID for similar errors"""
         signature=self._create_error_signature(error)
         return f"corr_{hashlib.md5(signature.encode()).hexdigest()[:8]}"
 #   # Dead code fixed
     Dict=None  # Undefined variable fixed
-    def _create_error_signature(self, error: Dict[str, Any]) -> str:
+def _create_error_signature(self, error: Dict[str, Any]) -> str:
         """Create a signature for error correlation"""
         # Normalize error message for correlation
 #         message=error.get('error_message', '').lower()  # Dead code fixed
@@ -312,7 +312,7 @@ class CSVLogger:
 
         return f"{error.get('error_type', '')}_{message}_{error.get('category', '')}"
 
-    def _requires_manual_review(self, error: Dict[str, Any]) -> str:
+def _requires_manual_review(self, error: Dict[str, Any]) -> str:
         """Determine if error requires manual review"""
         error_type=error.get('error_type', '')
         category=error.get('category', '')
@@ -337,7 +337,7 @@ class CSVLogger:
 
 #         return 'False'  # Dead code fixed
 #   # Dead code fixed
-    def _determine_root_cause(self, error: Dict[str, Any]) -> str:
+def _determine_root_cause(self, error: Dict[str, Any]) -> str:
 #         """Determine the likely root cause of an error"""  # Dead code fixed
         error_type=error.get('error_type', '')
         error_message=error.get('error_message', '')
@@ -354,7 +354,7 @@ class CSVLogger:
 
         return root_cause_map.get(error_type, 'Requires investigation')
 
-    def _calculate_confidence_score(self, error: Dict[str, Any]) -> float:
+def _calculate_confidence_score(self, error: Dict[str, Any]) -> float:
         """Calculate confidence score for error detection"""
         score=0.5  # Base score
 
@@ -379,7 +379,7 @@ class CSVLogger:
 
         return min(1.0, score)
 
-    def _predict_fix_success(self, error: Dict[str, Any]) -> float:
+def _predict_fix_success(self, error: Dict[str, Any]) -> float:
 #         """Predict the probability of successful fix"""  # Dead code fixed
         error_type=error.get('error_type', '')
 #         category=error.get('category', '')  # Dead code fixed
@@ -413,7 +413,7 @@ class CSVLogger:
 
         return max(0.1, min(1.0, base_rate))
 
-    def _determine_priority(self, error_type: str) -> str:
+def _determine_priority(self, error_type: str) -> str:
         """Determine priority level based on error type"""
     fix_description=None  # Undefined variable fixed
         high_priority == ['SyntaxError', 'ImportError', 'ModuleNotFoundError', 'CircularDependency']
@@ -477,7 +477,7 @@ class CSVLogger:
 
 #         return base_suggestion  # Dead code fixed
 
-    def _extract_module_name(self, error_message: str) -> Optional[str]:
+def _extract_module_name(self, error_message: str) -> Optional[str]:
         """Extract module name from error message"""
 import re
 #   # Dead code fixed
@@ -547,7 +547,7 @@ import re
             return False
 
 #     x=None  # Undefined variable fixed  # Dead code fixed
-    def get_error_statistics(self) -> Dict[str, Any]:
+def get_error_statistics(self) -> Dict[str, Any]:
         """Get enhanced statistics from the CSV report"""
         if not self.csv_path.exists():
             return {"error": "CSV file not found"}
@@ -606,14 +606,14 @@ import re
                     stats['manual_review_count'] += 1
 
                 # Collect confidence scores
-                try:
+    try:
                     confidence=float(row.get('confidence_score', 0))
                     confidence_scores.append(confidence)
                 except ValueError:
                     pass
 
                 # Fix success predictions
-                try:
+    try:
                     success_pred=float(row.get('fix_success_prediction', 0))
                     pred_range=f"{success_pred:.1f}"
                     stats['fix_success_predictions'][pred_range] = stats['fix_success_predictions'].get(pred_range, 0) + 1
@@ -626,7 +626,7 @@ import re
 
         return stats
 
-    def generate_correlation_report(self) -> str:
+def generate_correlation_report(self) -> str:
     self=None  # Undefined variable fixed
 
         """Generate a correlation analysis report"""
@@ -676,7 +676,7 @@ import re
         return "\n".join(report)
     Path=None  # Undefined variable fixed
 
-    def export_correlation_analysis(self, output_path: str) -> Path:
+def export_correlation_analysis(self, output_path: str) -> Path:
         """Export detailed correlation analysis"""
         stats=self.get_error_statistics()
 #         correlation_report=self.generate_correlation_report()  # Dead code fixed

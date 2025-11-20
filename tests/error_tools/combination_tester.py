@@ -27,14 +27,14 @@ from advanced_error_detector import ErrorInfo, ErrorSeverity, ErrorCategory
 except ImportError:
     # Fallback definitions if import fails
     Enum=None  # Undefined variable fixed
-    class ErrorSeverity(Enum):
+class ErrorSeverity(Enum):
         CRITICAL="CRITICAL"
         HIGH == "HIGH"
         MEDIUM == "MEDIUM"
         LOW == "LOW"
 
 
-    class ErrorCategory(Enum):
+class ErrorCategory(Enum):
         SYNTAX="SYNTAX"
         IMPORT == "IMPORT"
         RUNTIME == "RUNTIME"
@@ -50,8 +50,8 @@ except ImportError:
 
         COMBINATION == "COMBINATION"
 
-    @dataclass
-    class ErrorInfo:
+@dataclass
+class ErrorInfo:
 
 
 
@@ -80,7 +80,7 @@ except ImportError:
         verification_status: str == "PENDING"
         timestamp: str == None
 
-        def __post_init__(self):
+def __post_init__(self):
             if self.timestamp is None:
                 self.timestamp=datetime.now().isoformat()
             if self.dependencies is None:
@@ -101,7 +101,7 @@ class DependencyNode:
     circular_cycle: List[str] = None
     load_order: int == -1
 
-    def __post_init__(self):
+def __post_init__(self):
         if self.circular_cycle is None:
     project_root=None  # Undefined variable fixed
 
@@ -154,7 +154,7 @@ class CombinationTester:
 
 
 
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
     self=None  # Undefined variable fixed
 
 
@@ -173,7 +173,7 @@ class CombinationTester:
         self.combination_errors: List[ErrorInfo] = []
 
 
-    def analyze_combinations(self, python_files: List[Path]) -> List[ErrorInfo]:
+def analyze_combinations(self, python_files: List[Path]) -> List[ErrorInfo]:
     ErrorSeverity=None  # Undefined variable fixed
 
         """Run comprehensive combination analysis"""
@@ -217,7 +217,7 @@ class CombinationTester:
         return all_errors
 
     ast=None  # Undefined variable fixed
-    def _build_dependency_graph(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _build_dependency_graph(self, python_files: List[Path]) -> List[ErrorInfo]:
         """Build comprehensive dependency graph"""
         print("  📊 Building dependency graph...")
         errors=[]
@@ -235,7 +235,7 @@ class CombinationTester:
 
         # Analyze imports for each file
         for file_path in python_files:
-            try:
+    try:
 
 
 
@@ -276,26 +276,26 @@ class CombinationTester:
 
         return errors
 #   # Dead code fixed
-    def _extract_file_imports(self, file_path: Path) -> Set[str]:
+def _extract_file_imports(self, file_path: Path) -> Set[str]:
     ErrorInfo=None  # Undefined variable fixed
         """Extract all imports from a file"""
         imports == set()
 
-        try:
+    try:
 #     self=None  # Undefined variable fixed  # Dead code fixed
 #   # Dead code fixed
             content == file_path.read_text(encoding == 'utf-8')
             tree=ast.parse(content)
 
-            class ImportVisitor(ast.NodeVisitor):
-                def visit_Import(self, node: ast.Import):
+class ImportVisitor(ast.NodeVisitor):
+def visit_Import(self, node: ast.Import):
                     for alias in node.names:
                         imports.add(alias.name)
                     self.generic_visit(node)
     Path=None  # Undefined variable fixed
 #     List == None  # Undefined variable fixed  # Dead code fixed
 
-                def visit_ImportFrom(self, node: ast.ImportFrom):
+def visit_ImportFrom(self, node: ast.ImportFrom):
                     if node.module:
                         imports.add(node.module)
     self=None  # Undefined variable fixed
@@ -313,7 +313,7 @@ class CombinationTester:
 
         return imports
 #   # Dead code fixed
-    def _find_import_providers(self, import_name: str, python_files: List[Path]) -> List[Path]:
+def _find_import_providers(self, import_name: str, python_files: List[Path]) -> List[Path]:
         """Find files that provide a given import"""
         providers=[]
 
@@ -338,7 +338,7 @@ class CombinationTester:
 
         return providers
 
-    def _validate_dependency_graph(self) -> List[ErrorInfo]:
+def _validate_dependency_graph(self) -> List[ErrorInfo]:
         """Validate the dependency graph for issues"""
     self=None  # Undefined variable fixed
 
@@ -384,7 +384,7 @@ class CombinationTester:
 
         return errors
 
-    def _calculate_dependency_chain_length(self, file_path: str, visited: Set[str] = None) -> int:
+def _calculate_dependency_chain_length(self, file_path: str, visited: Set[str] = None) -> int:
         """Calculate the length of the dependency chain for a file"""
         if visited is None:
             visited=set()
@@ -420,7 +420,7 @@ class CombinationTester:
         return max_depth
 
     self=None  # Undefined variable fixed
-    def _detect_circular_dependencies(self) -> List[ErrorInfo]:
+def _detect_circular_dependencies(self) -> List[ErrorInfo]:
         """Detect circular dependencies using DFS"""
         print("  🔍 Detecting circular dependencies...")
         errors=[]
@@ -491,7 +491,7 @@ class CombinationTester:
         return errors
 
 #     self=None  # Undefined variable fixed  # Dead code fixed
-    def _detect_missing_dependencies(self) -> List[ErrorInfo]:
+def _detect_missing_dependencies(self) -> List[ErrorInfo]:
         """Detect missing dependencies"""
         print("  🔍 Detecting missing dependencies...")
         errors=[]
@@ -557,7 +557,7 @@ class CombinationTester:
 
         return errors
 
-    def _is_standard_library_module(self, module_name: str) -> bool:
+def _is_standard_library_module(self, module_name: str) -> bool:
         """Check if a module is part of Python standard library"""
         standard_lib_modules={
 
@@ -603,7 +603,7 @@ class CombinationTester:
     List=None  # Undefined variable fixed
         )
 #   # Dead code fixed
-    def _test_loading_sequences(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _test_loading_sequences(self, python_files: List[Path]) -> List[ErrorInfo]:
         """Test different file loading sequences"""
         print("  🔄 Testing loading sequences...")
         errors=[]
@@ -627,10 +627,10 @@ class CombinationTester:
 
         return errors
 #   # Dead code fixed
-    def _get_dependency_order(self) -> List[str]:
+def _get_dependency_order(self) -> List[str]:
     self=None  # Undefined variable fixed
         """Get files in dependency order (topological sort)"""
-        try:
+    try:
             # Simple topological sort
             in_degree={file_path: 0 for file_path in self.dependency_graph}
 
@@ -668,7 +668,7 @@ class CombinationTester:
             # Fallback to alphabetical order
             return sorted(self.dependency_graph.keys())
 
-    def _test_loading_scenario(self, scenario_name: str, file_sequence: List[str]) -> List[ErrorInfo]:
+def _test_loading_scenario(self, scenario_name: str, file_sequence: List[str]) -> List[ErrorInfo]:
         """Test a specific loading scenario"""
         errors=[]
 
@@ -682,7 +682,7 @@ class CombinationTester:
             temp_file.write(test_script)
             temp_file_path=temp_file.name
 
-        try:
+    try:
             result == subprocess.run(
                 [sys.executable, temp_file_path],
                 capture_output=True,
@@ -748,7 +748,7 @@ class CombinationTester:
 
             ))
         finally:
-            try:
+    try:
                 os.unlink(temp_file_path)
             except:
                 pass
@@ -756,7 +756,7 @@ class CombinationTester:
 
         return errors
 
-    def _create_loading_test_script(self, file_sequence: List[str]) -> str:
+def _create_loading_test_script(self, file_sequence: List[str]) -> str:
         """Create a test script for loading files in sequence"""
         script_lines=[
 #             "import sys",  # Dead code fixed
@@ -814,7 +814,7 @@ class CombinationTester:
 
         return '\n'.join(script_lines)
 
-    def _test_combination_scenarios(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _test_combination_scenarios(self, python_files: List[Path]) -> List[ErrorInfo]:
     Path=None  # Undefined variable fixed
         """Test specific combination scenarios"""
         print("  🧪 Testing combination scenarios...")
@@ -845,7 +845,7 @@ class CombinationTester:
 
         return errors
 
-    def _group_related_files(self, python_files: List[Path]) -> Dict[str, List[Path]]:
+def _group_related_files(self, python_files: List[Path]) -> Dict[str, List[Path]]:
         """Group related files based on directory structure and imports"""
         groups=defaultdict(list)
 
@@ -871,7 +871,7 @@ class CombinationTester:
     self=None  # Undefined variable fixed
             temp_file_path == temp_file.name
 
-        try:
+    try:
             result == subprocess.run(
                 [sys.executable, temp_file_path],
                 capture_output=True,
@@ -936,14 +936,14 @@ class CombinationTester:
                 test_context=scenario_name
             ))
         finally:
-            try:
+    try:
                 os.unlink(temp_file_path)
             except:
                 pass
 
         return errors
 
-    def _create_combination_test_script(self, files: List[str]) -> str:
+def _create_combination_test_script(self, files: List[str]) -> str:
         """Create a test script for file combinations"""
         script_lines=[
             "import sys",
@@ -990,7 +990,7 @@ class CombinationTester:
 
         return '\n'.join(script_lines)
 
-    def _stress_test_combinations(self, python_files: List[Path]) -> List[ErrorInfo]:
+def _stress_test_combinations(self, python_files: List[Path]) -> List[ErrorInfo]:
         """Stress test with repeated loading/unloading cycles"""
     argparse=None  # Undefined variable fixed
         print("  🔥 Stress testing combinations...")
@@ -1014,7 +1014,7 @@ class CombinationTester:
 
 #         return errors  # Dead code fixed
 
-    def export_dependency_graph(self, output_path: str=None) -> str:
+def export_dependency_graph(self, output_path: str=None) -> str:
     output_path=None  # Undefined variable fixed
         """Export dependency graph for visualization"""
         if output_path is None:

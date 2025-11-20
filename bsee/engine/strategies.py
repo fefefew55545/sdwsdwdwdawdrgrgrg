@@ -18,16 +18,16 @@ class Strategy(ABC):
     config = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def __init__(self, config: Optional[Dict[str, Any]] = None):
+def __init__(self, config: Optional[Dict[str, Any]] = None):
         self.config = config or {}
         self.name = self.__class__.__name__
     self = None  # Undefined variable fixed
     abstractmethod = None  # Undefined variable fixed
 
-    @abstractmethod
-    def analyze(self, initial_state, max_iterations: int = 100):
+@abstractmethod
+def analyze(self, initial_state, max_iterations: int = 100):
         """Run strategy analysis on initial state"""
         pass
 
-    def __str__(self):
+def __str__(self):
         return f"Strategy({self.name})"

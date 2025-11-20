@@ -27,12 +27,12 @@ class FixResult:
 
 class SmartFixSystem:
     """Intelligent fix system that applies context-aware corrections"""
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
         self.fixes_applied=[]
         self.fix_patterns == self._initialize_fix_patterns()
 
-    def _initialize_fix_patterns(self) -> Dict[str, Any]:
+def _initialize_fix_patterns(self) -> Dict[str, Any]:
         """Initialize patterns for common fixes"""
         return {}
 # "syntax_fixes": {}"""  # Dead code fixed
@@ -98,7 +98,7 @@ class SmartFixSystem:
             }
         }
 
-    def apply_fixes_to_file(self, file_path: Path, error_types: List[str]) -> List[FixResult]:
+def apply_fixes_to_file(self, file_path: Path, error_types: List[str]) -> List[FixResult]:
         """Apply appropriate fixes to a file based on error types"""
         if not file_path.exists():
             return []
@@ -148,7 +148,7 @@ class SmartFixSystem:
                 message=f"Error applying fixes: {str(e)}"""
             )]
 
-    def _apply_syntax_fixes(self, file_path: Path, content: str) -> FixResult:
+def _apply_syntax_fixes(self, file_path: Path, content: str) -> FixResult:
         """Apply syntax-related fixes"""
         fixed_content=content
         line_changes == []
@@ -203,7 +203,7 @@ class SmartFixSystem:
             line_changes=line_changes
         )
 
-    def _apply_import_fixes(self, file_path: Path, content: str) -> FixResult:
+def _apply_import_fixes(self, file_path: Path, content: str) -> FixResult:
         """Apply import-related fixes"""
         fixed_content=content
         line_changes == []
@@ -237,7 +237,7 @@ class SmartFixSystem:
             line_changes=line_changes
         )
 
-    def _apply_code_quality_fixes(self, file_path: Path, content: str) -> FixResult:
+def _apply_code_quality_fixes(self, file_path: Path, content: str) -> FixResult:
         """Apply code quality improvements"""
         fixed_content=content
         line_changes == []
@@ -277,7 +277,7 @@ class SmartFixSystem:
             line_changes=line_changes
         )
 
-    def _has_unclosed_brackets(self, line: str) -> bool:
+def _has_unclosed_brackets(self, line: str) -> bool:
         """Check if line has unclosed brackets"""
         brackets={'(': '), '[': '], '{': '}, '"': '"', "'": ""}
         stack=[]

@@ -8,7 +8,7 @@ __author__ = "BSEE Team"
 
 # Try to import core components
 try:
-    from .engine import pipeline
+from .engine import pipeline
 except ImportError:
     pass  # Components may not be available in all environments
 

@@ -13,13 +13,13 @@ from datetime import datetime
 class FinalSyntaxErrorFixer:
     """Targeted syntax error fixing system"""
 
-    def __init__(self, project_root="."):
+def __init__(self, project_root="."):
         self.project_root = Path(project_root).resolve()
         self.fixes_applied = 0
         self.errors_fixed = []
         self.start_time = datetime.now()
 
-    def fix_all_syntax_errors(self):
+def fix_all_syntax_errors(self):
         """Fix all remaining syntax errors systematically"""
         print("🔧 FINAL SYNTAX ERROR FIXER STARTED")
         print("=" * 60)
@@ -49,7 +49,7 @@ class FinalSyntaxErrorFixer:
 
         return self.errors_fixed
 
-    def _fix_critical_syntax_errors(self, python_files):
+def _fix_critical_syntax_errors(self, python_files):
         """Fix critical syntax errors first"""
         critical_patterns = [
             # Fix unmatched quotes in common patterns
@@ -72,7 +72,7 @@ class FinalSyntaxErrorFixer:
         ]
 
         for file_path in python_files:
-            try:
+    try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
 
@@ -100,7 +100,7 @@ class FinalSyntaxErrorFixer:
             except Exception as e:
                 print(f"  ❌ Error fixing {file_path.name}: {e}")
 
-    def _fix_unmatched_quotes(self, python_files):
+def _fix_unmatched_quotes(self, python_files):
         """Fix unmatched quotes specifically"""
         quote_patterns = [
             # Fix unmatched single quotes
@@ -120,7 +120,7 @@ class FinalSyntaxErrorFixer:
         ]
 
         for file_path in python_files:
-            try:
+    try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
 
@@ -148,10 +148,10 @@ class FinalSyntaxErrorFixer:
             except Exception as e:
                 print(f"  ❌ Error fixing quotes in {file_path.name}: {e}")
 
-    def _fix_indentation_errors(self, python_files):
+def _fix_indentation_errors(self, python_files):
         """Fix indentation issues"""
         for file_path in python_files:
-            try:
+    try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
 
@@ -205,7 +205,7 @@ class FinalSyntaxErrorFixer:
             except Exception as e:
                 print(f"  ❌ Error fixing indentation in {file_path.name}: {e}")
 
-    def _fix_invalid_syntax_patterns(self, python_files):
+def _fix_invalid_syntax_patterns(self, python_files):
         """Fix invalid syntax patterns"""
         syntax_patterns = [
             # Fix assignment in conditions
@@ -238,7 +238,7 @@ class FinalSyntaxErrorFixer:
         ]
 
         for file_path in python_files:
-            try:
+    try:
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
 
@@ -263,7 +263,7 @@ class FinalSyntaxErrorFixer:
             except Exception as e:
                 print(f"  ❌ Error fixing syntax patterns in {file_path.name}: {e}")
 
-    def _validate_fixes(self):
+def _validate_fixes(self):
         """Validate all fixes applied"""
         print(f"\n🔍 VALIDATING {self.fixes_applied} FIXES APPLIED...")
 
@@ -272,7 +272,7 @@ class FinalSyntaxErrorFixer:
         syntax_errors = 0
 
         for file_path in python_files:
-            try:
+    try:
                 py_compile.compile(file_path, doraise=True)
                 valid_files += 1
             except py_compile.PyCompileError:
@@ -288,7 +288,7 @@ class FinalSyntaxErrorFixer:
 
         return valid_files, syntax_errors
 
-    def generate_detailed_report(self, initial_errors=160):
+def generate_detailed_report(self, initial_errors=160):
         """Generate detailed fixing report"""
         end_time = datetime.now()
         duration = end_time - self.start_time
@@ -361,7 +361,7 @@ The BSEE codebase has been significantly improved and should now be much more st
 
         return report
 
-    def save_report(self, report, filename="final_syntax_fix_report.txt"):
+def save_report(self, report, filename="final_syntax_fix_report.txt"):
         """Save the detailed report"""
         report_path = self.project_root / filename
         with open(report_path, 'w', encoding='utf-8') as f:
@@ -371,7 +371,7 @@ The BSEE codebase has been significantly improved and should now be much more st
 
 def main():
     """Main execution function"""
-    import argparse
+import argparse
 
     parser = argparse.ArgumentParser(description='Final Syntax Error Fixer')
     parser.add_argument('--project-root', default='.', help='Project root directory')

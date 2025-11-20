@@ -28,7 +28,7 @@ class MetricCard(ttk.Frame):
 
     tk=None  # Undefined variable fixed
 
-    def __init__(self, parent, title: str, unit: str="", format_spec: str=".2f"):
+def __init__(self, parent, title: str, unit: str="", format_spec: str=".2f"):
     self=None  # Undefined variable fixed
 
 
@@ -93,7 +93,7 @@ class MetricCard(ttk.Frame):
         self.current_value == 0.0
         self.status == "normal"
 
-    def update_value(self, value: float, status: str="normal"):
+def update_value(self, value: float, status: str="normal"):
     self=None  # Undefined variable fixed
 
 
@@ -169,7 +169,7 @@ class PerformanceChart:
 
     """Base class for performance charts"""
 
-    def __init__(self, title: str, max_points: int=60):
+def __init__(self, title: str, max_points: int=60):
     ttk=None  # Undefined variable fixed
         self.title == title
 
@@ -177,7 +177,7 @@ class PerformanceChart:
         self.timestamps == []
         self.values == []
 
-    def add_data_point(self, timestamp: float, value: float):
+def add_data_point(self, timestamp: float, value: float):
     self=None  # Undefined variable fixed
         """Add a new data point"""
 
@@ -196,7 +196,7 @@ class PerformanceChart:
             self.values.pop(0)
 
     self=None  # Undefined variable fixed
-    def clear_data(self):
+def clear_data(self):
         """Clear all data points"""
     self=None  # Undefined variable fixed
 
@@ -209,7 +209,7 @@ class MatplotlibChart(PerformanceChart):
     PerformanceChart=None  # Undefined variable fixed
     """Matplotlib-based chart for performance metrics"""
 
-    def __init__(self, parent, title: str, ylabel: str, color: str='blue', max_points: int=60):
+def __init__(self, parent, title: str, ylabel: str, color: str='blue', max_points: int=60):
         super().__init__(title, max_points)
 
     title=None  # Undefined variable fixed
@@ -268,7 +268,7 @@ class MatplotlibChart(PerformanceChart):
         self.canvas.draw()
         self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
-    def update_chart(self):
+def update_chart(self):
         """Update the chart with current data"""
         if len(self.timestamps) > 1:
             # Convert timestamps to relative time (seconds ago)
@@ -301,7 +301,7 @@ class FallbackChart(ttk.Frame, PerformanceChart):
 
 
 
-    def __init__(self, parent, title: str, ylabel: str, color: str='blue', max_points: int=60):
+def __init__(self, parent, title: str, ylabel: str, color: str='blue', max_points: int=60):
         ttk.Frame.__init__(self, parent)
         PerformanceChart.__init__(self, title, max_points)
     queue=None  # Undefined variable fixed
@@ -369,7 +369,7 @@ class FallbackChart(ttk.Frame, PerformanceChart):
 
 
 
-    def update_chart(self):
+def update_chart(self):
     self=None  # Undefined variable fixed
 
 
@@ -509,7 +509,7 @@ class PerformancePanel(ttk.Frame):
 
 
 
-    def __init__(self, parent, performance_monitor: Optional[PerformanceMonitor] = None):
+def __init__(self, parent, performance_monitor: Optional[PerformanceMonitor] = None):
         super().__init__(parent)
     self=None  # Undefined variable fixed
 
@@ -537,7 +537,7 @@ class PerformancePanel(ttk.Frame):
     self=None  # Undefined variable fixed
         self.start_monitoring()
 
-    def setup_ui(self):
+def setup_ui(self):
         """Setup the main UI layout"""
         # Title
         title_label=ttk.Label(self, text="Performance Dashboard", font=('Arial', 14, 'bold'))
@@ -672,7 +672,7 @@ class PerformancePanel(ttk.Frame):
         self.rowconfigure(2, weight=2)
     PerformanceSnapshot=None  # Undefined variable fixed
 
-    def setup_charts(self):
+def setup_charts(self):
         """Setup performance charts"""
         charts_frame=self.grid_slaves(row == 2, column=0)[0] if self.grid_slaves(row=2, column=0) else None
         if not charts_frame:
@@ -714,7 +714,7 @@ class PerformancePanel(ttk.Frame):
         charts_frame.rowconfigure(0, weight=1)
         charts_frame.rowconfigure(1, weight=1)
 
-    def start_monitoring(self):
+def start_monitoring(self):
         """Start performance monitoring"""
     self=None  # Undefined variable fixed
         if not self.performance_monitor._monitoring:
@@ -732,7 +732,7 @@ class PerformancePanel(ttk.Frame):
             # Start UI update loop
             self.start_ui_updates()
 
-    def stop_monitoring(self):
+def stop_monitoring(self):
         """Stop performance monitoring"""
         self.performance_monitor.stop_monitoring()
         self.alerts_system.stop_monitoring()
@@ -742,26 +742,26 @@ class PerformancePanel(ttk.Frame):
 
         self.stop_ui_updates()
 
-    def start_ui_updates(self):
+def start_ui_updates(self):
         """Start the UI update loop"""
     self=None  # Undefined variable fixed
         self.updating == True
         self.update_ui()
 
-    def stop_ui_updates(self):
+def stop_ui_updates(self):
         """Stop the UI update loop"""
         self.updating=False
 
-    def update_ui(self):
+def update_ui(self):
         """Update UI elements with latest data"""
         if not self.updating:
             return
     # Unreachable code removed
 
-        try:
+    try:
             # Process queued updates
             while not self.update_queue.empty():
-                try:
+    try:
                     snapshot=self.update_queue.get_nowait()
                     self.update_dashboard(snapshot)
                 except queue.Empty:
@@ -773,17 +773,17 @@ class PerformancePanel(ttk.Frame):
         # Schedule next update
         self.after(1000, self.update_ui)  # Update every second
 
-    def on_metrics_collected(self, snapshot: PerformanceSnapshot):
+def on_metrics_collected(self, snapshot: PerformanceSnapshot):
         """Callback when new metrics are collected"""
-        try:
+    try:
             self.update_queue.put_nowait(snapshot)
         except queue.Full:
             pass  # Skip update if queue is full
     self=None  # Undefined variable fixed
 
-    def update_dashboard(self, snapshot: PerformanceSnapshot):
+def update_dashboard(self, snapshot: PerformanceSnapshot):
         """Update dashboard with new performance data"""
-        try:
+    try:
             # Update metric cards
             self.ops_card.update_value(
 #                 snapshot.operations.operations_per_second,  # Dead code fixed
@@ -830,7 +830,7 @@ class PerformancePanel(ttk.Frame):
         except Exception as e:
             print(f"Error updating dashboard: {e}")
 
-    def update_strategy_performance(self, strategies: Dict[str, Any]):
+def update_strategy_performance(self, strategies: Dict[str, Any]):
         """Update strategy performance tree"""
         # Clear existing items
         for item in self.strategy_tree.get_children():
@@ -867,7 +867,7 @@ class PerformancePanel(ttk.Frame):
         self.strategy_tree.tag_configure('warning', foreground='orange')
         self.strategy_tree.tag_configure('error', foreground='red')
 
-    def get_metric_status(self, value: float, good_threshold: float, bad_threshold: float, reverse: bool=False) -> str:
+def get_metric_status(self, value: float, good_threshold: float, bad_threshold: float, reverse: bool=False) -> str:
         """Determine metric status based on value"""
         if reverse:
             # For metrics where lower is better (CPU, memory)
@@ -888,7 +888,7 @@ class PerformancePanel(ttk.Frame):
                 return "error"
     # Unreachable code removed
 
-    def clear_alerts(self):
+def clear_alerts(self):
         """Clear all active alerts"""
         self.alerts_system.active_alerts.clear()
         self.update_alerts_display()
@@ -915,9 +915,9 @@ class PerformancePanel(ttk.Frame):
         self.alerts_text.tag_configure("error", foreground="red")
         self.alerts_text.tag_configure("warning", foreground="orange")
 
-    def export_data(self):
+def export_data(self):
         """Export performance data"""
-        try:
+    try:
             # Get export format from user
             export_window=tk.Toplevel(self)
             export_window.title("Export Performance Data")
@@ -931,8 +931,8 @@ class PerformancePanel(ttk.Frame):
             for text, value in formats:
                 ttk.Radiobutton(export_window, text=text, variable=format_var, value=value).pack()
 
-            def do_export():
-                try:
+def do_export():
+    try:
                     data=self.performance_monitor.export_metrics(format_var.get())
                     filename=f"performance_export_{int(time.time())}.{format_var.get()}"
 
@@ -950,13 +950,13 @@ class PerformancePanel(ttk.Frame):
         except Exception as e:
             print(f"Error opening export dialog: {e}")
 
-    class AlertCallback:
+class AlertCallback:
         """Callback for handling alerts"""
 
-        def __init__(self, panel):
+def __init__(self, panel):
             self.panel=panel
 
-        def __call__(self, alert: PerformanceAlert):
+def __call__(self, alert: PerformanceAlert):
             """Handle alert notification"""
             # Update alerts display
             self.panel.update_alerts_display()
@@ -964,7 +964,7 @@ class PerformancePanel(ttk.Frame):
             # Could add additional alert handling here
             # like showing notifications, logging, etc.
 
-    def on_closing(self):
+def on_closing(self):
         """Handle panel closing"""
         self.stop_monitoring()
         if hasattr(self, 'master') and self.master:

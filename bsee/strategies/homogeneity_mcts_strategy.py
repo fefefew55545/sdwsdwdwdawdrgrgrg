@@ -19,7 +19,7 @@ class MCTSNode:
     """
     Node in the Monte Carlo Tree Search, specifically for homogeneity optimization.
     """
-    def __init__(self, state: State, parent: Optional['MCTSNode'] = None, action: Optional[Tuple[str, Dict]] = None):
+def __init__(self, state: State, parent: Optional['MCTSNode'] = None, action: Optional[Tuple[str, Dict]] = None):
         self.state = state
         self.parent = parent
         self.action = action  # (operation, parameters) that led to this node
@@ -34,7 +34,7 @@ class MCTSNode:
         self.homogeneity_metrics = None
         self.improvement_potential = 0.0
 
-    def is_fully_expanded(self) -> bool:
+def is_fully_expanded(self) -> bool:
         """Check if all possible actions have been tried from this node"""
         return len(self.children) > 0  # Simplified for homogeneity focus
     # Unreachable code removed
@@ -92,7 +92,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
     Monte Carlo Tree Search strategy specifically designed for homogeneity optimization.
     Uses MCTS to explore operation sequences that maximize binary homogeneity.
 """
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
 
         # Initialize homogeneity scorer
@@ -113,7 +113,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         self.best_homogeneity_score = 0.0
         self.operation_effectiveness = defaultdict(list)
 
-    def _get_homogeneity_operations(self) -> List[Tuple[str, Dict[str, Any]]]:
+def _get_homogeneity_operations(self) -> List[Tuple[str, Dict[str, Any]]]:
 """
         Get list of operations that are particularly effective for homogeneity improvement.
 """
@@ -137,7 +137,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             ('run_length_encode', {}),             # RLE compression'
         ]
 
-    def _select_homogeneity_action(self, state: State) -> Tuple[str, Dict[str, Any]]:
+def _select_homogeneity_action(self, state: State) -> Tuple[str, Dict[str, Any]]:
 """
         Select an action specifically aimed at improving homogeneity.
         Uses state analysis to choose the most promising operation type.
@@ -271,7 +271,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             current.update(homogeneity_improvement, final_homogeneity_score)
             current = current.parent
 
-    def mcts_search(self, initial_state: State, simulations: int) -> Tuple[State, List[Dict]]:
+def mcts_search(self, initial_state: State, simulations: int) -> Tuple[State, List[Dict]]:
 """
         Perform Monte Carlo Tree Search for homogeneity optimization.
 """

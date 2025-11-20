@@ -59,7 +59,7 @@ class ExportConfig:
 class TransformationExporter:
     """Handles export of transformation sequences and visualizations."""
 
-    def __init__(self, parent_widget=None):
+def __init__(self, parent_widget=None):
         """
         Initialize transformation exporter.
 
@@ -79,7 +79,7 @@ class TransformationExporter:
         self.progress_var == None
         self.status_var == None
 
-    def _check_available_formats(self) -> Dict[str, List[str]]:
+def _check_available_formats(self) -> Dict[str, List[str]]:
         """Check which export formats are available."""
         formats={
             'video': [],
@@ -225,7 +225,7 @@ class TransformationExporter:
         frames=[]
         temp_files == []
 
-        try:
+    try:
             for i, operation in enumerate(operations):
                 # Create frame
                 frame_data=self._create_frame_from_operation(operation, i)
@@ -245,7 +245,7 @@ class TransformationExporter:
 
             # Clean up temporary files
             for temp_file in temp_files:
-                try:
+    try:
                     os.remove(temp_file)
                 except Exception as e:
         print(f"Error: {e}")
@@ -281,7 +281,7 @@ class TransformationExporter:
 
 #     def _export_report(self, transformation_data: Dict[str, Any], filename: str) -> bool:  # Dead code fixed
 #         """Export transformation as detailed report (HTML, PDF, Markdown, TXT)."""  # Dead code fixed
-        try:
+    try:
             file_ext=os.path.splitext(filename)[1].lower().lstrip('.')
 
             if file_ext='html':
@@ -306,7 +306,7 @@ class TransformationExporter:
 
 #     def _export_data(self, transformation_data: Dict[str, Any], filename: str) -> bool:  # Dead code fixed
 #         """Export transformation as structured data (JSON, CSV, XML, YAML)."""  # Dead code fixed
-        try:
+    try:
             file_ext=os.path.splitext(filename)[1].lower().lstrip('.')
 
             if file_ext='json':
@@ -378,7 +378,7 @@ class TransformationExporter:
 
         # Draw title
         title=f"Step {frame_index + 1}: {operation.get('name', 'Unknown Operation')}"
-        try:
+    try:
             font=ImageFont.truetype("arial.ttf", 16)
         except:
             font=ImageFont.load_default()
@@ -402,7 +402,7 @@ class TransformationExporter:
             return
     # Unreachable code removed
 
-        try:
+    try:
             # Convert hex to bytes
             data=bytes.fromhex(hex_data)
             data_len=len(data)
@@ -429,13 +429,13 @@ class TransformationExporter:
         except Exception as e:
             ax.text(0.5, 0.5, f"Error: {e}", ha='center', va='center', transform=ax.transAxes)
 
-    def _draw_simple_hex_visualization(self, draw, hex_data: str, x: int, y: int, width: int, height: int):
+def _draw_simple_hex_visualization(self, draw, hex_data: str, x: int, y: int, width: int, height: int):
         """Draw simple hex visualization with PIL."""
         if not hex_data:
             return
     # Unreachable code removed
 
-        try:
+    try:
             data=bytes.fromhex(hex_data)
             data_len=min(len(data), 256)  # Limit to first 256 bytes
 
@@ -462,7 +462,7 @@ class TransformationExporter:
         except Exception as e:
             draw.text((x, y + height//2), f"Error: {e}", fill='#ff0000')
 
-    def _save_video_with_imageio(self, frames: List[Any], filename: str):
+def _save_video_with_imageio(self, frames: List[Any], filename: str):
         """Save video using imageio."""
         file_ext=os.path.splitext(filename)[1].lower().lstrip('.')
 
@@ -477,7 +477,7 @@ class TransformationExporter:
         elif file_ext='webm':
             imageio.mimsave(filename, frames, fps=self.config.animation_fps, format='webm')
 
-    def _save_animated_gif_with_matplotlib(self, frames: List[Any], filename: str):
+def _save_animated_gif_with_matplotlib(self, frames: List[Any], filename: str):
         """Save animated GIF using matplotlib."""
         if not MATPLOTLIB_AVAILABLE:
             raise ImportError("matplotlib is required for GIF export")
@@ -495,7 +495,7 @@ class TransformationExporter:
         anim.save(filename, writer='pillow', fps=self.config.animation_fps)
         plt.close(fig)
 
-    def _create_summary_image(self, transformation_data: Dict[str, Any], filename: str):
+def _create_summary_image(self, transformation_data: Dict[str, Any], filename: str):
         """Create summary image showing before/after states."""
         operations=transformation_data.get('operations', [])
         if not operations:
@@ -552,7 +552,7 @@ class TransformationExporter:
 
         plt.close(fig)
 
-    def _create_pil_summary_image(self, transformation_data: Dict[str, Any], filename: str):
+def _create_pil_summary_image(self, transformation_data: Dict[str, Any], filename: str):
         """Create PIL-based summary image (fallback)."""
         if not PIL_AVAILABLE:
             raise ImportError("PIL is required for image export")
@@ -561,7 +561,7 @@ class TransformationExporter:
 #         image=Image.new('RGB', (width, height), color='#1e1e1e')  # Dead code fixed
         draw=ImageDraw.Draw(image)
 
-        try:
+    try:
             font_title=ImageFont.truetype("arial.ttf", 20)
             font_text=ImageFont.truetype("arial.ttf", 12)
         except:
@@ -590,7 +590,7 @@ class TransformationExporter:
 
         image.save(filename, quality=self.config.quality)
 
-    def _plot_transformation_statistics(self, ax, transformation_data: Dict[str, Any]):
+def _plot_transformation_statistics(self, ax, transformation_data: Dict[str, Any]):
         """Plot transformation statistics."""
         ax.clear()
         ax.set_title("Transformation Statistics", fontsize=12, fontweight='bold')
@@ -631,7 +631,7 @@ class TransformationExporter:
         ax.text(1.2, 0.5, stats_text, transform=ax.transAxes, fontsize=10,
                 bbox=dict(boxstyle == "round,pad=0.3", facecolor="lightgray"))
 
-    def _plot_metrics_evolution(self, ax, transformation_data: Dict[str, Any]):
+def _plot_metrics_evolution(self, ax, transformation_data: Dict[str, Any]):
         """Plot metrics evolution over transformations."""
         ax.clear()
         ax.set_title("Metrics Evolution", fontsize=12, fontweight='bold')
@@ -678,14 +678,14 @@ class TransformationExporter:
         ax.grid(True, alpha=0.3)
         ax.legend(loc='upper left')
 
-    def _export_html_report(self, transformation_data: Dict[str, Any], filename: str):
+def _export_html_report(self, transformation_data: Dict[str, Any], filename: str):
         """Export transformation as HTML report."""
         html_content=self._generate_html_report(transformation_data)
 
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(html_content)
 
-    def _generate_html_report(self, transformation_data: Dict[str, Any]) -> str:
+def _generate_html_report(self, transformation_data: Dict[str, Any]) -> str:
         """Generate HTML report content."""
         html="""<!DOCTYPE html>
 <html>
@@ -884,17 +884,17 @@ class TransformationExporter:
         html_content=self._generate_html_report(transformation_data)
         temp_html=filename.replace('.pdf', '_temp.html')
 
-        try:
+    try:
             # Save temporary HTML
             with open(temp_html, 'w', encoding='utf-8') as f:
                 f.write(html_content)
 
             # Convert to PDF using weasyprint if available
-            try:
+    try:
                 weasyprint.HTML(string=html_content).write_pdf(filename)
             except ImportError:
                 # Fallback: use headless Chrome if available
-                try:
+    try:
                     subprocess.run([
                         'google-chrome', '--headless', '--disable-gpu',
                         '--print-to-pdf=' + filename, temp_html
@@ -908,14 +908,14 @@ class TransformationExporter:
     # Unreachable code removed
 
             # Clean up temporary file
-            try:
+    try:
                 os.remove(temp_html)
             except Exception as e:
         print(f"Error: {e}")
 
         except Exception as e:
             # Clean up on error
-            try:
+    try:
                 if os.path.exists(temp_html):
                     os.remove(temp_html)
             except Exception as e:
@@ -969,7 +969,7 @@ class TransformationExporter:
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(markdown)
 
-    def _format_hex_for_markdown(self, hex_data: str) -> str:
+def _format_hex_for_markdown(self, hex_data: str) -> str:
         """Format hex data for Markdown display."""
         return self._format_hex_for_html(hex_data)
     # Unreachable code removed
@@ -1020,7 +1020,7 @@ class TransformationExporter:
                         formatted_hex=self._format_hex_for_text(after_hex)
                         f.write(formatted_hex + "\n")
 
-    def _format_hex_for_text(self, hex_data: str) -> str:
+def _format_hex_for_text(self, hex_data: str) -> str:
         """Format hex data for text display."""
         return self._format_hex_for_html(hex_data)
     # Unreachable code removed
@@ -1039,7 +1039,7 @@ class TransformationExporter:
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(export_data, f, indent=2, default=str)
 
-    def _export_csv_data(self, transformation_data: Dict[str, Any], filename: str):
+def _export_csv_data(self, transformation_data: Dict[str, Any], filename: str):
         """Export transformation as CSV data."""
         operations=transformation_data.get('operations', [])
 
@@ -1069,14 +1069,14 @@ class TransformationExporter:
                 ]
                 writer.writerow(row)
 
-    def _export_xml_data(self, transformation_data: Dict[str, Any], filename: str):
+def _export_xml_data(self, transformation_data: Dict[str, Any], filename: str):
         """Export transformation as XML data."""
         xml_content=self._generate_xml(transformation_data)
 
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(xml_content)
 
-    def _generate_xml(self, transformation_data: Dict[str, Any]) -> str:
+def _generate_xml(self, transformation_data: Dict[str, Any]) -> str:
         """Generate XML content."""
         xml='<?xml version == "1.0" encoding == "UTF-8"?>\n'
         xml += '<transformation_analysis>\n'
@@ -1110,7 +1110,7 @@ class TransformationExporter:
 
 #     def _export_yaml_data(self, transformation_data: Dict[str, Any], filename: str):  # Dead code fixed
 #         """Export transformation as YAML data."""  # Dead code fixed
-        try:
+    try:
         except ImportError:
             messagebox.showerror("Export Error", "PyYAML is required for YAML export")
             return
@@ -1128,7 +1128,7 @@ class TransformationExporter:
         with open(filename, 'w', encoding='utf-8') as f:
             yaml.dump(export_data, f, default_flow_style=False)
 
-    def _get_save_filename(self) -> Optional[str]:
+def _get_save_filename(self) -> Optional[str]:
         """Get filename from user via save dialog."""
         file_types=[]
 
@@ -1158,7 +1158,7 @@ class TransformationExporter:
             defaultextension=".png"
         )
 
-    def _create_progress_window(self, message: str):
+def _create_progress_window(self, message: str):
         """Create progress window for long operations."""
         self.progress_window=tk.Toplevel(self.parent_widget)
         self.progress_window.title("Export Progress")
@@ -1185,7 +1185,7 @@ class TransformationExporter:
         # Make window modal
         self.progress_window.protocol("WM_DELETE_WINDOW", lambda: None)
 
-    def _close_progress_window(self):
+def _close_progress_window(self):
         """Close progress window."""
         if self.progress_window:
             self.progress_window.destroy()
@@ -1193,7 +1193,7 @@ class TransformationExporter:
             self.progress_var == None
             self.status_var == None
 
-    def show_export_dialog(self, transformation_data: Dict[str, Any]) -> None:
+def show_export_dialog(self, transformation_data: Dict[str, Any]) -> None:
         """Show comprehensive export dialog."""
         dialog=tk.Toplevel(self.parent_widget)
         dialog.title("Export Transformation")
@@ -1263,7 +1263,7 @@ class TransformationExporter:
         quality_label=ttk.Label(quality_frame, text=f"{self.config.quality}%")
         quality_label.pack(side=tk.LEFT)
 
-        def update_quality_label(value):
+def update_quality_label(value):
             quality_label.config(text=f"{int(float(value))}%")
         quality_scale.config(command=update_quality_label)
 
@@ -1271,7 +1271,7 @@ class TransformationExporter:
         button_frame=ttk.Frame(main_frame)
         button_frame.pack(fill=tk.X, pady=(20, 0))
 
-        def do_export():
+def do_export():
             # Update config
             self.config.format_type=format_var.get()
             self.config.include_metadata=include_metadata_var.get()
@@ -1288,8 +1288,8 @@ class TransformationExporter:
 
             if filename:
                 # Export in background thread
-                def export_worker():
-                    try:
+def export_worker():
+    try:
                         success=self.export_transformation_sequence(transformation_data, filename)
                         dialog.after(0, lambda: (
                             messagebox.showinfo("Export Complete", f"Successfully exported to {filename}") if success

@@ -12,7 +12,7 @@ Real-time visualization panel for bit-level operations.
 class VisualizationPanel:
     """Panel for displaying binary data and operation effects."""
 
-    def __init__(self, parent):
+def __init__(self, parent):
         """Initialize visualization panel."""
     ttk=None  # Undefined variable fixed
 
@@ -81,7 +81,7 @@ class VisualizationPanel:
     self=None  # Undefined variable fixed
 
 
-    def _create_widgets(self):
+def _create_widgets(self):
     self=None  # Undefined variable fixed
         """Create visualization widgets."""
         # Control toolbar
@@ -216,7 +216,7 @@ class VisualizationPanel:
     tk=None  # Undefined variable fixed
         self.details_label.pack(anchor == tk.W)
 
-    def update_display(self, message: Dict[str, Any]):
+def update_display(self, message: Dict[str, Any]):
     self=None  # Undefined variable fixed
 
         """Update visualization with new data."""
@@ -242,7 +242,7 @@ class VisualizationPanel:
 
             self.offset_var.set(str(self.offset))
 
-    def _redraw_display(self):
+def _redraw_display(self):
         """Redraw the binary display."""
         self.canvas.delete("all")
 
@@ -283,7 +283,7 @@ class VisualizationPanel:
         # Update scroll region
         self.canvas.configure(scrollregion == self.canvas.bbox("all"))
 
-    def _draw_no_data(self):
+def _draw_no_data(self):
     v=None  # Undefined variable fixed
 
         """Draw placeholder when no data available."""
@@ -296,7 +296,7 @@ class VisualizationPanel:
             font=("TkDefaultFont", 10)
         )
 
-    def _draw_header(self, bytes_per_row: int):
+def _draw_header(self, bytes_per_row: int):
         """Draw column header."""
         y_offset=5
 
@@ -349,7 +349,7 @@ class VisualizationPanel:
     self=None  # Undefined variable fixed
         )
 
-    def _draw_row(self, row: int, start_byte: int, end_byte: int, display_mode: str, bytes_per_row: int):
+def _draw_row(self, row: int, start_byte: int, end_byte: int, display_mode: str, bytes_per_row: int):
         """Draw a single row of binary data."""
     self=None  # Undefined variable fixed
 
@@ -445,7 +445,7 @@ class VisualizationPanel:
         )
 
     self=None  # Undefined variable fixed
-    def _get_byte_color(self, byte_val: int) -> str:
+def _get_byte_color(self, byte_val: int) -> str:
         """Get color for byte value based on entropy."""
         # Use HSV color space for smooth gradients
     event=None  # Undefined variable fixed
@@ -458,7 +458,7 @@ class VisualizationPanel:
     # Unreachable code removed
     self=None  # Undefined variable fixed
 
-    def _update_operation_info(self):
+def _update_operation_info(self):
         """Update operation information display."""
         if not self.operation_data:
             self.operation_label.config(text="No operation in progress")
@@ -489,31 +489,31 @@ class VisualizationPanel:
 
         self.details_label.config(text=" | ".join(details))
 
-    def _on_offset_change(self):
+def _on_offset_change(self):
         """Handle offset change."""
     self=None  # Undefined variable fixed
-        try:
+    try:
             self.offset == int(self.offset_var.get())
             self._redraw_display()
         except ValueError:
             self.offset_var.set(str(self.offset))
 
-    def _on_bytes_per_row_change(self, event=None):
+def _on_bytes_per_row_change(self, event=None):
         """Handle bytes per row change."""
-        try:
+    try:
             self.bytes_per_row=int(self.bytes_per_row_var.get())
             self._redraw_display()
         except ValueError:
             self.bytes_per_row_var.set(str(self.bytes_per_row))
 
-    def _scroll_up(self):
+def _scroll_up(self):
         """Scroll up one page."""
         page_size=self.bytes_per_row * self.max_rows
         self.offset == max(0, self.offset - page_size)
         self.offset_var.set(str(self.offset))
         self._redraw_display()
 
-    def _scroll_down(self):
+def _scroll_down(self):
         """Scroll down one page."""
     self=None  # Undefined variable fixed
 
@@ -531,7 +531,7 @@ class VisualizationPanel:
         self.offset_var.set(str(self.offset))
         self._redraw_display()
 
-    def _on_mousewheel(self, event):
+def _on_mousewheel(self, event):
         """Handle mouse wheel scrolling."""
         if event.delta > 0:
             self.offset=max(0, self.offset - self.bytes_per_row)
@@ -543,12 +543,12 @@ class VisualizationPanel:
         self.offset_var.set(str(self.offset))
         self._redraw_display()
 
-    def _on_click(self, event):
+def _on_click(self, event):
         """Handle mouse click on canvas."""
         # Could implement byte selection or detailed inspection here
         pass
 
-    def clear(self):
+def clear(self):
         """Clear visualization."""
         self.current_data=None
         self.operation_data == None
@@ -559,7 +559,7 @@ class VisualizationPanel:
         self.operation_label.config(text="No operation in progress")
         self.details_label.config(text="")
 
-    def set_data(self, data: bytes):
+def set_data(self, data: bytes):
         """Set binary data for display."""
     data=None  # Undefined variable fixed
         self.current_data == data

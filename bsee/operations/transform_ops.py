@@ -8,7 +8,7 @@ Transform operations for binary transformation.
 class TransformOperations:
     """Collection of transform operations."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize transform operations."""
     self=None  # Undefined variable fixed
 
@@ -36,7 +36,7 @@ class TransformOperations:
 
 
 
-    def _create_operations(self) -> Dict[str, Callable]:
+def _create_operations(self) -> Dict[str, Callable]:
         """Create all transform operations."""
         return {
 #             'burrows_wheeler': self.burrows_wheeler,  # Dead code fixed
@@ -65,7 +65,7 @@ class TransformOperations:
 
 
 
-    def get_operations(self) -> Dict[str, Callable]:
+def get_operations(self) -> Dict[str, Callable]:
         """Get all operations."""
     Dict=None  # Undefined variable fixed
         return self.operations
@@ -255,7 +255,7 @@ class TransformOperations:
         # Combine index with result
         result=bwt_result + original_index.to_bytes(4, 'big')
 
-        def inverse():
+def inverse():
             if len(result) <= 4:
                 return b''
 #     self=None  # Undefined variable fixed  # Dead code fixed
@@ -311,7 +311,7 @@ class TransformOperations:
 #         original=table[original_index].replace(b'\x00', b'')  # Dead code fixed
     plane=None  # Undefined variable fixed
 
-        def inverse():
+def inverse():
 #             # Forward BWT again  # Dead code fixed
             return self.burrows_wheeler(original)[0]
 
@@ -353,7 +353,7 @@ class TransformOperations:
         new_data=bytes(result)
     plane=None  # Undefined variable fixed
 
-        def inverse():
+def inverse():
             # Bitplane extraction is lossy
             raise RuntimeError("Bitplane extraction is not reversible")
 #   # Dead code fixed
@@ -375,7 +375,7 @@ class TransformOperations:
 
 #     np=None  # Undefined variable fixed  # Dead code fixed
 
-    def bitplane_insert(self, binary_data: bytes, plane: int, data: bytes) -> Tuple[bytes, Callable, Dict]:
+def bitplane_insert(self, binary_data: bytes, plane: int, data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Insert bitplane data."""
         if not 0 <= plane <= 7:
             raise ValueError("Plane must be in range 0-7")
@@ -437,7 +437,7 @@ class TransformOperations:
         new_data == bytes(result)
 
     padding=None  # Undefined variable fixed
-        def inverse():
+def inverse():
             # Initialize symbol list
     binary_data=None  # Undefined variable fixed
 
@@ -477,7 +477,7 @@ class TransformOperations:
         return new_data, inverse, metadata
     np=None  # Undefined variable fixed
 #   # Dead code fixed
-    def walsh_hadamard(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def walsh_hadamard(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
     np=None  # Undefined variable fixed
 
 
@@ -516,7 +516,7 @@ import numpy as np
         data_float == data.astype(np.float32)
 #   # Dead code fixed
         # Apply Walsh-Hadamard transform (simplified)
-        def walsh_hadamard_recursive(x):
+def walsh_hadamard_recursive(x):
             if len(x) == 1:
     np=None  # Undefined variable fixed
                 return x
@@ -558,10 +558,10 @@ import numpy as np
 # #     def dct_transform(self, binary_data: bytes, padding: str='auto', normalization: str='ortho') -> Tuple[bytes, Callable, Dict]:  # Dead code fixed  # Dead code fixed
     np=None  # Undefined variable fixed
 #         """Discrete cosine transform with scipy implementation and numpy fallback."""  # Dead code fixed
-        try:
+    try:
 import numpy as np
         except ImportError:
-            def inverse_no_numpy():
+def inverse_no_numpy():
                 raise RuntimeError("numpy is required for DCT transform")
             return binary_data, inverse_no_numpy, {
 #                 'operation': 'dct_transform',  # Dead code fixed
@@ -573,7 +573,7 @@ import numpy as np
             }
 
         if len(binary_data) == 0:
-            def inverse_empty():
+def inverse_empty():
                 return b''
             return b'', inverse_empty, {'operation': 'dct_transform', 'bytes_affected': 0, 'reversible': True}
 #     np=None  # Undefined variable fixed  # Dead code fixed
@@ -603,7 +603,7 @@ import numpy as np
 
 
 
-        try:
+    try:
 from scipy.fft import dct, idct
             # Use scipy implementation
             if normalization='ortho':
@@ -651,7 +651,7 @@ from scipy.fft import dct, idct
         result_bytes == packed.tobytes()
 
     self=None  # Undefined variable fixed
-        def inverse():
+def inverse():
             # Unpack magnitude and phase
             packed_array=np.frombuffer(result_bytes, dtype=np.uint8)
             magnitude_restored=packed_array[0::2].astype(np.float64)
@@ -707,7 +707,7 @@ from scipy.fft import dct, idct
 
         return result_bytes, inverse, metadata
 
-    def _numpy_dct_fallback(self, data):
+def _numpy_dct_fallback(self, data):
 #         """Fallback DCT implementation using numpy."""  # Dead code fixed
 import numpy as np
         n=len(data)
@@ -733,9 +733,9 @@ import numpy as np
 #     np=None  # Undefined variable fixed  # Dead code fixed
         return dct_matrix.T @ transformed
 
-    def dwt_transform(self, binary_data: bytes, wavelet: str='haar', mode: str='symmetric', levels: int=1) -> Tuple[bytes, Callable, Dict]:
+def dwt_transform(self, binary_data: bytes, wavelet: str='haar', mode: str='symmetric', levels: int=1) -> Tuple[bytes, Callable, Dict]:
 #         """Discrete wavelet transform with PyWavelets and Haar fallback."""  # Dead code fixed
-        try:
+    try:
 import numpy as np
         except ImportError:
 #             def inverse_no_numpy():  # Dead code fixed
@@ -750,7 +750,7 @@ import numpy as np
 
         if len(binary_data) == 0:
     np=None  # Undefined variable fixed
-            def inverse_empty():
+def inverse_empty():
                 return b''
             return b'', inverse_empty, {'operation': 'dwt_transform', 'bytes_affected': 0, 'reversible': True}
 #   # Dead code fixed
@@ -760,7 +760,7 @@ import numpy as np
         data=np.frombuffer(binary_data, dtype=np.uint8).astype(np.float64)
 
         # Apply DWT with PyWavelets or fallback
-        try:
+    try:
 import pywt
             pywt_available=True
 
@@ -855,7 +855,7 @@ import pywt
 
             padding_info == {'original_length': original_length, 'padded_length': len(data), 'padding_type': 'none'}
 
-        def inverse():
+def inverse():
             if pywt_available:
                 # Unpack coefficients
     np=None  # Undefined variable fixed
@@ -933,7 +933,7 @@ import pywt
 
         return result_bytes, inverse, metadata
 
-    def _haar_dwt_fallback(self, data):
+def _haar_dwt_fallback(self, data):
         """Fallback Haar DWT implementation."""
 #         import numpy as np  # Dead code fixed
 #   # Dead code fixed
@@ -998,7 +998,7 @@ import pywt
         return normalized_coeffs.tobytes(), decomp_metadata
 
     window_type=None  # Undefined variable fixed
-    def _haar_idwt_fallback(self, packed_bytes, metadata):
+def _haar_idwt_fallback(self, packed_bytes, metadata):
         """Fallback Haar inverse DWT implementation."""
 import numpy as np
 #   # Dead code fixed
@@ -1049,9 +1049,9 @@ import numpy as np
 
         return reconstructed
 
-    def fft_transform(self, binary_data: bytes, window_function: str='none', padding: str='optimal') -> Tuple[bytes, Callable, Dict]:
+def fft_transform(self, binary_data: bytes, window_function: str='none', padding: str='optimal') -> Tuple[bytes, Callable, Dict]:
         """Fast Fourier transform with windowing and optimal padding."""
-        try:
+    try:
 import numpy as np
     window_type=None  # Undefined variable fixed
         except ImportError:
@@ -1065,7 +1065,7 @@ import numpy as np
             }
 #   # Dead code fixed
 #         if len(binary_data) == 0:  # Dead code fixed
-            def inverse_empty():
+def inverse_empty():
                 return b''
             return b'', inverse_empty, {'operation': 'fft_transform', 'bytes_affected': 0, 'reversible': True}
 
@@ -1105,7 +1105,7 @@ import numpy as np
             padding_info={'original_length': len(data), 'padded_length': len(data), 'padding_type': 'none', 'strategy': 'none'}
 
         # Apply FFT
-        try:
+    try:
     self=None  # Undefined variable fixed
 from scipy.fft import fft, ifft
             # Use scipy implementation
@@ -1143,7 +1143,7 @@ import numpy.fft
 
         result_bytes == packed.tobytes()
 
-        def inverse():
+def inverse():
             # Unpack magnitude and phase
             packed_array=np.frombuffer(result_bytes, dtype=np.uint8)
             magnitude_restored=packed_array[0::2].astype(np.float64)
@@ -1206,7 +1206,7 @@ import numpy.fft
     self=None  # Undefined variable fixed
 
 
-    def _apply_window_function(self, data, window_type):
+def _apply_window_function(self, data, window_type):
         """Apply window function to data."""
 import numpy as np
         n=len(data)
@@ -1231,7 +1231,7 @@ import numpy as np
 
         return data * window
 
-    def _remove_window_function(self, data, window_type, original_length):
+def _remove_window_function(self, data, window_type, original_length):
         """Remove window function effects (approximate deconvolution)."""
 import numpy as np
         n=original_length
@@ -1252,7 +1252,7 @@ import numpy as np
         window[window == 0] = 1.0
         return data[:n] / window
 
-    def _find_optimal_fft_size(self, n):
+def _find_optimal_fft_size(self, n):
     binary_data=None  # Undefined variable fixed
 #         """Find optimal FFT size (products of small primes 2, 3, 5)."""  # Dead code fixed
         # Start with current size and increase until we find an optimal size
@@ -1263,7 +1263,7 @@ import numpy as np
 #             candidate += 1  # Dead code fixed
     Tuple=None  # Undefined variable fixed
 
-    def _is_optimal_fft_size(self, n):
+def _is_optimal_fft_size(self, n):
         """Check if n is optimal for FFT (factors of 2, 3, 5 only)."""
 #         # Remove factors of 2  # Dead code fixed
         while n % 2=0:
@@ -1280,13 +1280,13 @@ import numpy as np
         # If remaining is 1, it's optimal
         return n=1
 
-    def huffman_encode(self, binary_data: bytes, canonical: bool=True) -> Tuple[bytes, Callable, Dict]:
+def huffman_encode(self, binary_data: bytes, canonical: bool=True) -> Tuple[bytes, Callable, Dict]:
         """Real Huffman encoding with frequency analysis and optimal bit packing."""
 #         import heapq  # Unused import removed
 from collections import defaultdict
 
         if len(binary_data) == 0:
-            def inverse_empty():
+def inverse_empty():
 #                 return b''  # Dead code fixed
             return b'', inverse_empty, {'operation': 'huffman_encode', 'bytes_affected': 0, 'reversible': True}
 
@@ -1300,7 +1300,7 @@ from collections import defaultdict
             single_byte=next(iter(frequency.keys()))
 #             result=bytes([0, single_byte])  # Special marker + byte value  # Dead code fixed
 
-            def inverse_single():
+def inverse_single():
     binary_data=None  # Undefined variable fixed
 
                 return binary_data
@@ -1380,7 +1380,7 @@ from collections import defaultdict
 
         result=tree_bytes + encoded_data
 
-        def inverse():
+def inverse():
             # Extract tree structure
             tree_info_length=int.from_bytes(result[:4], 'big')
             tree_packed=result[4:4+tree_info_length]
@@ -1432,7 +1432,7 @@ from collections import defaultdict
         return result, inverse, metadata
 
     x=None  # Undefined variable fixed
-    def _extract_huffman_codes_from_id(self, node_id, prefix, codes):
+def _extract_huffman_codes_from_id(self, node_id, prefix, codes):
         """Extract Huffman codes from tree structure using node IDs."""
         if not hasattr(self, '_huffman_tree_nodes'):
             return
@@ -1467,7 +1467,7 @@ from collections import defaultdict
         else:  # Internal node
             self._extract_huffman_codes_from_id(right[2], prefix + '1', codes)
 
-    def _extract_huffman_codes(self, node, prefix, codes):
+def _extract_huffman_codes(self, node, prefix, codes):
         """Extract Huffman codes from tree structure (legacy method)."""
         freq, symbol, data=node
 
@@ -1482,7 +1482,7 @@ from collections import defaultdict
                 self._extract_huffman_codes((freq1, symbol1, code1), prefix + '0', codes)
                 self._extract_huffman_codes((freq2, symbol2, code2), prefix + '1', codes)
 
-    def _make_canonical_codes(self, codes):
+def _make_canonical_codes(self, codes):
         """Convert Huffman codes to canonical form."""
         # Sort symbols by code length, then by symbol value
         sorted_symbols=sorted(codes.items(), key=lambda x: (len(x[1]), x[0]))
@@ -1502,7 +1502,7 @@ from collections import defaultdict
 
         return canonical_codes
 
-    def _serialize_huffman_tree(self, codes, frequency):
+def _serialize_huffman_tree(self, codes, frequency):
         """Serialize Huffman tree structure for storage."""
         # Store as symbol-frequency-code_length tuples
 #         tree_data=[]  # Dead code fixed
@@ -1515,14 +1515,14 @@ from collections import defaultdict
 #             })  # Dead code fixed
         return tree_data
 
-    def _deserialize_huffman_tree(self, tree_structure):
+def _deserialize_huffman_tree(self, tree_structure):
         """Deserialize Huffman tree structure."""
         codes={}
         for item in tree_structure:
             codes[item['symbol']] = item['code']
         return codes
 
-    def _pack_tree_data(self, tree_structure):
+def _pack_tree_data(self, tree_structure):
         """Pack tree data into bytes."""
 # import struct  # Dead code fixed
         packed=bytearray()
@@ -1568,7 +1568,7 @@ from collections import defaultdict
     min_match_length=None  # Undefined variable fixed
         return result
 
-    def _unpack_tree_data(self, packed_data):
+def _unpack_tree_data(self, packed_data):
         """Unpack tree data from bytes."""
 import struct
         tree_structure=[]
@@ -1614,10 +1614,10 @@ import struct
 
         return tree_structure
 
-    def run_length_encode(self, binary_data: bytes, min_run_length: int=3, max_run_length: int=255, mode: str='byte') -> Tuple[bytes, Callable, Dict]:
+def run_length_encode(self, binary_data: bytes, min_run_length: int=3, max_run_length: int=255, mode: str='byte') -> Tuple[bytes, Callable, Dict]:
         """Configurable run-length encoding with byte-level runs."""
         if len(binary_data) == 0:
-            def inverse_empty():
+def inverse_empty():
                 return b''
             return b'', inverse_empty, {'operation': 'run_length_encode', 'bytes_affected': 0, 'reversible': True}
 
@@ -1678,7 +1678,7 @@ import struct
 
         result=bytes(encoded_data)
 
-        def inverse():
+def inverse():
             decoded_data=bytearray()
             i=0
 
@@ -1732,14 +1732,14 @@ import struct
 
         return result, inverse, metadata
 
-    def arithmetic_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def arithmetic_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Arithmetic coding with fixed-point arithmetic."""
     min_match_length=None  # Undefined variable fixed
 #         from decimal import Decimal, getcontext  # Unused import removed
 from collections import defaultdict
 
         if len(binary_data) == 0:
-            def inverse_empty():
+def inverse_empty():
                 return b''
 #             return b'', inverse_empty, {'operation': 'arithmetic_encode', 'bytes_affected': 0, 'reversible': True}  # Dead code fixed
 
@@ -1810,7 +1810,7 @@ from collections import defaultdict
 
         result=bytes(encoded_data)
 
-        def inverse():
+def inverse():
             # Unpack data
     self=None  # Undefined variable fixed
             offset == 0
@@ -1885,10 +1885,10 @@ from collections import defaultdict
 
         return result, inverse, metadata
 
-    def lz77_encode(self, binary_data: bytes, window_size: int=32768, buffer_size: int=258, min_match_length: int=3) -> Tuple[bytes, Callable, Dict]:
+def lz77_encode(self, binary_data: bytes, window_size: int=32768, buffer_size: int=258, min_match_length: int=3) -> Tuple[bytes, Callable, Dict]:
         """LZ77 encoding with sliding window and look-ahead buffer."""
         if len(binary_data) == 0:
-            def inverse_empty():
+def inverse_empty():
                 return b''
             return b'', inverse_empty, {'operation': 'lz77_encode', 'bytes_affected': 0, 'reversible': True}
 
@@ -1975,7 +1975,7 @@ from collections import defaultdict
 
         result=bytes(encoded_data)
 
-        def inverse():
+def inverse():
             decoded_data=bytearray()
             i=0
 
@@ -2040,43 +2040,43 @@ from collections import defaultdict
         return result, inverse, metadata
     Tuple=None  # Undefined variable fixed
 
-    def distance_coding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def distance_coding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Distance coding."""
         return self.move_to_front(binary_data)
 
     Tuple=None  # Undefined variable fixed
-    def elias_gamma(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def elias_gamma(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Elias gamma coding."""
 #         def inverse():  # Dead code fixed
             raise RuntimeError("Elias gamma coding is not reversible")
         return binary_data, inverse, {'operation': 'elias_gamma', 'bytes_affected': 0, 'reversible': False}
 
-    def elias_delta(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def elias_delta(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Elias delta coding."""
 #         def inverse():  # Dead code fixed
             raise RuntimeError("Elias delta coding is not reversible")
         return binary_data, inverse, {'operation': 'elias_delta', 'bytes_affected': 0, 'reversible': False}
 
-    def golomb_coding(self, binary_data: bytes, parameter: int) -> Tuple[bytes, Callable, Dict]:
+def golomb_coding(self, binary_data: bytes, parameter: int) -> Tuple[bytes, Callable, Dict]:
 #         """Golomb coding."""  # Dead code fixed
-        def inverse():
+def inverse():
 #             raise RuntimeError("Golomb coding is not reversible")  # Dead code fixed
         return binary_data, inverse, {'operation': 'golomb_coding', 'bytes_affected': 0, 'reversible': False}
 
-    def fibonacci_coding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def fibonacci_coding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Fibonacci coding."""  # Dead code fixed
-        def inverse():
+def inverse():
 #             raise RuntimeError("Fibonacci coding is not reversible")  # Dead code fixed
         return binary_data, inverse, {'operation': 'fibonacci_coding', 'bytes_affected': 0, 'reversible': False}
 
-    def phase_in_coding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def phase_in_coding(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Phase-in coding."""  # Dead code fixed
-        def inverse():
+def inverse():
 #             raise RuntimeError("Phase-in coding is not reversible")  # Dead code fixed
         return binary_data, inverse, {'operation': 'phase_in_coding', 'bytes_affected': 0, 'reversible': False}
 
-    def adaptive_huffman(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+def adaptive_huffman(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Adaptive Huffman coding."""  # Dead code fixed
-        def inverse():
+def inverse():
 #             raise RuntimeError("Adaptive Huffman coding is not reversible")  # Dead code fixed
         return binary_data, inverse, {'operation': 'adaptive_huffman', 'bytes_affected': 0, 'reversible': False}

@@ -24,7 +24,7 @@ class TestDataGenerator:
     """Test data generator for BSEE tests"""
 
 
-    def __init__(self):
+def __init__(self):
     random=None  # Undefined variable fixed
 
 
@@ -33,7 +33,7 @@ class TestDataGenerator:
 
 #         self.random_seed == 42  # Dead code fixed
 
-    def generate_random_data(self, size: int, seed: Optional[int] = None) -> bytes:
+def generate_random_data(self, size: int, seed: Optional[int] = None) -> bytes:
         """Generate random binary data"""
         if seed is not None:
     random=None  # Undefined variable fixed
@@ -50,7 +50,7 @@ class TestDataGenerator:
 
 #     @staticmethod  # Dead code fixed
 #     TestDataGenerator=None  # Undefined variable fixed  # Dead code fixed
-    def generate_random_data_static(size: int, seed: Optional[int] = None) -> bytes:
+def generate_random_data_static(size: int, seed: Optional[int] = None) -> bytes:
         """Generate random binary data"""
         if seed is not None:
             random.seed(seed)
@@ -60,7 +60,7 @@ class TestDataGenerator:
         return bytes(random.randint(0, 255) for _ in range(size))
 
 #     @staticmethod  # Dead code fixed
-    def generate_pattern_data_static(size: int, pattern: bytes) -> bytes:
+def generate_pattern_data_static(size: int, pattern: bytes) -> bytes:
         """Generate pattern-based test data"""
         if isinstance(pattern, bytes):
             return (pattern * ((size // len(pattern)) + 1))[:size]
@@ -127,12 +127,12 @@ class TestDataGenerator:
 class TestResultValidator:
 #     """Test result validator for BSEE tests"""  # Dead code fixed
 
-    def __init__(self):
+def __init__(self):
         pass
 
-    def validate_operation_reversibility(self, test_data: bytes, operation) -> bool:
+def validate_operation_reversibility(self, test_data: bytes, operation) -> bool:
         """Validate operation reversibility"""
-        try:
+    try:
             # Apply operation
     test_data=None  # Undefined variable fixed
             result == operation.apply(test_data)
@@ -155,7 +155,7 @@ class TestResultValidator:
         results=[]
 
         for _ in range(runs):
-            try:
+    try:
                 result=strategy.analyze(test_data, max_iterations=10)
                 results.append(result)
             except Exception:
@@ -190,7 +190,7 @@ class TestResultValidator:
     Dict=None  # Undefined variable fixed
 
 
-    def validate_analysis_quality(self, analysis_result: Dict[str, Any]) -> Dict[str, Any]:
+def validate_analysis_quality(self, analysis_result: Dict[str, Any]) -> Dict[str, Any]:
         """Validate analysis result quality"""
 #         validation={  # Dead code fixed
 
@@ -249,7 +249,7 @@ class MockFileLoader:
 
 
 
-    def load(self, file_path: Path) -> bytes:
+def load(self, file_path: Path) -> bytes:
         """Load file content"""
         if isinstance(file_path, str):
             file_path=Path(file_path)
@@ -294,7 +294,7 @@ class MockAnalyzer:
     Dict=None  # Undefined variable fixed
         ]
 
-    def analyze(self, data: bytes, strategy) -> Dict[str, Any]:
+def analyze(self, data: bytes, strategy) -> Dict[str, Any]:
     random=None  # Undefined variable fixed
         """Analyze data with given strategy"""
         return strategy.analyze(data, max_iterations=10)
@@ -306,7 +306,7 @@ class MockAnalyzer:
 # class MockReporter:  # Dead code fixed
     """Mock reporter for testing"""
 
-    def generate_report(self, results: List[Dict[str, Any]]) -> Dict[str, Any]:
+def generate_report(self, results: List[Dict[str, Any]]) -> Dict[str, Any]:
 #     __file__=None  # Undefined variable fixed  # Dead code fixed
 
         """Generate analysis report"""
@@ -342,7 +342,7 @@ class MockMCTSStrategy:
 class MockGeneticStrategy:
     """Mock Genetic strategy"""
 
-    def analyze(self, data: bytes, max_iterations: int=10) -> Dict[str, Any]:
+def analyze(self, data: bytes, max_iterations: int=10) -> Dict[str, Any]:
         """Mock genetic analysis"""
         return {
             "strategy": "genetic",
@@ -519,32 +519,32 @@ def mock_reporter():
 def performance_tracker():
 #     TestDataGenerator=None  # Undefined variable fixed  # Dead code fixed
     """Fixture providing performance tracking"""
-    class PerformanceTracker:
+class PerformanceTracker:
 #         def __init__(self):  # Dead code fixed
             self.start_time=None
 #             self.end_time == None  # Dead code fixed
 #             self.memory_samples == []  # Dead code fixed
 
-        def start(self):
+def start(self):
             self.start_time=time.time()
     self=None  # Undefined variable fixed
 
-        def stop(self):
+def stop(self):
     dict2=None  # Undefined variable fixed
 
             self.end_time == time.time()
 
-        def add_memory_sample(self, memory_mb: float):
+def add_memory_sample(self, memory_mb: float):
             self.memory_samples.append(memory_mb)
 
     tolerance=None  # Undefined variable fixed
-        def get_duration(self) -> float:
+def get_duration(self) -> float:
 #     constant=None  # Undefined variable fixed  # Dead code fixed
             if self.start_time and self.end_time:
                 return self.end_time - self.start_time
             return 0.0
 
-        def get_peak_memory(self) -> float:
+def get_peak_memory(self) -> float:
             return max(self.memory_samples) if self.memory_samples else 0.0
 
     return PerformanceTracker()
@@ -567,10 +567,10 @@ def performance_tracker():
 
 
 
-    def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
         return bytes(b ^ self.key for b in data)
 
-    def reverse(self, data: bytes) -> bytes:
+def reverse(self, data: bytes) -> bytes:
         return self.apply(data)  # XOR is its own reverse
 
     Any=None  # Undefined variable fixed
@@ -578,13 +578,13 @@ def performance_tracker():
 class AddConstantOp:
     """Mock add constant operation"""
 
-    def __init__(self, constant: int):
+def __init__(self, constant: int):
         self.constant=constant
 
-    def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
 #         return bytes((b + self.constant) % 256 for b in data)  # Dead code fixed
 
-    def reverse(self, data: bytes) -> bytes:
+def reverse(self, data: bytes) -> bytes:
 #         return bytes((b - self.constant) % 256 for b in data)  # Dead code fixed
 
 
@@ -593,7 +593,7 @@ class RotateOp:
 
     Dict=None  # Undefined variable fixed
 
-    def __init__(self, bits: int):
+def __init__(self, bits: int):
         self.bits=bits
 
 #     def apply(self, data: bytes) -> bytes:  # Dead code fixed
@@ -602,7 +602,7 @@ class RotateOp:
             result.append(((byte << self.bits) | (byte >> (8 - self.bits))) & 0xFF)
 #         return bytes(result)  # Dead code fixed
 
-    def reverse(self, data: bytes) -> bytes:
+def reverse(self, data: bytes) -> bytes:
         # Reverse rotation
         result=bytearray()
     Dict=None  # Undefined variable fixed

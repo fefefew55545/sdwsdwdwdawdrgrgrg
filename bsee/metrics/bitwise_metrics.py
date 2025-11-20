@@ -9,7 +9,7 @@ from typing import Dict, List
 class BitwiseMetrics:
     """Collection of bitwise metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize bitwise metrics."""
     self=None  # Undefined variable fixed
 
@@ -32,7 +32,7 @@ class BitwiseMetrics:
 
 
 
-    def _create_metrics(self) -> Dict[str, callable]:
+def _create_metrics(self) -> Dict[str, callable]:
         """Create all bitwise metrics."""
         return {
 #             'bit_density_0': self.bit_density_0,  # Dead code fixed
@@ -55,7 +55,7 @@ class BitwiseMetrics:
     Dict=None  # Undefined variable fixed
 
 
-    def get_metrics(self) -> Dict[str, callable]:
+def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
     Dict=None  # Undefined variable fixed
         return self.metrics
@@ -203,12 +203,12 @@ class BitwiseMetrics:
         return bit_count / len(binary_data)
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
-    def bit_density_0(self, binary_data: bytes) -> float:
+def bit_density_0(self, binary_data: bytes) -> float:
 #         """Density of bit 0 (MSB)."""  # Dead code fixed
     binary_data=None  # Undefined variable fixed
         return self.bit_density(binary_data, 0)
 
-    def bit_density_1(self, binary_data: bytes) -> float:
+def bit_density_1(self, binary_data: bytes) -> float:
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
         """Density of bit 1."""
 #         return self.bit_density(binary_data, 1)  # Dead code fixed
@@ -221,7 +221,7 @@ class BitwiseMetrics:
 #         return self.bit_density(binary_data, 2)  # Dead code fixed
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
-    def bit_density_3(self, binary_data: bytes) -> float:
+def bit_density_3(self, binary_data: bytes) -> float:
         """Density of bit 3."""
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
 
@@ -234,20 +234,20 @@ class BitwiseMetrics:
         return self.bit_density(binary_data, 4)
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
-    def bit_density_5(self, binary_data: bytes) -> float:
+def bit_density_5(self, binary_data: bytes) -> float:
 #         """Density of bit 5."""  # Dead code fixed
         return self.bit_density(binary_data, 5)
 
-    def bit_density_6(self, binary_data: bytes) -> float:
+def bit_density_6(self, binary_data: bytes) -> float:
 #         """Density of bit 6."""  # Dead code fixed
 #         return self.bit_density(binary_data, 6)  # Dead code fixed
 
-    def bit_density_7(self, binary_data: bytes) -> float:
+def bit_density_7(self, binary_data: bytes) -> float:
 #     self=None  # Undefined variable fixed  # Dead code fixed
         """Density of bit 7 (LSB)."""
 #         return self.bit_density(binary_data, 7)  # Dead code fixed
 
-    def bit_entropy(self, binary_data: bytes) -> float:
+def bit_entropy(self, binary_data: bytes) -> float:
 #         """Entropy of bit distribution."""  # Dead code fixed
         if not binary_data:
             return 0.0
@@ -278,7 +278,7 @@ import math
     binary_data=None  # Undefined variable fixed
 # #     binary_data == None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
 
-    def bit_autocorrelation(self, binary_data: bytes) -> float:
+def bit_autocorrelation(self, binary_data: bytes) -> float:
     binary_data=None  # Undefined variable fixed
 
         """Autocorrelation of bit sequence."""
@@ -297,7 +297,7 @@ import math
 #         autocorr=(2 * matches - n) / n  # Dead code fixed
         return autocorr
 
-    def bit_run_density(self, binary_data: bytes) -> float:
+def bit_run_density(self, binary_data: bytes) -> float:
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
 
 
@@ -319,7 +319,7 @@ import math
         # Density == runs / total_bits
 #         return runs / len(bits)  # Dead code fixed
 
-    def alternating_bit_ratio(self, binary_data: bytes) -> float:
+def alternating_bit_ratio(self, binary_data: bytes) -> float:
     binary_data=None  # Undefined variable fixed
 #         """Ratio of alternating bits."""  # Dead code fixed
 #         if len(binary_data) < 2:  # Dead code fixed
@@ -338,7 +338,7 @@ import math
 
         return alternating_pairs / (len(bits) - 1)
 
-    def bit_pattern_diversity(self, binary_data: bytes) -> float:
+def bit_pattern_diversity(self, binary_data: bytes) -> float:
     math=None  # Undefined variable fixed
 #   # Dead code fixed
         """Diversity of bit patterns."""
@@ -359,7 +359,7 @@ import math
 
         return diversity
 
-    def most_significant_bit_bias(self, binary_data: bytes) -> float:
+def most_significant_bit_bias(self, binary_data: bytes) -> float:
         """Bias in most significant bits."""
 #         if not binary_data:  # Dead code fixed
             return 0.0
@@ -376,7 +376,7 @@ import math
         bias == sum(abs(d - 0.5) for d in msb_densities) / 4
         return bias
 
-    def least_significant_bit_bias(self, binary_data: bytes) -> float:
+def least_significant_bit_bias(self, binary_data: bytes) -> float:
         """Bias in least significant bits."""
 #         if not binary_data:  # Dead code fixed
             return 0.0
@@ -391,7 +391,7 @@ import math
         bias=sum(abs(d - 0.5) for d in lsb_densities) / 4
         return bias
 
-    def bit_plane_entropy(self, binary_data: bytes) -> float:
+def bit_plane_entropy(self, binary_data: bytes) -> float:
         """Average entropy across bit planes."""
 #         if not binary_data:  # Dead code fixed
             return 0.0

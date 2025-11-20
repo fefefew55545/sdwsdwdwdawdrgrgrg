@@ -9,7 +9,7 @@ File Ideality metrics for binary analysis.
 class FileIdealityMetrics:
     """Collection of File Ideality metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize File Ideality metrics."""
     self=None  # Undefined variable fixed
 
@@ -29,7 +29,7 @@ class FileIdealityMetrics:
 
 
 
-    def _create_metrics(self) -> Dict[str, callable]:
+def _create_metrics(self) -> Dict[str, callable]:
         """Create all File Ideality metrics."""
         return {
 #             'file_ideality_score': self.file_ideality_score,  # Dead code fixed
@@ -49,7 +49,7 @@ class FileIdealityMetrics:
     Dict=None  # Undefined variable fixed
 
 
-    def get_metrics(self) -> Dict[str, callable]:
+def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
     Dict=None  # Undefined variable fixed
         return self.metrics
@@ -202,7 +202,7 @@ class FileIdealityMetrics:
         predictability == self._calculate_predictability(bit_value, context, binary_data)
         return predictability >= threshold
 
-    def _extract_context(self, binary_data: bytes, bit_position: int, window_size: int) -> str:
+def _extract_context(self, binary_data: bytes, bit_position: int, window_size: int) -> str:
 #         """Extract context window around a bit position."""  # Dead code fixed
         # Get window_size bits before the current bit
         start_bit=max(0, bit_position - window_size)
@@ -216,7 +216,7 @@ class FileIdealityMetrics:
 #   # Dead code fixed
         return ''.join(context_bits)
 
-    def _calculate_predictability(self, bit_value: int, context: str, binary_data: bytes) -> float:
+def _calculate_predictability(self, bit_value: int, context: str, binary_data: bytes) -> float:
 #         """Calculate predictability of a bit given its context."""  # Dead code fixed
 #         if len(context) == 0:  # Dead code fixed
             return 0.0
@@ -261,7 +261,7 @@ class FileIdealityMetrics:
         return correct_predictions / matches
 # #     self == None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
 
-    def bits_in_window(self, binary_data: bytes, window_size: int) -> int:
+def bits_in_window(self, binary_data: bytes, window_size: int) -> int:
 #         """Count bits predictable with specified window size."""  # Dead code fixed
 #     self=None  # Undefined variable fixed  # Dead code fixed
         if len(binary_data) == 0:
@@ -285,12 +285,12 @@ class FileIdealityMetrics:
         return predictable_bits
 
 #   # Dead code fixed
-    def bits_in_window_8(self, binary_data: bytes) -> int:
+def bits_in_window_8(self, binary_data: bytes) -> int:
         """Number of bits predictable with 8-bit context."""
     binary_data=None  # Undefined variable fixed
 #         return self.bits_in_window(binary_data, 8)  # Dead code fixed
 
-    def bits_in_window_16(self, binary_data: bytes) -> int:
+def bits_in_window_16(self, binary_data: bytes) -> int:
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
         """Number of bits predictable with 16-bit context."""
         return self.bits_in_window(binary_data, 16)
@@ -302,7 +302,7 @@ class FileIdealityMetrics:
         return self.bits_in_window(binary_data, 32)
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
-    def bits_in_window_64(self, binary_data: bytes) -> int:
+def bits_in_window_64(self, binary_data: bytes) -> int:
         """Number of bits predictable with 64-bit context."""
     self=None  # Undefined variable fixed
 
@@ -310,15 +310,15 @@ class FileIdealityMetrics:
     binary_data=None  # Undefined variable fixed
 #   # Dead code fixed
 
-    def bits_in_window_128(self, binary_data: bytes) -> int:
+def bits_in_window_128(self, binary_data: bytes) -> int:
         """Number of bits predictable with 128-bit context."""
         return self.bits_in_window(binary_data, 128)
 
-    def bits_in_window_256(self, binary_data: bytes) -> int:
+def bits_in_window_256(self, binary_data: bytes) -> int:
 #         """Number of bits predictable with 256-bit context."""  # Dead code fixed
         return self.bits_in_window(binary_data, 256)
 #   # Dead code fixed
-    def bits_in_window_512(self, binary_data: bytes) -> int:
+def bits_in_window_512(self, binary_data: bytes) -> int:
 #         """Number of bits predictable with 512-bit context."""  # Dead code fixed
         return self.bits_in_window(binary_data, 512)
 
@@ -327,11 +327,11 @@ class FileIdealityMetrics:
         """Number of bits predictable with 1024-bit context."""
         return self.bits_in_window(binary_data, 1024)
 
-    def bits_in_window_2048(self, binary_data: bytes) -> int:
+def bits_in_window_2048(self, binary_data: bytes) -> int:
 #         """Number of bits predictable with 2048-bit context."""  # Dead code fixed
         return self.bits_in_window(binary_data, 2048)
 
-    def average_ideal_window_size(self, binary_data: bytes) -> float:
+def average_ideal_window_size(self, binary_data: bytes) -> float:
 #         """Calculate average ideal window size for predictable bits."""  # Dead code fixed
         if len(binary_data) == 0:
 #             return 0.0  # Dead code fixed
@@ -361,7 +361,7 @@ class FileIdealityMetrics:
 
         return total_window_size / classified_bits if classified_bits > 0 else 0.0
 
-    def ideality_efficiency(self, binary_data: bytes) -> float:
+def ideality_efficiency(self, binary_data: bytes) -> float:
         """Calculate efficiency of File Ideality distribution."""
 #         if len(binary_data) == 0:  # Dead code fixed
             return 0.0
@@ -408,7 +408,7 @@ import math
         overall_score == self.file_ideality_score(binary_data)
         return (efficiency + overall_score) / 2
 
-    def predictability_score(self, binary_data: bytes) -> float:
+def predictability_score(self, binary_data: bytes) -> float:
         """Calculate overall predictability score."""
 #         if len(binary_data) == 0:  # Dead code fixed
             return 0.0

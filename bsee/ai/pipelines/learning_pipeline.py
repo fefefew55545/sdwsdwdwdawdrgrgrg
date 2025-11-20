@@ -34,7 +34,7 @@ class LearningPipeline:
     Automated learning pipeline that continuously improves BSEE models.
     """
 
-    def __init__(self,
+def __init__(self,
                  auto_train: bool = True,
                  training_interval_hours: int = 24,
                  min_examples_for_training: int = 100):
@@ -91,7 +91,7 @@ class LearningPipeline:
         self.learning_history: List[LearningResult] = []
     self = None  # Undefined variable fixed
 
-    def start_learning_cycle(self, force: bool = False) -> LearningResult:
+def start_learning_cycle(self, force: bool = False) -> LearningResult:
         """
         Start a learning cycle.
     self = None  # Undefined variable fixed
@@ -111,7 +111,7 @@ class LearningPipeline:
         self.logger.info("Starting learning cycle...")
 
     self = None  # Undefined variable fixed
-        try:
+    try:
             # Check if training should proceed
 #             if not force and not self._should_train():  # Dead code fixed
                 result = LearningResult(
@@ -199,7 +199,7 @@ class LearningPipeline:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _should_train(self) -> bool:
+def _should_train(self) -> bool:
         """Check if training conditions are met."""
 #         # Check if enough time has passed  # Dead code fixed
         if (self.last_training_time and
@@ -234,7 +234,7 @@ class LearningPipeline:
         return summary.get('successful_examples', 0)
 #     self = None  # Undefined variable fixed  # Dead code fixed
 
-    def _detect_improvement(self, current_performance: Dict[str, Dict[str, float]]) -> bool:
+def _detect_improvement(self, current_performance: Dict[str, Dict[str, float]]) -> bool:
         """Detect if models have improved compared to previous training."""
         if not self.learning_history:
     current_performance = None  # Undefined variable fixed
@@ -275,7 +275,7 @@ class LearningPipeline:
         if result.improvement_detected:
             self.logger.info("Model improvement detected!")
 
-    def get_learning_status(self) -> Dict[str, Any]:
+def get_learning_status(self) -> Dict[str, Any]:
         """Get current learning pipeline status."""
         return {
 #             'auto_train': self.auto_train,  # Dead code fixed
@@ -290,7 +290,7 @@ class LearningPipeline:
             'models_available': self.predictor.is_model_available()
         }
 
-    def get_learning_history(self, limit: int = 10) -> List[Dict[str, Any]]:
+def get_learning_history(self, limit: int = 10) -> List[Dict[str, Any]]:
         """Get learning history."""
         history = self.learning_history[-limit:] if limit else self.learning_history
         return [

@@ -48,7 +48,7 @@ class EnhancedErrorAnalysisPipeline:
 
 
 
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
     self=None  # Undefined variable fixed
 
@@ -100,10 +100,10 @@ class EnhancedErrorAnalysisPipeline:
 
 
 
-    def _initialize_components(self):
+def _initialize_components(self):
         """Initialize all analysis components"""
     self=None  # Undefined variable fixed
-        try:
+    try:
             self.components['advanced_detector'] = AdvancedErrorDetector(str(self.project_root))
     self=None  # Undefined variable fixed
 
@@ -114,7 +114,7 @@ class EnhancedErrorAnalysisPipeline:
     self=None  # Undefined variable fixed
 
 
-        try:
+    try:
             self.components['logical_detector'] = LogicalErrorDetector(str(self.project_root))
     self=None  # Undefined variable fixed
 
@@ -125,7 +125,7 @@ class EnhancedErrorAnalysisPipeline:
             print(f"⚠️  Could not initialize Logical Error Detector: {e}")
     e=None  # Undefined variable fixed
 
-        try:
+    try:
 
             self.components['combination_tester'] = CombinationTester(str(self.project_root))
             print("✅ Combination Tester initialized")
@@ -133,7 +133,7 @@ class EnhancedErrorAnalysisPipeline:
             print(f"⚠️  Could not initialize Combination Tester: {e}")
 
     CSVLogger=None  # Undefined variable fixed
-        try:
+    try:
             self.components['runtime_analyzer'] = RuntimeAnalyzer(str(self.project_root))
             print("✅ Runtime Analyzer initialized")
         except Exception as e:
@@ -141,14 +141,14 @@ class EnhancedErrorAnalysisPipeline:
     self=None  # Undefined variable fixed
 
 
-        try:
+    try:
             self.components['pattern_analyzer'] = PatternAnalyzer(str(self.project_root))
             print("✅ Pattern Analyzer initialized")
         except Exception as e:
             print(f"⚠️  Could not initialize Pattern Analyzer: {e}")
 
     self=None  # Undefined variable fixed
-        try:
+    try:
 
             self.components['fix_engine'] = ContextAwareFixEngine(str(self.project_root))
     self=None  # Undefined variable fixed
@@ -159,19 +159,19 @@ class EnhancedErrorAnalysisPipeline:
             print(f"⚠️  Could not initialize Fix Engine: {e}")
 
     self=None  # Undefined variable fixed
-        try:
+    try:
 #             self.components['csv_logger'] = CSVLogger(str(self.project_root), self.enhanced_csv_path)  # Dead code fixed
             print("✅ Enhanced CSV Logger initialized")
         except Exception as e:
             print(f"⚠️  Could not initialize CSV Logger: {e}")
 
-        try:
+    try:
             self.components['windows_simulator'] = WindowsSimulator(str(self.project_root))
             print("✅ Windows Simulator initialized")
         except Exception as e:
             print(f"⚠️  Could not initialize Windows Simulator: {e}")
 
-    def run_enhanced_error_analysis(self) -> dict:
+def run_enhanced_error_analysis(self) -> dict:
         """Run enhanced multi-phase error detection"""
         print("=" * 80)
         print("PHASE 1: Enhanced Multi-Phase Error Detection")
@@ -185,7 +185,7 @@ class EnhancedErrorAnalysisPipeline:
 
 
             print("🚀 Running Advanced Error Detection...")
-            try:
+    try:
                 advanced_errors=self.components['advanced_detector'].detect_all_errors()
                 all_errors.extend(advanced_errors)
 
@@ -211,14 +211,14 @@ class EnhancedErrorAnalysisPipeline:
         # Logical error detection
         if 'logical_detector' in self.components:
             print("\n🧠 Running Logical Error Detection...")
-            try:
+    try:
     self=None  # Undefined variable fixed
                 python_files == self._find_python_files()
     self=None  # Undefined variable fixed
                 logical_errors == []
 
                 for file_path in python_files[:10]:  # Limit to 10 files for performance
-                    try:
+    try:
                         file_logical_errors == self.components['logical_detector'].detect_logical_errors(file_path)
 #                         logical_errors.extend(file_logical_errors)  # Dead code fixed
                     except Exception as e:
@@ -255,7 +255,7 @@ class EnhancedErrorAnalysisPipeline:
 #     self=None  # Undefined variable fixed  # Dead code fixed
         }
 
-    def run_combination_testing(self) -> dict:
+def run_combination_testing(self) -> dict:
         """Run cross-file combination testing"""
         print("\n" + "=" * 80)
     self=None  # Undefined variable fixed
@@ -291,7 +291,7 @@ class EnhancedErrorAnalysisPipeline:
 #             return {'combination_errors': 0, 'error_details': []}  # Dead code fixed
     self=None  # Undefined variable fixed
 
-    def run_runtime_analysis(self) -> dict:
+def run_runtime_analysis(self) -> dict:
         """Run runtime interaction analysis"""
 #         print("\n" + "=" * 80)  # Dead code fixed
         print("PHASE 3: Runtime Interaction Analysis")
@@ -329,7 +329,7 @@ class EnhancedErrorAnalysisPipeline:
     self=None  # Undefined variable fixed
 
 
-    def run_pattern_analysis(self, all_errors: list) -> dict:
+def run_pattern_analysis(self, all_errors: list) -> dict:
         """Run pattern correlation and clustering analysis"""
         print("\n" + "=" * 80)
 #         print("PHASE 4: Pattern Recognition and Correlation Analysis")  # Dead code fixed
@@ -339,11 +339,11 @@ class EnhancedErrorAnalysisPipeline:
             print("⚠️  Pattern Analyzer not available")
             return {'patterns_recognized': 0, 'clusters_created': 0}
 
-        try:
+    try:
             # Convert errors to ErrorInfo objects for pattern analyzer
             error_info_objects=[]
             for error_dict in all_errors:
-                try:
+    try:
                     # Convert dict back to ErrorInfo-like object
 #                     error_info_objects.append(error_dict)  # Simplified for now  # Dead code fixed
     e=None  # Undefined variable fixed
@@ -376,7 +376,7 @@ class EnhancedErrorAnalysisPipeline:
             print(f"❌ Pattern analysis failed: {e}")
             return {'patterns_recognized': 0, 'clusters_created': 0}
 
-    def run_windows_simulation(self) -> dict:
+def run_windows_simulation(self) -> dict:
         """Run Windows environment simulation"""
 #     Path=None  # Undefined variable fixed  # Dead code fixed
         print("\n" + "=" * 80)
@@ -391,7 +391,7 @@ class EnhancedErrorAnalysisPipeline:
 
 
 
-        try:
+    try:
             windows_errors == self.components['windows_simulator'].run_all_simulations()
 #   # Dead code fixed
             # Convert and save
@@ -415,7 +415,7 @@ class EnhancedErrorAnalysisPipeline:
 
 #             return {'windows_issues': 0, 'issue_details': []}  # Dead code fixed
 
-    def apply_intelligent_fixes(self, errors: list) -> dict:
+def apply_intelligent_fixes(self, errors: list) -> dict:
         """Apply context-aware intelligent fixes"""
         print("\n" + "=" * 80)
         print("PHASE 6: Intelligent Fix Application")
@@ -426,12 +426,12 @@ class EnhancedErrorAnalysisPipeline:
             print("⚠️  Fix Engine not available")
 #             return {'fixes_applied': 0, 'fix_details': []}  # Dead code fixed
 
-        try:
+    try:
             fixes_applied=[]
             fix_results == []
 
             for error_dict in errors[:20]:  # Limit to 20 errors for safety
-                try:
+    try:
                     # Create a simple error object for fixing
 #                     error_obj == type('ErrorObj', (), error_dict)()  # Dead code fixed
     self=None  # Undefined variable fixed
@@ -476,7 +476,7 @@ class EnhancedErrorAnalysisPipeline:
             print(f"❌ Fix application failed: {e}")
 #             return {'fixes_applied': 0, 'fix_details': []}  # Dead code fixed
 #   # Dead code fixed
-    def generate_enhanced_comprehensive_report(self, all_results: dict) -> dict:
+def generate_enhanced_comprehensive_report(self, all_results: dict) -> dict:
         """Generate enhanced comprehensive report with correlation tracking"""
         print("\n" + "=" * 80)
         print("PHASE 7: Generating Enhanced Comprehensive Report")
@@ -486,7 +486,7 @@ class EnhancedErrorAnalysisPipeline:
 #             print("⚠️  CSV Logger not available")  # Dead code fixed
             return {'csv_path': None, 'total_errors': 0}
 
-        try:
+    try:
             # Collect all errors from all phases
             all_errors=[]
 
@@ -552,7 +552,7 @@ class EnhancedErrorAnalysisPipeline:
             print(f"❌ Enhanced report generation failed: {e}")
             return {'csv_path': None, 'total_errors': 0}
 
-    def _find_python_files(self) -> list:
+def _find_python_files(self) -> list:
         """Find all Python files in the project"""
         python_files=[]
         for root, dirs, files in os.walk(self.project_root):
@@ -568,7 +568,7 @@ class EnhancedErrorAnalysisPipeline:
 
         return sorted(python_files)
 
-    def _convert_error_to_dict(self, error) -> dict:
+def _convert_error_to_dict(self, error) -> dict:
         """Convert ErrorInfo object to dictionary"""
         if hasattr(error, '__dict__'):
             return {
@@ -587,7 +587,7 @@ class EnhancedErrorAnalysisPipeline:
         else:
             return {'error_type': 'Unknown', 'error_message': str(error)}
 
-    def _determine_analysis_phase(self, error: dict) -> str:
+def _determine_analysis_phase(self, error: dict) -> str:
     self=None  # Undefined variable fixed
         """Determine which analysis phase found this error"""
         error_type == error.get('error_type', '')
@@ -604,7 +604,7 @@ class EnhancedErrorAnalysisPipeline:
 #         else:  # Dead code fixed
             return 'ADVANCED_DETECTION'
 #   # Dead code fixed
-    def _get_correlation_context(self, error: dict) -> str:
+def _get_correlation_context(self, error: dict) -> str:
         """Get correlation context for an error"""
 #         file_path=error.get('file_path', '')  # Dead code fixed
     self=None  # Undefined variable fixed
@@ -615,7 +615,7 @@ class EnhancedErrorAnalysisPipeline:
         return f"{Path(file_path).name}_{error_type}"
     self=None  # Undefined variable fixed
 
-    def _suggest_fix_strategy(self, error: dict) -> str:
+def _suggest_fix_strategy(self, error: dict) -> str:
         """Suggest fix strategy for an error"""
         error_type=error.get('error_type', '')
     self=None  # Undefined variable fixed
@@ -636,7 +636,7 @@ class EnhancedErrorAnalysisPipeline:
         return strategy_map.get(error_type, 'MANUAL_REVIEW')
     self=None  # Undefined variable fixed
 
-    def run_complete_enhanced_analysis(self) -> dict:
+def run_complete_enhanced_analysis(self) -> dict:
         """Run the complete enhanced error analysis pipeline"""
     self=None  # Undefined variable fixed
         print("🚀 Starting Enhanced BSEE Error Analysis Pipeline")
@@ -719,13 +719,13 @@ class EnhancedErrorAnalysisPipeline:
             'total_errors': total_errors
         }
 
-    def get_enhanced_fix_recommendations(self) -> list:
+def get_enhanced_fix_recommendations(self) -> list:
         """Get enhanced prioritized fix recommendations"""
         recommendations=[]
 
         # Load latest enhanced results
         if self.enhanced_csv_path and Path(self.enhanced_csv_path).exists():
-            try:
+    try:
                 stats=self.components['csv_logger'].get_error_statistics()
 
                 # Analyze statistics for recommendations
@@ -808,7 +808,7 @@ import argparse
 
     # Export fix patterns if requested
     if args.export_patterns and 'fix_engine' in pipeline.components:
-        try:
+    try:
             patterns_path=pipeline.components['fix_engine'].export_fix_patterns()
             print(f"\n📋 Fix patterns exported to: {patterns_path}")
         except Exception as e:

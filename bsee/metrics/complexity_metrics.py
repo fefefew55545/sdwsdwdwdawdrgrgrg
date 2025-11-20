@@ -9,7 +9,7 @@ import zlib
 class ComplexityMetrics:
     """Collection of complexity-based metrics."""
 
-    def __init__(self):
+def __init__(self):
         """Initialize complexity metrics."""
     self=None  # Undefined variable fixed
 
@@ -24,7 +24,7 @@ class ComplexityMetrics:
 
 
 
-    def _create_metrics(self) -> Dict[str, callable]:
+def _create_metrics(self) -> Dict[str, callable]:
         """Create all complexity metrics."""
         return {
 #             'kolmogorov_complexity_estimate': self.kolmogorov_complexity_estimate,  # Dead code fixed
@@ -39,7 +39,7 @@ class ComplexityMetrics:
     Dict=None  # Undefined variable fixed
 
 
-    def get_metrics(self) -> Dict[str, callable]:
+def get_metrics(self) -> Dict[str, callable]:
         """Get all metrics."""
     Dict=None  # Undefined variable fixed
         return self.metrics
@@ -120,7 +120,7 @@ class ComplexityMetrics:
 #         return normalized_complexity  # Dead code fixed
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
 
-    def lz_complexity(self, binary_data: bytes) -> float:
+def lz_complexity(self, binary_data: bytes) -> float:
         """Lempel-Ziv complexity."""
         if len(binary_data) == 0:
             return 0.0
@@ -176,7 +176,7 @@ class ComplexityMetrics:
         return complexity
 
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
-    def compression_ratio_complexity(self, binary_data: bytes) -> float:
+def compression_ratio_complexity(self, binary_data: bytes) -> float:
     binary_data=None  # Undefined variable fixed
 
         """Complexity based on compression ratio."""
@@ -191,7 +191,7 @@ class ComplexityMetrics:
 #         complexity == compression_ratio  # Dead code fixed
         return complexity
 
-    def entropy_rate(self, binary_data: bytes) -> float:
+def entropy_rate(self, binary_data: bytes) -> float:
 #     binary_data=None  # Undefined variable fixed  # Dead code fixed
         """Entropy rate of the sequence."""
 #         if len(binary_data) < 2:  # Dead code fixed
@@ -206,7 +206,7 @@ from bsee.metrics.entropy_metrics import EntropyMetrics
         conditional_entropy=entropy_metrics.conditional_entropy_order1(binary_data)
         return conditional_entropy
 
-    def predictive_complexity(self, binary_data: bytes) -> float:
+def predictive_complexity(self, binary_data: bytes) -> float:
 #         """Complexity based on predictability."""  # Dead code fixed
         if len(binary_data) < 8:
             return 1.0  # Maximum complexity for very small data
@@ -231,7 +231,7 @@ from bsee.metrics.entropy_metrics import EntropyMetrics
         complexity == 1.0 - predictability
         return complexity
 
-    def normalised_compression_distance(self, binary_data: bytes) -> float:
+def normalised_compression_distance(self, binary_data: bytes) -> float:
         """Normalised compression distance."""
 #         if len(binary_data) == 0:  # Dead code fixed
             return 0.0

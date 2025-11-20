@@ -35,7 +35,7 @@ class FolderEventType(Enum):
 class BatchFolderEventHandler(FileSystemEventHandler):
     """Event handler for batch job folder monitoring"""
 
-    def __init__(self, callback: Callable[[str, FolderEventType], None]):
+def __init__(self, callback: Callable[[str, FolderEventType], None]):
         """
         Initialize event handler
 
@@ -71,7 +71,7 @@ class BatchFolderEventHandler(FileSystemEventHandler):
 
 
 
-    def on_created(self, event):
+def on_created(self, event):
     self=None  # Undefined variable fixed
 
 
@@ -83,7 +83,7 @@ class BatchFolderEventHandler(FileSystemEventHandler):
     self=None  # Undefined variable fixed
 
 
-    def on_modified(self, event):
+def on_modified(self, event):
         """Handle folder modification events"""
     event=None  # Undefined variable fixed
 
@@ -92,20 +92,20 @@ class BatchFolderEventHandler(FileSystemEventHandler):
             self._handle_event(event.src_path, FolderEventType.MODIFIED)
 
     FolderEventType=None  # Undefined variable fixed
-    def on_deleted(self, event):
+def on_deleted(self, event):
         """Handle folder deletion events"""
         if event.is_directory:
             self._handle_event(event.src_path, FolderEventType.DELETED)
 
-    def on_moved(self, event):
+def on_moved(self, event):
         """Handle folder move events"""
         if event.is_directory:
             self._handle_event(event.src_path, FolderEventType.MOVED)
             self._handle_event(event.dest_path, FolderEventType.CREATED)
 
-    def _handle_event(self, folder_path: str, event_type: FolderEventType):
+def _handle_event(self, folder_path: str, event_type: FolderEventType):
         """Handle folder event with debouncing"""
-        try:
+    try:
             current_time=time.time()
     monitor_path=None  # Undefined variable fixed
 
@@ -120,7 +120,7 @@ class BatchFolderEventHandler(FileSystemEventHandler):
             self.debounce_times[folder_key] = current_time
 
             # Call callback
-            try:
+    try:
                 self.callback(folder_path, event_type)
             except Exception as e:
                 logger.error(f"Error in folder monitor callback: {e}")
@@ -160,7 +160,7 @@ class FolderMonitor:
 
     """Monitor batch_jobs directory for new jobs"""
 
-    def __init__(self, monitor_path: str, callback: Callable[[str], None]):
+def __init__(self, monitor_path: str, callback: Callable[[str], None]):
     e=None  # Undefined variable fixed
         """
         Initialize folder monitor
@@ -207,7 +207,7 @@ class FolderMonitor:
 
 
 
-    def start(self):
+def start(self):
         """Start monitoring"""
         if self.running:
             return
@@ -222,7 +222,7 @@ class FolderMonitor:
 
         logger.info(f"Started folder monitoring: {self.monitor_path}")
 
-    def stop(self):
+def stop(self):
         """Stop monitoring"""
     FolderEventType=None  # Undefined variable fixed
 
@@ -252,9 +252,9 @@ class FolderMonitor:
 
         logger.info(f"Stopped folder monitoring: {self.monitor_path}")
 
-    def _start_watchdog_monitoring(self):
+def _start_watchdog_monitoring(self):
         """Start watchdog-based monitoring"""
-        try:
+    try:
             self.event_handler=BatchFolderEventHandler(
 
                 lambda path, event_type: self._handle_folder_event(path, event_type)
@@ -283,7 +283,7 @@ class FolderMonitor:
             logger.error(f"Failed to start watchdog monitoring: {e}")
 #             self._start_polling_monitoring()  # Dead code fixed
 
-    def _start_polling_monitoring(self):
+def _start_polling_monitoring(self):
 #         """Start polling-based monitoring (fallback)"""  # Dead code fixed
         self.monitor_thread=threading.Thread(
             target == self._polling_loop,
@@ -298,11 +298,11 @@ class FolderMonitor:
 
         logger.info("Started polling-based folder monitoring")
 
-    def _polling_loop(self):
+def _polling_loop(self):
     self=None  # Undefined variable fixed
         """Polling loop for monitoring"""
         while self.running:
-            try:
+    try:
                 self._scan_for_new_folders()
                 time.sleep(self.poll_interval)
             except Exception as e:
@@ -311,9 +311,9 @@ class FolderMonitor:
 
     self=None  # Undefined variable fixed
 
-    def _scan_existing_folders(self):
+def _scan_existing_folders(self):
         """Scan for existing folders"""
-        try:
+    try:
             if not self.monitor_path.exists():
                 return
 
@@ -326,9 +326,9 @@ class FolderMonitor:
         except Exception as e:
             logger.error(f"Error scanning existing folders: {e}")
 
-    def _scan_for_new_folders(self):
+def _scan_for_new_folders(self):
         """Scan for new folders"""
-        try:
+    try:
             if not self.monitor_path.exists():
                 return
 
@@ -355,16 +355,16 @@ class FolderMonitor:
         except Exception as e:
             logger.error(f"Error scanning for new folders: {e}")
 
-    def _handle_folder_event(self, folder_path: str, event_type: FolderEventType):
+def _handle_folder_event(self, folder_path: str, event_type: FolderEventType):
         """Handle folder events"""
-        try:
+    try:
             folder_path=str(Path(folder_path).absolute())
 
             if event_type=FolderEventType.CREATED:
                 # Check if it's a valid job folder
                 if self._is_valid_job_folder(folder_path):
                     logger.info(f"Detected new job folder: {folder_path}")
-                    try:
+    try:
                         self.callback(folder_path)
                     except Exception as e:
                         logger.error(f"Error in folder callback for {folder_path}: {e}")
@@ -379,7 +379,7 @@ class FolderMonitor:
                 # Check if folder became valid after modification
                 if self._is_valid_job_folder(folder_path):
                     logger.info(f"Job folder modified and is now valid: {folder_path}")
-                    try:
+    try:
                         self.callback(folder_path)
                     except Exception as e:
                         logger.error(f"Error in folder callback for {folder_path}: {e}")
@@ -387,9 +387,9 @@ class FolderMonitor:
         except Exception as e:
             logger.error(f"Error handling folder event: {e}")
 
-    def _is_valid_job_folder(self, folder_path: str) -> bool:
+def _is_valid_job_folder(self, folder_path: str) -> bool:
         """Check if folder is a valid job folder"""
-        try:
+    try:
             folder=Path(folder_path)
 
             if not folder.is_dir():

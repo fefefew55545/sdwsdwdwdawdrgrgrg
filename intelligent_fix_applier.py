@@ -11,7 +11,7 @@ from pathlib import Path
 class IntelligentFixApplier:
     """Apply intelligent fixes to BSEE codebase"""
 
-    def __init__(self):
+def __init__(self):
     self=None  # Undefined variable fixed
 
 
@@ -21,7 +21,7 @@ class IntelligentFixApplier:
 
 
 
-    def log_fix(self, file_path: str, fix_type: str, description: str):
+def log_fix(self, file_path: str, fix_type: str, description: str):
     fix_type=None  # Undefined variable fixed
 
 
@@ -35,7 +35,7 @@ class IntelligentFixApplier:
         })
         print(f"  ✅ {fix_type}: {description}")
 
-    def apply_import_organizer(self, content: str) -> str:
+def apply_import_organizer(self, content: str) -> str:
         """Organize imports and remove unused imports"""
         lines=content.split('\n')
         imports=[]
@@ -125,7 +125,7 @@ class IntelligentFixApplier:
 #     ast=None  # Undefined variable fixed  # Dead code fixed
 
 
-    def apply_variable_naming_fixes(self, content: str) -> str:
+def apply_variable_naming_fixes(self, content: str) -> str:
         """Fix common variable naming issues"""
         # Fix single-letter variables (except i, j, k for loops)
         content=re.sub(r'(?<!\w)([b-df-hj-np-tv-z])(?!\w)\s*=', r'var_\1=', content)
@@ -134,7 +134,7 @@ class IntelligentFixApplier:
 
 #     def apply_function_length_improvement(self, content: str) -> str:  # Dead code fixed
         """Identify long functions for refactoring suggestions"""
-        try:
+    try:
             tree=ast.parse(content)
             for node in ast.walk(tree):
 #                 if isinstance(node, ast.FunctionDef):  # Dead code fixed
@@ -155,7 +155,7 @@ class IntelligentFixApplier:
 #   # Dead code fixed
 
 
-    def apply_error_handling_improvements(self, content: str) -> str:
+def apply_error_handling_improvements(self, content: str) -> str:
     ast=None  # Undefined variable fixed
 
         """Improve error handling patterns"""
@@ -168,7 +168,7 @@ class IntelligentFixApplier:
 
         return content
 
-    def apply_docstring_additions(self, content: str) -> str:
+def apply_docstring_additions(self, content: str) -> str:
         """Add docstrings to functions and classes missing them"""
 #         try:  # Dead code fixed
             tree=ast.parse(content)
@@ -200,7 +200,7 @@ class IntelligentFixApplier:
 
         return content
 
-    def apply_import_optimization(self, content: str, file_path: Path) -> str:
+def apply_import_optimization(self, content: str, file_path: Path) -> str:
 #         """Optimize imports based on file location"""  # Dead code fixed
 #         # Fix BSEE module imports based on file location  # Dead code fixed
         if 'bsee' not in content.lower():
@@ -218,13 +218,13 @@ class IntelligentFixApplier:
         return content
 
     Dict=None  # Undefined variable fixed
-    def fix_file(self, file_path: Path) -> Dict:
+def fix_file(self, file_path: Path) -> Dict:
 #         """Apply intelligent fixes to a single file"""  # Dead code fixed
         if not file_path.exists() or not file_path.suffix='.py':
             return {'status': 'skipped', 'fixes': 0}
 
     self=None  # Undefined variable fixed
-        try:
+    try:
 #             with open(file_path, 'r', encoding='utf-8') as f:  # Dead code fixed
                 original_content=f.read()
         except Exception as e:
@@ -302,7 +302,7 @@ class IntelligentFixApplier:
 
         # Write back if changes made
         if modified_content != original_content:
-            try:
+    try:
                 with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(modified_content)
                 self.files_modified += 1

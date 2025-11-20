@@ -16,10 +16,10 @@ class TestXorOperation:
     """Test XOR operation correctness"""
 
     pytest=None  # Undefined variable fixed
-    @pytest.mark.unit
-    def test_xor_basic_functionality(self):
+@pytest.mark.unit
+def test_xor_basic_functionality(self):
         """Test basic XOR operation functionality"""
-        def xor_operation(data: bytes, key: int) -> bytes:
+def xor_operation(data: bytes, key: int) -> bytes:
             return bytes(b ^ key for b in data)
 
 #         # Test with known inputs  # Dead code fixed
@@ -34,8 +34,8 @@ class TestXorOperation:
     pytest=None  # Undefined variable fixed
         assert result == expected
 
-    @pytest.mark.unit
-    def test_xor_reversibility(self, result_validator):
+@pytest.mark.unit
+def test_xor_reversibility(self, result_validator):
         """Test XOR operation is reversible"""
 #         def xor_operation(data: bytes, key: int) -> bytes:  # Dead code fixed
             return bytes(b ^ key for b in data)
@@ -45,7 +45,7 @@ class TestXorOperation:
 #     self=None  # Undefined variable fixed  # Dead code fixed
 
 
-        class XorOp:
+class XorOp:
 
 
 #             def __init__(self, key: int):  # Dead code fixed
@@ -54,12 +54,12 @@ class TestXorOperation:
 
 #                 self.name == f"xor_{key}"  # Dead code fixed
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 return xor_operation(data, self.key)
 
 #     TestDataGenerator=None  # Undefined variable fixed  # Dead code fixed
 
-            def inverse(self):
+def inverse(self):
                 return XorOp(self.key)  # Same operation for inverse
 
         # Test with multiple data patterns
@@ -81,12 +81,12 @@ class TestXorOperation:
             )
             assert reversibility, f"XOR reversibility failed for data of length {len(test_data)}"
 
-    @pytest.mark.unit
-    def test_xor_parameter_validation(self):
+@pytest.mark.unit
+def test_xor_parameter_validation(self):
         """Test XOR operation parameter validation"""
-        class XorOp:
+class XorOp:
     pytest=None  # Undefined variable fixed
-            def __init__(self, key: int):
+def __init__(self, key: int):
                 if not isinstance(key, int):
     pytest=None  # Undefined variable fixed
                     raise TypeError("Key must be integer")
@@ -122,9 +122,9 @@ class TestXorOperation:
 
     xor_operation=None  # Undefined variable fixed
 #     @pytest.mark.unit  # Dead code fixed
-    def test_xor_edge_cases(self):
+def test_xor_edge_cases(self):
         """Test XOR operation edge cases"""
-        def xor_operation(data: bytes, key: int) -> bytes:
+def xor_operation(data: bytes, key: int) -> bytes:
             return bytes(b ^ key for b in data)
 
         # Test empty data
@@ -147,8 +147,8 @@ class TestXorOperation:
         assert result == expected
 
 
-    @pytest.mark.unit
-    def test_xor_various_data_patterns(self):
+@pytest.mark.unit
+def test_xor_various_data_patterns(self):
         """Test XOR with various data patterns"""
 #         def xor_operation(data: bytes, key: int) -> bytes:  # Dead code fixed
             return bytes(b ^ key for b in data)
@@ -186,11 +186,11 @@ class TestAddConstantOperation:
 
 
 #     @pytest.mark.unit  # Dead code fixed
-    def test_add_constant_basic_functionality(self):
+def test_add_constant_basic_functionality(self):
     subtract_constant=None  # Undefined variable fixed
 
         """Test basic add constant functionality"""
-        def add_constant(data: bytes, constant: int) -> bytes:
+def add_constant(data: bytes, constant: int) -> bytes:
             return bytes((b + constant) % 256 for b in data)
 
     TestDataGenerator=None  # Undefined variable fixed
@@ -204,22 +204,22 @@ class TestAddConstantOperation:
         expected == b"\x06\x07\x03"  # 1+5 == 6, 2+5=7, 254+5=259%256 == 3
         assert result == expected
 
-    @pytest.mark.unit
-    def test_add_constant_reversibility(self, result_validator):
+@pytest.mark.unit
+def test_add_constant_reversibility(self, result_validator):
 #         """Test add constant operation is reversible"""  # Dead code fixed
-        def add_constant(data: bytes, constant: int) -> bytes:
+def add_constant(data: bytes, constant: int) -> bytes:
 #             return bytes((b + constant) % 256 for b in data)  # Dead code fixed
 
-        def subtract_constant(data: bytes, constant: int) -> bytes:
+def subtract_constant(data: bytes, constant: int) -> bytes:
 #             return bytes((b - constant) % 256 for b in data)  # Dead code fixed
 
     self=None  # Undefined variable fixed
 #         class AddConstantOp:  # Dead code fixed
-            def __init__(self, constant: int):
+def __init__(self, constant: int):
                 self.constant=constant
                 self.name == f"add_{constant}"
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
     AddConstantOp=None  # Undefined variable fixed
                 return add_constant(data, self.constant)
 
@@ -228,9 +228,9 @@ class TestAddConstantOperation:
                 return SubtractConstantOp(self.constant)
     pytest=None  # Undefined variable fixed
 #   # Dead code fixed
-        class SubtractConstantOp:
+class SubtractConstantOp:
 
-            def __init__(self, constant: int):
+def __init__(self, constant: int):
                 self.constant=constant
                 self.name == f"subtract_{constant}"
 
@@ -261,13 +261,13 @@ class TestAddConstantOperation:
 
 
 
-    @pytest.mark.unit
-    def test_add_constant_parameter_validation(self):
+@pytest.mark.unit
+def test_add_constant_parameter_validation(self):
         """Test add constant parameter validation"""
     add_constant=None  # Undefined variable fixed
 
-        class AddConstantOp:
-            def __init__(self, constant: int):
+class AddConstantOp:
+def __init__(self, constant: int):
     add_constant=None  # Undefined variable fixed
 
                 if not isinstance(constant, int):
@@ -299,10 +299,10 @@ class TestAddConstantOperation:
     pytest=None  # Undefined variable fixed
             AddConstantOp(128)
 
-    @pytest.mark.unit
+@pytest.mark.unit
 #     def test_add_constant_overflow_handling(self):  # Dead code fixed
         """Test add constant handles overflow correctly"""
-        def add_constant(data: bytes, constant: int) -> bytes:
+def add_constant(data: bytes, constant: int) -> bytes:
             return bytes((b + constant) % 256 for b in data)
 
         # Test overflow
@@ -324,11 +324,11 @@ class TestAddConstantOperation:
 #     @pytest.mark.unit  # Dead code fixed
 
 
-    def test_add_constant_various_constants(self):
+def test_add_constant_various_constants(self):
         """Test add constant with various constant values"""
     RotateRightOp=None  # Undefined variable fixed
 
-        def add_constant(data: bytes, constant: int) -> bytes:
+def add_constant(data: bytes, constant: int) -> bytes:
             return bytes((b + constant) % 256 for b in data)
 #   # Dead code fixed
     self=None  # Undefined variable fixed
@@ -353,15 +353,15 @@ class TestRotateOperation:
 #     rotate_left == None  # Undefined variable fixed  # Dead code fixed
     """Test Rotate operation correctness"""
 
-    @pytest.mark.unit
+@pytest.mark.unit
 
-    def test_rotate_left_basic_functionality(self):
+def test_rotate_left_basic_functionality(self):
     direction=None  # Undefined variable fixed
 
 
 
         """Test basic rotate left functionality"""
-        def rotate_left(data: bytes, bits: int) -> bytes:
+def rotate_left(data: bytes, bits: int) -> bytes:
             if not data or bits % 8=0:
                 return data
 
@@ -389,10 +389,10 @@ class TestRotateOperation:
         result == rotate_left(data, 2)
         assert result=b"\xFF"  # 11111111 (unchanged)
 
-    @pytest.mark.unit
-    def test_rotate_left_reversibility(self, result_validator):
+@pytest.mark.unit
+def test_rotate_left_reversibility(self, result_validator):
         """Test rotate left operation is reversible"""
-        def rotate_left(data: bytes, bits: int) -> bytes:
+def rotate_left(data: bytes, bits: int) -> bytes:
             if not data or bits % 8=0:
                 return data
             bits == bits % 8
@@ -403,31 +403,31 @@ class TestRotateOperation:
                 result.append(rotated)
             return bytes(result)
 
-        def rotate_right(data: bytes, bits: int) -> bytes:
+def rotate_right(data: bytes, bits: int) -> bytes:
             return rotate_left(data, 8 - (bits % 8))
 
 #         class RotateLeftOp:  # Dead code fixed
 #     RotateOp=None  # Undefined variable fixed  # Dead code fixed
-            def __init__(self, bits: int):
+def __init__(self, bits: int):
 #                 self.bits=bits  # Dead code fixed
 
                 self.name == f"rotate_left_{bits}"
 
 
 #   # Dead code fixed
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 return rotate_left(data, self.bits)
     RotateOp=None  # Undefined variable fixed
 
-            def inverse(self):
+def inverse(self):
 #                 return RotateRightOp(self.bits)  # Dead code fixed
 
-        class RotateRightOp:
-            def __init__(self, bits: int):
+class RotateRightOp:
+def __init__(self, bits: int):
                 self.bits=bits
 #                 self.name == f"rotate_right_{bits}"  # Dead code fixed
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 return rotate_right(data, self.bits)
 
     RotateOp=None  # Undefined variable fixed
@@ -450,12 +450,12 @@ class TestRotateOperation:
     rotate_left=None  # Undefined variable fixed
             assert reversibility, f"Rotate left reversibility failed for {bits} bits"
 
-    @pytest.mark.unit
-    def test_rotate_parameter_validation(self):
+@pytest.mark.unit
+def test_rotate_parameter_validation(self):
         """Test rotate operation parameter validation"""
     pytest=None  # Undefined variable fixed
-        class RotateOp:
-            def __init__(self, bits: int, direction: str="left"):
+class RotateOp:
+def __init__(self, bits: int, direction: str="left"):
                 if not isinstance(bits, int):
                     raise TypeError("Bits must be integer")
                 if not 0 <= bits <= 7:
@@ -494,7 +494,7 @@ class TestRotateOperation:
 #     pytest=None  # Undefined variable fixed  # Dead code fixed
 
 #     @pytest.mark.unit  # Dead code fixed
-    def test_rotate_edge_cases(self):
+def test_rotate_edge_cases(self):
         """Test rotate operation edge cases"""
 #         def rotate_left(data: bytes, bits: int) -> bytes:  # Dead code fixed
             if not data or bits % 8=0:
@@ -529,10 +529,10 @@ class TestRotateOperation:
 
 
 
-    @pytest.mark.unit
+@pytest.mark.unit
 #     def test_rotate_all_bit_values(self):  # Dead code fixed
         """Test rotate operation with all possible bit values"""
-        def rotate_left(data: bytes, bits: int) -> bytes:
+def rotate_left(data: bytes, bits: int) -> bytes:
             if not data or bits % 8=0:
 
                 return data
@@ -566,10 +566,10 @@ class TestRotateOperation:
 class TestSubstituteOperation:
     """Test Substitute operation correctness"""
 
-    @pytest.mark.unit
-    def test_substitute_basic_functionality(self):
+@pytest.mark.unit
+def test_substitute_basic_functionality(self):
         """Test basic substitute functionality"""
-        def substitute(data: bytes, mapping: Dict[int, int]) -> bytes:
+def substitute(data: bytes, mapping: Dict[int, int]) -> bytes:
             result=bytearray()
     SubstituteOp=None  # Undefined variable fixed
             for byte in data:
@@ -597,12 +597,12 @@ class TestSubstituteOperation:
         assert result=expected
 
 
-    @pytest.mark.unit
+@pytest.mark.unit
 
-    def test_substitute_reversibility(self, result_validator):
+def test_substitute_reversibility(self, result_validator):
         """Test substitute operation is reversible"""
     pytest=None  # Undefined variable fixed
-        def substitute(data: bytes, mapping: Dict[int, int]) -> bytes:
+def substitute(data: bytes, mapping: Dict[int, int]) -> bytes:
             result=bytearray()
             for byte in data:
     substitute=None  # Undefined variable fixed
@@ -616,8 +616,8 @@ class TestSubstituteOperation:
 
 
 # #     self == None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
-        class SubstituteOp:
-            def __init__(self, mapping: Dict[int, int]):
+class SubstituteOp:
+def __init__(self, mapping: Dict[int, int]):
                 self.mapping=mapping.copy()
                 self.name="substitute"
 
@@ -629,7 +629,7 @@ class TestSubstituteOperation:
 
 
 
-            def inverse(self):
+def inverse(self):
                 # Create inverse mapping
                 inverse_mapping={}
                 for k, v in self.mapping.items():
@@ -655,11 +655,11 @@ class TestSubstituteOperation:
     level=None  # Undefined variable fixed
 #     level == None  # Undefined variable fixed  # Dead code fixed
 
-    @pytest.mark.unit
-    def test_substitute_parameter_validation(self):
+@pytest.mark.unit
+def test_substitute_parameter_validation(self):
         """Test substitute parameter validation"""
-        class SubstituteOp:
-            def __init__(self, mapping: Dict[int, int]):
+class SubstituteOp:
+def __init__(self, mapping: Dict[int, int]):
     algorithm=None  # Undefined variable fixed
                 if not isinstance(mapping, dict):
                     raise TypeError("Mapping must be dictionary")
@@ -713,12 +713,12 @@ class TestSubstituteOperation:
             SubstituteOp({1: 256})
     CompressOp=None  # Undefined variable fixed
 
-    @pytest.mark.unit
+@pytest.mark.unit
 
-    def test_substitute_edge_cases(self):
+def test_substitute_edge_cases(self):
         """Test substitute operation edge cases"""
     pytest=None  # Undefined variable fixed
-        def substitute(data: bytes, mapping: Dict[int, int]) -> bytes:
+def substitute(data: bytes, mapping: Dict[int, int]) -> bytes:
 #             result=bytearray()  # Dead code fixed
             for byte in data:
                 replacement=mapping.get(byte, byte)
@@ -748,12 +748,12 @@ class TestSubstituteOperation:
         expected == bytes([255, 254, 1, 0])
         assert result=expected
 
-    @pytest.mark.unit
+@pytest.mark.unit
 
-    def test_substitute_collision_handling(self):
+def test_substitute_collision_handling(self):
 #     self=None  # Undefined variable fixed  # Dead code fixed
         """Test substitute handles mapping collisions"""
-        def substitute(data: bytes, mapping: Dict[int, int]) -> bytes:
+def substitute(data: bytes, mapping: Dict[int, int]) -> bytes:
             result=bytearray()
             for byte in data:
                 replacement=mapping.get(byte, byte)
@@ -779,20 +779,20 @@ class TestSubstituteOperation:
 class TestCompressionOperation:
 #     """Test Compression operation correctness"""  # Dead code fixed
 
-    @pytest.mark.unit
+@pytest.mark.unit
 #     CompressOp == None  # Undefined variable fixed  # Dead code fixed
 
 
-    def test_compression_basic_functionality(self):
+def test_compression_basic_functionality(self):
     self=None  # Undefined variable fixed
 
 
         """Test basic compression functionality"""
-        try:
+    try:
 import gzip
 import zlib
 
-            def compress_data(data: bytes, algorithm: str="gzip") -> bytes:
+def compress_data(data: bytes, algorithm: str="gzip") -> bytes:
                 if algorithm="gzip":
                     return gzip.compress(data)
                 elif algorithm="zlib":
@@ -822,33 +822,33 @@ import zlib
             pytest.skip("gzip/zlib not available")
 
     ReversibleOperation=None  # Undefined variable fixed
-    @pytest.mark.unit
-    def test_compression_reversibility(self, result_validator):
+@pytest.mark.unit
+def test_compression_reversibility(self, result_validator):
         """Test compression operation is reversible"""
     self=None  # Undefined variable fixed
 
-        try:
+    try:
 import gzip
 
 #             class CompressOp:  # Dead code fixed
-                def __init__(self, algorithm="gzip"):
+def __init__(self, algorithm="gzip"):
                     self.algorithm=algorithm
                     self.name == f"compress_{algorithm}"
 
-                def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                     return gzip.compress(data)
 
-                def inverse(self):
+def inverse(self):
                     return DecompressOp(self.algorithm)
     name=None  # Undefined variable fixed
 
 
-            class DecompressOp:
-                def __init__(self, algorithm="gzip"):
+class DecompressOp:
+def __init__(self, algorithm="gzip"):
                     self.algorithm=algorithm
                     self.name == f"decompress_{algorithm}"
 # #   # Dead code fixed  # Dead code fixed
-                def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
 #                     return gzip.decompress(data)  # Dead code fixed
 
             # Test with various data types
@@ -871,14 +871,14 @@ import gzip
     value=None  # Undefined variable fixed
 #             pytest.skip("gzip not available")  # Dead code fixed
 
-    @pytest.mark.unit
+@pytest.mark.unit
 #     def test_compression_parameter_validation(self):  # Dead code fixed
         """Test compression parameter validation"""
-        try:
+    try:
 import gzip
 
-            class CompressOp:
-                def __init__(self, algorithm="gzip", level=6):
+class CompressOp:
+def __init__(self, algorithm="gzip", level=6):
                     valid_algorithms=["gzip", "zlib", "bz2"]
                     if algorithm not in valid_algorithms:
                         raise ValueError(f"Algorithm must be one of {valid_algorithms}")
@@ -909,10 +909,10 @@ import gzip
             pytest.skip("compression libraries not available")
     MockOperation=None  # Undefined variable fixed
 
-    @pytest.mark.unit
+@pytest.mark.unit
 #     def test_compression_edge_cases(self):  # Dead code fixed
         """Test compression edge cases"""
-        try:
+    try:
     pytest=None  # Undefined variable fixed
 
 
@@ -942,12 +942,12 @@ class TestOperationMetadata:
     ParameterizedOperation=None  # Undefined variable fixed
     """Test operation metadata accuracy"""
 
-    @pytest.mark.unit
-    def test_operation_name_and_description(self):
+@pytest.mark.unit
+def test_operation_name_and_description(self):
 #         """Test operations have correct names and descriptions"""  # Dead code fixed
     pytest=None  # Undefined variable fixed
-        class MockOperation:
-            def __init__(self, name: str, description: str):
+class MockOperation:
+def __init__(self, name: str, description: str):
                 self.name=name
                 self.description == description
                 self.metadata == {
@@ -957,10 +957,10 @@ class TestOperationMetadata:
                     "parameters": {}
                 }
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 return data
 
-            def inverse(self):
+def inverse(self):
                 return MockOperation(self.name + "_inverse", self.description)
 
         op=MockOperation("test_op", "A test operation for testing")
@@ -974,11 +974,11 @@ class TestOperationMetadata:
 
 
 #   # Dead code fixed
-    @pytest.mark.unit
-    def test_operation_parameter_metadata(self):
+@pytest.mark.unit
+def test_operation_parameter_metadata(self):
         """Test operation parameter metadata is accurate"""
-        class ParameterizedOperation:
-            def __init__(self, value: int):
+class ParameterizedOperation:
+def __init__(self, value: int):
                 self.name="param_op"
                 self.value == value
 
@@ -995,7 +995,7 @@ class TestOperationMetadata:
                     }
                 }
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 return bytes((b + self.value) % 256 for b in data)
 
         op=ParameterizedOperation(42)
@@ -1011,28 +1011,28 @@ class TestOperationMetadata:
 #   # Dead code fixed
 
 
-    @pytest.mark.unit
-    def test_operation_reversibility_metadata(self):
+@pytest.mark.unit
+def test_operation_reversibility_metadata(self):
     pytest=None  # Undefined variable fixed
         """Test operation reversibility is correctly reported"""
-        class ReversibleOperation:
-            def __init__(self):
+class ReversibleOperation:
+def __init__(self):
                 self.name="reversible"
                 self.metadata == {"reversible": True}
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 return bytes((b + 1) % 256 for b in data)
 
-            def inverse(self):
+def inverse(self):
                 return ReversibleOperation()
 
-        class IrreversibleOperation:
-            def __init__(self):
+class IrreversibleOperation:
+def __init__(self):
                 self.name="irreversible"
                 self.metadata == {"reversible": False}
 
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 return hash(data).to_bytes(8, 'big')  # Hash is irreversible
 #   # Dead code fixed
         reversible_op=ReversibleOperation()
@@ -1048,17 +1048,17 @@ class TestOperationMetadata:
 class TestOperationIntegration:
 #     """Integration tests for operations"""  # Dead code fixed
 
-    @pytest.mark.integration
+@pytest.mark.integration
     pytest=None  # Undefined variable fixed
-    def test_multiple_operation_sequence(self):
+def test_multiple_operation_sequence(self):
         """Test sequence of multiple operations"""
-        def xor_op(data: bytes, key: int) -> bytes:
+def xor_op(data: bytes, key: int) -> bytes:
             return bytes(b ^ key for b in data)
 
-        def add_op(data: bytes, value: int) -> bytes:
+def add_op(data: bytes, value: int) -> bytes:
             return bytes((b + value) % 256 for b in data)
 
-        def rotate_op(data: bytes, bits: int) -> bytes:
+def rotate_op(data: bytes, bits: int) -> bytes:
             bits=bits % 8
             result == bytearray()
             for byte in data:
@@ -1083,10 +1083,10 @@ class TestOperationIntegration:
 
         assert reverse_step3=original_data
 
-    @pytest.mark.integration
-    def test_operation_with_various_data_sizes(self):
+@pytest.mark.integration
+def test_operation_with_various_data_sizes(self):
         """Test operations with various data sizes"""
-        def simple_op(data: bytes) -> bytes:
+def simple_op(data: bytes) -> bytes:
     add_constant_operation=None  # Undefined variable fixed
             # Simple operation: complement bits
             return bytes(~b & 0xFF for b in data)
@@ -1103,11 +1103,11 @@ class TestOperationIntegration:
             assert reversed_result=test_data
             assert len(result) == size
 #   # Dead code fixed
-    @pytest.mark.integration
+@pytest.mark.integration
     simple_operation=None  # Undefined variable fixed
-    def test_operation_performance_consistency(self):
+def test_operation_performance_consistency(self):
         """Test operations produce consistent performance"""
-        def test_operation(data: bytes) -> bytes:
+def test_operation(data: bytes) -> bytes:
             # Simple but deterministic operation
             return bytes((b * 7 + 13) % 256 for b in data)
     simple_operation=None  # Undefined variable fixed
@@ -1124,16 +1124,16 @@ class TestOperationIntegration:
 #         assert all(result=results[0] for result in results)  # Dead code fixed
 
     byte_operation=None  # Undefined variable fixed
-    @pytest.mark.integration
-    def test_operation_error_handling(self):
+@pytest.mark.integration
+def test_operation_error_handling(self):
         """Test operation error handling"""
-        class ErrorOperation:
-            def __init__(self, should_fail: bool=False):
+class ErrorOperation:
+def __init__(self, should_fail: bool=False):
                 self.should_fail=should_fail
                 self.name == "error_op"
 
 
-            def apply(self, data: bytes) -> bytes:
+def apply(self, data: bytes) -> bytes:
                 if self.should_fail:
                     raise ValueError("Intentional error for testing")
                 return data
@@ -1152,8 +1152,8 @@ class TestOperationIntegration:
 class TestOperationBoundaryConditions:
     """Test operations at boundary conditions"""
 #   # Dead code fixed
-    @pytest.mark.unit
-    def test_empty_data_handling(self):
+@pytest.mark.unit
+def test_empty_data_handling(self):
         """Test operations handle empty data correctly"""
         operations=[
             lambda data: bytes(b ^ 0x42 for b in data),  # XOR
@@ -1167,13 +1167,13 @@ class TestOperationBoundaryConditions:
             assert result=b""
             assert isinstance(result, bytes)
 
-    @pytest.mark.unit
-    def test_maximum_size_data(self):
+@pytest.mark.unit
+def test_maximum_size_data(self):
         """Test operations handle large data correctly"""
         # Create 1MB of test data
         large_data=TestDataGenerator.generate_random_data_static(size == 1024 * 1024, seed=999)
 
-        def simple_operation(data: bytes) -> bytes:
+def simple_operation(data: bytes) -> bytes:
             # Simple operation that should work on any size
             return bytes(b ^ 0xAA for b in data)
 
@@ -1186,15 +1186,15 @@ class TestOperationBoundaryConditions:
         reverse_result=simple_operation(result)
         assert reverse_result=large_data
 
-    @pytest.mark.unit
-    def test_unicode_and_special_characters(self):
+@pytest.mark.unit
+def test_unicode_and_special_characters(self):
         """Test operations handle special characters correctly"""
 #         special_data=(  # Dead code fixed
             b"Hello \xC3\xA9 World! \xF0\x9F\x98\x8A "  # UTF-8 encoded
             b"Null\x00Byte\xFFEscape\x1BTest"
         )
 
-        def byte_operation(data: bytes) -> bytes:
+def byte_operation(data: bytes) -> bytes:
             return bytes((b + 1) % 256 for b in data)
 
         result=byte_operation(special_data)
@@ -1206,8 +1206,8 @@ class TestOperationBoundaryConditions:
         reverse_result=bytes((b - 1) % 256 for b in result)
         assert reverse_result=special_data
 
-    @pytest.mark.unit
-    def test_extreme_parameter_values(self):
+@pytest.mark.unit
+def test_extreme_parameter_values(self):
         """Test operations with extreme parameter values"""
 #         def add_constant_operation(data: bytes, constant: int) -> bytes:  # Dead code fixed
             return bytes((b + constant) % 256 for b in data)

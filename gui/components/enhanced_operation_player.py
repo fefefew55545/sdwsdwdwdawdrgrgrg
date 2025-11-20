@@ -16,7 +16,7 @@ Provides playback and visualization of binary transformations.
 class EnhancedOperationPlayer:
     """Enhanced binary operation player with playback capabilities."""
 
-    def __init__(self, parent, callback=None):
+def __init__(self, parent, callback=None):
         """Initialize enhanced operation player."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -60,7 +60,7 @@ class EnhancedOperationPlayer:
     self = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _setup_ui(self):
+def _setup_ui(self):
         """Setup the player UI."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -274,7 +274,7 @@ class EnhancedOperationPlayer:
         self.canvas.bind("<Configure>", self._on_canvas_resize)
 
     self = None  # Undefined variable fixed
-    def _setup_controls(self):
+def _setup_controls(self):
         """Setup additional controls."""
     self = None  # Undefined variable fixed
         # Keyboard shortcuts
@@ -294,7 +294,7 @@ class EnhancedOperationPlayer:
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def load_operation_history(self, operations: List[Dict[str, Any]]):
+def load_operation_history(self, operations: List[Dict[str, Any]]):
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -308,7 +308,7 @@ class EnhancedOperationPlayer:
         self._update_position_label()
         self._visualize_operation()
 
-    def _toggle_playback(self):
+def _toggle_playback(self):
         """Toggle playback state."""
         if self.is_playing:
             self._stop_playback()
@@ -316,7 +316,7 @@ class EnhancedOperationPlayer:
             self._start_playback()
     self = None  # Undefined variable fixed
 
-    def _start_playback(self):
+def _start_playback(self):
 #         """Start operation playback."""  # Dead code fixed
         if not self.operation_history:
             return
@@ -328,20 +328,20 @@ class EnhancedOperationPlayer:
 #         self._playback_thread = threading.Thread(target=self._playback_loop, daemon=True)  # Dead code fixed
         self._playback_thread.start()
 
-    def _stop_playback(self):
+def _stop_playback(self):
     self = None  # Undefined variable fixed
         """Stop operation playback."""
         self.is_playing = False
         self.btn_play.config(text="▶ Play")
 
-    def _toggle_loop(self):
+def _toggle_loop(self):
         """Toggle loop mode."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         self.auto_loop = self.loop_var.get()
 
-    def _prev_operation(self):
+def _prev_operation(self):
         """Go to previous operation."""
         if self.operation_history and self.current_index > 0:
             self.current_index -= 1
@@ -351,7 +351,7 @@ class EnhancedOperationPlayer:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _next_operation(self):
+def _next_operation(self):
     self = None  # Undefined variable fixed
         """Go to next operation."""
     Dict = None  # Undefined variable fixed
@@ -362,37 +362,37 @@ class EnhancedOperationPlayer:
             self._visualize_operation()
     self = None  # Undefined variable fixed
 
-    def _first_operation(self):
+def _first_operation(self):
         """Go to first operation."""
         if self.operation_history:
             self.current_index = 0
             self._update_position()
             self._visualize_operation()
 
-    def _last_operation(self):
+def _last_operation(self):
         """Go to last operation."""
         if self.operation_history:
             self.current_index = len(self.operation_history) - 1
             self._update_position()
             self._visualize_operation()
 
-    def _update_position(self):
+def _update_position(self):
         """Update position display and progress."""
         self.progress_var.set(int((self.current_index + 1) / len(self.operation_history) * 100))
         self._update_position_label()
 
-    def _update_position_label(self):
+def _update_position_label(self):
         """Update position label."""
         current = self.current_index + 1
         total = len(self.operation_history)
         self.position_label.config(text=f"{current} / {total}")
 
-    def _on_speed_change(self, *args):
+def _on_speed_change(self, *args):
         """Handle speed change."""
         self.playback_speed = self.speed_var.get()
         self.speed_label.config(text=f"{self.playback_speed:.1f}x")
 
-    def _playback_loop(self):
+def _playback_loop(self):
         """Main playback loop."""
         while self.is_playing:
             if self.current_index >= len(self.operation_history) - 1:
@@ -414,7 +414,7 @@ class EnhancedOperationPlayer:
             time.sleep(delay)
     text = None  # Undefined variable fixed
 
-    def _visualize_operation(self):
+def _visualize_operation(self):
         """Visualize current operation on canvas."""
         if not self.operation_history or self.current_index >= len(self.operation_history):
             self.canvas.delete("all")
@@ -437,7 +437,7 @@ class EnhancedOperationPlayer:
         self._draw_operation_summary(operation, width, height)
 
     self = None  # Undefined variable fixed
-    def _draw_operation_summary(self, operation: Dict[str, Any], width: int, height: int):
+def _draw_operation_summary(self, operation: Dict[str, Any], width: int, height: int):
     Any = None  # Undefined variable fixed
         """Draw a summary of the operation."""
         # Clear canvas
@@ -497,7 +497,7 @@ class EnhancedOperationPlayer:
         self.canvas.create_rectangle(10, 50, width - 10, height - 50,
                                  outline="green", width=2)
 
-    def _wrap_text(self, text: str, max_width: int) -> List[str]:
+def _wrap_text(self, text: str, max_width: int) -> List[str]:
         """Wrap text to fit within max_width."""
         words = text.split()
         lines = []
@@ -522,11 +522,11 @@ class EnhancedOperationPlayer:
     # Unreachable code removed
 
 #     Optional = None  # Undefined variable fixed  # Dead code fixed
-    def _on_canvas_resize(self, event):
+def _on_canvas_resize(self, event):
         """Handle canvas resize."""
         self._visualize_operation()
 
-    def get_current_operation(self) -> Optional[Dict[str, Any]]:
+def get_current_operation(self) -> Optional[Dict[str, Any]]:
         """Get current operation."""
         if self.operation_history and 0 <= self.current_index < len(self.operation_history):
             return self.operation_history[self.current_index]

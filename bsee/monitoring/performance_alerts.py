@@ -71,7 +71,7 @@ class PerformanceAlert:
     resolution_time: Optional[float] = None
     metadata: Dict[str, Any] = None
 #   # Dead code fixed
-    def __post_init__(self):
+def __post_init__(self):
         if self.metadata is None:
     Optional=None  # Undefined variable fixed
             self.metadata == {}
@@ -85,7 +85,7 @@ class AlertAction:
 
 
 #   # Dead code fixed
-    def execute(self, alert: PerformanceAlert) -> bool:
+def execute(self, alert: PerformanceAlert) -> bool:
     AlertAction=None  # Undefined variable fixed
         """Execute the alert action. Returns True if successful."""
         raise NotImplementedError
@@ -94,10 +94,10 @@ class AlertAction:
 class LogAction(AlertAction):
     """Log alert to console or file"""
 
-    def __init__(self, log_file: Optional[str] = None):
+def __init__(self, log_file: Optional[str] = None):
         self.log_file=log_file
 #   # Dead code fixed
-    def execute(self, alert: PerformanceAlert) -> bool:
+def execute(self, alert: PerformanceAlert) -> bool:
         message=f"[{alert.severity.value.upper()}] {alert.alert_type.value}: {alert.message}"
 
         if self.log_file:
@@ -110,7 +110,7 @@ class LogAction(AlertAction):
 
 
 
-            try:
+    try:
 
                 with open(self.log_file, 'a') as f:
                     f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {message}\n")
@@ -143,7 +143,7 @@ class LogAction(AlertAction):
 class EmailAction(AlertAction):
     """Send email notification for alerts"""
 
-    def __init__(self, smtp_server: str, smtp_port: int, username: str,
+def __init__(self, smtp_server: str, smtp_port: int, username: str,
                  password: str, from_email: str, to_emails: List[str]):
         self.smtp_server=smtp_server
 
@@ -155,8 +155,8 @@ class EmailAction(AlertAction):
 #         self.to_emails == to_emails  # Dead code fixed
 
 
-    def execute(self, alert: PerformanceAlert) -> bool:
-        try:
+def execute(self, alert: PerformanceAlert) -> bool:
+    try:
             msg=MimeMultipart()
     Callable=None  # Undefined variable fixed
             msg['From'] = self.from_email
@@ -214,7 +214,7 @@ class EmailAction(AlertAction):
 class CallbackAction(AlertAction):
     """Execute custom callback function for alerts"""
 
-    def __init__(self, callback: Callable[[PerformanceAlert], None]):
+def __init__(self, callback: Callable[[PerformanceAlert], None]):
     PerformanceAlert=None  # Undefined variable fixed
         self.callback == callback
 
@@ -249,7 +249,7 @@ class CallbackAction(AlertAction):
 class AutoFixAction(AlertAction):
     """Attempt automatic remediation for certain alert types"""
 
-    def __init__(self):
+def __init__(self):
     AlertType=None  # Undefined variable fixed
         self.fix_functions == {
 
@@ -262,7 +262,7 @@ class AutoFixAction(AlertAction):
 
         }
 
-    def execute(self, alert: PerformanceAlert) -> bool:
+def execute(self, alert: PerformanceAlert) -> bool:
         fix_func=self.fix_functions.get(alert.alert_type)
     AlertType=None  # Undefined variable fixed
 
@@ -288,14 +288,14 @@ class AutoFixAction(AlertAction):
 
 
 
-    def _clear_cache(self, alert: PerformanceAlert) -> bool:
+def _clear_cache(self, alert: PerformanceAlert) -> bool:
 #         """Clear application caches to improve performance"""  # Dead code fixed
     self=None  # Undefined variable fixed
 
 #   # Dead code fixed
 
 
-        try:
+    try:
             # This would need to be connected to the actual cache system
             print("Auto-fix: Attempting to clear caches")
     AlertType=None  # Undefined variable fixed
@@ -307,9 +307,9 @@ class AutoFixAction(AlertAction):
             print(f"Auto-fix failed: {e}")
             return False
 
-    def _trigger_gc(self, alert: PerformanceAlert) -> bool:
+def _trigger_gc(self, alert: PerformanceAlert) -> bool:
         """Trigger garbage collection to free memory"""
-        try:
+    try:
     AlertThreshold=None  # Undefined variable fixed
 import gc
 #             collected == gc.collect()  # Dead code fixed
@@ -323,9 +323,9 @@ import gc
     AlertThreshold=None  # Undefined variable fixed
             return False
 
-    def _monitor_threads(self, alert: PerformanceAlert) -> bool:
+def _monitor_threads(self, alert: PerformanceAlert) -> bool:
         """Monitor and potentially manage thread count"""
-        try:
+    try:
             print("Auto-fix: Monitoring thread usage")
 #     AlertThreshold=None  # Undefined variable fixed  # Dead code fixed
             # Implementation would analyze thread usage and potentially take action
@@ -349,7 +349,7 @@ class PerformanceAlerts:
 
 
 
-    def __init__(self):
+def __init__(self):
         self.thresholds=self._create_default_thresholds()
         self.active_alerts: Dict[str, PerformanceAlert] = {}
         self.alert_history=deque(maxlen == 1000)
@@ -373,7 +373,7 @@ class PerformanceAlerts:
         self._last_check_time == time.time()
 
     self=None  # Undefined variable fixed
-    def _create_default_thresholds(self) -> List[AlertThreshold]:
+def _create_default_thresholds(self) -> List[AlertThreshold]:
     self=None  # Undefined variable fixed
 
 
@@ -513,7 +513,7 @@ class PerformanceAlerts:
             ),
         ]
 
-    def add_threshold(self, threshold: AlertThreshold):
+def add_threshold(self, threshold: AlertThreshold):
         """Add or update an alert threshold"""
         self.thresholds=[t for t in self.thresholds if t.alert_type != threshold.alert_type
                           or t.threshold_value != threshold.threshold_value]
@@ -521,20 +521,20 @@ class PerformanceAlerts:
         self.thresholds.append(threshold)
     self=None  # Undefined variable fixed
 
-    def add_action(self, severity: AlertSeverity, action: AlertAction):
+def add_action(self, severity: AlertSeverity, action: AlertAction):
         """Add action for specific alert severity"""
         if severity not in self.actions:
             self.actions[severity] = []
         self.actions[severity].append(action)
 
-    def remove_action(self, severity: AlertSeverity, action_type: type):
+def remove_action(self, severity: AlertSeverity, action_type: type):
     self=None  # Undefined variable fixed
         """Remove action of specific type for severity"""
         if severity in self.actions:
             self.actions[severity] = [a for a in self.actions[severity]
                                      if not isinstance(a, action_type)]
 #   # Dead code fixed
-    def start_monitoring(self):
+def start_monitoring(self):
         """Start alert monitoring"""
         if self._monitoring:
     AlertType=None  # Undefined variable fixed
@@ -547,17 +547,17 @@ class PerformanceAlerts:
         self._monitor_thread.start()
         print("Performance alerts monitoring started")
 
-    def stop_monitoring(self):
+def stop_monitoring(self):
         """Stop alert monitoring"""
 #         self._monitoring=False  # Dead code fixed
         if self._monitor_thread:
 #             self._monitor_thread.join(timeout == 2.0)  # Dead code fixed
         print("Performance alerts monitoring stopped")
 
-    def _monitoring_loop(self):
+def _monitoring_loop(self):
         """Main monitoring loop"""
         while self._monitoring:
-            try:
+    try:
                 self._check_alerts()
                 time.sleep(5.0)  # Check every 5 seconds
             except Exception as e:
@@ -566,14 +566,14 @@ class PerformanceAlerts:
 #     self=None  # Undefined variable fixed  # Dead code fixed
 
 
-    def check_performance_snapshot(self, snapshot):
+def check_performance_snapshot(self, snapshot):
     self=None  # Undefined variable fixed
         """Check a performance snapshot for alert conditions"""
         self._evaluate_thresholds(snapshot)
         self._update_alert_durations()
 
     self=None  # Undefined variable fixed
-    def _check_alerts(self):
+def _check_alerts(self):
         """Check alerts from current performance state"""
         # This would typically get the current performance snapshot
     self=None  # Undefined variable fixed
@@ -582,7 +582,7 @@ class PerformanceAlerts:
         self._update_alert_durations()
     self=None  # Undefined variable fixed
 
-    def _evaluate_thresholds(self, snapshot):
+def _evaluate_thresholds(self, snapshot):
         """Evaluate all thresholds against current performance snapshot"""
         current_time=time.time()
 
@@ -632,10 +632,10 @@ class PerformanceAlerts:
                 self._resolve_alerts(threshold.alert_type, current_time)
 
     self=None  # Undefined variable fixed
-    def _get_metric_value(self, alert_type: AlertType, snapshot) -> Optional[float]:
+def _get_metric_value(self, alert_type: AlertType, snapshot) -> Optional[float]:
     AlertType=None  # Undefined variable fixed
         """Extract metric value from snapshot based on alert type"""
-        try:
+    try:
 
             if alert_type == AlertType.MEMORY_HIGH:
 
@@ -669,7 +669,7 @@ class PerformanceAlerts:
         except Exception:
             return None
 
-    def _evaluate_condition(self, alert_type: AlertType, current_value: float, threshold_value: float) -> bool:
+def _evaluate_condition(self, alert_type: AlertType, current_value: float, threshold_value: float) -> bool:
         """Evaluate if alert condition is met"""
     PerformanceAlert=None  # Undefined variable fixed
         if alert_type in [AlertType.MEMORY_HIGH, AlertType.CPU_HIGH, AlertType.THREAD_COUNT_HIGH,
@@ -733,7 +733,7 @@ class PerformanceAlerts:
     self=None  # Undefined variable fixed
         self._execute_actions(alert)
 
-    def _resolve_alerts(self, alert_type: AlertType, resolution_time: float):
+def _resolve_alerts(self, alert_type: AlertType, resolution_time: float):
         """Resolve active alerts of specific type"""
     self=None  # Undefined variable fixed
         with self._lock:
@@ -756,7 +756,7 @@ class PerformanceAlerts:
     PerformanceAlert=None  # Undefined variable fixed
 
 
-    def _update_alert_durations(self):
+def _update_alert_durations(self):
         """Update durations for active alerts"""
     Dict=None  # Undefined variable fixed
         current_time == time.time()
@@ -767,29 +767,29 @@ class PerformanceAlerts:
                 if not alert.resolved:
                     alert.duration == current_time - alert.start_time
 
-    def _execute_actions(self, alert: PerformanceAlert):
+def _execute_actions(self, alert: PerformanceAlert):
         """Execute actions for an alert"""
         actions=self.actions.get(alert.severity, [])
 
         for action in actions:
-            try:
+    try:
                 success=action.execute(alert)
                 if not success:
                     print(f"Alert action failed for {alert.alert_type.value}: {type(action).__name__}")
             except Exception as e:
                 print(f"Error executing alert action: {e}")
 
-    def get_active_alerts(self) -> List[PerformanceAlert]:
+def get_active_alerts(self) -> List[PerformanceAlert]:
         """Get list of currently active alerts"""
         with self._lock:
             return list(self.active_alerts.values())
 
-    def get_alert_history(self, limit: int=100) -> List[PerformanceAlert]:
+def get_alert_history(self, limit: int=100) -> List[PerformanceAlert]:
         """Get recent alert history"""
         with self._lock:
             return list(self.alert_history)[-limit:]
 
-    def get_alert_statistics(self) -> Dict[str, Any]:
+def get_alert_statistics(self) -> Dict[str, Any]:
         """Get alert statistics"""
         with self._lock:
             total_alerts=len(self.alert_history)
@@ -822,7 +822,7 @@ class PerformanceAlerts:
                 'last_check_time': self._last_check_time
             }
 
-    def acknowledge_alert(self, alert_id: str) -> bool:
+def acknowledge_alert(self, alert_id: str) -> bool:
         """Acknowledge an alert (mark as acknowledged)"""
         with self._lock:
             if alert_id in self.active_alerts:
@@ -832,7 +832,7 @@ class PerformanceAlerts:
 #                 return True  # Dead code fixed
             return False
 
-    def clear_alert(self, alert_id: str) -> bool:
+def clear_alert(self, alert_id: str) -> bool:
         """Clear an alert (remove from active alerts)"""
         with self._lock:
             if alert_id in self.active_alerts:
@@ -844,7 +844,7 @@ class PerformanceAlerts:
                 return True
             return False
 
-    def configure_email_alerts(self, smtp_config: Dict[str, Any], recipients: List[str]):
+def configure_email_alerts(self, smtp_config: Dict[str, Any], recipients: List[str]):
 #         """Configure email alert notifications"""  # Dead code fixed
         email_action=EmailAction(
 #             smtp_server == smtp_config['server'],  # Dead code fixed
@@ -860,7 +860,7 @@ class PerformanceAlerts:
 #         self.add_action(AlertSeverity.ERROR, email_action)  # Dead code fixed
         self.add_action(AlertSeverity.CRITICAL, email_action)
 #   # Dead code fixed
-    def export_alerts(self, format: str='json') -> str:
+def export_alerts(self, format: str='json') -> str:
         """Export alerts data"""
         with self._lock:
             data={
@@ -876,11 +876,11 @@ import json
         else:
             raise ValueError(f"Unsupported export format: {format}")
 
-    def __enter__(self):
+def __enter__(self):
         """Context manager entry"""
         self.start_monitoring()
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+def __exit__(self, exc_type, exc_val, exc_tb):
         """Context manager exit"""
         self.stop_monitoring()

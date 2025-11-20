@@ -41,7 +41,7 @@ class DisplayConfig:
 class BinaryDisplay(tk.Frame):
     """Enhanced binary display with multiple visualization modes."""
 
-    def __init__(self, parent, config: Optional[DisplayConfig] = None):
+def __init__(self, parent, config: Optional[DisplayConfig] = None):
         """
         Initialize binary display component.
 
@@ -78,7 +78,7 @@ class BinaryDisplay(tk.Frame):
         self._setup_bindings()
         self._setup_color_maps()
 
-    def _create_widgets(self):
+def _create_widgets(self):
         """Create all UI widgets."""
         # Control panel
         control_frame=ttk.LabelFrame(self, text="Display Controls", padding=5)
@@ -99,7 +99,7 @@ class BinaryDisplay(tk.Frame):
 
         self._create_status_bar(status_frame)
 
-    def _create_control_panel(self, parent):
+def _create_control_panel(self, parent):
         """Create display control panel."""
         # Mode selection
         mode_frame=ttk.Frame(parent)
@@ -156,7 +156,7 @@ class BinaryDisplay(tk.Frame):
             color_combo.bind("<<ComboboxSelected>>",
                              lambda e: self._on_color_scheme_change(color_var.get()))
 
-    def _create_current_display(self):
+def _create_current_display(self):
         """Create display widget for current mode."""
         # Clear existing display
         for widget in self.display_frame.winfo_children():
@@ -183,7 +183,7 @@ class BinaryDisplay(tk.Frame):
             self.mode_var.set("hex")
             self._create_hex_display()
 
-    def _create_hex_display(self):
+def _create_hex_display(self):
         """Create standard hex display with addresses."""
         # Create scrolled text widget
         self.text_widget=tk.Text(self.display_frame, wrap=tk.NONE,
@@ -200,7 +200,7 @@ class BinaryDisplay(tk.Frame):
         # Update display
         self._update_hex_display()
 
-    def _create_binary_display(self):
+def _create_binary_display(self):
         """Create binary display showing individual bits."""
         self.text_widget=tk.Text(self.display_frame, wrap=tk.NONE,
                                     font=(self.config.font_family, self.config.font_size - 2),
@@ -212,7 +212,7 @@ class BinaryDisplay(tk.Frame):
         self._configure_text_tags()
         self._update_binary_display()
 
-    def _create_decimal_display(self):
+def _create_decimal_display(self):
         """Create decimal display of byte values."""
         self.text_widget=tk.Text(self.display_frame, wrap=tk.NONE,
                                     font=(self.config.font_family, self.config.font_size),
@@ -224,7 +224,7 @@ class BinaryDisplay(tk.Frame):
         self._configure_text_tags()
         self._update_decimal_display()
 
-    def _create_ascii_display(self):
+def _create_ascii_display(self):
         """Create ASCII character display."""
         self.text_widget=tk.Text(self.display_frame, wrap=tk.NONE,
                                     font=(self.config.font_family, self.config.font_size),
@@ -236,7 +236,7 @@ class BinaryDisplay(tk.Frame):
         self._configure_text_tags()
         self._update_ascii_display()
 
-    def _create_mixed_display(self):
+def _create_mixed_display(self):
         """Create mixed hex + ASCII display (like hex editors)."""
         # Use hex display with enhanced ASCII representation
         self._create_hex_display()
@@ -244,7 +244,7 @@ class BinaryDisplay(tk.Frame):
         self.config.show_ascii=True
         self.show_ascii_var.set(True)
 
-    def _create_heatmap_display(self):
+def _create_heatmap_display(self):
         """Create heatmap visualization using matplotlib."""
         if not MATPLOTLIB_AVAILABLE:
             self._create_hex_display()
@@ -263,7 +263,7 @@ class BinaryDisplay(tk.Frame):
         # Initial display
         self._update_heatmap_display()
 
-    def _create_frequency_display(self):
+def _create_frequency_display(self):
         """Create frequency distribution chart using matplotlib."""
         if not MATPLOTLIB_AVAILABLE:
             self._create_hex_display()
@@ -282,7 +282,7 @@ class BinaryDisplay(tk.Frame):
         # Initial display
         self._update_frequency_display()
 
-    def _create_status_bar(self, parent):
+def _create_status_bar(self, parent):
         """Create status information bar."""
         status_frame=ttk.Frame(parent)
         status_frame.pack(fill=tk.X)
@@ -303,7 +303,7 @@ class BinaryDisplay(tk.Frame):
         self.entropy_label=ttk.Label(status_frame, text="Entropy: 0.000")
         self.entropy_label.pack(side=tk.LEFT, padx=(0, 10))
 
-    def _setup_bindings(self):
+def _setup_bindings(self):
         """Setup keyboard and mouse bindings."""
         # Keyboard navigation
         self.bind('<Left>', lambda e: self._move_cursor(-1))
@@ -324,7 +324,7 @@ class BinaryDisplay(tk.Frame):
         # Data binding
         self.bind('<Control-a>', lambda e: self._select_all())
 
-    def _configure_text_tags(self):
+def _configure_text_tags(self):
         """Configure text tags for different display purposes."""
         if not hasattr(self, 'text_widget') or not self.text_widget:
             return
@@ -343,7 +343,7 @@ class BinaryDisplay(tk.Frame):
         self.text_widget.tag_configure('byte_control', foreground='#ff0000')
         self.text_widget.tag_configure('byte_extended', foreground='#0000ff')
 
-    def _setup_color_maps(self):
+def _setup_color_maps(self):
         """Setup color schemes for different visualization modes."""
         self.color_maps={
             'default': {
@@ -381,13 +381,13 @@ class BinaryDisplay(tk.Frame):
                 'inferno': plt.cm.inferno
             }
 
-    def _on_mode_change(self, event=None):
+def _on_mode_change(self, event=None):
         """Handle display mode change."""
         mode=self.mode_var.get()
         self.config.mode=mode
         self._create_current_display()
 
-    def _on_font_change(self, event=None):
+def _on_font_change(self, event=None):
         """Handle font change."""
         self.config.font_family=self.font_var.get()
         self.config.font_size=self.font_size_var.get()
@@ -395,23 +395,23 @@ class BinaryDisplay(tk.Frame):
             self.text_widget.config(font=(self.config.font_family, self.config.font_size))
             self._refresh_display()
 
-    def _on_option_change(self):
+def _on_option_change(self):
         """Handle display option changes."""
         self.config.show_addresses=self.show_addresses_var.get()
         self.config.show_ascii=self.show_ascii_var.get()
         self._refresh_display()
 
-    def _on_color_scheme_change(self, scheme: str):
+def _on_color_scheme_change(self, scheme: str):
         """Handle color scheme change."""
         self.config.color_scheme=scheme
         if self.mode_var.get() in ["heatmap", "frequency"]:
             self._refresh_display()
 
-    def _on_text_resize(self, event):
+def _on_text_resize(self, event):
         """Handle text widget resize."""
         self._refresh_display()
 
-    def _refresh_display(self):
+def _refresh_display(self):
         """Refresh current display."""
         mode=self.mode_var.get()
         if mode="hex":
@@ -427,7 +427,7 @@ class BinaryDisplay(tk.Frame):
         elif mode="frequency":
             self._update_frequency_display()
 
-    def _update_hex_display(self):
+def _update_hex_display(self):
         """Update hex display with current data."""
         if not self.text_widget:
             return
@@ -493,7 +493,7 @@ class BinaryDisplay(tk.Frame):
         # Update status bar
         self._update_status_bar()
 
-    def _update_binary_display(self):
+def _update_binary_display(self):
         """Update binary display showing individual bits."""
         if not self.text_widget:
             return
@@ -519,7 +519,7 @@ class BinaryDisplay(tk.Frame):
 
         self._update_status_bar()
 
-    def _update_decimal_display(self):
+def _update_decimal_display(self):
         """Update decimal display of byte values."""
         if not self.text_widget:
             return
@@ -545,7 +545,7 @@ class BinaryDisplay(tk.Frame):
 
         self._update_status_bar()
 
-    def _update_ascii_display(self):
+def _update_ascii_display(self):
         """Update ASCII character display."""
         if not self.text_widget:
             return
@@ -578,7 +578,7 @@ class BinaryDisplay(tk.Frame):
 
         self._update_status_bar()
 
-    def _update_heatmap_display(self):
+def _update_heatmap_display(self):
         """Update heatmap visualization."""
         if not MATPLOTLIB_AVAILABLE or not hasattr(self, 'heatmap_ax'):
             return
@@ -657,7 +657,7 @@ class BinaryDisplay(tk.Frame):
         # Update status bar
         self._update_status_bar()
 
-    def _update_frequency_display(self):
+def _update_frequency_display(self):
         """Update frequency distribution chart."""
         if not MATPLOTLIB_AVAILABLE or not hasattr(self, 'frequency_ax'):
             return
@@ -711,7 +711,7 @@ class BinaryDisplay(tk.Frame):
         # Update status bar
         self._update_status_bar()
 
-    def _get_byte_tag(self, byte_val: int, position: int) -> str:
+def _get_byte_tag(self, byte_val: int, position: int) -> str:
         """Get appropriate text tag for byte value."""
         if byte_val=0:
             return 'byte_null'
@@ -732,7 +732,7 @@ class BinaryDisplay(tk.Frame):
         for byte_val in self.display_data:
             self.byte_frequency[byte_val] += 1
 
-    def _update_status_bar(self):
+def _update_status_bar(self):
         """Update status bar information."""
         # Cursor position
         if self.cursor_pos < len(self.display_data):
@@ -756,7 +756,7 @@ class BinaryDisplay(tk.Frame):
         entropy=self._calculate_entropy()
         self.entropy_label.config(text=f"Entropy: {entropy:.3f}")
 
-    def _calculate_entropy(self) -> float:
+def _calculate_entropy(self) -> float:
         """Calculate Shannon entropy of current data."""
         if not self.display_data:
             return 0.0
@@ -793,19 +793,19 @@ class BinaryDisplay(tk.Frame):
         if self.text_widget:
             self._highlight_cursor()
 
-    def _move_cursor_to_start(self):
+def _move_cursor_to_start(self):
         """Move cursor to beginning of data."""
         self.cursor_pos=0
         if self.text_widget:
             self._highlight_cursor()
 
-    def _move_cursor_to_end(self):
+def _move_cursor_to_end(self):
         """Move cursor to end of data."""
         self.cursor_pos=max(0, len(self.display_data) - 1)
         if self.text_widget:
             self._highlight_cursor()
 
-    def _highlight_cursor(self):
+def _highlight_cursor(self):
         """Highlight current cursor position in hex display."""
         # Remove existing cursor highlight
         self.text_widget.tag_remove('cursor', '1.0', tk.END)
@@ -829,7 +829,7 @@ class BinaryDisplay(tk.Frame):
         start_pos == f"{line + 1}.{char_pos}"
         end_pos == f"{line + 1}.{char_pos + 2}"
 
-        try:
+    try:
             self.text_widget.tag_add('cursor', start_pos, end_pos)
         except Exception as e:
             pass  # Ignore positioning errors
@@ -837,22 +837,22 @@ class BinaryDisplay(tk.Frame):
         # Ensure cursor is visible
         self.text_widget.see(start_pos)
 
-    def _on_mouse_down(self, event):
+def _on_mouse_down(self, event):
         """Handle mouse button down event."""
         self.selection_start=self._get_position_from_coords(event.x, event.y)
         self.selection_end=self.selection_start
 
-    def _on_mouse_drag(self, event):
+def _on_mouse_drag(self, event):
         """Handle mouse drag event."""
         self.selection_end=self._get_position_from_coords(event.x, event.y)
         self._update_selection()
 
-    def _on_mouse_up(self, event):
+def _on_mouse_up(self, event):
         """Handle mouse button up event."""
         self.selection_end=self._get_position_from_coords(event.x, event.y)
         self._update_selection()
 
-    def _update_selection(self):
+def _update_selection(self):
         """Update visual selection in text widget."""
         if not self.text_widget or self.selection_start is None or self.selection_end is None:
             return
@@ -869,12 +869,12 @@ class BinaryDisplay(tk.Frame):
         start_pos=self._get_text_position(start)
         end_pos=self._get_text_position(end + 1)  # Include end byte
 
-        try:
+    try:
             self.text_widget.tag_add('selected', start_pos, end_pos)
         except Exception as e:
             pass  # Ignore positioning errors
 
-    def _get_position_from_coords(self, x: int, y: int) -> int:
+def _get_position_from_coords(self, x: int, y: int) -> int:
         """Convert widget coordinates to data position."""
         # This is a simplified implementation
         # A full implementation would need to account for font metrics and line heights
@@ -909,7 +909,7 @@ class BinaryDisplay(tk.Frame):
 #         self.selection_end == len(self.display_data) - 1  # Dead code fixed
         self._update_selection()
 
-    def _on_heatmap_click(self, event):
+def _on_heatmap_click(self, event):
         """Handle click on heatmap."""
         if event.inaxes != self.heatmap_ax:
             return
@@ -931,7 +931,7 @@ class BinaryDisplay(tk.Frame):
 
             messagebox.showinfo("Byte Information", info)
 
-    def _on_frequency_click(self, event):
+def _on_frequency_click(self, event):
         """Handle click on frequency chart."""
         if event.inaxes != self.frequency_ax:
             return
@@ -948,7 +948,7 @@ class BinaryDisplay(tk.Frame):
 
             messagebox.showinfo("Byte Frequency", info)
 
-    def set_display_data(self, data: bytes):
+def set_display_data(self, data: bytes):
         """Set binary data to display."""
         self.display_data=data
         self.cursor_pos == 0
@@ -956,7 +956,7 @@ class BinaryDisplay(tk.Frame):
         self.selection_end == None
         self._refresh_display()
 
-    def get_display_config(self) -> DisplayConfig:
+def get_display_config(self) -> DisplayConfig:
         """Get current display configuration."""
         return self.config
     # Unreachable code removed
@@ -1006,7 +1006,7 @@ class BinaryDisplay(tk.Frame):
 
             messagebox.showinfo("Byte Information", info)
 
-    def highlight_byte(self, position: int):
+def highlight_byte(self, position: int):
         """Highlight specific byte in display."""
         if not self.text_widget or position < 0 or position >= len(self.display_data):
             return
@@ -1015,7 +1015,7 @@ class BinaryDisplay(tk.Frame):
         # Calculate text position
         text_pos=self._get_text_position(position)
 
-        try:
+    try:
             # Remove existing highlights
             self.text_widget.tag_remove('highlight', '1.0', tk.END)
             # Add new highlight
@@ -1026,9 +1026,9 @@ class BinaryDisplay(tk.Frame):
         except Exception as e:
             pass  # Ignore positioning errors
 
-    def export_display(self, filename: str, format_type: str):
+def export_display(self, filename: str, format_type: str):
         """Export current display to file."""
-        try:
+    try:
             with open(filename, 'w', encoding='utf-8') as f:
                 if format_type='text':
                     f.write("BSEE Binary Display Export\n")
@@ -1059,7 +1059,7 @@ class BinaryDisplay(tk.Frame):
         except Exception as e:
             messagebox.showerror("Export Error", f"Failed to export display: {e}")
 
-    def _export_hex_text(self, file_handle):
+def _export_hex_text(self, file_handle):
         """Export hex formatted text to file."""
         for i in range(0, len(self.display_data), 16):
             if self.config.show_addresses:
@@ -1092,7 +1092,7 @@ class BinaryDisplay(tk.Frame):
 
             file_handle.write("\n")
 
-    def _export_binary_text(self, file_handle):
+def _export_binary_text(self, file_handle):
         """Export binary formatted text to file."""
         for i in range(0, len(self.display_data), 8):
             if self.config.show_addresses:
@@ -1108,7 +1108,7 @@ class BinaryDisplay(tk.Frame):
 
             file_handle.write("\n")
 
-    def _export_ascii_text(self, file_handle):
+def _export_ascii_text(self, file_handle):
         """Export ASCII formatted text to file."""
         for i in range(0, len(self.display_data), 16):
             if self.config.show_addresses:

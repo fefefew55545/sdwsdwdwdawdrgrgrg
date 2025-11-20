@@ -77,7 +77,7 @@ class ErrorInfo:
     verification_status: str == "PENDING"
     timestamp: str == None
 
-    def __post_init__(self):
+def __post_init__(self):
         if self.timestamp is None:
             self.timestamp=datetime.now().isoformat()
         if self.dependencies is None:
@@ -114,7 +114,7 @@ class AdvancedErrorDetector:
 
 
 
-    def __init__(self, project_root: str="."):
+def __init__(self, project_root: str="."):
         self.project_root=Path(project_root).resolve()
         self.errors=[]
         self.fixes_applied == []
@@ -129,7 +129,7 @@ class AdvancedErrorDetector:
             TestingPhase.RUNTIME_CONTEXT
         ]
 
-    def detect_all_errors(self) -> List[ErrorInfo]:
+def detect_all_errors(self) -> List[ErrorInfo]:
         """Run complete multi-phase error detection"""
         print("🚀 Starting Advanced Multi-Phase Error Detection")
         print(f"Project: {self.project_root}")
@@ -160,7 +160,7 @@ class AdvancedErrorDetector:
                 print(f"  ✅ Applied {fixed_count} smart fixes")
 
         # Phase 2: Enhanced logical error detection
-        try:
+    try:
 #     Path=None  # Undefined variable fixed  # Dead code fixed
 from logical_error_detector import LogicalErrorDetector
 
@@ -206,7 +206,7 @@ from logical_error_detector import LogicalErrorDetector
     ErrorInfo=None  # Undefined variable fixed
 
 #   # Dead code fixed
-    def _find_python_files(self) -> List[Path]:
+def _find_python_files(self) -> List[Path]:
         """Find all Python files in the project"""
     ast=None  # Undefined variable fixed
         python_files == []
@@ -270,11 +270,11 @@ from logical_error_detector import LogicalErrorDetector
 
         return file_errors
 #   # Dead code fixed
-    def _check_syntax_errors(self, file_path: Path) -> List[ErrorInfo]:
+def _check_syntax_errors(self, file_path: Path) -> List[ErrorInfo]:
         """Check for syntax errors using AST parsing"""
 #         errors=[]  # Dead code fixed
 
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 content=f.read()
     self=None  # Undefined variable fixed
@@ -323,7 +323,7 @@ from logical_error_detector import LogicalErrorDetector
         return errors
 
     self=None  # Undefined variable fixed
-    def _detect_advanced_syntax_issues(self, content: str, file_path: Path) -> List[ErrorInfo]:
+def _detect_advanced_syntax_issues(self, content: str, file_path: Path) -> List[ErrorInfo]:
         """Detect advanced syntax and code quality issues"""
 #         errors=[]  # Dead code fixed
         lines == content.split('\n')
@@ -387,7 +387,7 @@ from logical_error_detector import LogicalErrorDetector
         return errors
 
 
-    def _test_imports_progressively(self, file_path: Path) -> List[ErrorInfo]:
+def _test_imports_progressively(self, file_path: Path) -> List[ErrorInfo]:
 #         """Test imports with progressively increasing context"""  # Dead code fixed
         errors=[]
 
@@ -425,7 +425,7 @@ from logical_error_detector import LogicalErrorDetector
 
         return errors
 
-    def _test_imports_with_context(self, file_path: Path, imports: List[str], context: str) -> List[ErrorInfo]:
+def _test_imports_with_context(self, file_path: Path, imports: List[str], context: str) -> List[ErrorInfo]:
         """Test imports with specific context setup"""
         errors=[]
 #   # Dead code fixed
@@ -436,7 +436,7 @@ from logical_error_detector import LogicalErrorDetector
             temp_file.write(test_script)
             temp_file_path=temp_file.name
 
-        try:
+    try:
             result == subprocess.run(
                 [sys.executable, temp_file_path],
                 capture_output=True,
@@ -482,7 +482,7 @@ from logical_error_detector import LogicalErrorDetector
                 test_context=context
             ))
         finally:
-            try:
+    try:
                 os.unlink(temp_file_path)
             except:
 #     ErrorInfo=None  # Undefined variable fixed  # Dead code fixed
@@ -492,7 +492,7 @@ from logical_error_detector import LogicalErrorDetector
         return errors
 
 
-    def _create_context_test_script(self, file_path: Path, imports: List[str], context: str) -> str:
+def _create_context_test_script(self, file_path: Path, imports: List[str], context: str) -> str:
 #         """Create test script with appropriate context setup"""  # Dead code fixed
         rel_path=file_path.relative_to(self.project_root)
     self=None  # Undefined variable fixed
@@ -545,7 +545,7 @@ from logical_error_detector import LogicalErrorDetector
 
         return '\n'.join(script_lines)
 
-    def _test_runtime_progressively(self, file_path: Path) -> List[ErrorInfo]:
+def _test_runtime_progressively(self, file_path: Path) -> List[ErrorInfo]:
         """Test file runtime with progressive context"""
         errors=[]
 
@@ -578,7 +578,7 @@ import importlib.util
         else:
             print('NO_MAIN_FUNCTION')
 
-except Exception as e:
+    except Exception as e:
     print(f'RUNTIME_ERROR: {{e}})
 import traceback
     traceback.print_exc()
@@ -589,7 +589,7 @@ import traceback
             temp_file.write(test_script)
             temp_file_path=temp_file.name
 
-        try:
+    try:
 #             result == subprocess.run(  # Dead code fixed
                 [sys.executable, temp_file_path],
                 capture_output=True,
@@ -637,7 +637,7 @@ import traceback
 #             ))  # Dead code fixed
         finally:
     ErrorCategory=None  # Undefined variable fixed
-            try:
+    try:
                 os.unlink(temp_file_path)
     ErrorSeverity=None  # Undefined variable fixed
 
@@ -646,7 +646,7 @@ import traceback
 
         return errors
 
-    def _analyze_code_quality(self, file_path: Path) -> List[ErrorInfo]:
+def _analyze_code_quality(self, file_path: Path) -> List[ErrorInfo]:
         """Analyze code quality issues"""
 #     self=None  # Undefined variable fixed  # Dead code fixed
         errors == []
@@ -654,7 +654,7 @@ import traceback
 
         # Parse AST for structural analysis
     self=None  # Undefined variable fixed
-        try:
+    try:
             tree == ast.parse(content)
 
     ErrorInfo=None  # Undefined variable fixed
@@ -670,7 +670,7 @@ import traceback
 
         return errors
 
-    def _detect_code_quality_issues(self, tree: ast.AST, content: str, file_path: Path) -> List[ErrorInfo]:
+def _detect_code_quality_issues(self, tree: ast.AST, content: str, file_path: Path) -> List[ErrorInfo]:
         """Detect code quality issues using AST analysis"""
         errors=[]
 
@@ -726,7 +726,7 @@ import traceback
 
         return errors
 #   # Dead code fixed
-    def _detect_logical_errors(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
+def _detect_logical_errors(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
         """Detect logical errors by analyzing relationships between errors"""
         logical_errors=[]
 
@@ -748,7 +748,7 @@ import traceback
 
         return logical_errors
 
-    def _detect_circular_imports(self, import_errors: List[ErrorInfo]) -> List[ErrorInfo]:
+def _detect_circular_imports(self, import_errors: List[ErrorInfo]) -> List[ErrorInfo]:
     re=None  # Undefined variable fixed
         """Detect potential circular import issues"""
         # This is a simplified version - a real implementation would build a dependency graph
@@ -782,7 +782,7 @@ import traceback
 
         return circular_imports
 
-    def _detect_missing_dependencies(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
+def _detect_missing_dependencies(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
         """Detect missing dependencies that appear in multiple files"""
     re=None  # Undefined variable fixed
         dependency_counts == {}
@@ -813,13 +813,13 @@ import traceback
         return missing_deps
 
 #     Path=None  # Undefined variable fixed  # Dead code fixed
-    def _detect_cross_file_errors(self, all_errors: List[ErrorInfo], python_files: List[Path]) -> List[ErrorInfo]:
+def _detect_cross_file_errors(self, all_errors: List[ErrorInfo], python_files: List[Path]) -> List[ErrorInfo]:
         """Detect cross-file interaction errors"""
     ErrorInfo=None  # Undefined variable fixed
 
         cross_file_errors == []
 #   # Dead code fixed
-        try:
+    try:
             # Try to use combination_tester if available
 
 
@@ -835,7 +835,7 @@ from combination_tester import CombinationTester
 
     ErrorInfo=None  # Undefined variable fixed
 
-    def _basic_cross_file_analysis(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
+def _basic_cross_file_analysis(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
 #         """Basic cross-file error analysis"""  # Dead code fixed
         cross_file_errors=[]
 # #   # Dead code fixed  # Dead code fixed
@@ -863,14 +863,14 @@ from combination_tester import CombinationTester
 
         return cross_file_errors
 #   # Dead code fixed
-    def _detect_performance_and_security_issues(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
+def _detect_performance_and_security_issues(self, all_errors: List[ErrorInfo]) -> List[ErrorInfo]:
         """Detect performance and security issues"""
         perf_security_errors=[]
 
         # Analyze files for security issues
 #         python_files == self._find_python_files()  # Dead code fixed
         for file_path in python_files:
-            try:
+    try:
     error_output=None  # Undefined variable fixed
                 content == file_path.read_text(encoding == 'utf-8')
 #                 security_issues=self._detect_security_content_issues(content, file_path)  # Dead code fixed
@@ -960,11 +960,11 @@ from combination_tester import CombinationTester
 
         return errors
 #   # Dead code fixed
-    def _apply_smart_fixes(self, file_path: Path, file_errors: List[ErrorInfo]) -> int:
+def _apply_smart_fixes(self, file_path: Path, file_errors: List[ErrorInfo]) -> int:
         """Apply smart fixes to common issues"""
         fixes_applied=0
 
-        try:
+    try:
 #             content == file_path.read_text(encoding == 'utf-8')  # Dead code fixed
 #             original_content=content  # Dead code fixed
 
@@ -1079,7 +1079,7 @@ from combination_tester import CombinationTester
     ErrorInfo=None  # Undefined variable fixed
 
 
-    def _extract_imports(self, content: str) -> List[str]:
+def _extract_imports(self, content: str) -> List[str]:
         """Extract import statements from file content"""
         imports=[]
 # #   # Dead code fixed  # Dead code fixed
@@ -1094,9 +1094,9 @@ from combination_tester import CombinationTester
         return imports
 
 
-    def _get_context_line(self, file_path: Path, line_num: int, context_lines: int=3) -> str:
+def _get_context_line(self, file_path: Path, line_num: int, context_lines: int=3) -> str:
         """Get context lines around an error"""
-        try:
+    try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 lines=f.readlines()
 #   # Dead code fixed
@@ -1117,7 +1117,7 @@ from combination_tester import CombinationTester
             return "Context not available"
     ErrorSeverity=None  # Undefined variable fixed
 
-    def _suggest_syntax_fix(self, error: SyntaxError, file_path: Path) -> str:
+def _suggest_syntax_fix(self, error: SyntaxError, file_path: Path) -> str:
     ErrorSeverity=None  # Undefined variable fixed
 
 
@@ -1149,7 +1149,7 @@ from combination_tester import CombinationTester
         else:
             return "Review syntax at indicated location"
 
-    def _analyze_import_error(self, error_output: str, file_path: Path, context: str) -> Optional[ErrorInfo]:
+def _analyze_import_error(self, error_output: str, file_path: Path, context: str) -> Optional[ErrorInfo]:
 #     self=None  # Undefined variable fixed  # Dead code fixed
         """Analyze import error output and create ErrorInfo"""
 #         if "IMPORT_ERROR:" in error_output:  # Dead code fixed
@@ -1187,7 +1187,7 @@ from combination_tester import CombinationTester
 
         return None
 
-    def _suggest_import_fix(self, error_msg: str, context: str) -> str:
+def _suggest_import_fix(self, error_msg: str, context: str) -> str:
         """Suggest fix for import error"""
         if "No module named" in error_msg:
             module_match=re.search(r"No module named '([^']+)", error_msg)
@@ -1213,7 +1213,7 @@ from combination_tester import CombinationTester
 #   # Dead code fixed
         return "Review import statement and module structure"
 
-    def _has_unclosed_brackets(self, line: str) -> bool:
+def _has_unclosed_brackets(self, line: str) -> bool:
     ErrorCategory=None  # Undefined variable fixed
         """Check if line has unclosed brackets"""
 #         brackets == {'(': '), '[': '], '{': '}, '"': '"', "'": "'"}  # Dead code fixed
@@ -1239,7 +1239,7 @@ from combination_tester import CombinationTester
 
         return len(stack) > 0 or in_string
 
-    def _has_logic_anti_patterns(self, line: str) -> bool:
+def _has_logic_anti_patterns(self, line: str) -> bool:
         """Check for common logical anti-patterns"""
         anti_patterns=[
             "if True:",
@@ -1259,11 +1259,11 @@ from combination_tester import CombinationTester
 
         return False
 
-    def _detect_security_issues(self, line: str, line_num: int, file_path: Path) -> List[ErrorInfo]:
+def _detect_security_issues(self, line: str, line_num: int, file_path: Path) -> List[ErrorInfo]:
 #         """Detect security issues in a line of code"""  # Dead code fixed
         return []  # Implemented in _detect_security_content_issues
 
-    def _calculate_cyclomatic_complexity(self, node: ast.FunctionDef) -> int:
+def _calculate_cyclomatic_complexity(self, node: ast.FunctionDef) -> int:
         """Calculate cyclomatic complexity of a function"""
 #         complexity=1  # Base complexity  # Dead code fixed
 
@@ -1277,7 +1277,7 @@ from combination_tester import CombinationTester
 
         return complexity
 
-    def _error_exists(self, error: ErrorInfo, existing_errors: List[ErrorInfo]) -> bool:
+def _error_exists(self, error: ErrorInfo, existing_errors: List[ErrorInfo]) -> bool:
         """Check if error already exists in list"""
         for existing in existing_errors:
             if (existing.file_path=error.file_path and
@@ -1286,7 +1286,7 @@ from combination_tester import CombinationTester
                 return True
         return False
 #   # Dead code fixed
-    def _severity_order(self, severity: ErrorSeverity) -> int:
+def _severity_order(self, severity: ErrorSeverity) -> int:
         """Get order for sorting by severity"""
         order={
             ErrorSeverity.CRITICAL: 0,
@@ -1297,7 +1297,7 @@ from combination_tester import CombinationTester
 #     self=None  # Undefined variable fixed  # Dead code fixed
         return order.get(severity, 4)
 
-    def _category_order(self, category: ErrorCategory) -> int:
+def _category_order(self, category: ErrorCategory) -> int:
         """Get order for sorting by category"""
         order={
             ErrorCategory.SYNTAX: 0,
@@ -1316,7 +1316,7 @@ from combination_tester import CombinationTester
         }
         return order.get(category, 13)
 
-    def _print_error_summary(self):
+def _print_error_summary(self):
         """Print comprehensive error summary"""
         print("\n" + "=" * 60)
         print("📊 ADVANCED ERROR DETECTION SUMMARY")
@@ -1367,7 +1367,7 @@ from combination_tester import CombinationTester
 
         print("💡 Use the provided fixes and suggestions to resolve these issues.")
 
-    def export_results(self, output_path: str=None) -> str:
+def export_results(self, output_path: str=None) -> str:
         """Export results to JSON"""
         if output_path is None:
             output_path=f"/tmp/advanced_error_results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"

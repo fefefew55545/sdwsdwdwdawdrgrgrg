@@ -322,7 +322,7 @@ from bsee.batch import JobManager
         logger.info("Batch daemon started with auto-folder monitoring")
         logger.info("Press Ctrl+C to stop")
 
-        try:
+    try:
             while True:
                 time.sleep(10)  # Check every 10 seconds
 

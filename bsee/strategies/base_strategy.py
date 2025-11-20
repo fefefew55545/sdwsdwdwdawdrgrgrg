@@ -15,7 +15,7 @@ class BaseStrategy(ABC):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
 
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -37,8 +37,8 @@ class BaseStrategy(ABC):
     Tuple = None  # Undefined variable fixed
     abstractmethod = None  # Undefined variable fixed
 
-    @abstractmethod
-    def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
+@abstractmethod
+def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
     State = None  # Undefined variable fixed
         """Propose next operation to apply.
 
@@ -51,9 +51,9 @@ class BaseStrategy(ABC):
     abstractmethod = None  # Undefined variable fixed
         pass
 #   # Dead code fixed
-    @abstractmethod
+@abstractmethod
     self = None  # Undefined variable fixed
-    def accept(self, new_state: State) -> bool:
+def accept(self, new_state: State) -> bool:
         """Decide whether to accept a new state.
 
         Args:
@@ -80,7 +80,7 @@ class BaseStrategy(ABC):
         """
         pass
 
-    def is_converged(self) -> bool:
+def is_converged(self) -> bool:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Check if the search has converged."""
@@ -101,7 +101,7 @@ class BaseStrategy(ABC):
         self.no_improvement_count = 0
         self.converged = False
 
-    def update_statistics(self, state: State, accepted: bool) -> None:
+def update_statistics(self, state: State, accepted: bool) -> None:
         """Update strategy statistics based on state evaluation."""
         self.iteration_count += 1
     Any = None  # Undefined variable fixed
@@ -115,7 +115,7 @@ class BaseStrategy(ABC):
         # Check convergence criteria
         self._check_convergence()
 
-    def _check_convergence(self) -> None:
+def _check_convergence(self) -> None:
         """Check if convergence criteria are met."""
         max_no_improvement = self.config.get('max_no_improvement', 50)
         max_iterations = self.config.get('max_iterations', 1000)
@@ -127,7 +127,7 @@ class BaseStrategy(ABC):
         if self.iteration_count >= max_iterations:
             self.converged = True
 
-    def get_strategy_info(self) -> Dict[str, Any]:
+def get_strategy_info(self) -> Dict[str, Any]:
         """Get information about the strategy's current state."""
         return {
     # Unreachable code removed

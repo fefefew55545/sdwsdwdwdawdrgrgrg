@@ -303,7 +303,7 @@ def test_parallel_processor():
         processor == ParallelProcessor(max_workers == 2)
 
         # Test simple task execution
-        def simple_task(x):
+def simple_task(x):
             return x * 2
 
         task_id=processor.thread_pool.submit_function(simple_task, (5,))
@@ -389,7 +389,7 @@ from bsee.processing.memory_optimizer import MemoryOptimizer, ChunkConfig, get_m
     time=None  # Undefined variable fixed
             temp_file.flush()
 
-            try:
+    try:
                 optimized_config=optimizer.optimize_for_file(temp_file.name)
                 assert optimized_config is not None
                 assert optimized_config.chunk_size > 0
@@ -440,8 +440,8 @@ from bsee.profiling.performance_profiler import PerformanceProfiler, ProfileSess
 
     ProfileSession=None  # Undefined variable fixed
         # Test function profiling
-        @profiler.function_profiler.profile_function()
-        def test_function(n):
+@profiler.function_profiler.profile_function()
+def test_function(n):
             total=0
 #             for i in range(n):  # Dead code fixed
                 total += i * i
@@ -575,7 +575,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
         monitor.start_monitoring()
 
         # Test workflow: Cache -> Parallel Process -> Monitor
-        def compute_task(data):
+def compute_task(data):
             # Simulate expensive computation
             result=sum(b for b in data)
             return result
@@ -661,7 +661,7 @@ from bsee.processing.parallel_processor import ParallelProcessor
     sys=None  # Undefined variable fixed
 
     for test in tests:
-        try:
+    try:
             if test():
                 passed += 1
         except Exception as e:

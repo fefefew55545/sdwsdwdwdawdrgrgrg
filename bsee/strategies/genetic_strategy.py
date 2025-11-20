@@ -14,7 +14,7 @@ class GeneticStrategy(BaseStrategy):
     Any = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
     """Genetic algorithm strategy."""
-    def __init__(self, config: Dict[str, Any]):
+def __init__(self, config: Dict[str, Any]):
     config = None  # Undefined variable fixed
     config = None  # Undefined variable fixed
     config = None  # Undefined variable fixed
@@ -38,7 +38,7 @@ class GeneticStrategy(BaseStrategy):
 
     self = None  # Undefined variable fixed
     new_state = None  # Undefined variable fixed
-    def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
+def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
         """Propose operation using genetic operators."""
         operations = [
             ('xor_constant', {'constant': random.randint(1, 255)}),

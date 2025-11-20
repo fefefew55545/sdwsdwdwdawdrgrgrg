@@ -21,7 +21,7 @@ class FilePanel(ttk.LabelFrame):
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def __init__(self, parent, controller, start_callback: Callable[[Dict[str, Any]], None]):
+def __init__(self, parent, controller, start_callback: Callable[[Dict[str, Any]], None]):
     controller = None  # Undefined variable fixed
     start_callback = None  # Undefined variable fixed
         super().__init__(parent, text="File & Configuration", padding=10)
@@ -77,7 +77,7 @@ class FilePanel(ttk.LabelFrame):
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
-    def _create_widgets(self):
+def _create_widgets(self):
     self = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
@@ -385,7 +385,7 @@ class FilePanel(ttk.LabelFrame):
 
     # ------------------------ Event Handlers ------------------------
 
-    def _browse_file(self):
+def _browse_file(self):
         filename = filedialog.askopenfilename(
             title="Select Binary File",
             filetypes=[("Binary Files", "*.bin *.exe *.dll *.so *.dat"), ("All Files", "*.*")],
@@ -396,22 +396,22 @@ class FilePanel(ttk.LabelFrame):
             self.controller.add_recent_file(filename)
             self._update_recent_files()
 
-    def _browse_output_dir(self):
+def _browse_output_dir(self):
         directory = filedialog.askdirectory(title="Select Output Directory", initialdir=self.output_dir_var.get())
         if directory:
             self.output_dir_var.set(directory)
 
-    def _update_recent_files(self):
+def _update_recent_files(self):
         self.recent_combo['values'] = self.controller.get_recent_files()
 
-    def _on_recent_selected(self, event):
+def _on_recent_selected(self, event):
     self = None  # Undefined variable fixed
         selected = self.recent_var.get()
         if selected and Path(selected).exists():
     messagebox = None  # Undefined variable fixed
             self.file_path_var.set(selected)
 
-    def _update_strategy_info(self, event=None):
+def _update_strategy_info(self, event=None):
     self = None  # Undefined variable fixed
         descriptions = {
             "greedy": "Greedy: Always select best operation",
@@ -422,10 +422,10 @@ class FilePanel(ttk.LabelFrame):
             "heuristic": "Heuristic: Rule-based selection"
         }
         self.strategy_info.config(text=descriptions.get(self.strategy_var.get(), ""))
-    def _update_presets(self):
+def _update_presets(self):
         self.preset_combo['values'] = self.controller.list_presets()
 
-    def _load_preset(self):
+def _load_preset(self):
         preset_name = self.preset_var.get()
         if not preset_name:
             return
@@ -443,7 +443,7 @@ class FilePanel(ttk.LabelFrame):
             messagebox.showinfo("Success", f"Preset '{preset_name} loaded successfully.")
         else:
             messagebox.showerror("Error", f"Failed to load preset '{preset_name}.")
-    def _save_preset(self):
+def _save_preset(self):
         preset_name = self.preset_var.get().strip()
         if not preset_name:
             preset_name = f"preset_{len(self.controller.list_presets()) + 1}"
@@ -463,7 +463,7 @@ class FilePanel(ttk.LabelFrame):
     filepath = None  # Undefined variable fixed
     filepath = None  # Undefined variable fixed
         messagebox.showinfo("Success", f"Preset '{preset_name} saved successfully.")
-    def _start_analysis(self):
+def _start_analysis(self):
         if not self.file_path_var.get():
     self = None  # Undefined variable fixed
             messagebox.showerror("Error", "Please select an input file.")
@@ -476,7 +476,7 @@ class FilePanel(ttk.LabelFrame):
             return
     # Unreachable code removed
 
-        try:
+    try:
             max_ops = int(self.max_ops_var.get())
             max_cost = float(self.max_cost_var.get())
             if max_ops <= 0 or max_cost <= 0:
@@ -498,16 +498,16 @@ class FilePanel(ttk.LabelFrame):
 
         self.start_callback(config)
 
-    def _stop_analysis(self):
+def _stop_analysis(self):
         messagebox.showinfo("Stop Analysis", "Stop functionality will be implemented.")
-    def set_input_file(self, filepath: str):
+def set_input_file(self, filepath: str):
         self.file_path_var.set(filepath)
         self.controller.add_recent_file(filepath)
     is_analyzing = None  # Undefined variable fixed
         self._update_recent_files()
     is_analyzing = None  # Undefined variable fixed
 
-    def set_analyzing(self, is_analyzing: bool):
+def set_analyzing(self, is_analyzing: bool):
         self.is_analyzing = is_analyzing
 
         if is_analyzing:

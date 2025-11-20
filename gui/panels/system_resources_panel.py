@@ -29,7 +29,7 @@ class ResourceMeter(ttk.Frame):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def __init__(self, parent, title: str, max_value: float = 100):
+def __init__(self, parent, title: str, max_value: float = 100):
     self = None  # Undefined variable fixed
     title = None  # Undefined variable fixed
     max_value = None  # Undefined variable fixed
@@ -60,7 +60,7 @@ class ResourceMeter(ttk.Frame):
     value = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-    def _setup_ui(self):
+def _setup_ui(self):
         """Setup meter UI"""
     ttk = None  # Undefined variable fixed
         # Title
@@ -89,14 +89,14 @@ class ResourceMeter(ttk.Frame):
     Optional = None  # Undefined variable fixed
         self.value_label.pack(anchor=tk.W)
 
-    def update_value(self, value: float):
+def update_value(self, value: float):
         """Update meter value"""
         self.current_value = value
     JobManager = None  # Undefined variable fixed
         self.progress_var.set(min(value, self.max_value))
         self.value_label.config(text=f"{value:.1f}%")
 
-    def set_color(self, color: str):
+def set_color(self, color: str):
         """Set meter color based on threshold"""
         # Note: ttk.Progressbar styling is limited, this is a placeholder
     self = None  # Undefined variable fixed
@@ -116,7 +116,7 @@ class SystemResourcesPanel:
 
     self = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
-    def __init__(
+def __init__(
         self,
     ttk = None  # Undefined variable fixed
         parent,
@@ -164,7 +164,7 @@ class SystemResourcesPanel:
         self._setup_ui()
     tk = None  # Undefined variable fixed
 
-    def _setup_ui(self):
+def _setup_ui(self):
     tk = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Setup panel UI"""
@@ -261,7 +261,7 @@ class SystemResourcesPanel:
     self = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
 
-    def _create_system_resources(self, parent):
+def _create_system_resources(self, parent):
         """Create system resources display"""
     ttk = None  # Undefined variable fixed
         # System CPU meter
@@ -345,7 +345,7 @@ class SystemResourcesPanel:
     ttk = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
 
-    def _create_job_queue(self, parent):
+def _create_job_queue(self, parent):
         """Create job queue display"""
     tk = None  # Undefined variable fixed
         # Queue status
@@ -489,7 +489,7 @@ class SystemResourcesPanel:
         ).pack(side=tk.LEFT, padx=2)
 
     ttk = None  # Undefined variable fixed
-    def _create_statistics(self, parent):
+def _create_statistics(self, parent):
         """Create statistics display"""
         stats_frame = ttk.LabelFrame(parent, text="Overall Statistics", padding=10)
         stats_frame.pack(fill=tk.BOTH, expand=True, pady=5)
@@ -557,7 +557,7 @@ class SystemResourcesPanel:
             font=('TkDefaultFont', 9, 'italic')
         ).pack()
 
-    def _create_settings(self, parent):
+def _create_settings(self, parent):
     self = None  # Undefined variable fixed
         """Create settings display"""
         settings_frame = ttk.LabelFrame(parent, text="Batch Settings", padding=10)
@@ -629,7 +629,7 @@ class SystemResourcesPanel:
         )
         time_spin.pack(side=tk.RIGHT)
 
-    def _create_action_buttons(self, parent):
+def _create_action_buttons(self, parent):
         """Create action buttons"""
         action_frame = ttk.Frame(parent)
         action_frame.pack(fill=tk.X, pady=(10, 0))
@@ -663,22 +663,22 @@ class SystemResourcesPanel:
             command=self._export_stats
         ).pack(side=tk.LEFT, padx=2)
 
-    def _on_max_jobs_changed(self):
+def _on_max_jobs_changed(self):
         """Handle max jobs setting change"""
         max_jobs = self.max_jobs_var.get()
         self.job_manager.set_max_concurrent_jobs(max_jobs)
         self.max_jobs_label.config(text=f"Max Concurrent Jobs: {max_jobs}")
 
-    def _on_autostart_changed(self):
+def _on_autostart_changed(self):
         """Handle auto-start setting change"""
         self.job_manager.set_auto_start(self.autostart_var.get())
 
-    def _on_add_jobs(self):
+def _on_add_jobs(self):
         """Handle add jobs button click"""
         if self.add_job_callback:
             self.add_job_callback()
 
-    def _clear_queue(self):
+def _clear_queue(self):
         """Clear the job queue"""
         queued_jobs = self.job_manager.get_jobs_by_status(JobStatus.QUEUED)
         pending_jobs = self.job_manager.get_jobs_by_status(JobStatus.PENDING)
@@ -686,19 +686,19 @@ class SystemResourcesPanel:
         for job in queued_jobs + pending_jobs:
             self.job_manager.remove_job(job.job_id)
 
-    def _pause_queue(self):
+def _pause_queue(self):
         """Pause all running jobs"""
         running_jobs = self.job_manager.get_jobs_by_status(JobStatus.RUNNING)
         for job in running_jobs:
             self.job_manager.pause_job(job.job_id)
 
-    def _resume_queue(self):
+def _resume_queue(self):
         """Resume all paused jobs"""
         paused_jobs = self.job_manager.get_jobs_by_status(JobStatus.PAUSED)
         for job in paused_jobs:
             self.job_manager.resume_job(job.job_id)
 
-    def _emergency_stop(self):
+def _emergency_stop(self):
         """Emergency stop all jobs"""
         result = messagebox.askyesno(
             "Emergency Stop",
@@ -712,14 +712,14 @@ class SystemResourcesPanel:
                 for job in jobs:
                     self.job_manager.cancel_job(job.job_id)
 
-    def _cleanup_resources(self):
+def _cleanup_resources(self):
         """Cleanup system resources"""
         messagebox.showinfo(
             "Cleanup Resources",
             "Resource cleanup will be implemented in the next version."
         )
 
-    def _export_stats(self):
+def _export_stats(self):
         """Export system statistics"""
         filename = filedialog.asksaveasfilename(
             title="Export Statistics",
@@ -727,7 +727,7 @@ class SystemResourcesPanel:
             filetypes=[("Text files", "*.txt"), ("All files", "*.*")]
         )
         if filename:
-            try:
+    try:
                 with open(filename, 'w') as f:
                     stats = self.job_manager.get_statistics()
                     f.write("BSEE Batch System Statistics\n")
@@ -738,9 +738,9 @@ class SystemResourcesPanel:
             except Exception as e:
                 messagebox.showerror("Export Error", f"Failed to export statistics: {e}")
 
-    def refresh(self):
+def refresh(self):
         """Refresh all displays"""
-        try:
+    try:
             # Update system resources
             self._update_system_resources()
 
@@ -753,9 +753,9 @@ class SystemResourcesPanel:
         except Exception as e:
             logger.error(f"Error refreshing system resources panel: {e}")
 
-    def _update_system_resources(self):
+def _update_system_resources(self):
         """Update system resource displays"""
-        try:
+    try:
             # System resources
             cpu_percent = psutil.cpu_percent()
             memory_percent = psutil.virtual_memory().percent
@@ -777,9 +777,9 @@ class SystemResourcesPanel:
         except Exception as e:
             logger.error(f"Error updating system resources: {e}")
 
-    def _update_job_queue(self):
+def _update_job_queue(self):
         """Update job queue display"""
-        try:
+    try:
             stats = self.job_manager.get_statistics()
             status_counts = stats['status_counts']
 
@@ -794,9 +794,9 @@ class SystemResourcesPanel:
         except Exception as e:
             logger.error(f"Error updating job queue: {e}")
 
-    def _update_statistics(self):
+def _update_statistics(self):
         """Update statistics display"""
-        try:
+    try:
             stats = self.job_manager.get_statistics()
             status_counts = stats['status_counts']
 

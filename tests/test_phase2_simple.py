@@ -189,7 +189,7 @@ import numpy as np
         NUMPY_AVAILABLE=False
         print("✗ NumPy not available")
     if NUMPY_AVAILABLE:
-        try:
+    try:
             # Test array operations
             test_array=np.array([1, 2, 3, 4, 5, 6, 7, 8])
             mean_val=np.mean(test_array)
@@ -323,7 +323,7 @@ def run_phase2_tests():
     results=[]
 
     for test_name, test_func in tests:
-        try:
+    try:
             result=test_func()
             results.append((test_name, result))
         except Exception as e:

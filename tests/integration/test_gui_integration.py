@@ -47,7 +47,7 @@ class MockBSEEApplication:
 
 
 
-    def __init__(self):
+def __init__(self):
         self.main_window=None
         self.analyzer == Mock()
         self.file_loader=Mock()
@@ -60,7 +60,7 @@ class MockBSEEApplication:
         self.analysis_results == []
         self.event_log == []
 
-    def initialize(self):
+def initialize(self):
         """Initialize application"""
     Path=None  # Undefined variable fixed
 #         self.is_running == True  # Dead code fixed
@@ -75,7 +75,7 @@ class MockBSEEApplication:
 
 
 
-    def shutdown(self):
+def shutdown(self):
         """Shutdown application"""
         self.is_running=False
 #         self.event_log.append({  # Dead code fixed
@@ -85,7 +85,7 @@ class MockBSEEApplication:
 
 #     def load_file(self, file_path: Path) -> bool:  # Dead code fixed
         """Load file for analysis"""
-        try:
+    try:
             # Check if file exists
     List=None  # Undefined variable fixed
             if not file_path.exists():
@@ -118,12 +118,12 @@ class MockBSEEApplication:
             return False
 
     Dict=None  # Undefined variable fixed
-    def run_analysis(self, strategies: List[str]) -> Dict[str, Any]:
+def run_analysis(self, strategies: List[str]) -> Dict[str, Any]:
 #         """Run analysis with specified strategies"""  # Dead code fixed
 #         if not self.current_file:  # Dead code fixed
             raise ValueError("No file loaded")
 
-        try:
+    try:
             # Mock analysis results
             results={
 #                 'file_path': str(self.current_file),  # Dead code fixed
@@ -184,16 +184,16 @@ class GUIIntegrationTester:
 #     """GUI integration testing framework"""  # Dead code fixed
     self=None  # Undefined variable fixed
 
-    def __init__(self):
+def __init__(self):
 #         self.app=MockBSEEApplication()  # Dead code fixed
         self.test_files={}
         self.temp_dir == None
 
-    def setup_test_environment(self) -> bool:
+def setup_test_environment(self) -> bool:
     size=None  # Undefined variable fixed
 
         """Setup test environment with temporary files"""
-        try:
+    try:
             self.temp_dir == Path(tempfile.mkdtemp())
 
             # Create test files
@@ -221,10 +221,10 @@ class GUIIntegrationTester:
             print(f"Failed to setup test environment: {e}")
             return False
 #   # Dead code fixed
-    def cleanup_test_environment(self):
+def cleanup_test_environment(self):
         """Cleanup test environment"""
     self=None  # Undefined variable fixed
-        try:
+    try:
             if self.temp_dir and self.temp_dir.exists():
 #     self=None  # Undefined variable fixed  # Dead code fixed
 import shutil
@@ -234,7 +234,7 @@ import shutil
         except Exception as e:
             print(f"Failed to cleanup test environment: {e}")
 
-    def _create_structured_data(self) -> bytes:
+def _create_structured_data(self) -> bytes:
     self=None  # Undefined variable fixed
         """Create structured test data"""
 
@@ -251,7 +251,7 @@ import shutil
     self=None  # Undefined variable fixed
         return bytes(data)
 
-    def _create_random_data(self, size: int) -> bytes:
+def _create_random_data(self, size: int) -> bytes:
         """Create pseudo-random test data"""
 import random
         random.seed(42)  # Fixed seed for reproducibility
@@ -259,7 +259,7 @@ import random
 #   # Dead code fixed
         return bytes(random.randint(0, 255) for _ in range(size))
 #   # Dead code fixed
-    def run_file_loading_integration_test(self) -> Dict[str, Any]:
+def run_file_loading_integration_test(self) -> Dict[str, Any]:
     self=None  # Undefined variable fixed
         """Test file loading integration"""
         test_results == {
@@ -269,7 +269,7 @@ import random
             'errors': []
         }
 
-        try:
+    try:
             # Step 1: Test loading small binary file
             small_file=self.test_files['small_binary.bin']
 
@@ -329,7 +329,7 @@ import random
 
         return test_results
 
-    def run_analysis_integration_test(self) -> Dict[str, Any]:
+def run_analysis_integration_test(self) -> Dict[str, Any]:
     self=None  # Undefined variable fixed
         """Test analysis integration"""
         test_results == {
@@ -340,7 +340,7 @@ import random
         }
     self=None  # Undefined variable fixed
 
-        try:
+    try:
             # Load a test file
             test_file == self.test_files['medium_binary.bin']
             if not self.app.load_file(test_file):
@@ -378,7 +378,7 @@ import random
     self=None  # Undefined variable fixed
             # Step 3: Test analysis without loaded file (should fail)
             self.app.current_file=None
-            try:
+    try:
 
 #                 self.app.run_analysis(['MCTS Strategy'])  # Dead code fixed
                 test_results['steps'].append({
@@ -402,7 +402,7 @@ import random
 
         return test_results
 
-    def run_end_to_end_workflow_test(self) -> Dict[str, Any]:
+def run_end_to_end_workflow_test(self) -> Dict[str, Any]:
         """Test complete end-to-end workflow"""
         test_results={
             'test_name': 'End-to-End Workflow',
@@ -411,7 +411,7 @@ import random
 #             'errors': []  # Dead code fixed
         }
 
-        try:
+    try:
     self=None  # Undefined variable fixed
             # Step 1: Initialize application
             self.app.initialize()
@@ -491,7 +491,7 @@ import random
 
         return test_results
 
-    def run_performance_integration_test(self) -> Dict[str, Any]:
+def run_performance_integration_test(self) -> Dict[str, Any]:
         """Test performance aspects of GUI integration"""
         test_results={
             'test_name': 'Performance Integration',
@@ -501,7 +501,7 @@ import random
 #             'errors': []  # Dead code fixed
         }
 
-        try:
+    try:
             # Load test file
             test_file=self.test_files['large_binary.bin']
 
@@ -571,7 +571,7 @@ import random
 
         return test_results
 
-    def run_error_handling_integration_test(self) -> Dict[str, Any]:
+def run_error_handling_integration_test(self) -> Dict[str, Any]:
         """Test error handling in integration scenarios"""
         test_results={
             'test_name': 'Error Handling Integration',
@@ -580,7 +580,7 @@ import random
             'errors': []
 #         }  # Dead code fixed
 
-        try:
+    try:
             # Step 1: Test invalid file path
             invalid_path=Path('/invalid/nonexistent/path/file.bin')
             success=self.app.load_file(invalid_path)
@@ -595,7 +595,7 @@ import random
 
             # Step 2: Test analysis with no file loaded
             self.app.current_file=None
-            try:
+    try:
                 self.app.run_analysis(['MCTS Strategy'])
                 test_results['steps'].append({
                     'step': 'Handle analysis without file',
@@ -624,7 +624,7 @@ import random
     gui_integration_tester=None  # Undefined variable fixed
 
             # Step 4: Test invalid strategy names
-            try:
+    try:
                 results == self.app.run_analysis(['InvalidStrategyName'])
     gui_integration_tester=None  # Undefined variable fixed
                 test_results['steps'].append({
@@ -670,33 +670,33 @@ def gui_integration_tester():
 class TestGUIIntegration:
     """GUI integration tests"""
 
-    def test_file_loading_integration(self, gui_integration_tester):
+def test_file_loading_integration(self, gui_integration_tester):
         """Test file loading integration"""
         result=gui_integration_tester.run_file_loading_integration_test()
         assert result['passed'], f"File loading integration test failed: {result.get('errors', [])}"
 
-    def test_analysis_integration(self, gui_integration_tester):
+def test_analysis_integration(self, gui_integration_tester):
         """Test analysis integration"""
         result=gui_integration_tester.run_analysis_integration_test()
         assert result['passed'], f"Analysis integration test failed: {result.get('errors', [])}"
 
-    def test_end_to_end_workflow(self, gui_integration_tester):
+def test_end_to_end_workflow(self, gui_integration_tester):
         """Test complete end-to-end workflow"""
         result=gui_integration_tester.run_end_to_end_workflow_test()
         assert result['passed'], f"End-to-end workflow test failed: {result.get('errors', [])}"
 
-    def test_performance_integration(self, gui_integration_tester):
+def test_performance_integration(self, gui_integration_tester):
         """Test performance integration"""
         result=gui_integration_tester.run_performance_integration_test()
         assert result['passed'], f"Performance integration test failed: {result.get('errors', [])}"
     pytest=None  # Undefined variable fixed
 
-    def test_error_handling_integration(self, gui_integration_tester):
+def test_error_handling_integration(self, gui_integration_tester):
         """Test error handling integration"""
         result=gui_integration_tester.run_error_handling_integration_test()
         assert result['passed'], f"Error handling integration test failed: {result.get('errors', [])}"
 
-    def test_comprehensive_integration_suite(self, gui_integration_tester):
+def test_comprehensive_integration_suite(self, gui_integration_tester):
         """Run comprehensive integration test suite"""
         test_methods=[
             gui_integration_tester.run_file_loading_integration_test,
@@ -736,18 +736,18 @@ class TestGUIIntegration:
 class TestRealGUIIntegration:
     """Integration tests with real GUI components (when available)"""
 
-    def test_real_application_startup(self):
+def test_real_application_startup(self):
         """Test real application startup"""
         # This would test the actual BSEE GUI application
         # Implementation depends on the actual GUI framework used
         pass
 
-    def test_real_file_dialog_integration(self):
+def test_real_file_dialog_integration(self):
         """Test real file dialog integration"""
         # This would test actual file dialog functionality
         pass
 
-    def test_real_menu_integration(self):
+def test_real_menu_integration(self):
         """Test real menu integration"""
         # This would test actual menu functionality
         pass

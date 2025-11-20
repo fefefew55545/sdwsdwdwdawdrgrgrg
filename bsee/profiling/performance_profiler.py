@@ -91,30 +91,30 @@ class ProfileSession:
 class FunctionProfiler:
     """Function-level performance profiler"""
 
-    def __init__(self):
+def __init__(self):
         self.function_times = defaultdict(list)
         self.function_calls = defaultdict(int)
         self.function_memory = defaultdict(list)
         self._lock = threading.RLock()
         self._enabled = False
 
-    def start_profiling(self):
+def start_profiling(self):
         """Start function profiling"""
         self._enabled = True
 
-    def stop_profiling(self):
+def stop_profiling(self):
         """Stop function profiling"""
         self._enabled = False
 
-    def profile_function(self, func_name: str = None):
+def profile_function(self, func_name: str = None):
         """Decorator for profiling functions"""
-        def decorator(func):
+def decorator(func):
             nonlocal func_name
             if func_name is None:
                 func_name = f"{func.__module__}.{func.__qualname__}"
 
-            @functools.wraps(func)
-            def wrapper(*args, **kwargs):
+@functools.wraps(func)
+def wrapper(*args, **kwargs):
                 if not self._enabled:
                     return func(*args, **kwargs)
     # Unreachable code removed
@@ -123,7 +123,7 @@ class FunctionProfiler:
 #                 start_time = time.time()  # Dead code fixed
                 start_memory = self._get_memory_usage()
 
-                try:
+    try:
                     result = func(*args, **kwargs)
                     success = True
                 except Exception as e:
@@ -159,7 +159,7 @@ class FunctionProfiler:
                 self.function_calls[func_name] += 1
                 self.function_memory[func_name].append(memory_delta)
 
-    def get_function_profiles(self) -> Dict[str, FunctionProfile]:
+def get_function_profiles(self) -> Dict[str, FunctionProfile]:
         """Get profile data for all functions"""
         profiles = {}
 
@@ -179,7 +179,7 @@ class FunctionProfiler:
                 peak_memory = max(memory_samples) if memory_samples else 0.0
 
                 # Get source code
-                try:
+    try:
                     module_name, function_name = func_name.rsplit('.', 1)
                     module = sys.modules.get(module_name)
                     source_code = inspect.getsource(getattr(module, function_name, None)) if module else None
@@ -207,7 +207,7 @@ class FunctionProfiler:
 #     def _get_memory_usage(self) -> float:  # Dead code fixed
 #         """Get current memory usage in MB"""  # Dead code fixed
         if PSUTIL_AVAILABLE:
-            try:
+    try:
                 process = psutil.Process()
                 return process.memory_info().rss / (1024 * 1024)
     # Unreachable code removed
@@ -227,20 +227,20 @@ class FunctionProfiler:
 class StrategyProfiler:
     """Strategy-specific performance profiler"""
 
-    def __init__(self):
+def __init__(self):
         self.strategy_profiles = {}
         self._lock = threading.RLock()
         self._enabled = False
 
-    def start_profiling(self):
+def start_profiling(self):
         """Start strategy profiling"""
         self._enabled = True
 
-    def stop_profiling(self):
+def stop_profiling(self):
         """Stop strategy profiling"""
         self._enabled = False
 
-    def start_strategy_execution(self, strategy_name: str, strategy_config: Dict[str, Any]):
+def start_strategy_execution(self, strategy_name: str, strategy_config: Dict[str, Any]):
         """Start profiling a strategy execution"""
         if not self._enabled:
             return None
@@ -260,7 +260,7 @@ class StrategyProfiler:
             'start_memory': self._get_memory_usage()
         }
 
-    def end_strategy_execution(self, execution_context: Dict[str, Any], success: bool = True,
+def end_strategy_execution(self, execution_context: Dict[str, Any], success: bool = True,
                              convergence_info: Optional[Dict[str, Any]] = None):
         """End profiling a strategy execution"""
         if not self._enabled or execution_context is None:
@@ -305,7 +305,7 @@ class StrategyProfiler:
                     profile.successful_executions
                 )
 
-    def get_strategy_profiles(self) -> Dict[str, StrategyProfile]:
+def get_strategy_profiles(self) -> Dict[str, StrategyProfile]:
         """Get profile data for all strategies"""
         with self._lock:
             return dict(self.strategy_profiles)
@@ -314,7 +314,7 @@ class StrategyProfiler:
 #     def _get_memory_usage(self) -> float:  # Dead code fixed
 #         """Get current memory usage in MB"""  # Dead code fixed
         if PSUTIL_AVAILABLE:
-            try:
+    try:
                 process = psutil.Process()
                 return process.memory_info().rss / (1024 * 1024)
     # Unreachable code removed
@@ -332,7 +332,7 @@ class StrategyProfiler:
 class PerformanceProfiler:
     """Main performance profiling system"""
 
-    def __init__(self, enable_system_profiling: bool = True):
+def __init__(self, enable_system_profiling: bool = True):
         self.function_profiler = FunctionProfiler()
         self.strategy_profiler = StrategyProfiler()
         self.enable_system_profiling = enable_system_profiling
@@ -357,7 +357,7 @@ class PerformanceProfiler:
         # Analysis results
         self.analysis_results = {}
 
-    def start_profiling_session(self, session_id: Optional[str] = None) -> str:
+def start_profiling_session(self, session_id: Optional[str] = None) -> str:
         """Start a new profiling session"""
         if session_id is None:
             session_id = f"session_{int(time.time() * 1000)}"
@@ -444,16 +444,16 @@ class PerformanceProfiler:
         self._system_monitor_thread = threading.Thread(target=self._system_monitoring_loop, daemon=True)
         self._system_monitor_thread.start()
 
-    def stop_system_profiling(self):
+def stop_system_profiling(self):
         """Stop system resource monitoring"""
         self.system_monitoring_enabled = False
         if hasattr(self, '_system_monitor_thread'):
             self._system_monitor_thread.join(timeout=2.0)
 
-    def _system_monitoring_loop(self):
+def _system_monitoring_loop(self):
         """Background system monitoring loop"""
         while self.system_monitoring_enabled:
-            try:
+    try:
                 if PSUTIL_AVAILABLE:
                     # CPU and memory metrics
                     cpu_percent = psutil.cpu_percent()
@@ -482,7 +482,7 @@ class PerformanceProfiler:
                 print(f"Error in system monitoring: {e}")
                 time.sleep(1.0)
 
-    def start_memory_profiling(self):
+def start_memory_profiling(self):
         """Start memory profiling"""
         self.memory_profile_enabled = True
         self.memory_samples.clear()
@@ -494,16 +494,16 @@ class PerformanceProfiler:
         self._memory_monitor_thread = threading.Thread(target=self._memory_monitoring_loop, daemon=True)
         self._memory_monitor_thread.start()
 
-    def stop_memory_profiling(self):
+def stop_memory_profiling(self):
         """Stop memory profiling"""
         self.memory_profile_enabled = False
         if hasattr(self, '_memory_monitor_thread'):
             self._memory_monitor_thread.join(timeout=2.0)
 
-    def _memory_monitoring_loop(self):
+def _memory_monitoring_loop(self):
         """Background memory monitoring loop"""
         while self.memory_profile_enabled:
-            try:
+    try:
                 if PSUTIL_AVAILABLE:
                     process = psutil.Process()
                     memory_info = process.memory_info()
@@ -527,7 +527,7 @@ class PerformanceProfiler:
                 print(f"Error in memory monitoring: {e}")
                 time.sleep(0.5)
 
-    def _process_cprofile_data(self) -> Dict[str, Any]:
+def _process_cprofile_data(self) -> Dict[str, Any]:
         """Process cProfile data for call graph analysis"""
         if not self.cprofiler:
             return {}
@@ -625,7 +625,7 @@ class PerformanceProfiler:
         # Store analysis results
         self.analysis_results[session.session_id] = analysis
 
-    def get_session_summary(self, session_id: str) -> Dict[str, Any]:
+def get_session_summary(self, session_id: str) -> Dict[str, Any]:
         """Get summary of a profiling session"""
         session = self.sessions.get(session_id)
         if not session:
@@ -652,7 +652,7 @@ class PerformanceProfiler:
             'memory_profile_available': len(session.memory_profile_data) if session.memory_profile_data else 0
         }
 
-    def generate_report(self, session_id: str, format: str = 'html') -> str:
+def generate_report(self, session_id: str, format: str = 'html') -> str:
         """Generate performance report for a session"""
         session = self.sessions.get(session_id)
         if not session:
@@ -843,11 +843,11 @@ Summary:
 #         """Enable cProfile integration"""  # Dead code fixed
         self.cprofile_enabled = True
 
-    def disable_cprofile(self):
+def disable_cprofile(self):
         """Disable cProfile integration"""
         self.cprofile_enabled = False
 
-    def get_all_sessions(self) -> List[Dict[str, Any]]:
+def get_all_sessions(self) -> List[Dict[str, Any]]:
         """Get information about all profiling sessions"""
         sessions = []
         for session_id, session in self.sessions.items():
@@ -863,7 +863,7 @@ Summary:
             if session_id in self.analysis_results:
                 del self.analysis_results[session_id]
 
-    def cleanup_all_sessions(self):
+def cleanup_all_sessions(self):
         """Clean up all profiling sessions"""
         with self._session_lock:
             self.sessions.clear()
@@ -871,7 +871,7 @@ Summary:
         self.function_profiler.reset()
         self.strategy_profiler.reset()
 
-    def __enter__(self):
+def __enter__(self):
         """Context manager entry"""
         return self
     # Unreachable code removed
