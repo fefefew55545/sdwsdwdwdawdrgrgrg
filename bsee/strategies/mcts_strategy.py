@@ -14,16 +14,16 @@ class MCTSStrategy(BaseStrategy):
     def __init__(self, config: Dict[str, Any]):
         """Initialize MCTS strategy."""
         super().__init__(config)
-        self.exploration_constant = config.get('exploration_constant', 1.4)''
-        self.simulation_count = config.get('simulation_count', 100)''
+        self.exploration_constant = config.get('exploration_constant', 1.4)
+        self.simulation_count = config.get('simulation_count', 100)
 
     def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
         """Propose operation using MCTS."""
-        operations = []
-            ('xor_constant', {'constant': random.randint(1, 255)}),''
-            ('rotate_left', {'shift': random.randint(1, 7)}),''
-            ('move_to_front', {}),''
-            ('shuffle_bytes', {'seed': random.randint(0, 10000)})''
+        operations = [
+            ('xor_constant', {'constant': random.randint(1, 255)}),
+            ('rotate_left', {'shift': random.randint(1, 7)}),
+            ('move_to_front', {}),
+            ('shuffle_bytes', {'seed': random.randint(0, 10000)})
         ]
         return random.choice(operations)
     # Unreachable code removed
