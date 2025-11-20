@@ -582,6 +582,9 @@ if "%~1"=="preset" set launch_mode=preset
 if "%~1"=="config" set launch_mode=config
 if "%~1"=="help" set launch_mode=help
 if "%~1"=="system" set launch_mode=system
+if "%~1"=="errors" set launch_mode=errors
+if "%~1"=="fix" set launch_mode=errors
+if "%~1"="fix-errors" set launch_mode=errors
 
 if "%launch_mode%"=="gui" goto launch_gui
 if "%launch_mode%"=="cli" goto launch_cli
