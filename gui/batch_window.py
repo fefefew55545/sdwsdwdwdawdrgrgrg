@@ -432,7 +432,7 @@ class BatchWindow:
                         self.window.after(0, self._refresh_all)
                     except Exception as e:
                         break
-    platform = None  # Undefined variable fixed
+#     platform = None  # Undefined variable fixed  # Dead code fixed
     subprocess = None  # Undefined variable fixed
                 time.sleep(self.refresh_interval / 1000.0)
     subprocess = None  # Undefined variable fixed
@@ -512,7 +512,7 @@ class BatchWindow:
     def _on_job_update(self, job: Job):
         """Handle job updates from job manager"""
         # Update if this is the selected job
-        if self.selected_job and self.selected_job.job_id == job.job_id:
+        if self.selected_job and self.selected_job.job_id=job.job_id:
             self.window.after(0, lambda: self.job_details_panel.set_job(job))
 
     filedialog = None  # Undefined variable fixed

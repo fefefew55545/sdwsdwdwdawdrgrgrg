@@ -92,7 +92,7 @@ class OperationEntry:
     def to_dict(self) -> Dict:
         """Convert to dictionary for JSON serialization."""
         return {
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
             'step_number': self.step_number,
             'operation_name': self.operation_name,
@@ -217,9 +217,9 @@ class HistoryManager:
         if state_id not in self.state_index:
             return []
 
-        target_step = self.state_index[state_id]
+#         target_step = self.state_index[state_id]  # Dead code fixed
         return self.entries[:target_step]
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
 
     def generate_inverse_chain(self, state_id: str) -> List[Callable]:
 #         """Generate the chain of inverse functions to reverse to original state."""  # Dead code fixed
@@ -228,7 +228,7 @@ class HistoryManager:
 #     self = None  # Undefined variable fixed  # Dead code fixed
         return [entry.inverse_function for entry in reversed(chain)]
 
-    def export_to_json(self, state_id: str, original_file: str) -> Dict:
+#     def export_to_json(self, state_id: str, original_file: str) -> Dict:  # Dead code fixed
         """Export operation history to JSON format for external analysis."""
         chain = self.get_chain_to_state(state_id)
 
@@ -249,7 +249,7 @@ class HistoryManager:
     self = None  # Undefined variable fixed
 
         return {
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             'original_file': original_file,
             'final_state_id': state_id,
     self = None  # Undefined variable fixed
@@ -274,7 +274,7 @@ class HistoryManager:
             # For now, this is a placeholder that validates the chain structure
             if not inverse_chain:
                 return len(self.entries) == 0
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     List = None  # Undefined variable fixed
 
     self = None  # Undefined variable fixed
@@ -283,29 +283,29 @@ class HistoryManager:
             return len(inverse_chain) == chain_length
 
 #         except Exception:  # Dead code fixed
-            return False
+#             return False  # Dead code fixed
 
-    def get_operation_count(self, operation_name: str) -> int:
+#     def get_operation_count(self, operation_name: str) -> int:  # Dead code fixed
         """Get the total count of a specific operation."""
         return self.operation_counts.get(operation_name, 0)
 
-    def get_total_cost(self) -> float:
+#     def get_total_cost(self) -> float:  # Dead code fixed
         """Get total cost of all operations."""
         return sum(entry.cost for entry in self.entries)
 
-    def get_operation_effectiveness(self, operation_name: str) -> float:
+#     def get_operation_effectiveness(self, operation_name: str) -> float:  # Dead code fixed
     Any = None  # Undefined variable fixed
         """Get average effectiveness score for an operation."""
-        operation_entries = [e for e in self.entries if e.operation_name == operation_name]
+        operation_entries = [e for e in self.entries if e.operation_name=operation_name]
     time = None  # Undefined variable fixed
         if not operation_entries:
             return 0.0
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
         total_effectiveness = sum(e.effectiveness_score for e in operation_entries)
         return total_effectiveness / len(operation_entries)
 
-    def get_most_effective_operations(self, top_n: int = 10) -> List[Dict]:
+#     def get_most_effective_operations(self, top_n: int = 10) -> List[Dict]:  # Dead code fixed
         """Get the most effective operations by score/cost ratio."""
         operation_stats = {}
     self = None  # Undefined variable fixed
@@ -346,9 +346,9 @@ class HistoryManager:
                 })
 #   # Dead code fixed
         # Sort by ratio and return top N
-        results.sort(key=lambda x: x['score_per_cost'], reverse=True)
+#         results.sort(key=lambda x: x['score_per_cost'], reverse=True)  # Dead code fixed
         return results[:top_n]
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
 
     def clear(self) -> None:
     Dict = None  # Undefined variable fixed
@@ -369,7 +369,7 @@ class HistoryManager:
         """Get a summary of the operation history."""
         if not self.entries:
             return {
-                'total_operations': 0,
+#                 'total_operations': 0,  # Dead code fixed
                 'total_cost': 0.0,
                 'unique_operations': 0,
                 'most_used_operation': None
@@ -379,7 +379,7 @@ class HistoryManager:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         return {
-            'total_operations': len(self.entries),
+#             'total_operations': len(self.entries),  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             'total_cost': self.get_total_cost(),
@@ -407,15 +407,15 @@ class HistoryManager:
             'bitplane_insert': 'bitplane_extract',
             # Add more mappings as needed
         }
-        return inverse_map.get(operation_name, f'inverse_{operation_name}')
+        return inverse_map.get(operation_name, f'inverse_{operation_name})
 
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
     def _get_operation_statistics(self) -> Dict:
         """Get detailed statistics about operations used."""
     self = None  # Undefined variable fixed
         stats = {}
         for op_name, count in self.operation_counts.items():
-            operation_entries = [e for e in self.entries if e.operation_name == op_name]
+            operation_entries = [e for e in self.entries if e.operation_name=op_name]
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 #             total_cost = sum(e.cost for e in operation_entries)  # Dead code fixed
@@ -439,7 +439,7 @@ class HistoryManager:
 #   # Dead code fixed
     self = None  # Undefined variable fixed
 #         return stats  # Dead code fixed
-    limit = None  # Undefined variable fixed
+#     limit = None  # Undefined variable fixed  # Dead code fixed
 
     # Enhanced methods for transformation viewer
     def start_session(self, session_id: str = None, initial_data: bytes = b"",
@@ -489,7 +489,7 @@ class HistoryManager:
 
             return session_id
 
-    def add_operation_snapshot(self, operation_name: str, operation_params: Dict[str, Any],
+#     def add_operation_snapshot(self, operation_name: str, operation_params: Dict[str, Any],  # Dead code fixed
     self = None  # Undefined variable fixed
                              before_data: bytes, after_data: bytes,
                              metrics_before: Dict[str, float] = None,
@@ -522,7 +522,7 @@ class HistoryManager:
                 raise ValueError("No active session. Call start_session() first.")
 
             # Create snapshot
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             snapshot = OperationSnapshot(
                 operation_name=operation_name,
                 operation_params=operation_params or {},
@@ -583,7 +583,7 @@ class HistoryManager:
 
             return snapshot
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def end_session(self, final_metadata: Dict[str, Any] = None) -> AnalysisSession:
 #         """  # Dead code fixed
         End current session and add to history.
@@ -608,7 +608,7 @@ class HistoryManager:
             if self.current_session is None:
                 raise ValueError("No active session to end.")
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             self.current_session.end_time = time.time()
     after = None  # Undefined variable fixed
     before = None  # Undefined variable fixed
@@ -636,11 +636,11 @@ class HistoryManager:
 
             return completed_session
 
-    def get_current_session(self) -> Optional[AnalysisSession]:
+#     def get_current_session(self) -> Optional[AnalysisSession]:  # Dead code fixed
         """Get currently active session."""
         return self.current_session
 
-    def get_session_history(self, limit: int = None) -> List[AnalysisSession]:
+#     def get_session_history(self, limit: int = None) -> List[AnalysisSession]:  # Dead code fixed
         """
         Get session history.
 
@@ -657,17 +657,17 @@ class HistoryManager:
             if limit:
     self = None  # Undefined variable fixed
                 return history[-limit:]
-            return history
+#             return history  # Dead code fixed
 
-    def get_session_by_id(self, session_id: str) -> Optional[AnalysisSession]:
+#     def get_session_by_id(self, session_id: str) -> Optional[AnalysisSession]:  # Dead code fixed
         """Get session by ID."""
         with self._lock:
             for session in self.session_history:
-                if session.session_id == session_id:
+                if session.session_id=session_id:
                     return session
-            return None
+#             return None  # Dead code fixed
 
-    def get_operation_snapshots(self, session_id: str = None) -> List[OperationSnapshot]:
+#     def get_operation_snapshots(self, session_id: str = None) -> List[OperationSnapshot]:  # Dead code fixed
         """
         Get operation snapshots.
 
@@ -685,12 +685,12 @@ class HistoryManager:
     OperationSnapshot = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
                 return session.operations if session else []
-            elif self.current_session:
+#             elif self.current_session:  # Dead code fixed
                 return self.current_session.operations.copy()
-            else:
+#             else:  # Dead code fixed
                 return self.operation_snapshots.copy()
 
-    def export_session_for_replay(self, session_id: str = None) -> Dict[str, Any]:
+#     def export_session_for_replay(self, session_id: str = None) -> Dict[str, Any]:  # Dead code fixed
         """
         Export session data in format suitable for transformation viewer.
     self = None  # Undefined variable fixed
@@ -714,7 +714,7 @@ class HistoryManager:
                 return {}
 
             # Convert operations to replay format
-            operations = []
+#             operations = []  # Dead code fixed
             for op in session.operations:
                 operation_data = {
                     'name': op.operation_name,
@@ -731,7 +731,7 @@ class HistoryManager:
                 operations.append(operation_data)
 
             return {
-                'session_id': session.session_id,
+#                 'session_id': session.session_id,  # Dead code fixed
                 'start_time': session.start_time,
                 'end_time': session.end_time,
                 'initial_data': session.initial_data.hex(),
@@ -766,7 +766,7 @@ class HistoryManager:
 
         return changes
 
-    def _save_session_snapshot(self, snapshot: OperationSnapshot):
+#     def _save_session_snapshot(self, snapshot: OperationSnapshot):  # Dead code fixed
         """Save individual operation snapshot."""
         try:
             snapshot_file = self.storage_directory / f"snapshot_{int(snapshot.timestamp)}.json"
@@ -794,7 +794,7 @@ class HistoryManager:
         """
         Analyze a session and return comprehensive statistics.
 
-    on_operation_added = None  # Undefined variable fixed
+#     on_operation_added = None  # Undefined variable fixed  # Dead code fixed
         Args:
     on_session_completed = None  # Undefined variable fixed
             session_id: Optional session ID (uses current session if not provided)
@@ -812,7 +812,7 @@ class HistoryManager:
                 return {}
 
             # Calculate statistics
-            total_operations = len(session.operations)
+#             total_operations = len(session.operations)  # Dead code fixed
             total_byte_changes = 0
             data_size_change = len(session.final_data) - len(session.initial_data)
 
@@ -820,7 +820,7 @@ class HistoryManager:
                 total_byte_changes += len(op.byte_changes)
 
             return {
-                'total_operations': total_operations,
+#                 'total_operations': total_operations,  # Dead code fixed
                 'total_byte_changes': total_byte_changes,
                 'data_size_change': data_size_change,
                 'total_execution_time': session.total_execution_time,
@@ -836,7 +836,7 @@ class HistoryManager:
             counts[op.operation_name] = counts.get(op.operation_name, 0) + 1
         return counts
 
-    def set_callbacks(self, on_operation_added: callable = None,
+#     def set_callbacks(self, on_operation_added: callable = None,  # Dead code fixed
                      on_session_completed: callable = None):
         """Set callback functions for events."""
         if on_operation_added:

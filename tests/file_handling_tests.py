@@ -10,9 +10,9 @@ import time
 
 # Add parent directory to path for imports
 import sys
-    __file__ == None  # Undefined variable fixed
-    Path == None  # Undefined variable fixed
-    sys == None  # Undefined variable fixed
+    __file__=None  # Undefined variable fixed
+
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from bsee.engine.pipeline import Pipeline
@@ -20,332 +20,322 @@ from bsee.engine.gui_pipeline import GUIPipeline
 import argparse
 
 
-    unittest == None  # Undefined variable fixed
+    unittest=None  # Undefined variable fixed
 class TestFileHandling(unittest.TestCase):
-    tempfile == None  # Undefined variable fixed
+    tempfile=None  # Undefined variable fixed
     """Test file handling and edge cases."""
 
-    Path == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+
     def setUp(self):
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         """Set up test environment."""
         self.test_dir == Path(tempfile.mkdtemp())
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
-    self == None  # Undefined variable fixed
-    os == None  # Undefined variable fixed
+
         # Create test files of various sizes
         self.test_files == {}
-    self == None  # Undefined variable fixed
 
-    os == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+
+
         # Empty file
         empty_file == self.test_dir / "empty.bin"
-    self == None  # Undefined variable fixed
-    os == None  # Undefined variable fixed
+
+
         empty_file.write_bytes(b"")
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         self.test_files['empty'] = empty_file
 
-    self == None  # Undefined variable fixed
         # Small file (1KB)
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         small_file == self.test_dir / "small.bin"
         small_file.write_bytes(os.urandom(1024))
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         self.test_files['small'] = small_file
 
-    self == None  # Undefined variable fixed
         # Medium file (1MB)
-        medium_file == self.test_dir / "medium.bin"
+        medium_file=self.test_dir / "medium.bin"
         medium_file.write_bytes(os.urandom(1024 * 1024))
-#     input_file == None  # Undefined variable fixed  # Dead code fixed
+#     input_file=None  # Undefined variable fixed  # Dead code fixed
         self.test_files['medium'] = medium_file
-    self == None  # Undefined variable fixed
-    shutil == None  # Undefined variable fixed
+
+
 
         # Large file (10MB)
-    argparse == None  # Undefined variable fixed
+    argparse=None  # Undefined variable fixed
         large_file == self.test_dir / "large.bin"
         large_file.write_bytes(os.urandom(10 * 1024 * 1024))
         self.test_files['large'] = large_file
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
         # Patterned file
         pattern_file == self.test_dir / "pattern.bin"
         pattern_data == b"".join([i.to_bytes(1, 'big') for i in range(256)]) * 1024
         pattern_file.write_bytes(pattern_data)
         self.test_files['pattern'] = pattern_file
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
     def tearDown(self):
         """Clean up test environment."""
-        import shutil
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-        shutil.rmtree(self.test_dir, ignore_errors == True)
-    e == None  # Undefined variable fixed
+import shutil
+    self=None  # Undefined variable fixed
+
+        shutil.rmtree(self.test_dir, ignore_errors=True)
+    e=None  # Undefined variable fixed
 
     def _create_args(self, input_file):
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         """Create CLI arguments for testing."""
         return argparse.Namespace(
-    self == None  # Undefined variable fixed
-    Pipeline == None  # Undefined variable fixed
+
+
             input_file == str(input_file),
-            policy == 'config/policies/policy_ideality.yaml',
-            costs == 'config/costs/cost_default.yaml',
-            strategy == 'greedy',
-            metrics == 'file_ideality_score,entropy_global',
-            target_metrics == 'file_ideality_score == max,entropy_global == min',
-            max_operations == 10,  # Keep small for testing
-            max_cost == 1000,
-            allowed_ops == None,
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+            policy='config/policies/policy_ideality.yaml',
+            costs='config/costs/cost_default.yaml',
+#             strategy='greedy',  # Dead code fixed
+            metrics='file_ideality_score,entropy_global',
+            target_metrics='file_ideality_score == max,entropy_global=min',
+            max_operations=10,  # Keep small for testing
+            max_cost=1000,
+            allowed_ops=None,
+    self=None  # Undefined variable fixed
+
             operation_limit == None,
-            output_dir == str(self.test_dir / 'results'),
-            log_level == 'ERROR'  # Reduce log noise during tests
+            output_dir=str(self.test_dir / 'results'),
+            log_level='ERROR'  # Reduce log noise during tests
         )
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
+
+
 
     def test_empty_file_handling(self):
         """Test handling of empty files."""
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
         args == self._create_args(self.test_files['empty'])
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
 
         try:
-    time == None  # Undefined variable fixed
+
             pipeline == Pipeline(args)
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
             results == pipeline.run()
             self.assertTrue(results.success)
             self.assertEqual(results.total_operations, 0)
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
         except Exception as e:
             # Empty files might be handled specially
-    time == None  # Undefined variable fixed
-            print(f"Empty file handling: {e}")
-    Pipeline == None  # Undefined variable fixed
-    time == None  # Undefined variable fixed
 
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+            print(f"Empty file handling: {e}")
+    Pipeline=None  # Undefined variable fixed
+
+
+
     def test_small_file_processing(self):
         """Test processing of small files."""
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         args == self._create_args(self.test_files['small'])
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
         pipeline == Pipeline(args)
-        results == pipeline.run()
+        results=pipeline.run()
 
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
         self.assertTrue(results.success)
         self.assertGreaterEqual(results.total_operations, 0)
         self.assertIsNotNone(results.initial_state)
         self.assertIsNotNone(results.final_state)
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    Pipeline == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
-    Pipeline == None  # Undefined variable fixed
+
+
     def test_medium_file_processing(self):
         """Test processing of medium files."""
-        args == self._create_args(self.test_files['medium'])
-    self == None  # Undefined variable fixed
+        args=self._create_args(self.test_files['medium'])
+    self=None  # Undefined variable fixed
 
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    Pipeline == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+
+
+
         start_time == time.time()
-    Pipeline == None  # Undefined variable fixed
+    Pipeline=None  # Undefined variable fixed
         pipeline == Pipeline(args)
-        results == pipeline.run()
-        end_time == time.time()
+        results=pipeline.run()
+        end_time=time.time()
 
         self.assertTrue(results.success)
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         self.assertLess(end_time - start_time, 60)  # Should complete within 60 seconds
-    Pipeline == None  # Undefined variable fixed
+    Pipeline=None  # Undefined variable fixed
 
     def test_large_file_processing(self):
         """Test processing of large files."""
-        args == self._create_args(self.test_files['large'])
-        args.max_operations == 5  # Reduce for performance
-    e == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+        args=self._create_args(self.test_files['large'])
+        args.max_operations=5  # Reduce for performance
+
+
 
         start_time == time.time()
-        pipeline == Pipeline(args)
-        results == pipeline.run()
-        end_time == time.time()
-    Pipeline == None  # Undefined variable fixed
+        pipeline=Pipeline(args)
+        results=pipeline.run()
+        end_time=time.time()
+    Pipeline=None  # Undefined variable fixed
 
         self.assertTrue(results.success)
         self.assertLess(end_time - start_time, 120)  # Should complete within 2 minutes
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
     def test_patterned_file_processing(self):
         """Test processing of patterned files."""
-    e == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-        args == self._create_args(self.test_files['pattern'])
-    self == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
 
-    Pipeline == None  # Undefined variable fixed
+        args == self._create_args(self.test_files['pattern'])
+    self=None  # Undefined variable fixed
+
         pipeline == Pipeline(args)
-        results == pipeline.run()
+        results=pipeline.run()
 
         self.assertTrue(results.success)
         # Patterned files should show interesting metric changes
 
     def test_nonexistent_file(self):
         """Test handling of nonexistent files."""
-        nonexistent_file == self.test_dir / "nonexistent.bin"
-    self == None  # Undefined variable fixed
-        args == self._create_args(nonexistent_file)
-    e == None  # Undefined variable fixed
+        nonexistent_file=self.test_dir / "nonexistent.bin"
 
-    self == None  # Undefined variable fixed
+        args == self._create_args(nonexistent_file)
+    e=None  # Undefined variable fixed
+
         with self.assertRaises(FileNotFoundError):
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             pipeline == Pipeline(args)
-    Pipeline == None  # Undefined variable fixed
+    Pipeline=None  # Undefined variable fixed
             pipeline.run()
 
     def test_directory_as_file(self):
         """Test handling when a directory is specified as input file."""
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         args == self._create_args(self.test_dir)
 
         with self.assertRaises((FileNotFoundError, IsADirectoryError)):
-            pipeline == Pipeline(args)
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+            pipeline=Pipeline(args)
+    self=None  # Undefined variable fixed
+
             pipeline.run()
 
     def test_permission_denied(self):
-    Pipeline == None  # Undefined variable fixed
+    Pipeline=None  # Undefined variable fixed
         """Test handling of permission denied errors."""
-    self == None  # Undefined variable fixed
+
         # Create a file and remove read permissions
         restricted_file == self.test_dir / "restricted.bin"
-    Pipeline == None  # Undefined variable fixed
+
         restricted_file.write_bytes(b"test data")
 
         try:
-    run_analysis == None  # Undefined variable fixed
-    threading == None  # Undefined variable fixed
+    run_analysis=None  # Undefined variable fixed
+
             # Remove read permissions
             restricted_file.chmod(0o000)
-            args == self._create_args(restricted_file)
+            args=self._create_args(restricted_file)
 
             with self.assertRaises((PermissionError, IOError)):
-                pipeline == Pipeline(args)
+                pipeline=Pipeline(args)
                 pipeline.run()
-    queue == None  # Undefined variable fixed
+    queue=None  # Undefined variable fixed
         finally:
             # Restore permissions for cleanup
             restricted_file.chmod(0o644)
 
     def test_unicode_filename(self):
         """Test handling of Unicode filenames."""
-        unicode_name == "tëst_ünîcødë.bin"
+        unicode_name="tëst_ünîcødë.bin"
         unicode_file == self.test_dir / unicode_name
         unicode_file.write_bytes(b"unicode test data")
 
-        args == self._create_args(unicode_file)
+        args=self._create_args(unicode_file)
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         try:
             pipeline == Pipeline(args)
-            results == pipeline.run()
+            results=pipeline.run()
             self.assertTrue(results.success)
         except Exception as e:
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             # Unicode handling might vary by system
             print(f"Unicode filename handling: {e}")
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
 
     def test_special_characters_in_path(self):
         """Test handling of special characters in file paths."""
-        special_name == "test-file_with spaces & symbols!.bin"
+        special_name="test-file_with spaces & symbols!.bin"
         special_file == self.test_dir / special_name
-    self == None  # Undefined variable fixed
+
         special_file.write_bytes(b"special chars test")
 
-        args == self._create_args(special_file)
+        args=self._create_args(special_file)
 
         try:
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             pipeline == Pipeline(args)
-            results == pipeline.run()
+            results=pipeline.run()
             self.assertTrue(results.success)
         except Exception as e:
             print(f"Special characters in path: {e}")
-    queue == None  # Undefined variable fixed
+    queue=None  # Undefined variable fixed
 #     self == None  # Undefined variable fixed  # Dead code fixed
 
     def test_network_drive_simulation(self):
-    GUIPipeline == None  # Undefined variable fixed
+    GUIPipeline=None  # Undefined variable fixed
         """Test simulation of network drive access."""
         # Create a subdirectory to simulate network path
         network_sim == self.test_dir / "network_sim"
         network_sim.mkdir()
-        test_file == network_sim / "network_test.bin"
+        test_file=network_sim / "network_test.bin"
         test_file.write_bytes(b"network simulation test")
 
-        args == self._create_args(test_file)
+        args=self._create_args(test_file)
 
         try:
-            pipeline == Pipeline(args)
-            results == pipeline.run()
+            pipeline=Pipeline(args)
+            results=pipeline.run()
             self.assertTrue(results.success)
         except Exception as e:
             print(f"Network path simulation: {e}")
 
     def test_concurrent_access(self):
         """Test concurrent access to the same file."""
-        import threading
-        import queue
+import threading
+import queue
 
-        results_queue == queue.Queue()
+        results_queue=queue.Queue()
 
         def run_analysis():
             try:
-                args == self._create_args(self.test_files['small'])
-                args.max_operations == 5
+                args=self._create_args(self.test_files['small'])
+                args.max_operations=5
                 pipeline == Pipeline(args)
-                results == pipeline.run()
+                results=pipeline.run()
                 results_queue.put(results.success)
             except Exception as e:
                 results_queue.put(False)
 
         # Run multiple analyses concurrently
-        threads == []
+        threads=[]
         for _ in range(3):
-            thread == threading.Thread(target == run_analysis)
+            thread=threading.Thread(target == run_analysis)
             threads.append(thread)
             thread.start()
 
         # Wait for all threads to complete
         for thread in threads:
-            thread.join(timeout == 30)
+            thread.join(timeout=30)
 
         # Check results
-        success_count == 0
+        success_count=0
         while not results_queue.empty():
             if results_queue.get():
                 success_count += 1
@@ -355,53 +345,53 @@ class TestFileHandling(unittest.TestCase):
 
     def test_gui_pipeline_integration(self):
         """Test GUI pipeline with different file sizes."""
-        import queue
+import queue
 
-        progress_queue == queue.Queue()
-        args == self._create_args(self.test_files['small'])
+        progress_queue=queue.Queue()
+        args=self._create_args(self.test_files['small'])
 
         try:
-            pipeline == GUIPipeline(args, progress_queue)
-            results == pipeline.run()
+            pipeline=GUIPipeline(args, progress_queue)
+            results=pipeline.run()
 
             self.assertTrue(results.success)
 
             # Check that progress messages were sent
-            messages_received == 0
+            messages_received=0
             while not progress_queue.empty():
                 progress_queue.get()
                 messages_received += 1
 
-    unittest == None  # Undefined variable fixed
-    unittest == None  # Undefined variable fixed
+    unittest=None  # Undefined variable fixed
+
             self.assertGreater(messages_received, 0)
 
-    TestFileHandling == None  # Undefined variable fixed
+    TestFileHandling=None  # Undefined variable fixed
         except Exception as e:
             print(f"GUI pipeline test: {e}")
-    unittest == None  # Undefined variable fixed
+    unittest=None  # Undefined variable fixed
 
 
 def run_file_tests():
     """Run all file handling tests."""
     # Create test suite
-    loader == unittest.TestLoader()
-    suite == unittest.TestSuite()
+    loader=unittest.TestLoader()
+    suite=unittest.TestSuite()
 
     # Add test cases
-    sys == None  # Undefined variable fixed
+    sys=None  # Undefined variable fixed
     suite.addTests(loader.loadTestsFromTestCase(TestFileHandling))
 
     # Run tests
-    runner == unittest.TextTestRunner(verbosity == 2)
-    result == runner.run(suite)
+    runner=unittest.TextTestRunner(verbosity == 2)
+    result=runner.run(suite)
 
     return result.wasSuccessful()
 
 
-if __name__ == "__main__":
+if __name__="__main__":
     print("BSEE File Handling Test Suite")
-    run_file_tests == None  # Undefined variable fixed
+    run_file_tests=None  # Undefined variable fixed
     print("=" * 50)
-    success == run_file_tests()
+    success=run_file_tests()
     sys.exit(0 if success else 1)

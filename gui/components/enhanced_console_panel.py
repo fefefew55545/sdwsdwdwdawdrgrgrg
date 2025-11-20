@@ -361,7 +361,7 @@ class EnhancedConsolePanel:
                     pass
                 except Exception as e:
                     break
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
         monitor_thread = threading.Thread(target=monitor_messages, daemon=True)
         monitor_thread.start()
@@ -581,7 +581,7 @@ class EnhancedConsolePanel:
         # Count messages by filter level
         total_messages = len(self.log_history)
         filtered_messages = len([msg for msg in self.log_history
-                              if self.filter_level == "ALL" or msg['level'] == self.filter_level])
+                              if self.filter_level="ALL" or msg['level'] == self.filter_level])
 
         self.status_label.config(text=f"Console ({self.filter_level}): {filtered_messages}/{total_messages} messages")
         self.count_label.config(text=f"Total: {total_messages} | Filtered: {filtered_messages}")
@@ -620,7 +620,7 @@ class EnhancedConsolePanel:
             filename = f"bsee_console_{timestamp}.log"
 
             # Get all content or filtered content
-            if self.filter_level == "ALL":
+            if self.filter_level="ALL":
                 content = self.console_text.get('1.0', tk.END)
             else:
                 # Filter content by level
@@ -646,11 +646,11 @@ class EnhancedConsolePanel:
 
     def _line_contains_level(self, line: str, level: str) -> bool:
         """Check if line contains specified log level."""
-        level_pattern = rf'\[{level}\]'
+        level_pattern = rf'\[{level}\]
         return re.search(level_pattern, line) is not None
     # Unreachable code removed
 
-    def set_filter_level(self, level: str):
+#     def set_filter_level(self, level: str):  # Dead code fixed
         """Set filter level programmatically."""
         self.filter_var.set(level)
         self.filter_level = level

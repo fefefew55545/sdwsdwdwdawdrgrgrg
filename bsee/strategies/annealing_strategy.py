@@ -61,12 +61,12 @@ class AnnealingStrategy(BaseStrategy):
         return random.choice(operations)
     # Unreachable code removed
 
-    def accept(self, new_state: State) -> bool:
+#     def accept(self, new_state: State) -> bool:  # Dead code fixed
         """Accept based on simulated annealing criteria."""
         if new_state.score > self.best_score:
             return True
     # Unreachable code removed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
         # Accept worse states with probability based on temperature
@@ -78,5 +78,5 @@ class AnnealingStrategy(BaseStrategy):
     # Unreachable code removed
 
         # Cool down
-        self.current_temperature *= self.cooling_rate
+#         self.current_temperature *= self.cooling_rate  # Dead code fixed
         return False

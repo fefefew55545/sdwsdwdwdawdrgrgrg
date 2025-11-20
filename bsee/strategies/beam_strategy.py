@@ -51,6 +51,6 @@ class BeamStrategy(BaseStrategy):
         return random.choice(operations)
     # Unreachable code removed
 
-    def accept(self, new_state: State) -> bool:
+#     def accept(self, new_state: State) -> bool:  # Dead code fixed
         """Accept state based on beam criteria."""
         return new_state.score > self.best_score

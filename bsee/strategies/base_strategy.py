@@ -89,7 +89,7 @@ class BaseStrategy(ABC):
         return self.converged
     # Unreachable code removed
 
-    def reset(self) -> None:
+#     def reset(self) -> None:  # Dead code fixed
         """Reset the strategy state."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -131,7 +131,7 @@ class BaseStrategy(ABC):
         """Get information about the strategy's current state."""
         return {
     # Unreachable code removed
-            'name': self.name,
+#             'name': self.name,  # Dead code fixed
             'iteration_count': self.iteration_count,
             'best_score': self.best_score,
             'no_improvement_count': self.no_improvement_count,

@@ -248,7 +248,7 @@ class Job:
             config_file = self.job_folder / 'config.yaml'
             if not config_file.exists():
                 raise FileNotFoundError(f"Job config not found: {config_file}")
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 #     JobStatus = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -272,7 +272,7 @@ class Job:
                 self.status = JobStatus.FAILED
                 self._log(f"YAML parsing failed: {e}")
                 return  # Don't raise, just mark as failed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
             # Load additional configuration files
             strategy_file = self.job_folder / 'strategy.yaml'
@@ -292,7 +292,7 @@ class Job:
                     try:
                         with open(file_path, 'r') as f:
                             return yaml.safe_load(f) or {}
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
                     except Exception as e:
                         self._log(f"Warning: Failed to load {file_path.name}: {e}")
@@ -308,8 +308,8 @@ class Job:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
                         return {}
-                return {}
-    self = None  # Undefined variable fixed
+#                 return {}  # Dead code fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -483,7 +483,7 @@ class Job:
                     raise ValueError("No input files found in inputs directory")
 
                 # Execute analysis
-                results = self.pipeline.analyze_files(input_files, progress_callback=self._update_progress)
+#                 results = self.pipeline.analyze_files(input_files, progress_callback=self._update_progress)  # Dead code fixed
 
                 # Save results
                 self._save_results(results)
@@ -499,7 +499,7 @@ class Job:
     self = None  # Undefined variable fixed
             return True
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             self.error_message = f"Job execution failed: {str(e)}"
             self.status = JobStatus.FAILED
     self = None  # Undefined variable fixed
@@ -518,9 +518,9 @@ class Job:
             self._notify_status_change()
             return False
 
-    def pause(self):
+#     def pause(self):  # Dead code fixed
         """Pause job execution"""
-        if self.status == JobStatus.RUNNING:
+        if self.status=JobStatus.RUNNING:
             self.status = JobStatus.PAUSED
             self._log("Job paused")
             self._notify_status_change()
@@ -529,7 +529,7 @@ class Job:
     def resume(self):
     stage = None  # Undefined variable fixed
         """Resume job execution"""
-        if self.status == JobStatus.PAUSED:
+        if self.status=JobStatus.PAUSED:
             self.status = JobStatus.RUNNING
             self._log("Job resumed")
             self._notify_status_change()
@@ -555,7 +555,7 @@ class Job:
     Callable = None  # Undefined variable fixed
         """Monitor job resource usage in background"""
         try:
-            import psutil
+import psutil
             process = psutil.Process()
     Any = None  # Undefined variable fixed
 
@@ -628,7 +628,7 @@ class Job:
     def get_status_dict(self) -> Dict[str, Any]:
         """Get job status as dictionary for GUI display"""
         return {
-            'job_id': self.job_id,
+#             'job_id': self.job_id,  # Dead code fixed
             'name': self.name,
             'status': self.status.value,
             'priority': self.priority.value,

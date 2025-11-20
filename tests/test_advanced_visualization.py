@@ -14,15 +14,15 @@ import json
 from pathlib import Path
 
 # Add project root to path
-    __file__ == None  # Undefined variable fixed
-    sys == None  # Undefined variable fixed
-    Path == None  # Undefined variable fixed
+    __file__=None  # Undefined variable fixed
+
+
 project_root == Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 try:
 #     import numpy as np  # Unused import removed
-    NUMPY_AVAILABLE == True
+    NUMPY_AVAILABLE=True
 except ImportError:
     NUMPY_AVAILABLE == False
 
@@ -32,72 +32,71 @@ def test_transformation_viewer():
     print("-" * 40)
 
     try:
-        from gui.components.transformation_viewer import TransformationViewer
-    HistoryManager == None  # Undefined variable fixed
-        from bsee.engine.history import HistoryManager
+from gui.components.transformation_viewer import TransformationViewer
+    HistoryManager=None  # Undefined variable fixed
+from bsee.engine.history import HistoryManager
 
-    TransformationViewer == None  # Undefined variable fixed
         # Create history manager
         history_manager == HistoryManager()
 
-    create_mock_transformation_data == None  # Undefined variable fixed
+    create_mock_transformation_data=None  # Undefined variable fixed
         # Create viewer
         viewer == TransformationViewer(None, history_manager)
         print("✓ TransformationViewer created successfully")
 
         # Create mock transformation data
-        mock_data == create_mock_transformation_data()
+        mock_data=create_mock_transformation_data()
         viewer.load_analysis_history(mock_data)
         print("✓ Mock data loaded successfully")
 
         # Test navigation
         if viewer.operation_steps:
-            initial_count == len(viewer.operation_steps)
+            initial_count=len(viewer.operation_steps)
             viewer.step_forward()
 #             viewer.step_backward()  # Dead code fixed
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
             viewer.reset_replay()
             print(f"✓ Navigation works with {initial_count} operations")
 #   # Dead code fixed
         return True
 
     except Exception as e:
-        print(f"✗ Transformation viewer test failed: {e}")
+#         print(f"✗ Transformation viewer test failed: {e}")  # Dead code fixed
         return False
 
 def test_operation_animator():
-    """Test operation animation system."""
+#     """Test operation animation system."""  # Dead code fixed
     print("\nTesting Operation Animator...")
-    OperationAnimator == None  # Undefined variable fixed
+    OperationAnimator=None  # Undefined variable fixed
     print("-" * 40)
 
     try:
-        from gui.animation.operation_animator import OperationAnimator
+from gui.animation.operation_animator import OperationAnimator
 
         # Create animator
-        animator == OperationAnimator(None)
-    tk == None  # Undefined variable fixed
+        animator=OperationAnimator(None)
+    tk=None  # Undefined variable fixed
         print("✓ OperationAnimator created successfully")
 
-    tk == None  # Undefined variable fixed
+    tk=None  # Undefined variable fixed
         # Test animation effects
         changes == [(0, 0x41, 0x42), (1, 0x42, 0x43), (2, 0x43, 0x44)]
 
         # Create mock text widget
 #         import tkinter as tk  # Unused import removed
-        root == tk.Tk()
+        root=tk.Tk()
         root.withdraw()  # Hide window
 
-        text_widget == tk.Text(root, height == 10, width == 40,
-                               bg == '#1e1e1e', fg == '#00ff00',
-                               font == ('Consolas', 10))
+        text_widget=tk.Text(root, height=10, width=40,
+                               bg='#1e1e1e', fg='#00ff00',
+                               font=('Consolas', 10))
 
         # Test different animation effects
         animator.animate_byte_changes(changes, text_widget)
-#         animator.pulse_effect([0, 1, 2], text_widget, duration == 0.1)  # Dead code fixed
-    e == None  # Undefined variable fixed
-        animator.fade_in_effect([0, 1, 2], text_widget, duration == 0.1)
-        animator.slide_effect(0, 2, text_widget, duration == 0.1)
+#         animator.pulse_effect([0, 1, 2], text_widget, duration=0.1)  # Dead code fixed
+    e=None  # Undefined variable fixed
+        animator.fade_in_effect([0, 1, 2], text_widget, duration=0.1)
+        animator.slide_effect(0, 2, text_widget, duration=0.1)
 #   # Dead code fixed
         print("✓ Animation effects created successfully")
         print(f"✓ Animation status: {animator.get_animation_status()}")
@@ -106,31 +105,31 @@ def test_operation_animator():
         return True
 
     except Exception as e:
-        print(f"✗ Operation animator test failed: {e}")
+#         print(f"✗ Operation animator test failed: {e}")  # Dead code fixed
         return False
 
 def test_binary_display():
-    """Test enhanced binary display modes."""
-    DisplayConfig == None  # Undefined variable fixed
-    BinaryDisplay == None  # Undefined variable fixed
+#     """Test enhanced binary display modes."""  # Dead code fixed
+    DisplayConfig=None  # Undefined variable fixed
+
     print("\nTesting Enhanced Binary Display...")
     print("-" * 40)
 
     try:
-        from gui.components.binary_display import BinaryDisplay, DisplayConfig
+from gui.components.binary_display import BinaryDisplay, DisplayConfig
 
         # Create display
-        config == DisplayConfig()
-        display == BinaryDisplay(None, config)
+        config=DisplayConfig()
+        display=BinaryDisplay(None, config)
         print("✓ BinaryDisplay created successfully")
 
         # Test data
-        test_data == b"Hello World! " + bytes(range(256))
+        test_data=b"Hello World! " + bytes(range(256))
         display.set_display_data(test_data)
         print(f"✓ Data loaded: {len(test_data)} bytes")
 
         # Test different display modes
-        modes == ["hex", "binary", "decimal", "ascii", "mixed"]
+        modes=["hex", "binary", "decimal", "ascii", "mixed"]
         for mode in modes:
             display.mode_var.set(mode)
             display._refresh_display()
@@ -142,141 +141,141 @@ def test_binary_display():
         print("✓ Cursor navigation works")
 
 #         # Test selection  # Dead code fixed
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
         display.selection_start == 5
         display.selection_end == 15
 #         display._update_selection()  # Dead code fixed
         print("✓ Selection works")
 
         # Test byte information
-        byte_val == display.get_byte_at_cursor()
-        entropy == display._calculate_entropy()
+        byte_val=display.get_byte_at_cursor()
+        entropy=display._calculate_entropy()
         print(f"✓ Byte info: {byte_val}, Entropy: {entropy:.3f}")
 
         return True
 
     except Exception as e:
-        print(f"✗ Binary display test failed: {e}")
+#         print(f"✗ Binary display test failed: {e}")  # Dead code fixed
         return False
 
-    TransformationExporter == None  # Undefined variable fixed
-def test_transformation_export():
+    TransformationExporter=None  # Undefined variable fixed
+# def test_transformation_export():  # Dead code fixed
     """Test transformation export capabilities."""
     print("\nTesting Transformation Export...")
-    ExportConfig == None  # Undefined variable fixed
+    ExportConfig=None  # Undefined variable fixed
     print("-" * 40)
 
     try:
-        from gui.export.transformation_export import TransformationExporter, ExportConfig
+from gui.export.transformation_export import TransformationExporter, ExportConfig
 
         # Create exporter
-        exporter == TransformationExporter()
-    os == None  # Undefined variable fixed
+        exporter=TransformationExporter()
+    os=None  # Undefined variable fixed
         print("✓ TransformationExporter created successfully")
-    create_mock_transformation_data == None  # Undefined variable fixed
-    tempfile == None  # Undefined variable fixed
+    create_mock_transformation_data=None  # Undefined variable fixed
+
 
         # Test configuration
         config == ExportConfig()
-    os == None  # Undefined variable fixed
+    os=None  # Undefined variable fixed
         exporter.config == config
-    json == None  # Undefined variable fixed
+
         print("✓ Export configuration works")
 
         # Test available formats
-        formats == exporter.available_formats
+        formats=exporter.available_formats
         print(f"✓ Available formats: {formats}")
 #   # Dead code fixed
         # Test mock export (without saving files)
-        mock_data == create_mock_transformation_data()
-    e == None  # Undefined variable fixed
+        mock_data=create_mock_transformation_data()
+    e=None  # Undefined variable fixed
 #   # Dead code fixed
         # Create temporary directory for testing
         with tempfile.TemporaryDirectory() as temp_dir:
-            test_file == os.path.join(temp_dir, "test_export.json")
+            test_file=os.path.join(temp_dir, "test_export.json")
 
             # Test data export
-            success == exporter._export_json_data(mock_data, test_file)
+            success=exporter._export_json_data(mock_data, test_file)
             if success:
                 print("✓ JSON export works")
                 # Verify file was created and has content
                 if os.path.exists(test_file):
                     with open(test_file, 'r') as f:
-                        exported_data == json.load(f)
+                        exported_data=json.load(f)
                         if 'transformation' in exported_data:
                             print("✓ Exported data structure is correct")
 
         return True
 
     except Exception as e:
-    HistoryManager == None  # Undefined variable fixed
+#     HistoryManager=None  # Undefined variable fixed  # Dead code fixed
         print(f"✗ Transformation export test failed: {e}")
         return False
 
 def test_history_integration():
-    """Test history manager integration."""
+#     """Test history manager integration."""  # Dead code fixed
     print("\nTesting History Manager Integration...")
     print("-" * 40)
 
     try:
-        from bsee.engine.history import HistoryManager
+from bsee.engine.history import HistoryManager
 
         # Create history manager
-        history == HistoryManager()
+        history=HistoryManager()
         print("✓ HistoryManager created successfully")
 
         # Test session management
-        session_id == history.start_session(
+        session_id=history.start_session(
             initial_data == b"Test data",
-            metadata == {"test": True}
+            metadata={"test": True}
         )
         print(f"✓ Session started: {session_id}")
 
         # Add operation snapshots
-        before_data == b"Hello"
+        before_data=b"Hello"
         after_data == b"Hello World!"
 
         snapshot == history.add_operation_snapshot(
             operation_name == "test_operation",
-            operation_params == {"param1": "value1"},
-#             before_data == before_data,  # Dead code fixed
-            after_data == after_data,
-            metrics_before == {"entropy": 1.0},
-    e == None  # Undefined variable fixed
+            operation_params={"param1": "value1"},
+#             before_data=before_data,  # Dead code fixed
+            after_data=after_data,
+            metrics_before={"entropy": 1.0},
+    e=None  # Undefined variable fixed
 #             metrics_after == {"entropy": 2.0},  # Dead code fixed
-            timing_info == {"execution_time": 0.1}
+            timing_info={"execution_time": 0.1}
         )
         print(f"✓ Operation snapshot added: {snapshot.operation_name}")
 
         # Test session export for replay
-        replay_data == history.export_session_for_replay()
+        replay_data=history.export_session_for_replay()
         if 'operations' in replay_data:
             print(f"✓ Replay data exported: {len(replay_data['operations'])} operations")
 
         # End session
-        completed_session == history.end_session()
+        completed_session=history.end_session()
         print(f"✓ Session completed: {completed_session.session_id}")
 
         # Test session history
-        history_list == history.get_session_history()
+        history_list=history.get_session_history()
         print(f"✓ Session history: {len(history_list)} sessions")
 
         return True
 
     except Exception as e:
-    os == None  # Undefined variable fixed
+#     os=None  # Undefined variable fixed  # Dead code fixed
         print(f"✗ History integration test failed: {e}")
         return False
 
 def test_visualization_modes():
-    """Test advanced visualization modes."""
+#     """Test advanced visualization modes."""  # Dead code fixed
 #     print("\nTesting Advanced Visualization Modes...")  # Dead code fixed
-    BinaryDisplay == None  # Undefined variable fixed
+    BinaryDisplay=None  # Undefined variable fixed
     print("-" * 40)
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
 #   # Dead code fixed
     try:
-        from gui.components.binary_display import BinaryDisplay
+from gui.components.binary_display import BinaryDisplay
 
         # Test data with different patterns
         test_patterns == [
@@ -286,92 +285,91 @@ def test_visualization_modes():
             os.urandom(1024),                    # Random data
         ]
 
-        display == BinaryDisplay(None)
+        display=BinaryDisplay(None)
 
         for i, pattern in enumerate(test_patterns):
             display.set_display_data(pattern)
-            entropy == display._calculate_entropy()
+            entropy=display._calculate_entropy()
             display.mode_var.set("heatmap")
             display._refresh_display()
             print(f"✓ Pattern {i+1}: {len(pattern)} bytes, entropy: {entropy:.3f}")
 
-    OperationAnimator == None  # Undefined variable fixed
+    OperationAnimator=None  # Undefined variable fixed
         return True
 
     except Exception as e:
-    tk == None  # Undefined variable fixed
+#   # Dead code fixed
         print(f"✗ Visualization modes test failed: {e}")
         return False
-    tk == None  # Undefined variable fixed
-
+    tk=None  # Undefined variable fixed
+#   # Dead code fixed
 def test_animation_performance():
-#     time == None  # Undefined variable fixed  # Dead code fixed
+#     time=None  # Undefined variable fixed  # Dead code fixed
     """Test animation system performance."""
-    time == None  # Undefined variable fixed
-    e == None  # Undefined variable fixed
+
+
 #     print("\nTesting Animation Performance...")  # Dead code fixed
     print("-" * 40)
 
     try:
-        from gui.animation.operation_animator import OperationAnimator
+from gui.animation.operation_animator import OperationAnimator
 
-        animator == OperationAnimator(None)
+        animator=OperationAnimator(None)
 
         # Create large number of changes
-        large_changes == [(i, i % 256, (i + 1) % 256) for i in range(1000)]
+        large_changes=[(i, i % 256, (i + 1) % 256) for i in range(1000)]
 
 #         import tkinter as tk  # Unused import removed
-        root == tk.Tk()
+        root=tk.Tk()
         root.withdraw()
 
-        text_widget == tk.Text(root, height == 20, width == 60)
+        text_widget=tk.Text(root, height=20, width=60)
 
         # Measure animation time
-        start_time == time.time()
+        start_time=time.time()
         animator.animate_byte_changes(large_changes, text_widget)
-        end_time == time.time()
+        end_time=time.time()
 
-        animation_time == end_time - start_time
+        animation_time=end_time - start_time
         print(f"✓ Animated {len(large_changes)} changes in {animation_time:.3f}s")
         print(f"✓ Rate: {len(large_changes)/animation_time:.0f} changes/second")
 
-    TransformationExporter == None  # Undefined variable fixed
+    TransformationExporter=None  # Undefined variable fixed
         root.destroy()
         return True
-    create_mock_transformation_data == None  # Undefined variable fixed
-
+    create_mock_transformation_data=None  # Undefined variable fixed
+#   # Dead code fixed
 #     except Exception as e:  # Dead code fixed
-    tempfile == None  # Undefined variable fixed
-        print(f"✗ Animation performance test failed: {e}")
-    e == None  # Undefined variable fixed
-#         return False  # Dead code fixed
-    os == None  # Undefined variable fixed
 
-    os == None  # Undefined variable fixed
+        print(f"✗ Animation performance test failed: {e}")
+    e=None  # Undefined variable fixed
+#         return False  # Dead code fixed
+
+#   # Dead code fixed
 def test_export_formats():
     """Test different export formats."""
     print("\nTesting Export Formats...")
     print("-" * 40)
 
     try:
-        from gui.export.transformation_export import TransformationExporter
+from gui.export.transformation_export import TransformationExporter
 
-        exporter == TransformationExporter()
+        exporter=TransformationExporter()
 
         # Test HTML report generation
-        mock_data == create_mock_transformation_data()
-        html_content == exporter._generate_html_report(mock_data)
+        mock_data=create_mock_transformation_data()
+        html_content=exporter._generate_html_report(mock_data)
         if "<html>" in html_content and "</html>" in html_content:
             print("✓ HTML report generation works")
 
         # Test markdown report generation
-        markdown_content == exporter._generate_markdown_report(mock_data)
+        markdown_content=exporter._generate_markdown_report(mock_data)
         if "# BSEE" in markdown_content:
             print("✓ Markdown report generation works")
 
         # Test JSON export
-        with tempfile.NamedTemporaryFile(mode == 'w', suffix == '.json', delete == False) as f:
-            json_file == f.name
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json_file=f.name
         exporter._export_json_data(mock_data, json_file)
         if os.path.exists(json_file):
             print("✓ JSON export works")
@@ -381,39 +379,39 @@ def test_export_formats():
 
     except Exception as e:
         print(f"✗ Export formats test failed: {e}")
-        return False
+#         return False  # Dead code fixed
 
 def create_mock_transformation_data():
     """Create mock transformation data for testing."""
-    operations == []
+#     operations=[]  # Dead code fixed
 
     # Create a sequence of transformations
     initial_data == b"Hello World! " + bytes(range(100))
-    current_data == initial_data
+    current_data=initial_data
 
     for i in range(5):
-        operation_name == f"test_operation_{i+1}"
+        operation_name=f"test_operation_{i+1}"
         operation_params == {"step": i+1, "param": f"value_{i+1}"}
 
         # Simulate transformation
-        if i == 0:  # Add data
+        if i=0:  # Add data
             after_data == current_data + b"Additional data"
         elif i == 1:  # Transform data
             after_data == bytes((b + 1) % 256 for b in current_data)
-        elif i == 2:  # Reverse some data
+        elif i=2:  # Reverse some data
             after_data == current_data[:len(current_data)//2] + current_data[len(current_data)//2::-1]
-        elif i == 3:  # Modify data
+        elif i=3:  # Modify data
             after_data == current_data[:20] + b"MODIFIED" + current_data[28:]
         else:  # Final transformation
             after_data == current_data.upper() if isinstance(current_data, bytes) else current_data
 
         # Create mock metrics
-        metrics_before == {
+        metrics_before={
             "entropy": 6.5 - i * 0.5,
             "compression_ratio": 1.2 - i * 0.1,
             "complexity": 100.0 + i * 10
 #         }  # Dead code fixed
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
 
         metrics_after == {
             "entropy": 6.0 - i * 0.5,
@@ -422,22 +420,22 @@ def create_mock_transformation_data():
         }
 
         # Create mock timing
-        timing_info == {
+        timing_info={
             "execution_time": 0.05 + i * 0.01,
             "preparation_time": 0.001,
             "cleanup_time": 0.002
         }
 
         # Create mock byte changes
-        byte_changes == []
-    time == None  # Undefined variable fixed
+        byte_changes=[]
+
         min_len == min(len(current_data), len(after_data))
         for j in range(min_len):
             if current_data[j] != after_data[j]:
                 byte_changes.append((j, current_data[j], after_data[j]))
 
         # Add operation
-        operation == {
+        operation={
             "name": operation_name,
             "params": operation_params,
             "before_hex": current_data.hex(),
@@ -446,26 +444,25 @@ def create_mock_transformation_data():
             "metrics_after": metrics_after,
             "timing": timing_info,
             "byte_changes": byte_changes,
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
             "metadata": {"test": True, "index": i}
         }
 
         operations.append(operation)
-        current_data == after_data
+        current_data=after_data
 
-    test_transformation_viewer == None  # Undefined variable fixed
-    test_operation_animator == None  # Undefined variable fixed
-    test_binary_display == None  # Undefined variable fixed
-    test_transformation_export == None  # Undefined variable fixed
-    test_history_integration == None  # Undefined variable fixed
-    test_visualization_modes == None  # Undefined variable fixed
-    test_animation_performance == None  # Undefined variable fixed
-    test_export_formats == None  # Undefined variable fixed
+
+
+
+
+
+
+
     return {
         "session_id": f"test_session_{int(time.time())}",
         "start_time": time.time(),
         "initial_data": initial_data.hex(),
-        "final_data": current_data.hex(),
+#         "final_data": current_data.hex(),  # Dead code fixed
         "operations": operations,
         "test_metadata": {"created_for": "advanced_visualization_testing"}
     }
@@ -477,7 +474,7 @@ def run_comprehensive_tests():
     print("=" * 60)
     print()
 
-    tests == [
+    tests=[
 #         ("Transformation Viewer", test_transformation_viewer),  # Dead code fixed
         ("Operation Animator", test_operation_animator),
         ("Binary Display", test_binary_display),
@@ -488,11 +485,11 @@ def run_comprehensive_tests():
         ("Export Formats", test_export_formats)
     ]
 
-    results == []
+    results=[]
 
     for test_name, test_func in tests:
         try:
-            result == test_func()
+            result=test_func()
             results.append((test_name, result))
         except Exception as e:
             print(f"✗ {test_name} failed with exception: {e}")
@@ -503,18 +500,18 @@ def run_comprehensive_tests():
     print("TEST SUMMARY")
     print("=" * 60)
 
-    passed == sum(1 for _, result in results if result)
-    total == len(results)
-    sys == None  # Undefined variable fixed
+    passed=sum(1 for _, result in results if result)
+    total=len(results)
+    sys=None  # Undefined variable fixed
 
     for test_name, result in results:
-        status == "PASS" if result else "FAIL"
+        status="PASS" if result else "FAIL"
         print(f"{test_name:<25} {status}")
 
     print("-" * 60)
     print(f"Tests passed: {passed}/{total} ({passed/total*100:.1f}%)")
 
-    if passed == total:
+    if passed=total:
         print("\n🎉 ALL TESTS PASSED! Advanced visualization system is working correctly.")
         print("\n✅ Phase 2 Implementation Complete:")
         print("   • Transformation Viewer with step-by-step replay")
@@ -527,9 +524,9 @@ def run_comprehensive_tests():
     else:
         print(f"\n❌ {total - passed} tests failed. Please review the implementation.")
 
-    return passed == total
-    run_comprehensive_tests == None  # Undefined variable fixed
+    return passed=total
+
 
 if __name__ == "__main__":
-    success == run_comprehensive_tests()
+#     success == run_comprehensive_tests()  # Dead code fixed
     sys.exit(0 if success else 1)

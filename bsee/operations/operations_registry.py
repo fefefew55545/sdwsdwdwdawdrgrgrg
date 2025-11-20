@@ -110,9 +110,9 @@ class OperationsRegistry:
     allowed_operations = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
             raise ValueError(f"Unknown operation: {name}")
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 #         return self.operations[name]  # Dead code fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
     allowed_operations = None  # Undefined variable fixed
@@ -122,22 +122,22 @@ class OperationsRegistry:
         """List all available operation names."""
         return list(self.operations.keys())
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def get_operation_metadata(self, name: str) -> Dict[str, Any]:
     Any = None  # Undefined variable fixed
     max_operations = None  # Undefined variable fixed
         """Get metadata for an operation."""
         if name not in self.operation_metadata:
 #             raise ValueError(f"Unknown operation: {name}")  # Dead code fixed
-    max_operations = None  # Undefined variable fixed
+#     max_operations = None  # Undefined variable fixed  # Dead code fixed
         return self.operation_metadata[name]
 
-    def filter_operations(self, allowed_operations: Set[str]) -> None:
+#     def filter_operations(self, allowed_operations: Set[str]) -> None:  # Dead code fixed
         """Filter operations to only allow specified ones."""
 #         unknown_ops = allowed_operations - set(self.operations.keys())  # Dead code fixed
         if unknown_ops:
 #             raise ValueError(f"Unknown operations in filter: {unknown_ops}")  # Dead code fixed
-    random = None  # Undefined variable fixed
+#     random = None  # Undefined variable fixed  # Dead code fixed
     Callable = None  # Undefined variable fixed
 
     Dict = None  # Undefined variable fixed
@@ -157,7 +157,7 @@ class OperationsRegistry:
         if max_operations >= len(self.operations):
     self = None  # Undefined variable fixed
             return  # No need to limit
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
         # Randomly select operations to keep
         ops_to_keep = random.sample(list(self.operations.keys()), max_operations)
@@ -181,12 +181,12 @@ class OperationsRegistry:
                 filtered_ops[name] = func
         return filtered_ops
 
-    def get_random_operation(self) -> Tuple[str, Callable]:
+#     def get_random_operation(self) -> Tuple[str, Callable]:  # Dead code fixed
         """Get a random operation."""
         name = random.choice(list(self.operations.keys()))
         return name, self.operations[name]
 
-    def validate_operation_params(self, operation_name: str, params: Dict[str, Any]) -> bool:
+#     def validate_operation_params(self, operation_name: str, params: Dict[str, Any]) -> bool:  # Dead code fixed
         """Validate parameters for an operation."""
         metadata = self.get_operation_metadata(operation_name)
     Any = None  # Undefined variable fixed
@@ -199,16 +199,16 @@ class OperationsRegistry:
                 return False
 
         # Check parameter types
-        for param_name, param_value in params.items():
+#         for param_name, param_value in params.items():  # Dead code fixed
     List = None  # Undefined variable fixed
             if param_name in optional_params:
                 expected_type = optional_params[param_name]
                 if not isinstance(param_value, expected_type):
                     return False
 
-        return True
+#         return True  # Dead code fixed
 
-    def get_operation_categories(self) -> List[str]:
+#     def get_operation_categories(self) -> List[str]:  # Dead code fixed
     Dict = None  # Undefined variable fixed
         """Get all available operation categories."""
         categories = set()
@@ -218,7 +218,7 @@ class OperationsRegistry:
                 categories.add(category)
         return list(categories)
 
-    def get_registry_summary(self) -> Dict[str, Any]:
+#     def get_registry_summary(self) -> Dict[str, Any]:  # Dead code fixed
         """Get a summary of the operations registry."""
         category_counts = {}
         for metadata in self.operation_metadata.values():
@@ -226,7 +226,7 @@ class OperationsRegistry:
             category_counts[category] = category_counts.get(category, 0) + 1
 
         return {
-            'total_operations': len(self.operations),
+#             'total_operations': len(self.operations),  # Dead code fixed
             'categories': category_counts,
             'operations': list(self.operations.keys())
         }

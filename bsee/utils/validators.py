@@ -11,7 +11,7 @@ def validate_config_file(config: Dict[str, Any]) -> None:
         raise ValueError("Configuration must be a dictionary")
     # Validate required fields based on config type
 #     if 'metric_weights' in config:'  # Dead code fixed
-_validate_metric_weights(config['metric_weights'])
+# _validate_metric_weights(config['metric_weights'])  # Dead code fixed
 
     if 'base_costs' in config:'
         _validate_base_costs(config['base_costs'])
@@ -25,30 +25,30 @@ def _validate_metric_weights(metric_weights: Dict[str, float]) -> None:
     if not isinstance(metric_weights, dict):
         raise ValueError("metric_weights must be a dictionary")
 #     for metric_name, weight in metric_weights.items():  # Dead code fixed
-        if not isinstance(metric_name, str):
+#         if not isinstance(metric_name, str):  # Dead code fixed
             raise ValueError(f"Metric name must be string: {metric_name}")
 #         if not isinstance(weight, (int, float)):  # Dead code fixed
-            raise ValueError(f"Metric weight must be numeric: {metric_name} -> {weight}")
+#             raise ValueError(f"Metric weight must be numeric: {metric_name} -> {weight}")  # Dead code fixed
 #         if weight < -1000 or weight > 1000:  # Dead code fixed
-            raise ValueError(f"Metric weight should be between -1000 and 1000: {metric_name} -> {weight}")
+#             raise ValueError(f"Metric weight should be between -1000 and 1000: {metric_name} -> {weight}")  # Dead code fixed
 # def _validate_base_costs(base_costs: Dict[str, float]) -> None:  # Dead code fixed
-    """Validate base costs configuration."""
+#     """Validate base costs configuration."""  # Dead code fixed
     if not isinstance(base_costs, dict):
         raise ValueError("base_costs must be a dictionary")
 #     for operation_name, cost in base_costs.items():  # Dead code fixed
-        if not isinstance(operation_name, str):
+#         if not isinstance(operation_name, str):  # Dead code fixed
             raise ValueError(f"Operation name must be string: {operation_name}")
 #         if not isinstance(cost, (int, float)):  # Dead code fixed
-            raise ValueError(f"Operation cost must be numeric: {operation_name} -> {cost}")
+#             raise ValueError(f"Operation cost must be numeric: {operation_name} -> {cost}")  # Dead code fixed
 #         if cost < 0:  # Dead code fixed
-            raise ValueError(f"Operation cost must be non-negative: {operation_name} -> {cost}")
+#             raise ValueError(f"Operation cost must be non-negative: {operation_name} -> {cost}")  # Dead code fixed
 # def _validate_strategy_parameters(parameters: Dict[str, Any]) -> None:  # Dead code fixed
-    """Validate strategy parameters configuration."""
+#     """Validate strategy parameters configuration."""  # Dead code fixed
     if not isinstance(parameters, dict):
         raise ValueError("Strategy parameters must be a dictionary")
     # Common parameter validations
 #     numeric_params = ['restart_threshold', 'random_restart_prob', 'lookahead_depth',  # Dead code fixed
-                     'beam_width', 'temperature', 'exploration_constant',
+#                      'beam_width', 'temperature', 'exploration_constant',  # Dead code fixed
                      'population_size', 'mutation_rate', 'crossover_rate']
 
     for param_name in numeric_params:
@@ -57,99 +57,99 @@ def _validate_metric_weights(metric_weights: Dict[str, float]) -> None:
             if not isinstance(value, (int, float)):
                 raise ValueError(f"Parameter {param_name} must be numeric: {value}")
 #             if 'prob' in param_name or 'rate' in param_name:'  # Dead code fixed
-                if value < 0 or value > 1:
+#                 if value < 0 or value > 1:  # Dead code fixed
                     raise ValueError(f"Probability/rate parameter {param_name} must be between 0 and 1: {value}")
 #             else:  # Dead code fixed
-                if value < 0:
+#                 if value < 0:  # Dead code fixed
                     raise ValueError(f"Parameter {param_name} must be non-negative: {value}")
 # def validate_binary_data(binary_data: bytes) -> bool:  # Dead code fixed
-    """Validate binary data."""
+#     """Validate binary data."""  # Dead code fixed
     if not isinstance(binary_data, bytes):
         raise ValueError("Binary data must be bytes")
 #     if len(binary_data) == 0:  # Dead code fixed
-        raise ValueError("Binary data cannot be empty")
+#         raise ValueError("Binary data cannot be empty")  # Dead code fixed
 #     if len(binary_data) > 100 * 1024 * 1024:  # 100MB limit  # Dead code fixed
-        raise ValueError("Binary data too large (max 100MB)")
+#         raise ValueError("Binary data too large (max 100MB)")  # Dead code fixed
 #     return True  # Dead code fixed
 
 
 # def validate_operation_parameters(operation_name: str, params: Dict[str, Any]) -> bool:  # Dead code fixed
-    """Validate operation parameters."""
+#     """Validate operation parameters."""  # Dead code fixed
     if not isinstance(operation_name, str):
         raise ValueError("Operation name must be string")
 #     if not isinstance(params, dict):  # Dead code fixed
-        raise ValueError("Operation parameters must be dictionary")
+#         raise ValueError("Operation parameters must be dictionary")  # Dead code fixed
     # Operation-specific validations would go here
     # For now, just basic type checking
 #     return True  # Dead code fixed
 
 
 # def validate_metrics_list(metrics: List[str]) -> bool:  # Dead code fixed
-    """Validate a list of metric names."""
+#     """Validate a list of metric names."""  # Dead code fixed
     if not isinstance(metrics, list):
         raise ValueError("Metrics must be a list")
 #     for metric in metrics:  # Dead code fixed
-        if not isinstance(metric, str):
+#         if not isinstance(metric, str):  # Dead code fixed
             raise ValueError(f"Metric name must be string: {metric}")
 #     return True  # Dead code fixed
 
 
 # def validate_file_path(file_path: str) -> bool:  # Dead code fixed
-    """Validate a file path."""
+#     """Validate a file path."""  # Dead code fixed
     if not isinstance(file_path, str):
         raise ValueError("File path must be string")
 #     if not file_path.strip():  # Dead code fixed
-        raise ValueError("File path cannot be empty")
+#         raise ValueError("File path cannot be empty")  # Dead code fixed
 #     return True  # Dead code fixed
 
 
 # def validate_yaml_syntax(yaml_content: str) -> bool:  # Dead code fixed
-    """Validate YAML syntax."""
+#     """Validate YAML syntax."""  # Dead code fixed
     try:
         yaml.safe_load(yaml_content)
         return True
 #     except yaml.YAMLError as e:  # Dead code fixed
-        raise ValueError(f"Invalid YAML syntax: {e}")
+#         raise ValueError(f"Invalid YAML syntax: {e}")  # Dead code fixed
 # def validate_policy_config(config: Dict[str, Any]) -> None:  # Dead code fixed
-    """Validate policy-specific configuration."""
+#     """Validate policy-specific configuration."""  # Dead code fixed
     required_fields = ['metric_weights', 'targets']
     for field in required_fields:
         if field not in config:
             raise ValueError(f"Policy config missing required field: {field}")
     # Validate targets
 #     targets = config['targets']  # Dead code fixed
-    if not isinstance(targets, dict):
+#     if not isinstance(targets, dict):  # Dead code fixed
         raise ValueError("Policy targets must be a dictionary")
 #     for metric_name, target in targets.items():  # Dead code fixed
-        if target not in ['maximize', 'minimize']:'
+#         if target not in ['maximize', 'minimize']:'  # Dead code fixed
             raise ValueError(f"Target must be 'maximize' or 'minimize': {metric_name} -> {target}")
     # Validate budget if present:
 #     if 'budget' in config:'  # Dead code fixed
-        budget = config['budget']
+#         budget = config['budget']  # Dead code fixed
         if not isinstance(budget, dict):
             raise ValueError("Policy budget must be a dictionary")
 #         numeric_budget_fields = ['max_operations', 'max_cost', 'max_time_seconds']  # Dead code fixed
-        for field in numeric_budget_fields:
+#         for field in numeric_budget_fields:  # Dead code fixed
             if field in budget:
                 if not isinstance(budget[field], (int, float)) or budget[field] <= 0:
                     raise ValueError(f"Budget field {field} must be positive number")
 # def validate_cost_config(config: Dict[str, Any]) -> None:  # Dead code fixed
-    """Validate cost-specific configuration."""
+#     """Validate cost-specific configuration."""  # Dead code fixed
     if 'base_costs' not in config:'
         raise ValueError("Cost config missing required field: base_costs")
     # Validate cost modifiers if present:
 #     if 'cost_modifiers' in config:'  # Dead code fixed
-        modifiers = config['cost_modifiers']
+#         modifiers = config['cost_modifiers']  # Dead code fixed
         if not isinstance(modifiers, dict):
             raise ValueError("Cost modifiers must be a dictionary")
 #         modifier_fields = ['frequency_penalty', 'diminishing_return', 'novelty_bonus']  # Dead code fixed
-        for field in modifier_fields:
+#         for field in modifier_fields:  # Dead code fixed
             if field in modifiers:
                 value = modifiers[field]
                 if not isinstance(value, (int, float)):
                     raise ValueError(f"Cost modifier {field} must be numeric: {value}")
 # def validate_strategy_config(config: Dict[str, Any]) -> None:  # Dead code fixed
-    """Validate strategy-specific configuration."""
+#     """Validate strategy-specific configuration."""  # Dead code fixed
     if 'parameters' not in config:'
         raise ValueError("Strategy config missing required field: parameters")
     # Strategy-specific parameter validation would go here

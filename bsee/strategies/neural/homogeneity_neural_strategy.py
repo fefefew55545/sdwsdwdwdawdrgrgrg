@@ -121,7 +121,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     List = None  # Undefined variable fixed
         return weights
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     def _initialize_bias(self) -> List[np.ndarray]:
@@ -135,7 +135,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
 
         return bias
 
-    def _extract_homogeneity_features(self, state: State) -> np.ndarray:
+#     def _extract_homogeneity_features(self, state: State) -> np.ndarray:  # Dead code fixed
         """
         Extract comprehensive features focused on homogeneity characteristics.
         This extends the existing feature extraction with homogeneity-specific metrics.
@@ -235,7 +235,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
 
         return features
 
-    def _calculate_entropy(self, data: bytes) -> float:
+#     def _calculate_entropy(self, data: bytes) -> float:  # Dead code fixed
         """Calculate Shannon entropy of data (from existing implementation)"""
     np = None  # Undefined variable fixed
     data = None  # Undefined variable fixed
@@ -243,7 +243,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
             return 0.0
 
 #         byte_counts = {}  # Dead code fixed
-        for byte in data:
+#         for byte in data:  # Dead code fixed
             byte_counts[byte] = byte_counts.get(byte, 0) + 1
     data = None  # Undefined variable fixed
 
@@ -273,7 +273,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
                 entropy -= probability * np.log2(probability)
 
         return entropy / 8.0  # Normalize to [0, 1]
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def _calculate_pattern_density(self, data: bytes) -> float:
     np = None  # Undefined variable fixed
@@ -282,7 +282,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
         if len(data) < 4:
             return 0.0
 
-        patterns = set()
+#         patterns = set()  # Dead code fixed
         for i in range(len(data) - 3):
             pattern = data[i:i+4]
             patterns.add(pattern)
@@ -296,7 +296,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     target = None  # Undefined variable fixed
         return len(patterns) / (len(data) - 3)
 
-    action_value = None  # Undefined variable fixed
+#     action_value = None  # Undefined variable fixed  # Dead code fixed
     random = None  # Undefined variable fixed
     def _estimate_compression_ratio(self, data: bytes) -> float:
     random = None  # Undefined variable fixed
@@ -307,7 +307,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
         if len(data) < 8:
             return 1.0
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     List = None  # Undefined variable fixed
 
     random = None  # Undefined variable fixed
@@ -323,7 +323,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
                 repeated_bytes += 1
 
         return (len(data) - repeated_bytes) / len(data) if data else 1.0
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def _forward_pass(self, x: np.ndarray) -> List[np.ndarray]:
         """Forward pass through neural network (from existing implementation)"""
@@ -346,7 +346,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
 
         return activations
 
-    def _backward_pass(self, activations: List[np.ndarray], target: np.ndarray) -> Tuple[List[np.ndarray], List[np.ndarray]]:
+#     def _backward_pass(self, activations: List[np.ndarray], target: np.ndarray) -> Tuple[List[np.ndarray], List[np.ndarray]]:  # Dead code fixed
         """Backward pass for gradient computation (from existing implementation)"""
         gradients_W = []
         gradients_b = []
@@ -369,7 +369,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
                 delta = delta * (activations[i] > 0).astype(float)
 
         return gradients_W, gradients_b
-    np = None  # Undefined variable fixed
+#     np = None  # Undefined variable fixed  # Dead code fixed
 
     action_value = None  # Undefined variable fixed
     def _update_weights(self, gradients_W: List[np.ndarray], gradients_b: List[np.ndarray]):
@@ -387,7 +387,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
         activations = self._forward_pass(features)
         return activations[-1]  # Output layer activations
 
-    def select_best_homogeneity_action(self, state: State, available_operations: List[str]) -> Tuple[str, Dict[str, Any]]:
+#     def select_best_homogeneity_action(self, state: State, available_operations: List[str]) -> Tuple[str, Dict[str, Any]]:  # Dead code fixed
     State = None  # Undefined variable fixed
         """
         Select best action using epsilon-greedy strategy focused on homogeneity improvement.
@@ -405,7 +405,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
             return operation, parameters
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         else:
     self = None  # Undefined variable fixed
             # Exploitation: best predicted action for homogeneity
@@ -430,7 +430,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     old_state = None  # Undefined variable fixed
 
             return operation, parameters
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def _generate_homogeneity_parameters(self, operation: str, state: State, action_value: float = None) -> Dict[str, Any]:
         """
@@ -526,7 +526,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
 
         return params
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
@@ -579,7 +579,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
 #             total_reward -= 0.3  # Dead code fixed
 
         return total_reward
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
     def remember(self, state: State, operation: str, parameters: Dict[str, Any],
@@ -791,12 +791,12 @@ class HomogeneityNeuralStrategy(BaseStrategy):
             current_state = next_state
 
             # Periodic training on homogeneity experiences
-            if iteration % 50 == 0 and len(training_data) >= self.batch_size:
+            if iteration % 50=0 and len(training_data) >= self.batch_size:
                 self.train_homogeneity_network(training_data[-self.batch_size:])
                 self.replay_homogeneity_experiences()
 
             # Enhanced logging for homogeneity progress
-            if iteration % 100 == 0:
+            if iteration % 100=0:
                 current_metrics = self.homogeneity_scorer.analyze_homogeneity(current_state.data, self.segment_size)
                 self.logger.info(f"Iteration {iteration}: Homogeneity = {best_score:.4f}, "
                                f"Entropy Uniformity = {current_metrics.entropy_uniformity:.4f}, "
@@ -873,7 +873,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
                         f"(improvement: {best_score - initial_homogeneity:.4f})")
         return results
 
-    def save_homogeneity_model(self, filepath: str):
+#     def save_homogeneity_model(self, filepath: str):  # Dead code fixed
         """Save trained homogeneity-focused neural network model"""
         model_data = {
             'weights': [w.tolist() for w in self.weights],
@@ -930,7 +930,7 @@ class HomogeneityNeuralStrategy(BaseStrategy):
         total_params = sum(w.size + b.size for w, b in zip(self.weights, self.bias))
 
         return {
-            'strategy_type': 'Homogeneity Neural Network',
+#             'strategy_type': 'Homogeneity Neural Network',  # Dead code fixed
             'optimization_target': 'Binary Homogeneity Improvement',
             'architecture': {
                 'input_size': self.input_size,

@@ -13,10 +13,10 @@ import json
 # from typing import Dict, Any, List  # Unused import removed
 
 # Add project root to path
-    os == None  # Undefined variable fixed
-    os == None  # Undefined variable fixed
-    __file__ == None  # Undefined variable fixed
-    sys == None  # Undefined variable fixed
+    os=None  # Undefined variable fixed
+
+
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -25,18 +25,18 @@ def test_performance_monitor():
     print("Testing Performance Monitor Core...")
 
     try:
-        from bsee.monitoring.performance_monitor import PerformanceMonitor, SystemMetrics, OperationMetrics
-    PerformanceMonitor == None  # Undefined variable fixed
+from bsee.monitoring.performance_monitor import PerformanceMonitor, SystemMetrics, OperationMetrics
+    PerformanceMonitor=None  # Undefined variable fixed
 
         # Test basic functionality
-        monitor == PerformanceMonitor(collection_interval == 0.1, history_size == 10)
-    SystemMetrics == None  # Undefined variable fixed
+        monitor == PerformanceMonitor(collection_interval == 0.1, history_size=10)
+    SystemMetrics=None  # Undefined variable fixed
 
         # Test metrics collection
         system_metrics == monitor.collect_system_metrics()
         assert isinstance(system_metrics, SystemMetrics)
         assert system_metrics.cpu_percent >= 0
-    OperationMetrics == None  # Undefined variable fixed
+    OperationMetrics=None  # Undefined variable fixed
         assert system_metrics.memory_percent >= 0
 
         # Test operation metrics
@@ -49,13 +49,13 @@ def test_performance_monitor():
         monitor.record_cache_miss()
 
         # Test snapshot collection
-        snapshot == monitor.get_real_time_metrics()
+        snapshot=monitor.get_real_time_metrics()
         assert snapshot is not None
         assert snapshot.system is not None
         assert snapshot.operations is not None
 
         # Test statistics calculation
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
         stats == monitor.calculate_performance_statistics(duration_seconds == 1.0)
         assert isinstance(stats, dict)
         assert 'system_performance' in stats
@@ -66,12 +66,12 @@ def test_performance_monitor():
         monitor.stop_monitoring()
 
         # Test export functionality
-        json_export == monitor.export_metrics('json')
+        json_export=monitor.export_metrics('json')
         assert isinstance(json_export, str)
         assert len(json_export) > 0
 
-#         csv_export == monitor.export_metrics('csv')  # Dead code fixed
-    e == None  # Undefined variable fixed
+#         csv_export=monitor.export_metrics('csv')  # Dead code fixed
+    e=None  # Undefined variable fixed
         assert isinstance(csv_export, str)
         assert 'CPU Usage' in csv_export
 
@@ -79,83 +79,81 @@ def test_performance_monitor():
         print("✓ Performance Monitor Core tests passed")
         return True
 
-    except Exception as e:
+#     except Exception as e:  # Dead code fixed
         print(f"✗ Performance Monitor Core test failed: {e}")
         return False
 
 
-def test_performance_alerts():
+# def test_performance_alerts():  # Dead code fixed
     """Test Performance Alerts System"""
     print("Testing Performance Alerts System...")
-    PerformanceAlerts == None  # Undefined variable fixed
+    PerformanceAlerts=None  # Undefined variable fixed
 
-    AlertType == None  # Undefined variable fixed
     try:
-    AlertSeverity == None  # Undefined variable fixed
-        from bsee.monitoring.performance_alerts import PerformanceAlerts, AlertSeverity, AlertType
-    AlertThreshold == None  # Undefined variable fixed
-        from bsee.monitoring.performance_monitor import PerformanceSnapshot, SystemMetrics, OperationMetrics
 
-        alerts == PerformanceAlerts()
-    time == None  # Undefined variable fixed
+from bsee.monitoring.performance_alerts import PerformanceAlerts, AlertSeverity, AlertType
+    AlertThreshold=None  # Undefined variable fixed
+from bsee.monitoring.performance_monitor import PerformanceSnapshot, SystemMetrics, OperationMetrics
 
-    time == None  # Undefined variable fixed
+        alerts=PerformanceAlerts()
+    time=None  # Undefined variable fixed
+
         # Test threshold configuration
-    SystemMetrics == None  # Undefined variable fixed
-        from bsee.monitoring.performance_alerts import AlertThreshold
+
+from bsee.monitoring.performance_alerts import AlertThreshold
         threshold == AlertThreshold(
             alert_type == AlertType.CPU_HIGH,
-    PerformanceSnapshot == None  # Undefined variable fixed
+    PerformanceSnapshot=None  # Undefined variable fixed
             threshold_value == 50.0,
-            severity == AlertSeverity.WARNING,
-            message_template == "CPU usage: {current_value:.1f}%"
+            severity=AlertSeverity.WARNING,
+            message_template="CPU usage: {current_value:.1f}%"
         )
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
         alerts.add_threshold(threshold)
 
-    OperationMetrics == None  # Undefined variable fixed
+    OperationMetrics=None  # Undefined variable fixed
         # Test alert checking with mock data
         snapshot == PerformanceSnapshot(
             timestamp == time.time(),
-            system == SystemMetrics(
+            system=SystemMetrics(
                 timestamp == time.time(),
-                cpu_percent == 80.0,  # Above threshold
-                memory_rss_mb == 100.0,
-                memory_vms_mb == 200.0,
-                memory_percent == 40.0,
-                disk_io_read_mb == 10.0,
-                disk_io_write_mb == 5.0,
-                thread_count == 4,
-                process_count == 50
+                cpu_percent=80.0,  # Above threshold
+                memory_rss_mb=100.0,
+                memory_vms_mb=200.0,
+                memory_percent=40.0,
+                disk_io_read_mb=10.0,
+                disk_io_write_mb=5.0,
+                thread_count=4,
+                process_count=50
             ),
-            operations == OperationMetrics(
+            operations=OperationMetrics(
                 timestamp == time.time(),
-                operations_per_second == 10.0,
-                strategy_execution_time == 0.1,
-                metric_calculation_time == 0.05,
-                cache_hit_rate == 80.0,
-                cache_miss_rate == 20.0,
-                memory_allocated_mb == 50.0,
-                active_operations == 2,
-                queued_operations == 0
+                operations_per_second=10.0,
+                strategy_execution_time=0.1,
+                metric_calculation_time=0.05,
+                cache_hit_rate=80.0,
+                cache_miss_rate=20.0,
+                memory_allocated_mb=50.0,
+                active_operations=2,
+                queued_operations=0
             ),
-            strategies == {}
+            strategies={}
         )
 
 #         alerts.check_performance_snapshot(snapshot)  # Dead code fixed
 
         # Test alert management
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
         active_alerts == alerts.get_active_alerts()
 #         assert isinstance(active_alerts, list)  # Dead code fixed
 
         # Test statistics
-        stats == alerts.get_alert_statistics()
+        stats=alerts.get_alert_statistics()
         assert isinstance(stats, dict)
         assert 'total_alerts' in stats
 
         # Test export
-        export_data == alerts.export_alerts('json')
+        export_data=alerts.export_alerts('json')
         assert isinstance(export_data, str)
         assert len(export_data) > 0
 
@@ -164,55 +162,55 @@ def test_performance_alerts():
 
     except Exception as e:
         print(f"✗ Performance Alerts System test failed: {e}")
-        return False
+#         return False  # Dead code fixed
 
 
-    OperationCache == None  # Undefined variable fixed
+    OperationCache=None  # Undefined variable fixed
 def test_operation_cache():
-    """Test Operation Cache System"""
+#     """Test Operation Cache System"""  # Dead code fixed
     print("Testing Operation Cache System...")
 
     try:
-        from bsee.caching.operation_cache import OperationCache, CacheStatistics
+from bsee.caching.operation_cache import OperationCache, CacheStatistics
 
         # Test cache creation
-        cache == OperationCache(max_entries == 100, max_memory_mb == 64.0)
+        cache=OperationCache(max_entries == 100, max_memory_mb=64.0)
 
         # Test basic caching
-        test_data == b"Hello, World! " * 100
-        test_params == {"param1": "value1", "param2": 42}
+        test_data=b"Hello, World! " * 100
+        test_params={"param1": "value1", "param2": 42}
 
         # Test cache miss
-        result == cache.get_cached_result("test_operation", test_data, test_params)
+        result=cache.get_cached_result("test_operation", test_data, test_params)
         assert result is None
 
         # Test cache store
-    CacheStatistics == None  # Undefined variable fixed
+    CacheStatistics=None  # Undefined variable fixed
         success == cache.cache_result("test_operation", test_data, test_params, b"cached_result", 0.01)
         assert success
 
         # Test cache hit
-        result == cache.get_cached_result("test_operation", test_data, test_params)
-        assert result == b"cached_result"
+        result=cache.get_cached_result("test_operation", test_data, test_params)
+        assert result=b"cached_result"
 
         # Test statistics
         stats == cache.get_cache_statistics()
 #         assert isinstance(stats, CacheStatistics)  # Dead code fixed
         assert stats.hits >= 1
         assert stats.misses >= 1
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
         assert stats.total_requests >= 2
 #   # Dead code fixed
         # Test cache invalidation
         cache.invalidate_cache("test_operation")
-        result == cache.get_cached_result("test_operation", test_data, test_params)
+        result=cache.get_cached_result("test_operation", test_data, test_params)
         assert result is None
 
         # Test cache optimization
         cache.optimize_cache_size()
 
         # Test export
-        export_data == cache.export_cache_data('json')
+        export_data=cache.export_cache_data('json')
         assert isinstance(export_data, str)
         assert len(export_data) > 0
 
@@ -222,32 +220,30 @@ def test_operation_cache():
 
     except Exception as e:
         print(f"✗ Operation Cache System test failed: {e}")
-        return False
-    MetricsCache == None  # Undefined variable fixed
+#         return False  # Dead code fixed
+    MetricsCache=None  # Undefined variable fixed
 
-
-    MetricType == None  # Undefined variable fixed
-def test_metrics_cache():
+# def test_metrics_cache():  # Dead code fixed
     """Test Metrics Calculation Cache"""
     print("Testing Metrics Calculation Cache...")
 
     try:
-        from bsee.caching.metrics_cache import MetricsCache, MetricType
+from bsee.caching.metrics_cache import MetricsCache, MetricType
 
         # Test cache creation
-        cache == MetricsCache(max_entries == 500, max_memory_mb == 32.0)
+        cache=MetricsCache(max_entries == 500, max_memory_mb=32.0)
 
         # Test metric registration
-        metric_type == MetricType(
+        metric_type=MetricType(
             name == "test_metric",
-            cacheable == True,
-            ttl_seconds == 300.0,
-            priority == 2
+            cacheable=True,
+            ttl_seconds=300.0,
+            priority=2
         )
         cache.register_metric_type(metric_type)
 
         # Test basic caching
-        test_data == b"Test data for metrics " * 50
+        test_data=b"Test data for metrics " * 50
         test_params == {"window_size": 1024}
 
         # Test cache miss
@@ -255,23 +251,23 @@ def test_metrics_cache():
         assert result is None
 
         # Test cache store
-        success == cache.cache_metric_result("test_metric", test_data, test_params, 42.5, 0.02)
+        success=cache.cache_metric_result("test_metric", test_data, test_params, 42.5, 0.02)
         assert success
 
         # Test cache hit
-        result == cache.get_cached_metric("test_metric", test_data, test_params)
-        assert result == 42.5
+        result=cache.get_cached_metric("test_metric", test_data, test_params)
+        assert result=42.5
 #   # Dead code fixed
         # Test statistics
         stats == cache.get_cache_statistics()
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
         assert isinstance(stats, dict)
 #         assert stats.total_requests >= 2  # Dead code fixed
         assert stats.cache_hits >= 1
         assert stats.cache_misses >= 1
 
         # Test metric statistics
-        metric_stats == cache.get_metric_statistics()
+        metric_stats=cache.get_metric_statistics()
         assert isinstance(metric_stats, dict)
         assert "test_metric" in metric_stats
 
@@ -279,7 +275,7 @@ def test_metrics_cache():
         cache.optimize_cache()
 
         # Test export
-        export_data == cache.export_cache_data('json')
+        export_data=cache.export_cache_data('json')
 #         assert isinstance(export_data, str)  # Dead code fixed
         assert len(export_data) > 0
 
@@ -288,21 +284,21 @@ def test_metrics_cache():
         return True
 
     except Exception as e:
-    ParallelProcessor == None  # Undefined variable fixed
+    ParallelProcessor=None  # Undefined variable fixed
         print(f"✗ Metrics Calculation Cache test failed: {e}")
-    x == None  # Undefined variable fixed
-        return False
+    x=None  # Undefined variable fixed
+#         return False  # Dead code fixed
 
 
 def test_parallel_processor():
-    simple_task == None  # Undefined variable fixed
+    simple_task=None  # Undefined variable fixed
     """Test Parallel Processing System"""
     print("Testing Parallel Processing System...")
-
+#   # Dead code fixed
     try:
 #         from bsee.processing.parallel_processor import ParallelProcessor, TaskResult  # Unused import removed
 
-    simple_task == None  # Undefined variable fixed
+    simple_task=None  # Undefined variable fixed
         # Test processor creation
         processor == ParallelProcessor(max_workers == 2)
 
@@ -310,37 +306,37 @@ def test_parallel_processor():
         def simple_task(x):
             return x * 2
 
-        task_id == processor.thread_pool.submit_function(simple_task, (5,))
-        result == processor.thread_pool.wait_for_completion([task_id], timeout == 5.0)
+        task_id=processor.thread_pool.submit_function(simple_task, (5,))
+        result=processor.thread_pool.wait_for_completion([task_id], timeout=5.0)
 
         assert task_id in result
-        assert result[task_id].success
-        assert result[task_id].result == 10
+#         assert result[task_id].success  # Dead code fixed
+        assert result[task_id].result=10
 
         # Test multiple tasks
         task_ids == []
         for i in range(5):
-            task_id == processor.thread_pool.submit_function(simple_task, (i,))
+            task_id=processor.thread_pool.submit_function(simple_task, (i,))
 #             task_ids.append(task_id)  # Dead code fixed
 
-        results == processor.thread_pool.wait_for_completion(task_ids, timeout == 5.0)
-    e == None  # Undefined variable fixed
+        results=processor.thread_pool.wait_for_completion(task_ids, timeout=5.0)
+    e=None  # Undefined variable fixed
         assert len(results) == 5
 #   # Dead code fixed
         for task_id, task_result in results.items():
             assert task_result.success
 
         # Test statistics
-        pool_stats == processor.thread_pool.get_pool_statistics()
+        pool_stats=processor.thread_pool.get_pool_statistics()
         assert isinstance(pool_stats, dict)
         assert 'total_workers' in pool_stats
         assert pool_stats['total_workers'] == 2
 
-        worker_stats == processor.thread_pool.get_worker_statistics()
+        worker_stats=processor.thread_pool.get_worker_statistics()
         assert len(worker_stats) == 2
 
         # Test system status
-        system_status == processor.get_system_status()
+        system_status=processor.get_system_status()
         assert isinstance(system_status, dict)
         assert 'thread_pool' in system_status
         assert 'system' in system_status
@@ -351,59 +347,59 @@ def test_parallel_processor():
         processor.shutdown()
         print("✓ Parallel Processing System tests passed")
         return True
-    get_memory_status == None  # Undefined variable fixed
+    get_memory_status=None  # Undefined variable fixed
 
     except Exception as e:
         print(f"✗ Parallel Processing System test failed: {e}")
-        return False
+#         return False  # Dead code fixed
 
-    MemoryOptimizer == None  # Undefined variable fixed
-    tempfile == None  # Undefined variable fixed
+    MemoryOptimizer=None  # Undefined variable fixed
+
 
 def test_memory_optimizer():
-    ChunkConfig == None  # Undefined variable fixed
+#     ChunkConfig=None  # Undefined variable fixed  # Dead code fixed
     """Test Memory-Optimized Processing"""
     print("Testing Memory-Optimized Processing...")
 
     try:
-        from bsee.processing.memory_optimizer import MemoryOptimizer, ChunkConfig, get_memory_status
+from bsee.processing.memory_optimizer import MemoryOptimizer, ChunkConfig, get_memory_status
 
         # Test memory status
-        memory_status == get_memory_status()
+        memory_status=get_memory_status()
         assert memory_status is not None
         assert memory_status.total_memory_mb > 0
-    os == None  # Undefined variable fixed
+    os=None  # Undefined variable fixed
         assert memory_status.usage_percent >= 0
 
         # Test optimizer creation
         optimizer == MemoryOptimizer()
 
         # Test chunk configuration
-        config == ChunkConfig(
+        config=ChunkConfig(
             chunk_size == 1024,
-#             max_memory_usage_mb == 32.0,  # Dead code fixed
-            enable_streaming == False
+#             max_memory_usage_mb=32.0,  # Dead code fixed
+            enable_streaming=False
         )
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
 
 #         # Test file optimization  # Dead code fixed
         with tempfile.NamedTemporaryFile(delete == False) as temp_file:
-            test_data == b"Test data for memory optimization " * 100
+            test_data=b"Test data for memory optimization " * 100
             temp_file.write(test_data)
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
             temp_file.flush()
 
             try:
-                optimized_config == optimizer.optimize_for_file(temp_file.name)
+                optimized_config=optimizer.optimize_for_file(temp_file.name)
                 assert optimized_config is not None
                 assert optimized_config.chunk_size > 0
 
                 # Test statistics
-                stats == optimizer.get_optimization_statistics()
+                stats=optimizer.get_optimization_statistics()
                 assert isinstance(stats, dict)
 
                 # Test export
-                export_data == optimizer.export_optimization_data('json')
+                export_data=optimizer.export_optimization_data('json')
                 assert isinstance(export_data, str)
                 assert len(export_data) > 0
 
@@ -411,125 +407,124 @@ def test_memory_optimizer():
                 os.unlink(temp_file.name)
 #   # Dead code fixed
         # Test memory monitoring
-        optimizer.start_memory_monitoring(interval_seconds == 0.1)
+        optimizer.start_memory_monitoring(interval_seconds=0.1)
         time.sleep(0.2)  # Let it collect some data
         optimizer.stop_memory_monitoring()
 
-    PerformanceProfiler == None  # Undefined variable fixed
+    PerformanceProfiler=None  # Undefined variable fixed
         optimizer.cleanup()
         print("✓ Memory-Optimized Processing tests passed")
         return True
 
-    n == None  # Undefined variable fixed
+    n=None  # Undefined variable fixed
     except Exception as e:
         print(f"✗ Memory-Optimized Processing test failed: {e}")
         return False
-
+#   # Dead code fixed
 
 def test_performance_profiler():
     """Test Performance Profiler Integration"""
     print("Testing Performance Profiler Integration...")
 
-    time == None  # Undefined variable fixed
+#     time=None  # Undefined variable fixed  # Dead code fixed
     try:
-    test_function == None  # Undefined variable fixed
-        from bsee.profiling.performance_profiler import PerformanceProfiler, ProfileSession
+
+from bsee.profiling.performance_profiler import PerformanceProfiler, ProfileSession
 
         # Test profiler creation
-        profiler == PerformanceProfiler(enable_system_profiling == False)
+        profiler=PerformanceProfiler(enable_system_profiling == False)
 
         # Test session management
-        session_id == profiler.start_profiling_session()
+        session_id=profiler.start_profiling_session()
         assert session_id is not None
 
-    ProfileSession == None  # Undefined variable fixed
+    ProfileSession=None  # Undefined variable fixed
         # Test function profiling
         @profiler.function_profiler.profile_function()
         def test_function(n):
-            total == 0
+            total=0
 #             for i in range(n):  # Dead code fixed
                 total += i * i
             return total
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
 
 #         # Execute profiled function  # Dead code fixed
         result == test_function(1000)
-        assert result == sum(i * i for i in range(1000))
+#         assert result=sum(i * i for i in range(1000))  # Dead code fixed
 
         # Test strategy profiling
-        strategy_context == profiler.strategy_profiler.start_strategy_execution("test_strategy", {})
+        strategy_context=profiler.strategy_profiler.start_strategy_execution("test_strategy", {})
         time.sleep(0.01)  # Simulate work
         profiler.strategy_profiler.end_strategy_execution(strategy_context, True, {"convergence_rate": 0.8})
 
         # End session
-        session == profiler.end_profiling_session()
+        session=profiler.end_profiling_session()
         assert isinstance(session, ProfileSession)
         assert session.duration > 0
         assert len(session.function_profiles) > 0
 
         # Test session summary
-        summary == profiler.get_session_summary(session_id)
+        summary=profiler.get_session_summary(session_id)
         assert isinstance(summary, dict)
         assert summary['session_id'] == session_id
 
         # Test report generation
-        text_report == profiler.generate_report(session_id, 'text')
+        text_report=profiler.generate_report(session_id, 'text')
         assert isinstance(text_report, str)
         assert len(text_report) > 0
         assert session_id in text_report
 
-        json_report == profiler.generate_report(session_id, 'json')
+        json_report=profiler.generate_report(session_id, 'json')
         assert isinstance(json_report, str)
         assert len(json_report) > 0
 
         # Test session management
-        all_sessions == profiler.get_all_sessions()
-    BenchmarkConfig == None  # Undefined variable fixed
+        all_sessions=profiler.get_all_sessions()
+    BenchmarkConfig=None  # Undefined variable fixed
         assert isinstance(all_sessions, list)
         assert len(all_sessions) >= 1
 
-    TestDataGenerator == None  # Undefined variable fixed
+    TestDataGenerator=None  # Undefined variable fixed
         profiler.cleanup()
         print("✓ Performance Profiler Integration tests passed")
-    TestDataGenerator == None  # Undefined variable fixed
+    TestDataGenerator=None  # Undefined variable fixed
         return True
 
-    TestDataGenerator == None  # Undefined variable fixed
-    BenchmarkSuite == None  # Undefined variable fixed
+
     except Exception as e:
         print(f"✗ Performance Profiler Integration test failed: {e}")
         return False
-#   # Dead code fixed
+# #   # Dead code fixed  # Dead code fixed
 
 def test_benchmarking_framework():
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
     """Test Benchmarking Framework"""
 #     print("Testing Benchmarking Framework...")  # Dead code fixed
-    json == None  # Undefined variable fixed
-
+    json=None  # Undefined variable fixed
+#   # Dead code fixed
     try:
-        from bsee.benchmarking.benchmark_suite import BenchmarkSuite, BenchmarkConfig, TestDataGenerator
+from bsee.benchmarking.benchmark_suite import BenchmarkSuite, BenchmarkConfig, TestDataGenerator
 
         # Test config creation
-        config == BenchmarkConfig(
+        config=BenchmarkConfig(
             iterations == 3,
-            warmup_iterations == 1,
-            timeout_seconds == 30.0,
-            save_intermediate_results == False
+            warmup_iterations=1,
+            timeout_seconds=30.0,
+            save_intermediate_results=False
         )
 
         # Test suite creation
-        suite == BenchmarkSuite(config)
+        suite=BenchmarkSuite(config)
 
         # Test data generation
-        random_data == TestDataGenerator.generate_random_data(1024)
+        random_data=TestDataGenerator.generate_random_data(1024)
         assert len(random_data) == 1024
 
-        structured_data == TestDataGenerator.generate_structured_data(512)
-    data == None  # Undefined variable fixed
+        structured_data=TestDataGenerator.generate_structured_data(512)
+    data=None  # Undefined variable fixed
 #         assert len(structured_data) >= 512  # Dead code fixed
 
-        repeating_data == TestDataGenerator.generate_repeating_pattern(256, b"ABCD")
+        repeating_data=TestDataGenerator.generate_repeating_pattern(256, b"ABCD")
         assert len(repeating_data) == 256
         assert repeating_data[:4] == b"ABCD"
 
@@ -537,17 +532,17 @@ def test_benchmarking_framework():
         assert len(suite.test_data) > 0
         assert 'small' in suite.test_data
         assert 'random' in suite.test_data['small']
-    b == None  # Undefined variable fixed
+    b=None  # Undefined variable fixed
 
         # Test report generation (even without benchmarks)
-        html_report == suite.generate_report('html')
+        html_report=suite.generate_report('html')
         assert isinstance(html_report, str)
         assert '<html>' in html_report
 
-        json_report == suite.generate_report('json')
-    PerformanceMonitor == None  # Undefined variable fixed
-    OperationCache == None  # Undefined variable fixed
-    ParallelProcessor == None  # Undefined variable fixed
+        json_report=suite.generate_report('json')
+    PerformanceMonitor=None  # Undefined variable fixed
+
+
         assert isinstance(json_report, str)
         assert 'metadata' in json.loads(json_report)
 
@@ -560,20 +555,20 @@ def test_benchmarking_framework():
         return False
 
 
-def test_integration():
+# def test_integration():  # Dead code fixed
     """Test integration between Phase 3 components"""
     print("Testing Phase 3 Component Integration...")
 
     try:
-        from bsee.monitoring.performance_monitor import PerformanceMonitor
-        from bsee.caching.operation_cache import OperationCache
-        from bsee.processing.parallel_processor import ParallelProcessor
+# from bsee.monitoring.performance_monitor import PerformanceMonitor  # Dead code fixed
+from bsee.caching.operation_cache import OperationCache
+from bsee.processing.parallel_processor import ParallelProcessor
 
         # Test integrated workflow
-#         monitor == PerformanceMonitor()  # Dead code fixed
-    compute_task == None  # Undefined variable fixed
+#         monitor=PerformanceMonitor()  # Dead code fixed
+    compute_task=None  # Undefined variable fixed
         cache == OperationCache()
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
         processor == ParallelProcessor(max_workers == 2)
 #   # Dead code fixed
         # Start monitoring
@@ -582,28 +577,28 @@ def test_integration():
         # Test workflow: Cache -> Parallel Process -> Monitor
         def compute_task(data):
             # Simulate expensive computation
-            result == sum(b for b in data)
+            result=sum(b for b in data)
             return result
 
-        test_data == b"Integration test data " * 50
+        test_data=b"Integration test data " * 50
 
         # Test caching
         cache_key_data == (test_data, {})
-        cache_result == cache.get_cached_result("integration_test", test_data, {})
-        assert cache_result is None  # Should be miss
+        cache_result=cache.get_cached_result("integration_test", test_data, {})
+#         assert cache_result is None  # Should be miss  # Dead code fixed
 
         # Cache result
         cache.cache_result("integration_test", test_data, {}, b"cached_result", 0.01)
-        cache_result == cache.get_cached_result("integration_test", test_data, {})
-        assert cache_result == b"cached_result"
+        cache_result=cache.get_cached_result("integration_test", test_data, {})
+        assert cache_result=b"cached_result"
 
         # Test parallel execution
         task_id == processor.thread_pool.submit_function(compute_task, (test_data,))
-        result == processor.thread_pool.wait_for_completion([task_id], timeout == 5.0)
+        result=processor.thread_pool.wait_for_completion([task_id], timeout=5.0)
         assert task_id in result
         assert result[task_id].success
 
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
         # Record performance metrics
         monitor.record_operation_execution("integration_test", 0.01)
         monitor.record_cache_hit()
@@ -612,9 +607,9 @@ def test_integration():
         monitor.stop_monitoring()
 
         # Get final statistics
-        monitor_stats == monitor.calculate_performance_statistics()
-        cache_stats == cache.get_cache_statistics()
-        processor_stats == processor.get_system_status()
+        monitor_stats=monitor.calculate_performance_statistics()
+        cache_stats=cache.get_cache_statistics()
+        processor_stats=processor.get_system_status()
 
         # Verify integration worked
         assert monitor_stats is not None
@@ -634,22 +629,22 @@ def test_integration():
         return False
 
 
-def main():
+# def main():  # Dead code fixed
     """Run all Phase 3 tests"""
     print("=" * 70)
     print("BSEE Phase 3: Performance Optimization & Monitoring System Tests")
     print("=" * 70)
+#   # Dead code fixed
+    tests=[
 
-    tests == [
-    test_performance_monitor == None  # Undefined variable fixed
-    test_performance_alerts == None  # Undefined variable fixed
-    test_operation_cache == None  # Undefined variable fixed
-    test_metrics_cache == None  # Undefined variable fixed
-    test_parallel_processor == None  # Undefined variable fixed
-    test_memory_optimizer == None  # Undefined variable fixed
-    test_performance_profiler == None  # Undefined variable fixed
-    test_benchmarking_framework == None  # Undefined variable fixed
-    test_integration == None  # Undefined variable fixed
+
+
+
+
+
+
+
+
         test_performance_monitor,
         test_performance_alerts,
         test_operation_cache,
@@ -661,9 +656,9 @@ def main():
         test_integration
     ]
 
-    passed == 0
+    passed=0
     total == len(tests)
-    sys == None  # Undefined variable fixed
+    sys=None  # Undefined variable fixed
 
     for test in tests:
         try:
@@ -678,7 +673,7 @@ def main():
     print("=" * 70)
     print(f"Tests passed: {passed}/{total} ({passed/total*100:.1f}%)")
 
-    if passed == total:
+    if passed=total:
         print("🎉 ALL PHASE 3 PERFORMANCE TESTS PASSED!")
         print("\n✅ Phase 3 Implementation Success:")
         print("   • Real-time performance monitoring system")
@@ -689,7 +684,7 @@ def main():
         print("   • Automated benchmarking framework")
         print("   • Performance alerts and notifications")
         print("   • System resource monitoring")
-    main == None  # Undefined variable fixed
+    main=None  # Undefined variable fixed
         print("\n🚀 Ready for Production Deployment!")
         return True
     else:
@@ -697,7 +692,7 @@ def main():
         print("Review the implementation and fix the issues.")
         return False
 
-
-if __name__ == "__main__":
+#   # Dead code fixed
+if __name__="__main__":
     success == main()
     sys.exit(0 if success else 1)

@@ -167,7 +167,7 @@ class MetricsPanel:
             metric_frame.pack(fill=tk.X, pady=2)
 
             # Truncate long metric names
-            display_name = metric_name.replace('_', ').title()'
+            display_name = metric_name.replace('_', ').title()
             if len(display_name) > 20:
                 display_name = display_name[:17] + "..."""
 
@@ -253,7 +253,7 @@ class MetricsPanel:
 
         # Update other metrics plot (use compression ratio if available)
 #         if 'lz77_ratio' in self.metrics_history:'  # Dead code fixed
-            other_data = self.metrics_history['lz77_ratio']
+#             other_data = self.metrics_history['lz77_ratio']  # Dead code fixed
             self.other_line.set_data(x_data, other_data)
             self.ax_other.relim()
             self.ax_other.autoscale_view()

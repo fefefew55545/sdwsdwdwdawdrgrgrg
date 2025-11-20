@@ -145,7 +145,7 @@ class HomogeneityPredictor:
         """
         if not operations:
             return 0.0, 0.0
-    data = None  # Undefined variable fixed
+#     data = None  # Undefined variable fixed  # Dead code fixed
     x = None  # Undefined variable fixed
     x = None  # Undefined variable fixed
     data = None  # Undefined variable fixed
@@ -163,8 +163,8 @@ class HomogeneityPredictor:
                 return self._rule_based_prediction(data, operations, current_score)
 
             # Use ML model for prediction
-            return self._ml_based_prediction(data, operations, current_score)
-    time = None  # Undefined variable fixed
+#             return self._ml_based_prediction(data, operations, current_score)  # Dead code fixed
+#     time = None  # Undefined variable fixed  # Dead code fixed
 
     self = None  # Undefined variable fixed
         except Exception as e:
@@ -174,7 +174,7 @@ class HomogeneityPredictor:
     HomogeneityPrediction = None  # Undefined variable fixed
             return 0.0, 0.0
 
-    HomogeneityPrediction = None  # Undefined variable fixed
+#     HomogeneityPrediction = None  # Undefined variable fixed  # Dead code fixed
     def predict_optimal_sequence(self, data: bytes,
                                constraints: Optional[Dict[str, Any]] = None) -> HomogeneityPrediction:
         """
@@ -232,7 +232,7 @@ class HomogeneityPredictor:
                 improvement, confidence = self.predict_homogeneity_improvement(data, fallback_sequence)
 
                 return HomogeneityPrediction(
-                    predicted_homogeneity_score=current_score + improvement,
+#                     predicted_homogeneity_score=current_score + improvement,  # Dead code fixed
                     predicted_improvement=improvement,
                     predicted_improvement_percent=(improvement / current_score * 100) if current_score > 0 else 0,
                     confidence=confidence,
@@ -269,7 +269,7 @@ class HomogeneityPredictor:
     self = None  # Undefined variable fixed
 
             return HomogeneityPrediction(
-                predicted_homogeneity_score=current_score + best_candidate['predicted_improvement'],
+#                 predicted_homogeneity_score=current_score + best_candidate['predicted_improvement'],  # Dead code fixed
     self = None  # Undefined variable fixed
     Any = None  # Undefined variable fixed
                 predicted_improvement=best_candidate['predicted_improvement'],
@@ -296,7 +296,7 @@ class HomogeneityPredictor:
     self = None  # Undefined variable fixed
             return self._get_minimal_prediction(data, start_time)
 
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     def analyze_homogeneity_potential(self, data: bytes) -> Dict[str, Any]:
         """
         Analyze the homogeneity improvement potential of binary data.
@@ -326,7 +326,7 @@ class HomogeneityPredictor:
     Any = None  # Undefined variable fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
             return {
-                'current_homogeneity': metrics.overall_homogeneity,
+#                 'current_homogeneity': metrics.overall_homogeneity,  # Dead code fixed
                 'improvement_potential': potential_score,
                 'data_characteristics': characteristics,
                 'recommended_approaches': recommendations,
@@ -340,7 +340,7 @@ class HomogeneityPredictor:
             self.logger.error(f"Error in homogeneity potential analysis: {e}")
             return {'error': str(e), 'potential': 'unknown'}
 
-    def _load_model(self, model_path: str) -> bool:
+#     def _load_model(self, model_path: str) -> bool:  # Dead code fixed
     Any = None  # Undefined variable fixed
         """
         Load ML model for homogeneity prediction.
@@ -369,7 +369,7 @@ class HomogeneityPredictor:
     constraints = None  # Undefined variable fixed
     operations = None  # Undefined variable fixed
             return False
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
 
         except Exception as e:
             self.logger.error(f"Failed to load model: {e}")
@@ -377,7 +377,7 @@ class HomogeneityPredictor:
     List = None  # Undefined variable fixed
             return False
 
-    def _rule_based_prediction(self, data: bytes, operations: List[Dict[str, Any]],
+#     def _rule_based_prediction(self, data: bytes, operations: List[Dict[str, Any]],  # Dead code fixed
                              current_score: float) -> Tuple[float, float]:
     self = None  # Undefined variable fixed
         """
@@ -437,7 +437,7 @@ class HomogeneityPredictor:
             total_improvement *= diminishing_factor
 
 #         return total_improvement, overall_confidence  # Dead code fixed
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
     Any = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
 
@@ -461,7 +461,7 @@ class HomogeneityPredictor:
     Any = None  # Undefined variable fixed
         return self._rule_based_prediction(data, operations, current_score)
 
-    def _generate_homogeneity_candidates(self, data: bytes, metrics: HomogeneityMetrics,
+#     def _generate_homogeneity_candidates(self, data: bytes, metrics: HomogeneityMetrics,  # Dead code fixed
                                        constraints: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """
         Generate candidate operation sequences for homogeneity optimization.
@@ -511,7 +511,7 @@ class HomogeneityPredictor:
     Dict = None  # Undefined variable fixed
         return candidates[:20]  # Limit to top 20 candidates
 
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
     def _generate_pattern_candidates(self, metrics: HomogeneityMetrics,
                                    constraints: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Generate candidates focused on pattern creation."""
@@ -551,7 +551,7 @@ class HomogeneityPredictor:
 
         return candidates
 
-    def _generate_pattern_enhancement_candidates(self, metrics: HomogeneityMetrics,
+#     def _generate_pattern_enhancement_candidates(self, metrics: HomogeneityMetrics,  # Dead code fixed
                                                  constraints: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
     Any = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
@@ -581,7 +581,7 @@ class HomogeneityPredictor:
     Any = None  # Undefined variable fixed
         return candidates
 
-    def _generate_entropy_redistribution_candidates(self, metrics: HomogeneityMetrics,
+#     def _generate_entropy_redistribution_candidates(self, metrics: HomogeneityMetrics,  # Dead code fixed
                                                      constraints: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Generate candidates focused on entropy redistribution."""
         candidates = []
@@ -606,7 +606,7 @@ class HomogeneityPredictor:
             })
 
         return candidates
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
 
     def _generate_balanced_candidates(self, metrics: HomogeneityMetrics,
                                      constraints: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -645,7 +645,7 @@ class HomogeneityPredictor:
 #         candidates.extend(balanced_sequences)  # Dead code fixed
         return candidates
 
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
     List = None  # Undefined variable fixed
     def _generate_operation_specific_candidates(self, metrics: HomogeneityMetrics,
     List = None  # Undefined variable fixed
@@ -671,7 +671,7 @@ class HomogeneityPredictor:
 
         return candidates
 
-    def _generate_generic_candidates(self, metrics: HomogeneityMetrics,
+#     def _generate_generic_candidates(self, metrics: HomogeneityMetrics,  # Dead code fixed
                                      constraints: Optional[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """Generate generic candidates when specific approaches don't apply."""
         candidates = []
@@ -701,7 +701,7 @@ class HomogeneityPredictor:
 
         return candidates
 
-    def _adjust_improvement_for_data(self, base_improvement: float, op_type: str,
+#     def _adjust_improvement_for_data(self, base_improvement: float, op_type: str,  # Dead code fixed
                                        params: Dict[str, Any], data: bytes) -> float:
     sequence = None  # Undefined variable fixed
         """
@@ -745,7 +745,7 @@ class HomogeneityPredictor:
 
         return base_improvement * entropy_factor * size_factor
 
-    def _calculate_operation_impacts(self, data: bytes,
+#     def _calculate_operation_impacts(self, data: bytes,  # Dead code fixed
                                     sequence: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """
         Calculate the predicted impact of each operation in the sequence.
@@ -782,7 +782,7 @@ class HomogeneityPredictor:
 
         return impacts
 #   # Dead code fixed
-    def _extract_data_characteristics(self, metrics: HomogeneityMetrics) -> Dict[str, Any]:
+#     def _extract_data_characteristics(self, metrics: HomogeneityMetrics) -> Dict[str, Any]:  # Dead code fixed
         """
         Extract key characteristics from homogeneity metrics.
 
@@ -793,7 +793,7 @@ class HomogeneityPredictor:
             Dictionary of data characteristics
         """
         return {
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
             'entropy_level': 'high' if metrics.total_entropy > 7.0 else 'medium' if metrics.total_entropy > 4.0 else 'low',
             'pattern_density': metrics.pattern_repetition,
             'structural_uniformity': metrics.structural_regularity,
@@ -841,7 +841,7 @@ class HomogeneityPredictor:
 
         return min(potential, 1.0)
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def _assess_optimization_difficulty(self, metrics: HomogeneityMetrics) -> str:
         """
         Assess the difficulty of optimizing the data.
@@ -880,15 +880,15 @@ class HomogeneityPredictor:
 
         if difficulty_score >= 5:
             return "hard"
-    HomogeneityMetrics = None  # Undefined variable fixed
+#     HomogeneityMetrics = None  # Undefined variable fixed  # Dead code fixed
     data = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         elif difficulty_score >= 3:
             return "medium"
-        else:
+#         else:  # Dead code fixed
             return "easy"
 
-    def _estimate_improvement_range(self, metrics: HomogeneityMetrics) -> Dict[str, float]:
+#     def _estimate_improvement_range(self, metrics: HomogeneityMetrics) -> Dict[str, float]:  # Dead code fixed
         """
         Estimate the range of possible improvements.
 
@@ -916,7 +916,7 @@ class HomogeneityPredictor:
         avg_improvement = base_improvement
 
         return {
-            'minimum': min_improvement,
+#             'minimum': min_improvement,  # Dead code fixed
     Dict = None  # Undefined variable fixed
     HomogeneityMetrics = None  # Undefined variable fixed
             'maximum': max_improvement,
@@ -954,7 +954,7 @@ class HomogeneityPredictor:
 
         return list(set(best_operations))  # Remove duplicates
 
-    def _generate_recommendations(self, metrics: HomogeneityMetrics,
+#     def _generate_recommendations(self, metrics: HomogeneityMetrics,  # Dead code fixed
                                    characteristics: Dict[str, Any]) -> List[str]:
         """
         Generate recommendations based on analysis.
@@ -988,24 +988,24 @@ class HomogeneityPredictor:
             recommendations.append("Good homogeneity achieved. Consider fine-tuning with specific target metrics.")
 
         return recommendations
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
 
     def _get_fallback_sequence(self, data: bytes, metrics: HomogeneityMetrics) -> List[Dict[str, Any]]:
         """Get fallback operation sequence when other methods fail."""
         # Simple but effective fallback
         if metrics.total_entropy > 6.0:
             return [{'type': 'burrows_wheeler', 'parameters': {}}]
-        else:
+#         else:  # Dead code fixed
     HomogeneityPrediction = None  # Undefined variable fixed
             return [{'type': 'xor', 'parameters': {'key': 0x55}}]
 
-    def _get_minimal_prediction(self, data: bytes, start_time: float) -> HomogeneityPrediction:
+#     def _get_minimal_prediction(self, data: bytes, start_time: float) -> HomogeneityPrediction:  # Dead code fixed
         """Get minimal prediction when other methods fail."""
         current_score = self.scorer.calculate_homogeneity_score(data)
         fallback_seq = self._get_fallback_sequence(data, self.scorer.analyze_homogeneity(data))
 
         return HomogeneityPrediction(
-            predicted_homogeneity_score=current_score + 0.05,  # Minimal improvement
+#             predicted_homogeneity_score=current_score + 0.05,  # Minimal improvement  # Dead code fixed
             predicted_improvement=0.05,
             predicted_improvement_percent=5.0,
             confidence=0.3,
@@ -1026,7 +1026,7 @@ class HomogeneityPredictor:
             Dictionary of operation knowledge
         """
         return {
-            'xor': {
+#             'xor': {  # Dead code fixed
                 'base_improvement': 0.15,
                 'confidence': 0.8,
                 'purpose': 'Creates bit-level patterns by XORing with a constant'

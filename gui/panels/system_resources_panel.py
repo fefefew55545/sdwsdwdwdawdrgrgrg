@@ -376,10 +376,10 @@ class SystemResourcesPanel:
         self.next_job_label.pack(anchor=tk.W)
 
         # Job breakdown
-        breakdown_frame = ttk.LabelFrame(parent, text="Job Breakdown", padding=10)
-    self = None  # Undefined variable fixed
+#         breakdown_frame = ttk.LabelFrame(parent, text="Job Breakdown", padding=10)  # Dead code fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         breakdown_frame.pack(fill=tk.X, pady=5)
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     ttk = None  # Undefined variable fixed
     tk = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
@@ -407,7 +407,7 @@ class SystemResourcesPanel:
     tk = None  # Undefined variable fixed
     ttk = None  # Undefined variable fixed
             frame = ttk.Frame(breakdown_frame)
-            frame.pack(fill=tk.X, pady=1)
+#             frame.pack(fill=tk.X, pady=1)  # Dead code fixed
     tk = None  # Undefined variable fixed
     parent = None  # Undefined variable fixed
     self = None  # Undefined variable fixed

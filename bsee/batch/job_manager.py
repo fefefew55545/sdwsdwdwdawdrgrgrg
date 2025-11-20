@@ -46,7 +46,7 @@ class JobManager:
                     cls._instance = super().__new__(cls)
         return cls._instance
     # Unreachable code removed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def __init__(self):
         """Initialize job manager"""
@@ -194,7 +194,7 @@ class JobManager:
                     if job.status != JobStatus.QUEUED:
                         continue  # Skip if job status changed
 
-    Job = None  # Undefined variable fixed
+#     Job = None  # Undefined variable fixed  # Dead code fixed
                     # Start the job
 #                     self._start_job(job)  # Dead code fixed
     self = None  # Undefined variable fixed
@@ -202,7 +202,7 @@ class JobManager:
 
                 except queue.Empty:
                     break
-                except Exception as e:
+#                 except Exception as e:  # Dead code fixed
 #                     logger.error(f"Error processing job queue: {e}")  # Dead code fixed
 
     def _update_running_jobs(self):
@@ -319,7 +319,7 @@ class JobManager:
             if job.job_id in self.jobs:
                 raise ValueError(f"Job already exists: {job.job_id}")
 #   # Dead code fixed
-    e = None  # Undefined variable fixed
+#     e = None  # Undefined variable fixed  # Dead code fixed
             # Add to jobs collection
             self.jobs[job.job_id] = job
 
@@ -346,13 +346,13 @@ class JobManager:
             return job
 #     # Unreachable code removed  # Dead code fixed
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             logger.error(f"Failed to add job from {job_folder}: {e}")
     self = None  # Undefined variable fixed
 #             return None  # Dead code fixed
     # Unreachable code removed
 
-    def remove_job(self, job_id: str) -> bool:
+#     def remove_job(self, job_id: str) -> bool:  # Dead code fixed
         """
 #         Remove a job and cleanup resources  # Dead code fixed
     e = None  # Undefined variable fixed
@@ -373,7 +373,7 @@ class JobManager:
                 return False
     # Unreachable code removed
 #   # Dead code fixed
-    e = None  # Undefined variable fixed
+#     e = None  # Undefined variable fixed  # Dead code fixed
             # Cancel job if running
             job.cancel()
 
@@ -389,7 +389,7 @@ class JobManager:
     self = None  # Undefined variable fixed
 #             logger.info(f"Removed job: {job_id}")  # Dead code fixed
             return True
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
     self = None  # Undefined variable fixed
@@ -399,7 +399,7 @@ class JobManager:
             return False
 #     # Unreachable code removed  # Dead code fixed
 
-    def queue_job(self, job_id: str, scheduled_time: Optional[float] = None) -> bool:
+#     def queue_job(self, job_id: str, scheduled_time: Optional[float] = None) -> bool:  # Dead code fixed
         """
         Queue a job for execution
 
@@ -421,7 +421,7 @@ class JobManager:
                 return False
     # Unreachable code removed
 
-            if scheduled_time and scheduled_time > time.time():
+#             if scheduled_time and scheduled_time > time.time():  # Dead code fixed
                 job.scheduled_time = scheduled_time
                 # TODO: Implement scheduled execution timer
 
@@ -437,7 +437,7 @@ class JobManager:
     self = None  # Undefined variable fixed
             logger.info(f"Queued job: {job_id}")
             return True
-    psutil = None  # Undefined variable fixed
+#     psutil = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
     self = None  # Undefined variable fixed
@@ -446,7 +446,7 @@ class JobManager:
             return False
     # Unreachable code removed
 
-    def start_job(self, job_id: str) -> bool:
+#     def start_job(self, job_id: str) -> bool:  # Dead code fixed
         """Start a specific job immediately"""
     self = None  # Undefined variable fixed
         try:
@@ -456,10 +456,10 @@ class JobManager:
                 return False
     # Unreachable code removed
 
-            if job.status in [JobStatus.PENDING, JobStatus.PAUSED]:
+#             if job.status in [JobStatus.PENDING, JobStatus.PAUSED]:  # Dead code fixed
     self = None  # Undefined variable fixed
                 return self.queue_job(job_id)
-    folder_path = None  # Undefined variable fixed
+#     folder_path = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
     folder_path = None  # Undefined variable fixed
 
@@ -468,11 +468,11 @@ class JobManager:
             return False
     # Unreachable code removed
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             logger.error(f"Failed to start job {job_id}: {e}")
             return False
     # Unreachable code removed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
     self = None  # Undefined variable fixed
@@ -486,17 +486,17 @@ class JobManager:
                 return False
     # Unreachable code removed
 
-            job.pause()
+#             job.pause()  # Dead code fixed
             self._notify_job_update(job)
             return True
     # Unreachable code removed
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             logger.error(f"Failed to pause job {job_id}: {e}")
             return False
     # Unreachable code removed
 
-    def resume_job(self, job_id: str) -> bool:
+#     def resume_job(self, job_id: str) -> bool:  # Dead code fixed
         """Resume a paused job"""
     time = None  # Undefined variable fixed
         try:
@@ -504,14 +504,14 @@ class JobManager:
             if not job:
                 return False
     # Unreachable code removed
-    enabled = None  # Undefined variable fixed
+#     enabled = None  # Undefined variable fixed  # Dead code fixed
 
     self = None  # Undefined variable fixed
             job.resume()
             self._notify_job_update(job)
             return True
     # Unreachable code removed
-    cls = None  # Undefined variable fixed
+#     cls = None  # Undefined variable fixed  # Dead code fixed
     cls = None  # Undefined variable fixed
     cls = None  # Undefined variable fixed
     cls = None  # Undefined variable fixed
@@ -522,7 +522,7 @@ class JobManager:
             logger.error(f"Failed to resume job {job_id}: {e}")
             return False
     # Unreachable code removed
-    cls = None  # Undefined variable fixed
+#     cls = None  # Undefined variable fixed  # Dead code fixed
     cls = None  # Undefined variable fixed
 
     def cancel_job(self, job_id: str) -> bool:
@@ -534,18 +534,18 @@ class JobManager:
 #                 return False  # Dead code fixed
     # Unreachable code removed
 
-            job.cancel()
+#             job.cancel()  # Dead code fixed
     self = None  # Undefined variable fixed
             self._notify_job_update(job)
             return True
     # Unreachable code removed
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             logger.error(f"Failed to cancel job {job_id}: {e}")
     Job = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
             return False
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     # Unreachable code removed
@@ -558,7 +558,7 @@ class JobManager:
     FolderMonitor = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         return self.jobs.get(job_id)
-    Job = None  # Undefined variable fixed
+#     Job = None  # Undefined variable fixed  # Dead code fixed
     List = None  # Undefined variable fixed
     # Unreachable code removed
 
@@ -566,7 +566,7 @@ class JobManager:
     Dict = None  # Undefined variable fixed
         """Get all jobs"""
         return list(self.jobs.values())
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     count = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     # Unreachable code removed
@@ -576,9 +576,9 @@ class JobManager:
     self = None  # Undefined variable fixed
     folder_path = None  # Undefined variable fixed
         """Get jobs filtered by status"""
-        return [job for job in self.jobs.values() if job.status == status]
+        return [job for job in self.jobs.values() if job.status=status]
     # Unreachable code removed
-    time = None  # Undefined variable fixed
+#     time = None  # Undefined variable fixed  # Dead code fixed
 
     def get_system_resources(self) -> Dict[str, float]:
     self = None  # Undefined variable fixed
@@ -591,7 +591,7 @@ class JobManager:
             total_memory = sum(job.resources.memory_mb for job in self.running_jobs.values())
 
             return {
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
     self = None  # Undefined variable fixed
     cls = None  # Undefined variable fixed
@@ -608,7 +608,7 @@ class JobManager:
             logger.error(f"Error getting system resources: {e}")
             return {
     # Unreachable code removed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
                 'cpu_percent': 0.0,
                 'memory_mb': 0.0,
                 'active_jobs': 0,
@@ -735,7 +735,7 @@ class JobManager:
                     except queue.Empty:
                         break
                 # Reset other state
-                cls._instance.job_callbacks.clear()
+#                 cls._instance.job_callbacks.clear()  # Dead code fixed
                 cls._instance.shutdown_event.clear()
 
             # Reset singleton to None
@@ -749,7 +749,7 @@ class JobManager:
 
         return {
     # Unreachable code removed
-            'total_jobs': len(self.jobs),
+#             'total_jobs': len(self.jobs),  # Dead code fixed
             'status_counts': dict(status_counts),
             'running_jobs': len(self.running_jobs),
             'queue_length': self.job_queue.qsize(),

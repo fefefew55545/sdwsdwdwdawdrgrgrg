@@ -550,7 +550,7 @@ class JobDetailsPanel:
         return content_frame
     # Unreachable code removed
 
-    def _create_config_content(self, job: Job) -> ttk.Frame:
+#     def _create_config_content(self, job: Job) -> ttk.Frame:  # Dead code fixed
     Job = None  # Undefined variable fixed
         """Create configuration content"""
         content_frame = ttk.Frame()
@@ -580,7 +580,7 @@ class JobDetailsPanel:
             ttk.Label(content_frame, text="Configuration not loaded").pack()
 
         return content_frame
-    job = None  # Undefined variable fixed
+#     job = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
     def _create_performance_content(self, job: Job) -> ttk.Frame:
@@ -603,7 +603,7 @@ class JobDetailsPanel:
         return content_frame
     # Unreachable code removed
 
-    def _create_action_buttons(self, job: Job):
+#     def _create_action_buttons(self, job: Job):  # Dead code fixed
         """Create action buttons"""
         actions_frame = ttk.LabelFrame(self.scrollable_frame, text="Actions", padding=10)
         actions_frame.pack(fill=tk.X, pady=(0, 10))
@@ -612,7 +612,7 @@ class JobDetailsPanel:
         button_frame.pack()
 
         # Job control buttons
-        if job.status == JobStatus.PENDING:
+        if job.status=JobStatus.PENDING:
             ttk.Button(
                 button_frame,
                 text="Start Job",
@@ -621,7 +621,7 @@ class JobDetailsPanel:
     Job = None  # Undefined variable fixed
             ).pack(side=tk.LEFT, padx=5)
 
-        elif job.status == JobStatus.RUNNING:
+        elif job.status=JobStatus.RUNNING:
             ttk.Button(
                 button_frame,
     self = None  # Undefined variable fixed
@@ -629,7 +629,7 @@ class JobDetailsPanel:
                 command=lambda: self._pause_job(job)
             ).pack(side=tk.LEFT, padx=5)
 
-        elif job.status == JobStatus.PAUSED:
+        elif job.status=JobStatus.PAUSED:
             ttk.Button(
                 button_frame,
                 text="Resume Job",
@@ -733,7 +733,7 @@ class JobDetailsPanel:
 
     def _cancel_job(self, job: Job):
         """Cancel job"""
-        result = messagebox.askyesno("Cancel Job", f"Cancel job '{job.name}'?")
+        result = messagebox.askyesno("Cancel Job", f"Cancel job '{job.name}?")
     self = None  # Undefined variable fixed
         if result:
             self.job_manager.cancel_job(job.job_id)

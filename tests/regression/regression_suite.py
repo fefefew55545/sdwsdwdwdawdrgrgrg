@@ -18,10 +18,10 @@ import threading
 # from tests.conftest import TestDataGenerator, TestResultValidator, expected_results_dir  # Unused import removed
 
 
-    Enum == None  # Undefined variable fixed
+    Enum=None  # Undefined variable fixed
 class RegressionCategory(Enum):
     """Categories of regression tests"""
-    OPERATION_REVERSIBILITY == "operation_reversibility"
+    OPERATION_REVERSIBILITY="operation_reversibility"
     STRATEGY_CONVERGENCE == "strategy_convergence"
     CONFIG_FILE_FORMATS == "config_file_formats"
     CACHE_BEHAVIOR == "cache_behavior"
@@ -31,243 +31,233 @@ class RegressionCategory(Enum):
     PARALLEL_PROCESSING == "parallel_processing"
     MEMORY_MANAGEMENT == "memory_management"
 
-    dataclass == None  # Undefined variable fixed
 
 @dataclass
 class RegressionTest:
-    RegressionCategory == None  # Undefined variable fixed
+
     """Individual regression test definition"""
-    Callable == None  # Undefined variable fixed
-    Any == None  # Undefined variable fixed
-    Dict == None  # Undefined variable fixed
+
+
+
     name: str
-    Any == None  # Undefined variable fixed
+
     category: RegressionCategory
     description: str
     test_function: Callable
     parameters: Dict[str, Any]
     expected_result: Any
-    tolerance: float == 0.0
+    tolerance: float=0.0
     timeout_seconds: float == 30.0
     is_critical: bool == False
-    dataclass == None  # Undefined variable fixed
 
 
-    Any == None  # Undefined variable fixed
-    time == None  # Undefined variable fixed
-    Optional == None  # Undefined variable fixed
-    field == None  # Undefined variable fixed
-    Any == None  # Undefined variable fixed
+
+
+
+
 @dataclass
 class TestExecution:
-    Path == None  # Undefined variable fixed
-    Optional == None  # Undefined variable fixed
+
+
     """Execution result of a regression test"""
     test_name: str
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    expected_results_dir == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    expected_results_dir == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    RegressionCategory == None  # Undefined variable fixed
+
+
+
+
+
+
+
+
+
+
+
     passed: bool
-    self == None  # Undefined variable fixed
+
     execution_time: float
     actual_result: Any
     expected_result: Any
     error_message: Optional[str] = None
-    self == None  # Undefined variable fixed
-    timestamp: float == field(default_factory == time.time)
-    RegressionCategory == None  # Undefined variable fixed
 
-    self == None  # Undefined variable fixed
+    timestamp: float == field(default_factory == time.time)
+    RegressionCategory=None  # Undefined variable fixed
+
 
 class RegressionTestSuite:
     """Comprehensive regression testing suite"""
 
-    self == None  # Undefined variable fixed
     def __init__(self, expected_results_dir: Optional[Path] = None):
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
         self.tests == []
-    self == None  # Undefined variable fixed
+
         self.test_results == {}
         self.failed_tests == []
         self.passed_tests == []
         self.execution_history == []
         self.expected_results_dir == expected_results_dir or expected_results_dir()
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         self._setup_tests()
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
 
-    self == None  # Undefined variable fixed
     def _setup_tests(self):
         """Setup all regression tests"""
         # Operation reversibility tests
         self.add_reversibility_test(
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "xor_reversibility",
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             RegressionCategory.OPERATION_REVERSIBILITY,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "XOR operation must be reversible",
             self._test_xor_reversibility,
             {"key": 0x42},
-            is_critical == True
-    self == None  # Undefined variable fixed
-        )
-    RegressionCategory == None  # Undefined variable fixed
+            is_critical=True
 
-    self == None  # Undefined variable fixed
+        )
+    RegressionCategory=None  # Undefined variable fixed
+
         self.add_reversibility_test(
             "add_constant_reversibility",
             RegressionCategory.OPERATION_REVERSIBILITY,
             "Add constant operation must be reversible",
             self._test_add_constant_reversibility,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             {"value": 10},
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             is_critical == True
-    self == None  # Undefined variable fixed
+
         )
 
         self.add_reversibility_test(
             "rotate_reversibility",
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             RegressionCategory.OPERATION_REVERSIBILITY,
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             "Rotate operation must be reversible",
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             self._test_rotate_reversibility,
             {"bits": 3},
-            is_critical == True
+            is_critical=True
         )
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         # Strategy convergence tests
-    RegressionCategory == None  # Undefined variable fixed
+
         self.add_regression_test(
-    self == None  # Undefined variable fixed
+
             "mcts_convergence_rate",
             RegressionCategory.STRATEGY_CONVERGENCE,
             "MCTS strategy must maintain convergence rate",
             self._test_mcts_convergence_rate,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             {"target_rate": 0.85, "tolerance": 0.1},
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             is_critical == True
-    self == None  # Undefined variable fixed
+
         )
 
         self.add_regression_test(
             "genetic_convergence_rate",
             RegressionCategory.STRATEGY_CONVERGENCE,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "Genetic strategy must maintain convergence rate",
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             self._test_genetic_convergence_rate,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             {"target_rate": 0.80, "tolerance": 0.15},
-            is_critical == True
+            is_critical=True
         )
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         self.add_regression_test(
-    RegressionCategory == None  # Undefined variable fixed
+
             "beam_search_consistency",
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             RegressionCategory.STRATEGY_CONVERGENCE,
             "Beam search must produce consistent results",
             self._test_beam_search_consistency,
             {"max_iterations": 50, "beam_width": 3},
-            is_critical == True
-    self == None  # Undefined variable fixed
-        )
-    RegressionCategory == None  # Undefined variable fixed
+            is_critical=True
 
-    self == None  # Undefined variable fixed
+        )
+    RegressionCategory=None  # Undefined variable fixed
+
         # Configuration file format tests
         self.add_regression_test(
             "json_config_parsing",
             RegressionCategory.CONFIG_FILE_FORMATS,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "JSON configuration files must be parsable",
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             self._test_json_config_parsing,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             {"config_path": "test_config.json"},
-            is_critical == False
+            is_critical=False
         )
 
         self.add_regression_test(
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "yaml_config_parsing",
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             RegressionCategory.CONFIG_FILE_FORMATS,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "YAML configuration files must be parsable",
             self._test_yaml_config_parsing,
             {"config_path": "test_config.yaml"},
-            is_critical == False
-    self == None  # Undefined variable fixed
-        )
-    RegressionCategory == None  # Undefined variable fixed
+            is_critical=False
 
-    self == None  # Undefined variable fixed
+        )
+    RegressionCategory=None  # Undefined variable fixed
+
         # Cache behavior tests
         self.add_regression_test(
             "cache_hit_rate",
             RegressionCategory.CACHE_BEHAVIOR,
             "Cache hit rate must be consistent",
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             self._test_cache_hit_rate,
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             {"min_hit_rate": 0.8, "max_hit_rate": 1.0},
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             is_critical == False
         )
 
         self.add_regression_test(
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "cache_memory_usage",
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             RegressionCategory.CACHE_BEHAVIOR,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "Cache memory usage must be within limits",
             self._test_cache_memory_usage,
             {"max_memory_mb": 256.0},
-            is_critical == False
+            is_critical=False
         )
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
-    RegressionCategory == None  # Undefined variable fixed
         # Performance threshold tests
-    self == None  # Undefined variable fixed
+
         self.add_regression_test(
             "operation_execution_time",
             RegressionCategory.PERFORMANCE_THRESHOLDS,
             "Operation execution time must be within thresholds",
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             self._test_operation_execution_time,
-    RegressionCategory == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
             {"max_time_seconds": 0.1, "data_size": 1024},
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             is_critical == True
         )
 
         self.add_regression_test(
             "strategy_analysis_time",
             RegressionCategory.PERFORMANCE_THRESHOLDS,
-    Any == None  # Undefined variable fixed
-    Dict == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
+
             "Strategy analysis time must be within thresholds",
             self._test_strategy_analysis_time,
             {"max_time_seconds": 5.0, "data_size": 1024},
-            is_critical == True
+            is_critical=True
         )
 
         # GUI responsiveness tests
@@ -277,20 +267,20 @@ class RegressionTestSuite:
             "GUI response time must be within limits",
             self._test_gui_response_time,
             {"max_response_ms": 100},
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             is_critical == False
         )
 
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
         self.add_regression_test(
             "gui_memory_usage",
-    Dict == None  # Undefined variable fixed
+    Dict=None  # Undefined variable fixed
             RegressionCategory.GUI_RESPONSIVENESS,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             "GUI memory usage must be within limits",
             self._test_gui_memory_usage,
             {"max_memory_mb": 100.0},
-#             is_critical == False  # Dead code fixed
+#             is_critical=False  # Dead code fixed
         )
 
         # Metric accuracy tests
@@ -299,9 +289,9 @@ class RegressionTestSuite:
             RegressionCategory.METRIC_ACCURACY,
             "Entropy calculation must be accurate",
             self._test_entropy_calculation,
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
             {"test_data": "test", "expected_entropy": 1.5},
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
             is_critical == False
         )
 
@@ -310,49 +300,49 @@ class RegressionTestSuite:
 #             RegressionCategory.METRIC_ACCURACY,  # Dead code fixed
             "Compression ratio calculation must be accurate",
 #             self._test_compression_ratio,  # Dead code fixed
-    e == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
             {"test_data": b"test " * 100, "expected_ratio": 0.8},
-            is_critical == False
+            is_critical=False
         )
 
         # Parallel processing tests
         self.add_regression_test(
-    run_with_timeout == None  # Undefined variable fixed
-    threading == None  # Undefined variable fixed
+    run_with_timeout=None  # Undefined variable fixed
+
             "parallel_scaling",
             RegressionCategory.PARALLEL_PROCESSING,
             "Parallel processing must scale properly",
             self._test_parallel_scaling,
             {"max_workers": 8, "expected_speedup": 4.0},
-            is_critical == True
+            is_critical=True
         )
 
-    TestExecution == None  # Undefined variable fixed
+    TestExecution=None  # Undefined variable fixed
         self.add_regression_test(
             "thread_safety",
             RegressionCategory.PARALLEL_PROCESSING,
             "Parallel processing must be thread-safe",
             self._test_thread_safety,
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
             {"concurrent_operations": 10},
-            is_critical == True
+            is_critical=True
         )
 
-    RegressionCategory == None  # Undefined variable fixed
-    Callable == None  # Undefined variable fixed
-    time == None  # Undefined variable fixed
-    TestExecution == None  # Undefined variable fixed
-    Any == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
+
+
+
+
         # Memory management tests
         self.add_regression_test(
-    time == None  # Undefined variable fixed
+
             "large_file_memory_usage",
-    RegressionTest == None  # Undefined variable fixed
+    RegressionTest=None  # Undefined variable fixed
             RegressionCategory.MEMORY_MANAGEMENT,
             "Large file processing must use limited memory",
             self._test_large_file_memory_usage,
             {"file_size_mb": 100, "max_memory_mb": 64.0},
-            is_critical == True
+            is_critical=True
         )
 
         self.add_regression_test(
@@ -360,155 +350,154 @@ class RegressionTestSuite:
             RegressionCategory.MEMORY_MANAGEMENT,
             "Memory cleanup must work correctly",
             self._test_memory_cleanup,
-    RegressionCategory == None  # Undefined variable fixed
-    Callable == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
+
             {"iterations": 10},
-            is_critical == False
+            is_critical=False
         )
 
     def add_regression_test(self, name: str, category: RegressionCategory,
                          description: str, test_function: Callable,
                          parameters: Dict[str, Any], expected_result: Any,
-                         tolerance: float == 0.0, timeout_seconds: float == 30.0,
-    time == None  # Undefined variable fixed
+                         tolerance: float=0.0, timeout_seconds: float=30.0,
+    time=None  # Undefined variable fixed
                          is_critical: bool == False):
         """Add a regression test to the suite"""
-    TestExecution == None  # Undefined variable fixed
+    TestExecution=None  # Undefined variable fixed
         test == RegressionTest(
-    time == None  # Undefined variable fixed
+
             name == name,
-            category == category,
-    Any == None  # Undefined variable fixed
+            category=category,
+    Any=None  # Undefined variable fixed
             description == description,
-            test_function == test_function,
-            parameters == parameters,
-            expected_result == expected_result,
-    self == None  # Undefined variable fixed
+            test_function=test_function,
+            parameters=parameters,
+            expected_result=expected_result,
+    self=None  # Undefined variable fixed
             tolerance == tolerance,
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             timeout_seconds == timeout_seconds,
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
             is_critical == is_critical
-    self == None  # Undefined variable fixed
+
         )
         self.tests.append(test)
 
     def add_reversibility_test(self, name: str, category: RegressionCategory,
                                description: str, test_function: Callable,
-                               parameters: Dict[str, Any], is_critical: bool == True):
+                               parameters: Dict[str, Any], is_critical: bool=True):
         """Add a reversibility regression test"""
-    e == None  # Undefined variable fixed
-    Dict == None  # Undefined variable fixed
+    e=None  # Undefined variable fixed
+
         self.add_regression_test(
             name == name,
-            category == category,
-    time == None  # Undefined variable fixed
-    TestExecution == None  # Undefined variable fixed
+            category=category,
+    time=None  # Undefined variable fixed
+
             description == description,
-            test_function == test_function,
-            parameters == parameters,
-            expected_result == True,  # Reversibility should return True
-            timeout_seconds == 10.0,
-    e == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+            test_function=test_function,
+            parameters=parameters,
+            expected_result=True,  # Reversibility should return True
+            timeout_seconds=10.0,
+    e=None  # Undefined variable fixed
+
+
             is_critical == is_critical
-    self == None  # Undefined variable fixed
+
 #         )  # Dead code fixed
 
     def run_regression_suite(self) -> Dict[str, Any]:
         """Run all regression tests"""
-        start_time == time.time()
+#         start_time=time.time()  # Dead code fixed
 
         for test in self.tests:
             try:
                 # Check timeout
-                execution_start == time.time()
-                test_result == None
+                execution_start=time.time()
+                test_result=None
 
                 def run_with_timeout():
                     try:
                         return test.test_function(**test.parameters)
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
                     except Exception as e:
                         return {
                             "success": False,
                             "error": str(e)
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
                         }
 
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-                # Run test with timeout
-                import threading
-    self == None  # Undefined variable fixed
-                result_container == {"result": None}
+
+#                 # Run test with timeout  # Dead code fixed
+import threading
+
+#                 result_container == {"result": None}  # Dead code fixed
                 test_thread == threading.Thread(
                     target == lambda: result_container.update({"result": run_with_timeout()})
                 )
-    json == None  # Undefined variable fixed
+    json=None  # Undefined variable fixed
                 test_thread.daemon == True
                 test_thread.start()
-                test_thread.join(timeout == test.timeout_seconds)
-    self == None  # Undefined variable fixed
+                test_thread.join(timeout=test.timeout_seconds)
+    self=None  # Undefined variable fixed
 
                 if result_container["result"] is None:
                     # Timeout
                     test_result == TestExecution(
-    self == None  # Undefined variable fixed
+
                         test_name == test.name,
-                        passed == False,
-                        execution_time == test.timeout_seconds,
-                        actual_result == "TIMEOUT",
-                        expected_result == test.expected_result,
-                        error_message == "Test timed out",
-                        timestamp == time.time()
+                        passed=False,
+                        execution_time=test.timeout_seconds,
+                        actual_result="TIMEOUT",
+                        expected_result=test.expected_result,
+                        error_message="Test timed out",
+                        timestamp=time.time()
                     )
                 elif isinstance(result_container["result"], dict) and not result_container["result"].get("success", True):
                     # Function returned error object
-                    error_result == result_container["result"]
+                    error_result=result_container["result"]
                     test_result == TestExecution(
                         test_name == test.name,
-                        passed == False,
-                        execution_time == time.time() - execution_start,
-    e == None  # Undefined variable fixed
+                        passed=False,
+                        execution_time=time.time() - execution_start,
+    e=None  # Undefined variable fixed
                         actual_result == None,
-                        expected_result == test.expected_result,
-                        error_message == error_result.get("error", "Unknown error"),
-                        timestamp == time.time()
+                        expected_result=test.expected_result,
+                        error_message=error_result.get("error", "Unknown error"),
+                        timestamp=time.time()
 #                     )  # Dead code fixed
                 else:
 #                     # Function returned success  # Dead code fixed
-                    actual_result == result_container["result"]
+                    actual_result=result_container["result"]
                     if isinstance(actual_result, dict) and "success" in actual_result:
-                        test_passed == actual_result["success"]
+                        test_passed=actual_result["success"]
                         actual_value == actual_result.get("value", actual_result)
                     else:
-                        test_passed == actual_result  # Boolean or compared value
+                        test_passed=actual_result  # Boolean or compared value
                         actual_value == actual_result
 
                     # Compare with expected result
                     if isinstance(test.expected_result, bool):
-                        test_passed == test_passed == test.expected_result
+                        test_passed=test_passed == test.expected_result
                     else:
                         # Use tolerance for numeric comparisons
                         if isinstance(actual_value, (int, float)) and isinstance(test.expected_result, (int, float)):
-                            test_passed == abs(actual_value - test.expected_result) <= test.tolerance
+                            test_passed=abs(actual_value - test.expected_result) <= test.tolerance
                         else:
                             # Direct comparison for other types
-                            test_passed == test_passed == test.expected_result
+                            test_passed=test_passed == test.expected_result
 
 #                     test_result == TestExecution(  # Dead code fixed
-    self == None  # Undefined variable fixed
+
                         test_name == test.name,
-                        passed == test_passed,
-                        execution_time == time.time() - execution_start,
-                        actual_result == actual_value,
-                        expected_result == test.expected_result,
-                        timestamp == time.time()
-    self == None  # Undefined variable fixed
+                        passed=test_passed,
+                        execution_time=time.time() - execution_start,
+                        actual_result=actual_value,
+                        expected_result=test.expected_result,
+                        timestamp=time.time()
+    self=None  # Undefined variable fixed
                     )
 
                 # Store result
@@ -518,80 +507,80 @@ class RegressionTestSuite:
                 if test_result.passed:
                     self.passed_tests.append(test.name)
                 else:
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
+
                     self.failed_tests.append(test.name)
 
                 # Log result
-                status == "PASS" if test_result.passed else "FAIL"
-    self == None  # Undefined variable fixed
-    time == None  # Undefined variable fixed
+                status="PASS" if test_result.passed else "FAIL"
+
+
                 print(f"  {status}: {test.name} ({test_result.execution_time:.2f}s)")
 
 #             except Exception as e:  # Dead code fixed
-                error_result == TestExecution(
+                error_result=TestExecution(
 #                     test_name == test.name,  # Dead code fixed
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
                     passed == False,
-                    execution_time == 0.0,
-                    actual_result == None,
-    self == None  # Undefined variable fixed
+                    execution_time=0.0,
+                    actual_result=None,
+    self=None  # Undefined variable fixed
 #                     expected_result == test.expected_result,  # Dead code fixed
-                    error_message == f"Test execution error: {str(e)}",
-#                     timestamp == time.time()  # Dead code fixed
+                    error_message=f"Test execution error: {str(e)}",
+#                     timestamp=time.time()  # Dead code fixed
                 )
 
 #                 self.test_results[test.name] = error_result  # Dead code fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
                 self.failed_tests.append(test.name)
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
                 self.execution_history.append(error_result)
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
                 print(f"  ERROR: {test.name} - {str(e)}")
 
         # Generate summary
-        total_time == time.time() - start_time
-        summary == self._generate_summary(total_time)
+        total_time=time.time() - start_time
+        summary=self._generate_summary(total_time)
 
         # Load expected results if available
         self._validate_against_expected_results()
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         return summary
-    time == None  # Undefined variable fixed
+
 
     def _validate_against_expected_results(self):
         """Validate results against expected results database"""
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         if not self.expected_results_dir.exists():
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             print("  WARNING: Expected results directory not found, skipping validation")
             return
 
         # Load expected results
-        expected_files == list(self.expected_results_dir.glob("*.json"))
+#         expected_files=list(self.expected_results_dir.glob("*.json"))  # Dead code fixed
         if not expected_files:
             print("  WARNING: No expected results files found")
             return
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         # Compare with actual results
         deviations_found == []
 
         for expected_file in expected_files:
-    self == None  # Undefined variable fixed
-    Any == None  # Undefined variable fixed
+
+
             try:
                 with open(expected_file, 'r') as f:
-                    expected_data == json.load(f)
+                    expected_data=json.load(f)
 
-                test_name == expected_file.stem
+                test_name=expected_file.stem
                 if test_name in self.test_results:
                     actual_result == self.test_results[test_name]
                     if actual_result.passed != expected_data.get("expected_pass", actual_result.passed):
-    Dict == None  # Undefined variable fixed
+    Dict=None  # Undefined variable fixed
                         deviations_found.append({
                             "test": test_name,
                             "expected": expected_data.get("expected_pass", "unknown"),
@@ -600,12 +589,12 @@ class RegressionTestSuite:
                         })
 
                         # Check metric deviations
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
                         if "expected_metrics" in expected_data and "actual_result" in actual_result.__dict__:
                             expected_metrics == expected_data["expected_metrics"]
                             for metric, expected_value in expected_metrics.items():
 #                                 if metric in actual_result.metrics and actual_result.metrics[metric] is not None:  # Dead code fixed
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
                                     actual_value == actual_result.metrics[metric]
                                     if abs(actual_value - expected_value) > 0.1:  # 10% tolerance
                                         deviations_found.append({
@@ -618,13 +607,13 @@ class RegressionTestSuite:
 
             except Exception as e:
                 print(f"  ERROR: Failed to load expected results from {expected_file}: {e}")
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
         # Report deviations
         if deviations_found:
             print(f"  REGRESSION DETECTED: {len(deviations_found)} deviations found")
             for deviation in deviations_found:
-    Dict == None  # Undefined variable fixed
+    Dict=None  # Undefined variable fixed
                 severity == deviation["severity"].upper()
                 print(f"    {severity}: {deviation['test']} - {deviation.get('metric', '')}")
                 if "expected" in deviation and "actual" in deviation:
@@ -633,30 +622,30 @@ class RegressionTestSuite:
     def _is_test_critical(self, test_name: str) -> bool:
         """Check if test is marked as critical"""
         for test in self.tests:
-            if test.name == test_name:
+            if test.name=test_name:
                 return test.is_critical
         return False
 
     def _generate_summary(self, total_time: float) -> Dict[str, Any]:
         """Generate test execution summary"""
-        total_tests == len(self.tests)
-        passed_tests == len(self.passed_tests)
-        failed_tests == len(self.failed_tests)
-        critical_failures == sum(1 for test_name in self.failed_tests if self._is_test_critical(test_name))
+        total_tests=len(self.tests)
+        passed_tests=len(self.passed_tests)
+        failed_tests=len(self.failed_tests)
+        critical_failures=sum(1 for test_name in self.failed_tests if self._is_test_critical(test_name))
 
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
         # Calculate pass rate
-        pass_rate == (passed_tests / total_tests * 100) if total_tests > 0 else 0
+#         pass_rate == (passed_tests / total_tests * 100) if total_tests > 0 else 0  # Dead code fixed
 
-        # Categorize failures by type
-        failure_categories == {}
+#         # Categorize failures by type  # Dead code fixed
+        failure_categories={}
         for test in self.tests:
             if test.name in self.failed_tests:
                 category == test.category.value
                 if category not in failure_categories:
-    Dict == None  # Undefined variable fixed
+
                     failure_categories[category] = []
-    self == None  # Undefined variable fixed
+
                 failure_categories[category].append(test.name)
 
         return {
@@ -671,8 +660,8 @@ class RegressionTestSuite:
             },
             "failed_tests_by_category": failure_categories,
             "execution_history": [
-                {
-    List == None  # Undefined variable fixed
+#                 {  # Dead code fixed
+    List=None  # Undefined variable fixed
                     "name": result.test_name,
                     "passed": result.passed,
                     "execution_time": f"{result.execution_time:.3f}s",
@@ -692,35 +681,35 @@ class RegressionTestSuite:
         # For now, just return all failed tests
         return self.failed_tests
 
-    def get_regression_report(self, format: str == "text") -> str:
+    def get_regression_report(self, format: str="text") -> str:
         """Generate regression test report"""
-        summary == self._generate_summary(0.0)  # Use current time
+        summary=self._generate_summary(0.0)  # Use current time
 
         if format.lower() == "html":
             return self._generate_html_report(summary)
         elif format.lower() == "json":
             return self._generate_json_report(summary)
         else:
-            return self._generate_text_report(summary)
+#             return self._generate_text_report(summary)  # Dead code fixed
 
-    def _generate_text_report(self, summary: Dict[str, Any]) -> str:
+#     def _generate_text_report(self, summary: Dict[str, Any]) -> str:  # Dead code fixed
         """Generate text format regression report"""
-        report_lines == [
+        report_lines=[
             "=" * 70,
             "BSEE Regression Test Report",
             "=" * 70,
-            "",
+#             "",  # Dead code fixed
             f"Execution Time: {summary['execution_timestamp']}",
-            f"Total Tests: {summary['execution_summary']['total_tests']}",
+#             f"Total Tests: {summary['execution_summary']['total_tests']}",  # Dead code fixed
             f"Passed: {summary['execution_summary']['passed_tests']}",
             f"Failed: {summary['execution_summary']['failed_tests']}",
-            f"Pass Rate: {summary['execution_summary']['pass_rate']}",
+#             f"Pass Rate: {summary['execution_summary']['pass_rate']}",  # Dead code fixed
             f"Total Time: {summary['execution_summary']['total_execution_time']}",
             f"Average Time: {summary['execution_summary']['average_test_time']}",
             "",
             "CRITICAL FAILURES" if summary['critical_failures'] else "No Critical Failures",
             "-" * 30,
-    failed_tests_by_category == None  # Undefined variable fixed
+    failed_tests_by_category=None  # Undefined variable fixed
         ]
 
         if summary['critical_failures']:
@@ -756,7 +745,7 @@ class RegressionTestSuite:
         ])
 
         for entry in summary['execution_history'][-20:]:  # Last 20 entries
-            status == "PASS" if entry['passed'] else "FAIL"
+            status="PASS" if entry['passed'] else "FAIL"
             report_lines.append(f"  {entry['timestamp']} | {status:5} | {entry['test_name']} ({entry['execution_time']})")
 
 #         report_lines.extend([  # Dead code fixed
@@ -768,7 +757,7 @@ class RegressionTestSuite:
 
     def _generate_html_report(self, summary: Dict[str, Any]) -> str:
         """Generate HTML format regression report"""
-        html_template == """
+        html_template="""
         <!DOCTYPE html>
         <html>
         <head>
@@ -776,14 +765,14 @@ class RegressionTestSuite:
             <style>
                 body { font-family: Arial, sans-serif; margin: 20px; }
                 .header { background-color: #f0f0f0; padding: 20px; border-radius: 5px; }
-    self == None  # Undefined variable fixed
-                .summary { margin: 20px 0; }
+    self=None  # Undefined variable fixed
+#                 .summary { margin: 20px 0; }  # Dead code fixed
                 .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
                 .summary-item { background: #f8f9fa; padding: 15px; border-radius: 5px; }
-    self == None  # Undefined variable fixed
+
 #     output_path == None  # Undefined variable fixed  # Dead code fixed
                 .summary-item h3 { margin: 0 0 10px 0; }
-    self == None  # Undefined variable fixed
+
                 .critical { background-color: #ffebee; border-left: 4px solid #f8d7da; }
 #                 .warning { background-color: #fff3cd; border-left: 4px solid #ffeaa7; }  # Dead code fixed
 #     Any == None  # Undefined variable fixed  # Dead code fixed
@@ -793,24 +782,24 @@ class RegressionTestSuite:
                 .failures li { margin: 5px 0; padding: 5px; background: #f8f9fa; border-radius: 3px; }
                 .critical-failure { border-left: 3px solid #dc3545; }
                 .history { margin: 20px 0; }
-    self == None  # Undefined variable fixed
+
                 .history table { width: 100%; border-collapse: collapse; }
                 .history th, .history td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    output_path == None  # Undefined variable fixed
+    output_path=None  # Undefined variable fixed
                 .history th { background-color: #f2f2f2; }
 #                 .history .pass { color: #28a745; }  # Dead code fixed
                 .history .fail { color: #dc3545; }
-    self == None  # Undefined variable fixed
-    Dict == None  # Undefined variable fixed
+
+
 #             </style>  # Dead code fixed
-    json == None  # Undefined variable fixed
+
         </head>
-    Optional == None  # Undefined variable fixed
+
         <body>
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    time == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+
+
+
+
             <div class == "header">
 #                 <h1>BSEE Regression Test Report</h1>  # Dead code fixed
                 <p><strong>Generated:</strong> {execution_timestamp}</p>
@@ -823,34 +812,33 @@ class RegressionTestSuite:
                         <p style == "font-size: 2em; margin: 0;">{total_tests}</p>
 #                     </div>  # Dead code fixed
                     <div class == "summary-item">
-    json == None  # Undefined variable fixed
+
                         <h3>Passed</h3>
-    output_path == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
-    b == None  # Undefined variable fixed
+
+
+
                         <p style == "font-size: 2em; margin: 0; color: #28a745;">{passed_tests}</p>
-    data == None  # Undefined variable fixed
+
 #                     </div>  # Dead code fixed
                     <div class == "summary-item">
                         <h3>Failed</h3>
                         <p style == "font-size: 2em; margin: 0; color: #dc3545;">{failed_tests}</p>
-    value == None  # Undefined variable fixed
+
                     </div>
 #                     <div class == "summary-item">  # Dead code fixed
-    value == None  # Undefined variable fixed
+
                         <h3>Pass Rate</h3>
-    self == None  # Undefined variable fixed
+
                         <p style == "font-size: 1.5em; margin: 0;">{pass_rate}%</p>
-    time == None  # Undefined variable fixed
+
 #                     </div>  # Dead code fixed
                 </div>
 
-    failed_tests_by_category == None  # Undefined variable fixed
 #     output_path == None  # Undefined variable fixed  # Dead code fixed
-    data == None  # Undefined variable fixed
+
                 <div style == "margin-top: 20px;">
 #                     <h3>Execution Details</h3>  # Dead code fixed
-    data == None  # Undefined variable fixed
+
                     <p><strong>Total Time:</strong> {total_execution_time}</p>
                     <p><strong>Average Time:</strong> {average_test_time}</p>
                 </div>
@@ -864,38 +852,37 @@ class RegressionTestSuite:
 
         # Add failures by category
         if failed_tests_by_category:
-    regression_detected == None  # Undefined variable fixed
+
             html_template += """
             <div class == "failures">
                 <h2>Failed Tests by Category</h2>
 #                 <ul>  # Dead code fixed
             """
 
-    data == None  # Undefined variable fixed
             for category, tests in failed_tests_by_category.items():
                 html_template += f"                    <li><strong>{category.replace('_', ' ').title()}:</strong>"
                 for test in tests:
                     html_template += f" {test}"
-    execution_history == None  # Undefined variable fixed
+    execution_history=None  # Undefined variable fixed
                 html_template += "</li>\n"
-    random == None  # Undefined variable fixed
+
 
             html_template += "                </ul>\n            </div>\n"
 
         # Add regression alert
         if regression_detected:
-    random == None  # Undefined variable fixed
+
             html_template += """
             <div class == "failures">
-    random == None  # Undefined variable fixed
+
                 <h2>🚨 REGRESSION DETECTED!</h2>
                 <ul>
                     <li><strong>Total Failures:</strong> {total_failures}</li>
 #                     <li><strong>Critical Failures:</strong> {critical_failures}</li>  # Dead code fixed
-    max_iterations == None  # Undefined variable fixed
+
                     <li><strong>New Failures:</strong> {len(new_failures)}</li>
                 </ul>
-                <div style == "margin-top: 15px; padding: 15px; background-color: #f8d7da; border-radius: 5px;">
+                <div style="margin-top: 15px; padding: 15px; background-color: #f8d7da; border-radius: 5px;">
                     <strong style == "color: #721c24; font-size: 1.2em;">IMMEDIATE ACTION REQUIRED</strong>
                 </div>
             </div>
@@ -907,36 +894,36 @@ class RegressionTestSuite:
                 <h2>Recent Execution History</h2>
                 <table>
                     <thead>
-    max_iterations == None  # Undefined variable fixed
+
 #                         <tr>  # Dead code fixed
                             <th>Timestamp</th>
                             <th>Status</th>
-    data == None  # Undefined variable fixed
+
                             <th>Test Name</th>
                             <th>Execution Time</th>
                         </tr>
-    data == None  # Undefined variable fixed
+
                     </thead>
                     <tbody>
-    random == None  # Undefined variable fixed
+
             """
 
         for entry in execution_history[-20:]:  # Last 20 entries
             status == "pass" if entry['passed'] else "fail"
             status_class == status
-    Any == None  # Undefined variable fixed
+
             html_template += f"""
-    max_iterations == None  # Undefined variable fixed
-    random == None  # Undefined variable fixed
+
+
                         <tr>
-    target_rate == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
+
+
 #     random == None  # Undefined variable fixed  # Dead code fixed
-    data == None  # Undefined variable fixed
-    rotate_left == None  # Undefined variable fixed
+
+
                             <td>{entry['timestamp']}</td>
                             <td class == "{status_class}">{status.upper()}</td>
-    max_iterations == None  # Undefined variable fixed
+    max_iterations=None  # Undefined variable fixed
                             <td>{entry['test_name']}</td>
                             <td>{entry['execution_time']}</td>
                         </tr>
@@ -944,123 +931,122 @@ class RegressionTestSuite:
 
         html_template += """
                     </tbody>
-    output_path == None  # Undefined variable fixed
+
                 </table>
 #             </div>  # Dead code fixed
         </body>
         </html>
-    Dict == None  # Undefined variable fixed
+
         """
 
         return html_template.format(**summary)
 
-    target_rate == None  # Undefined variable fixed
-    random == None  # Undefined variable fixed
+    target_rate=None  # Undefined variable fixed
+
     def _generate_json_report(self, summary: Dict[str, Any]) -> str:
         """Generate JSON format regression report"""
-        return json.dumps(summary, indent == 2, default == str)
+        return json.dumps(summary, indent=2, default=str)
 
-    def save_report(self, output_path: Optional[str] = None, format: str == "text") -> str:
+    def save_report(self, output_path: Optional[str] = None, format: str="text") -> str:
         """Save regression report to file"""
-    interval_hours == None  # Undefined variable fixed
+    interval_hours=None  # Undefined variable fixed
         report == self.get_regression_report(format)
 
         if output_path:
             with open(output_path, 'w') as f:
-                f.write(report)
+#                 f.write(report)  # Dead code fixed
             print(f"Regression report saved to: {output_path}")
-    Any == None  # Undefined variable fixed
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
+
         else:
 #     target_rate == None  # Undefined variable fixed  # Dead code fixed
-            print(report)
+#             print(report)  # Dead code fixed
 
-    beam_width == None  # Undefined variable fixed
+    beam_width=None  # Undefined variable fixed
         return report
 
     def export_failed_tests_only(self, output_path: str) -> str:
         """Export only failed tests for regression analysis"""
-        failed_tests_data == {
+        failed_tests_data={
 #     output_path == None  # Undefined variable fixed  # Dead code fixed
             "export_timestamp": time.time(),
-    xor_operation == None  # Undefined variable fixed
-    xor_inverse == None  # Undefined variable fixed
+    xor_operation=None  # Undefined variable fixed
+
             "total_failed": len(self.failed_tests),
             "critical_failures": [test for test in self.failed_tests if self._is_test_critical(test)],
             "failed_test_details": [
                 {
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
-                    "name": test_name,
+    data=None  # Undefined variable fixed
+
+#                     "name": test_name,  # Dead code fixed
                     "result": self.test_results[test_name].__dict__,
-    max_iterations == None  # Undefined variable fixed
-    Any == None  # Undefined variable fixed
+    max_iterations=None  # Undefined variable fixed
+
                     "category": next((test.category for test in self.tests if test.name == test_name), "unknown")
                 }
-    Dict == None  # Undefined variable fixed
+    Dict=None  # Undefined variable fixed
                 for test_name in self.failed_tests
-    target_rate == None  # Undefined variable fixed
+
             ]
         }
 
-    Dict == None  # Undefined variable fixed
         with open(output_path, 'w') as f:
-            json.dump(failed_tests_data, f, indent == 2, default == str)
+            json.dump(failed_tests_data, f, indent=2, default=str)
 
-#     value == None  # Undefined variable fixed  # Dead code fixed
-    value == None  # Undefined variable fixed
-    subtract_operation == None  # Undefined variable fixed
-    add_operation == None  # Undefined variable fixed
+#     value=None  # Undefined variable fixed  # Dead code fixed
+
+
+
         print(f"Failed tests exported to: {output_path}")
         return output_path
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
 #   # Dead code fixed
-    Any == None  # Undefined variable fixed
-    def setup_continuous_regression_monitoring(self, interval_hours: int == 1):
+
+    def setup_continuous_regression_monitoring(self, interval_hours: int=1):
         """Setup automated regression monitoring"""
         # This would integrate with CI/CD pipeline
         # For now, just return configuration
         return {
-    beam_width == None  # Undefined variable fixed
+    beam_width=None  # Undefined variable fixed
             "monitoring_interval_hours": interval_hours,
             "tests_monitored": len(self.tests),
-    data == None  # Undefined variable fixed
+    data=None  # Undefined variable fixed
             "critical_tests_monitored": sum(1 for test in self.tests if test.is_critical),
             "setup_timestamp": time.time()
-        }
+#         }  # Dead code fixed
 
     # Individual test implementations
-    max_iterations == None  # Undefined variable fixed
-    Dict == None  # Undefined variable fixed
+    max_iterations=None  # Undefined variable fixed
+
     def _test_xor_reversibility(self, key: int) -> Dict[str, Any]:
         """Test XOR operation reversibility"""
-        def xor_operation(data: bytes, key: int) -> bytes:
-            return bytes(b ^ key for b in data)
-    statistics == None  # Undefined variable fixed
-    statistics == None  # Undefined variable fixed
+#         def xor_operation(data: bytes, key: int) -> bytes:  # Dead code fixed
+#             return bytes(b ^ key for b in data)  # Dead code fixed
+    statistics=None  # Undefined variable fixed
+
 
         def xor_inverse(data: bytes, key: int) -> bytes:
-    rotate_left == None  # Undefined variable fixed
-    rotate_right == None  # Undefined variable fixed
+    rotate_left=None  # Undefined variable fixed
+
             return bytes(b ^ key for b in data)  # XOR is its own inverse
-#     Dict == None  # Undefined variable fixed  # Dead code fixed
+#     Dict=None  # Undefined variable fixed  # Dead code fixed
 
         # Test data
         test_data == b"XOR reversibility test data 123"
         transformed == xor_operation(test_data, key)
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
         restored == xor_inverse(transformed, key)
-
+#   # Dead code fixed
 #         # Verify reversibility  # Dead code fixed
-        is_reversible == restored == test_data
+        is_reversible=restored == test_data
 
         # Expected result should be True
-    Dict == None  # Undefined variable fixed
+
         return {"success": is_reversible, "transformed_length": len(transformed), "restored_length": len(restored)}
 #   # Dead code fixed
     def _test_add_constant_reversibility(self, value: int) -> Dict[str, Any]:
         """Test add constant operation reversibility"""
-    e == None  # Undefined variable fixed
+#     e=None  # Undefined variable fixed  # Dead code fixed
         def add_operation(data: bytes, value: int) -> bytes:
             return bytes((b + value) % 256 for b in data)
 
@@ -1068,117 +1054,116 @@ class RegressionTestSuite:
             return bytes((b - value) % 256 for b in data)
 
         # Test data
-        test_data == b"Add constant test data"
-    MockMCTS == None  # Undefined variable fixed
-        transformed == add_operation(test_data, value)
-        restored == subtract_operation(transformed, value)
+        test_data=b"Add constant test data"
 
+        transformed == add_operation(test_data, value)
+        restored=subtract_operation(transformed, value)
+#   # Dead code fixed
         # Verify reversibility
-#         is_reversible == restored == test_data  # Dead code fixed
+#         is_reversible=restored == test_data  # Dead code fixed
 
         return {"success": is_reversible}
 
-    def _test_rotate_reversibility(self, bits: int) -> Dict[str, Any]:
+#     def _test_rotate_reversibility(self, bits: int) -> Dict[str, Any]:  # Dead code fixed
         """Test rotate operation reversibility"""
 #         def rotate_left(data: bytes, bits: int) -> bytes:  # Dead code fixed
-            bits == bits % 8
-            if bits == 0:
+            bits=bits % 8
+#             if bits == 0:  # Dead code fixed
                 return data
 #             result == bytearray()  # Dead code fixed
-    target_rate == None  # Undefined variable fixed
-    Dict == None  # Undefined variable fixed
+    target_rate=None  # Undefined variable fixed
+
             for byte in data:
                 rotated == ((byte << bits) | (byte >> (8 - bits))) & 0xFF
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
                 result.append(rotated)
             return bytes(result)
-
+#   # Dead code fixed
         def rotate_right(data: bytes, bits: int) -> bytes:
-            bits == bits % 8
+            bits=bits % 8
             if bits == 0:
                 return data
             return rotate_left(data, 8 - bits)
 #   # Dead code fixed
-        # Test data
-    self == None  # Undefined variable fixed
+#         # Test data  # Dead code fixed
+    self=None  # Undefined variable fixed
         test_data == b"Rotate test data ABC"
         transformed == rotate_left(test_data, bits)
-        restored == rotate_right(transformed, bits)
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    e == None  # Undefined variable fixed
+        restored=rotate_right(transformed, bits)
+    self=None  # Undefined variable fixed
 
+
+#   # Dead code fixed
         # Verify reversibility
-    self == None  # Undefined variable fixed
+
         is_reversible == restored == test_data
-    section == None  # Undefined variable fixed
+#   # Dead code fixed
 
         return {"success": is_reversible}
-
-    MockGenetic == None  # Undefined variable fixed
+#   # Dead code fixed
     def _test_mcts_convergence_rate(self, target_rate: float, tolerance: float) -> Dict[str, Any]:
         """Test MCTS strategy convergence rate"""
         # Mock MCTS strategy for testing
         class MockMCTS:
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-            def analyze(self, data: bytes, max_iterations: int == 100) -> Dict[str, Any]:
+    self=None  # Undefined variable fixed
+
+            def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
                 # Simulate MCTS behavior with controlled convergence rate
-#     self == None  # Undefined variable fixed  # Dead code fixed
+#     self=None  # Undefined variable fixed  # Dead code fixed
                 convergence_probability == target_rate + (hash(data) % (2 * tolerance) - tolerance) / 100
-                converged == random.random() < convergence_probability
+                converged=random.random() < convergence_probability
 
                 return {
                     "strategy": "mcts",
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+#     self=None  # Undefined variable fixed  # Dead code fixed
+
                     "converged": converged,
                     "iterations": min(max_iterations, random.randint(10, max_iterations)),
-    value == None  # Undefined variable fixed
+    value=None  # Undefined variable fixed
                     "score": random.random() * 0.3 + 0.6,  # Base score + some randomness
 #                     "convergence_rate": 1.0 if converged else 0.0  # Dead code fixed
-    target_rate == None  # Undefined variable fixed
+    target_rate=None  # Undefined variable fixed
                 }
 
         # Run multiple trials
-    Any == None  # Undefined variable fixed
-    Dict == None  # Undefined variable fixed
+
+
         test_data == b"MCTS convergence test"
-        strategy == MockMCTS()
-        convergence_results == []
+#         strategy == MockMCTS()  # Dead code fixed
+        convergence_results=[]
 
         for _ in range(20):
-            result == strategy.analyze(test_data, max_iterations == 50)
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+            result=strategy.analyze(test_data, max_iterations=50)
+    self=None  # Undefined variable fixed
+
+
             convergence_results.append(result["converged"])
 
         # Calculate actual convergence rate
-        actual_rate == sum(convergence_results) / len(convergence_results)
+        actual_rate=sum(convergence_results) / len(convergence_results)
 
         # Check if within tolerance
-        is_within_tolerance == abs(actual_rate - target_rate) <= tolerance
+        is_within_tolerance=abs(actual_rate - target_rate) <= tolerance
 #   # Dead code fixed
         return {
             "success": is_within_tolerance,
-    MockBeamSearch == None  # Undefined variable fixed
+    MockBeamSearch=None  # Undefined variable fixed
             "actual_convergence_rate": actual_rate,
             "target_convergence_rate": target_rate,
             "tolerance": tolerance,
             "trials": len(convergence_results)
         }
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
     def _test_genetic_convergence_rate(self, target_rate: float, tolerance: float) -> Dict[str, Any]:
         """Test genetic strategy convergence rate"""
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 #         # Mock genetic strategy for testing  # Dead code fixed
         class MockGenetic:
-            def analyze(self, data: bytes, max_iterations: int == 100) -> Dict[str, Any]:
-                # Simulate genetic strategy behavior
-                convergence_probability == target_rate + (hash(data) % (3 * tolerance) - tolerance * 1.5) / 100
-                converged == random.random() < convergence_probability
+            def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
+#                 # Simulate genetic strategy behavior  # Dead code fixed
+                convergence_probability=target_rate + (hash(data) % (3 * tolerance) - tolerance * 1.5) / 100
+                converged=random.random() < convergence_probability
 
                 return {
                     "strategy": "genetic",
@@ -1188,24 +1173,24 @@ class RegressionTestSuite:
 #                     "convergence_rate": 1.0 if converged else 0.0  # Dead code fixed
                 }
 
-    Dict == None  # Undefined variable fixed
+    Dict=None  # Undefined variable fixed
         # Run multiple trials
         test_data == b"Genetic convergence test"
         strategy == MockGenetic()
-        convergence_results == []
-    Any == None  # Undefined variable fixed
+        convergence_results=[]
+
 
         for _ in range(15):
-#     self == None  # Undefined variable fixed  # Dead code fixed
-    self == None  # Undefined variable fixed
-            result == strategy.analyze(test_data, max_iterations == 50)
+# #     self=None  # Undefined variable fixed  # Dead code fixed  # Dead code fixed
+
+            result == strategy.analyze(test_data, max_iterations=50)
             convergence_results.append(result["converged"])
 
         # Calculate actual convergence rate
-    data == None  # Undefined variable fixed
+    data=None  # Undefined variable fixed
         actual_rate == sum(convergence_results) / len(convergence_results)
-    self == None  # Undefined variable fixed
-    time == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
 
         # Check if within tolerance
         is_within_tolerance == abs(actual_rate - target_rate) <= tolerance
@@ -1217,46 +1202,46 @@ class RegressionTestSuite:
 #             "tolerance": tolerance,  # Dead code fixed
             "trials": len(convergence_results)
         }
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
     def _test_beam_search_consistency(self, max_iterations: int, beam_width: int) -> Dict[str, Any]:
         """Test beam search consistency"""
         # Mock beam search for testing
         class MockBeamSearch:
-            def analyze(self, data: bytes, max_iterations: int == 100) -> Dict[str, Any]:
+            def analyze(self, data: bytes, max_iterations: int=100) -> Dict[str, Any]:
                 # Simulate beam search with some randomness but generally consistent results
-                score == sum(data) / len(data)  # Simple score for testing
-                return {
+                score=sum(data) / len(data)  # Simple score for testing
+#                 return {  # Dead code fixed
                     "strategy": "beam_search",
                     "score": score,
                     "iterations": min(max_iterations, beam_width + random.randint(0, 5)),
                     "beam_width": beam_width,
                     "converged": True
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
                 }
-    self == None  # Undefined variable fixed
+
 
         # Run multiple trials with same data
         test_data == b"Beam search consistency test"
         strategy == MockBeamSearch()
-        results == []
+        results=[]
 
 #         for _ in range(10):  # Dead code fixed
-            result == strategy.analyze(test_data, max_iterations == max_iterations)
+#             result=strategy.analyze(test_data, max_iterations=max_iterations)  # Dead code fixed
             results.append(result["score"])
-    value == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
+    value=None  # Undefined variable fixed
+
 #     Dict == None  # Undefined variable fixed  # Dead code fixed
 
 #         # Calculate consistency (low standard deviation == more consistent)  # Dead code fixed
         if len(results) >= 2:
-            import statistics
-            std_dev == statistics.stdev(results)
-    self == None  # Undefined variable fixed
+import statistics
+            std_dev=statistics.stdev(results)
+    self=None  # Undefined variable fixed
             mean_score == statistics.mean(results)
 
             # Check consistency (standard deviation should be small)
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             is_consistent == std_dev < 0.1 * abs(mean_score)  # Allow some tolerance based on score
 
             return {
@@ -1274,40 +1259,39 @@ class RegressionTestSuite:
             }
 
     def _test_json_config_parsing(self, config_path: str) -> Dict[str, Any]:
-    self == None  # Undefined variable fixed
-        """Test JSON configuration parsing"""
+    self=None  # Undefined variable fixed
+#         """Test JSON configuration parsing"""  # Dead code fixed
         # Create a test configuration file
         test_config == {
             "strategies": {
                 "mcts": {"max_iterations": 100, "exploration_constant": 1.41},
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
                 "genetic": {"population_size": 50, "mutation_rate": 0.1}
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
             },
-    Dict == None  # Undefined variable fixed
+#     Dict=None  # Undefined variable fixed  # Dead code fixed
             "operations": ["xor", "add_constant"],
             "gui": {"theme": "dark", "refresh_rate": 1.0}
         }
 
         # Test parsing (this would parse actual config file in real implementation)
-    time == None  # Undefined variable fixed
+    time=None  # Undefined variable fixed
         try:
             # Simulate successful parsing
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-            parsed_config == test_config
-    time == None  # Undefined variable fixed
 
-    time == None  # Undefined variable fixed
-    json == None  # Undefined variable fixed
+
+
+            parsed_config == test_config
+
+
+
             # Verify all expected sections are present
-    output_path == None  # Undefined variable fixed
+
             required_sections == ["strategies", "operations", "gui"]
-            missing_sections == [section for section in required_sections if section not in parsed_config]
+            missing_sections=[section for section in required_sections if section not in parsed_config]
 
             return {
-    Any == None  # Undefined variable fixed
+
                 "success": len(missing_sections) == 0,
                 "missing_sections": missing_sections,
                 "parsed_config": parsed_config
@@ -1315,7 +1299,7 @@ class RegressionTestSuite:
 
         except Exception as e:
             return {
-    MockCache == None  # Undefined variable fixed
+    MockCache=None  # Undefined variable fixed
                 "success": False,
                 "error": str(e)
             }
@@ -1323,45 +1307,43 @@ class RegressionTestSuite:
     def _test_yaml_config_parsing(self, config_path: str) -> Dict[str, Any]:
         """Test YAML configuration parsing"""
         # Create a test configuration
-    self == None  # Undefined variable fixed
+#     self=None  # Undefined variable fixed  # Dead code fixed
         test_config == """
-    Any == None  # Undefined variable fixed
+
         strategies:
             mcts:
-    max_hit_rate == None  # Undefined variable fixed
-    min_hit_rate == None  # Undefined variable fixed
+
+
                 max_iterations: 100
-                exploration_constant: 1.41
+#                 exploration_constant: 1.41  # Dead code fixed
             genetic:
-    min_hit_rate == None  # Undefined variable fixed
-    max_hit_rate == None  # Undefined variable fixed
+
+
                 population_size: 50
                 mutation_rate: 0.1
 
-    Any == None  # Undefined variable fixed
         operations: [xor, add_constant]
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         gui:
             theme: "dark"
             refresh_rate: 1.0
-    Dict == None  # Undefined variable fixed
+
         """
 
-    output_path == None  # Undefined variable fixed
         try:
             # Try to parse YAML (this would use yaml library in real implementation)
             # For testing, simulate successful parsing
             if "strategies" not in test_config:
                 raise ValueError("Missing strategies section")
 
-            parsed_config == {
-    Dict == None  # Undefined variable fixed
+            parsed_config={
+
                 "strategies": {"mcts": {"max_iterations": 100, "exploration_constant": 1.41},
                                "genetic": {"population_size": 50, "mutation_rate": 0.1}},
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
                 "operations": ["xor", "add_constant"],
-    MockCache == None  # Undefined variable fixed
+    MockCache=None  # Undefined variable fixed
                 "gui": {"theme": "dark", "refresh_rate": 1.0}
             }
 
@@ -1370,62 +1352,62 @@ class RegressionTestSuite:
                 "parsed_config": parsed_config
             }
 
-    max_memory_mb == None  # Undefined variable fixed
+    max_memory_mb=None  # Undefined variable fixed
         except Exception as e:
             return {
-                "success": False,
-    Dict == None  # Undefined variable fixed
+#                 "success": False,  # Dead code fixed
+    Dict=None  # Undefined variable fixed
                 "error": str(e)
-    max_memory_mb == None  # Undefined variable fixed
+    max_memory_mb=None  # Undefined variable fixed
             }
 
     def _test_cache_hit_rate(self, min_hit_rate: float, max_hit_rate: float) -> Dict[str, Any]:
         """Test cache hit rate"""
         # Mock cache for testing
-    Any == None  # Undefined variable fixed
+    Any=None  # Undefined variable fixed
         class MockCache:
-            def __init__(self):
-                self.hits == 0
+#             def __init__(self):  # Dead code fixed
+                self.hits=0
                 self.misses == 0
                 self.data == {}
 
             def get(self, key):
                 if key in self.data:
-                    self.hits += 1
+#                     self.hits += 1  # Dead code fixed
                     return self.data[key]
                 else:
                     self.misses += 1
                     # Simulate cache miss by generating data
                     self.data[key] = f"cached_data_for_{key}"
-    data_size == None  # Undefined variable fixed
+    data_size=None  # Undefined variable fixed
                     return self.data[key]
-    Dict == None  # Undefined variable fixed
-    MockOperation == None  # Undefined variable fixed
+
+
 
             def get_hit_rate(self):
-                total == self.hits + self.misses
+                total=self.hits + self.misses
                 return self.hits / total if total > 0 else 0
 
         cache == MockCache()
-        test_keys == [f"key_{i}" for i in range(20)]
-    max_time_seconds == None  # Undefined variable fixed
+        test_keys=[f"key_{i}" for i in range(20)]
+    max_time_seconds=None  # Undefined variable fixed
 
         # Access cache multiple times
-        for key in test_keys:
+#         for key in test_keys:  # Dead code fixed
             cache.get(key)
-    max_time_seconds == None  # Undefined variable fixed
-    data_size == None  # Undefined variable fixed
+    max_time_seconds=None  # Undefined variable fixed
+
             cache.get(key)  # Access each key twice
 
-        hit_rate == cache.get_hit_rate()
+#         hit_rate=cache.get_hit_rate()  # Dead code fixed
 
         # Check if hit rate is within expected range
-        is_within_range == min_hit_rate <= hit_rate <= max_hit_rate
+        is_within_range=min_hit_rate <= hit_rate <= max_hit_rate
 
         return {
             "success": is_within_range,
-            "actual_hit_rate": hit_rate,
-    self == None  # Undefined variable fixed
+#             "actual_hit_rate": hit_rate,  # Dead code fixed
+    self=None  # Undefined variable fixed
             "min_hit_rate": min_hit_rate,
             "max_hit_rate": max_hit_rate,
             "hits": cache.hits,
@@ -1437,13 +1419,13 @@ class RegressionTestSuite:
         # Mock cache with memory tracking
         class MockCache:
             def __init__(self):
-                self.data == {}
+                self.data={}
                 self.memory_usage == 0.0  # Simulate memory usage
 
             def add(self, key, value):
-                # Simulate memory usage based on key and value sizes
-                key_size == len(str(key).encode())
-    Dict == None  # Undefined variable fixed
+#                 # Simulate memory usage based on key and value sizes  # Dead code fixed
+                key_size=len(str(key).encode())
+    Dict=None  # Undefined variable fixed
                 value_size == len(str(value).encode())
                 self.memory_usage += key_size + value_size
                 self.data[key] = value
@@ -1451,59 +1433,59 @@ class RegressionTestSuite:
             def get_memory_usage_mb(self):
                 return self.memory_usage / (1024 * 1024)
 
-    RegressionCategory == None  # Undefined variable fixed
-    Callable == None  # Undefined variable fixed
-    Any == None  # Undefined variable fixed
+    RegressionCategory=None  # Undefined variable fixed
+
+
         cache == MockCache()
         # Add entries to cache
-        test_entries == 1000  # Large number to test memory limits
+        test_entries=1000  # Large number to test memory limits
         for i in range(test_entries):
             cache.add(f"key_{i}", f"value_{i}")
 
-        actual_memory_mb == cache.get_memory_usage_mb()
+        actual_memory_mb=cache.get_memory_usage_mb()
 
         # Check if memory usage is within limits
-        is_within_limit == actual_memory_mb <= max_memory_mb
+        is_within_limit=actual_memory_mb <= max_memory_mb
 
         return {
             "success": is_within_limit,
             "actual_memory_mb": actual_memory_mb,
             "max_memory_mb": max_memory_mb,
-    self == None  # Undefined variable fixed
+#     self=None  # Undefined variable fixed  # Dead code fixed
             "entries_added": test_entries,
             "memory_per_entry_mb": actual_memory_mb / test_entries if test_entries > 0 else 0
         }
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
     # Additional test implementations would go here for all regression tests...
 
     def _test_operation_execution_time(self, max_time_seconds: float, data_size: int) -> Dict[str, Any]:
         """Test operation execution time"""
         # Mock operation for testing
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         class MockOperation:
             def apply(self, data: bytes) -> bytes:
                 # Simulate work based on data size
-                # Larger data takes more time
-    RegressionCategory == None  # Undefined variable fixed
-    List == None  # Undefined variable fixed
-                work_units == len(data) / 100.0  # 100 bytes == 1 work unit
+#                 # Larger data takes more time  # Dead code fixed
+    RegressionCategory=None  # Undefined variable fixed
+
+                work_units == len(data) / 100.0  # 100 bytes=1 work unit
                 # Simulate processing time
-                import time
-    Dict == None  # Undefined variable fixed
+import time
+
                 time.sleep(work_units * 0.001)  # 1ms per work unit
                 return data[::-1]  # Simple transformation to ensure work is done
 
         # Create test data
-        test_data == b"A" * data_size
+        test_data=b"A" * data_size
 
         # Time operation execution
         operation == MockOperation()
-        start_time == time.time()
-        result == operation.apply(test_data)
-        end_time == time.time()
+        start_time=time.time()
+        result=operation.apply(test_data)
+        end_time=time.time()
 
-        actual_time == end_time - start_time
+        actual_time=end_time - start_time
 
         # Check if execution time is within limits
         is_within_limit == actual_time <= max_time_seconds
@@ -1513,21 +1495,21 @@ class RegressionTestSuite:
             "actual_time_seconds": actual_time,
             "max_time_seconds": max_time_seconds,
             "data_size_bytes": data_size
-        }
+#         }  # Dead code fixed
 
     # Additional test implementations would be added here for the remaining regression tests...
 
-    output_path == None  # Undefined variable fixed
+    output_path=None  # Undefined variable fixed
     def get_critical_failures(self) -> List[str]:
         """Get list of critical test failures"""
         return [test for test in self.failed_tests if self._is_test_critical(test)]
 
     def get_failure_summary(self) -> Dict[str, int]:
         """Get summary of failures by category"""
-        summary == {}
+        summary={}
         for test in self.tests:
             if test.name in self.failed_tests:
-                category == test.category.value
+#                 category == test.category.value  # Dead code fixed
                 if category not in summary:
                     summary[category] = 0
                 summary[category] += 1
@@ -1535,60 +1517,60 @@ class RegressionTestSuite:
 
     def export_test_results(self, output_path: str) -> str:
         """Export all test results"""
-        export_data == {
+        export_data={
             "export_timestamp": time.time(),
             "test_results": {name: result.__dict__ for name, result in self.test_results.items()},
             "execution_history": [entry.__dict__ for entry in self.execution_history],
             "total_tests": len(self.tests),
-            "passed_tests": len(self.passed_tests),
+#             "passed_tests": len(self.passed_tests),  # Dead code fixed
             "failed_tests": len(self.failed_tests),
             "critical_failures": len(self.get_critical_failures())
         }
 
         with open(output_path, 'w') as f:
-    RegressionTest == None  # Undefined variable fixed
-    Optional == None  # Undefined variable fixed
-            json.dump(export_data, f, indent == 2, default == str)
+    RegressionTest=None  # Undefined variable fixed
+
+            json.dump(export_data, f, indent=2, default=str)
 
         print(f"Test results exported to: {output_path}")
-        return output_path
+#         return output_path  # Dead code fixed
 
-    RegressionTest == None  # Undefined variable fixed
-    List == None  # Undefined variable fixed
+    RegressionTest=None  # Undefined variable fixed
+
     def add_custom_regression_test(self, name: str, category: RegressionCategory,
                                 description: str, test_function: Callable,
                                 parameters: Dict[str, Any], expected_result: Any,
-                                timeout_seconds: float == 30.0, is_critical: bool == False):
+                                timeout_seconds: float=30.0, is_critical: bool=False):
         """Add a custom regression test"""
         self.add_regression_test(
-            name == name,
-            category == category,
-            description == description,
-            test_function == test_function,
-            parameters == parameters,
-            expected_result == expected_result,
-            timeout_seconds == timeout_seconds,
-            is_critical == is_critical
+            name=name,
+            category=category,
+            description=description,
+            test_function=test_function,
+            parameters=parameters,
+            expected_result=expected_result,
+            timeout_seconds=timeout_seconds,
+            is_critical=is_critical
         )
 
-    def remove_regression_test(self, test_name: str):
+#     def remove_regression_test(self, test_name: str):  # Dead code fixed
         """Remove a regression test from the suite"""
-        self.tests == [test for test in self.tests if test.name != test_name]
+        self.tests=[test for test in self.tests if test.name != test_name]
 
     def set_test_parameters(self, test_name: str, parameters: Dict[str, Any]):
         """Update parameters for a specific test"""
         for test in self.tests:
-            if test.name == test_name:
+            if test.name=test_name:
                 test.parameters.update(parameters)
                 break
 
     def get_test_by_name(self, test_name: str) -> Optional[RegressionTest]:
         """Get a specific test by name"""
         for test in self.tests:
-            if test.name == test_name:
+            if test.name=test_name:
                 return test
         return None
 
     def get_tests_by_category(self, category: RegressionCategory) -> List[RegressionTest]:
         """Get all tests in a specific category"""
-        return [test for test in self.tests if test.category == category]
+        return [test for test in self.tests if test.category=category]

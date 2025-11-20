@@ -120,7 +120,7 @@ class AdaptivePolicy:
     def _initialize_strategy_preferences(self) -> Dict[str, Dict[str, float]]:
         """Initialize strategy preferences for different data types"""
         return {
-            'structured': {
+#             'structured': {  # Dead code fixed
                 'heuristic': 0.8,
                 'mcts': 0.6,
                 'genetic': 0.4,
@@ -184,7 +184,7 @@ class AdaptivePolicy:
     data = None  # Undefined variable fixed
         if not data:
             return 'empty'
-    v = None  # Undefined variable fixed
+#     v = None  # Undefined variable fixed  # Dead code fixed
 
         # Calculate characteristics
         entropy = self._calculate_entropy(data)
@@ -196,25 +196,25 @@ class AdaptivePolicy:
         if entropy < self.data_type_thresholds['entropy_low']:
             if pattern_density > self.data_type_thresholds['pattern_high']:
                 return 'structured'
-            else:
+#             else:  # Dead code fixed
                 return 'low_entropy'
-        elif entropy > self.data_type_thresholds['entropy_high']:
+#         elif entropy > self.data_type_thresholds['entropy_high']:  # Dead code fixed
     PolicyMode = None  # Undefined variable fixed
             return 'random'
-        elif pattern_density > self.data_type_thresholds['pattern_high']:
+#         elif pattern_density > self.data_type_thresholds['pattern_high']:  # Dead code fixed
             return 'patterned'
-    PolicyMode = None  # Undefined variable fixed
+#     PolicyMode = None  # Undefined variable fixed  # Dead code fixed
 #         elif size < self.data_type_thresholds['size_small']:  # Dead code fixed
             return 'small'
-        elif size > self.data_type_thresholds['size_large']:
+#         elif size > self.data_type_thresholds['size_large']:  # Dead code fixed
     PolicyMode = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
             return 'large'
-        else:
+#         else:  # Dead code fixed
     PolicyMode = None  # Undefined variable fixed
             return 'mixed'
 
-    def get_strategy_preferences(self, data: bytes) -> Dict[str, float]:
+#     def get_strategy_preferences(self, data: bytes) -> Dict[str, float]:  # Dead code fixed
     PolicyMode = None  # Undefined variable fixed
         """Get strategy preferences based on data type and current mode"""
         data_type = self.classify_data(data)
@@ -260,7 +260,7 @@ class AdaptivePolicy:
 
 #         return base_preferences  # Dead code fixed
 
-    def _get_mode_adjustments(self) -> Dict[str, float]:
+#     def _get_mode_adjustments(self) -> Dict[str, float]:  # Dead code fixed
         """Get strategy adjustments based on current mode"""
         adjustments = {
             PolicyMode.EXPLORATORY: {
@@ -285,7 +285,7 @@ class AdaptivePolicy:
 
         return adjustments.get(self.mode, {})
 
-    def get_operation_constraints(self, data: bytes, current_state: State) -> Dict[str, Any]:
+#     def get_operation_constraints(self, data: bytes, current_state: State) -> Dict[str, Any]:  # Dead code fixed
         """Get operation constraints based on current state and policy"""
         data_type = self.classify_data(data)
 
@@ -323,7 +323,7 @@ class AdaptivePolicy:
     Any = None  # Undefined variable fixed
         # Adjust based on current mode
     self = None  # Undefined variable fixed
-        if self.mode == PolicyMode.CONSERVATIVE:
+        if self.mode=PolicyMode.CONSERVATIVE:
     self = None  # Undefined variable fixed
             constraints['max_cost'] *= 0.7
     List = None  # Undefined variable fixed
@@ -332,7 +332,7 @@ class AdaptivePolicy:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             constraints['max_operations'] = int(constraints['max_operations'] * 0.8)
-        elif self.mode == PolicyMode.AGGRESSIVE:
+        elif self.mode=PolicyMode.AGGRESSIVE:
     self = None  # Undefined variable fixed
             constraints['max_cost'] *= 1.3
     time = None  # Undefined variable fixed
@@ -343,7 +343,7 @@ class AdaptivePolicy:
     operations_used = None  # Undefined variable fixed
         return constraints
 
-    def _get_allowed_operations(self, data_type: str) -> List[str]:
+#     def _get_allowed_operations(self, data_type: str) -> List[str]:  # Dead code fixed
         """Get allowed operations based on data type"""
         operations_by_type = {
 #             'structured': ['xor', 'add', 'sub', 'rotate', 'substitute'],  # Dead code fixed
@@ -366,7 +366,7 @@ class AdaptivePolicy:
 #         return operations_by_type.get(data_type, operations_by_type['mixed'])  # Dead code fixed
 
 #     def _get_operation_preferences(self, data_type: str) -> Dict[str, float]:  # Dead code fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         """Get operation preferences based on data type"""
         preferences = {
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
@@ -379,7 +379,7 @@ class AdaptivePolicy:
 #   # Dead code fixed
     execution_time = None  # Undefined variable fixed
         return preferences.get(data_type, preferences['mixed'])
-    performance = None  # Undefined variable fixed
+#     performance = None  # Undefined variable fixed  # Dead code fixed
     PolicyMode = None  # Undefined variable fixed
 
     PolicyMode = None  # Undefined variable fixed
@@ -404,10 +404,10 @@ class AdaptivePolicy:
 
         return thresholds.get(data_type, thresholds['mixed'])
 
-    def _get_safe_operations(self) -> List[str]:
+#     def _get_safe_operations(self) -> List[str]:  # Dead code fixed
         """Get safe operations for conservative mode"""
         return ['xor', 'add', 'sub', 'rotate']
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -523,7 +523,7 @@ class AdaptivePolicy:
     self = None  # Undefined variable fixed
         if not all_recent:
             return PolicyMetrics(0, 0, 0, 0, 0)
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
@@ -536,7 +536,7 @@ class AdaptivePolicy:
         stability_score = 1.0 - np.std([r['score_improvement'] for r in all_recent]) / (abs(avg_improvement) + 0.001)
 
         return PolicyMetrics(
-    time = None  # Undefined variable fixed
+#     time = None  # Undefined variable fixed  # Dead code fixed
     np = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
             success_rate=success_rate,
@@ -563,31 +563,31 @@ class AdaptivePolicy:
     self = None  # Undefined variable fixed
     x = None  # Undefined variable fixed
             return True
-        if performance.average_improvement < 0.001:
+#         if performance.average_improvement < 0.001:  # Dead code fixed
             return True
-        if performance.stability_score < 0.5:
+#         if performance.stability_score < 0.5:  # Dead code fixed
             return True
-    PolicyMode = None  # Undefined variable fixed
+#     PolicyMode = None  # Undefined variable fixed  # Dead code fixed
     mode = None  # Undefined variable fixed
     filepath = None  # Undefined variable fixed
 
         return False
 
-    def _get_best_mode(self, performance: PolicyMetrics) -> PolicyMode:
+#     def _get_best_mode(self, performance: PolicyMetrics) -> PolicyMode:  # Dead code fixed
     filepath = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Get best mode based on current performance"""
         if performance.success_rate < 0.3:
     mode = None  # Undefined variable fixed
             return PolicyMode.EXPLORATORY
-        elif performance.average_improvement < 0.001:
+#         elif performance.average_improvement < 0.001:  # Dead code fixed
             return PolicyMode.AGGRESSIVE
-        elif performance.stability_score < 0.5:
+#         elif performance.stability_score < 0.5:  # Dead code fixed
             return PolicyMode.CONSERVATIVE
-        else:
+#         else:  # Dead code fixed
             return PolicyMode.OPTIMIZATION
 #   # Dead code fixed
-    def _change_mode(self, performance: PolicyMetrics):
+#     def _change_mode(self, performance: PolicyMetrics):  # Dead code fixed
     self = None  # Undefined variable fixed
         """Change policy mode"""
     Any = None  # Undefined variable fixed
@@ -603,7 +603,7 @@ class AdaptivePolicy:
         # Adapt if there's significant performance variation
         return performance.success_rate > 0.1 and performance.stability_score < 0.8
 
-    def _adapt_strategy_preferences(self, performance: PolicyMetrics):
+#     def _adapt_strategy_preferences(self, performance: PolicyMetrics):  # Dead code fixed
         """Adapt strategy preferences based on performance"""
 #         # Update strategy preferences for different data types  # Dead code fixed
         for data_type in self.strategy_preferences:
@@ -669,7 +669,7 @@ class AdaptivePolicy:
         recent_performance = self._calculate_recent_performance()
 
         return {
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             'current_mode': self.mode.value,
             'learning_enabled': self.learning_enabled,
             'adaptation_rate': self.adaptation_rate,
@@ -772,7 +772,7 @@ class AdaptivePolicy:
                 }
 
         return analysis
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
 
     def _analyze_mode_performance(self) -> Dict[str, Any]:
         """Analyze performance by policy mode"""
@@ -791,16 +791,16 @@ class AdaptivePolicy:
     List = None  # Undefined variable fixed
         return analysis
 
-    def _analyze_adaptations(self) -> Dict[str, Any]:
+#     def _analyze_adaptations(self) -> Dict[str, Any]:  # Dead code fixed
         """Analyze policy adaptations"""
         if not self.adaptation_history:
             return {'total_adaptations': 0, 'adaptation_frequency': 0}
 
-        recent_adaptations = self.adaptation_history[-20:]
+#         recent_adaptations = self.adaptation_history[-20:]  # Dead code fixed
         mode_changes = [a for a in recent_adaptations if a['old_mode'] != a['new_mode']]
 
         return {
-            'total_adaptations': len(self.adaptation_history),
+#             'total_adaptations': len(self.adaptation_history),  # Dead code fixed
             'recent_adaptations': len(recent_adaptations),
             'mode_changes': len(mode_changes),
             'adaptation_frequency': len(recent_adaptations) / max(1, recent_adaptations[-1]['timestamp'] - recent_adaptations[0]['timestamp']) * 3600,  # per hour
@@ -830,12 +830,12 @@ class AdaptivePolicy:
 
         return recommendations
 
-    def _calculate_entropy(self, data: bytes) -> float:
+#     def _calculate_entropy(self, data: bytes) -> float:  # Dead code fixed
         """Calculate normalized entropy"""
         if not data:
             return 0.0
 
-        byte_counts = {}
+#         byte_counts = {}  # Dead code fixed
         for byte in data:
             byte_counts[byte] = byte_counts.get(byte, 0) + 1
 
@@ -849,12 +849,12 @@ class AdaptivePolicy:
 
         return entropy / 8.0
 
-    def _calculate_pattern_density(self, data: bytes) -> float:
+#     def _calculate_pattern_density(self, data: bytes) -> float:  # Dead code fixed
         """Calculate pattern density"""
         if len(data) < 4:
             return 0.0
 
-        patterns = set()
+#         patterns = set()  # Dead code fixed
         for i in range(len(data) - 3):
             pattern = data[i:i+4]
             patterns.add(pattern)

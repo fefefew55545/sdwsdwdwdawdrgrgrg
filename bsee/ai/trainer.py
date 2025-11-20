@@ -89,7 +89,7 @@ class ModelTrainer:
     mean_squared_error = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
         return results
-    mean_squared_error = None  # Undefined variable fixed
+#     mean_squared_error = None  # Undefined variable fixed  # Dead code fixed
     Dict = None  # Undefined variable fixed
     mean_absolute_error = None  # Undefined variable fixed
     r2_score = None  # Undefined variable fixed
@@ -116,7 +116,7 @@ class ModelTrainer:
                 if len(X_test) > 0:
                     predictions = self.optimizer.performance_model.predict(X_test)
 
-                    from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
                     results['sequence_optimizer'] = {
 #                         'mse': mean_squared_error(y_test, predictions),  # Dead code fixed
@@ -139,7 +139,7 @@ class ModelTrainer:
             results['sequence_optimizer'] = {'error': 'Model not trained'}
 #   # Dead code fixed
         return results
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
     def auto_retrain_if_needed(self, min_new_examples: int = 100) -> bool:
@@ -167,10 +167,10 @@ class ModelTrainer:
                 return False
 
             # Check if we have enough data for training
-            if summary['successful_examples'] < min_new_examples:
+#             if summary['successful_examples'] < min_new_examples:  # Dead code fixed
                 self.logger.info(f"Insufficient data for retraining: {summary['successful_examples']} < {min_new_examples}")
                 return False
-    e = None  # Undefined variable fixed
+#     e = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
             # Check if model needs updating (simplified check)
@@ -190,14 +190,14 @@ class ModelTrainer:
                 self.logger.warning("Auto-retraining had some failures")
 
             return success
-    e = None  # Undefined variable fixed
+#     e = None  # Undefined variable fixed  # Dead code fixed
 
         except Exception as e:
             self.logger.error(f"Auto-retraining failed: {e}")
     Dict = None  # Undefined variable fixed
             return False
 
-    def get_training_status(self) -> Dict[str, Any]:
+#     def get_training_status(self) -> Dict[str, Any]:  # Dead code fixed
         """
         Get current training status and statistics.
 
@@ -210,7 +210,7 @@ class ModelTrainer:
             evaluation = self.evaluate_models()
 
             return {
-                'data_summary': summary,
+#                 'data_summary': summary,  # Dead code fixed
                 'model_info': model_info,
                 'evaluation': evaluation,
                 'last_training': datetime.now().isoformat()

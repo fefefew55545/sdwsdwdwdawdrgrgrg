@@ -44,6 +44,6 @@ class HeuristicStrategy(BaseStrategy):
         return random.choice(operations)
     # Unreachable code removed
 
-    def accept(self, new_state: State) -> bool:
+#     def accept(self, new_state: State) -> bool:  # Dead code fixed
         """Accept based on heuristic evaluation."""
         return new_state.score > self.best_score

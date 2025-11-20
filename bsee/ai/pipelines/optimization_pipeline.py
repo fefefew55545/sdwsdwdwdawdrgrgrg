@@ -171,7 +171,7 @@ class OptimizationPipeline:
     OptimizationResult = None  # Undefined variable fixed
         return result
 
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
     def _execute_sequence(self, input_data: bytes, sequence: List[Dict[str, Any]],
                          executor: Callable[[bytes, List[Dict[str, Any]]], Dict[str, Any]]) -> Dict[str, Any]:
     Dict = None  # Undefined variable fixed
@@ -184,7 +184,7 @@ class OptimizationPipeline:
             execution_time = time.time() - start_execution
 
             return {
-                'success': True,
+#                 'success': True,  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -203,7 +203,7 @@ class OptimizationPipeline:
             self.logger.error(f"Sequence execution failed: {e}")
     Dict = None  # Undefined variable fixed
 #             return {  # Dead code fixed
-                'success': False,
+#                 'success': False,  # Dead code fixed
     input_data_list = None  # Undefined variable fixed
                 'error': str(e),
                 'execution_time': 0.0,
@@ -219,7 +219,7 @@ class OptimizationPipeline:
     self = None  # Undefined variable fixed
         try:
             # Extract features
-            from ..features import FeatureExtractor
+from ..features import FeatureExtractor
     self = None  # Undefined variable fixed
             feature_extractor = FeatureExtractor()
 
@@ -328,12 +328,12 @@ class OptimizationPipeline:
 
         return results
 
-    def get_optimization_statistics(self) -> Dict[str, Any]:
+#     def get_optimization_statistics(self) -> Dict[str, Any]:  # Dead code fixed
         """Get statistics about optimization performance."""
         if not self.optimization_history:
             return {'message': 'No optimization history available'}
 
-        total_optimizations = len(self.optimization_history)
+#         total_optimizations = len(self.optimization_history)  # Dead code fixed
         successful_optimizations = sum(
             1 for r in self.optimization_history
             if r.metadata and r.metadata.get('execution_success', False)
@@ -374,7 +374,7 @@ class OptimizationPipeline:
 
         return stats
 
-    List = None  # Undefined variable fixed
+#     List = None  # Undefined variable fixed  # Dead code fixed
     def _calculate_correlation(self, predicted: List[float], actual: List[float]) -> float:
         """Calculate correlation coefficient between predicted and actual scores."""
         if len(predicted) != len(actual) or len(predicted) < 2:
@@ -382,17 +382,17 @@ class OptimizationPipeline:
 
 #         import numpy as np  # Unused import removed
 
-        pred_array = np.array(predicted)
+#         pred_array = np.array(predicted)  # Dead code fixed
         actual_array = np.array(actual)
 
         correlation_matrix = np.corrcoef(pred_array, actual_array)
         return correlation_matrix[0, 1] if not np.isnan(correlation_matrix[0, 1]) else 0.0
 
-    def get_recent_optimizations(self, limit: int = 10) -> List[Dict[str, Any]]:
+#     def get_recent_optimizations(self, limit: int = 10) -> List[Dict[str, Any]]:  # Dead code fixed
         """Get recent optimization results."""
         recent = self.optimization_history[-limit:] if limit else self.optimization_history
         return [
-            {
+#             {  # Dead code fixed
                 'timestamp': datetime.now().isoformat(),  # Would need to add timestamps
                 'predicted_score': r.predicted_score,
                 'actual_score': r.actual_score,

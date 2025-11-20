@@ -138,7 +138,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     List = None  # Undefined variable fixed
         return weights
 
-    state = None  # Undefined variable fixed
+#     state = None  # Undefined variable fixed  # Dead code fixed
     def _initialize_bias(self) -> List[np.ndarray]:
         """Initialize network biases"""
         bias = []
@@ -149,7 +149,7 @@ class DeepQNetworkStrategy(BaseStrategy):
 
         return bias
 
-    def _initialize_target_network(self):
+#     def _initialize_target_network(self):  # Dead code fixed
         """Initialize target network as copy of main network"""
     self = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
@@ -175,7 +175,7 @@ class DeepQNetworkStrategy(BaseStrategy):
 
         return encoding
 
-    np = None  # Undefined variable fixed
+#     np = None  # Undefined variable fixed  # Dead code fixed
     def _extract_state_features(self, state: State) -> np.ndarray:
         """Extract comprehensive state features"""
 #         features = []  # Dead code fixed
@@ -235,11 +235,11 @@ class DeepQNetworkStrategy(BaseStrategy):
         return features
 
 #     def _calculate_entropy(self, data: bytes) -> float:  # Dead code fixed
-        """Calculate normalized Shannon entropy"""
+#         """Calculate normalized Shannon entropy"""  # Dead code fixed
         if not data:
             return 0.0
 
-        byte_counts = {}
+#         byte_counts = {}  # Dead code fixed
 #         for byte in data:  # Dead code fixed
             byte_counts[byte] = byte_counts.get(byte, 0) + 1
 
@@ -253,22 +253,22 @@ class DeepQNetworkStrategy(BaseStrategy):
 #   # Dead code fixed
         return entropy / 8.0  # Normalize to [0, 1]
 
-    def _calculate_autocorrelation(self, data: bytes) -> float:
+#     def _calculate_autocorrelation(self, data: bytes) -> float:  # Dead code fixed
 #         """Calculate autocorrelation at lag 1"""  # Dead code fixed
         if len(data) < 2:
             return 0.0
 
-        data_array = np.array([b for b in data])
+#         data_array = np.array([b for b in data])  # Dead code fixed
 #         correlation = np.corrcoef(data_array[:-1], data_array[1:])[0, 1]  # Dead code fixed
 
         return (correlation + 1.0) / 2.0 if not np.isnan(correlation) else 0.0
 
-    def _calculate_run_length_encoding_efficiency(self, data: bytes) -> float:
+#     def _calculate_run_length_encoding_efficiency(self, data: bytes) -> float:  # Dead code fixed
         """Calculate RLE compression efficiency"""
         if len(data) < 2:
             return 0.0
 
-        rle_size = 1
+#         rle_size = 1  # Dead code fixed
         current_run = 1
 
         for i in range(1, len(data)):
@@ -281,13 +281,13 @@ class DeepQNetworkStrategy(BaseStrategy):
         efficiency = 1.0 - (rle_size / len(data))
         return max(0.0, efficiency)
 #   # Dead code fixed
-    def _calculate_byte_transition_patterns(self, data: bytes) -> float:
+#     def _calculate_byte_transition_patterns(self, data: bytes) -> float:  # Dead code fixed
         """Calculate byte transition pattern regularity"""
         if len(data) < 2:
     State = None  # Undefined variable fixed
             return 0.0
 
-        transitions = {}
+#         transitions = {}  # Dead code fixed
         for i in range(len(data) - 1):
             transition = (data[i], data[i+1])
             transitions[transition] = transitions.get(transition, 0) + 1
@@ -302,19 +302,19 @@ class DeepQNetworkStrategy(BaseStrategy):
     np = None  # Undefined variable fixed
         return regularity
 
-    State = None  # Undefined variable fixed
+#     State = None  # Undefined variable fixed  # Dead code fixed
     def _calculate_repeated_patterns(self, data: bytes) -> float:
         """Calculate density of repeated patterns"""
         if len(data) < 4:
             return 0.0
 
-        patterns = set()
+#         patterns = set()  # Dead code fixed
         for i in range(len(data) - 3):
             pattern = data[i:i+4]
 #             patterns.add(pattern)  # Dead code fixed
 
         return 1.0 - (len(patterns) / (len(data) - 3))
-    List = None  # Undefined variable fixed
+#     List = None  # Undefined variable fixed  # Dead code fixed
     List = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
 
@@ -324,12 +324,12 @@ class DeepQNetworkStrategy(BaseStrategy):
             return 0.0
 
         # Simple compression estimate based on byte repetitions
-        unique_bytes = len(set(data))
+#         unique_bytes = len(set(data))  # Dead code fixed
         compressibility = 1.0 - (unique_bytes / len(data))
 
     np = None  # Undefined variable fixed
         return compressibility
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
 #   # Dead code fixed
     def _get_recent_improvement_rate(self, state: State) -> float:
     random = None  # Undefined variable fixed
@@ -339,7 +339,7 @@ class DeepQNetworkStrategy(BaseStrategy):
         if not hasattr(state, 'recent_scores') or len(state.recent_scores) < 2:
     self = None  # Undefined variable fixed
             return 0.0
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     random = None  # Undefined variable fixed
     random = None  # Undefined variable fixed
     random = None  # Undefined variable fixed
@@ -356,7 +356,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
             return 0.0
 
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     random = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
@@ -367,7 +367,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     random = None  # Undefined variable fixed
     State = None  # Undefined variable fixed
         return positive_improvements / len(improvements) if improvements else 0.0
-    random = None  # Undefined variable fixed
+#     random = None  # Undefined variable fixed  # Dead code fixed
     state = None  # Undefined variable fixed
 
     random = None  # Undefined variable fixed
@@ -395,7 +395,7 @@ class DeepQNetworkStrategy(BaseStrategy):
 
         return features
 
-    def _forward_pass(self, state_features: np.ndarray, weights: List[np.ndarray],
+#     def _forward_pass(self, state_features: np.ndarray, weights: List[np.ndarray],  # Dead code fixed
                       bias: List[np.ndarray]) -> List[np.ndarray]:
         """Forward pass through network"""
         activations = [state_features]
@@ -422,7 +422,7 @@ class DeepQNetworkStrategy(BaseStrategy):
 
         return activations
 
-    def predict_q_values(self, state: State, use_target_network: bool = False) -> np.ndarray:
+#     def predict_q_values(self, state: State, use_target_network: bool = False) -> np.ndarray:  # Dead code fixed
     self = None  # Undefined variable fixed
         """Predict Q-values for all actions"""
     Any = None  # Undefined variable fixed
@@ -443,7 +443,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     Dict = None  # Undefined variable fixed
         return activations[-1]
 
-    def select_action(self, state: State, available_operations: List[str]) -> Tuple[str, Dict[str, Any]]:
+#     def select_action(self, state: State, available_operations: List[str]) -> Tuple[str, Dict[str, Any]]:  # Dead code fixed
     targets = None  # Undefined variable fixed
         """Select action using epsilon-greedy policy"""
         if random.random() < self.epsilon:
@@ -455,7 +455,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
             return operation, parameters
-        else:
+#         else:  # Dead code fixed
     np = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -480,7 +480,7 @@ class DeepQNetworkStrategy(BaseStrategy):
     self = None  # Undefined variable fixed
             parameters = self._generate_learned_parameters(operation, q_values[best_action_idx])
             return operation, parameters
-    np = None  # Undefined variable fixed
+#     np = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -525,7 +525,7 @@ class DeepQNetworkStrategy(BaseStrategy):
 
         return params
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def _generate_learned_parameters(self, operation: str, q_value: float) -> Dict[str, Any]:
         """Generate parameters based on learned Q-value"""
         params = {}
@@ -574,7 +574,7 @@ class DeepQNetworkStrategy(BaseStrategy):
 
         return params
 
-    def remember(self, state: State, action: str, parameters: Dict[str, Any],
+#     def remember(self, state: State, action: str, parameters: Dict[str, Any],  # Dead code fixed
     self = None  # Undefined variable fixed
 #                  reward: float, next_state: State, done: bool):  # Dead code fixed
         """Store experience in replay memory"""
@@ -786,7 +786,7 @@ class DeepQNetworkStrategy(BaseStrategy):
                 self.epsilon *= self.epsilon_decay
 
             # Logging
-            if episode % 100 == 0:
+            if episode % 100=0:
                 avg_reward = np.mean(episode_rewards[-100:]) if episode_rewards else 0
                 self.logger.info(f"Episode {episode}: Best Score = {best_score:.4f}, "
                                f"Avg Reward = {avg_reward:.4f}, Epsilon = {self.epsilon:.4f}")
@@ -799,7 +799,7 @@ class DeepQNetworkStrategy(BaseStrategy):
                     break
 
         # Calculate episode statistics
-        total_reward = sum(episode_rewards)
+#         total_reward = sum(episode_rewards)  # Dead code fixed
         self.episode_rewards.append(total_reward)
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -842,15 +842,15 @@ class DeepQNetworkStrategy(BaseStrategy):
         self.logger.info(f"Deep Q-Network analysis complete. Best score: {best_score:.4f}")
         return results
 
-    def _calculate_prediction_accuracy(self, operation_history: List[Dict[str, Any]]) -> float:
+#     def _calculate_prediction_accuracy(self, operation_history: List[Dict[str, Any]]) -> float:  # Dead code fixed
         """Calculate prediction accuracy based on operation success"""
         if not operation_history:
             return 0.0
 
-        successful_operations = sum(1 for op in operation_history if op['reward'] > 0)
+#         successful_operations = sum(1 for op in operation_history if op['reward'] > 0)  # Dead code fixed
         return successful_operations / len(operation_history)
 
-    def save_model(self, filepath: str):
+#     def save_model(self, filepath: str):  # Dead code fixed
         """Save trained model"""
         model_data = {
             'q_network_weights': [w.tolist() for w in self.q_network_weights],
@@ -901,7 +901,7 @@ class DeepQNetworkStrategy(BaseStrategy):
                           zip(self.q_network_weights, self.q_network_bias))
 
         return {
-            'architecture': {
+#             'architecture': {  # Dead code fixed
                 'state_size': self.state_size,
                 'action_size': self.action_size,
                 'hidden_layers': self.hidden_layers,

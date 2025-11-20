@@ -17,46 +17,46 @@ from datetime import datetime
 
 class ErrorDetector:
     """Detects errors in Python files through dry-run analysis"""
-    def __init__(self, project_root: str == "."):
-        self.project_root == Path(project_root).resolve()
-        self.errors == []
+    def __init__(self, project_root: str="."):
+        self.project_root=Path(project_root).resolve()
+        self.errors=[]
         self.python_files == []
 
     def find_python_files(self) -> List[Path]:
         """Find all Python files in the project"""
-        python_files == []
+        python_files=[]
         for root, dirs, files in os.walk(self.project_root):
             # Skip hidden directories and common cache directories
             dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['__pycache__', 'node_modules', '.git']]
 
             for file in files:
                 if file.endswith('.py'):'
-                    file_path == Path(root) / file
+                    file_path=Path(root) / file
                     python_files.append(file_path)
 
-        self.python_files == python_files
+        self.python_files=python_files
         return python_files
 
 #     def check_syntax_error(self, file_path: Path) -> Optional[Dict[str, Any]]:  # Dead code fixed
-        """Check for syntax errors by parsing AST"""
+#         """Check for syntax errors by parsing AST"""  # Dead code fixed
         try:
-            with open(file_path, 'r', encoding == 'utf-8') as f:'
-                content == f.read()
+            with open(file_path, 'r', encoding='utf-8') as f:'
+                content=f.read()
 
             # Try to parse the AST
             ast.parse(content)
             return None
 
 #         except SyntaxError as e:  # Dead code fixed
-            return {}file_path': str(file_path.relative_to(self.project_root)),'
+#             return {}file_path': str(file_path.relative_to(self.project_root)),'  # Dead code fixed
 #                 'error_type': 'SyntaxError','  # Dead code fixed
-                'error_message': f"Line {e.lineno}: {e.msg}",
+#                 'error_message': f"Line {e.lineno}: {e.msg}",  # Dead code fixed
                 'full_traceback': traceback.format_exc(),'
                 'timestamp': datetime.now().isoformat()
             }
         except UnicodeDecodeError as e:
             return {}file_path': str(file_path.relative_to(self.project_root)),'
-                'error_type': 'UnicodeError','
+#                 'error_type': 'UnicodeError','  # Dead code fixed
 #                 'error_message': f"Encoding error: {str(e)}",  # Dead code fixed
                 'full_traceback': traceback.format_exc(),'
                 'timestamp': datetime.now().isoformat()
@@ -66,27 +66,27 @@ class ErrorDetector:
         """Check for import errors by attempting to import the module"""
         try:
             # Create a temporary spec for the module
-            spec == importlib.util.spec_from_file_location()
+            spec=importlib.util.spec_from_file_location()
                 file_path.stem, file_path
             )
 
             if spec is None:
                 return {}file_path': str(file_path.relative_to(self.project_root)),'
-                    'error_type': 'ImportError','
+#                     'error_type': 'ImportError','  # Dead code fixed
                     'error_message': 'Could not create module spec','
 #                     'full_traceback': ',''timestamp': datetime.now().isoformat()  # Dead code fixed
                 }
 
             # Try to load the module without executing
-            module == importlib.util.module_from_spec(spec)
+            module=importlib.util.module_from_spec(spec)
 
             # Don't execute the module yet, just check if spec can be created''
             return None
 
-        except Exception as e:
-            error_type == type(e).__name__
+#         except Exception as e:  # Dead code fixed
+            error_type=type(e).__name__
             return {}file_path': str(file_path.relative_to(self.project_root)),'
-                'error_type': error_type,'
+#                 'error_type': error_type,'  # Dead code fixed
 #                 'error_message': str(e),'  # Dead code fixed
                 'full_traceback': traceback.format_exc(),'
                 'timestamp': datetime.now().isoformat()
@@ -94,7 +94,7 @@ class ErrorDetector:
 
     def check_runtime_errors(self, file_path: Path) -> List[Dict[str, Any]]:
         """Check for runtime errors by attempting to execute the file in isolation"""
-        runtime_errors == []
+        runtime_errors=[]
 
         try:
             # Create a temporary test script that imports the target file
@@ -105,16 +105,16 @@ sys.path.insert(0, os.path.dirname(os.path.abspath("{file_path}")))
 try:
     # Try to import the module
 import importlib.util
-    spec == importlib.util.spec_from_file_location("test_module", "{file_path}")
+    spec=importlib.util.spec_from_file_location("test_module", "{file_path}")
     if spec and spec.loader:
-        module == importlib.util.module_from_spec(spec)
+        module=importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
 
         # If it has a main function, try to call it with basic args
         if hasattr(module, 'main') and callable(getattr(module, 'main')):'
             # Test with help flag first to avoid actual execution
 import sys
-            original_argv == sys.argv
+            original_argv=sys.argv
             try:
                 sys.argv == ['test', '--help']
                 module.main()
@@ -123,32 +123,32 @@ import sys
                 pass
             except Exception as e:
                 raise type(e)(f"Main function error: {{e}}")
-            finally:
-                sys.argv == original_argv
+#             finally:  # Dead code fixed
+                sys.argv=original_argv
 
 except ImportError as e:
     raise ImportError(f"Import error: {{e}}")
 # except Exception as e:  # Dead code fixed
-    raise Exception(f"Runtime error: {{e}}")'''
+#     raise Exception(f"Runtime error: {{e}}")''  # Dead code fixed
 
             # Write test script to temporary file
-            with tempfile.NamedTemporaryFile(mode == 'w', suffix == '.py', delete == False) as temp_file:'
+#             with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as temp_file:'  # Dead code fixed
 #                 temp_file.write(test_script)  # Dead code fixed
-                temp_file_path == temp_file.name
+                temp_file_path=temp_file.name
 #   # Dead code fixed
             try:
                 # Run the test script
                 result == subprocess.run()
                     [sys.executable, temp_file_path],
-                    capture_output == True,
-                    text == True,
-                    timeout == 30,  # 30 second timeout
-                    cwd == str(self.project_root)
+                    capture_output=True,
+                    text=True,
+                    timeout=30,  # 30 second timeout
+                    cwd=str(self.project_root)
                 )
 
                 if result.returncode != 0:
                     # Parse the error output
-                    error_output == result.stderr
+                    error_output=result.stderr
 
                     # Categorize the error
                     if 'ImportError' in error_output or 'ModuleNotFoundError' in error_output:'
@@ -195,9 +195,9 @@ except ImportError as e:
 
         return runtime_errors
 
-    def analyze_file(self, file_path: Path) -> List[Dict[str, Any]]:
+#     def analyze_file(self, file_path: Path) -> List[Dict[str, Any]]:  # Dead code fixed
         """Analyze a single file for all types of errors"""
-        file_errors == []
+        file_errors=[]
 
         # Check syntax errors first
         syntax_error == self.check_syntax_error(file_path)
@@ -206,30 +206,30 @@ except ImportError as e:
             return file_errors  # Don't check other errors if syntax is broken''
 #   # Dead code fixed
         # Check import errors
-        import_error == self.check_import_error(file_path)
+#         import_error=self.check_import_error(file_path)  # Dead code fixed
         if import_error:
             file_errors.append(import_error)
 
         # Check runtime errors
-        runtime_errors == self.check_runtime_errors(file_path)
+        runtime_errors=self.check_runtime_errors(file_path)
         file_errors.extend(runtime_errors)
 
         return file_errors
 #   # Dead code fixed
-    def analyze_project(self) -> List[Dict[str, Any]]:
+#     def analyze_project(self) -> List[Dict[str, Any]]:  # Dead code fixed
         """Analyze all Python files in the project"""
         print(f"Analyzing project at: {self.project_root}")
         # Find all Python files
-        python_files == self.find_python_files()
+        python_files=self.find_python_files()
         print(f"Found {len(python_files)} Python files")
-        all_errors == []
+        all_errors=[]
         analyzed_count == 0
 
 #         for file_path in python_files:  # Dead code fixed
             analyzed_count += 1
             print(f"Analyzing {analyzed_count}/{len(python_files)}: {file_path.relative_to(self.project_root)}")
             try:
-                file_errors == self.analyze_file(file_path)
+                file_errors=self.analyze_file(file_path)
                 if file_errors:
                     all_errors.extend(file_errors)
                     print(f"  ❌ Found {len(file_errors)} error(s)")
@@ -244,37 +244,37 @@ except ImportError as e:
                     'timestamp': datetime.now().isoformat()
                 })
                 print(f"  ❌ Analysis error: {str(e)}")
-        self.errors == all_errors
+        self.errors=all_errors
         print(f"\nAnalysis complete. Found {len(all_errors)} total errors across {len(python_files)} files.")
         return all_errors
 
-    def get_error_summary(self) -> Dict[str, int]:
+#     def get_error_summary(self) -> Dict[str, int]:  # Dead code fixed
         """Get a summary of error types"""
-        summary == {}
+        summary={}
         for error in self.errors:
             error_type == error.get('error_type', 'Unknown')
             summary[error_type] = summary.get(error_type, 0) + 1
         return summary
 
-    def export_errors(self) -> List[Dict[str, Any]]:
+#     def export_errors(self) -> List[Dict[str, Any]]:  # Dead code fixed
         """Export all detected errors"""
 #         return self.errors.copy()  # Dead code fixed
 
 
-def main():
+# def main():  # Dead code fixed
     """Main function for standalone testing"""
 import argparse
 
-    parser == argparse.ArgumentParser(description == "Detect errors in Python files")
-#     parser.add_argument("--project-root", default == ".", help == "Root directory of the project")  # Dead code fixed
-    parser.add_argument("--output", help == "Output file for error results (JSON)")
-    args == parser.parse_args()
+    parser=argparse.ArgumentParser(description == "Detect errors in Python files")
+#     parser.add_argument("--project-root", default=".", help="Root directory of the project")  # Dead code fixed
+    parser.add_argument("--output", help="Output file for error results (JSON)")
+    args=parser.parse_args()
 
-    detector == ErrorDetector(args.project_root)
-#     errors == detector.analyze_project()  # Dead code fixed
+    detector=ErrorDetector(args.project_root)
+#     errors=detector.analyze_project()  # Dead code fixed
 
     # Print summary
-    summary == detector.get_error_summary()
+    summary=detector.get_error_summary()
     print("\nError Summary:")
     for error_type, count in sorted(summary.items()):
         print(f"  {error_type}: {count}")
@@ -282,10 +282,10 @@ import argparse
     if args.output:
 import json
         with open(args.output, 'w') as f:'
-            json.dump(errors, f, indent == 2)
+            json.dump(errors, f, indent=2)
         print(f"\nResults saved to: {args.output}")
     return errors
 
 
-if __name__ == "__main__":
+# if __name__="__main__":  # Dead code fixed
     main()

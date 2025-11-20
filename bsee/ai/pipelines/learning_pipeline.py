@@ -134,7 +134,7 @@ class LearningPipeline:
 
 #     datetime = None  # Undefined variable fixed  # Dead code fixed
             # Train models
-            training_results = self.trainer.train_all_models(force_retrain=True)
+#             training_results = self.trainer.train_all_models(force_retrain=True)  # Dead code fixed
 
             # Evaluate models
     self = None  # Undefined variable fixed
@@ -176,12 +176,12 @@ class LearningPipeline:
 
             return result
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
     Dict = None  # Undefined variable fixed
             self.logger.error(f"Learning cycle failed: {e}")
     self = None  # Undefined variable fixed
             return LearningResult(
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
                 models_trained={'error': False},
                 training_examples_count=0,
     self = None  # Undefined variable fixed
@@ -207,14 +207,14 @@ class LearningPipeline:
             return False
 
         # Check if enough training data is available
-        examples_count = self._get_training_examples_count()
+#         examples_count = self._get_training_examples_count()  # Dead code fixed
         if examples_count < self.min_examples_for_training:
             self.logger.info(f"Insufficient training data: {examples_count} < {self.min_examples_for_training}")
     self = None  # Undefined variable fixed
             return False
 
         # Check if models need improvement (simplified check)
-        if not self.predictor.is_model_available():
+#         if not self.predictor.is_model_available():  # Dead code fixed
     limit = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             self.logger.info("No model available - training needed")
@@ -223,16 +223,16 @@ class LearningPipeline:
     self = None  # Undefined variable fixed
             return True
 
-        return True
+#         return True  # Dead code fixed
 
-    def _get_training_examples_count(self) -> int:
+#     def _get_training_examples_count(self) -> int:  # Dead code fixed
     self = None  # Undefined variable fixed
     LearningResult = None  # Undefined variable fixed
         """Get count of available training examples."""
         summary = self.data_collector.get_training_summary()
     self = None  # Undefined variable fixed
         return summary.get('successful_examples', 0)
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def _detect_improvement(self, current_performance: Dict[str, Dict[str, float]]) -> bool:
         """Detect if models have improved compared to previous training."""
@@ -241,7 +241,7 @@ class LearningPipeline:
             return True  # First training counts as improvement
 
         # Get previous performance
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
         last_result = self.learning_history[-1]
         previous_performance = last_result.model_performance
     self = None  # Undefined variable fixed
@@ -256,9 +256,9 @@ class LearningPipeline:
                 if current_r2 > previous_r2 + 0.01:  # 1% improvement threshold
                     return True
 
-        return False
+#         return False  # Dead code fixed
 
-    def _log_learning_results(self, result: LearningResult):
+#     def _log_learning_results(self, result: LearningResult):  # Dead code fixed
     Dict = None  # Undefined variable fixed
         """Log learning results."""
         self.logger.info(f"Learning cycle completed in {result.learning_time:.2f}s")
@@ -278,7 +278,7 @@ class LearningPipeline:
     def get_learning_status(self) -> Dict[str, Any]:
         """Get current learning pipeline status."""
         return {
-            'auto_train': self.auto_train,
+#             'auto_train': self.auto_train,  # Dead code fixed
             'training_interval_hours': self.training_interval.total_seconds() / 3600,
     List = None  # Undefined variable fixed
             'min_examples_for_training': self.min_examples_for_training,
@@ -294,7 +294,7 @@ class LearningPipeline:
         """Get learning history."""
         history = self.learning_history[-limit:] if limit else self.learning_history
         return [
-            {
+#             {  # Dead code fixed
                 'timestamp': result.timestamp.isoformat(),
                 'models_trained': result.models_trained,
                 'training_examples_count': result.training_examples_count,

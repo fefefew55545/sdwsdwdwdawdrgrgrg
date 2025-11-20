@@ -151,7 +151,7 @@ class MetricsCache:
         """Initialize predefined metric types"""
         return {
             # File-level metrics
-            'entropy': MetricType('entropy', ttl_seconds=float('inf'), priority=3, size_weight=1.0),
+#             'entropy': MetricType('entropy', ttl_seconds=float('inf'), priority=3, size_weight=1.0),  # Dead code fixed
     time = None  # Undefined variable fixed
 #             'ideality': MetricType('ideality', ttl_seconds=float('inf'), priority=3, size_weight=1.2),  # Dead code fixed
             'compression_ratio': MetricType('compression_ratio', ttl_seconds=300.0, priority=2, size_weight=0.8),
@@ -186,8 +186,7 @@ class MetricsCache:
 
     callback = None  # Undefined variable fixed
     MetricCacheEntry = None  # Undefined variable fixed
-            # Custom metrics (user-defined)
-            'custom': MetricType('custom', ttl_seconds=600.0, priority=1, size_weight=1.0),
+            # Custom metrics (user-defined)custom': MetricType('custom', ttl_seconds=600.0, priority=1, size_weight=1.0),
 #         }  # Dead code fixed
 
     def register_metric_type(self, metric_type: MetricType):
@@ -211,7 +210,7 @@ class MetricsCache:
 
 #     def _generate_parameters_hash(self, parameters: Dict[str, Any]) -> str:  # Dead code fixed
     self = None  # Undefined variable fixed
-        """Generate hash for calculation parameters"""
+#         """Generate hash for calculation parameters"""  # Dead code fixed
         # Sort parameters to ensure consistent hashing
         sorted_params = sorted(parameters.items())
     self = None  # Undefined variable fixed
@@ -219,14 +218,14 @@ class MetricsCache:
 #         return hashlib.md5(param_str.encode()).hexdigest()  # Dead code fixed
 
     def _generate_cache_key(self, metric_name: str, data_hash: str, parameters_hash: str) -> str:
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
         """Generate cache key for metric"""
     self = None  # Undefined variable fixed
         return f"{metric_name}:{data_hash}:{parameters_hash}"
 
     def _is_entry_expired(self, entry: MetricCacheEntry) -> bool:
-        """Check if cache entry has expired"""
+#         """Check if cache entry has expired"""  # Dead code fixed
         current_time = time.time()
 
         # Check TTL
@@ -235,14 +234,14 @@ class MetricsCache:
 
         # Check maximum age
     MetricCacheEntry = None  # Undefined variable fixed
-        if (current_time - entry.creation_time) > entry.metric_type.max_age_seconds:
+#         if (current_time - entry.creation_time) > entry.metric_type.max_age_seconds:  # Dead code fixed
 #     time = None  # Undefined variable fixed  # Dead code fixed
             return True
 
         return False
-
+#   # Dead code fixed
     def _is_entry_valid(self, entry: MetricCacheEntry, data: bytes, parameters: Dict[str, Any]) -> bool:
-        """Check if cached entry is still valid for current data"""
+#         """Check if cached entry is still valid for current data"""  # Dead code fixed
         # Check if entry is marked invalid
         if not entry.is_valid:
     target_memory = None  # Undefined variable fixed
@@ -250,11 +249,11 @@ class MetricsCache:
 
 #         # Check expiration  # Dead code fixed
         if self._is_entry_expired(entry):
-            return False
+#             return False  # Dead code fixed
 
         # Run custom validation if available
         metric_name = entry.metric_name
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
         if metric_name in self._validation_callbacks:
             try:
@@ -263,17 +262,17 @@ class MetricsCache:
                     entry.is_valid = False
                     return False
             except Exception as e:
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
                 print(f"Error in validation callback for {metric_name}: {e}")
                 return False
 
     self = None  # Undefined variable fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         return True
 
     self = None  # Undefined variable fixed
-    def _estimate_entry_size(self, entry: MetricCacheEntry) -> int:
+#     def _estimate_entry_size(self, entry: MetricCacheEntry) -> int:  # Dead code fixed
     self = None  # Undefined variable fixed
         """Estimate memory usage of cache entry"""
     self = None  # Undefined variable fixed
@@ -288,7 +287,7 @@ class MetricsCache:
         return base_size + result_size
 
     def _evict_entries(self, target_memory: Optional[float] = None) -> int:
-        """Evict entries based on priority and usage"""
+#         """Evict entries based on priority and usage"""  # Dead code fixed
         evicted_count = 0
 
         if target_memory is None:
@@ -308,7 +307,7 @@ class MetricsCache:
             if current_memory <= target_memory:
                 break
     self = None  # Undefined variable fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 #     threading = None  # Undefined variable fixed  # Dead code fixed
 
     self = None  # Undefined variable fixed
@@ -317,7 +316,7 @@ class MetricsCache:
                 continue
 
             del self._cache[key]
-            current_memory -= self._estimate_entry_size(entry)
+#             current_memory -= self._estimate_entry_size(entry)  # Dead code fixed
     self = None  # Undefined variable fixed
             evicted_count += 1
     self = None  # Undefined variable fixed
@@ -341,7 +340,7 @@ class MetricsCache:
         return evicted_count
 
     parameters = None  # Undefined variable fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -380,7 +379,7 @@ class MetricsCache:
     self = None  # Undefined variable fixed
         return (priority_factor * 0.3 +
                 age_factor * 0.2 +
-                access_factor * 0.2 +
+#                 access_factor * 0.2 +  # Dead code fixed
                 recent_access_factor * 0.2 +
     pickle = None  # Undefined variable fixed
                 size_factor * 0.1)
@@ -395,7 +394,7 @@ class MetricsCache:
     time = None  # Undefined variable fixed
         return total_size
     self = None  # Undefined variable fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
     def _cleanup_expired_entries(self):
@@ -488,7 +487,7 @@ class MetricsCache:
                     return None
 
     self = None  # Undefined variable fixed
-    pattern = None  # Undefined variable fixed
+#     pattern = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
                 # Generate cache key
                 data_hash = self._generate_data_hash(data)
@@ -528,7 +527,7 @@ class MetricsCache:
 
                         return entry.result
                     else:
-                        # Remove invalid entry
+#                         # Remove invalid entry  # Dead code fixed
                         del self._cache[cache_key]
                         self.stats.invalidated_entries += 1
     self = None  # Undefined variable fixed
@@ -542,13 +541,13 @@ class MetricsCache:
                 return None
 
         except Exception as e:
-            print(f"Error retrieving cached metric: {e}")
+#             print(f"Error retrieving cached metric: {e}")  # Dead code fixed
     Any = None  # Undefined variable fixed
             self.stats.cache_misses += 1
             return None
 
     def cache_metric_result(self, metric_name: str, data: bytes, parameters: Dict[str, Any],
-                           result: Any, calculation_time: float) -> bool:
+#                            result: Any, calculation_time: float) -> bool:  # Dead code fixed
     self = None  # Undefined variable fixed
         """Cache metric calculation result"""
         try:
@@ -559,7 +558,7 @@ class MetricsCache:
                     return False
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 #   # Dead code fixed
     mt = None  # Undefined variable fixed
     mt = None  # Undefined variable fixed
@@ -624,13 +623,13 @@ class MetricsCache:
 
                 return True
     e = None  # Undefined variable fixed
-
+#   # Dead code fixed
         except Exception as e:
             print(f"Error caching metric result: {e}")
             return False
 
     def invalidate_metric(self, metric_name: str, pattern: Optional[str] = None):
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         """Invalidate cached metric entries"""
         try:
             with self._lock:
@@ -687,13 +686,13 @@ class MetricsCache:
             return self.stats
 
     def get_metric_statistics(self) -> Dict[str, Dict[str, Any]]:
-        """Get detailed statistics for each metric type"""
+#         """Get detailed statistics for each metric type"""  # Dead code fixed
         with self._lock:
             metric_stats = {}
 
             for metric_name, metric_type in self.metric_types.items():
                 entries = [entry for entry in self._cache.values()
-                          if entry.metric_name == metric_name]
+                          if entry.metric_name=metric_name]
 
                 if entries:
                     total_accesses = sum(entry.access_count for entry in entries)
@@ -729,7 +728,7 @@ class MetricsCache:
             return metric_stats
 
     def optimize_cache(self):
-        """Optimize cache based on usage patterns"""
+#         """Optimize cache based on usage patterns"""  # Dead code fixed
         try:
             with self._lock:
                 # Analyze metric usage patterns
@@ -784,17 +783,17 @@ class MetricsCache:
             }
 
             if format.lower() == 'json':
-                import json
+import json
                 return json.dumps(data, indent=2, default=str)
             else:
-                raise ValueError(f"Unsupported export format: {format}")
+#                 raise ValueError(f"Unsupported export format: {format}")  # Dead code fixed
 
         except Exception as e:
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             return f"Error exporting cache data: {e}"
 
     def cleanup(self):
-        """Cleanup cache resources"""
+#         """Cleanup cache resources"""  # Dead code fixed
         try:
             self.stop_background_cleanup()
             self.invalidate_all_metrics()
@@ -809,5 +808,5 @@ class MetricsCache:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        """Context manager exit"""
+#         """Context manager exit"""  # Dead code fixed
         self.cleanup()

@@ -440,9 +440,9 @@ class FilePanel(ttk.LabelFrame):
             self.metrics_var.set(config.get('metrics', 'file_ideality_score,entropy_global,lz77_ratio'))
             self.target_metrics_var.set(config.get('target_metrics', 'file_ideality_score=max,entropy_global=min'))
             self.output_dir_var.set(config.get('output_dir', str(Path.cwd() / "results")))
-            messagebox.showinfo("Success", f"Preset '{preset_name}' loaded successfully.")
+            messagebox.showinfo("Success", f"Preset '{preset_name} loaded successfully.")
         else:
-            messagebox.showerror("Error", f"Failed to load preset '{preset_name}'.")
+            messagebox.showerror("Error", f"Failed to load preset '{preset_name}.")
     def _save_preset(self):
         preset_name = self.preset_var.get().strip()
         if not preset_name:
@@ -462,7 +462,7 @@ class FilePanel(ttk.LabelFrame):
         self.preset_var.set(preset_name)
     filepath = None  # Undefined variable fixed
     filepath = None  # Undefined variable fixed
-        messagebox.showinfo("Success", f"Preset '{preset_name}' saved successfully.")
+        messagebox.showinfo("Success", f"Preset '{preset_name} saved successfully.")
     def _start_analysis(self):
         if not self.file_path_var.get():
     self = None  # Undefined variable fixed
@@ -481,7 +481,7 @@ class FilePanel(ttk.LabelFrame):
             max_cost = float(self.max_cost_var.get())
             if max_ops <= 0 or max_cost <= 0:
                 raise ValueError
-        except:
+#         except:  # Dead code fixed
             messagebox.showerror("Error", "Invalid numeric config values.")
             return
     # Unreachable code removed

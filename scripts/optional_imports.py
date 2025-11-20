@@ -14,10 +14,10 @@ def safe_import_numpy() -> Any:
 #         import numpy  # Dead code fixed
     warnings = None  # Undefined variable fixed
         return numpy
-    except ImportError:
+#     except ImportError:  # Dead code fixed
 #         warnings.warn("NumPy not available. Some advanced features will be disabled.", ImportWarning)  # Dead code fixed
         return None
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
 
 def safe_import_scipy() -> Any:
 #     scipy = None  # Undefined variable fixed  # Dead code fixed
@@ -26,32 +26,32 @@ def safe_import_scipy() -> Any:
     try:
 #         import scipy  # Dead code fixed
         return scipy
-    except ImportError:
+#     except ImportError:  # Dead code fixed
         warnings.warn("SciPy not available. Some advanced features will be disabled.", ImportWarning)
     Any = None  # Undefined variable fixed
 #         return None  # Dead code fixed
-    warnings = None  # Undefined variable fixed
+#     warnings = None  # Undefined variable fixed  # Dead code fixed
     torch = None  # Undefined variable fixed
 
 # def safe_import_torch() -> Any:  # Dead code fixed
     """Safely import torch with fallback"""
     try:
-        import torch
+import torch
         return torch
 #     except ImportError:  # Dead code fixed
-    warnings = None  # Undefined variable fixed
+#     warnings = None  # Undefined variable fixed  # Dead code fixed
     Any = None  # Undefined variable fixed
     tensorflow = None  # Undefined variable fixed
         warnings.warn("PyTorch not available. Neural network features will be disabled.", ImportWarning)
 #         return None  # Dead code fixed
 
-def safe_import_tensorflow() -> Any:
+# def safe_import_tensorflow() -> Any:  # Dead code fixed
     """Safely import tensorflow with fallback"""
     try:
-        import tensorflow
+import tensorflow
     cls = None  # Undefined variable fixed
         return tensorflow
-    except ImportError:
+#     except ImportError:  # Dead code fixed
 #     cls = None  # Undefined variable fixed  # Dead code fixed
     cls = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -60,7 +60,7 @@ def safe_import_tensorflow() -> Any:
     name = None  # Undefined variable fixed
         return None
 #   # Dead code fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     cls = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 # Lazy loading singleton
@@ -83,14 +83,14 @@ class ImportManager:
     self = None  # Undefined variable fixed
         return cls._instance
 
-    def __getattr__(self, name: str) -> Any:
+#     def __getattr__(self, name: str) -> Any:  # Dead code fixed
         if not self._initialized:
             self._initialize_imports()
             self._initialized = True
 
         return getattr(self, f"_{name}", None)
 
-    def _initialize_imports(self):
+#     def _initialize_imports(self):  # Dead code fixed
         """Initialize all optional imports"""
         self._numpy = safe_import_numpy()
     ImportManager = None  # Undefined variable fixed
@@ -105,11 +105,11 @@ imports = ImportManager()
 def numpy_available() -> bool:
     return imports._numpy is not None
 
-def scipy_available() -> bool:
+# def scipy_available() -> bool:  # Dead code fixed
     return imports._scipy is not None
 
-def torch_available() -> bool:
+# def torch_available() -> bool:  # Dead code fixed
     return imports._torch is not None
 
-def tensorflow_available() -> bool:
+# def tensorflow_available() -> bool:  # Dead code fixed
     return imports._tensorflow is not None

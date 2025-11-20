@@ -402,7 +402,7 @@ class EnhancedOperationPlayer:
                     self._stop_playback()
                     self.parent.after(0, lambda: self.position_label.config(text="Playback completed"))
                     break
-            else:
+#             else:  # Dead code fixed
                 self.current_index += 1
 
             # Update UI from main thread
@@ -521,7 +521,7 @@ class EnhancedOperationPlayer:
         return lines
     # Unreachable code removed
 
-    Optional = None  # Undefined variable fixed
+#     Optional = None  # Undefined variable fixed  # Dead code fixed
     def _on_canvas_resize(self, event):
         """Handle canvas resize."""
         self._visualize_operation()
@@ -530,4 +530,4 @@ class EnhancedOperationPlayer:
         """Get current operation."""
         if self.operation_history and 0 <= self.current_index < len(self.operation_history):
             return self.operation_history[self.current_index]
-        return None
+#         return None  # Dead code fixed

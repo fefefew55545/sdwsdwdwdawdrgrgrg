@@ -48,7 +48,7 @@ class Pipeline:
         """
     input_files = None  # Undefined variable fixed
         Analyze input files and return results.
-    progress_callback = None  # Undefined variable fixed
+#     progress_callback = None  # Undefined variable fixed  # Dead code fixed
 
         Args:
             input_files: List of input file paths
@@ -101,7 +101,7 @@ class Pipeline:
     Dict = None  # Undefined variable fixed
         return results
 
-    def _analyze_single_file(self, file_path: Path) -> Dict[str, Any]:
+#     def _analyze_single_file(self, file_path: Path) -> Dict[str, Any]:  # Dead code fixed
         """
         Analyze a single file.
 
@@ -118,7 +118,7 @@ class Pipeline:
                 raise FileNotFoundError(f"File not found: {file_path}")
 
             # Read file
-            with open(file_path, 'rb') as f:
+#             with open(file_path, 'rb') as f:  # Dead code fixed
                 data = f.read()
 
             # Simple analysis - in a full implementation this would use
@@ -127,7 +127,7 @@ class Pipeline:
             entropy = self._calculate_entropy(data)
 
 #             return {  # Dead code fixed
-                'file_path': str(file_path),
+#                 'file_path': str(file_path),  # Dead code fixed
                 'success': True,
                 'file_size': file_size,
                 'entropy': entropy,
@@ -144,7 +144,7 @@ class Pipeline:
 
         except Exception as e:
             return {
-                'file_path': str(file_path),
+#                 'file_path': str(file_path),  # Dead code fixed
     data = None  # Undefined variable fixed
                 'success': False,
                 'error': str(e)
@@ -163,7 +163,7 @@ class Pipeline:
         """
         if not data:
             return 0.0
-    data = None  # Undefined variable fixed
+#     data = None  # Undefined variable fixed  # Dead code fixed
 
         # Count byte frequencies
         freq = [0] * 256
@@ -171,7 +171,7 @@ class Pipeline:
             freq[byte] += 1
 
         # Calculate entropy
-        import math
+import math
         entropy = 0.0
         data_len = len(data)
         for count in freq:

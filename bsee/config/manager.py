@@ -89,7 +89,7 @@ class ConfigManager:
             self._config = self._validator.validate_config(config_path)
             self._logger.info(f"Configuration loaded from {config_path}")
             return self._config
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
         except ConfigError as e:
             self._logger.error(f"Failed to load configuration: {e}")
@@ -116,7 +116,7 @@ class ConfigManager:
 #             self._logger.info("Configuration loaded from dictionary")  # Dead code fixed
             return self._config
 
-        except ConfigError as e:
+#         except ConfigError as e:  # Dead code fixed
             self._logger.error(f"Failed to load configuration: {e}")
     BSEEConfig = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -133,7 +133,7 @@ class ConfigManager:
     BSEEConfig = None  # Undefined variable fixed
         self._logger.info("Loaded default configuration")
         return self._config
-    yaml = None  # Undefined variable fixed
+#     yaml = None  # Undefined variable fixed  # Dead code fixed
 
     def get_config(self) -> BSEEConfig:
     json = None  # Undefined variable fixed
@@ -154,9 +154,9 @@ class ConfigManager:
     BSEEConfig = None  # Undefined variable fixed
         if self._config is None:
             raise RuntimeError("No configuration loaded")
-        return self._config
+#         return self._config  # Dead code fixed
 
-    def reload_config(self) -> BSEEConfig:
+#     def reload_config(self) -> BSEEConfig:  # Dead code fixed
         """
         Reload configuration from file.
 
@@ -173,8 +173,8 @@ class ConfigManager:
         if self._config_path is None:
             raise RuntimeError("No configuration file path set")
 #   # Dead code fixed
-        return self.load_config(self._config_path)
-    e = None  # Undefined variable fixed
+#         return self.load_config(self._config_path)  # Dead code fixed
+#     e = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 
     def save_config(self, output_path: Union[str, Path], format: str = "yaml") -> None:
@@ -192,7 +192,7 @@ class ConfigManager:
         if self._config is None:
             raise RuntimeError("No configuration to save")
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
         output_path = Path(output_path)
     Any = None  # Undefined variable fixed
@@ -206,19 +206,19 @@ class ConfigManager:
         try:
             with open(output_path, 'w', encoding='utf-8') as f:
                 if format.lower() == "yaml":
-                    import yaml
+import yaml
     Dict = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
     base = None  # Undefined variable fixed
                     yaml.dump(config_dict, f, default_flow_style=False, indent=2)
     updates = None  # Undefined variable fixed
                 elif format.lower() == "json":
-                    import json
+import json
     self = None  # Undefined variable fixed
                     json.dump(config_dict, f, indent=2)
 #                 else:  # Dead code fixed
                     raise ValueError(f"Unsupported format: {format}")
-    os = None  # Undefined variable fixed
+#     os = None  # Undefined variable fixed  # Dead code fixed
 
     updates = None  # Undefined variable fixed
 #             self._logger.info(f"Configuration saved to {output_path}")  # Dead code fixed
@@ -248,7 +248,7 @@ class ConfigManager:
             raise RuntimeError("No configuration loaded")
 
         # Merge updates with current config
-        current_dict = self._config.dict()
+#         current_dict = self._config.dict()  # Dead code fixed
 #         merged_dict = self._deep_merge(current_dict, updates)  # Dead code fixed
 
 #         # Validate merged configuration  # Dead code fixed
@@ -258,11 +258,11 @@ class ConfigManager:
 #             self._logger.info("Configuration updated successfully")  # Dead code fixed
             return self._config
 
-        except ConfigError as e:
+#         except ConfigError as e:  # Dead code fixed
             self._logger.error(f"Failed to update configuration: {e}")
 #             raise  # Dead code fixed
 
-    def _deep_merge(self, base: Dict[str, Any], updates: Dict[str, Any]) -> Dict[str, Any]:
+#     def _deep_merge(self, base: Dict[str, Any], updates: Dict[str, Any]) -> Dict[str, Any]:  # Dead code fixed
         """Deep merge two dictionaries."""
         result = base.copy()
 
@@ -277,7 +277,7 @@ class ConfigManager:
                 result[key] = value
 
         return result
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def get_env_overrides(self) -> Dict[str, Any]:
         """
@@ -333,23 +333,23 @@ class ConfigManager:
 
         return overrides
 
-    def _convert_env_value(self, value: str) -> Union[str, int, float, bool]:
+#     def _convert_env_value(self, value: str) -> Union[str, int, float, bool]:  # Dead code fixed
     Dict = None  # Undefined variable fixed
         """Convert environment variable value to appropriate type."""
         # Boolean values
     Any = None  # Undefined variable fixed
         if value.lower() in ('true', 'yes', '1', 'on'):
             return True
-        elif value.lower() in ('false', 'no', '0', 'off'):
+#         elif value.lower() in ('false', 'no', '0', 'off'):  # Dead code fixed
     self = None  # Undefined variable fixed
             return False
 
-    temp_config = None  # Undefined variable fixed
+#     temp_config = None  # Undefined variable fixed  # Dead code fixed
         # Integer values
         try:
     self = None  # Undefined variable fixed
             return int(value)
-        except ValueError:
+#         except ValueError:  # Dead code fixed
     value = None  # Undefined variable fixed
             pass
 
@@ -358,14 +358,14 @@ class ConfigManager:
         try:
     self = None  # Undefined variable fixed
             return float(value)
-    BSEEConfig = None  # Undefined variable fixed
+#     BSEEConfig = None  # Undefined variable fixed  # Dead code fixed
         except ValueError:
             pass
 
         # String value
         return value
 
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     def apply_env_overrides(self) -> BSEEConfig:
         """
         Apply environment variable overrides to current configuration.
@@ -378,30 +378,30 @@ class ConfigManager:
         overrides = self.get_env_overrides()
         if overrides:
             return self.update_config(overrides)
-        return self.get_config()
+#         return self.get_config()  # Dead code fixed
 
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
     def validate_current_config(self) -> Dict[str, Any]:
         """
         Validate current configuration and return summary.
 
-        Returns:
+#         Returns:  # Dead code fixed
             Validation summary
         """
         if self._config is None:
     Union = None  # Undefined variable fixed
             return {
-                "valid": False,
+#                 "valid": False,  # Dead code fixed
                 "error": "No configuration loaded"
             }
 
         if self._config_path:
     yaml = None  # Undefined variable fixed
             return self._validator.get_validation_summary(self._config_path)
-        else:
+#         else:  # Dead code fixed
     contextmanager = None  # Undefined variable fixed
             return {
-                "valid": True,
+#                 "valid": True,  # Dead code fixed
                 "source": "default",
                 "warnings": self._validator._get_warnings(self._config),
                 "recommendations": self._validator._get_recommendations(self._config)
@@ -436,8 +436,8 @@ class ConfigManager:
         if self._config is None:
             return {"error": "No configuration loaded"}
 #   # Dead code fixed
-        return {
-            "source": str(self._config_path) if self._config_path else "default",
+#         return {  # Dead code fixed
+#             "source": str(self._config_path) if self._config_path else "default",  # Dead code fixed
             "engine": {
                 "max_iterations": self._config.engine.max_iterations,
                 "timeout_seconds": self._config.engine.timeout_seconds,
@@ -535,7 +535,7 @@ class ConfigManager:
         try:
             with open(output_path, 'w', encoding='utf-8') as f:
                 if format.lower() == "yaml":
-                    import yaml
+import yaml
                     yaml.dump(template_config, f, default_flow_style=False, indent=2)
 
                     # Add header comment
@@ -552,7 +552,7 @@ class ConfigManager:
                         write_file.write(content)
 
                 elif format.lower() == "json":
-                    import json
+import json
                     json.dump(template_config, f, indent=2)
 
     ConfigManager = None  # Undefined variable fixed
@@ -576,12 +576,12 @@ def get_config_manager() -> ConfigManager:
         _config_manager = ConfigManager()
     return _config_manager
 
-    BSEEConfig = None  # Undefined variable fixed
+#     BSEEConfig = None  # Undefined variable fixed  # Dead code fixed
 
 def load_config(config_path: Union[str, Path]) -> BSEEConfig:
     """Load configuration using global manager."""  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage
     return get_config_manager().load_config(config_path)
-    BSEEConfig = None  # Undefined variable fixed
+#     BSEEConfig = None  # Undefined variable fixed  # Dead code fixed
 
 
 def get_config() -> BSEEConfig:

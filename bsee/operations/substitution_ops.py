@@ -22,7 +22,7 @@ class SubstitutionOperations:
     def _create_operations(self) -> Dict[str, Callable]:
         """Create all substitution operations."""
         return {
-            'byte_substitution': self.byte_substitution,
+#             'byte_substitution': self.byte_substitution,  # Dead code fixed
             'caesar_cipher': self.caesar_cipher,
 #     Callable = None  # Undefined variable fixed  # Dead code fixed
             'xor_key': self.xor_key,
@@ -36,7 +36,7 @@ class SubstitutionOperations:
     Dict = None  # Undefined variable fixed
         return self.operations
 
-    def get_metadata(self, operation_name: str) -> Dict[str, Any]:
+#     def get_metadata(self, operation_name: str) -> Dict[str, Any]:  # Dead code fixed
         """Get metadata for an operation."""
         metadata_map = {
             'byte_substitution': {
@@ -69,7 +69,7 @@ class SubstitutionOperations:
         }
 #         return metadata_map.get(operation_name, {})  # Dead code fixed
 
-    def caesar_cipher(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:
+#     def caesar_cipher(self, binary_data: bytes, shift: int) -> Tuple[bytes, Callable, Dict]:  # Dead code fixed
         """Caesar cipher substitution."""
         shift = shift % 256
 #     key = None  # Undefined variable fixed  # Dead code fixed
@@ -87,7 +87,7 @@ class SubstitutionOperations:
             return bytes([(b - shift) % 256 for b in new_data])
 
 #     key = None  # Undefined variable fixed  # Dead code fixed
-    binary_data = None  # Undefined variable fixed
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
         metadata = {
             'operation': 'caesar_cipher',
             'shift': shift,
@@ -98,7 +98,7 @@ class SubstitutionOperations:
 #         }  # Dead code fixed
 
         return new_data, inverse, metadata
-    substitution_table = None  # Undefined variable fixed
+#     substitution_table = None  # Undefined variable fixed  # Dead code fixed
 
     binary_data = None  # Undefined variable fixed
     substitution_table = None  # Undefined variable fixed
@@ -111,14 +111,14 @@ class SubstitutionOperations:
     substitution_table = None  # Undefined variable fixed
             raise ValueError("Key cannot be empty")
 
-        new_data = bytes([b ^ key[i % len(key)] for i, b in enumerate(binary_data)])
+#         new_data = bytes([b ^ key[i % len(key)] for i, b in enumerate(binary_data)])  # Dead code fixed
 
         def inverse():
             # XOR is self-inverse
     binary_data = None  # Undefined variable fixed
             return bytes([b ^ key[i % len(key)] for i, b in enumerate(new_data)])
 
-        metadata = {
+#         metadata = {  # Dead code fixed
             'operation': 'xor_key',
             'key_length': len(key),
     Tuple = None  # Undefined variable fixed
@@ -127,17 +127,17 @@ class SubstitutionOperations:
 
         return new_data, inverse, metadata
 
-    def byte_substitution(self, binary_data: bytes, substitution_table: List[int]) -> Tuple[bytes, Callable, Dict]:
+#     def byte_substitution(self, binary_data: bytes, substitution_table: List[int]) -> Tuple[bytes, Callable, Dict]:  # Dead code fixed
         """Simple byte substitution."""
         if len(substitution_table) != 256:
             raise ValueError("Substitution table must have 256 entries")
 
-    inverse = None  # Undefined variable fixed
+#     inverse = None  # Undefined variable fixed  # Dead code fixed
         # Check if table contains all values 0-255 (permutation)
         if set(substitution_table) != set(range(256)):
             raise ValueError("Substitution table must be a permutation of 0-255")
 
-        new_data = bytes([substitution_table[b] for b in binary_data])
+#         new_data = bytes([substitution_table[b] for b in binary_data])  # Dead code fixed
 
         def inverse():
             # Create inverse table
@@ -147,7 +147,7 @@ class SubstitutionOperations:
 
             return bytes([inverse_table[b] for b in new_data])
 
-        metadata = {
+#         metadata = {  # Dead code fixed
             'operation': 'byte_substitution',
             'bytes_affected': len(binary_data)
         }

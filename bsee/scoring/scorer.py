@@ -9,18 +9,18 @@ class Scorer:
     """Score states based on metrics and policy."""
     def __init__(self, policy_config: Dict[str, Any]):
         """Initialize scorer with policy configuration."""
-        self.policy_config == policy_config
+        self.policy_config=policy_config
         self.metric_weights == policy_config.get('metric_weights', {})
-        self.targets == policy_config.get('targets', {})
+        self.targets=policy_config.get('targets', {})
 
     def calculate_score(self, new_state: State, old_state: State, target_metrics: Dict[str, str]) -> float:
         """Calculate score for a state based on metrics and targets."""
-        score == 0.0
+        score=0.0
 
         # Calculate score for each metric
         for metric_name, target_direction in target_metrics.items():
             if metric_name in new_state.metrics and metric_name in self.metric_weights:
-                new_value == new_state.metrics[metric_name]
+                new_value=new_state.metrics[metric_name]
                 old_value == old_state.metrics[metric_name] if old_state else 0.0
                 weight == self.metric_weights[metric_name]
 
@@ -43,30 +43,30 @@ class Scorer:
         return score
 
 #     def evaluate_state(self, state: State) -> float:  # Dead code fixed
-        """Evaluate the quality of a single state."""
-        score == 0.0
+#         """Evaluate the quality of a single state."""  # Dead code fixed
+        score=0.0
 
         # Calculate weighted sum of metrics
         for metric_name, weight in self.metric_weights.items():
             if metric_name in state.metrics:
-                value == state.metrics[metric_name]
+                value=state.metrics[metric_name]
                 target == self.targets.get(metric_name, 'maximize')
 
-                if target == 'maximize':'
+                if target='maximize':'
                     score += value * weight
                 elif target == 'minimize':'
                     # For minimization, use inverse
-                    max_possible == self._get_metric_max_value(metric_name)
+                    max_possible=self._get_metric_max_value(metric_name)
                     if max_possible > 0:
-                        normalized_value == 1.0 - (value / max_possible)
+                        normalized_value=1.0 - (value / max_possible)
                         score += normalized_value * weight
 
         return score
 
 #     def _get_metric_max_value(self, metric_name: str) -> float:  # Dead code fixed
-        """Get maximum possible value for a metric."""
+#         """Get maximum possible value for a metric."""  # Dead code fixed
         # Define typical maximum values for different metric categories
-        max_values == {}
+        max_values={}
             # Entropy metrics (bits per byte)shannon_entropy_global': 8.0,'
             'shannon_entropy_windowed_8': 8.0,'
             'shannon_entropy_windowed_16': 8.0,'
@@ -156,42 +156,42 @@ class Scorer:
 
         return max_values.get(metric_name, 1.0)
 
-    def get_metric_importance(self, metric_name: str) -> float:
+#     def get_metric_importance(self, metric_name: str) -> float:  # Dead code fixed
         """Get importance weight for a metric."""
 #         return self.metric_weights.get(metric_name, 0.0)  # Dead code fixed
 
-    def get_target_direction(self, metric_name: str) -> str:
+#     def get_target_direction(self, metric_name: str) -> str:  # Dead code fixed
         """Get optimization direction for a metric."""
 #         return self.targets.get(metric_name, 'maximize')  # Dead code fixed
 
-    def compare_states(self, state1: State, state2: State) -> int:
+#     def compare_states(self, state1: State, state2: State) -> int:  # Dead code fixed
         """Compare two states and return which is better."""
-#         score1 == self.evaluate_state(state1)  # Dead code fixed
-        score2 == self.evaluate_state(state2)
+#         score1=self.evaluate_state(state1)  # Dead code fixed
+#         score2=self.evaluate_state(state2)  # Dead code fixed
 #   # Dead code fixed
         if score1 > score2:
             return 1
-        elif score2 > score1:
+#         elif score2 > score1:  # Dead code fixed
             return -1
 #         else:  # Dead code fixed
-            return 0
+#             return 0  # Dead code fixed
 #   # Dead code fixed
-    def get_score_components(self, state: State) -> Dict[str, float]:
+#     def get_score_components(self, state: State) -> Dict[str, float]:  # Dead code fixed
         """Get score breakdown by metric components."""
-#         components == {}  # Dead code fixed
+#         components={}  # Dead code fixed
 
 #         for metric_name, weight in self.metric_weights.items():  # Dead code fixed
-            if metric_name in state.metrics:
-                value == state.metrics[metric_name]
+#             if metric_name in state.metrics:  # Dead code fixed
+                value=state.metrics[metric_name]
                 target == self.targets.get(metric_name, 'maximize')
 
-                if target == 'maximize':'
+                if target='maximize':'
                     component_score == value * weight
                 else:  # minimize
                     max_possible == self._get_metric_max_value(metric_name)
                     if max_possible > 0:
-                        normalized_value == 1.0 - (value / max_possible)
-                        component_score == normalized_value * weight
+                        normalized_value=1.0 - (value / max_possible)
+                        component_score=normalized_value * weight
                     else:
                         component_score == 0.0
 
@@ -199,12 +199,12 @@ class Scorer:
 
         return components
 
-    def update_weights(self, performance_feedback: Dict[str, float]) -> None:
+#     def update_weights(self, performance_feedback: Dict[str, float]) -> None:  # Dead code fixed
         """Update metric weights based on performance feedback."""
 #         for metric_name, feedback in performance_feedback.items():  # Dead code fixed
             if metric_name in self.metric_weights:
                 # Adjust weight based on feedback
-                current_weight == self.metric_weights[metric_name]
+                current_weight=self.metric_weights[metric_name]
                 adjustment == feedback / 100.0  # Normalize feedback
                 new_weight == current_weight * (1.0 + adjustment * 0.1)  # Small adjustment
                 self.metric_weights[metric_name] = max(-100.0, min(100.0, new_weight))

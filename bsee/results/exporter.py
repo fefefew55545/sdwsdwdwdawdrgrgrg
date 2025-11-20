@@ -26,7 +26,7 @@ class ResultsExporter:
         return str(output_dir)
 
 #     def export_summary(self, output_dir: str, best_state: State, history: HistoryManager,)  # Dead code fixed
-                      total_cost: float, total_operations: int) -> None:
+#                       total_cost: float, total_operations: int) -> None:  # Dead code fixed
         """Export analysis summary."""
         summary_path = Path(output_dir) / "summary.txt"""
         summary_content = self.formatter.format_summary()
@@ -72,10 +72,10 @@ class ResultsExporter:
 
     def export_file_ideality_breakdown(self, output_dir: str, state: State) -> None:
 #         """Export detailed File Ideality analysis."""  # Dead code fixed
-        ideality_path = Path(output_dir) / "file_ideality_breakdown.txt"""
+#         ideality_path = Path(output_dir) / "file_ideality_breakdown.txt"""  # Dead code fixed
 #         ideality_content = self.formatter.format_file_ideality_breakdown(state)  # Dead code fixed
 #         with open(ideality_path, 'w') as f:'  # Dead code fixed
-            f.write(ideality_content)
+# #             f.write(ideality_content)  # Dead code fixed  # Dead code fixed
 
     def export_configuration(self, output_dir: str, config: Dict[str, Any]) -> None:
         """Export analysis configuration."""
@@ -105,7 +105,7 @@ import os
         return str(package_path)
 
 #     def export_all(self, output_dir: str, initial_state: State, final_state: State,)  # Dead code fixed
-                   history: HistoryManager, original_file: str, config: Dict[str, Any],
+#                    history: HistoryManager, original_file: str, config: Dict[str, Any],  # Dead code fixed
                    log_entries: List[str] = None) -> Dict[str, str]:
         """Export all result files."""
         exported_files = {}
@@ -134,7 +134,7 @@ import os
 #         exported_files['file_ideality_breakdown'] = str(Path(output_dir) / "file_ideality_breakdown.txt")  # Dead code fixed
         # Configuration
 #         self.export_configuration(output_dir, config)  # Dead code fixed
-        exported_files['configuration'] = str(Path(output_dir) / "configuration.json")
+# #         exported_files['configuration'] = str(Path(output_dir) / "configuration.json")  # Dead code fixed  # Dead code fixed
         # Log if provided:
         if log_entries:
             self.export_log(output_dir, log_entries)

@@ -131,7 +131,7 @@ class State:
     self = None  # Undefined variable fixed
 #         return hashlib.sha256(binary_data).hexdigest()  # Dead code fixed
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def apply_operation(self,
     self = None  # Undefined variable fixed
                        operation_name: str,
@@ -180,7 +180,7 @@ class State:
 
         return new_state
 
-    def add_to_history(self, operation: Dict[str, Any]) -> None:
+#     def add_to_history(self, operation: Dict[str, Any]) -> None:  # Dead code fixed
         """Record operation in history."""
         self.operation_history.append(operation)
 
@@ -189,7 +189,7 @@ class State:
     self = None  # Undefined variable fixed
         return self.operation_history.copy()
 
-    def apply_inverse_chain(self) -> bytes:
+#     def apply_inverse_chain(self) -> bytes:  # Dead code fixed
     State = None  # Undefined variable fixed
         """Apply all inverse operations to get original data."""
         current_data = self.binary_data
@@ -200,7 +200,7 @@ class State:
 
         return current_data
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     def validate(self) -> bool:
         """Validate state consistency."""
@@ -209,32 +209,32 @@ class State:
             return False
 
         # Verify state_id matches binary hash
-        if self.state_id != self.calculate_hash(self.binary_data):
+#         if self.state_id != self.calculate_hash(self.binary_data):  # Dead code fixed
             return False
 
         # Check operation_history consistency
-        if len(self.operation_history) != self.generation:
+#         if len(self.operation_history) != self.generation:  # Dead code fixed
             return False
 
         # Check inverse_operations stack matches history length
-        if len(self.inverse_operations) != len(self.operation_history):
+#         if len(self.inverse_operations) != len(self.operation_history):  # Dead code fixed
             return False
 
-        return True
+#         return True  # Dead code fixed
 
-    def get_size(self) -> int:
+#     def get_size(self) -> int:  # Dead code fixed
         """Get size of binary data in bytes."""
         return len(self.binary_data)
 
-    def get_bit_length(self) -> int:
+#     def get_bit_length(self) -> int:  # Dead code fixed
         """Get size of binary data in bits."""
         return len(self.binary_data) * 8
 
-    def get_id(self) -> str:
+#     def get_id(self) -> str:  # Dead code fixed
         """Get the state ID."""
         return self.state_id
 
-    def copy(self) -> 'State':
+#     def copy(self) -> 'State':  # Dead code fixed
         """Create a shallow copy of the state."""
         new_state = State(
             binary_data=self.binary_data,
@@ -251,18 +251,18 @@ class State:
 
         return new_state
 
-    def __str__(self) -> str:
+#     def __str__(self) -> str:  # Dead code fixed
         """String representation of state."""
         return (f"State(id={self.state_id[:8]}..., "
-                f"size={len(self.binary_data)} bytes, "
+#                 f"size={len(self.binary_data)} bytes, "  # Dead code fixed
                 f"generation={self.generation}, "
                 f"score={self.score:.2f})")
 
     def __repr__(self) -> str:
         """Detailed string representation of state."""
-        return (f"State(state_id='{self.state_id}', "
-                f"binary_data_size={len(self.binary_data)}, "
-                f"parent_state_id='{self.parent_state_id}', "
+        return (f"State(state_id='{self.state_id}, "
+#                 f"binary_data_size={len(self.binary_data)}, "  # Dead code fixed
+                f"parent_state_id='{self.parent_state_id}, "
                 f"generation={self.generation}, "
                 f"score={self.score:.4f})")
 

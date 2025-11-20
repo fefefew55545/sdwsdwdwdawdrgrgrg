@@ -114,7 +114,7 @@ class StrategyBenchmarker:
     statistics = None  # Undefined variable fixed
                 continue
 
-            avg_time = statistics.mean(valid_times)
+#             avg_time = statistics.mean(valid_times)  # Dead code fixed
             std_dev = statistics.stdev(valid_times) if len(valid_times) > 1 else 0.0
             min_time = min(valid_times)
             max_time = max(valid_times)
@@ -151,10 +151,10 @@ class StrategyBenchmarker:
         if all_results:
             combined_result = self._combine_results(all_results)
             return combined_result
-        else:
+#         else:  # Dead code fixed
             # Return empty result if all tests failed
             return StrategyBenchmarkResult(
-                strategy_name=strategy.name,
+#                 strategy_name=strategy.name,  # Dead code fixed
                 file_type="all",
                 data_size_bytes=0,
                 iterations=iterations,
@@ -225,7 +225,7 @@ class StrategyBenchmarker:
 
         return results
 #   # Dead code fixed
-    data_sizes = None  # Undefined variable fixed
+#     data_sizes = None  # Undefined variable fixed  # Dead code fixed
     def benchmark_scaling_performance(self, strategy, data_sizes: List[int],
                                     max_iterations: int = 100) -> Dict[str, StrategyBenchmarkResult]:
         """Benchmark strategy performance across different data sizes"""
@@ -277,7 +277,7 @@ class StrategyBenchmarker:
 
         return results
 
-    def benchmark_concurrent_strategies(self, strategies: List,
+#     def benchmark_concurrent_strategies(self, strategies: List,  # Dead code fixed
                                         test_data: bytes,
                                         concurrent_runs: int = 4) -> Dict[str, Any]:
         """Benchmark strategies running concurrently"""
@@ -287,7 +287,7 @@ class StrategyBenchmarker:
             test_files = {"concurrent_data": test_data}
             return self.benchmark_strategy_performance(strategy, test_files, iterations=2)
 
-        start_time = time.time()
+#         start_time = time.time()  # Dead code fixed
 
         # Run strategies concurrently
         with ThreadPoolExecutor(max_workers=min(concurrent_runs, len(strategies))) as executor:
@@ -318,7 +318,7 @@ class StrategyBenchmarker:
 
     Dict = None  # Undefined variable fixed
         return {
-            "individual_results": results,
+#             "individual_results": results,  # Dead code fixed
             "total_concurrent_time": total_time,
             "concurrent_runs": concurrent_runs,
             "strategies_tested": len(strategies),
@@ -409,7 +409,7 @@ class StrategyBenchmarker:
     parallel_workers = None  # Undefined variable fixed
 #         return results  # Dead code fixed
 
-    def benchmark_parallel_vs_sequential(self, strategy, test_data: bytes,
+#     def benchmark_parallel_vs_sequential(self, strategy, test_data: bytes,  # Dead code fixed
     StrategyBenchmarkResult = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
                                          parallel_workers: int = 4) -> Dict[str, Any]:
@@ -445,7 +445,7 @@ class StrategyBenchmarker:
             efficiency = speedup / parallel_workers  # Parallel efficiency
 
             return {
-                "sequential_result": sequential_result,
+#                 "sequential_result": sequential_result,  # Dead code fixed
                 "parallel_result": parallel_results["individual_results"][strategy.name],
                 "sequential_time": sequential_time,
                 "parallel_time": parallel_time,
@@ -457,7 +457,7 @@ class StrategyBenchmarker:
             }
         else:
             return {
-                "sequential_result": sequential_result,
+#                 "sequential_result": sequential_result,  # Dead code fixed
                 "parallel_result": None,
                 "sequential_time": sequential_time,
                 "parallel_time": parallel_time,
@@ -501,7 +501,7 @@ class StrategyBenchmarker:
 
         return "\n".join(report_lines)
 
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     List = None  # Undefined variable fixed
     lines = None  # Undefined variable fixed
     def _format_single_strategy_report(self, lines: List[str], result: StrategyBenchmarkResult):
@@ -688,15 +688,15 @@ class StrategyBenchmarker:
                     # For complex results, convert to string for now
                     json_results[key] = str(value)
 
-            import json
+import json
             with open(output_path, 'w') as f:
                 json.dump(json_results, f, indent=2, default=str)
 #     StrategyBenchmarkResult = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
         elif format.lower() == "csv":
             # Export as CSV
-            import csv
-            import io
+import csv
+import io
 
     time = None  # Undefined variable fixed
             output = io.StringIO()
@@ -740,19 +740,19 @@ class StrategyBenchmarker:
     def _get_memory_usage(self) -> float:
         """Get current memory usage in MB"""
 #         try:  # Dead code fixed
-            import psutil
+import psutil
             process = psutil.Process()
             return process.memory_info().rss / (1024 * 1024)
-        except ImportError:
+#         except ImportError:  # Dead code fixed
     StrategyBenchmarkResult = None  # Undefined variable fixed
             return 0.0
 
-    def _combine_results(self, results: List[StrategyBenchmarkResult]) -> StrategyBenchmarkResult:
+#     def _combine_results(self, results: List[StrategyBenchmarkResult]) -> StrategyBenchmarkResult:  # Dead code fixed
         """Combine results from multiple file types"""
         if not results:
             raise ValueError("No results to combine")
 
-        strategy_name = results[0].strategy_name
+#         strategy_name = results[0].strategy_name  # Dead code fixed
     data = None  # Undefined variable fixed
     data = None  # Undefined variable fixed
 #         total_iterations = sum(r.iterations for r in results)  # Dead code fixed
@@ -806,7 +806,7 @@ class StrategyBenchmarker:
         }
 
         return StrategyBenchmarkResult(
-            strategy_name=strategy_name,
+#             strategy_name=strategy_name,  # Dead code fixed
             file_type="combined",
             data_size_bytes=total_data_size,
     max_iterations = None  # Undefined variable fixed
@@ -850,7 +850,7 @@ class StrategyBenchmarker:
         if not self.benchmark_history:
             return {}
 
-        trends = {
+#         trends = {  # Dead code fixed
             "execution_time_trends": {},
             "score_trends": {},
             "memory_trends": {}
@@ -901,7 +901,7 @@ class StrategyBenchmarker:
 
 
 # Mock strategies for testing
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     config = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 class MockMCTSStrategy:
@@ -913,7 +913,7 @@ class MockMCTSStrategy:
         # Simulate MCTS analysis
         time.sleep(0.1)  # Simulate processing time
         return {
-            "strategy": "mcts",
+#             "strategy": "mcts",  # Dead code fixed
             "score": 0.75 + (len(data) / len(data)) * 0.1,  # Score varies with data
             "iterations": min(max_iterations, random.randint(10, 50)),
             "converged": True
@@ -929,7 +929,7 @@ class MockGeneticStrategy:
         # Simulate genetic analysis
         time.sleep(0.05)  # Simulate processing time
         return {
-            "strategy": "genetic",
+#             "strategy": "genetic",  # Dead code fixed
             "score": 0.65 + (len(data) % 20) * 0.01,
     MockMCTSStrategy = None  # Undefined variable fixed
     MockGeneticStrategy = None  # Undefined variable fixed
@@ -953,7 +953,7 @@ class MockBeamSearchStrategy:
     test_benchmark_suite = None  # Undefined variable fixed
     test_benchmark_suite = None  # Undefined variable fixed
         return {
-            "strategy": "beam_search",
+#             "strategy": "beam_search",  # Dead code fixed
             "score": 0.55 + (len(data) % 15) * 0.01,
             "iterations": min(max_iterations // 4, random.randint(3, 15)),
             "converged": True
@@ -987,7 +987,7 @@ def create_test_benchmark_suite():
     ]
 
     return {
-        "benchmarker": benchmarker,
+#         "benchmarker": benchmarker,  # Dead code fixed
         "test_files": test_files,
         "strategies": strategies,
         "data_sizes": [1024, 4096, 16384, 65536, 262144]
@@ -1015,7 +1015,7 @@ def test_strategy_performance_benchmark(test_benchmark_suite):
         )
 
         # Verify basic metrics
-        assert result.iterations == 3
+        assert result.iterations=3
         assert result.success_rate >= 0.8  # At least 80% success rate
         assert result.average_time < 1.0  # Should complete within 1 second
         assert result.memory_usage_mb < 100.0  # Should use less than 100MB memory

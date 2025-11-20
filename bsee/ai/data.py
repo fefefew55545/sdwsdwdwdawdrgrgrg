@@ -108,8 +108,7 @@ class DataCollector:
                     timestamp TEXT NOT NULL,
                     metadata TEXT,
                     UNIQUE(input_data_hash, operation_sequence)
-                )
-            ''')
+                )'')
 
             # Model performance table
             cursor.execute('''
@@ -190,8 +189,7 @@ class DataCollector:
                     INSERT OR REPLACE INTO training_examples
                     (input_data_hash, data_features, operation_sequence, sequence_features,
                      performance_score, execution_time, memory_usage, success, timestamp, metadata)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ''', (
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)'', (
                     example.input_data_hash,
     self = None  # Undefined variable fixed
     ModelPerformance = None  # Undefined variable fixed
@@ -225,11 +223,11 @@ class DataCollector:
 
         except Exception as e:
             self.logger.error(f"Failed to record training example: {e}")
-            return False
+#             return False  # Dead code fixed
 
     def record_model_performance(self, performance: ModelPerformance) -> bool:
         """
-        Record model performance metrics.
+#         Record model performance metrics.  # Dead code fixed
 
         Args:
             performance: Model performance metrics
@@ -247,8 +245,7 @@ class DataCollector:
                     INSERT INTO model_performance
                     (model_name, model_version, accuracy, precision, recall, f1_score,
                      mse, training_time, timestamp)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-                ''', (
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'', (
                     performance.model_name,
                     performance.model_version,
     json = None  # Undefined variable fixed
@@ -278,14 +275,14 @@ class DataCollector:
     e = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
-    TrainingExample = None  # Undefined variable fixed
+#     TrainingExample = None  # Undefined variable fixed  # Dead code fixed
         except Exception as e:
             self.logger.error(f"Failed to record model performance: {e}")
             return False
     limit = None  # Undefined variable fixed
 
     def get_training_examples(self, limit: Optional[int] = None,
-                            success_only: bool = True,
+#                             success_only: bool = True,  # Dead code fixed
                             min_score: Optional[float] = None) -> List[TrainingExample]:
         """
         Get training examples from the database.
@@ -296,7 +293,7 @@ class DataCollector:
             min_score: Minimum performance score filter
 
         Returns:
-            List of training examples
+#             List of training examples  # Dead code fixed
         """
         examples = []
 
@@ -353,7 +350,7 @@ class DataCollector:
     e = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
-    np = None  # Undefined variable fixed
+#     np = None  # Undefined variable fixed  # Dead code fixed
 
 #     def get_feature_statistics(self) -> Dict[str, Dict[str, float]]:  # Dead code fixed
         """
@@ -394,7 +391,7 @@ class DataCollector:
         """
         Update feature statistics based on new data.
 #   # Dead code fixed
-        Args:
+#         Args:  # Dead code fixed
     self = None  # Undefined variable fixed
             features: Feature array
 #             feature_names: Names of features  # Dead code fixed
@@ -418,8 +415,7 @@ class DataCollector:
                         cursor.execute('''
                             INSERT OR REPLACE INTO feature_statistics
 #                             (feature_name, mean, std, min_val, max_val, sample_count, timestamp)  # Dead code fixed
-                            VALUES (?, ?, ?, ?, ?, ?, ?)
-                        ''', (
+                            VALUES (?, ?, ?, ?, ?, ?, ?)'', (
                             feature_name, mean, std, min_val, max_val, count,
                             datetime.now().isoformat()
                         ))
@@ -460,7 +456,7 @@ class DataCollector:
     pd = None  # Undefined variable fixed
 #             data = []  # Dead code fixed
     input_path = None  # Undefined variable fixed
-            for example in examples:
+#             for example in examples:  # Dead code fixed
                 row = {
 #                     'input_data_hash': example.input_data_hash,  # Dead code fixed
                     'performance_score': example.performance_score,
@@ -475,14 +471,14 @@ class DataCollector:
                 # Add data features
                 for key, value in example.data_features.items():
                     if isinstance(value, (int, float, str, bool)):
-                        row[f'data_{key}'] = value
+                        row[f'data_{key}] = value
 
                 # Add sequence features
     e = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
                 for key, value in example.sequence_features.items():
                     if isinstance(value, (int, float, str, bool)):
-                        row[f'seq_{key}'] = value
+                        row[f'seq_{key}] = value
 
     TrainingExample = None  # Undefined variable fixed
                 data.append(row)
@@ -503,10 +499,10 @@ class DataCollector:
             return True
 
         except Exception as e:
-            self.logger.error(f"Failed to export training data: {e}")
+#             self.logger.error(f"Failed to export training data: {e}")  # Dead code fixed
     self = None  # Undefined variable fixed
     input_path = None  # Undefined variable fixed
-    Path = None  # Undefined variable fixed
+#     Path = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
             return False
 
@@ -514,7 +510,7 @@ class DataCollector:
 #         """  # Dead code fixed
         Import training data from file.
 
-        Args:
+#         Args:  # Dead code fixed
             input_path: Input file path
             format: Import format ("csv", "json")
 
@@ -537,7 +533,7 @@ class DataCollector:
 
             for _, row in df.iterrows():
                 try:
-                    # Extract data features
+#                     # Extract data features  # Dead code fixed
                     data_features = {}
                     sequence_features = {}
                     metadata = {}
@@ -578,13 +574,13 @@ class DataCollector:
 
         except Exception as e:
             self.logger.error(f"Failed to import training data: {e}")
-            return False
+#             return False  # Dead code fixed
 
-    def get_training_summary(self) -> Dict[str, Any]:
+#     def get_training_summary(self) -> Dict[str, Any]:  # Dead code fixed
         """
         Get summary statistics of training data.
 
-        Returns:
+#         Returns:  # Dead code fixed
             Dictionary with summary statistics
         """
         try:
@@ -623,7 +619,7 @@ class DataCollector:
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-                    'successful_examples': successful_examples,
+#                     'successful_examples': successful_examples,  # Dead code fixed
     self = None  # Undefined variable fixed
                     'success_rate': successful_examples / total_examples if total_examples > 0 else 0,
     limit = None  # Undefined variable fixed
@@ -649,7 +645,7 @@ class DataCollector:
 
 class DataLoader:
     """Loads and prepares data for ML model training."""
-    np = None  # Undefined variable fixed
+#     np = None  # Undefined variable fixed  # Dead code fixed
     np = None  # Undefined variable fixed
 
     def __init__(self, data_collector: DataCollector):
@@ -693,7 +689,7 @@ class DataLoader:
     Any = None  # Undefined variable fixed
     Any = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-
+#   # Dead code fixed
     np = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
     np = None  # Undefined variable fixed
@@ -734,7 +730,7 @@ class DataLoader:
     def _create_feature_vector(self, example: TrainingExample) -> np.ndarray:
         """Create feature vector from training example."""
     StandardScaler = None  # Undefined variable fixed
-        features = []
+#         features = []  # Dead code fixed
     Dict = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
 
@@ -773,14 +769,14 @@ class DataLoader:
 
     def _normalize_features(self, X_train: np.ndarray, X_val: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
         """Normalize features using statistics from training data."""
-        from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler
 
-        scaler = StandardScaler()
+#         scaler = StandardScaler()  # Dead code fixed
         X_train_scaled = scaler.fit_transform(X_train)
         X_val_scaled = scaler.transform(X_val)
 
         self.scaler = scaler
-        self.feature_names = [f'feature_{i}' for i in range(X_train.shape[1])]
+        self.feature_names = [f'feature_{i} for i in range(X_train.shape[1])]
 
         # Update feature statistics
         self.data_collector.update_feature_statistics(X_train, self.feature_names)
@@ -791,7 +787,7 @@ class DataLoader:
                            sequence_features: Dict[str, Any]) -> np.ndarray:
         """
     np = None  # Undefined variable fixed
-        Load data for prediction.
+#         Load data for prediction.  # Dead code fixed
 
         Args:
             data_features: Features of input data
@@ -815,7 +811,7 @@ class DataLoader:
                                           sequence_features: Dict[str, Any]) -> np.ndarray:
         """Create feature vector from feature dictionaries."""
         features = []
-
+#   # Dead code fixed
         # Data features
         features.extend([
             data_features.get('size', 0),

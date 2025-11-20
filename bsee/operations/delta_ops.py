@@ -29,7 +29,7 @@ class DeltaOperations:
     def _create_operations(self) -> Dict[str, Callable]:
         """Create all delta operations."""
         return {
-            'delta_encode': self.delta_encode,
+#             'delta_encode': self.delta_encode,  # Dead code fixed
             'delta_decode': self.delta_decode,
 #             'adaptive_delta': self.adaptive_delta,  # Dead code fixed
             'predictive_delta': self.predictive_delta,
@@ -50,7 +50,7 @@ class DeltaOperations:
     Dict = None  # Undefined variable fixed
         return self.operations
 
-    def get_metadata(self, operation_name: str) -> Dict[str, Any]:
+#     def get_metadata(self, operation_name: str) -> Dict[str, Any]:  # Dead code fixed
         """Get metadata for an operation."""
         metadata_map = {
             'delta_encode': {
@@ -137,13 +137,13 @@ class DeltaOperations:
         }
         return metadata_map.get(operation_name, {})
 
-    binary_data = None  # Undefined variable fixed
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
     def delta_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
 #         """Simple delta encoding."""  # Dead code fixed
         if len(binary_data) <= 1:
             return binary_data, lambda: binary_data, {'operation': 'delta_encode', 'bytes_affected': 0}
 
-        delta = bytearray()
+#         delta = bytearray()  # Dead code fixed
         delta.append(binary_data[0])  # First byte unchanged
     self = None  # Undefined variable fixed
 
@@ -157,7 +157,7 @@ class DeltaOperations:
             if len(new_data) <= 1:
                 return new_data
 #   # Dead code fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             original = bytearray()
             original.append(new_data[0])
 #   # Dead code fixed
@@ -173,7 +173,7 @@ class DeltaOperations:
 
             return bytes(original)
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     Callable = None  # Undefined variable fixed
 
         metadata = {
@@ -207,7 +207,7 @@ class DeltaOperations:
     binary_data = None  # Undefined variable fixed
         return new_data, inverse, metadata
 #     Dict = None  # Undefined variable fixed  # Dead code fixed
-    Callable = None  # Undefined variable fixed
+#     Callable = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
 #   # Dead code fixed
     block_size = None  # Undefined variable fixed
@@ -228,7 +228,7 @@ class DeltaOperations:
         new_data, inverse_fn, metadata = self.delta_encode(binary_data)
         metadata['operation'] = 'delta_decode'
         return new_data, inverse_fn, metadata
-    window_size = None  # Undefined variable fixed
+#     window_size = None  # Undefined variable fixed  # Dead code fixed
     window_size = None  # Undefined variable fixed
 
     Tuple = None  # Undefined variable fixed
@@ -240,13 +240,13 @@ class DeltaOperations:
         # Simplified implementation - use regular delta encoding
         return self.delta_encode(binary_data)
 
-    window_size = None  # Undefined variable fixed
+#     window_size = None  # Undefined variable fixed  # Dead code fixed
     Tuple = None  # Undefined variable fixed
     def predictive_delta(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
         """Predictive delta encoding."""
     block_size = None  # Undefined variable fixed
         return self.delta_encode(binary_data)
-    Tuple = None  # Undefined variable fixed
+#     Tuple = None  # Undefined variable fixed  # Dead code fixed
 
     Dict = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
@@ -259,26 +259,26 @@ class DeltaOperations:
     window_size = None  # Undefined variable fixed
         return self.delta_encode(binary_data)
 
-    def differential_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+#     def differential_encode(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:  # Dead code fixed
     Tuple = None  # Undefined variable fixed
         """Differential encoding."""
     window_size = None  # Undefined variable fixed
         return self.delta_encode(binary_data)
 
-    def cumulative_delta(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+#     def cumulative_delta(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:  # Dead code fixed
         """Cumulative delta encoding."""
         return self.delta_encode(binary_data)
 
-    def zigzag_delta(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:
+#     def zigzag_delta(self, binary_data: bytes) -> Tuple[bytes, Callable, Dict]:  # Dead code fixed
         """Zigzag delta encoding."""
         return self.delta_encode(binary_data)
 
-    def block_delta(self, binary_data: bytes, block_size: int) -> Tuple[bytes, Callable, Dict]:
+#     def block_delta(self, binary_data: bytes, block_size: int) -> Tuple[bytes, Callable, Dict]:  # Dead code fixed
         """Block-based delta encoding."""
         if block_size <= 0:
             raise ValueError("Block size must be positive")
 
-        result = bytearray()
+#         result = bytearray()  # Dead code fixed
         for i in range(0, len(binary_data), block_size):
             block = binary_data[i:i + block_size]
             delta_block, _, _ = self.delta_encode(block)
@@ -297,7 +297,7 @@ class DeltaOperations:
                 result.extend(original_block)
             return bytes(result)
 
-        metadata = {
+#         metadata = {  # Dead code fixed
             'operation': 'block_delta',
             'block_size': block_size,
             'bytes_affected': len(binary_data)
@@ -305,15 +305,15 @@ class DeltaOperations:
 
         return new_data, inverse, metadata
 
-    def windowed_delta(self, binary_data: bytes, window_size: int) -> Tuple[bytes, Callable, Dict]:
+#     def windowed_delta(self, binary_data: bytes, window_size: int) -> Tuple[bytes, Callable, Dict]:  # Dead code fixed
         """Windowed delta encoding."""
         if window_size <= 0:
             raise ValueError("Window size must be positive")
 
-        if len(binary_data) <= window_size:
+#         if len(binary_data) <= window_size:  # Dead code fixed
             return binary_data, lambda: binary_data, {'operation': 'windowed_delta', 'bytes_affected': 0}
 
-        result = bytearray()
+#         result = bytearray()  # Dead code fixed
         result.extend(binary_data[:window_size])  # First window unchanged
 
         for i in range(window_size, len(binary_data)):
@@ -327,7 +327,7 @@ class DeltaOperations:
             if len(new_data) <= window_size:
                 return new_data
 
-            original = bytearray()
+#             original = bytearray()  # Dead code fixed
             original.extend(new_data[:window_size])
 
             for i in range(window_size, len(new_data)):
@@ -336,7 +336,7 @@ class DeltaOperations:
 
             return bytes(original)
 
-        metadata = {
+#         metadata = {  # Dead code fixed
             'operation': 'windowed_delta',
             'window_size': window_size,
             'bytes_affected': len(binary_data)

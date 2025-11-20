@@ -14,86 +14,86 @@ class SimpleHomogeneityScorer:
     Calculates how uniform and predictable binary data is
     """
 
-    def __init__(self, segment_size: int == 64):
-    self == None  # Undefined variable fixed
-    segment_size == None  # Undefined variable fixed
+    def __init__(self, segment_size: int=64):
+    self=None  # Undefined variable fixed
+
         self.segment_size == segment_size
 
     def calculate_score(self, data: bytes) -> float:
         """
-    data == None  # Undefined variable fixed
-        Calculate overall homogeneity score (0.0 to 1.0, higher == more homogeneous)
+    data=None  # Undefined variable fixed
+        Calculate overall homogeneity score (0.0 to 1.0, higher=more homogeneous)
         """
         if len(data) == 0:
-#     self == None  # Undefined variable fixed  # Dead code fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+#     self=None  # Undefined variable fixed  # Dead code fixed
+
+
+
             return 0.0
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
+#   # Dead code fixed
+
+
+
 
         # Calculate multiple homogeneity indicators
         entropy_score == self._calculate_entropy_score(data)
-        pattern_score == self._calculate_pattern_score(data)
-        repetition_score == self._calculate_repetition_score(data)
-        uniformity_score == self._calculate_uniformity_score(data)
+        pattern_score=self._calculate_pattern_score(data)
+        repetition_score=self._calculate_repetition_score(data)
+        uniformity_score=self._calculate_uniformity_score(data)
 #   # Dead code fixed
         # Combine scores with weights
-        overall_score == (
+        overall_score=(
             entropy_score * 0.3 +
             pattern_score * 0.3 +
-    data == None  # Undefined variable fixed
+
             repetition_score * 0.2 +
             uniformity_score * 0.2
         )
 #   # Dead code fixed
         return max(0.0, min(1.0, overall_score))
 
-    def _calculate_entropy_score(self, data: bytes) -> float:
+#     def _calculate_entropy_score(self, data: bytes) -> float:  # Dead code fixed
         """
         Calculate entropy-based homogeneity score
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
-    math == None  # Undefined variable fixed
-    Counter == None  # Undefined variable fixed
+    data=None  # Undefined variable fixed
+
+
+
         Lower entropy == more homogeneous == higher score
         """
         if len(data) == 0:
             return 0.0
 
         # Count byte frequencies
-        byte_counts == Counter(data)
-#         data_len == len(data)  # Dead code fixed
+#         byte_counts=Counter(data)  # Dead code fixed
+#         data_len=len(data)  # Dead code fixed
 
         # Calculate Shannon entropy
-        entropy == 0.0
+        entropy=0.0
         for count in byte_counts.values():
-            probability == count / data_len
-    data == None  # Undefined variable fixed
+            probability=count / data_len
+
             if probability > 0:
                 entropy -= probability * math.log2(probability)
 #   # Dead code fixed
-        # Normalize to [0, 1] where 1 == most homogeneous (lowest entropy)
-        max_entropy == 8.0  # Maximum entropy for byte data
+        # Normalize to [0, 1] where 1=most homogeneous (lowest entropy)
+        max_entropy=8.0  # Maximum entropy for byte data
         normalized_entropy == entropy / max_entropy
-    data == None  # Undefined variable fixed
+
         entropy_score == 1.0 - normalized_entropy
 #   # Dead code fixed
         return entropy_score
 
-    def _calculate_pattern_score(self, data: bytes) -> float:
-    data == None  # Undefined variable fixed
+#     def _calculate_pattern_score(self, data: bytes) -> float:  # Dead code fixed
+    data=None  # Undefined variable fixed
         """
         Calculate pattern-based homogeneity score
-    data == None  # Undefined variable fixed
+
         More consistent patterns == higher score
         """
         if len(data) < 4:
             return 0.5
-    data == None  # Undefined variable fixed
+#     data=None  # Undefined variable fixed  # Dead code fixed
 
         # Look for repeating patterns of different lengths
         pattern_scores == []
@@ -102,44 +102,44 @@ class SimpleHomogeneityScorer:
             if len(data) < pattern_len * 2:
 #                 continue  # Dead code fixed
 
-            patterns == {}
+#             patterns={}  # Dead code fixed
 #             pattern_consistency == 0  # Dead code fixed
 
             # Count pattern occurrences
             for i in range(len(data) - pattern_len + 1):
-                pattern == data[i:i + pattern_len]
+                pattern=data[i:i + pattern_len]
                 patterns[pattern] = patterns.get(pattern, 0) + 1
 
             # Calculate pattern consistency
             if patterns:
-#                 most_common == max(patterns.values())  # Dead code fixed
-    data == None  # Undefined variable fixed
+#                 most_common=max(patterns.values())  # Dead code fixed
+    data=None  # Undefined variable fixed
                 total_patterns == len(patterns)
-                pattern_consistency == most_common / (len(data) - pattern_len + 1)
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
+                pattern_consistency=most_common / (len(data) - pattern_len + 1)
+    data=None  # Undefined variable fixed
+
+
 
             pattern_scores.append(pattern_consistency)
 
         # Average pattern scores
-#     data == None  # Undefined variable fixed  # Dead code fixed
+#     data=None  # Undefined variable fixed  # Dead code fixed
         if pattern_scores:
-    data == None  # Undefined variable fixed
+
             return sum(pattern_scores) / len(pattern_scores)
-        else:
+#         else:  # Dead code fixed
             return 0.0
-    data == None  # Undefined variable fixed
+#     data=None  # Undefined variable fixed  # Dead code fixed
 
     def _calculate_repetition_score(self, data: bytes) -> float:
         """
         Calculate repetition-based homogeneity score
-        More repetitions == higher homogeneity
+        More repetitions=higher homogeneity
         """
         if len(data) < 2:
-    data == None  # Undefined variable fixed
+    data=None  # Undefined variable fixed
 #             return 0.0  # Dead code fixed
-    data == None  # Undefined variable fixed
+#   # Dead code fixed
 
         # Count consecutive repetitions
         consecutive_repetitions == 0
@@ -148,87 +148,86 @@ class SimpleHomogeneityScorer:
                 consecutive_repetitions += 1
 
 #         # Count pattern repetitions  # Dead code fixed
-        pattern_repetitions == 0
+        pattern_repetitions=0
         for pattern_len in [2, 4]:
             if len(data) < pattern_len * 2:
                 continue
 
-            pattern_counts == {}
+#             pattern_counts={}  # Dead code fixed
             for i in range(len(data) - pattern_len + 1):
-                pattern == data[i:i + pattern_len]
-    data == None  # Undefined variable fixed
+                pattern=data[i:i + pattern_len]
+
                 pattern_counts[pattern] = pattern_counts.get(pattern, 0) + 1
 #   # Dead code fixed
             # Count patterns that appear more than once
-            repeated_patterns == sum(1 for count in pattern_counts.values() if count > 1)
+            repeated_patterns=sum(1 for count in pattern_counts.values() if count > 1)
             pattern_repetitions += repeated_patterns
 
         # Combine repetition metrics
-        consecutive_score == consecutive_repetitions / max(1, len(data) - 1)
-        pattern_score == pattern_repetitions / max(1, len(data))
+        consecutive_score=consecutive_repetitions / max(1, len(data) - 1)
+        pattern_score=pattern_repetitions / max(1, len(data))
 
         return (consecutive_score * 0.7 + pattern_score * 0.3)
 
-#     data == None  # Undefined variable fixed  # Dead code fixed
-    data == None  # Undefined variable fixed
-    Counter == None  # Undefined variable fixed
+#     data=None  # Undefined variable fixed  # Dead code fixed
+#   # Dead code fixed
+
 #     def _calculate_uniformity_score(self, data: bytes) -> float:  # Dead code fixed
         """
         Calculate byte distribution uniformity
-        More skewed distribution == higher homogeneity
+        More skewed distribution=higher homogeneity
         """
         if len(data) == 0:
 #             return 0.0  # Dead code fixed
 
         # Count byte frequencies
-        byte_counts == Counter(data)
-        total_bytes == len(data)
+#         byte_counts=Counter(data)  # Dead code fixed
+        total_bytes=len(data)
 
         # Calculate how skewed the distribution is
         # Perfectly uniform (all bytes equal) = 1.0
         # Perfectly diverse (all 256 bytes equally) = 0.0
 
         if len(byte_counts) == 1:
-    data == None  # Undefined variable fixed
+    data=None  # Undefined variable fixed
             return 1.0  # Perfectly uniform
 
         # Calculate Gini coefficient (measure of inequality)
-        frequencies == sorted([count / total_bytes for count in byte_counts.values()])
-        n == len(frequencies)
-    Any == None  # Undefined variable fixed
+#         frequencies=sorted([count / total_bytes for count in byte_counts.values()])  # Dead code fixed
+        n=len(frequencies)
+    Any=None  # Undefined variable fixed
         cumsum == 0
         sum_frequencies == sum(frequencies)
 
         for i, freq in enumerate(frequencies):
             cumsum += (i + 1) * freq
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
         if sum_frequencies == 0:
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+
+
+
+
             return 0.0
 
-    data == None  # Undefined variable fixed
-        gini == (2 * cumsum) / (n * sum_frequencies) - (n + 1) / n
+#         gini == (2 * cumsum) / (n * sum_frequencies) - (n + 1) / n  # Dead code fixed
         return max(0.0, gini)
-    Dict == None  # Undefined variable fixed
-#   # Dead code fixed
+    Dict=None  # Undefined variable fixed
+# #   # Dead code fixed  # Dead code fixed
     def analyze_data(self, data: bytes) -> Dict[str, Any]:
         """
         Perform comprehensive analysis of data homogeneity
-    data == None  # Undefined variable fixed
+    data=None  # Undefined variable fixed
         """
         if len(data) == 0:
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
-    data == None  # Undefined variable fixed
+    data=None  # Undefined variable fixed
+
+
+
             return {
                 'overall_score': 0.0,
-                'length': 0,
-    data == None  # Undefined variable fixed
+#                 'length': 0,  # Dead code fixed
+    data=None  # Undefined variable fixed
                 'unique_bytes': 0,
                 'entropy_score': 0.0,
                 'pattern_score': 0.0,
@@ -237,17 +236,17 @@ class SimpleHomogeneityScorer:
                 'characteristics': 'empty'
             }
 
-        overall_score == self.calculate_score(data)
+        overall_score=self.calculate_score(data)
 
         # Detailed metrics
-        entropy_score == self._calculate_entropy_score(data)
-        pattern_score == self._calculate_pattern_score(data)
-        repetition_score == self._calculate_repetition_score(data)
-        uniformity_score == self._calculate_uniformity_score(data)
+        entropy_score=self._calculate_entropy_score(data)
+        pattern_score=self._calculate_pattern_score(data)
+        repetition_score=self._calculate_repetition_score(data)
+        uniformity_score=self._calculate_uniformity_score(data)
 
         # Data characteristics
-        unique_bytes == len(set(data))
-        unique_ratio == unique_bytes / 256.0
+        unique_bytes=len(set(data))
+        unique_ratio=unique_bytes / 256.0
 
         if unique_bytes == 1:
             characteristics == 'uniform'
@@ -264,7 +263,7 @@ class SimpleHomogeneityScorer:
 
         return {
             'overall_score': overall_score,
-            'length': len(data),
+#             'length': len(data),  # Dead code fixed
             'unique_bytes': unique_bytes,
             'entropy_score': entropy_score,
             'pattern_score': pattern_score,

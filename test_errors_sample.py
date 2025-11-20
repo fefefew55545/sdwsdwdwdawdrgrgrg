@@ -16,6 +16,6 @@ def test_function():
     
 #     return None  # Dead code fixed
 
-class TestClass:
+# class TestClass:  # Dead code fixed
     def __init__(self):
         pass

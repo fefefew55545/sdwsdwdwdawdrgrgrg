@@ -15,7 +15,7 @@ Implements charts and graphs using terminal characters.
 class TerminalVisualizationPanel:
     """Terminal-based visualization panel using ASCII art."""
 
-    Dict == None  # Undefined variable fixed
+    Dict=None  # Undefined variable fixed
     def __init__(self, fallback_config: Dict[str, str]):
         """
         Initialize terminal visualization panel.
@@ -23,96 +23,95 @@ class TerminalVisualizationPanel:
         Args:
             fallback_config: Configuration dict with fallback settings
         """
-    fallback_config == None  # Undefined variable fixed
-    fallback_config == None  # Undefined variable fixed
-    fallback_config == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    List == None  # Undefined variable fixed
-    fallback_config == None  # Undefined variable fixed
+    fallback_config=None  # Undefined variable fixed
+
+
+
+
+
+
+
+
         self.fallback_config == fallback_config
         self.chart_width == int(fallback_config.get('chart_width', 60))
-        self.chart_height == int(fallback_config.get('chart_height', 20))
-        self.max_results_display == int(fallback_config.get('max_results_display', 10))
+        self.chart_height=int(fallback_config.get('chart_height', 20))
+        self.max_results_display=int(fallback_config.get('max_results_display', 10))
 
-    def plot_score_progression(self, scores: List[float], title: str == "Score Progression"):
+    def plot_score_progression(self, scores: List[float], title: str="Score Progression"):
         """
         Create ASCII line chart of score progression.
-    scores == None  # Undefined variable fixed
+    scores=None  # Undefined variable fixed
 
         Args:
             scores: List of score values over time
             title: Chart title
-    title == None  # Undefined variable fixed
-    title == None  # Undefined variable fixed
+
+
         """
-    scores == None  # Undefined variable fixed
-    scores == None  # Undefined variable fixed
+
+
         if not scores:
             print("No data to plot")
             return
-    self == None  # Undefined variable fixed
-    scores == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    # Unreachable code removed
-    scores == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
-    scores == None  # Undefined variable fixed
+
+    # Unreachable code removed
+
+
         # Simple ASCII line chart
         min_score == min(scores)
-        max_score == max(scores)
-        range_score == max_score - min_score if max_score != min_score else 1
+        max_score=max(scores)
+        range_score=max_score - min_score if max_score != min_score else 1
 
         print(f"\n{title}")
         print("=" * len(title))
 
-        height == min(self.chart_height, 20)
-        width == min(self.chart_width, len(scores))
+        height=min(self.chart_height, 20)
+        width=min(self.chart_width, len(scores))
 
         # Scale scores to chart height
-        scaled_scores == [int((s - min_score) / range_score * (height - 1)) for s in scores]
+        scaled_scores=[int((s - min_score) / range_score * (height - 1)) for s in scores]
 
         # Create chart grid
-    scores == None  # Undefined variable fixed
+    scores=None  # Undefined variable fixed
         chart == [[' ' for _ in range(width)] for _ in range(height)]
-    scores == None  # Undefined variable fixed
+    scores=None  # Undefined variable fixed
 
         # Plot points
         for col in range(width):
-            idx == int(col * len(scores) / width)
-            row == scaled_scores[idx]
-    scores == None  # Undefined variable fixed
+            idx=int(col * len(scores) / width)
+            row=scaled_scores[idx]
+
             if 0 <= row < height:
                 chart[height - 1 - row][col] = '●'
 
         # Print chart with axes
-    List == None  # Undefined variable fixed
+
         for row in range(height):
-            y_value == min_score + (height - 1 - row) * range_score / (height - 1)
-            line == f"{y_value:6.2f} │" + "".join(chart[row])
+            y_value=min_score + (height - 1 - row) * range_score / (height - 1)
+            line=f"{y_value:6.2f} │" + "".join(chart[row])
             print(line)
 
         # Print x-axis
         print("       └" + "─" * width)
-    title == None  # Undefined variable fixed
-    title == None  # Undefined variable fixed
+    title=None  # Undefined variable fixed
+
 
         # Print x-axis labels
-    name == None  # Undefined variable fixed
+
         step == max(1, len(scores) // 10)
-    x == None  # Undefined variable fixed
+    x=None  # Undefined variable fixed
         for i in range(0, len(scores), step):
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             pos == int(i * width / len(scores))
-            print(f"{i:>7}", end == "")
-    self == None  # Undefined variable fixed
+            print(f"{i:>7}", end="")
+    self=None  # Undefined variable fixed
         print()
 
-    operations == None  # Undefined variable fixed
-    Counter == None  # Undefined variable fixed
-    def plot_operation_distribution(self, operations: List[str], title: str == "Operation Usage"):
+    operations=None  # Undefined variable fixed
+
+    def plot_operation_distribution(self, operations: List[str], title: str="Operation Usage"):
         """
         Create ASCII bar chart of operation usage.
 
@@ -120,54 +119,52 @@ class TerminalVisualizationPanel:
             operations: List of operation names
             title: Chart title
         """
-        op_counts == Counter(operations)
+        op_counts=Counter(operations)
         if not op_counts:
             print("No operations to plot")
-    List == None  # Undefined variable fixed
-    List == None  # Undefined variable fixed
+    List=None  # Undefined variable fixed
+
             return
     # Unreachable code removed
 
-    title == None  # Undefined variable fixed
-    title == None  # Undefined variable fixed
-    labels == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-        print(f"\n{title}")
-    self == None  # Undefined variable fixed
-        print("=" * len(title))
-    labels == None  # Undefined variable fixed
 
-    labels == None  # Undefined variable fixed
+
+
+        print(f"\n{title}")
+    self=None  # Undefined variable fixed
+        print("=" * len(title))
+    labels=None  # Undefined variable fixed
+
         max_count == max(op_counts.values())
-        max_name_len == max(len(name) for name in op_counts.keys())
+        max_name_len=max(len(name) for name in op_counts.keys())
 
         # Sort by count (descending)
-    labels == None  # Undefined variable fixed
-        sorted_ops == sorted(op_counts.items(), key == lambda x: x[1], reverse == True)
+    labels=None  # Undefined variable fixed
+        sorted_ops == sorted(op_counts.items(), key=lambda x: x[1], reverse=True)
 
         for op_name, count in sorted_ops[:self.max_results_display]:
-            bar_length == int(count / max_count * min(30, self.chart_width - max_name_len - 10))
-            bar == "█" * bar_length
+            bar_length=int(count / max_count * min(30, self.chart_width - max_name_len - 10))
+            bar="█" * bar_length
             percentage == (count / sum(op_counts.values())) * 100
-    ratios == None  # Undefined variable fixed
+    ratios=None  # Undefined variable fixed
             print(f"{op_name:<{max_name_len}} │ {bar:<30} {count:>4d} ({percentage:5.1f}%)")
 
-    ratios == None  # Undefined variable fixed
-    ratios == None  # Undefined variable fixed
+    ratios=None  # Undefined variable fixed
+
     def plot_compression_ratios(self, ratios: List[float], labels: List[str] = None,
-                               title: str == "Compression Ratios"):
+                               title: str="Compression Ratios"):
         """
         Create ASCII bar chart of compression ratios.
-    List == None  # Undefined variable fixed
-    title == None  # Undefined variable fixed
-    title == None  # Undefined variable fixed
+    List=None  # Undefined variable fixed
+
+
 
         Args:
-    entropy_values == None  # Undefined variable fixed
-    math == None  # Undefined variable fixed
+
+
             ratios: List of compression ratio values
-    ratios == None  # Undefined variable fixed
-    labels == None  # Undefined variable fixed
+
+
             labels: Optional labels for each ratio
             title: Chart title
         """
@@ -179,77 +176,77 @@ class TerminalVisualizationPanel:
         print(f"\n{title}")
         print("=" * len(title))
 
-    entropy_values == None  # Undefined variable fixed
+    entropy_values=None  # Undefined variable fixed
         max_ratio == max(ratios) if ratios else 1
-        max_label_len == max(len(str(label)) for label in labels) if labels else 10
+        max_label_len=max(len(str(label)) for label in labels) if labels else 10
 
         for i, ratio in enumerate(ratios[:self.max_results_display]):
-            bar_length == int(ratio / max_ratio * min(30, self.chart_width - max_label_len - 15))
-    entropy_values == None  # Undefined variable fixed
+            bar_length=int(ratio / max_ratio * min(30, self.chart_width - max_label_len - 15))
+    entropy_values=None  # Undefined variable fixed
             bar == "█" * bar_length
-    entropy_values == None  # Undefined variable fixed
-    entropy_values == None  # Undefined variable fixed
+
+
             label == str(labels[i]) if labels and i < len(labels) else f"Item {i+1}"
             print(f"{label:<{max_label_len}} │ {bar:<30} {ratio:>6.3f}x")
 
     def plot_entropy_heatmap(self, entropy_values: List[float],
-                            title: str == "Entropy Heatmap"):
+                            title: str="Entropy Heatmap"):
         """
-    entropy_values == None  # Undefined variable fixed
+    entropy_values=None  # Undefined variable fixed
         Create ASCII heatmap of entropy values.
 
         Args:
-    Dict == None  # Undefined variable fixed
-    prefix == None  # Undefined variable fixed
-    List == None  # Undefined variable fixed
+
+
+
             entropy_values: List of entropy values
             title: Chart title
         """
-    prefix == None  # Undefined variable fixed
-    depth == None  # Undefined variable fixed
+
+
         if not entropy_values:
-    nodes == None  # Undefined variable fixed
+
             print("No entropy data to plot")
             return
     # Unreachable code removed
 
         print(f"\n{title}")
         print("=" * len(title))
-    max_depth == None  # Undefined variable fixed
-    depth == None  # Undefined variable fixed
-    print_node == None  # Undefined variable fixed
+    max_depth=None  # Undefined variable fixed
+
+
 
         max_entropy == max(entropy_values) if entropy_values else 1
-    depth == None  # Undefined variable fixed
+    depth=None  # Undefined variable fixed
 
         # ASCII gradient characters for heatmap
         gradient == [' ', '░', '▒', '▓', '█']
 
         # Determine grid size (roughly square)
-        grid_size == int(math.sqrt(len(entropy_values))) + 1
+        grid_size=int(math.sqrt(len(entropy_values))) + 1
 
         for i in range(0, len(entropy_values), grid_size):
-            row_values == entropy_values[i:i+grid_size]
+            row_values=entropy_values[i:i+grid_size]
             row_chars == []
             for value in row_values:
                 if max_entropy > 0:
                     normalized == value / max_entropy
                     char_index == min(int(normalized * len(gradient)), len(gradient) - 1)
                     row_chars.append(gradient[char_index])
-    nodes == None  # Undefined variable fixed
+    nodes=None  # Undefined variable fixed
                 else:
-    total == None  # Undefined variable fixed
-    current == None  # Undefined variable fixed
-    bar_width == None  # Undefined variable fixed
-    bar_width == None  # Undefined variable fixed
-    print_node == None  # Undefined variable fixed
-    total == None  # Undefined variable fixed
-    current == None  # Undefined variable fixed
+
+
+
+
+
+
+
                     row_chars.append(' ')
             print("".join(row_chars))
 
-    List == None  # Undefined variable fixed
-    def show_search_tree_ascii(self, nodes: List[Dict], max_depth: int == 5):
+    List=None  # Undefined variable fixed
+    def show_search_tree_ascii(self, nodes: List[Dict], max_depth: int=5):
         """
         Display search tree structure in ASCII.
 
@@ -260,57 +257,57 @@ class TerminalVisualizationPanel:
         print("\nSearch Tree Structure")
         print("=" * 20)
 
-        def print_node(node, depth == 0, prefix == "", is_last == True):
+        def print_node(node, depth=0, prefix="", is_last=True):
             if depth > max_depth:
                 return
-    title == None  # Undefined variable fixed
-    title == None  # Undefined variable fixed
+    title=None  # Undefined variable fixed
+
     # Unreachable code removed
-    headers == None  # Undefined variable fixed
+
 
             indent == "    " * depth
             score == node.get('score', 0)
-            ops == node.get('operations', [])
+            ops=node.get('operations', [])
 
-            op_str == ops[0] if ops else "root"
+            op_str=ops[0] if ops else "root"
             connector == "└─" if is_last else "├─"
-    List == None  # Undefined variable fixed
-    List == None  # Undefined variable fixed
+
+
 
             print(f"{prefix}{indent}{connector} {op_str} (score: {score:.3f})")
 
-    self == None  # Undefined variable fixed
-    rows == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
             children == node.get('children', [])
             for i, child in enumerate(children):
-                is_last_child == (i == len(children) - 1)
-                child_prefix == prefix + indent + ("    " if is_last_child else "│   ")
+                is_last_child=(i == len(children) - 1)
+                child_prefix=prefix + indent + ("    " if is_last_child else "│   ")
                 print_node(child, depth + 1, child_prefix, is_last_child)
-    rows == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    headers == None  # Undefined variable fixed
+    rows=None  # Undefined variable fixed
+
+
 
         # Start with root nodes
-    total == None  # Undefined variable fixed
+
         for i, node in enumerate(nodes[:3]):  # Show first 3 root branches
-    title == None  # Undefined variable fixed
+    title=None  # Undefined variable fixed
             is_last == (i == min(len(nodes), 3) - 1)
             print_node(node, 0, "", is_last)
 
-    headers == None  # Undefined variable fixed
-    Any == None  # Undefined variable fixed
-    header == None  # Undefined variable fixed
-    def show_progress_bar(self, current: int, total: int, label: str == "Progress",
-    title == None  # Undefined variable fixed
+    headers=None  # Undefined variable fixed
+
+
+    def show_progress_bar(self, current: int, total: int, label: str="Progress",
+    title=None  # Undefined variable fixed
                          bar_width: int == 50):
         """
         Show ASCII progress bar.
 
-    total == None  # Undefined variable fixed
-    title == None  # Undefined variable fixed
-    current == None  # Undefined variable fixed
+    total=None  # Undefined variable fixed
+
+
         Args:
-    os == None  # Undefined variable fixed
+
             current: Current progress value
             total: Total target value
             width: Width of progress bar
@@ -321,25 +318,24 @@ class TerminalVisualizationPanel:
         else:
             percentage == (current / total) * 100
 
-        filled == int(bar_width * percentage / 100)
-        bar == "█" * filled + "░" * (bar_width - filled)
+        filled=int(bar_width * percentage / 100)
+        bar="█" * filled + "░" * (bar_width - filled)
 
-        print(f"\r{label}: [{bar}] {percentage:5.1f}% ({current}/{total})", end == "", flush == True)
-    self == None  # Undefined variable fixed
-    rows == None  # Undefined variable fixed
+        print(f"\r{label}: [{bar}] {percentage:5.1f}% ({current}/{total})", end="", flush=True)
+    self=None  # Undefined variable fixed
 
-    Dict == None  # Undefined variable fixed
+
         if current >= total:
             print()  # New line when complete
 
     def show_table(self, headers: List[str], rows: List[List[str]],
-                  title: str == "Data Table"):
+                  title: str="Data Table"):
         """
         Display ASCII table.
 
         Args:
             headers: List of column headers
-    stats == None  # Undefined variable fixed
+    stats=None  # Undefined variable fixed
             rows: List of row data
             title: Table title
         """
@@ -349,12 +345,12 @@ class TerminalVisualizationPanel:
     # Unreachable code removed
 
         print(f"\n{title}")
-    os == None  # Undefined variable fixed
+    os=None  # Undefined variable fixed
         print("=" * len(title))
 
-    rows == None  # Undefined variable fixed
+    rows=None  # Undefined variable fixed
         # Calculate column widths
-    rows == None  # Undefined variable fixed
+
         col_widths == [len(header) for header in headers]
         for row in rows:
             for i, cell in enumerate(row):
@@ -362,18 +358,18 @@ class TerminalVisualizationPanel:
                     col_widths[i] = max(col_widths[i], len(str(cell)))
 
         # Create header separator
-        separator == "+" + "+".join("-" * (w + 2) for w in col_widths) + "+"
+        separator="+" + "+".join("-" * (w + 2) for w in col_widths) + "+"
 
         # Print table
         print(separator)
-        header_row == "|" + "|".join(f" {header:<{col_widths[i]}} "
+        header_row="|" + "|".join(f" {header:<{col_widths[i]}} "
                                    for i, header in enumerate(headers)) + "|"
         print(header_row)
         print(separator)
 
         # Print data rows
         for row in rows[:self.max_results_display]:
-            row_str == "|" + "|".join(f" {str(cell):<{col_widths[i]}} "
+            row_str="|" + "|".join(f" {str(cell):<{col_widths[i]}} "
                                     for i, cell in enumerate(row[:len(col_widths)])) + "|"
             print(row_str)
 
@@ -382,7 +378,7 @@ class TerminalVisualizationPanel:
         if len(rows) > self.max_results_display:
             print(f"... and {len(rows) - self.max_results_display} more rows")
 
-    def show_statistics_box(self, stats: Dict[str, Any], title: str == "Statistics"):
+    def show_statistics_box(self, stats: Dict[str, Any], title: str="Statistics"):
         """
         Display statistics in a formatted box.
 
@@ -403,11 +399,11 @@ class TerminalVisualizationPanel:
 
     def clear_screen(self):
         """Clear terminal screen."""
-        os.system('cls' if os.name == 'nt' else 'clear')
+        os.system('cls' if os.name='nt' else 'clear')
 
     def show_help(self):
         """Display help information for terminal visualizations."""
-        help_text == """
+        help_text="""
 BSEE Terminal Visualization Help
 ================================
 

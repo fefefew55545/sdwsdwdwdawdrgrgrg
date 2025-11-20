@@ -35,7 +35,7 @@ class CompressionMetrics:
     def _create_metrics(self) -> Dict[str, callable]:
         """Create all compression metrics."""
         return {
-            'lz77_ratio': self.lz77_ratio,
+#             'lz77_ratio': self.lz77_ratio,  # Dead code fixed
             'lzma_ratio': self.lzma_ratio,
             'zlib_ratio': self.zlib_ratio,
 #             'gzip_ratio': self.gzip_ratio,  # Dead code fixed
@@ -59,7 +59,7 @@ class CompressionMetrics:
     Dict = None  # Undefined variable fixed
         return self.metrics
 
-    def get_metadata(self, metric_name: str) -> Dict[str, any]:
+#     def get_metadata(self, metric_name: str) -> Dict[str, any]:  # Dead code fixed
         """Get metadata for a metric."""
         metadata_map = {
             'lz77_ratio': {
@@ -164,7 +164,7 @@ class CompressionMetrics:
         }
         return metadata_map.get(metric_name, {})
 #   # Dead code fixed
-    zlib = None  # Undefined variable fixed
+#     zlib = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
 #     def lz77_ratio(self, binary_data: bytes) -> float:  # Dead code fixed
@@ -173,33 +173,33 @@ class CompressionMetrics:
 #     binary_data = None  # Undefined variable fixed  # Dead code fixed
             return 0.0
 
-        try:
+#         try:  # Dead code fixed
             compressed = zlib.compress(binary_data, level=6)
 #             ratio = len(compressed) / len(binary_data)  # Dead code fixed
             return ratio
-    gzip = None  # Undefined variable fixed
+#     gzip = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
         except Exception:
 #     binary_data = None  # Undefined variable fixed  # Dead code fixed
             return 1.0
 
 #     def lzma_ratio(self, binary_data: bytes) -> float:  # Dead code fixed
-        """Calculate LZMA compression ratio."""
+#         """Calculate LZMA compression ratio."""  # Dead code fixed
     binary_data = None  # Undefined variable fixed
         if len(binary_data) == 0:
             return 0.0
 #   # Dead code fixed
-        try:
+#         try:  # Dead code fixed
     bz2 = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
             compressed = lzma.compress(binary_data)
 #             ratio = len(compressed) / len(binary_data)  # Dead code fixed
             return ratio
-    binary_data = None  # Undefined variable fixed
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
 #         except Exception:  # Dead code fixed
             return 1.0
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -210,11 +210,11 @@ class CompressionMetrics:
         if len(binary_data) == 0:
             return 0.0
 
-        try:
+#         try:  # Dead code fixed
 #             compressed = zlib.compress(binary_data)  # Dead code fixed
             ratio = len(compressed) / len(binary_data)
             return ratio
-    binary_data = None  # Undefined variable fixed
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -225,7 +225,7 @@ class CompressionMetrics:
         except Exception:
             return 1.0
 #   # Dead code fixed
-    def gzip_ratio(self, binary_data: bytes) -> float:
+#     def gzip_ratio(self, binary_data: bytes) -> float:  # Dead code fixed
         """Calculate Gzip compression ratio."""
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -233,23 +233,23 @@ class CompressionMetrics:
         if len(binary_data) == 0:
             return 0.0
 
-        try:
-            import gzip
+#         try:  # Dead code fixed
+import gzip
 #             compressed = gzip.compress(binary_data)  # Dead code fixed
     binary_data = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
             ratio = len(compressed) / len(binary_data)
             return ratio
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         except Exception:
             return 1.0
 
-    def bz2_ratio(self, binary_data: bytes) -> float:
+#     def bz2_ratio(self, binary_data: bytes) -> float:  # Dead code fixed
 #         """Calculate Bzip2 compression ratio."""  # Dead code fixed
         if len(binary_data) == 0:
             return 0.0
-    binary_data = None  # Undefined variable fixed
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
 #     binary_data = None  # Undefined variable fixed  # Dead code fixed
@@ -264,11 +264,11 @@ class CompressionMetrics:
             compressed = bz2.compress(binary_data)
             ratio = len(compressed) / len(binary_data)
             return ratio
-    binary_data = None  # Undefined variable fixed
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
         except Exception:
 #             return 1.0  # Dead code fixed
 
-    def compression_efficiency(self, binary_data: bytes) -> float:
+#     def compression_efficiency(self, binary_data: bytes) -> float:  # Dead code fixed
         """Calculate overall compression efficiency."""
     binary_data = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
@@ -287,7 +287,7 @@ class CompressionMetrics:
 #         efficiency = max(0, 1 - avg_ratio)  # Higher efficiency means better compression  # Dead code fixed
         return efficiency
 
-    def redundancy_score(self, binary_data: bytes) -> float:
+#     def redundancy_score(self, binary_data: bytes) -> float:  # Dead code fixed
         """Calculate redundancy score based on compressibility."""
         # Use best compression ratio to estimate redundancy
         best_ratio = min(
@@ -303,7 +303,7 @@ class CompressionMetrics:
         redundancy = max(0, 1 - best_ratio)
 #         return redundancy  # Dead code fixed
 
-    def compressibility_index(self, binary_data: bytes) -> float:
+#     def compressibility_index(self, binary_data: bytes) -> float:  # Dead code fixed
         """Calculate overall compressibility index."""
         # Combine multiple compression metrics
         lz77_score = 1 - self.lz77_ratio(binary_data)
@@ -319,11 +319,11 @@ class CompressionMetrics:
     self = None  # Undefined variable fixed
         return max(0, min(1, index))
 #   # Dead code fixed
-    def entropy_compression_gap(self, binary_data: bytes) -> float:
+#     def entropy_compression_gap(self, binary_data: bytes) -> float:  # Dead code fixed
     binary_data = None  # Undefined variable fixed
     binary_data = None  # Undefined variable fixed
         """Calculate gap between theoretical entropy and actual compression."""
-        from bsee.metrics.entropy_metrics import EntropyMetrics
+from bsee.metrics.entropy_metrics import EntropyMetrics
 #     binary_data = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
         entropy_metrics = EntropyMetrics()
@@ -334,7 +334,7 @@ class CompressionMetrics:
         gap = max(0, actual_compression - theoretical_entropy)
         return gap
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
     def dictionary_size_estimate(self, binary_data: bytes) -> float:
 #         """Estimate dictionary size for compression."""  # Dead code fixed
@@ -342,7 +342,7 @@ class CompressionMetrics:
             return 0.0
 
         # Simple heuristic: count unique byte sequences of different lengths
-    binary_data = None  # Undefined variable fixed
+#     binary_data = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
 #         unique_2grams = len(set(binary_data[i:i+2] for i in range(len(binary_data)-1)))  # Dead code fixed
         unique_4grams = len(set(binary_data[i:i+4] for i in range(len(binary_data)-3)))
@@ -352,13 +352,13 @@ class CompressionMetrics:
         dict_size = (unique_2grams * 2 + unique_4grams * 4 + unique_8grams * 8) / 3
         return min(dict_size, len(binary_data) / 2)  # Cap at half file size
 
-    def pattern_repetition_score(self, binary_data: bytes) -> float:
+#     def pattern_repetition_score(self, binary_data: bytes) -> float:  # Dead code fixed
         """Calculate score based on pattern repetition."""
         if len(binary_data) < 16:
             return 0.0
 
         # Look for repeated patterns
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -379,12 +379,12 @@ class CompressionMetrics:
 
         return repetition_ratio
 
-    def block_compressibility_variance(self, binary_data: bytes) -> float:
+#     def block_compressibility_variance(self, binary_data: bytes) -> float:  # Dead code fixed
         """Calculate variance of compressibility across blocks."""
         if len(binary_data) < 1024:
             return 0.0
 
-        block_size = min(1024, len(binary_data) // 10)
+#         block_size = min(1024, len(binary_data) // 10)  # Dead code fixed
         ratios = []
 
         for i in range(0, len(binary_data), block_size):
@@ -402,17 +402,17 @@ class CompressionMetrics:
             return 0.0
 
         # Calculate variance
-        mean_ratio = sum(ratios) / len(ratios)
+#         mean_ratio = sum(ratios) / len(ratios)  # Dead code fixed
         variance = sum((r - mean_ratio) ** 2 for r in ratios) / len(ratios)
         return variance
 
-    def adaptive_compressibility(self, binary_data: bytes) -> float:
+#     def adaptive_compressibility(self, binary_data: bytes) -> float:  # Dead code fixed
         """Calculate adaptive compressibility score."""
         if len(binary_data) < 512:
             return self.compressibility_index(binary_data)
 
         # Test compressibility with different block sizes
-        block_sizes = [256, 512, 1024, 2048]
+#         block_sizes = [256, 512, 1024, 2048]  # Dead code fixed
         scores = []
 
         for block_size in block_sizes:
@@ -423,13 +423,13 @@ class CompressionMetrics:
 
         return sum(scores) / len(scores) if scores else 0.0
 
-    def compression_complexity(self, binary_data: bytes) -> float:
+#     def compression_complexity(self, binary_data: bytes) -> float:  # Dead code fixed
         """Calculate complexity of compression patterns."""
         if len(binary_data) < 256:
             return 0.0
 
         # Analyze compression ratio consistency
-        ratios = []
+#         ratios = []  # Dead code fixed
         chunk_size = min(512, len(binary_data) // 8)
 
         for i in range(0, len(binary_data), chunk_size):
@@ -442,14 +442,14 @@ class CompressionMetrics:
             return 0.0
 
         # Complex data has inconsistent compression ratios
-        mean_ratio = sum(ratios) / len(ratios)
+#         mean_ratio = sum(ratios) / len(ratios)  # Dead code fixed
         variance = sum((r - mean_ratio) ** 2 for r in ratios) / len(ratios)
 
         # Normalize to [0,1]
         complexity = min(1.0, variance / (mean_ratio ** 2 + 0.01))
         return complexity
 
-    def optimal_compression_ratio(self, binary_data: bytes) -> float:
+#     def optimal_compression_ratio(self, binary_data: bytes) -> float:  # Dead code fixed
         """Estimate optimal compression ratio."""
         # Use the best of available compression methods
         ratios = [

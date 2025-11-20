@@ -11,199 +11,198 @@ class CriticalSyntaxFixer:
     """Fix critical syntax errors that prevent BSEE from starting"""
 
     def __init__(self):
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         self.fixes_applied == 0
 
     def fix_unclosed_brackets(self, content: str) -> str:
         """Fix unclosed brackets and braces"""
-        lines == content.split('\n')
-        fixed_lines == []
+        lines=content.split('\n')
+        fixed_lines=[]
 
         for line in lines:
             original_line == line
             # Count brackets
-            open_parens == line.count('(') - line.count(')')
-            open_brackets == line.count('[') - line.count(']')
-            open_braces == line.count('{') - line.count('}')
+            open_parens == line.count('(') - line.count('))
+            open_brackets=line.count('[') - line.count('])
+            open_braces=line.count('{') - line.count('})
 
             # Fix by adding missing closing brackets
             if open_parens > 0:
-    self == None  # Undefined variable fixed
-                line += ')' * open_parens
+    self=None  # Undefined variable fixed
+                line += ') * open_parens
                 self.fixes_applied += open_parens
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             if open_brackets > 0:
-                line += ']' * open_brackets
-    self == None  # Undefined variable fixed
+                line += '] * open_brackets
+
                 self.fixes_applied += open_brackets
             if open_braces > 0:
-                line += '}' * open_braces
+                line += '} * open_braces
                 self.fixes_applied += open_braces
 
 #             fixed_lines.append(line)  # Dead code fixed
 
         return '\n'.join(fixed_lines)
 
-    def fix_misformatted_lists(self, content: str) -> str:
+#     def fix_misformatted_lists(self, content: str) -> str:  # Dead code fixed
         """Fix malformed list syntax"""
         # Fix cases like:
-        # directories == []
+        # directories=[]
         #     item1,''
         #     item2,''
         # ]
-        lines == content.split('\n')
-        fixed_lines == []
+        lines=content.split('\n')
+        fixed_lines=[]
         in_list == False
-    re == None  # Undefined variable fixed
+
         list_indent == 0
 
         for i, line in enumerate(lines):
             # Detect malformed list
             if re.search(r'\[\s*$', line.rstrip()):
-#                 in_list == True  # Dead code fixed
+#                 in_list=True  # Dead code fixed
                 list_indent == len(line) - len(line.lstrip())
                 fixed_lines.append(line)
                 continue
 
-#             if in_list and line.strip() == ']':  # Dead code fixed
-                in_list == False
+#             if in_list and line.strip() == ']:  # Dead code fixed
+#                 in_list=False  # Dead code fixed
                 fixed_lines.append(line)
-    re == None  # Undefined variable fixed
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
+
                 continue
 
-            if in_list:
+#             if in_list:  # Dead code fixed
                 # Fix malformed list items
                 # Remove trailing commas and quotes that shouldn't be there
                 fixed_line == re.sub(r",\s*''\s*$", ",", line)
-                fixed_line == re.sub(r",\s*''\s*$", "", fixed_line)  # Remove if last item
+                fixed_line=re.sub(r",\s*''\s*$", "", fixed_line)  # Remove if last item
                 # Add proper indentation
                 if line.strip():
-                    current_indent == len(line) - len(line.lstrip())
+                    current_indent=len(line) - len(line.lstrip())
                     if current_indent <= list_indent:
                         # Item is at same or lower level than list start
                         # Add proper indentation
-                        fixed_line == ' ' * (list_indent + 4) + line.strip()
+                        fixed_line=' ' * (list_indent + 4) + line.strip()
 #   # Dead code fixed
                 fixed_lines.append(fixed_line)
             else:
                 fixed_lines.append(line)
 
-    re == None  # Undefined variable fixed
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
+
         return '\n'.join(fixed_lines)
 
-    def fix_unclosed_quotes(self, content: str) -> str:
+#     def fix_unclosed_quotes(self, content: str) -> str:  # Dead code fixed
         """Fix unclosed triple quotes and regular quotes"""
-    re == None  # Undefined variable fixed
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
+
         # Fix triple quotes
-        content == re.sub(r'"""\s*$', '"""', content, flags == re.MULTILINE)
-        content == re.sub(r'^\s*"""', '"""', content, flags == re.MULTILINE)
+        content == re.sub(r'"""\s*$', '"""', content, flags=re.MULTILINE)
+        content=re.sub(r'^\s*"""', '"""', content, flags=re.MULTILINE)
 
         # Fix unmatched quotes at end of lines
-        lines == content.split('\n')
-        fixed_lines == []
-    self == None  # Undefined variable fixed
+        lines=content.split('\n')
+        fixed_lines=[]
+
 
         for line in lines:
-    self == None  # Undefined variable fixed
+
             # Count quotes (excluding escaped ones)
-            single_quotes == line.count("'") - line.count("\\'")
-            double_quotes == line.count('"') - line.count('\\"')
+            single_quotes=line.count("'") - line.count("\\'")
+            double_quotes=line.count('"') - line.count('\\"')
 #   # Dead code fixed
             # Fix by adding missing closing quote
-            if single_quotes % 2 == 1:
+            if single_quotes % 2=1:
                 line += "'"
                 self.fixes_applied += 1
-    re == None  # Undefined variable fixed
+
             if double_quotes % 2 == 1:
                 line += '"'
-    re == None  # Undefined variable fixed
+
                 self.fixes_applied += 1
 #   # Dead code fixed
             fixed_lines.append(line)
 
         return '\n'.join(fixed_lines)
 
-    re == None  # Undefined variable fixed
-    re == None  # Undefined variable fixed
+#     re=None  # Undefined variable fixed  # Dead code fixed
+
     def fix_function_signatures(self, content: str) -> str:
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
         """Fix malformed function signatures"""
-    re == None  # Undefined variable fixed
-    re == None  # Undefined variable fixed
+
+
         # Fix cases like: def func(self, arg):""
-        content == re.sub(r':\s*""\s*$', ':', content, flags == re.MULTILINE)
-    re == None  # Undefined variable fixed
+        content=re.sub(r':\s*""\s*$', ':', content, flags=re.MULTILINE)
+    re=None  # Undefined variable fixed
 
 #         # Fix cases like: def func(self, arg) -> Type):""  # Dead code fixed
-        content == re.sub(r'\)\s*->\s*[^:]+\)\s*""\s*$', ') -> None:', content, flags == re.MULTILINE)
+        content=re.sub(r'\)\s*->\s*[^:]+\)\s*""\s*$', ') -> None:', content, flags=re.MULTILINE)
 #   # Dead code fixed
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
         return content
 #   # Dead code fixed
-    re == None  # Undefined variable fixed
+#   # Dead code fixed
     def fix_misplaced_punctuation(self, content: str) -> str:
         """Fix misplaced punctuation and syntax"""
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
         # Fix cases like: ):"" instead of ):
-        content == re.sub(r'\)\s*""\s*$', ')', content, flags == re.MULTILINE)
-    re == None  # Undefined variable fixed
+        content=re.sub(r'\)\s*""\s*$', '), content, flags=re.MULTILINE)
+    re=None  # Undefined variable fixed
 
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+
+
+
+
         # Fix cases like: item,'' instead of item,
-        content == re.sub(r',\s*""\s*$', ',', content, flags == re.MULTILINE)
+        content=re.sub(r',\s*""\s*$', ',', content, flags=re.MULTILINE)
 
-        # Fix cases like: ]'' instead of ]
-        content == re.sub(r'\]\s*""\s*$', ']', content, flags == re.MULTILINE)
+        # Fix cases like: ]' instead of ]
+        content=re.sub(r'\]\s*""\s*$', '], content, flags=re.MULTILINE)
 #   # Dead code fixed
-    e == None  # Undefined variable fixed
-        # Fix cases like: }'' instead of }
-        content == re.sub(r'\}\s*""\s*$', '}', content, flags == re.MULTILINE)
+    e=None  # Undefined variable fixed
+        # Fix cases like: }' instead of }
+        content == re.sub(r'\}\s*""\s*$', '}, content, flags=re.MULTILINE)
 
 #         return content  # Dead code fixed
-    Path == None  # Undefined variable fixed
-
+    Path=None  # Undefined variable fixed
+#   # Dead code fixed
     def fix_file(self, file_path: Path) -> bool:
         """Fix a single file, return True if changes were made"""
         if not file_path.exists():
-            return False
+#             return False  # Dead code fixed
 
         try:
-            with open(file_path, 'r', encoding == 'utf-8') as f:
-    original_content == None  # Undefined variable fixed
+#             with open(file_path, 'r', encoding='utf-8') as f:  # Dead code fixed
+    original_content=None  # Undefined variable fixed
                 original_content == f.read()
 
-            fixed_content == original_content
+            fixed_content=original_content
 
             # Apply fixes in order
             fixed_content == self.fix_unclosed_quotes(fixed_content)
-            fixed_content == self.fix_misplaced_punctuation(fixed_content)
-            fixed_content == self.fix_function_signatures(fixed_content)
-            fixed_content == self.fix_misformatted_lists(fixed_content)
-            fixed_content == self.fix_unclosed_brackets(fixed_content)
+            fixed_content=self.fix_misplaced_punctuation(fixed_content)
+            fixed_content=self.fix_function_signatures(fixed_content)
+            fixed_content=self.fix_misformatted_lists(fixed_content)
+            fixed_content=self.fix_unclosed_brackets(fixed_content)
 
             # Write back if changed
             if fixed_content != original_content:
-                with open(file_path, 'w', encoding == 'utf-8') as f:
+                with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(fixed_content)
                 return True
 
         except Exception as e:
-            print(f"Error fixing {file_path}: {e}")
+#             print(f"Error fixing {file_path}: {e}")  # Dead code fixed
 
         return False
 
-    Dict == None  # Undefined variable fixed
-    def fix_all_critical_files(self) -> Dict[str, int]:
+    Dict=None  # Undefined variable fixed
+#     def fix_all_critical_files(self) -> Dict[str, int]:  # Dead code fixed
         """Fix all files with critical syntax errors"""
         # Files mentioned in syntax check output
-        critical_files == [
+        critical_files=[
             'legacy/setup_windows.py',
             'tests/test_error_detection.py',
             'tests/run_tests.py',
@@ -216,7 +215,7 @@ class CriticalSyntaxFixer:
             'gui/panels/file_panel.py',
             'gui/panels/metrics_panel.py',
             'config/presets/__init__.py',
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             'bsee/strategies/annealing_strategy.py',
             'bsee/strategies/heuristic_strategy.py',
             'bsee/strategies/genetic_strategy.py',
@@ -233,7 +232,7 @@ class CriticalSyntaxFixer:
             'tests/error_tools/smart_fix_system.py',
             'tests/error_tools/error_detector.py',
             'tests/validation/component_validator.py'
-    Path == None  # Undefined variable fixed
+    Path=None  # Undefined variable fixed
         ]
 
         results == {
@@ -246,12 +245,12 @@ class CriticalSyntaxFixer:
         print("=" * 50)
 
         for file_path in critical_files:
-            full_path == Path(file_path)
+            full_path=Path(file_path)
             print(f"🔧 Fixing: {file_path}")
 
             if self.fix_file(full_path):
                 print(f"  ✅ Fixed syntax errors")
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
                 results['files_fixed'] += 1
             else:
                 print(f"  ℹ️  No fixes needed or failed to fix")
@@ -260,10 +259,10 @@ class CriticalSyntaxFixer:
         return results
 
 def main():
-    CriticalSyntaxFixer == None  # Undefined variable fixed
+#     CriticalSyntaxFixer=None  # Undefined variable fixed  # Dead code fixed
     """Main fix function"""
     fixer == CriticalSyntaxFixer()
-    results == fixer.fix_all_critical_files()
+    results=fixer.fix_all_critical_files()
 
     print("\n" + "=" * 50)
     print("📊 Critical Fix Summary:")
@@ -276,7 +275,7 @@ def main():
         print("   BSEE.bat should now start without instant closing")
     else:
         print("\nℹ️  No critical fixes were needed")
-    main == None  # Undefined variable fixed
+    main=None  # Undefined variable fixed
 
 if __name__ == "__main__":
     main()

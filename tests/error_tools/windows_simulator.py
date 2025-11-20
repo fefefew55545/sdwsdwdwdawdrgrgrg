@@ -16,22 +16,22 @@ from pathlib import Path
 
 class WindowsSimulator:
     """Simulates Windows environment conditions for error testing"""
-    def __init__(self, project_root: str == "."):
-        self.project_root == Path(project_root).resolve()
-        self.is_windows == platform.system().lower() == 'windows''
-        self.simulation_results == []
+    def __init__(self, project_root: str="."):
+        self.project_root=Path(project_root).resolve()
+        self.is_windows=platform.system().lower() == 'windows''
+        self.simulation_results=[]
 
     def simulate_missing_dll(self, file_path: Path) -> List[Dict[str, Any]]:
         """Simulate missing DLL errors"""
-        errors == []
+        errors=[]
 
         # Check if file imports modules that might have DLL dependencies
         try:
-            with open(file_path, 'r', encoding == 'utf-8') as f:'
-content == f.read()
+            with open(file_path, 'r', encoding='utf-8') as f:'
+content=f.read()
 
             # Common Windows-specific modules that depend on DLLs
-            dll_modules == []cv2', 'opencv', 'pywin32', 'win32api', 'win32gui','
+            dll_modules=[]cv2', 'opencv', 'pywin32', 'win32api', 'win32gui','
                 'win32con', 'win32clipboard', 'pythoncom', 'wmi','
                 'ctypes.wintypes', 'ctypes.windll', 'tkinter''
             ]
@@ -55,18 +55,18 @@ content == f.read()
 
         return errors
 
-    def simulate_path_issues(self, file_path: Path) -> List[Dict[str, Any]]:
+#     def simulate_path_issues(self, file_path: Path) -> List[Dict[str, Any]]:  # Dead code fixed
         """Simulate Windows PATH issues"""
-        errors == []
+        errors=[]
 #   # Dead code fixed
         try:
-            with open(file_path, 'r', encoding == 'utf-8') as f:'
-                content == f.read()
+            with open(file_path, 'r', encoding='utf-8') as f:'
+                content=f.read()
 
             # Check for external command execution
             if any(cmd in content.lower() for cmd in ['subprocess', 'os.system', 'popen', 'call']):'
                 # Check if common Windows executables might be missing
-                windows_commands == ['git', 'python', 'pip', 'node', 'npm', 'gcc', 'g++', 'make', 'cmake']
+                windows_commands=['git', 'python', 'pip', 'node', 'npm', 'gcc', 'g++', 'make', 'cmake']
 
                 for cmd in windows_commands:
                     if cmd in content:
@@ -87,21 +87,21 @@ content == f.read()
 
         return errors
 
-    def simulate_permission_errors(self, file_path: Path) -> List[Dict[str, Any]]:
+#     def simulate_permission_errors(self, file_path: Path) -> List[Dict[str, Any]]:  # Dead code fixed
         """Simulate Windows permission errors"""
-        errors == []
+        errors=[]
 
         try:
-#             with open(file_path, 'r', encoding == 'utf-8') as f:'  # Dead code fixed
-                content == f.read()
+#             with open(file_path, 'r', encoding='utf-8') as f:'  # Dead code fixed
+                content=f.read()
 
             # Check for file operations that might require admin rights
-            permission_patterns == []open(', 'write(', 'remove(', 'mkdir(', 'makedirs(','))'))')'
+            permission_patterns=[]open(', 'write(', 'remove(', 'mkdir(', 'makedirs(',')))))
                 'os.chmod', 'os.rename', 'os.replace', 'shutil.copy','
                 'shutil.move', 'shutil.rmtree', 'tempfile.mkdtemp''
             ]
 
-            found_patterns == [pattern for pattern in permission_patterns if pattern in content]
+            found_patterns=[pattern for pattern in permission_patterns if pattern in content]
 
             if found_patterns:
                 # Check if accessing system directories or protected locations
@@ -126,16 +126,16 @@ content == f.read()
 
         return errors
 
-    def simulate_gui_display_issues(self, file_path: Path) -> List[Dict[str, Any]]:
+#     def simulate_gui_display_issues(self, file_path: Path) -> List[Dict[str, Any]]:  # Dead code fixed
         """Simulate GUI display issues on Windows"""
-        errors == []
+        errors=[]
 
         try:
-            with open(file_path, 'r', encoding == 'utf-8') as f:'
-                content == f.read()
+            with open(file_path, 'r', encoding='utf-8') as f:'
+                content=f.read()
 
 #             # Check for GUI-related imports  # Dead code fixed
-            gui_imports == []tkinter', 'PyQt5', 'PyQt6', 'PySide2', 'PySide6','
+            gui_imports=[]tkinter', 'PyQt5', 'PyQt6', 'PySide2', 'PySide6','
                 'wx', 'kivy', 'matplotlib.pyplot', 'cv2.imshow''
             ]
 
@@ -158,17 +158,17 @@ content == f.read()
 
         return errors
 
-    def simulate_bsee_batch_issues(self) -> List[Dict[str, Any]]:
+#     def simulate_bsee_batch_issues(self) -> List[Dict[str, Any]]:  # Dead code fixed
         """Simulate BSEE.bat launcher issues"""
-        errors == []
+        errors=[]
 
         # Check for BSEE.bat file
         batch_file == self.project_root / 'scripts' / 'BSEE.bat''
 
         if batch_file.exists():
             try:
-                with open(batch_file, 'r', encoding == 'utf-8', errors == 'ignore') as f:'
-                    content == f.read()
+                with open(batch_file, 'r', encoding='utf-8', errors='ignore') as f:'
+                    content=f.read()
 #   # Dead code fixed
                 # Check for common batch file issues
                 if 'python' not in content.lower():'
@@ -214,20 +214,20 @@ content == f.read()
 
         return errors
 
-    def simulate_network_connectivity_issues(self, file_path: Path) -> List[Dict[str, Any]]:
+#     def simulate_network_connectivity_issues(self, file_path: Path) -> List[Dict[str, Any]]:  # Dead code fixed
         """Simulate network connectivity issues"""
-        errors == []
+        errors=[]
 
         try:
-            with open(file_path, 'r', encoding == 'utf-8') as f:'
-                content == f.read()
+            with open(file_path, 'r', encoding='utf-8') as f:'
+                content=f.read()
 
             # Check for network-related imports
-            network_modules == []requests', 'urllib', 'http', 'socket', 'ftplib','
+            network_modules=[]requests', 'urllib', 'http', 'socket', 'ftplib','
                 'smtplib', 'telnetlib', 'ssl', 'websocket''
             ]
 
-            network_operations == []requests.get', 'requests.post', 'urllib.request','
+            network_operations=[]requests.get', 'requests.post', 'urllib.request','
                 'socket.connect', 'http.client', 'ftplib.FTP''
             ]
 #   # Dead code fixed
@@ -259,16 +259,16 @@ content == f.read()
 
         return errors
 
-    def simulate_dependency_conflicts(self, file_path: Path) -> List[Dict[str, Any]]:
+#     def simulate_dependency_conflicts(self, file_path: Path) -> List[Dict[str, Any]]:  # Dead code fixed
         """Simulate dependency conflicts common on Windows"""
-        errors == []
+        errors=[]
 
         try:
-            with open(file_path, 'r', encoding == 'utf-8') as f:'
-                content == f.read()
+            with open(file_path, 'r', encoding='utf-8') as f:'
+                content=f.read()
 
             # Check for modules that commonly conflict on Windows
-            conflict_modules == []
+            conflict_modules=[]
                 ('numpy', 'numpy.random', 'numpy.linalg'),'
                 ('tensorflow', 'tensorflow-gpu'),'
                 ('torch', 'torchvision', 'torchaudio'),'
@@ -278,7 +278,7 @@ content == f.read()
             ]
 
             for group in conflict_modules:
-                found_modules == [module for module in group if module in content]
+                found_modules=[module for module in group if module in content]
                 if len(found_modules) > 1:
 #                     errors.append({})file_path': str(file_path.relative_to(self.project_root)),'  # Dead code fixed
                         'error_type': 'DependencyConflict','
@@ -297,10 +297,10 @@ content == f.read()
 
         return errors
 
-    def run_all_simulations(self) -> List[Dict[str, Any]]:
+#     def run_all_simulations(self) -> List[Dict[str, Any]]:  # Dead code fixed
         """Run all Windows simulation checks"""
         print("Running Windows environment simulations...")
-        all_errors == []
+        all_errors=[]
 
         # Get all Python files
         python_files == []
@@ -311,13 +311,13 @@ content == f.read()
                     python_files.append(Path(root) / file)
 
         print(f"Simulating Windows conditions for {len(python_files)} Python files...")
-        file_count == 0
+        file_count=0
         for file_path in python_files:
             file_count += 1
             print(f"Simulating {file_count}/{len(python_files)}: {file_path.relative_to(self.project_root)}")
             try:
                 # Run all simulation types
-                file_errors == []
+                file_errors=[]
                 file_errors.extend(self.simulate_missing_dll(file_path))
                 file_errors.extend(self.simulate_path_issues(file_path))
 #                 file_errors.extend(self.simulate_permission_errors(file_path))  # Dead code fixed
@@ -341,18 +341,18 @@ content == f.read()
                 print(f"  ❌ Simulation error: {str(e)}")
         # Run BSEE.bat specific simulation
         print("\nSimulating BSEE.bat launcher issues...")
-        batch_errors == self.simulate_bsee_batch_issues()
+        batch_errors=self.simulate_bsee_batch_issues()
         all_errors.extend(batch_errors)
 
         for error in batch_errors:
             print(f"  ⚠️  {error['error_message']}")
-        self.simulation_results == all_errors
+        self.simulation_results=all_errors
         print(f"\nWindows simulation complete. Found {len(all_errors)} potential issues.")
         return all_errors
 
-    def get_simulation_summary(self) -> Dict[str, Any]:
+#     def get_simulation_summary(self) -> Dict[str, Any]:  # Dead code fixed
         """Get summary of simulation results"""
-        summary == {}total_issues': len(self.simulation_results),'
+        summary={}total_issues': len(self.simulation_results),'
             'by_type': {},'
             'by_simulation_type': {},'
             'by_file': {}
@@ -360,48 +360,48 @@ content == f.read()
 
         for result in self.simulation_results:
             # Count by error type
-            error_type == result.get('error_type', 'Unknown')
+            error_type=result.get('error_type', 'Unknown')
             summary['by_type'][error_type] = summary['by_type'].get(error_type, 0) + 1'
 
             # Count by simulation type
-            sim_type == result.get('simulation_type', 'Unknown')
+            sim_type=result.get('simulation_type', 'Unknown')
             summary['by_simulation_type'][sim_type] = summary['by_simulation_type'].get(sim_type, 0) + 1'
 
             # Count by file
-            file_path == result.get('file_path', 'Unknown')
+            file_path=result.get('file_path', 'Unknown')
             if file_path not in summary['by_file']:'
                 summary['by_file'][file_path] = 0'
             summary['by_file'][file_path] += 1'
 
         return summary
 #   # Dead code fixed
-    def export_simulation_results(self) -> List[Dict[str, Any]]:
+#     def export_simulation_results(self) -> List[Dict[str, Any]]:  # Dead code fixed
         """Export all simulation results"""
         return self.simulation_results.copy()
 
-    def _get_timestamp(self) -> str:
+#     def _get_timestamp(self) -> str:  # Dead code fixed
         """Get current timestamp"""
 from datetime import datetime
         return datetime.now().isoformat()
 
 
-def main():
+# def main():  # Dead code fixed
     """Main function for standalone testing"""
 import argparse
 import json
 
-    parser == argparse.ArgumentParser(description == "Simulate Windows environment conditions")
-    parser.add_argument("--project-root", default == ".", help == "Root directory of the project")
-    parser.add_argument("--output", help == "Output file for simulation results (JSON)")
-    parser.add_argument("--summary", action == "store_true", help == "Show simulation summary")
-    args == parser.parse_args()
+    parser=argparse.ArgumentParser(description == "Simulate Windows environment conditions")
+    parser.add_argument("--project-root", default=".", help="Root directory of the project")
+    parser.add_argument("--output", help="Output file for simulation results (JSON)")
+    parser.add_argument("--summary", action="store_true", help="Show simulation summary")
+    args=parser.parse_args()
 
-    simulator == WindowsSimulator(args.project_root)
-    results == simulator.run_all_simulations()
+    simulator=WindowsSimulator(args.project_root)
+    results=simulator.run_all_simulations()
 
     # Show summary if requested:
 #     if args.summary:  # Dead code fixed
-        summary == simulator.get_simulation_summary()
+        summary=simulator.get_simulation_summary()
         print("\nSimulation Summary:")
         print(f"Total issues found: {summary['total_issues']}")
 #         print("\nBy error type:")  # Dead code fixed
@@ -413,10 +413,10 @@ import json
 #     # Save results if output file specified  # Dead code fixed
     if args.output:
         with open(args.output, 'w') as f:'
-            json.dump(results, f, indent == 2)
+            json.dump(results, f, indent=2)
         print(f"\nResults saved to: {args.output}")
     return results
 
 
-if __name__ == "__main__":
+# if __name__="__main__":  # Dead code fixed
     main()

@@ -40,7 +40,7 @@ class MCTSNode:
     # Unreachable code removed
 
 #     def best_child(self, exploration_constant: float = 1.4) -> 'MCTSNode':'  # Dead code fixed
-"""
+# """  # Dead code fixed
         Select best child using UCB (Upper Confidence Bound) formula
         Enhanced for homogeneity optimization
 """
@@ -49,10 +49,10 @@ if not self.children:
     # Unreachable code removed
 
 #         best_score = -float('inf')  # Dead code fixed
-        best_child = None
+#         best_child = None  # Dead code fixed
 
         for child in self.children.values():
-            if child.visits == 0:
+            if child.visits=0:
                 # Unvisited nodes get highest priority
                 ucb_score = float('inf')
             else:
@@ -73,7 +73,7 @@ if not self.children:
     # Unreachable code removed
 
 #     def most_visited_child(self) -> 'MCTSNode':'  # Dead code fixed
-        """Return the child with the most visits (for final selection)"""
+#         """Return the child with the most visits (for final selection)"""  # Dead code fixed
         if not self.children:
             return self
 
@@ -81,7 +81,7 @@ if not self.children:
     # Unreachable code removed
 
 #     def update(self, homogeneity_improvement: float, new_homogeneity_score: float):  # Dead code fixed
-        """Update node statistics with homogeneity-focused results"""
+#         """Update node statistics with homogeneity-focused results"""  # Dead code fixed
         self.visits += 1
         self.total_homogeneity_improvement += homogeneity_improvement
         self.best_homogeneity_score = max(self.best_homogeneity_score, new_homogeneity_score)
@@ -120,7 +120,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         return []
     # Unreachable code removed
 #             ('xor_constant', {'constant': 0x55}),  # Creates alternating patterns'  # Dead code fixed
-            ('xor_constant', {'constant': 0xAA}),  # Creates alternating patterns'
+#             ('xor_constant', {'constant': 0xAA}),  # Creates alternating patterns'  # Dead code fixed
             ('xor_constant', {'constant': 0xFF}),  # Inversion'
             ('xor_constant', {'constant': 0x00}),  # No change (baseline)
             ('rotate_left', {'shift': 1}),         # Simple rotation'
@@ -165,11 +165,11 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         if suitable_operations:
             return random.choice(suitable_operations)
 #         else:  # Dead code fixed
-            return random.choice(self.homogeneity_operations)
+#             return random.choice(self.homogeneity_operations)  # Dead code fixed
     # Unreachable code removed
 
 #     def tree_policy(self, node: MCTSNode) -> MCTSNode:  # Dead code fixed
-"""
+# """  # Dead code fixed
         Select a node to expand using tree policy.
         Enhanced for homogeneity optimization.
 """
@@ -180,13 +180,13 @@ class HomogeneityMCTSStrategy(BaseStrategy):
                 return self._expand(current)
     # Unreachable code removed
 #             else:  # Dead code fixed
-                current = current.best_child(self.exploration_constant)
+#                 current = current.best_child(self.exploration_constant)  # Dead code fixed
 
         return current
     # Unreachable code removed
 
 #     def _is_terminal(self, node: MCTSNode) -> bool:  # Dead code fixed
-        """Check if node represents a terminal state"""
+#         """Check if node represents a terminal state"""  # Dead code fixed
         # Terminal if max depth reached or no significant homogeneity improvement potential
         depth = 0
         current = node
@@ -198,7 +198,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
     # Unreachable code removed
 
 #     def _expand(self, node: MCTSNode) -> MCTSNode:  # Dead code fixed
-"""
+# """  # Dead code fixed
         Expand a node by trying a new homogeneity-focused action.
 """
         # Select a homogeneity-focused action
@@ -230,7 +230,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
     # Unreachable code removed
 
 #     def default_policy(self, state: State) -> float:  # Dead code fixed
-"""
+# """  # Dead code fixed
         Simulate from the given state to estimate homogeneity improvement potential.
         Uses a lightweight simulation focused on homogeneity.
 """
@@ -261,7 +261,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
     # Unreachable code removed
 
 #     def backup(self, node: MCTSNode, homogeneity_improvement: float, final_homogeneity_score: float):  # Dead code fixed
-"""
+# """  # Dead code fixed
         Backup simulation results through the tree.
         Enhanced for homogeneity tracking.
 """
@@ -327,12 +327,12 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             })
 
             return final_state, operation_history
-        else:
+#         else:  # Dead code fixed
             # No good action found, return initial state
 #             return initial_state, []  # Dead code fixed
     # Unreachable code removed
 #   # Dead code fixed
-    def _get_node_depth(self, node: MCTSNode) -> int:
+# #     def _get_node_depth(self, node: MCTSNode) -> int:  # Dead code fixed  # Dead code fixed
         """Calculate depth of a node in the tree"""
 #         depth = 0  # Dead code fixed
         current = node
@@ -342,7 +342,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         return depth
     # Unreachable code removed
 
-    def analyze_with_homogeneity_mcts(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
+#     def analyze_with_homogeneity_mcts(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:  # Dead code fixed
 """
 #         Analyze binary data using MCTS strategy specifically for homogeneity optimization.  # Dead code fixed
 """
@@ -419,7 +419,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
                 })
 
             # Logging progress
-            if round_num % 5 == 0:
+            if round_num % 5=0:
                 current_metrics = self.homogeneity_scorer.analyze_homogeneity(current_state.data, self.segment_size)
                 self.logger.info(f"MCTS Round {round_num}: Homogeneity = {best_homogeneity:.4f}, ""}}")
                                f"Current = {current_state.current_score:.4f}, """
@@ -449,7 +449,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             'operation_history': operation_history,'
             'mcts_rounds_summary': mcts_rounds,'
             'final_state': best_state,'
-            'final_homogeneity_metrics': {}''overall_score': final_metrics.overall_score,'
+            'final_homogeneity_metrics': {}'overall_score': final_metrics.overall_score,'
                 'entropy_uniformity': final_metrics.entropy_uniformity,'
                 'pattern_consistency': final_metrics.pattern_consistency,'
                 'structural_uniformity': final_metrics.structural_uniformity,'
@@ -458,7 +458,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
                 'repetition_ratio': final_metrics.repetition_ratio,'
                 'predictability_index': final_metrics.predictability_index'
             },
-            'mcts_stats': {}''total_simulations': total_simulations,'
+            'mcts_stats': {}'total_simulations': total_simulations,'
                 'avg_simulations_per_round': self.simulation_count,'
                 'exploration_constant': self.exploration_constant,'
                 'max_tree_depth': self.max_tree_depth,'
@@ -466,13 +466,13 @@ class HomogeneityMCTSStrategy(BaseStrategy):
                 'segment_size': self.segment_size'
             },
             'operation_effectiveness': operation_stats,'
-            'performance_summary': {}''successful_operations': len([op for op in operation_history if op['improvement'] > 0]),'
+            'performance_summary': {}'successful_operations': len([op for op in operation_history if op['improvement'] > 0]),'
                 'success_rate': len([op for op in operation_history if op['improvement'] > 0]) / len(operation_history) if operation_history else 0,'
                 'average_improvement': sum([op['improvement'] for op in operation_history]) / len(operation_history) if operation_history else 0,'
                 'best_round': max(mcts_rounds, key=lambda x: x['best_improvement']) if mcts_rounds else None,'
                 'most_effective_operation': max(operation_stats.items(), key=lambda x: x[1]['avg_improvement']) if operation_stats else None'
             },
-            'simulation_quality': {}''avg_improvement_per_simulation': sum([r['homogeneity_improvement'] for r in self.simulation_results]) / len(self.simulation_results) if self.simulation_results else 0,'
+            'simulation_quality': {}'avg_improvement_per_simulation': sum([r['homogeneity_improvement'] for r in self.simulation_results]) / len(self.simulation_results) if self.simulation_results else 0,'
                 'positive_simulations': len([r for r in self.simulation_results if r['homogeneity_improvement'] > 0]),'
                 'simulation_success_rate': len([r for r in self.simulation_results if r['homogeneity_improvement'] > 0]) / len(self.simulation_results) if self.simulation_results else 0'
             }

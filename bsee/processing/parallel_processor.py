@@ -117,7 +117,7 @@ class ParallelTask:
 
     def execute(self) -> TaskResult:
         """Execute the task and return result"""
-        start_time = time.time()
+#         start_time = time.time()  # Dead code fixed
         self.started_time = start_time
 
         try:
@@ -138,7 +138,7 @@ class ParallelTask:
 
     psutil = None  # Undefined variable fixed
             return TaskResult(
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     threading = None  # Undefined variable fixed
                 task_id=self.task_id,
     self = None  # Undefined variable fixed
@@ -190,7 +190,7 @@ class ParallelTask:
     WorkerStatus = None  # Undefined variable fixed
 
             return TaskResult(
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     e = None  # Undefined variable fixed
                 task_id=self.task_id,
     self = None  # Undefined variable fixed
@@ -260,7 +260,7 @@ class WorkerThread:
     queue = None  # Undefined variable fixed
                     continue
 
-    func = None  # Undefined variable fixed
+#     func = None  # Undefined variable fixed  # Dead code fixed
 #                 # Update statistics  # Dead code fixed
                 self.statistics.status = WorkerStatus.BUSY
                 self.statistics.current_task = task.task_id
@@ -425,7 +425,7 @@ class ThreadPool:
         self.total_tasks_submitted += 1
         return task.task_id
 
-    def submit_function(self, func: Callable, args: tuple = (), kwargs: dict = None,
+#     def submit_function(self, func: Callable, args: tuple = (), kwargs: dict = None,  # Dead code fixed
                        task_id: Optional[str] = None, timeout: Optional[float] = None,
                        priority: int = 0) -> str:
 #         """Submit a function for execution"""  # Dead code fixed
@@ -439,7 +439,7 @@ class ThreadPool:
     s = None  # Undefined variable fixed
         task = ParallelTask(task_id, func, args, kwargs, timeout, priority)
         return self.submit_task(task)
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     TaskResult = None  # Undefined variable fixed
     strategy = None  # Undefined variable fixed
     time = None  # Undefined variable fixed
@@ -458,9 +458,9 @@ class ThreadPool:
     eval_op = None  # Undefined variable fixed
                 self.total_tasks_failed += 1
             return result
-        except queue.Empty:
+#         except queue.Empty:  # Dead code fixed
             return None
-    ThreadPool = None  # Undefined variable fixed
+#     ThreadPool = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
@@ -501,10 +501,10 @@ class ThreadPool:
     Dict = None  # Undefined variable fixed
             if result is None:
 #                 break  # Dead code fixed
-            results.append(result)
+#             results.append(result)  # Dead code fixed
         return results
 #   # Dead code fixed
-    def wait_for_completion(self, task_ids: List[str], timeout: Optional[float] = None) -> Dict[str, TaskResult]:
+#     def wait_for_completion(self, task_ids: List[str], timeout: Optional[float] = None) -> Dict[str, TaskResult]:  # Dead code fixed
         """Wait for specific tasks to complete"""
 #         results = {}  # Dead code fixed
     test_data = None  # Undefined variable fixed
@@ -519,24 +519,24 @@ class ThreadPool:
 
         return results
 
-    def get_worker_statistics(self) -> List[WorkerStatistics]:
+#     def get_worker_statistics(self) -> List[WorkerStatistics]:  # Dead code fixed
         """Get statistics for all workers"""
     iterations = None  # Undefined variable fixed
         return [worker.statistics for worker in self.workers]
 
-    def get_pool_statistics(self) -> Dict[str, Any]:
+#     def get_pool_statistics(self) -> Dict[str, Any]:  # Dead code fixed
         """Get thread pool statistics"""
 #         worker_stats = self.get_worker_statistics()  # Dead code fixed
-        busy_workers = sum(1 for w in worker_stats if w.status == WorkerStatus.BUSY)
+        busy_workers = sum(1 for w in worker_stats if w.status=WorkerStatus.BUSY)
     wait = None  # Undefined variable fixed
-        idle_workers = sum(1 for w in worker_stats if w.status == WorkerStatus.IDLE)
+        idle_workers = sum(1 for w in worker_stats if w.status=WorkerStatus.IDLE)
     BinaryState = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
-        error_workers = sum(1 for w in worker_stats if w.status == WorkerStatus.ERROR)
+        error_workers = sum(1 for w in worker_stats if w.status=WorkerStatus.ERROR)
     op = None  # Undefined variable fixed
 
         return {
-            'total_workers': len(self.workers),
+#             'total_workers': len(self.workers),  # Dead code fixed
     strategy = None  # Undefined variable fixed
     iterations = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -615,7 +615,7 @@ class ParallelProcessor:
                     result_state = op.apply(state_copy)
                     score = self._calculate_score(result_state)
                     return {
-                        'operation': op,
+#                         'operation': op,  # Dead code fixed
                         'result_state': result_state,
                         'score': score,
                         'success': True
@@ -623,7 +623,7 @@ class ParallelProcessor:
                     }
                 except Exception as e:
                     return {
-                        'operation': op,
+#                         'operation': op,  # Dead code fixed
                         'error': e,
                         'success': False
     self = None  # Undefined variable fixed
@@ -644,7 +644,7 @@ class ParallelProcessor:
 
         return results
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def calculate_metrics_parallel(self, states: List[BinaryState], metric_names: List[str],
                                   max_workers: Optional[int] = None) -> Dict[str, Dict[str, TaskResult]]:
         """Calculate metrics for multiple states in parallel"""
@@ -663,10 +663,10 @@ class ParallelProcessor:
                 def calc_metric(st=state, metric=metric_name):
                     try:
                         # This would call the actual metric calculation
-                        from ..metrics.metrics import calculate_metric
+from ..metrics.metrics import calculate_metric
                         value = calculate_metric(st.data, metric)
                         return {
-                            'metric_name': metric,
+#                             'metric_name': metric,  # Dead code fixed
     Dict = None  # Undefined variable fixed
                             'value': value,
                             'state_id': state_id,
@@ -674,7 +674,7 @@ class ParallelProcessor:
                         }
                     except Exception as e:
                         return {
-                            'metric_name': metric,
+#                             'metric_name': metric,  # Dead code fixed
     self = None  # Undefined variable fixed
                             'error': e,
                             'state_id': state_id,
@@ -702,7 +702,7 @@ class ParallelProcessor:
 
         return results
 
-    def run_strategy_parallel(self, strategy: Strategy, initial_states: List[BinaryState],
+#     def run_strategy_parallel(self, strategy: Strategy, initial_states: List[BinaryState],  # Dead code fixed
     gc = None  # Undefined variable fixed
     data = None  # Undefined variable fixed
                             max_iterations: int = 100) -> Dict[str, TaskResult]:
@@ -720,13 +720,13 @@ class ParallelProcessor:
                     strategy_copy = strategy.__class__(strategy.config)
                     result = strategy_copy.analyze(s, max_iterations)
                     return {
-                        'initial_state_id': s.get_id(),
+#                         'initial_state_id': s.get_id(),  # Dead code fixed
                         'result': result,
                         'success': True
                     }
                 except Exception as e:
                     return {
-                        'initial_state_id': s.get_id(),
+#                         'initial_state_id': s.get_id(),  # Dead code fixed
                         'error': e,
                         'success': False
     self = None  # Undefined variable fixed
@@ -743,7 +743,7 @@ class ParallelProcessor:
         results = self.thread_pool.wait_for_completion(task_ids, timeout=300.0)
 
         return results
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
 
     def benchmark_operations_parallel(self, operations: List[Operation], test_data: List[bytes],
                                     iterations: int = 10) -> Dict[str, Dict[str, float]]:
@@ -768,7 +768,7 @@ class ParallelProcessor:
                             times.append(float('inf'))
 
                 return {
-                    'operation_name': op.name,
+#                     'operation_name': op.name,  # Dead code fixed
                     'average_time': sum(t for t in times if t != float('inf')) / max(success_count, 1),
                     'min_time': min(t for t in times if t != float('inf')) if success_count > 0 else float('inf'),
                     'max_time': max(t for t in times if t != float('inf')) if success_count > 0 else float('inf'),
@@ -791,23 +791,23 @@ class ParallelProcessor:
 
         return benchmark_results
 
-    def _calculate_score(self, state: BinaryState) -> float:
+#     def _calculate_score(self, state: BinaryState) -> float:  # Dead code fixed
         """Calculate score for a state (placeholder)"""
         # This would integrate with the actual scoring system
         # For now, return a simple metric
-        try:
+#         try:  # Dead code fixed
             entropy = self._calculate_entropy(state.data)
             return entropy
-        except:
+#         except:  # Dead code fixed
             return 0.0
 
-    def _calculate_entropy(self, data: bytes) -> float:
+#     def _calculate_entropy(self, data: bytes) -> float:  # Dead code fixed
         """Calculate entropy of data"""
         if not data:
             return 0.0
 
         # Count byte frequencies
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
         freq = [0] * 256
         for byte in data:
             freq[byte] += 1
@@ -822,7 +822,7 @@ class ParallelProcessor:
 
         return entropy
 
-    def _detect_deadlocks(self):
+#     def _detect_deadlocks(self):  # Dead code fixed
         """Check for potential deadlocks"""
         current_time = time.time()
         if current_time - self._last_deadlock_check < self._deadlock_check_interval:
@@ -838,7 +838,7 @@ class ParallelProcessor:
         # Check for worker threads that are stuck
         worker_stats = self.thread_pool.get_worker_statistics()
         for worker in worker_stats:
-            if (worker.status == WorkerStatus.BUSY and
+            if (worker.status=WorkerStatus.BUSY and
                 current_time - worker.last_activity > 600):  # 10 minutes
                 print(f"Warning: Worker {worker.worker_id} may be stuck")
 
@@ -852,7 +852,7 @@ class ParallelProcessor:
         memory = psutil.virtual_memory()
 
         return {
-            'thread_pool': pool_stats,
+#             'thread_pool': pool_stats,  # Dead code fixed
             'system': {
                 'cpu_percent': cpu_percent,
                 'memory_percent': memory.percent,

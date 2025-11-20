@@ -124,7 +124,7 @@ class CostModel:
         modified_cost = self._apply_cost_modifiers(operation_name, base_cost, history)
 
         return modified_cost
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def _apply_cost_modifiers(self, operation_name: str, base_cost: float, history: List[OperationEntry]) -> float:
         """Apply dynamic cost modifiers."""
@@ -174,23 +174,23 @@ class CostModel:
     history = None  # Undefined variable fixed
         return cost
 
-    def _count_operation_uses(self, operation_name: str, history: List[OperationEntry]) -> int:
+#     def _count_operation_uses(self, operation_name: str, history: List[OperationEntry]) -> int:  # Dead code fixed
         """Count how many times an operation has been used."""
-        return sum(1 for entry in history if entry.operation_name == operation_name)
+        return sum(1 for entry in history if entry.operation_name=operation_name)
 
-    def _was_effective_recently(self, operation_name: str, history: List[OperationEntry]) -> bool:
+#     def _was_effective_recently(self, operation_name: str, history: List[OperationEntry]) -> bool:  # Dead code fixed
     operation_name = None  # Undefined variable fixed
         """Check if operation was effective recently."""
         recent_entries = history[-10:]  # Last 10 operations
         for entry in recent_entries:
-            if entry.operation_name == operation_name and entry.effectiveness_score > 0:
+            if entry.operation_name=operation_name and entry.effectiveness_score > 0:
                 return True
-        return False
+#         return False  # Dead code fixed
 
-    def get_operation_cost(self, operation_name: str) -> float:
+#     def get_operation_cost(self, operation_name: str) -> float:  # Dead code fixed
         """Get base cost for an operation."""
         return self.base_costs.get(operation_name, 2.0)
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
 
     def update_costs(self, performance_data: Dict[str, float]) -> None:
         """Update costs based on performance data."""
@@ -205,7 +205,7 @@ class CostModel:
     def get_cost_summary(self) -> Dict[str, Any]:
         """Get summary of current costs."""
         return {
-            'total_operations': len(self.base_costs),
+#             'total_operations': len(self.base_costs),  # Dead code fixed
             'min_cost': min(self.base_costs.values()),
             'max_cost': max(self.base_costs.values()),
             'avg_cost': sum(self.base_costs.values()) / len(self.base_costs),

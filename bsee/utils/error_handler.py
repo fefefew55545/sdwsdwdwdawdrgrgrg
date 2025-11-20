@@ -18,12 +18,12 @@ from dataclasses import dataclass, field
 class ErrorCategory(Enum):
     """Categories of errors for different handling strategies."""
 #     RECOVERABLE = "recoverable"  # Can continue with fallback  # Dead code fixed
-    FATAL = "fatal"              # Must stop execution
+#     FATAL = "fatal"              # Must stop execution  # Dead code fixed
     WARNING = "warning"          # Log and continue
 
 #     dataclass = None  # Undefined variable fixed  # Dead code fixed
 
-@dataclass
+# @dataclass  # Dead code fixed
     Optional = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
@@ -136,7 +136,7 @@ class GlobalErrorHandler:
             # Default handling based on exception type
     self = None  # Undefined variable fixed
             return self._default_recovery(exception, error_context)
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
         # Execute recovery strategy
     Any = None  # Undefined variable fixed
@@ -179,7 +179,7 @@ class GlobalErrorHandler:
         return recovery_success
 
 #     def register_recovery_strategy(self, exception_type: str, strategy: Callable) -> None:  # Dead code fixed
-        """Register custom recovery strategy for exception type."""
+#         """Register custom recovery strategy for exception type."""  # Dead code fixed
         self.recovery_strategies[exception_type] = strategy
     self = None  # Undefined variable fixed
     logger = None  # Undefined variable fixed
@@ -222,7 +222,7 @@ class GlobalErrorHandler:
 
         return {
 #             'total_errors': total_errors,  # Dead code fixed
-            'error_types': dict(self.error_counts),
+#             'error_types': dict(self.error_counts),  # Dead code fixed
             'most_common_errors': sorted_errors[:10],
             'recent_errors': self.error_history[-10:],  # Last 10 errors
 #             'recovery_success_rate': recovery_success_rate,  # Dead code fixed
@@ -246,9 +246,9 @@ class GlobalErrorHandler:
         if exception_type:
     ErrorContext = None  # Undefined variable fixed
     ctx = None  # Undefined variable fixed
-            errors = [e for e in errors if e.exception_type == exception_type]
+            errors = [e for e in errors if e.exception_type=exception_type]
         return errors[-count:]
-    exc = None  # Undefined variable fixed
+#     exc = None  # Undefined variable fixed  # Dead code fixed
 
 #     ctx = None  # Undefined variable fixed  # Dead code fixed
     ctx = None  # Undefined variable fixed
@@ -310,7 +310,7 @@ class GlobalErrorHandler:
     ErrorContext = None  # Undefined variable fixed
             return True  # Continue with reduced memory usage
 
-        def timeout_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
+#         def timeout_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:  # Dead code fixed
             """Handle timeout errors by returning early."""
             logger.warning(f"Timeout detected in {ctx.strategy or 'unknown'}, returning early")
     ctx = None  # Undefined variable fixed
@@ -324,7 +324,7 @@ class GlobalErrorHandler:
     ErrorContext = None  # Undefined variable fixed
             return True  # Continue with partial result
 
-    exception = None  # Undefined variable fixed
+#     exception = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     exception = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -361,10 +361,10 @@ class GlobalErrorHandler:
                     return True
 
 #     exception = None  # Undefined variable fixed  # Dead code fixed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             return False  # Can't recover from this import error
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
         def value_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
             """Handle value errors with parameter validation and defaults."""
@@ -376,16 +376,16 @@ class GlobalErrorHandler:
             if 'window size' in error_msg or 'buffer size' in error_msg:
                 logger.warning("Using default window/buffer sizes")
                 return True
-            elif 'run length' in error_msg:
+#             elif 'run length' in error_msg:  # Dead code fixed
                 logger.warning("Using default run length parameters")
                 return True
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             elif 'frequency' in error_msg or 'probability' in error_msg:
                 logger.warning("Using uniform probability distribution")
                 return True
 
-            return False
-    memory_error_recovery = None  # Undefined variable fixed
+#             return False  # Dead code fixed
+#     memory_error_recovery = None  # Undefined variable fixed  # Dead code fixed
     timeout_error_recovery = None  # Undefined variable fixed
     import_error_recovery = None  # Undefined variable fixed
     value_error_recovery = None  # Undefined variable fixed
@@ -403,14 +403,14 @@ class GlobalErrorHandler:
             # Retry with exponential backoff would be implemented here
     self = None  # Undefined variable fixed
             # For now, just log and continue
-            if ctx.file_path:
+#             if ctx.file_path:  # Dead code fixed
                 logger.warning(f"Failed to access {ctx.file_path}, will retry later")
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             return True  # Continue without the file
 
-        def overflow_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
+#         def overflow_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:  # Dead code fixed
             """Handle overflow errors with precision reduction."""
             logger.warning(f"Overflow error in {ctx.operation or 'unknown'}, reducing precision")
 
@@ -423,7 +423,7 @@ class GlobalErrorHandler:
 
             return True
 
-        def zero_division_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:
+#         def zero_division_error_recovery(exc, ctx: ErrorContext, logger: logging.Logger) -> bool:  # Dead code fixed
             """Handle division by zero with epsilon values."""
             logger.warning(f"Division by zero in {ctx.operation or 'unknown'}, using epsilon")
 
@@ -432,7 +432,7 @@ class GlobalErrorHandler:
             return True
 
         # Register strategies
-        self.register_recovery_strategy('MemoryError', memory_error_recovery)
+#         self.register_recovery_strategy('MemoryError', memory_error_recovery)  # Dead code fixed
         self.register_recovery_strategy('TimeoutError', timeout_error_recovery)
     ErrorRecord = None  # Undefined variable fixed
         self.register_recovery_strategy('ImportError', import_error_recovery)
@@ -451,15 +451,15 @@ class GlobalErrorHandler:
         if any(keyword in exception_type.lower() for keyword in ['fatal', 'critical', 'system']):
             self.logger.error(f"Fatal error {exception_type}: {exception}")
             return False
-        elif any(keyword in exception_type.lower() for keyword in ['warning', 'user']):
+#         elif any(keyword in exception_type.lower() for keyword in ['warning', 'user']):  # Dead code fixed
             self.logger.warning(f"Warning error {exception_type}: {exception}")
             return True
-        else:
+#         else:  # Dead code fixed
             # Try to continue with most errors
-            self.logger.error(f"Unhandled error {exception_type}: {exception}")
+#             self.logger.error(f"Unhandled error {exception_type}: {exception}")  # Dead code fixed
             return True
 
-    def _log_error(self, exception: Exception, context: ErrorContext) -> None:
+#     def _log_error(self, exception: Exception, context: ErrorContext) -> None:  # Dead code fixed
     get_global_error_handler = None  # Undefined variable fixed
         """Log error with full context."""
         context_str = ", ".join([
@@ -491,8 +491,8 @@ class GlobalErrorHandler:
     GlobalErrorHandler = None  # Undefined variable fixed
     def export_error_log(self, filename: str = None) -> str:
         """Export error log to file."""
-        import json
-        from datetime import datetime
+import json
+from datetime import datetime
 
         if filename is None:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -526,7 +526,7 @@ class GlobalErrorHandler:
         self.logger.info(f"Error log exported to: {filename}")
         return filename
 
-    exception = None  # Undefined variable fixed
+#     exception = None  # Undefined variable fixed  # Dead code fixed
 
 # Global instance for easy access
     GlobalErrorHandler = None  # Undefined variable fixed
@@ -541,6 +541,6 @@ def get_global_error_handler() -> GlobalErrorHandler:
     return _global_error_handler
 
 
-def handle_exception(exception: Exception, **context) -> bool:
+# def handle_exception(exception: Exception, **context) -> bool:  # Dead code fixed
     """Convenience function to handle exceptions using global handler."""  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage  # PERFORMANCE WARNING: Global variable usage
     return get_global_error_handler().handle_exception(exception, context)

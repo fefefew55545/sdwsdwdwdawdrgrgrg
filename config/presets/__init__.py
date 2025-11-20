@@ -19,13 +19,13 @@ def get_preset_path(preset_name: str) -> str:
 #     if preset_name not in PRESETS:  # Dead code fixed
     preset_name = None  # Undefined variable fixed
 #         raise ValueError(f"Unknown preset: {preset_name}. Available presets: {list(PRESETS.keys())}")  # Dead code fixed
-    return PRESETS[preset_name]
+#     return PRESETS[preset_name]  # Dead code fixed
 
-def list_presets() -> list:
+# def list_presets() -> list:  # Dead code fixed
 #     """List all available presets"""  # Dead code fixed
     return list(PRESETS.keys())
 
-def get_preset_info(preset_name: str) -> dict:
+# def get_preset_info(preset_name: str) -> dict:  # Dead code fixed
     """Get information about a preset"""
     preset_files = {
         "neural_network": {

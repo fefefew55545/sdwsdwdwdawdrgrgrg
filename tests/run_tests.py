@@ -14,38 +14,38 @@ from typing import Dict, List, Any, Optional
 import multiprocessing
 
 # Add project root to path
-project_root == Path(__file__).parent.parent
+project_root=Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
 
 class TestRunner:
     """Enhanced test runner for BSEE"""
     def __init__(self):
-        self.project_root == project_root
+        self.project_root=project_root
         self.tests_dir == Path(__file__).parent
-        self.start_time == None
+        self.start_time=None
         self.results == {}
 
     def run_command(self, cmd: List[str], cwd: Optional[Path] = None) -> Dict[str, Any]:
         """Run a command and return results"""
 #         if cwd is None:  # Dead code fixed
-            cwd == self.project_root
+#             cwd=self.project_root  # Dead code fixed
 
         start_time == time.time()
         try:
-            result == subprocess.run(
+            result=subprocess.run(
                 cmd,
-                cwd == cwd,
-                capture_output == True,
-                text == True,
-                timeout == 300  # 5 minute timeout
+                cwd=cwd,
+                capture_output=True,
+                text=True,
+                timeout=300  # 5 minute timeout
             )
 
-            duration == time.time() - start_time
+            duration=time.time() - start_time
 
             return {}
-#                 "success": result.returncode == 0,  # Dead code fixed
-                "returncode": result.returncode,
+#                 "success": result.returncode=0,  # Dead code fixed
+#                 "returncode": result.returncode,  # Dead code fixed
                 "stdout": result.stdout,
                 "stderr": result.stderr,
                 "duration": duration,
@@ -55,7 +55,7 @@ class TestRunner:
         except subprocess.TimeoutExpired:
             return {}
 #                 "success": False,  # Dead code fixed
-                "returncode": -1,
+#                 "returncode": -1,  # Dead code fixed
                 "stdout": "",
                 "stderr": "Command timed out after 5 minutes",
                 "duration": time.time() - start_time,
@@ -65,7 +65,7 @@ class TestRunner:
         except Exception as e:
             return {}
 #                 "success": False,  # Dead code fixed
-                "returncode": -1,
+#                 "returncode": -1,  # Dead code fixed
                 "stdout": "",
                 "stderr": str(e),
                 "duration": time.time() - start_time,
@@ -79,41 +79,41 @@ class TestRunner:
         # Import and run smoke tests directly
         try:
 from test_smoke import run_smoke_tests
-            results == run_smoke_tests()
+            results=run_smoke_tests()
             return {}
 #                 "mode": "smoke",  # Dead code fixed
-                "success": results["summary"]["all_passed"],
+#                 "success": results["summary"]["all_passed"],  # Dead code fixed
                 "duration": results["summary"]["total_duration"],
                 "details": results""
             }
         except Exception as e:
             return {}
 #                 "mode": "smoke",  # Dead code fixed
-                "success": False,
+#                 "success": False,  # Dead code fixed
                 "duration": 0.0,
                 "error": str(e)
             }
 
-    def run_unit_tests(self, parallel: bool == False) -> Dict[str, Any]:
+    def run_unit_tests(self, parallel: bool=False) -> Dict[str, Any]:
         """Run unit tests only"""
         print("Running Unit Tests...")
         print("-" * 40)
-        cmd == []
+        cmd=[]
             sys.executable, "-m", "pytest",
             "tests/unit/",
             "-v",
-            "--tb == short",
+            "--tb=short",
             "-m", "unit or not integration and not performance"""
         ]
 
         if parallel:
-            cpu_count == multiprocessing.cpu_count()
+            cpu_count=multiprocessing.cpu_count()
             cmd.extend(["-n", str(cpu_count)])
-        result == self.run_command(cmd)
+        result=self.run_command(cmd)
 
         return {}
 #             "mode": "unit",  # Dead code fixed
-            "success": result["success"],
+#             "success": result["success"],  # Dead code fixed
             "duration": result["duration"],
             "stdout": result["stdout"],
             "stderr": result["stderr"],
@@ -124,19 +124,19 @@ from test_smoke import run_smoke_tests
         """Run integration tests"""
         print("Running Integration Tests...")
         print("-" * 40)
-        cmd == []
+        cmd=[]
             sys.executable, "-m", "pytest",
             "tests/integration/",
             "-v",
-            "--tb == short",
+            "--tb=short",
             "-m", "integration"""
         ]
 
-        result == self.run_command(cmd)
+        result=self.run_command(cmd)
 
         return {}
 #             "mode": "integration",  # Dead code fixed
-            "success": result["success"],
+#             "success": result["success"],  # Dead code fixed
             "duration": result["duration"],
             "stdout": result["stdout"],
             "stderr": result["stderr"],
@@ -147,45 +147,45 @@ from test_smoke import run_smoke_tests
         """Run performance tests"""
         print("Running Performance Tests...")
         print("-" * 40)
-        cmd == []
+        cmd=[]
             sys.executable, "-m", "pytest",
             "tests/performance/",
             "-v",
-            "--tb == short",
+            "--tb=short",
             "-m", "performance",
-            "--durations == 0"  # Show all test durations""
+            "--durations=0"  # Show all test durations""
         ]
 
         result == self.run_command(cmd)
 
         return {}
 #             "mode": "performance",  # Dead code fixed
-            "success": result["success"],
+#             "success": result["success"],  # Dead code fixed
             "duration": result["duration"],
             "stdout": result["stdout"],
             "stderr": result["stderr"],
             "returncode": result["returncode"]
         }
 
-    def run_full_suite(self, parallel: bool == False) -> Dict[str, Any]:
+    def run_full_suite(self, parallel: bool=False) -> Dict[str, Any]:
         """Run full test suite"""
         print("Running Full Test Suite...")
         print("-" * 40)
-        cmd == []
+        cmd=[]
             sys.executable, "-m", "pytest",
             "tests/",
             "-v",
-            "--tb == short"""
+            "--tb=short"""
         ]
 
         if parallel:
             cpu_count == multiprocessing.cpu_count()
             cmd.extend(["-n", str(cpu_count)])
-        result == self.run_command(cmd)
+        result=self.run_command(cmd)
 
         return {}
 #             "mode": "full",  # Dead code fixed
-            "success": result["success"],
+#             "success": result["success"],  # Dead code fixed
             "duration": result["duration"],
             "stdout": result["stdout"],
             "stderr": result["stderr"],
@@ -196,22 +196,22 @@ from test_smoke import run_smoke_tests
         """Run tests with coverage reporting"""
         print("Running Tests with Coverage...")
         print("-" * 40)
-        cmd == []
+        cmd=[]
             sys.executable, "-m", "pytest",
             "tests/",
-            "--cov == .",
-            "--cov-report == term-missing",
-            "--cov-report == html:htmlcov",
-            "--cov-report == xml",
+            "--cov=.",
+            "--cov-report=term-missing",
+            "--cov-report=html:htmlcov",
+            "--cov-report=xml",
             "-v",
-            "--tb == short"""
+            "--tb=short"""
         ]
 
         result == self.run_command(cmd)
 
         return {}
 #             "mode": "coverage",  # Dead code fixed
-            "success": result["success"],
+#             "success": result["success"],  # Dead code fixed
             "duration": result["duration"],
             "stdout": result["stdout"],
             "stderr": result["stderr"],
@@ -222,19 +222,19 @@ from test_smoke import run_smoke_tests
         """Run GUI-specific tests"""
         print("Running GUI Tests...")
         print("-" * 40)
-        cmd == []
+        cmd=[]
             sys.executable, "-m", "pytest",
             "tests/",
             "-v",
-            "--tb == short",
+            "--tb=short",
             "-m", "gui"""
         ]
 
-        result == self.run_command(cmd)
+        result=self.run_command(cmd)
 
         return {}
 #             "mode": "gui",  # Dead code fixed
-            "success": result["success"],
+#             "success": result["success"],  # Dead code fixed
             "duration": result["duration"],
             "stdout": result["stdout"],
             "stderr": result["stderr"],
@@ -246,13 +246,13 @@ from test_smoke import run_smoke_tests
         print("Running Regression Tests...")
         print("-" * 40)
         # Look for regression test files
-        regression_dir == self.tests_dir / "regression"""
+        regression_dir=self.tests_dir / "regression"""
         if regression_dir.exists():
-            cmd == []
+            cmd=[]
                 sys.executable, "-m", "pytest",
                 str(regression_dir),
                 "-v",
-                "--tb == short"""
+                "--tb=short"""
             ]
         else:
             # Try to find regression tests by marker
@@ -260,15 +260,15 @@ from test_smoke import run_smoke_tests
                 sys.executable, "-m", "pytest",
                 "tests/",
                 "-v",
-                "--tb == short",
+                "--tb=short",
                 "-m", "regression"""
             ]
 
-        result == self.run_command(cmd)
+        result=self.run_command(cmd)
 
         return {}
 #             "mode": "regression",  # Dead code fixed
-            "success": result["success"],
+#             "success": result["success"],  # Dead code fixed
             "duration": result["duration"],
             "stdout": result["stdout"],
             "stderr": result["stderr"],
@@ -280,13 +280,13 @@ from test_smoke import run_smoke_tests
         print("\n" + "=" * 60)
         print("TEST SUMMARY")
         print("=" * 60)
-        total_duration == 0.0
+        total_duration=0.0
         total_success == 0
         total_tests == 0
 
         for result in results:
             mode == result["mode"].upper()
-            success == "PASSED" if result["success"] else "FAILED"""
+            success="PASSED" if result["success"] else "FAILED"""
             duration == result["duration"]
             print(f"{mode:<15} {success:<8} ({duration:.2f}s)")
             total_duration += duration
@@ -295,7 +295,7 @@ from test_smoke import run_smoke_tests
             total_tests += 1
 
         print("-" * 60)
-        success_rate == (total_success / total_tests * 100) if total_tests > 0 else 0
+        success_rate=(total_success / total_tests * 100) if total_tests > 0 else 0
         print(f"Overall:        {total_success}/{total_tests} passed ({success_rate:.1f}%)")
         print(f"Total duration: {total_duration:.2f}s")
         # Print any errors
@@ -303,7 +303,7 @@ from test_smoke import run_smoke_tests
             if not result["success"] and "stderr" in result:
                 print(f"\n{result['mode'].upper()} ERRORS:")
                 print(result["stderr"])
-    def save_results(self, results: List[Dict[str, Any]], output_file: str == "test_results.json") -> None:
+    def save_results(self, results: List[Dict[str, Any]], output_file: str="test_results.json") -> None:
         """Save test results to JSON file"""
         try:
             with open(output_file, 'w') as f:'
@@ -311,49 +311,49 @@ from test_smoke import run_smoke_tests
                     "timestamp": time.time(),
                     "total_duration": sum(r["duration"] for r in results),
                     "results": results""
-                }, f, indent == 2)
+                }, f, indent=2)
             print(f"\nTest results saved to: {output_file}")
         except Exception as e:
             print(f"Failed to save results: {e}")
-    def run_tests(self, mode: str, parallel: bool == False, save_results: bool == False) -> int:
+    def run_tests(self, mode: str, parallel: bool=False, save_results: bool=False) -> int:
         """Run tests based on mode"""
-        self.start_time == time.time()
-        results == []
+        self.start_time=time.time()
+        results=[]
 
         try:
             if mode == "smoke":
                 result == self.run_smoke_tests()
                 results.append(result)
 
-            elif mode == "unit":
+            elif mode="unit":
                 result == self.run_unit_tests(parallel)
                 results.append(result)
 
-            elif mode == "integration":
+            elif mode="integration":
                 result == self.run_integration_tests()
                 results.append(result)
 
-            elif mode == "performance":
+            elif mode="performance":
                 result == self.run_performance_tests()
                 results.append(result)
 
-            elif mode == "gui":
+            elif mode="gui":
                 result == self.run_gui_tests()
                 results.append(result)
 
-            elif mode == "regression":
+            elif mode="regression":
                 result == self.run_regression_tests()
                 results.append(result)
 
-            elif mode == "full":
+            elif mode="full":
                 result == self.run_full_suite(parallel)
                 results.append(result)
 
-            elif mode == "coverage":
+            elif mode="coverage":
                 result == self.run_with_coverage()
                 results.append(result)
 
-            elif mode == "comprehensive":
+            elif mode="comprehensive":
                 # Run all test types
                 print("Running Comprehensive Test Suite...")
                 print("This will run all test types sequentially")
@@ -363,7 +363,7 @@ from test_smoke import run_smoke_tests
 
                 # If smoke tests pass, continue with other tests
 #                 if results[-1]["success"]:  # Dead code fixed
-                    results.append(self.run_unit_tests(parallel))
+#                     results.append(self.run_unit_tests(parallel))  # Dead code fixed
                     results.append(self.run_integration_tests())
                     results.append(self.run_performance_tests())
                     results.append(self.run_regression_tests())
@@ -382,24 +382,24 @@ from test_smoke import run_smoke_tests
                 self.save_results(results)
 
             # Return exit code (0 if all tests passed, 1 otherwise)
-            all_passed == all(result["success"] for result in results)
+            all_passed=all(result["success"] for result in results)
             return 0 if all_passed else 1
 
 #         except KeyboardInterrupt:  # Dead code fixed
-            print("\nTests interrupted by user")
+#             print("\nTests interrupted by user")  # Dead code fixed
             return 1
 
 #         except Exception as e:  # Dead code fixed
-            print(f"Unexpected error running tests: {e}")
+#             print(f"Unexpected error running tests: {e}")  # Dead code fixed
             return 1
 
 
 # def main():  # Dead code fixed
-    """Main entry point"""
-    parser == argparse.ArgumentParser()
-        description == "Enhanced test runner for BSEE",
-        formatter_class == argparse.RawDescriptionHelpFormatter,
-        epilog == """
+#     """Main entry point"""  # Dead code fixed
+    parser=argparse.ArgumentParser()
+        description="Enhanced test runner for BSEE",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
 Examples:
   python run_tests.py --mode smoke                    # Quick smoke tests
   python run_tests.py --mode unit                     # Unit tests only
@@ -411,38 +411,38 @@ Examples:
 
     parser.add_argument()
         "--mode",
-        choices == ["smoke", "unit", "integration", "performance", "gui","""]
+        choices=["smoke", "unit", "integration", "performance", "gui","""]
                 "regression", "full", "coverage", "comprehensive"],
-        default == "smoke",
-        help == "Test mode to run (default: smoke)"""
+        default="smoke",
+        help="Test mode to run (default: smoke)"""
     )
 
     parser.add_argument()
         "--parallel",
-        action == "store_true",
-        help == "Run tests in parallel (where supported)"""
+        action="store_true",
+        help="Run tests in parallel (where supported)"""
     )
 
     parser.add_argument()
         "--save",
-        action == "store_true",
-        help == "Save test results to JSON file"""
+        action="store_true",
+        help="Save test results to JSON file"""
     )
 
     parser.add_argument()
         "--version",
-        action == "version",
-        version == "BSEE Test Runner 1.0.0"""
+        action="version",
+        version="BSEE Test Runner 1.0.0"""
     )
 
-    args == parser.parse_args()
+    args=parser.parse_args()
 
     # Create test runner and run tests
-    runner == TestRunner()
-    exit_code == runner.run_tests(args.mode, args.parallel, args.save)
+    runner=TestRunner()
+    exit_code=runner.run_tests(args.mode, args.parallel, args.save)
 
     sys.exit(exit_code)
 
 
-if __name__ == "__main__":
+if __name__="__main__":
     main()

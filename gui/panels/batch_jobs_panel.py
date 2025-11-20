@@ -259,7 +259,7 @@ class JobListFrame(ttk.Frame):
         self.progress_var.set(self.job.progress)
 
         # Update resource usage
-        if self.job.status == JobStatus.RUNNING:
+        if self.job.status=JobStatus.RUNNING:
     messagebox = None  # Undefined variable fixed
             memory_mb = self.job.resources.memory_mb
     ttk = None  # Undefined variable fixed
@@ -271,16 +271,16 @@ class JobListFrame(ttk.Frame):
 
         # Update control buttons
     self = None  # Undefined variable fixed
-        if self.job.status == JobStatus.PENDING:
+        if self.job.status=JobStatus.PENDING:
     self = None  # Undefined variable fixed
             self.play_button.config(state=tk.NORMAL)
             self.pause_button.config(state=tk.DISABLED)
-        elif self.job.status == JobStatus.RUNNING:
+        elif self.job.status=JobStatus.RUNNING:
             self.play_button.config(state=tk.DISABLED)
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             self.pause_button.config(state=tk.NORMAL)
-        elif self.job.status == JobStatus.PAUSED:
+        elif self.job.status=JobStatus.PAUSED:
     tk = None  # Undefined variable fixed
             self.play_button.config(state=tk.NORMAL)
     tk = None  # Undefined variable fixed
@@ -321,7 +321,7 @@ class JobListFrame(ttk.Frame):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         """Handle play button click"""
-        if self.job.status == JobStatus.PENDING:
+        if self.job.status=JobStatus.PENDING:
     event = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -340,7 +340,7 @@ class JobListFrame(ttk.Frame):
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
-        elif self.job.status == JobStatus.PAUSED:
+        elif self.job.status=JobStatus.PAUSED:
     tk = None  # Undefined variable fixed
             self.job_manager.resume_job(self.job.job_id)
 
@@ -364,7 +364,7 @@ class JobListFrame(ttk.Frame):
         result = messagebox.askyesno(
     self = None  # Undefined variable fixed
             "Cancel Job",
-            f"Cancel job '{self.job.name}'?"
+            f"Cancel job '{self.job.name}?"
         )
     self = None  # Undefined variable fixed
     selected = None  # Undefined variable fixed
@@ -599,7 +599,7 @@ class BatchJobsPanel:
             if filter_value != "All":
                 try:
                     filter_status = JobStatus(filter_value.lower())
-                    jobs = [job for job in jobs if job.status == filter_status]
+                    jobs = [job for job in jobs if job.status=filter_status]
                 except ValueError:
                     pass  # Invalid filter, show all
 
@@ -623,10 +623,10 @@ class BatchJobsPanel:
                 # Restore selection
                 if self.selected_job:
                     for job in jobs:
-                        if job.job_id == self.selected_job.job_id:
+                        if job.job_id=self.selected_job.job_id:
                             self._on_job_selected(job)
                             break
-    Job = None  # Undefined variable fixed
+#     Job = None  # Undefined variable fixed  # Dead code fixed
     Optional = None  # Undefined variable fixed
 
             else:

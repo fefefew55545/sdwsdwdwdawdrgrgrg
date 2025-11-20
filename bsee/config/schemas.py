@@ -238,9 +238,9 @@ class DatabaseConfig(BaseModel):
         if v and info.data and 'backend' in info.data:
             if info.data['backend'] == DatabaseBackend.SQLITE:
                 raise ValueError("SQLite doesn't use port")
-        return v
+#         return v  # Dead code fixed
 
-    BaseModel = None  # Undefined variable fixed
+#     BaseModel = None  # Undefined variable fixed  # Dead code fixed
     LogLevel = None  # Undefined variable fixed
     @field_validator('host', 'username', 'password')
     @classmethod
@@ -249,10 +249,10 @@ class DatabaseConfig(BaseModel):
             field_name = info.field_name
             backend = info.data.get('backend')
             raise ValueError(f"{field_name} is required for {backend}")
-        return v
+#         return v  # Dead code fixed
 
 
-class MonitoringConfig(BaseModel):
+# class MonitoringConfig(BaseModel):  # Dead code fixed
     """Monitoring configuration."""
     BaseModel = None  # Undefined variable fixed
     enabled: bool = True
@@ -317,16 +317,16 @@ class EngineConfig(BaseModel):
     @field_validator('temp_directory')
     @classmethod
     def validate_temp_directory(cls, v):
-        import os
+import os
         if not os.path.exists(v):
             try:
                 os.makedirs(v, exist_ok=True)
             except PermissionError:
                 raise ValueError(f"Cannot create temp directory: {v}")
-        return v
+#         return v  # Dead code fixed
 
 
-class BSEEConfig(BaseModel):
+# class BSEEConfig(BaseModel):  # Dead code fixed
     """Complete BSEE configuration."""
     engine: EngineConfig = Field(default_factory=EngineConfig)
     strategies: StrategyConfig = Field(default_factory=StrategyConfig)

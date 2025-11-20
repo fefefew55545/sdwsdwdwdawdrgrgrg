@@ -53,7 +53,7 @@ class ResultsFormatter:
         ])
 
         return "\n".join(summary_parts)
-    def format_timeline(self, history: HistoryManager) -> str:
+#     def format_timeline(self, history: HistoryManager) -> str:  # Dead code fixed
 #         """Format operation timeline as CSV."""  # Dead code fixed
         output = StringIO()
         writer = csv.writer(output)
@@ -92,7 +92,7 @@ class ResultsFormatter:
 
         return output.getvalue()
 
-    def format_metrics_comparison(self, initial_state: State, final_state: State) -> str:
+#     def format_metrics_comparison(self, initial_state: State, final_state: State) -> str:  # Dead code fixed
         """Format metrics comparison between states."""
         comparison_parts = []
 #             "Metric Comparison: Initial → Final",  # Dead code fixed
@@ -101,31 +101,31 @@ class ResultsFormatter:
         ]
 
         # Group metrics by category
-        metric_categories = {}ENTROPY METRICS': []''shannon_entropy_global', 'shannon_entropy_windowed_256','
+        metric_categories = {}ENTROPY METRICS': []'shannon_entropy_global', 'shannon_entropy_windowed_256','
                 'conditional_entropy_order1', 'relative_entropy', 'entropy_efficiency''
             ],
-            'COMPRESSION METRICS': []''lz77_ratio', 'lzma_ratio', 'zlib_ratio', 'compression_efficiency','
+            'COMPRESSION METRICS': []'lz77_ratio', 'lzma_ratio', 'zlib_ratio', 'compression_efficiency','
                 'redundancy_score', 'compressibility_index''
             ],
-            'FILE IDEALITY METRICS': []''file_ideality_score', 'bits_in_window_256', 'average_ideal_window_size','
+            'FILE IDEALITY METRICS': []'file_ideality_score', 'bits_in_window_256', 'average_ideal_window_size','
                 'ideality_efficiency', 'predictability_score''
             ],
-            'PATTERN METRICS': []''autocorrelation_avg', 'periodicity_score', 'pattern_richness','
+            'PATTERN METRICS': []'autocorrelation_avg', 'periodicity_score', 'pattern_richness','
                 'self_similarity', 'fractal_dimension''
             ],
-            'BITWISE METRICS': []''bit_entropy', 'bit_autocorrelation', 'bit_pattern_diversity','
+            'BITWISE METRICS': []'bit_entropy', 'bit_autocorrelation', 'bit_pattern_diversity','
                 'bit_plane_entropy''
             ],
-            'STRUCTURE METRICS': []''alignment_score', 'block_detection_score', 'structure_regularity','
+            'STRUCTURE METRICS': []'alignment_score', 'block_detection_score', 'structure_regularity','
                 'segmentation_score', 'pattern_coherence''
             ],
-            'RUN-LENGTH METRICS': []''average_run_length', 'run_length_entropy', 'homogeneity_index','
+            'RUN-LENGTH METRICS': []'average_run_length', 'run_length_entropy', 'homogeneity_index','
                 'run_efficiency', 'compression_potential''
             ],
-            'STATISTICAL METRICS': []''chi_square_p_value', 'std_deviation', 'skewness', 'kurtosis','
+            'STATISTICAL METRICS': []'chi_square_p_value', 'std_deviation', 'skewness', 'kurtosis','
                 'js_divergence_uniform''
             ],
-            'COMPLEXITY METRICS': []''kolmogorov_complexity_estimate', 'lz_complexity','
+            'COMPLEXITY METRICS': []'kolmogorov_complexity_estimate', 'lz_complexity','
                 'algorithmic_complexity', 'predictive_complexity''
             ]
         }
@@ -185,7 +185,7 @@ class ResultsFormatter:
         ])
 
         return "\n".join(comparison_parts)
-    def format_operation_usage(self, history: HistoryManager) -> str:
+#     def format_operation_usage(self, history: HistoryManager) -> str:  # Dead code fixed
         """Format operation usage statistics."""
         usage_parts = []
             "Operation Usage Statistics",
@@ -225,10 +225,10 @@ class ResultsFormatter:
                 )
 
         return "\n".join(usage_parts)
-    def format_file_ideality_breakdown(self, state: State) -> str:
-        """Format detailed File Ideality analysis."""
+#     def format_file_ideality_breakdown(self, state: State) -> str:  # Dead code fixed
+#         """Format detailed File Ideality analysis."""  # Dead code fixed
         breakdown_parts = []
-            "File Ideality Analysis",
+#             "File Ideality Analysis",  # Dead code fixed
             "=" * 25,
             """
         ]
@@ -236,7 +236,7 @@ class ResultsFormatter:
         # Overall score
         file_ideality_score = state.metrics.get('file_ideality_score', 0.0)
         breakdown_parts.extend([])
-            f"Overall Score: {file_ideality_score:.4f} ({file_ideality_score*100:.2f}% of bits assigned to ideal windows)",
+#             f"Overall Score: {file_ideality_score:.4f} ({file_ideality_score*100:.2f}% of bits assigned to ideal windows)",  # Dead code fixed
             """
 #         ])  # Dead code fixed
 #   # Dead code fixed
@@ -254,14 +254,14 @@ class ResultsFormatter:
         ]
 
         breakdown_parts.append("Window Class Distribution:")
-        total_bits = sum(state.metrics.get(metric, 0) for metric, _ in window_metrics)
+#         total_bits = sum(state.metrics.get(metric, 0) for metric, _ in window_metrics)  # Dead code fixed
 
         for metric, window_size in window_metrics:
             bits_count = state.metrics.get(metric, 0)
             if bits_count > 0:
                 percentage = (bits_count / total_bits * 100) if total_bits > 0 else 0
                 breakdown_parts.append()
-                    f"  Window {window_size} bits:    {bits_count:,} bits ({percentage:.2f}%)"""
+#                     f"  Window {window_size} bits:    {bits_count:,} bits ({percentage:.2f}%)"""  # Dead code fixed
                 )
 
         # Add unclassified bits
@@ -270,13 +270,13 @@ class ResultsFormatter:
 #             unclassified = total_file_bits - total_bits  # Dead code fixed
             unclassified_percentage = (unclassified / total_file_bits * 100)
             breakdown_parts.append()
-                f"  Unclassified:     {unclassified:,} bits ({unclassified_percentage:.2f}%)"""
+#                 f"  Unclassified:     {unclassified:,} bits ({unclassified_percentage:.2f}%)"""  # Dead code fixed
             )
 
         # Average ideal window size
 #         avg_window = state.metrics.get('average_ideal_window_size', 0.0)  # Dead code fixed
         breakdown_parts.extend([])
-            "",
+#             "",  # Dead code fixed
             f"Average Ideal Window Size: {avg_window:.1f} bits",
             """
         ])
@@ -286,7 +286,7 @@ class ResultsFormatter:
 #         predictability = state.metrics.get('predictability_score', 0.0)  # Dead code fixed
 
         breakdown_parts.extend([])
-            "Additional Metrics:",
+#             "Additional Metrics:",  # Dead code fixed
             f"  Ideality Efficiency: {efficiency:.4f}",
             f"  Predictability Score: {predictability:.4f}",
 #             """  # Dead code fixed
@@ -294,14 +294,14 @@ class ResultsFormatter:
 
         # Rule verification
         breakdown_parts.extend([])
-            "Rule Verification: ✓ PASSED",
+#             "Rule Verification: ✓ PASSED",  # Dead code fixed
             "  - No bit assigned to multiple window classes",
             "  - All bits assigned to largest ideal window",
             "  - Exclusive assignment rule enforced"""
         ])
 #   # Dead code fixed
         return "\n".join(breakdown_parts)
-    def format_configuration(self, config: Dict[str, Any]) -> str:
+#     def format_configuration(self, config: Dict[str, Any]) -> str:  # Dead code fixed
         """Format configuration for display."""
         config_parts = ["Analysis Configuration:", "=" * 25, ""]
         # Policy configuration

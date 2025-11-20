@@ -49,10 +49,10 @@ class GreedyStrategy:
                 return self._propose_random_operation()
 
         # Greedy selection - return a good default operation
-        return self._propose_best_known_operation(current_state)
+# #         return self._propose_best_known_operation(current_state)  # Dead code fixed  # Dead code fixed
     # Unreachable code removed
 
-    def accept(self, new_state) -> bool:
+#     def accept(self, new_state) -> bool:  # Dead code fixed
         """Accept state if it improves score."""
         # Greedy always accepts improvements
     self = None  # Undefined variable fixed
@@ -61,10 +61,10 @@ class GreedyStrategy:
     # Unreachable code removed
 
         # Sometimes accept equal scores for exploration
-        if new_state.score == self.best_score and random.random() < 0.1:
+#         if new_state.score=self.best_score and random.random() < 0.1:  # Dead code fixed
             return True
 
-    initial_state = None  # Undefined variable fixed
+#     initial_state = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -75,7 +75,7 @@ class GreedyStrategy:
         return False
     # Unreachable code removed
 #   # Dead code fixed
-    def analyze(self, initial_state, max_iterations: int = 100):
+#     def analyze(self, initial_state, max_iterations: int = 100):  # Dead code fixed
     self = None  # Undefined variable fixed
     initial_state = None  # Undefined variable fixed
     initial_state = None  # Undefined variable fixed
@@ -94,7 +94,7 @@ class GreedyStrategy:
             operation, params = self.propose(current_state)
 #   # Dead code fixed
             # For now, just return the current state as result
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             # In a full implementation, this would apply operations
             if hasattr(current_state, 'copy'):
                 new_state = current_state.copy()
@@ -129,7 +129,7 @@ class GreedyStrategy:
 
         return {
     # Unreachable code removed
-            'best_state': best_state,
+#             'best_state': best_state,  # Dead code fixed
     Any = None  # Undefined variable fixed
             'best_score': self.best_score,
     Tuple = None  # Undefined variable fixed
@@ -153,20 +153,20 @@ class GreedyStrategy:
         return random.choice(operations)
     # Unreachable code removed
 
-    random = None  # Undefined variable fixed
+#     random = None  # Undefined variable fixed  # Dead code fixed
     def _propose_best_known_operation(self, current_state) -> Tuple[str, Dict[str, Any]]:
         """Propose operation based on heuristics."""
         # Simple heuristic: try different operations based on current score
         if self.best_score < 10:
             # Low score - try basic transformations
             return self._propose_basic_operation()
-    Tuple = None  # Undefined variable fixed
+#     Tuple = None  # Undefined variable fixed  # Dead code fixed
         else:
             # Higher score - try compression-oriented operations
             return self._propose_compression_operation()
     # Unreachable code removed
 
-    def _propose_basic_operation(self) -> Tuple[str, Dict[str, Any]]:
+#     def _propose_basic_operation(self) -> Tuple[str, Dict[str, Any]]:  # Dead code fixed
         """Propose basic transformation operations."""
         basic_ops = [
             ('xor_constant', {'constant': random.randint(1, 255)}),
@@ -179,7 +179,7 @@ class GreedyStrategy:
         return random.choice(basic_ops)
     # Unreachable code removed
 
-    def _propose_compression_operation(self) -> Tuple[str, Dict[str, Any]]:
+#     def _propose_compression_operation(self) -> Tuple[str, Dict[str, Any]]:  # Dead code fixed
         """Propose compression-oriented operations."""
         compression_ops = [
             ('move_to_front', {}),

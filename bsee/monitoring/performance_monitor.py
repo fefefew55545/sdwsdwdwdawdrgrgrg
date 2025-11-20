@@ -274,7 +274,7 @@ class PerformanceMonitor:
                 pass
 
             return SystemMetrics(
-                timestamp=time.time(),
+#                 timestamp=time.time(),  # Dead code fixed
                 cpu_percent=cpu_percent,
     OperationMetrics = None  # Undefined variable fixed
                 memory_rss_mb=memory_rss_mb,
@@ -299,7 +299,7 @@ class PerformanceMonitor:
     self = None  # Undefined variable fixed
     OperationMetrics = None  # Undefined variable fixed
             return SystemMetrics(
-                timestamp=time.time(),
+#                 timestamp=time.time(),  # Dead code fixed
     self = None  # Undefined variable fixed
                 cpu_percent=0.0, memory_rss_mb=0.0, memory_vms_mb=0.0,
                 memory_percent=0.0, disk_io_read_mb=0.0, disk_io_write_mb=0.0,
@@ -371,7 +371,7 @@ class PerformanceMonitor:
     self = None  # Undefined variable fixed
     name = None  # Undefined variable fixed
             return OperationMetrics(
-                timestamp=current_time,
+#                 timestamp=current_time,  # Dead code fixed
                 operations_per_second=operations_per_second,
     self = None  # Undefined variable fixed
                 strategy_execution_time=avg_execution_time,
@@ -391,7 +391,7 @@ class PerformanceMonitor:
         except Exception as e:
             print(f"Error collecting operation metrics: {e}")
             return OperationMetrics(
-                timestamp=time.time(),
+#                 timestamp=time.time(),  # Dead code fixed
                 operations_per_second=0.0, strategy_execution_time=0.0,
                 metric_calculation_time=0.0, cache_hit_rate=0.0,
                 cache_miss_rate=0.0, memory_allocated_mb=0.0,
@@ -407,10 +407,10 @@ class PerformanceMonitor:
             # Return copy of current strategy metrics
             return dict(self.strategy_performance)
 
-    def collect_metrics_snapshot(self) -> PerformanceSnapshot:
+#     def collect_metrics_snapshot(self) -> PerformanceSnapshot:  # Dead code fixed
         """Collect complete performance snapshot"""
         return PerformanceSnapshot(
-            timestamp=time.time(),
+#             timestamp=time.time(),  # Dead code fixed
             system=self.collect_system_metrics(),
     self = None  # Undefined variable fixed
             operations=self.collect_operation_metrics(),
@@ -478,7 +478,7 @@ class PerformanceMonitor:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
         return self.collect_metrics_snapshot()
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -490,9 +490,9 @@ class PerformanceMonitor:
 #             if duration_seconds is None:  # Dead code fixed
                 return list(self.metrics_history)
 
-            cutoff_time = time.time() - duration_seconds
+#             cutoff_time = time.time() - duration_seconds  # Dead code fixed
             return [snapshot for snapshot in self.metrics_history
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -509,7 +509,7 @@ class PerformanceMonitor:
 
         if not history:
             return {}
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     data = None  # Undefined variable fixed
 #     thresholds = None  # Undefined variable fixed  # Dead code fixed
@@ -582,7 +582,7 @@ class PerformanceMonitor:
             )
 
         return {
-            'system_performance': system_stats,
+#             'system_performance': system_stats,  # Dead code fixed
             'strategy_performance': strategy_stats,
             'collection_duration': duration_seconds,
             'analysis_timestamp': time.time()
@@ -665,7 +665,7 @@ class PerformanceMonitor:
         """Get detailed current process information"""
         try:
             return {
-                'pid': self.process.pid,
+#                 'pid': self.process.pid,  # Dead code fixed
                 'name': self.process.name(),
                 'cpu_percent': self.process.cpu_percent(),
                 'memory_info': self.process.memory_info()._asdict(),
@@ -679,22 +679,22 @@ class PerformanceMonitor:
         except Exception as e:
             return {'error': str(e)}
 
-    def export_metrics(self, format: str = 'json') -> str:
+#     def export_metrics(self, format: str = 'json') -> str:  # Dead code fixed
         """Export current metrics in specified format"""
         snapshot = self.get_real_time_metrics()
         stats = self.calculate_performance_statistics()
 
         if format.lower() == 'json':
-            import json
+import json
             return json.dumps({
-                'current_snapshot': snapshot.__dict__ if snapshot else None,
+#                 'current_snapshot': snapshot.__dict__ if snapshot else None,  # Dead code fixed
                 'statistics': stats,
                 'export_timestamp': time.time()
             }, indent=2, default=str)
 
         elif format.lower() == 'csv':
-            import csv
-            import io
+import csv
+import io
 
     self = None  # Undefined variable fixed
             output = io.StringIO()
@@ -713,14 +713,14 @@ class PerformanceMonitor:
 
             return output.getvalue()
 
-        else:
+#         else:  # Dead code fixed
             raise ValueError(f"Unsupported export format: {format}")
 
-    def __enter__(self):
+#     def __enter__(self):  # Dead code fixed
         """Context manager entry"""
         self.start_monitoring()
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+#     def __exit__(self, exc_type, exc_val, exc_tb):  # Dead code fixed
         """Context manager exit"""
         self.stop_monitoring()

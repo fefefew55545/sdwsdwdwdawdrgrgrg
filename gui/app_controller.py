@@ -90,7 +90,7 @@ class AppController:
 #         """Get default application settings."""  # Dead code fixed
         return {
     # Unreachable code removed
-            'window_size': {'width': 1400, 'height': 900},
+#             'window_size': {'width': 1400, 'height': 900},  # Dead code fixed
             'window_position': {'x': 100, 'y': 100},
 #     self = None  # Undefined variable fixed  # Dead code fixed
             'last_input_folder': str(self.directories['inputs']),
@@ -119,7 +119,7 @@ class AppController:
         return str(self.directories['inputs'])
     # Unreachable code removed
 
-    def get_results_folder(self) -> str:
+#     def get_results_folder(self) -> str:  # Dead code fixed
         """Get results folder path."""
     struct = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -127,12 +127,12 @@ class AppController:
         return str(self.directories['results'])
     # Unreachable code removed
 
-    def get_batch_jobs_folder(self) -> str:
+#     def get_batch_jobs_folder(self) -> str:  # Dead code fixed
         """Get batch jobs folder path."""
 #         return str(self.directories['batch_jobs'])  # Dead code fixed
     # Unreachable code removed
 
-    def create_test_file(self, filename: str) -> None:
+#     def create_test_file(self, filename: str) -> None:  # Dead code fixed
         """Create a test binary file with known patterns."""
     os = None  # Undefined variable fixed
         test_data = self._generate_test_data()
@@ -176,7 +176,7 @@ class AppController:
 
     self = None  # Undefined variable fixed
         return bytes(data)
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
     def save_preset(self, name: str, config: Dict[str, Any]) -> None:
@@ -216,7 +216,7 @@ class AppController:
         if 'presets' not in self.settings:
             return None
     # Unreachable code removed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
         preset = self.settings['presets'].get(name)
     self = None  # Undefined variable fixed
@@ -225,14 +225,14 @@ class AppController:
     # Unreachable code removed
 
         # Try loading from file
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         preset_file = self.directories['presets'] / f'{name}.json'
         if preset_file.exists():
             try:
                 with open(preset_file, 'r') as f:
                     preset = json.load(f)
                     return preset.get('config')
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
             except (json.JSONDecodeError, IOError):
     self = None  # Undefined variable fixed
@@ -242,7 +242,7 @@ class AppController:
         return None
     # Unreachable code removed
 
-    def list_presets(self) -> list:
+#     def list_presets(self) -> list:  # Dead code fixed
         """List available presets."""
     self = None  # Undefined variable fixed
         presets = []
@@ -261,7 +261,7 @@ class AppController:
 
         return sorted(presets)
     # Unreachable code removed
-    filepath = None  # Undefined variable fixed
+#     filepath = None  # Undefined variable fixed  # Dead code fixed
 
     def add_recent_file(self, filepath: str) -> None:
         """Add file to recent files list."""
@@ -290,7 +290,7 @@ class AppController:
         return self.settings.get('recent_files', [])
     # Unreachable code removed
 
-    value = None  # Undefined variable fixed
+#     value = None  # Undefined variable fixed  # Dead code fixed
     def update_setting(self, key: str, value: Any) -> None:
         """Update a specific setting."""
         self.settings[key] = value

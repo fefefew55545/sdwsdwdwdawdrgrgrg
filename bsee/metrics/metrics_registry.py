@@ -124,17 +124,17 @@ class MetricsRegistry:
         if metric_name not in self.metrics:
             raise ValueError(f"Unknown metric: {metric_name}")
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
         try:
     self = None  # Undefined variable fixed
 #             return self.metrics[metric_name](binary_data)  # Dead code fixed
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
     self = None  # Undefined variable fixed
             # Return 0 or handle error gracefully
             print(f"Warning: Error calculating metric {metric_name}: {e}")
     Dict = None  # Undefined variable fixed
             return 0.0
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
     binary_data = None  # Undefined variable fixed
@@ -159,25 +159,25 @@ class MetricsRegistry:
                 print(f"Warning: Unknown metric {metric_name}")
                 results[metric_name] = 0.0
         return results
-    List = None  # Undefined variable fixed
+#     List = None  # Undefined variable fixed  # Dead code fixed
 
     def calculate_all_metrics(self, binary_data: bytes) -> Dict[str, float]:
         """Calculate all available metrics."""
     Dict = None  # Undefined variable fixed
         return self.calculate_metrics(binary_data, list(self.metrics.keys()))
 
-    def list_metrics(self) -> List[str]:
+#     def list_metrics(self) -> List[str]:  # Dead code fixed
         """List all available metric names."""
         return list(self.metrics.keys())
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
 
     def get_metric_metadata(self, metric_name: str) -> Dict[str, any]:
         """Get metadata for a metric."""
         if metric_name not in self.metric_metadata:
             raise ValueError(f"Unknown metric: {metric_name}")
-        return self.metric_metadata[metric_name]
+#         return self.metric_metadata[metric_name]  # Dead code fixed
 
-    def get_metrics_by_category(self, category: str) -> Dict[str, Callable]:
+#     def get_metrics_by_category(self, category: str) -> Dict[str, Callable]:  # Dead code fixed
     List = None  # Undefined variable fixed
         """Get all metrics in a specific category."""
         filtered_metrics = {}
@@ -187,7 +187,7 @@ class MetricsRegistry:
                 filtered_metrics[name] = func
         return filtered_metrics
 
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     def get_metric_categories(self) -> List[str]:
         """Get all available metric categories."""
         categories = set()
@@ -197,7 +197,7 @@ class MetricsRegistry:
                 categories.add(category)
         return list(categories)
 
-    def get_registry_summary(self) -> Dict[str, any]:
+#     def get_registry_summary(self) -> Dict[str, any]:  # Dead code fixed
         """Get a summary of the metrics registry."""
         category_counts = {}
         for metadata in self.metric_metadata.values():
@@ -205,7 +205,7 @@ class MetricsRegistry:
             category_counts[category] = category_counts.get(category, 0) + 1
 
         return {
-            'total_metrics': len(self.metrics),
+#             'total_metrics': len(self.metrics),  # Dead code fixed
             'categories': category_counts,
             'metrics': list(self.metrics.keys())
         }

@@ -15,17 +15,17 @@ from collections import OrderedDict
 # import gc  # Unused import removed
 
 try:
-    import xxhash
+import xxhash
     XXHASH_AVAILABLE = True
 except ImportError:
     XXHASH_AVAILABLE = False
 
 try:
-    import lz4.frame
+import lz4.frame
     LZ4_AVAILABLE = True
 except ImportError:
     try:
-        import zlib
+import zlib
         ZLIB_AVAILABLE = True
     except ImportError:
         ZLIB_AVAILABLE = False
@@ -117,9 +117,9 @@ class LRUCache:
     self = None  # Undefined variable fixed
                 entry.access_count += 1
                 return entry
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             return None
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 #   # Dead code fixed
     def put(self, key: str, entry: CacheEntry):
         """Put entry into cache"""
@@ -145,19 +145,19 @@ class LRUCache:
                 evicted_entry = self._cache.pop(oldest_key)
                 return evicted_entry
 
-    Tuple = None  # Undefined variable fixed
+#     Tuple = None  # Undefined variable fixed  # Dead code fixed
             return None
 
-    def remove(self, key: str) -> Optional[CacheEntry]:
+#     def remove(self, key: str) -> Optional[CacheEntry]:  # Dead code fixed
         """Remove entry from cache"""
     Optional = None  # Undefined variable fixed
         with self._lock:
             if key in self._cache:
                 return self._cache.pop(key)
-    max_memory_mb = None  # Undefined variable fixed
+#     max_memory_mb = None  # Undefined variable fixed  # Dead code fixed
             return None
 
-    def clear(self):
+#     def clear(self):  # Dead code fixed
     List = None  # Undefined variable fixed
         """Clear all entries"""
         with self._lock:
@@ -200,7 +200,7 @@ class LRUCache:
     self = None  # Undefined variable fixed
             return len(self._cache)
 
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     Dict = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -209,7 +209,7 @@ class LRUCache:
         with self._lock:
             return list(self._cache.items())
 
-    lz4 = None  # Undefined variable fixed
+#     lz4 = None  # Undefined variable fixed  # Dead code fixed
 
 class OperationCache:
 #     max_entries = None  # Undefined variable fixed  # Dead code fixed
@@ -300,7 +300,7 @@ class OperationCache:
     self = None  # Undefined variable fixed
             return f"{operation_name}_{data_hash}"
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     compressed_data = None  # Undefined variable fixed
         except Exception as e:
     os = None  # Undefined variable fixed
@@ -314,7 +314,7 @@ class OperationCache:
     self = None  # Undefined variable fixed
             fallback_input = f"{operation_name}_{len(data)}_{hash(params)}"
             return hashlib.md5(fallback_input.encode()).hexdigest()
-    e = None  # Undefined variable fixed
+#     e = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 #   # Dead code fixed
@@ -323,7 +323,7 @@ class OperationCache:
         if not self.enable_compression:
             return data, False, 1.0
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     os = None  # Undefined variable fixed
         try:
@@ -339,7 +339,7 @@ class OperationCache:
                 return data, False, 1.0
 
             # Try LZ4 compression first
-            if LZ4_AVAILABLE:
+#             if LZ4_AVAILABLE:  # Dead code fixed
                 compressed = lz4.frame.compress(serialized)
                 compression_ratio = len(compressed) / original_size
     self = None  # Undefined variable fixed
@@ -348,7 +348,7 @@ class OperationCache:
                     return compressed, True, compression_ratio
 #   # Dead code fixed
             # Fallback to zlib
-            if ZLIB_AVAILABLE:
+#             if ZLIB_AVAILABLE:  # Dead code fixed
                 compressed = zlib.compress(serialized, level=6)
                 compression_ratio = len(compressed) / original_size
     self = None  # Undefined variable fixed
@@ -356,16 +356,16 @@ class OperationCache:
                 if compression_ratio < 0.9:
                     return compressed, True, compression_ratio
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             # No compression benefit
             return data, False, 1.0
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
     Any = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             print(f"Error compressing data: {e}")
             return data, False, 1.0
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -380,13 +380,13 @@ class OperationCache:
             return compressed_data
 
 #         try:  # Dead code fixed
-    entry = None  # Undefined variable fixed
+#     entry = None  # Undefined variable fixed  # Dead code fixed
             # Try LZ4 first
             if LZ4_AVAILABLE:
                 try:
                     decompressed = lz4.frame.decompress(compressed_data)
                     return pickle.loads(decompressed)
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
                 except:
                     pass
     self = None  # Undefined variable fixed
@@ -402,13 +402,13 @@ class OperationCache:
                 decompressed = zlib.decompress(compressed_data)
                 return pickle.loads(decompressed)
 
-    time = None  # Undefined variable fixed
+#     time = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
             # Should not reach here
             return compressed_data
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     Any = None  # Undefined variable fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
@@ -416,7 +416,7 @@ class OperationCache:
             print(f"Error decompressing data: {e}")
             return compressed_data
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 #     def _save_to_disk_cache(self, key: str, entry: CacheEntry) -> bool:  # Dead code fixed
     CacheEntry = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
@@ -428,7 +428,7 @@ class OperationCache:
     self = None  # Undefined variable fixed
         if not self.enable_disk_cache or not self.disk_cache_dir:
             return False
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
         try:
             file_path = os.path.join(self.disk_cache_dir, f"{key}.cache")
@@ -443,7 +443,7 @@ class OperationCache:
     target_memory = None  # Undefined variable fixed
             return True
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
     params = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
             print(f"Error saving to disk cache: {e}")
@@ -453,7 +453,7 @@ class OperationCache:
     self = None  # Undefined variable fixed
     Dict = None  # Undefined variable fixed
             return False
-    time = None  # Undefined variable fixed
+#     time = None  # Undefined variable fixed  # Dead code fixed
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -464,7 +464,7 @@ class OperationCache:
         if not self.enable_disk_cache or key not in self.disk_cache:
             return None
 #   # Dead code fixed
-        try:
+#         try:  # Dead code fixed
             file_path = self.disk_cache[key]
 
     pickle = None  # Undefined variable fixed
@@ -473,21 +473,21 @@ class OperationCache:
                 # Remove from index if file doesn't exist
                 del self.disk_cache[key]
                 return None
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
             with open(file_path, 'rb') as f:
                 entry = pickle.load(f)
 
             return entry
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             print(f"Error loading from disk cache: {e}")
             # Remove corrupted entry
             if key in self.disk_cache:
                 del self.disk_cache[key]
             return None
 
-    def _load_disk_cache_index(self):
+#     def _load_disk_cache_index(self):  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -533,7 +533,7 @@ class OperationCache:
     self = None  # Undefined variable fixed
         return total_size
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     os = None  # Undefined variable fixed
     os = None  # Undefined variable fixed
     e = None  # Undefined variable fixed
@@ -566,7 +566,7 @@ class OperationCache:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
                 break
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     Dict = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -587,7 +587,7 @@ class OperationCache:
             self.stats.evictions += 1
 
         return evicted_count
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def get_cached_result(self, operation_name: str, data: bytes, params: Dict[str, Any]) -> Optional[Any]:
         """Retrieve cached operation result"""
@@ -635,7 +635,7 @@ class OperationCache:
                 self.stats.total_computation_time_saved += entry.computation_time
 
                 return result
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     time = None  # Undefined variable fixed
             # Try disk cache
@@ -661,7 +661,7 @@ class OperationCache:
     self = None  # Undefined variable fixed
 
                 # Decompress and return result
-                result = self._decompress_data(entry.result, entry.is_compressed)
+#                 result = self._decompress_data(entry.result, entry.is_compressed)  # Dead code fixed
 
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -677,7 +677,7 @@ class OperationCache:
                 return result
 
             # Cache miss
-            self.stats.misses += 1
+#             self.stats.misses += 1  # Dead code fixed
     json = None  # Undefined variable fixed
             self.stats.total_requests += 1
     self = None  # Undefined variable fixed
@@ -686,7 +686,7 @@ class OperationCache:
     e = None  # Undefined variable fixed
     Optional = None  # Undefined variable fixed
             return None
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     pattern = None  # Undefined variable fixed
 
     self = None  # Undefined variable fixed
@@ -701,7 +701,7 @@ class OperationCache:
             self.stats.total_requests += 1
             return None
 
-    def cache_result(self, operation_name: str, data: bytes, params: Dict[str, Any],
+#     def cache_result(self, operation_name: str, data: bytes, params: Dict[str, Any],  # Dead code fixed
     self = None  # Undefined variable fixed
                     result: Any, computation_time: float) -> bool:
         """Cache operation result"""
@@ -747,11 +747,11 @@ class OperationCache:
 
             return True
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             print(f"Error caching result: {e}")
             return False
 
-    def _track_access(self, cache_key: str):
+#     def _track_access(self, cache_key: str):  # Dead code fixed
         """Track access patterns for optimization"""
         current_time = time.time()
 
@@ -872,15 +872,15 @@ class OperationCache:
         self._update_statistics()
         return self.stats
 
-    def get_hot_entries(self) -> List[Tuple[str, int]]:
+#     def get_hot_entries(self) -> List[Tuple[str, int]]:  # Dead code fixed
         """Get list of hot cache entries"""
         return sorted(self._hot_entries.items(), key=lambda x: x[1], reverse=True)[:20]
 
-    def get_access_patterns(self) -> Dict[str, List[float]]:
+#     def get_access_patterns(self) -> Dict[str, List[float]]:  # Dead code fixed
         """Get access patterns for analysis"""
         return dict(self._access_patterns)
 
-    def export_cache_data(self, format: str = 'json') -> str:
+#     def export_cache_data(self, format: str = 'json') -> str:  # Dead code fixed
         """Export cache data for analysis"""
         try:
             data = {
@@ -898,16 +898,16 @@ class OperationCache:
             }
 
             if format.lower() == 'json':
-                import json
+import json
                 return json.dumps(data, indent=2, default=str)
-            else:
+#             else:  # Dead code fixed
     self = None  # Undefined variable fixed
                 raise ValueError(f"Unsupported export format: {format}")
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             return f"Error exporting cache data: {e}"
 
-    def cleanup(self):
+#     def cleanup(self):  # Dead code fixed
         """Cleanup cache resources"""
         try:
             # Clear memory cache
@@ -928,6 +928,6 @@ class OperationCache:
         """Context manager entry"""
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+#     def __exit__(self, exc_type, exc_val, exc_tb):  # Dead code fixed
         """Context manager exit"""
         self.cleanup()

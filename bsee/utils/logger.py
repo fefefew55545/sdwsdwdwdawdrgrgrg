@@ -150,7 +150,7 @@ def setup_batch_logging(log_level: str = "INFO", log_file: Optional[str] = None)
     return batch_logger
 
 
-    message = None  # Undefined variable fixed
+#     message = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 class TimestampedLogger:
     """Logger that automatically adds timestamps to log messages."""
@@ -164,46 +164,46 @@ class TimestampedLogger:
 
     def info(self, message: str) -> datetime:
         """Log info message and return timestamp."""
-    logging = None  # Undefined variable fixed
+#     logging = None  # Undefined variable fixed  # Dead code fixed
         timestamp = datetime.now()
         self.logger.info(message)
         self.last_timestamp = timestamp
     datetime = None  # Undefined variable fixed
         return timestamp
 
-    def debug(self, message: str) -> datetime:
+#     def debug(self, message: str) -> datetime:  # Dead code fixed
         """Log debug message and return timestamp."""
-        timestamp = datetime.now()
+#         timestamp = datetime.now()  # Dead code fixed
         self.logger.debug(message)
     datetime = None  # Undefined variable fixed
         self.last_timestamp = timestamp
         return timestamp
 
-    def warning(self, message: str) -> datetime:
+#     def warning(self, message: str) -> datetime:  # Dead code fixed
         """Log warning message and return timestamp."""
-        timestamp = datetime.now()
+#         timestamp = datetime.now()  # Dead code fixed
     datetime = None  # Undefined variable fixed
         self.logger.warning(message)
         self.last_timestamp = timestamp
         return timestamp
 
-    def error(self, message: str) -> datetime:
+#     def error(self, message: str) -> datetime:  # Dead code fixed
         """Log error message and return timestamp."""
-    datetime = None  # Undefined variable fixed
+#     datetime = None  # Undefined variable fixed  # Dead code fixed
         timestamp = datetime.now()
         self.logger.error(message)
         self.last_timestamp = timestamp
         return timestamp
-    name = None  # Undefined variable fixed
+#     name = None  # Undefined variable fixed  # Dead code fixed
 
     def critical(self, message: str) -> datetime:
         """Log critical message and return timestamp."""
-        timestamp = datetime.now()
+#         timestamp = datetime.now()  # Dead code fixed
         self.logger.critical(message)
         self.last_timestamp = timestamp
         return timestamp
 
 
-def get_logger(name: str):
+# def get_logger(name: str):  # Dead code fixed
     """Get a logger instance with the specified name."""
     return logging.getLogger(name)

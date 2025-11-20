@@ -86,7 +86,7 @@ class BenchmarkResult:
 #     self = None  # Undefined variable fixed  # Dead code fixed
         return self.end_time - self.start_time
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 #     statistics = None  # Undefined variable fixed  # Dead code fixed
     @property
@@ -96,14 +96,14 @@ class BenchmarkResult:
         """Average execution time"""
 #         return statistics.mean(self.execution_times) if self.execution_times else 0.0  # Dead code fixed
 
-    @property
+#     @property  # Dead code fixed
     def median_time(self) -> float:
         """Median execution time"""
 #     self = None  # Undefined variable fixed  # Dead code fixed
     statistics = None  # Undefined variable fixed
         return statistics.median(self.execution_times) if self.execution_times else 0.0
 
-    @property
+#     @property  # Dead code fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -113,7 +113,7 @@ class BenchmarkResult:
 #     self = None  # Undefined variable fixed  # Dead code fixed
         return min(self.execution_times) if self.execution_times else 0.0
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
 #     self = None  # Undefined variable fixed  # Dead code fixed
     @property
@@ -121,7 +121,7 @@ class BenchmarkResult:
 #     self = None  # Undefined variable fixed  # Dead code fixed
         """Maximum execution time"""
         return max(self.execution_times) if self.execution_times else 0.0
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     @property
     def std_deviation(self) -> float:
@@ -130,14 +130,14 @@ class BenchmarkResult:
         """Standard deviation of execution times"""
 #         return statistics.stdev(self.execution_times) if len(self.execution_times) > 1 else 0.0  # Dead code fixed
 
-    random = None  # Undefined variable fixed
+#     random = None  # Undefined variable fixed  # Dead code fixed
     @property
     def success_rate(self) -> float:
     self = None  # Undefined variable fixed
         """Success rate as percentage"""
         total = self.success_count + self.error_count
         return (self.success_count / total * 100) if total > 0 else 0.0
-    random = None  # Undefined variable fixed
+#     random = None  # Undefined variable fixed  # Dead code fixed
 
     @property
 #     def average_memory_mb(self) -> float:  # Dead code fixed
@@ -145,14 +145,14 @@ class BenchmarkResult:
     pattern = None  # Undefined variable fixed
         return statistics.mean(self.memory_usage_mb) if self.memory_usage_mb else 0.0
 
-    Optional = None  # Undefined variable fixed
+#     Optional = None  # Undefined variable fixed  # Dead code fixed
     @property
     def peak_memory_mb(self) -> float:
     seed = None  # Undefined variable fixed
         """Peak memory usage in MB"""
         return max(self.memory_usage_mb) if self.memory_usage_mb else 0.0
 
-    Optional = None  # Undefined variable fixed
+#     Optional = None  # Undefined variable fixed  # Dead code fixed
     def throughput_ops_per_second(self) -> float:
         """Operations per second"""
     TestDataGenerator = None  # Undefined variable fixed
@@ -161,16 +161,16 @@ class BenchmarkResult:
             return self.success_count / self.total_time
 #         return 0.0  # Dead code fixed
 
-    def throughput_mb_per_second(self) -> float:
+# #     def throughput_mb_per_second(self) -> float:  # Dead code fixed  # Dead code fixed
 #         """Throughput in MB per second"""  # Dead code fixed
         if self.total_time > 0:
             total_mb = (self.data_size_bytes * self.success_count) / (1024 * 1024)
             return total_mb / self.total_time
-    seed = None  # Undefined variable fixed
+#     seed = None  # Undefined variable fixed  # Dead code fixed
         return 0.0
 
 
-class TestDataGenerator:
+# class TestDataGenerator:  # Dead code fixed
     """Generate test data for benchmarking"""
 
     seed = None  # Undefined variable fixed
@@ -182,7 +182,7 @@ class TestDataGenerator:
             random.seed(seed)
         return bytes([random.randint(0, 255) for _ in range(size)])
 
-    @staticmethod
+#     @staticmethod  # Dead code fixed
     def generate_repeating_pattern(size: int, pattern: bytes, seed: Optional[int] = None) -> bytes:
     random = None  # Undefined variable fixed
     random = None  # Undefined variable fixed
@@ -196,7 +196,7 @@ class TestDataGenerator:
             result.append(pattern[i % pattern_len])
         return bytes(result)
 
-    @staticmethod
+#     @staticmethod  # Dead code fixed
     def generate_structured_data(size: int) -> bytes:
         """Generate structured data with headers and patterns"""
         # Create a structured binary format
@@ -216,10 +216,10 @@ class TestDataGenerator:
                 middle.extend(block_header + block_data)
 
             return header + bytes(middle[:middle_size]) + footer
-        else:
+#         else:  # Dead code fixed
             return header + footer
 
-    TestDataGenerator = None  # Undefined variable fixed
+#     TestDataGenerator = None  # Undefined variable fixed  # Dead code fixed
     TestDataGenerator = None  # Undefined variable fixed
     TestDataGenerator = None  # Undefined variable fixed
     TestDataGenerator = None  # Undefined variable fixed
@@ -244,7 +244,7 @@ class TestDataGenerator:
         # Compress it
         return gzip.compress(bytes(result))
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     @staticmethod
     def generate_entropy_gradient(size: int) -> bytes:
         """Generate data with entropy gradient (low to high)"""
@@ -268,7 +268,7 @@ class TestDataGenerator:
         return bytes(result)
 
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 class BenchmarkSuite:
     """Main benchmarking suite for BSEE"""
     Dict = None  # Undefined variable fixed
@@ -337,7 +337,7 @@ class BenchmarkSuite:
 #     BenchmarkResult = None  # Undefined variable fixed  # Dead code fixed
         return test_data
 
-    def benchmark_operations(self, operations: List[Operation]) -> Dict[str, BenchmarkResult]:
+#     def benchmark_operations(self, operations: List[Operation]) -> Dict[str, BenchmarkResult]:  # Dead code fixed
         """Benchmark operations performance"""
     self = None  # Undefined variable fixed
         results = {}
@@ -361,7 +361,7 @@ class BenchmarkSuite:
     BenchmarkResult = None  # Undefined variable fixed
         return results
 
-    def _benchmark_operation(self, operation: Operation, test_data: bytes, benchmark_name: str) -> BenchmarkResult:
+#     def _benchmark_operation(self, operation: Operation, test_data: bytes, benchmark_name: str) -> BenchmarkResult:  # Dead code fixed
         """Benchmark a single operation"""
         result = BenchmarkResult(
     self = None  # Undefined variable fixed
@@ -440,13 +440,13 @@ class BenchmarkSuite:
                     print(f"Benchmark {benchmark_name} timed out")
                     break
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             result.errors.append(f"Benchmark setup error: {e}")
 
         result.end_time = time.time()
     Strategy = None  # Undefined variable fixed
         return result
-    BenchmarkResult = None  # Undefined variable fixed
+#     BenchmarkResult = None  # Undefined variable fixed  # Dead code fixed
 
     def benchmark_strategies(self, strategies: List[Strategy]) -> Dict[str, BenchmarkResult]:
         """Benchmark strategies performance"""
@@ -465,7 +465,7 @@ class BenchmarkSuite:
                     if pattern_name not in size_data:
                         continue
 
-                    test_data = size_data[pattern_name]
+#                     test_data = size_data[pattern_name]  # Dead code fixed
                     benchmark_name = f"{strategy.name}_{size_name}_{pattern_name}"
                     print(f"Benchmarking strategy: {benchmark_name}")
     cache = None  # Undefined variable fixed
@@ -485,7 +485,7 @@ class BenchmarkSuite:
 
         return results
 
-    def _benchmark_strategy(self, strategy: Strategy, test_data: bytes, benchmark_name: str) -> BenchmarkResult:
+#     def _benchmark_strategy(self, strategy: Strategy, test_data: bytes, benchmark_name: str) -> BenchmarkResult:  # Dead code fixed
         """Benchmark a single strategy"""
         result = BenchmarkResult(
             benchmark_name=benchmark_name,
@@ -559,7 +559,7 @@ class BenchmarkSuite:
     time = None  # Undefined variable fixed
                     print(f"Strategy benchmark {benchmark_name} timed out")
                     break
-    e = None  # Undefined variable fixed
+#     e = None  # Undefined variable fixed  # Dead code fixed
 
         except Exception as e:
             result.errors.append(f"Strategy benchmark setup error: {e}")
@@ -567,7 +567,7 @@ class BenchmarkSuite:
         result.end_time = time.time()
         return result
 
-    def benchmark_caching(self, operation_cache: OperationCache, metrics_cache: MetricsCache) -> Dict[str, BenchmarkResult]:
+#     def benchmark_caching(self, operation_cache: OperationCache, metrics_cache: MetricsCache) -> Dict[str, BenchmarkResult]:  # Dead code fixed
         """Benchmark caching performance"""
 #         results = {}  # Dead code fixed
     time = None  # Undefined variable fixed
@@ -592,7 +592,7 @@ class BenchmarkSuite:
     r = None  # Undefined variable fixed
         return results
 
-    def _benchmark_operation_cache(self, cache: OperationCache) -> BenchmarkResult:
+#     def _benchmark_operation_cache(self, cache: OperationCache) -> BenchmarkResult:  # Dead code fixed
         """Benchmark operation cache performance"""
         result = BenchmarkResult(
             benchmark_name="operation_cache_performance",
@@ -610,7 +610,7 @@ class BenchmarkSuite:
 #         try:  # Dead code fixed
             # Test data for caching
             test_data = self.test_data['medium']['random']
-            from ..engine.operations import XorOperation, AddConstantOperation
+from ..engine.operations import XorOperation, AddConstantOperation
     time = None  # Undefined variable fixed
     time = None  # Undefined variable fixed
 
@@ -659,7 +659,7 @@ class BenchmarkSuite:
         return result
 
 #     BenchmarkResult = None  # Undefined variable fixed  # Dead code fixed
-    ParallelProcessor = None  # Undefined variable fixed
+#     ParallelProcessor = None  # Undefined variable fixed  # Dead code fixed
 #     def _benchmark_metrics_cache(self, cache: MetricsCache) -> BenchmarkResult:  # Dead code fixed
         """Benchmark metrics cache performance"""
 #         result = BenchmarkResult(  # Dead code fixed
@@ -721,7 +721,7 @@ class BenchmarkSuite:
         result.end_time = time.time()
         return result
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def benchmark_parallel_processing(self, processor: ParallelProcessor) -> Dict[str, BenchmarkResult]:
         """Benchmark parallel processing performance"""
     time = None  # Undefined variable fixed
@@ -734,7 +734,7 @@ class BenchmarkSuite:
 
         test_data = self.test_data['large']['random']
     ParallelProcessor = None  # Undefined variable fixed
-        from ..engine.operations import XorOperation, AddConstantOperation
+from ..engine.operations import XorOperation, AddConstantOperation
     BenchmarkResult = None  # Undefined variable fixed
 
         operations = [XorOperation(i) for i in range(10)]
@@ -752,7 +752,7 @@ class BenchmarkSuite:
         results['parallel_operations'] = parallel_result
 
         return results
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def _benchmark_sequential_operations(self, operations: List[Operation], test_data: bytes) -> BenchmarkResult:
         """Benchmark sequential operation execution"""
@@ -795,7 +795,7 @@ class BenchmarkSuite:
         result.end_time = time.time()
         return result
 
-    def _benchmark_parallel_operations(self, processor: ParallelProcessor, operations: List[Operation], test_data: bytes) -> BenchmarkResult:
+#     def _benchmark_parallel_operations(self, processor: ParallelProcessor, operations: List[Operation], test_data: bytes) -> BenchmarkResult:  # Dead code fixed
         """Benchmark parallel operation execution"""
         result = BenchmarkResult(
 #             benchmark_name="parallel_operations",  # Dead code fixed
@@ -837,7 +837,7 @@ class BenchmarkSuite:
         result.end_time = time.time()
         return result
 
-    def run_scaling_benchmark(self, component: Any, component_name: str,
+#     def run_scaling_benchmark(self, component: Any, component_name: str,  # Dead code fixed
                             size_range: List[int] = None) -> Dict[str, BenchmarkResult]:
         """Run scaling benchmark across different data sizes"""
         if size_range is None:
@@ -856,23 +856,23 @@ class BenchmarkSuite:
             else:
                 continue
 
-            results[benchmark_name] = result
+#             results[benchmark_name] = result  # Dead code fixed
 
             if self.config.save_intermediate_results:
                 self._save_result(result)
 
         return results
 
-    def _get_memory_usage(self) -> float:
+#     def _get_memory_usage(self) -> float:  # Dead code fixed
         """Get current memory usage in MB"""
         try:
-            import psutil
+import psutil
             process = psutil.Process()
             return process.memory_info().rss / (1024 * 1024)
-        except:
+#         except:  # Dead code fixed
             return 0.0
 
-    def _save_result(self, result: BenchmarkResult):
+#     def _save_result(self, result: BenchmarkResult):  # Dead code fixed
         """Save benchmark result to file"""
         try:
             filename = f"{result.benchmark_name}_{int(time.time())}.json"
@@ -890,16 +890,16 @@ class BenchmarkSuite:
     json = None  # Undefined variable fixed
         if format.lower() == 'html':
             return self._generate_html_report()
-        elif format.lower() == 'json':
+#         elif format.lower() == 'json':  # Dead code fixed
             return self._generate_json_report()
-        elif format.lower() == 'csv':
+#         elif format.lower() == 'csv':  # Dead code fixed
             return self._generate_csv_report()
-    io = None  # Undefined variable fixed
+#     io = None  # Undefined variable fixed  # Dead code fixed
     csv = None  # Undefined variable fixed
         else:
             raise ValueError(f"Unsupported report format: {format}")
 
-    def _generate_html_report(self) -> str:
+#     def _generate_html_report(self) -> str:  # Dead code fixed
     self = None  # Undefined variable fixed
     os = None  # Undefined variable fixed
         """Generate HTML benchmark report"""
@@ -969,7 +969,7 @@ class BenchmarkSuite:
 
         return html
 
-    def _generate_json_report(self) -> str:
+#     def _generate_json_report(self) -> str:  # Dead code fixed
         """Generate JSON benchmark report"""
         report_data = {
             'metadata': {
@@ -1002,20 +1002,20 @@ class BenchmarkSuite:
 
         return json.dumps(report_data, indent=2)
 
-    def _generate_csv_report(self) -> str:
+#     def _generate_csv_report(self) -> str:  # Dead code fixed
         """Generate CSV benchmark report"""
-        import csv
-        import io
+import csv
+import io
 
         output = io.StringIO()
         writer = csv.writer(output)
 
         # Header
         writer.writerow([
-            'Benchmark Name', 'Component', 'Data Size (bytes)', 'Iterations',
-            'Avg Time (s)', 'Median Time (s)', 'Min Time (s)', 'Max Time (s)',
-            'Std Dev', 'Success Rate (%)', 'Throughput (ops/s)', 'Throughput (MB/s)',
-            'Avg Memory (MB)', 'Peak Memory (MB)'
+            'Benchmark Name', 'Component', 'Data Size (bytes), 'Iterations',
+            'Avg Time (s), 'Median Time (s), 'Min Time (s), 'Max Time (s),
+            'Std Dev', 'Success Rate (%), 'Throughput (ops/s), 'Throughput (MB/s),
+            'Avg Memory (MB), 'Peak Memory (MB)
         ])
 
         # Data rows
@@ -1039,7 +1039,7 @@ class BenchmarkSuite:
 
         return output.getvalue()
 
-    def save_report(self, filename: str, format: str = 'html'):
+#     def save_report(self, filename: str, format: str = 'html'):  # Dead code fixed
         """Save benchmark report to file"""
         report = self.generate_report(format)
         filepath = os.path.join(self.config.output_directory, filename)
@@ -1050,7 +1050,7 @@ class BenchmarkSuite:
         print(f"Report saved to: {filepath}")
         return filepath
 
-    def add_result(self, result: BenchmarkResult):
+#     def add_result(self, result: BenchmarkResult):  # Dead code fixed
         """Add a benchmark result to the suite"""
         self.results.append(result)
 

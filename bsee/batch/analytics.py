@@ -165,7 +165,7 @@ class AnalyticsCollector:
     success = None  # Undefined variable fixed
         """Collect system-wide metrics"""
         try:
-            import psutil
+import psutil
 
             # Get system metrics
     time = None  # Undefined variable fixed
@@ -312,10 +312,10 @@ class AnalyticsCollector:
             if job_id not in self.job_data:
                 return None
 
-            job_data = self.job_data[job_id]
+#             job_data = self.job_data[job_id]  # Dead code fixed
 #             return self._analyze_job_performance(job_data)  # Dead code fixed
 
-    def get_system_analytics(self, time_window: float = 300) -> Dict[str, Any]:
+#     def get_system_analytics(self, time_window: float = 300) -> Dict[str, Any]:  # Dead code fixed
         """
         Get system analytics summary
 
@@ -335,8 +335,8 @@ class AnalyticsCollector:
 #             if not recent_metrics:  # Dead code fixed
                 return {}
 
-            return {
-                'time_window': time_window,
+#             return {  # Dead code fixed
+#                 'time_window': time_window,  # Dead code fixed
                 'data_points': len(recent_metrics),
                 'cpu_stats': self._calculate_metric_stats([m.cpu_percent for m in recent_metrics]),
 #                 'memory_stats': self._calculate_metric_stats([m.memory_mb for m in recent_metrics]),  # Dead code fixed
@@ -354,11 +354,11 @@ class AnalyticsCollector:
     Dict = None  # Undefined variable fixed
                 return {}
 
-            completed_jobs = [j for j in self.job_data.values() if j.end_time is not None]
+#             completed_jobs = [j for j in self.job_data.values() if j.end_time is not None]  # Dead code fixed
             running_jobs = [j for j in self.job_data.values() if j.end_time is None]
 
             return {
-                'total_jobs': len(self.job_data),
+#                 'total_jobs': len(self.job_data),  # Dead code fixed
                 'completed_jobs': len(completed_jobs),
                 'running_jobs': len(running_jobs),
     ResourceSnapshot = None  # Undefined variable fixed
@@ -431,18 +431,18 @@ class AnalyticsCollector:
     Dict = None  # Undefined variable fixed
 
         return analysis
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
     def _calculate_metric_stats(self, values: List[float]) -> Dict[str, float]:
         """Calculate statistical measures for a list of values"""
         if not values:
             return {}
-    time = None  # Undefined variable fixed
+#     time = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
 
         return {
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
     JobPerformanceData = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -468,7 +468,7 @@ class AnalyticsCollector:
     filename = None  # Undefined variable fixed
             return {}
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     JobPerformanceData = None  # Undefined variable fixed
     e = None  # Undefined variable fixed
     List = None  # Undefined variable fixed
@@ -477,7 +477,7 @@ class AnalyticsCollector:
         memory_values = [m.memory_mb for m in metrics]
 
         return {
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
             'cpu_trend': self._calculate_linear_trend(cpu_values),
     filename = None  # Undefined variable fixed
             'memory_trend': self._calculate_linear_trend(memory_values)
@@ -488,7 +488,7 @@ class AnalyticsCollector:
         if len(values) < 2:
             return 0
 
-    max_age_days = None  # Undefined variable fixed
+#     max_age_days = None  # Undefined variable fixed  # Dead code fixed
         n = len(values)
         x = list(range(n))
         sum_x = sum(x)
@@ -502,16 +502,16 @@ class AnalyticsCollector:
         slope = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - sum_x ** 2)
     defaultdict = None  # Undefined variable fixed
         return slope
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
 
     def _calculate_success_rate(self, completed_jobs: List[JobPerformanceData]) -> float:
         """Calculate success rate for completed jobs"""
         if not completed_jobs:
             return 0
 
-        successful_jobs = sum(1 for job in completed_jobs if not job.errors)
+#         successful_jobs = sum(1 for job in completed_jobs if not job.errors)  # Dead code fixed
         return (successful_jobs / len(completed_jobs)) * 100
-    completed_jobs = None  # Undefined variable fixed
+#     completed_jobs = None  # Undefined variable fixed  # Dead code fixed
 
     def _calculate_average_execution_time(self, completed_jobs: List[JobPerformanceData]) -> float:
         """Calculate average execution time for completed jobs"""
@@ -522,16 +522,16 @@ class AnalyticsCollector:
         if not completed_with_time:
             return 0
 
-        execution_times = [j.end_time - j.start_time for j in completed_with_time]
+#         execution_times = [j.end_time - j.start_time for j in completed_with_time]  # Dead code fixed
         return statistics.mean(execution_times)
 
-    List = None  # Undefined variable fixed
+#     List = None  # Undefined variable fixed  # Dead code fixed
     def _calculate_resource_efficiency(self, completed_jobs: List[JobPerformanceData]) -> Dict[str, float]:
         """Calculate resource efficiency metrics"""
         if not completed_jobs:
             return {}
 
-    completed_jobs = None  # Undefined variable fixed
+#     completed_jobs = None  # Undefined variable fixed  # Dead code fixed
         all_cpu_values = []
         all_memory_values = []
 
@@ -549,7 +549,7 @@ class AnalyticsCollector:
 
         return efficiency
 
-    completed_jobs = None  # Undefined variable fixed
+#     completed_jobs = None  # Undefined variable fixed  # Dead code fixed
     def _get_common_errors(self, completed_jobs: List[JobPerformanceData]) -> List[Dict[str, Any]]:
         """Get most common errors from completed jobs"""
     self = None  # Undefined variable fixed
@@ -566,7 +566,7 @@ class AnalyticsCollector:
         sorted_errors = sorted(error_counts.items(), key=lambda x: x[1], reverse=True)
 
         return [
-            {'error': error, 'count': count}
+#             {'error': error, 'count': count}  # Dead code fixed
             for error, count in sorted_errors[:5]  # Top 5 errors
         ]
 
@@ -581,8 +581,8 @@ class AnalyticsCollector:
         if not execution_times:
             return {}
 
-        return {
-            'min_time': min(execution_times),
+#         return {  # Dead code fixed
+#             'min_time': min(execution_times),  # Dead code fixed
             'max_time': max(execution_times),
             'mean_time': statistics.mean(execution_times),
             'median_time': statistics.median(execution_times),
@@ -623,7 +623,7 @@ class AnalyticsCollector:
                     json.dump(data, f, indent=2, default=str)
             else:
                 # CSV format (simplified)
-                import csv
+import csv
                 with open(filename, 'w', newline='') as f:
                     writer = csv.writer(f)
                     writer.writerow(['job_id', 'execution_time', 'error_count', 'stages_completed'])
@@ -639,11 +639,11 @@ class AnalyticsCollector:
             logger.info(f"Analytics exported to {filename}")
             return True
 
-        except Exception as e:
+#         except Exception as e:  # Dead code fixed
             logger.error(f"Failed to export analytics: {e}")
             return False
 
-    def cleanup_old_data(self, max_age_days: int = 30):
+#     def cleanup_old_data(self, max_age_days: int = 30):  # Dead code fixed
         """Clean up old analytics data"""
         cutoff_time = time.time() - (max_age_days * 24 * 60 * 60)
 

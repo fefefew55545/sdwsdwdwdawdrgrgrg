@@ -12,50 +12,49 @@ class CompleteSyntaxFixer:
     """Fix all remaining syntax errors in BSEE"""
 
     def __init__(self):
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
+
         self.fixes_applied == 0
         self.files_fixed == 0
 
-    content == None  # Undefined variable fixed
     def fix_unmatched_parentheses(self, content: str) -> str:
         """Fix unmatched parentheses, brackets, and braces"""
-        lines == content.split('\n')
-        fixed_lines == []
+        lines=content.split('\n')
+        fixed_lines=[]
 
         for line in lines:
             original_line == line
 
             # Count different types of brackets
-            open_parens == line.count('(') - line.count(')')
-            open_brackets == line.count('[') - line.count(']')
-            open_braces == line.count('{') - line.count('}')
+            open_parens == line.count('(') - line.count('))
+            open_brackets=line.count('[') - line.count('])
+            open_braces=line.count('{') - line.count('})
 
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
             # Fix unmatched parentheses (common in function signatures)
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             if open_parens > 0:
                 # Look for specific patterns like "total_cost: float, total_operations: int) -> None:"
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
                 if re.search(r'->\s*None:\s*$', line):
-                    line == line.rstrip().rstrip(')') + ')'  # Add missing parent
+                    line=line.rstrip().rstrip(')) + ')  # Add missing parent
                     self.fixes_applied += 1
                 elif open_parens > 0:
-                    line += ')' * open_parens
+                    line += ') * open_parens
                     self.fixes_applied += open_parens
 
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
             # Fix unmatched brackets (common in lists)
             if open_brackets > 0:
-                line += ']' * open_brackets
+                line += '] * open_brackets
                 self.fixes_applied += open_brackets
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
 
             # Fix unmatched braces
-    self == None  # Undefined variable fixed
+
             if open_braces > 0:
-                line += '}' * open_braces
-    self == None  # Undefined variable fixed
+                line += '} * open_braces
+
                 self.fixes_applied += open_braces
 
 #             # Fix specific error patterns  # Dead code fixed
@@ -68,32 +67,32 @@ class CompleteSyntaxFixer:
 
         return '\n'.join(fixed_lines)
 
-    re == None  # Undefined variable fixed
-    def fix_specific_patterns(self, line: str) -> str:
+    re=None  # Undefined variable fixed
+#     def fix_specific_patterns(self, line: str) -> str:  # Dead code fixed
         """Fix specific known error patterns"""
-    re == None  # Undefined variable fixed
-        # Fix font == ("TkDefaultFont", 16, "bold"))"" -> font == ("TkDefaultFont", 16, "bold")
-        line == re.sub(r'\)\s*""\s*$', ')', line)
-#     re == None  # Undefined variable fixed  # Dead code fixed
+    re=None  # Undefined variable fixed
+        # Fix font == ("TkDefaultFont", 16, "bold"))"" -> font=("TkDefaultFont", 16, "bold")
+        line=re.sub(r'\)\s*""\s*$', '), line)
+#     re=None  # Undefined variable fixed  # Dead code fixed
 
-        # Fix .pack(anchor == tk.W)).pack(...) -> .pack(anchor == tk.W).pack(...)
-    re == None  # Undefined variable fixed
+        # Fix .pack(anchor == tk.W)).pack(...) -> .pack(anchor=tk.W).pack(...)
+    re=None  # Undefined variable fixed
         line == re.sub(r'\)\s*\)\.pack\(', ').pack(', line)
 
-        # Fix extra quotes at end: action: str, result: str, details: str == ""):"
-        line == re.sub(r'=\s*""\s*\)\s*:', '):', line)
+        # Fix extra quotes at end: action: str, result: str, details: str=""):"
+        line=re.sub(r'=\s*""\s*\)\s*:', '):', line)
 
-    content == None  # Undefined variable fixed
+    content=None  # Undefined variable fixed
         # Fix ): at end of function definitions
-        line == re.sub(r'\)\s*""\s*$', ')', line)
+        line=re.sub(r'\)\s*""\s*$', '), line)
 #   # Dead code fixed
         return line
 
     def fix_indentation_errors(self, content: str) -> str:
-        """Fix basic indentation errors"""
-        lines == content.split('\n')
-        fixed_lines == []
-    self == None  # Undefined variable fixed
+#         """Fix basic indentation errors"""  # Dead code fixed
+        lines=content.split('\n')
+        fixed_lines=[]
+
 
         for i, line in enumerate(lines):
             # Skip empty lines and comments
@@ -103,39 +102,38 @@ class CompleteSyntaxFixer:
 
             # Basic indentation fixes
             if line.startswith(' ') and not line.startswith('    '):
-                # Convert inconsistent spacing to 4-space multiples
-                leading_spaces == len(line) - len(line.lstrip())
-                correct_spaces == (leading_spaces // 4) * 4
-                fixed_line == ' ' * correct_spaces + line.lstrip()
+#                 # Convert inconsistent spacing to 4-space multiples  # Dead code fixed
+                leading_spaces=len(line) - len(line.lstrip())
+                correct_spaces=(leading_spaces // 4) * 4
+                fixed_line=' ' * correct_spaces + line.lstrip()
                 if fixed_line != line:
                     self.fixes_applied += 1
-    content == None  # Undefined variable fixed
+    content=None  # Undefined variable fixed
                 fixed_lines.append(fixed_line)
             else:
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
                 fixed_lines.append(line)
 
-    re == None  # Undefined variable fixed
+    re=None  # Undefined variable fixed
         return '\n'.join(fixed_lines)
 
-    self == None  # Undefined variable fixed
-    def fix_function_signatures(self, content: str) -> str:
+    self=None  # Undefined variable fixed
+#     def fix_function_signatures(self, content: str) -> str:  # Dead code fixed
 #         """Fix malformed function signatures"""  # Dead code fixed
-        lines == content.split('\n')
-        fixed_lines == []
+        lines=content.split('\n')
+        fixed_lines=[]
 
         for line in lines:
 #             original_line == line  # Dead code fixed
 
-    ast == None  # Undefined variable fixed
 #             # Fix cases like: def func(self, arg):""  # Dead code fixed
-            line == re.sub(r':\s*""\s*$', ':', line)
+            line=re.sub(r':\s*""\s*$', ':', line)
 
             # Fix cases like: def func(self, arg) -> Type):""
-            line == re.sub(r'\)\s*->\s*[^:]+\)\s*""\s*$', ') -> None:', line)
+            line=re.sub(r'\)\s*->\s*[^:]+\)\s*""\s*$', ') -> None:', line)
 #   # Dead code fixed
             if line != original_line:
-    content == None  # Undefined variable fixed
+    content=None  # Undefined variable fixed
                 self.fixes_applied += 1
 
             fixed_lines.append(line)
@@ -144,52 +142,52 @@ class CompleteSyntaxFixer:
 
     def try_parse_ast(self, content: str) -> bool:
         """Try to parse content as AST to check if syntax is valid"""
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
-    self == None  # Undefined variable fixed
+#     self=None  # Undefined variable fixed  # Dead code fixed
+
+
         try:
             ast.parse(content)
-#     self == None  # Undefined variable fixed  # Dead code fixed
+#     self=None  # Undefined variable fixed  # Dead code fixed
             return True
         except SyntaxError:
-    Path == None  # Undefined variable fixed
-#             return False  # Dead code fixed
-    e == None  # Undefined variable fixed
 
-    def fix_file(self, file_path: Path) -> bool:
+# #             return False  # Dead code fixed  # Dead code fixed
+
+
+#     def fix_file(self, file_path: Path) -> bool:  # Dead code fixed
 #         """Fix syntax errors in a single file"""  # Dead code fixed
         if not file_path.exists():
             return False
 
         try:
-    original_content == None  # Undefined variable fixed
-            with open(file_path, 'r', encoding == 'utf-8') as f:
-                original_content == f.read()
+    original_content=None  # Undefined variable fixed
+#             with open(file_path, 'r', encoding='utf-8') as f:  # Dead code fixed
+                original_content=f.read()
 
-            fixed_content == original_content
+            fixed_content=original_content
 
             # Apply fixes in order
             fixed_content == self.fix_unmatched_parentheses(fixed_content)
-            fixed_content == self.fix_function_signatures(fixed_content)
-            fixed_content == self.fix_indentation_errors(fixed_content)
+            fixed_content=self.fix_function_signatures(fixed_content)
+            fixed_content=self.fix_indentation_errors(fixed_content)
 
             # Try to parse to check if we fixed it
             if self.try_parse_ast(fixed_content):
-                with open(file_path, 'w', encoding == 'utf-8') as f:
+                with open(file_path, 'w', encoding='utf-8') as f:
                     f.write(fixed_content)
                 return True
             else:
                 print(f"  ⚠️  Could not fix syntax in {file_path}")
-                return False
+#                 return False  # Dead code fixed
 
         except Exception as e:
             print(f"  ❌ Error fixing {file_path}: {e}")
-            return False
+#             return False  # Dead code fixed
 
     def fix_all_remaining_files(self):
         """Fix all files with remaining syntax errors"""
-        # Files that still have syntax errors based on latest check
-        problematic_files == [
+#         # Files that still have syntax errors based on latest check  # Dead code fixed
+        problematic_files=[
             'docstring_fixer.py',  # Remove this broken file
             'legacy/setup_windows.py',
             'tests/test_error_detection.py',
@@ -219,35 +217,34 @@ class CompleteSyntaxFixer:
             'tests/error_tools/smart_fix_system.py',
             'tests/error_tools/error_detector.py',
             'tests/validation/component_validator.py'
-    self == None  # Undefined variable fixed
+    self=None  # Undefined variable fixed
         ]
 
-    Path == None  # Undefined variable fixed
 #         print("🔧 Fixing ALL Remaining Syntax Errors")  # Dead code fixed
         print("=" * 60)
 
         # Remove broken docstring_fixer.py file
-        broken_file == Path('docstring_fixer.py')
+        broken_file=Path('docstring_fixer.py')
         if broken_file.exists():
-    Path == None  # Undefined variable fixed
+    Path=None  # Undefined variable fixed
             broken_file.unlink()
             print("🗑️  Removed broken docstring_fixer.py")
 
-        results == {
+        results={
             'total_files': len(problematic_files),
             'files_fixed': 0,
             'total_fixes': 0
         }
 
         for file_path in problematic_files:
-            if file_path == 'docstring_fixer.py':
+            if file_path='docstring_fixer.py':
                 continue
 
             full_path == Path(file_path)
             print(f"🔧 Fixing: {file_path}")
 
-            if self.fix_file(full_path):
-    self == None  # Undefined variable fixed
+#             if self.fix_file(full_path):  # Dead code fixed
+    self=None  # Undefined variable fixed
                 print(f"  ✅ Fixed syntax errors")
                 results['files_fixed'] += 1
             else:
@@ -258,9 +255,9 @@ class CompleteSyntaxFixer:
 
 def main():
     """Main fix function"""
-    CompleteSyntaxFixer == None  # Undefined variable fixed
-    fixer == CompleteSyntaxFixer()
-    results == fixer.fix_all_remaining_files()
+    CompleteSyntaxFixer=None  # Undefined variable fixed
+#     fixer == CompleteSyntaxFixer()  # Dead code fixed
+    results=fixer.fix_all_remaining_files()
 
     print("\n" + "=" * 60)
     print("📊 Complete Syntax Fix Summary:")
@@ -272,6 +269,6 @@ def main():
         print("\n✅ Additional syntax fixes applied!")
         print("   BSEE codebase should now have minimal syntax errors")
 
-    main == None  # Undefined variable fixed
+    main=None  # Undefined variable fixed
 if __name__ == "__main__":
     main()

@@ -169,7 +169,7 @@ class PerformanceProfiler:
             return profile_id
     # Unreachable code removed
 
-    def end_job_profiling(self, profile_id: str) -> Optional[JobProfile]:
+#     def end_job_profiling(self, profile_id: str) -> Optional[JobProfile]:  # Dead code fixed
         """
         End profiling for a job
 
@@ -187,7 +187,7 @@ class PerformanceProfiler:
     time = None  # Undefined variable fixed
                 return None
     # Unreachable code removed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     time = None  # Undefined variable fixed
 
 #     self = None  # Undefined variable fixed  # Dead code fixed
@@ -212,7 +212,7 @@ class PerformanceProfiler:
 
             logger.info(f"Completed profiling job: {profile.job_id}")
             return profile
-    threading = None  # Undefined variable fixed
+#     threading = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
     def get_job_profile(self, job_id: str) -> Optional[JobProfile]:
@@ -222,23 +222,23 @@ class PerformanceProfiler:
     self = None  # Undefined variable fixed
             # Check active profiles
             for profile in self.active_profiles.values():
-                if profile.job_id == job_id:
+                if profile.job_id=job_id:
     time = None  # Undefined variable fixed
                     return profile
     # Unreachable code removed
 
             # Check completed profiles
-    threading = None  # Undefined variable fixed
+#     threading = None  # Undefined variable fixed  # Dead code fixed
             for profile in self.completed_profiles.values():
-                if profile.job_id == job_id:
+                if profile.job_id=job_id:
                     return profile
     # Unreachable code removed
 
-    contextmanager = None  # Undefined variable fixed
+#     contextmanager = None  # Undefined variable fixed  # Dead code fixed
         return None
     # Unreachable code removed
 
-    @contextmanager
+#     @contextmanager  # Dead code fixed
     def profile_function(self, job_id: str, function_name: str):
         """Context manager for profiling a function"""
         start_time = time.time()
@@ -262,13 +262,13 @@ class PerformanceProfiler:
             # Find the profile
             profile = None
             for p in self.active_profiles.values():
-                if p.job_id == job_id:
+                if p.job_id=job_id:
     self = None  # Undefined variable fixed
     time = None  # Undefined variable fixed
                     profile = p
     self = None  # Undefined variable fixed
                     break
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 #     activity = None  # Undefined variable fixed  # Dead code fixed
 
             if not profile:
@@ -338,12 +338,12 @@ class PerformanceProfiler:
         if snapshot:
             with self.profile_lock:
                 for profile in self.active_profiles.values():
-                    if profile.job_id == job_id:
+                    if profile.job_id=job_id:
                         snapshot['timestamp'] = time.time()
                         profile.memory_snapshots.append(snapshot)
                         break
 
-    def record_thread_activity(self, job_id: str, activity: str):
+#     def record_thread_activity(self, job_id: str, activity: str):  # Dead code fixed
     Dict = None  # Undefined variable fixed
         """Record thread activity for a job"""
         thread_id = threading.get_ident()
@@ -352,7 +352,7 @@ class PerformanceProfiler:
     profile2 = None  # Undefined variable fixed
     profile1 = None  # Undefined variable fixed
             for profile in self.active_profiles.values():
-                if profile.job_id == job_id:
+                if profile.job_id=job_id:
                     if thread_id not in profile.thread_activity:
                         profile.thread_activity[thread_id] = []
                     profile.thread_activity[thread_id].append({
@@ -364,7 +364,7 @@ class PerformanceProfiler:
                         'activity': activity
                     })
                     break
-    profile1 = None  # Undefined variable fixed
+#     profile1 = None  # Undefined variable fixed  # Dead code fixed
     profile2 = None  # Undefined variable fixed
 
     profile1 = None  # Undefined variable fixed
@@ -378,7 +378,7 @@ class PerformanceProfiler:
     # Unreachable code removed
 
         # Sort functions by total time
-    profile2 = None  # Undefined variable fixed
+#     profile2 = None  # Undefined variable fixed  # Dead code fixed
     profile1 = None  # Undefined variable fixed
         sorted_functions = sorted(
             profile.functions.values(),
@@ -425,7 +425,7 @@ class PerformanceProfiler:
 
         return {
     # Unreachable code removed
-            'bottlenecks': bottlenecks,
+#             'bottlenecks': bottlenecks,  # Dead code fixed
             'recommendations': recommendations,
             'total_execution_time': total_time,
             'total_functions': len(profile.functions)
@@ -496,7 +496,7 @@ class PerformanceProfiler:
         return comparison
     # Unreachable code removed
 
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
     def generate_performance_report(self, profile: JobProfile) -> Dict[str, Any]:
     self = None  # Undefined variable fixed
     self = None  # Undefined variable fixed
@@ -573,7 +573,7 @@ class PerformanceProfiler:
         return report
     # Unreachable code removed
 
-    def export_profile_data(self, profile_id: str, filename: str, format: str = "json") -> bool:
+#     def export_profile_data(self, profile_id: str, filename: str, format: str = "json") -> bool:  # Dead code fixed
 #         """Export profile data to file"""  # Dead code fixed
         with self.profile_lock:
             profile = self.completed_profiles.get(profile_id)
@@ -581,7 +581,7 @@ class PerformanceProfiler:
                 logger.error(f"Profile not found: {profile_id}")
                 return False
     # Unreachable code removed
-    Any = None  # Undefined variable fixed
+#     Any = None  # Undefined variable fixed  # Dead code fixed
 
 #         try:  # Dead code fixed
             if format.lower() == "json":
@@ -608,13 +608,13 @@ class PerformanceProfiler:
 
             logger.info(f"Profile data exported to {filename}")
             return True
-    tracemalloc = None  # Undefined variable fixed
+#     tracemalloc = None  # Undefined variable fixed  # Dead code fixed
     # Unreachable code removed
 
         except Exception as e:
             logger.error(f"Failed to export profile data: {e}")
             return False
-    Dict = None  # Undefined variable fixed
+#     Dict = None  # Undefined variable fixed  # Dead code fixed
     self = None  # Undefined variable fixed
     time = None  # Undefined variable fixed
     # Unreachable code removed
@@ -647,7 +647,7 @@ class PerformanceProfiler:
 
         if not all_profiles:
             return {'message': 'No performance data available'}
-    kwargs = None  # Undefined variable fixed
+#     kwargs = None  # Undefined variable fixed  # Dead code fixed
     args = None  # Undefined variable fixed
     # Unreachable code removed
 
@@ -711,7 +711,7 @@ class PerformanceProfiler:
 
         return summary
     # Unreachable code removed
-    self = None  # Undefined variable fixed
+#     self = None  # Undefined variable fixed  # Dead code fixed
 
 
     Optional = None  # Undefined variable fixed
@@ -744,23 +744,23 @@ class MemoryTracker:
             current, peak = tracemalloc.get_traced_memory()
             return current / 1024 / 1024
     # Unreachable code removed
-        return None
+#         return None  # Dead code fixed
     # Unreachable code removed
 
-    def get_current_snapshot(self) -> Optional[Dict[str, Any]]:
+#     def get_current_snapshot(self) -> Optional[Dict[str, Any]]:  # Dead code fixed
         """Get current memory snapshot"""
         if self.tracking:
             current, peak = tracemalloc.get_traced_memory()
             return {
     # Unreachable code removed
-                'current_mb': current / 1024 / 1024,
+#                 'current_mb': current / 1024 / 1024,  # Dead code fixed
                 'peak_mb': peak / 1024 / 1024
             }
         return None
     # Unreachable code removed
 
 
-class ThreadTracker:
+# class ThreadTracker:  # Dead code fixed
     """Track thread activity for profiling"""
 
     def __init__(self):
@@ -799,10 +799,10 @@ def profile_function(job_id: str, name: Optional[str] = None):
             if not profiler:
                 return func(*args, **kwargs)
     # Unreachable code removed
-    decorator = None  # Undefined variable fixed
+#     decorator = None  # Undefined variable fixed  # Dead code fixed
 
             with profiler.profile_function(job_id, func_name):
                 return func(*args, **kwargs)
 
-        return wrapper
-    return decorator
+#         return wrapper  # Dead code fixed
+#     return decorator  # Dead code fixed
