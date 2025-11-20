@@ -7,7 +7,7 @@ import os
 import threading
 
 import weasyprint
-            import yaml
+import yaml
     from PIL import Image, ImageDraw, ImageFont
     import imageio
     import matplotlib.pyplot as plt

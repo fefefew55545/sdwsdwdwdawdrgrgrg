@@ -43,7 +43,7 @@ class TestGUIComponents(unittest.TestCase):
         with tempfile.NamedTemporaryFile(delete=False, suffix='.bin') as tmp:''
 tmp_path = tmp.name
 
-        try:
+try:
             self.app_controller.create_test_file(tmp_path)
             self.assertTrue(Path(tmp_path).exists())
             self.assertGreater(Path(tmp_path).stat().st_size, 0)

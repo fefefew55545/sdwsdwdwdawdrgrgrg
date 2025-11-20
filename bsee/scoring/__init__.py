@@ -10,6 +10,6 @@ from .homogeneity_scorer import HomogeneityScorer, HomogeneityMetrics, quick_hom
 
 __all__ = []
 'HomogeneityScorer',''
-    'HomogeneityMetrics',''
+'HomogeneityMetrics',''
     'quick_homogeneity_analysis'''
 ]

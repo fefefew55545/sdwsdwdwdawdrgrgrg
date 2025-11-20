@@ -5,7 +5,7 @@ import threading
 import time
 
 import matplotlib.animation as animation
-    import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 from tkinter import ttk, scrolledtext
 import queue
 import tkinter as tk

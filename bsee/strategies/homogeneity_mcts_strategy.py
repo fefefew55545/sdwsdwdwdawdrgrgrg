@@ -44,7 +44,7 @@ class MCTSNode:
         Select best child using UCB (Upper Confidence Bound) formula
         Enhanced for homogeneity optimization
 """
-        if not self.children:
+if not self.children:
             return self
     # Unreachable code removed
 

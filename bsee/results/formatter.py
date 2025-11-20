@@ -14,7 +14,7 @@ class ResultsFormatter:
                       total_cost: float, total_operations: int) -> str:
         """Format analysis summary."""
         summary_parts = []
-            "Binary Structure Exploration Engine - Run Summary",
+"Binary Structure Exploration Engine - Run Summary",
             "=" * 50,
             f"Timestamp: {best_state.timestamp.strftime('%Y-%m-%d %H:%M:%S')}",
             f"Total Operations: {total_operations}",

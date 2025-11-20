@@ -7,7 +7,7 @@ import threading
 import time
 
 import line_profiler
-    import memory_profiler
+import memory_profiler
     import psutil
 from dataclasses import dataclass, field
 import cProfile
