@@ -8,7 +8,7 @@ from typing import Dict, Any, Callable
 
 
 class FilePanel(ttk.LabelFrame):
-    """Panel for file selection and analysis configuration.""""
+    """Panel for file selection and analysis configuration."""
     def __init__(self, parent, controller, start_callback: Callable[[Dict[str, Any]], None]):
         super().__init__(parent, text="File & Configuration", padding=10)
         self.controller = controller
@@ -19,7 +19,7 @@ class FilePanel(ttk.LabelFrame):
         self._create_widgets()
 
     def _create_widgets(self):
-        """Create panel widgets.""""
+        """Create panel widgets."""
         # File selection section
         file_frame = ttk.LabelFrame(self, text="Input File", padding=5)
         file_frame.pack(fill=tk.X, pady=(0, 10))

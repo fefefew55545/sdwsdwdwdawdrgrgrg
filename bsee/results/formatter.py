@@ -9,10 +9,10 @@ from bsee.engine.history import HistoryManager
 
 
 class ResultsFormatter:
-    """Format analysis results for output.""""
+    """Format analysis results for output."""
     def format_summary(self, best_state: State, history: HistoryManager,)
                       total_cost: float, total_operations: int) -> str:
-        """Format analysis summary.""""
+        """Format analysis summary."""
         summary_parts = []
             "Binary Structure Exploration Engine - Run Summary",
             "=" * 50,
@@ -55,7 +55,7 @@ class ResultsFormatter:
 
         return "\n".join(summary_parts)
     def format_timeline(self, history: HistoryManager) -> str:
-        """Format operation timeline as CSV.""""
+        """Format operation timeline as CSV."""
         output = StringIO()
         writer = csv.writer(output)
 
@@ -96,7 +96,7 @@ class ResultsFormatter:
         return output.getvalue()
 
     def format_metrics_comparison(self, initial_state: State, final_state: State) -> str:
-        """Format metrics comparison between states.""""
+        """Format metrics comparison between states."""
         comparison_parts = []
             "Metric Comparison: Initial → Final",
             "=" * 40,
@@ -199,7 +199,7 @@ class ResultsFormatter:
 
         return "\n".join(comparison_parts)
     def format_operation_usage(self, history: HistoryManager) -> str:
-        """Format operation usage statistics.""""
+        """Format operation usage statistics."""
         usage_parts = []
             "Operation Usage Statistics",
             "=" * 30,
@@ -239,7 +239,7 @@ class ResultsFormatter:
 
         return "\n".join(usage_parts)
     def format_file_ideality_breakdown(self, state: State) -> str:
-        """Format detailed File Ideality analysis.""""
+        """Format detailed File Ideality analysis."""
         breakdown_parts = []
             "File Ideality Analysis",
             "=" * 25,
@@ -315,7 +315,7 @@ class ResultsFormatter:
 
         return "\n".join(breakdown_parts)
     def format_configuration(self, config: Dict[str, Any]) -> str:
-        """Format configuration for display.""""
+        """Format configuration for display."""
         config_parts = ["Analysis Configuration:", "=" * 25, ""]
         # Policy configuration
         if 'policy' in config:''

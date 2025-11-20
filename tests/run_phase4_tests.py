@@ -16,7 +16,7 @@ import argparse
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root / "src"))
 class Phase4TestRunner:
-    """Comprehensive Phase 4 test runner""""
+    """Comprehensive Phase 4 test runner"""
     def __init__(self, project_root: Path):
         self.project_root = project_root
         self.test_dir = project_root / "tests"""
@@ -31,12 +31,12 @@ class Phase4TestRunner:
         }
 
     def log(self, message: str, level: str = "INFO"):
-        """Log message with timestamp""""
+        """Log message with timestamp"""
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
         print(f"[{timestamp}] {level}: {message}")
     def run_command(self, cmd: List[str], cwd: Optional[Path] = None,]])
                    timeout: int = 300) -> Dict[str, Any]:
-        """Run command and return results""""
+        """Run command and return results"""
         try:
             self.log(f"Running command: {' '.join(cmd)}")
             start_time = time.time()
@@ -78,7 +78,7 @@ class Phase4TestRunner:
             }
 
     def test_unit_tests(self) -> Dict[str, Any]:
-        """Test unit test suite""""
+        """Test unit test suite"""
         self.log("Testing unit test suite...")
         suite_result = {}
             'name': 'Unit Tests',''
@@ -126,7 +126,7 @@ class Phase4TestRunner:
         return suite_result
 
     def test_integration_tests(self) -> Dict[str, Any]:
-        """Test integration test suite""""
+        """Test integration test suite"""
         self.log("Testing integration test suite...")
         suite_result = {}
             'name': 'Integration Tests',''
@@ -167,7 +167,7 @@ class Phase4TestRunner:
         return suite_result
 
     def test_performance_tests(self) -> Dict[str, Any]:
-        """Test performance test suite""""
+        """Test performance test suite"""
         self.log("Testing performance test suite...")
         suite_result = {}
             'name': 'Performance Tests',''
@@ -206,7 +206,7 @@ class Phase4TestRunner:
         return suite_result
 
     def test_validation_system(self) -> Dict[str, Any]:
-        """Test automated validation system""""
+        """Test automated validation system"""
         self.log("Testing automated validation system...")
         suite_result = {}
             'name': 'Validation System',''
@@ -245,7 +245,7 @@ class Phase4TestRunner:
         return suite_result
 
     def test_data_management(self) -> Dict[str, Any]:
-        """Test test data management system""""
+        """Test test data management system"""
         self.log("Testing test data management system...")
         suite_result = {}
             'name': 'Test Data Management',''
@@ -294,7 +294,7 @@ class Phase4TestRunner:
         return suite_result
 
     def test_ci_pipeline(self) -> Dict[str, Any]:
-        """Test CI pipeline configuration""""
+        """Test CI pipeline configuration"""
         self.log("Testing CI pipeline configuration...")
         suite_result = {}
             'name': 'CI Pipeline Configuration',''
@@ -362,7 +362,7 @@ class Phase4TestRunner:
         return suite_result
 
     def run_all_tests(self) -> Dict[str, Any]:
-        """Run all Phase 4 tests""""
+        """Run all Phase 4 tests"""
         self.log("Starting Phase 4 comprehensive testing validation...")
         # Test suites to run
         test_suites = []
@@ -422,7 +422,7 @@ class Phase4TestRunner:
         return self.results
 
     def generate_report(self, output_file: Optional[Path] = None) -> str:
-        """Generate comprehensive test report""""
+        """Generate comprehensive test report"""
         if output_file is None:
             output_file = self.project_root / "phase4_test_report.json"""
 
@@ -490,7 +490,7 @@ class Phase4TestRunner:
 
 
 def main():
-    """Main entry point""""
+    """Main entry point"""
     parser = argparse.ArgumentParser(description="Run Phase 4 comprehensive tests")
     parser.add_argument('--output', '-o', type=Path,'''')''
                        help='Output file for test results')''

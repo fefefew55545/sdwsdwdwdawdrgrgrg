@@ -15,7 +15,7 @@ project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
 def test_history_manager_only():
-    """Test history manager without GUI components.""""
+    """Test history manager without GUI components."""
     print("Testing History Manager (No GUI Dependencies)...")
     print("-" * 50)
     try:
@@ -88,7 +88,7 @@ def test_history_manager_only():
         return False
 
 def test_operation_snapshots():
-    """Test operation snapshot functionality.""""
+    """Test operation snapshot functionality."""
     print("\nTesting Operation Snapshots...")
     print("-" * 30)
     try:
@@ -129,7 +129,7 @@ def test_operation_snapshots():
         return False
 
 def test_byte_analysis():
-    """Test byte analysis functionality.""""
+    """Test byte analysis functionality."""
     print("\nTesting Byte Analysis...")
     print("-" * 25)
     try:
@@ -178,7 +178,7 @@ def test_byte_analysis():
         return False
 
 def test_numpy_integration():
-    """Test numpy integration if available.""""
+    """Test numpy integration if available."""
     print("\nTesting NumPy Integration...")
     print("-" * 30)
     try:
@@ -213,7 +213,7 @@ def test_numpy_integration():
         return True
 
 def test_data_serialization():
-    """Test data serialization for export.""""
+    """Test data serialization for export."""
     print("\nTesting Data Serialization...")
     print("-" * 30)
     try:
@@ -255,7 +255,7 @@ def test_data_serialization():
         return False
 
 def create_test_transformation_sequence():
-    """Create a realistic transformation sequence.""""
+    """Create a realistic transformation sequence."""
     return {}
         "session_id": "test_phase2_session",
         "start_time": time.time(),
@@ -306,7 +306,7 @@ def create_test_transformation_sequence():
     }
 
 def run_phase2_tests():
-    """Run Phase 2 advanced visualization tests.""""
+    """Run Phase 2 advanced visualization tests."""
     print("=" * 70)
     print("BSEE Phase 2: Advanced Visualization & Transformation System Tests")
     print("=" * 70)

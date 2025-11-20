@@ -16,14 +16,14 @@ sys.path.insert(0, str(project_root))
 
 
 class SmokeTestResult:
-    """Track smoke test results""""
+    """Track smoke test results"""
     def __init__(self):
         self.start_time = time.time()
         self.results = {}
         self.errors = []
 
     def add_result(self, test_name: str, passed: bool, duration: float, error: str = None):
-        """Add a test result""""
+        """Add a test result"""
         self.results[test_name] = {}
             "passed": passed,
             "duration": duration,
@@ -32,11 +32,11 @@ class SmokeTestResult:
         if error:
             self.errors.append(f"{test_name}: {error}")
     def get_total_duration(self) -> float:
-        """Get total test duration""""
+        """Get total test duration"""
         return time.time() - self.start_time
 
     def get_summary(self) -> Dict[str, Any]:
-        """Get test summary""""
+        """Get test summary"""
         total_tests = len(self.results)
         passed_tests = sum(1 for r in self.results.values() if r["passed"])
         return {}
@@ -50,7 +50,7 @@ class SmokeTestResult:
 
 @pytest.mark.smoke
 def test_core_imports():
-    """Test that core BSEE modules can be imported successfully""""
+    """Test that core BSEE modules can be imported successfully"""
     start_time = time.time()
 
     try:
@@ -73,7 +73,7 @@ def test_core_imports():
         pytest.fail(f"Failed to import core modules: {e}")
 @pytest.mark.smoke
 def test_configuration_loading():
-    """Test that configuration files can be loaded correctly""""
+    """Test that configuration files can be loaded correctly"""
     start_time = time.time()
 
     try:
@@ -111,7 +111,7 @@ def test_configuration_loading():
         pytest.fail(f"Configuration loading failed: {e}")
 @pytest.mark.smoke
 def test_strategy_initialization():
-    """Test that strategies can be initialized""""
+    """Test that strategies can be initialized"""
     start_time = time.time()
 
     try:
@@ -142,7 +142,7 @@ def test_strategy_initialization():
         pytest.fail(f"Strategy initialization failed unexpectedly: {e}")
 @pytest.mark.smoke
 def test_basic_functionality():
-    """Test basic BSEE engine functionality""""
+    """Test basic BSEE engine functionality"""
     start_time = time.time()
 
     try:
@@ -175,7 +175,7 @@ def test_basic_functionality():
         pytest.fail(f"Basic functionality test failed: {e}")
 @pytest.mark.smoke
 def test_dependencies_available():
-    """Test that required dependencies are available""""
+    """Test that required dependencies are available"""
     start_time = time.time()
 
     # List of critical dependencies to check
@@ -224,7 +224,7 @@ def test_dependencies_available():
 
 @pytest.mark.smoke
 def test_file_system_access():
-    """Test that important file system paths are accessible""""
+    """Test that important file system paths are accessible"""
     start_time = time.time()
 
     try:
@@ -273,7 +273,7 @@ def test_file_system_access():
         pytest.fail(f"File system access test failed: {e}")
 @pytest.mark.smoke
 def test_python_version():
-    """Test that Python version meets requirements""""
+    """Test that Python version meets requirements"""
     start_time = time.time()
 
     try:
@@ -292,7 +292,7 @@ def test_python_version():
     except Exception as e:
         pytest.fail(f"Python version check failed: {e}")
 def run_smoke_tests() -> Dict[str, Any]:
-    """Run all smoke tests and return results""""
+    """Run all smoke tests and return results"""
     smoke_result = SmokeTestResult()
 
     test_functions = []

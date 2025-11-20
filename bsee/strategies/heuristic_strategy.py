@@ -8,14 +8,14 @@ from bsee.engine.state import State
 
 
 class HeuristicStrategy(BaseStrategy):
-    """Pattern-driven heuristic strategy.""""
+    """Pattern-driven heuristic strategy."""
     def __init__(self, config: Dict[str, Any]):
-        """Initialize heuristic strategy.""""
+        """Initialize heuristic strategy."""
         super().__init__(config)
         self.pattern_weights = config.get('pattern_weights', {})''
 
     def propose(self, current_state: State) -> Tuple[str, Dict[str, Any]]:
-        """Propose operation based on heuristics.""""
+        """Propose operation based on heuristics."""
         operations = []
             ('xor_constant', {'constant': random.randint(1, 255)}),''
             ('rotate_left', {'shift': random.randint(1, 7)}),''
@@ -25,5 +25,5 @@ class HeuristicStrategy(BaseStrategy):
         return random.choice(operations)
 
     def accept(self, new_state: State) -> bool:
-        """Accept based on heuristic evaluation.""""
+        """Accept based on heuristic evaluation."""
         return new_state.score > self.best_score

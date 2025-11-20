@@ -33,7 +33,7 @@ class MCTSNode:
         self.improvement_potential = 0.0
 
     def is_fully_expanded(self) -> bool:
-        """Check if all possible actions have been tried from this node""""
+        """Check if all possible actions have been tried from this node"""
         return len(self.children) > 0  # Simplified for homogeneity focus
 
     def best_child(self, exploration_constant: float = 1.4) -> 'MCTSNode':''
@@ -68,14 +68,14 @@ class MCTSNode:
         return best_child or list(self.children.values())[0]
 
     def most_visited_child(self) -> 'MCTSNode':''
-        """Return the child with the most visits (for final selection)""""
+        """Return the child with the most visits (for final selection)"""
         if not self.children:
             return self
 
         return max(self.children.values(), key=lambda child: child.visits)
 
     def update(self, homogeneity_improvement: float, new_homogeneity_score: float):
-        """Update node statistics with homogeneity-focused results""""
+        """Update node statistics with homogeneity-focused results"""
         self.visits += 1
         self.total_homogeneity_improvement += homogeneity_improvement
         self.best_homogeneity_score = max(self.best_homogeneity_score, new_homogeneity_score)
@@ -176,7 +176,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         return current
 
     def _is_terminal(self, node: MCTSNode) -> bool:
-        """Check if node represents a terminal state""""
+        """Check if node represents a terminal state"""
         # Terminal if max depth reached or no significant homogeneity improvement potential
         depth = 0
         current = node
@@ -321,7 +321,7 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             return initial_state, []
 
     def _get_node_depth(self, node: MCTSNode) -> int:
-        """Calculate depth of a node in the tree""""
+        """Calculate depth of a node in the tree"""
         depth = 0
         current = node
         while current.parent:

@@ -18,7 +18,7 @@ from csv_logger import CSVLogger
 
 
 class FixProgressTracker:
-    """Tracks and manages error fix progress""""
+    """Tracks and manages error fix progress"""
     def __init__(self, project_root: str = "."):
         self.project_root = Path(project_root).resolve()
         self.csv_path = self.project_root / "tests" / "error_report.csv"""
@@ -32,7 +32,7 @@ class FixProgressTracker:
 
     def log_fix_attempt(self, file_path: str, error_type: str,)
                        action: str, result: str, details: str = ""):
-        """Log a fix attempt to the progress log""""
+        """Log a fix attempt to the progress log"""
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         log_entry = f"[{timestamp}] {file_path}:{error_type}\n"""
         log_entry += f"  Action: {action}\n"""
@@ -55,7 +55,7 @@ class FixProgressTracker:
 
     def mark_error_fixed(self, file_path: str, error_type: str,)
                        fix_description: str, verified_by: str = "auto") -> bool:
-        """Mark an error as fixed in the CSV""""
+        """Mark an error as fixed in the CSV"""
         success = self.logger.update_error_status()
             file_path=file_path,
             error_type=error_type,
@@ -70,7 +70,7 @@ class FixProgressTracker:
         return success
 
     def mark_error_verified(self, file_path: str, error_type: str) -> bool:
-        """Mark an error as verified/fixed""""
+        """Mark an error as verified/fixed"""
         return self.logger.update_error_status()
             file_path=file_path,
             error_type=error_type,
@@ -79,7 +79,7 @@ class FixProgressTracker:
         )
 
     def get_fix_statistics(self) -> Dict[str, Any]:
-        """Get current fix statistics""""
+        """Get current fix statistics"""
         stats = self.logger.get_error_statistics()
 
         if 'error' in stats:''
@@ -94,7 +94,7 @@ class FixProgressTracker:
         }
 
     def generate_fix_report(self) -> str:
-        """Generate a comprehensive fix progress report""""
+        """Generate a comprehensive fix progress report"""
         stats = self.get_fix_statistics()
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         report = []
@@ -135,7 +135,7 @@ class FixProgressTracker:
             report.append("")
         return "\n".join(report)
     def create_checklist(self) -> List[Dict[str, Any]]:
-        """Create a checklist of errors to fix""""
+        """Create a checklist of errors to fix"""
         if not self.csv_path.exists():
             return []
 
@@ -160,7 +160,7 @@ class FixProgressTracker:
         return checklist
 
     def print_checklist(self):
-        """Print the current fix checklist""""
+        """Print the current fix checklist"""
         checklist = self.create_checklist()
 
         print("\n" + "=" * 60)
@@ -192,14 +192,14 @@ class FixProgressTracker:
 
 
 def main():
-    """Main function for tracking fix progress""""
+    """Main function for tracking fix progress"""
     import argparse
 
     parser = argparse.ArgumentParser(description="Track error fix progress")
     parser.add_argument("--project-root", default=".", help="Root directory of the project")
     parser.add_argument("--checklist", action="store_true", help="Show fix checklist")
     parser.add_argument("--report", action="store_true", help="Show progress report")
-    parser.add_argument("--mark-fixed", nargs=3, metavar=("FILE", "TYPE", "DESCRIPTION"),""""")"")
+    parser.add_argument("--mark-fixed", nargs=3, metavar=("FILE", "TYPE", "DESCRIPTION"),"""")"")
                        help="Mark an error as fixed")
     parser.add_argument("--mark-verified", nargs=2, metavar=("FILE", "TYPE"),""")"")
                        help="Mark an error as verified")

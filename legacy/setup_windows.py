@@ -11,16 +11,16 @@ import subprocess
 
 
 class WindowsSetup:
-    """Windows-specific setup and configuration.""""
+    """Windows-specific setup and configuration."""
     def __init__(self):
-        """Initialize Windows setup.""""
+        """Initialize Windows setup."""
         self.install_dir = Path.cwd()
         self.appdata_dir = Path(os.environ['APPDATA']) / 'BSEE'''
         self.desktop_dir = Path(os.environ['USERPROFILE']) / 'Desktop'''
         self.start_menu_dir = Path(os.environ['APPDATA']) / 'Microsoft' / 'Windows' / 'Start Menu' / 'Programs'''
 
     def setup_directories(self):
-        """Create Windows-specific directory structure.""""
+        """Create Windows-specific directory structure."""
         print("Creating directory structure...")
         # Create standard BSEE directories in AppData
         directories = []
@@ -42,7 +42,7 @@ class WindowsSetup:
 
         print("Directory structure created successfully!")
     def register_file_associations(self):
-        """Register .bin file association with BSEE.""""
+        """Register .bin file association with BSEE."""
         print("Registering file associations...")
         try:
             # Create file association for .bin files
@@ -73,7 +73,7 @@ class WindowsSetup:
         except Exception as e:
             print(f"  Error registering file associations: {e}")
     def create_desktop_shortcuts(self):
-        """Create desktop shortcuts.""""
+        """Create desktop shortcuts."""
         print("Creating desktop shortcuts...")
         try:
             # Create desktop shortcut for BSEE GUI
@@ -95,7 +95,7 @@ class WindowsSetup:
         except Exception as e:
             print(f"  Error creating desktop shortcuts: {e}")
     def create_start_menu_shortcuts(self):
-        """Create Start Menu shortcuts.""""
+        """Create Start Menu shortcuts."""
         print("Creating Start Menu shortcuts...")
         try:
             bsee_menu_dir = self.start_menu_dir / 'BSEE'''
@@ -127,7 +127,7 @@ class WindowsSetup:
         except Exception as e:
             print(f"  Error creating Start Menu shortcuts: {e}")
     def _create_shortcut(self, target: str, shortcut_path: Path, description: str, icon: str = None):
-        """Create a Windows shortcut.""""
+        """Create a Windows shortcut."""
         try:
             import winshell
             from win32com.client import Dispatch
@@ -152,7 +152,7 @@ class WindowsSetup:
             self._create_shortcut_fallback(target, shortcut_path, description, icon)
 
     def _create_shortcut_fallback(self, target: str, shortcut_path: Path, description: str, icon: str = None):
-        """Fallback shortcut creation method.""""
+        """Fallback shortcut creation method."""
         try:
             # Create a simple batch file as shortcut alternative
             if target.endswith('.py'):''
@@ -177,7 +177,7 @@ pause
         except Exception as e:
             print(f"    Could not create shortcut fallback: {e}")
     def setup_environment_variables(self):
-        """Setup environment variables.""""
+        """Setup environment variables."""
         print("Setting up environment variables...")
         try:
             # Add BSEE to PATH if not already present
@@ -201,11 +201,11 @@ pause
         except Exception as e:
             print(f"  Error setting environment variables: {e}")
     def create_windows_service(self):
-        """Create Windows service (optional).""""
+        """Create Windows service (optional)."""
         print("Windows service creation is not implemented yet.")
         print("  This would require administrative privileges and additional setup.")
     def verify_installation(self):
-        """Verify the installation.""""
+        """Verify the installation."""
         print("Verifying installation...")
         checks = []
             ("Installation directory", self.install_dir.exists()),
@@ -229,7 +229,7 @@ pause
         return all_passed
 
     def run_setup(self):
-        """Run complete Windows setup.""""
+        """Run complete Windows setup."""
         print("BSEE Windows Setup")
         print("=" * 50)
         try:
@@ -255,7 +255,7 @@ pause
 
 
 def main():
-    """Main setup entry point.""""
+    """Main setup entry point."""
     if sys.platform != 'win32':''
         print("This setup script is only for Windows systems.")
         sys.exit(1)

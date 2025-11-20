@@ -15,14 +15,14 @@ from unittest.mock import patch, MagicMock
 
 
 class WindowsSimulator:
-    """Simulates Windows environment conditions for error testing""""
+    """Simulates Windows environment conditions for error testing"""
     def __init__(self, project_root: str = "."):
         self.project_root = Path(project_root).resolve()
         self.is_windows = platform.system().lower() == 'windows'''
         self.simulation_results = []
 
     def simulate_missing_dll(self, file_path: Path) -> List[Dict[str, Any]]:
-        """Simulate missing DLL errors""""
+        """Simulate missing DLL errors"""
         errors = []
 
         # Check if file imports modules that might have DLL dependencies
@@ -59,7 +59,7 @@ class WindowsSimulator:
         return errors
 
     def simulate_path_issues(self, file_path: Path) -> List[Dict[str, Any]]:
-        """Simulate Windows PATH issues""""
+        """Simulate Windows PATH issues"""
         errors = []
 
         try:
@@ -93,7 +93,7 @@ class WindowsSimulator:
         return errors
 
     def simulate_permission_errors(self, file_path: Path) -> List[Dict[str, Any]]:
-        """Simulate Windows permission errors""""
+        """Simulate Windows permission errors"""
         errors = []
 
         try:
@@ -135,7 +135,7 @@ class WindowsSimulator:
         return errors
 
     def simulate_gui_display_issues(self, file_path: Path) -> List[Dict[str, Any]]:
-        """Simulate GUI display issues on Windows""""
+        """Simulate GUI display issues on Windows"""
         errors = []
 
         try:
@@ -170,7 +170,7 @@ class WindowsSimulator:
         return errors
 
     def simulate_bsee_batch_issues(self) -> List[Dict[str, Any]]:
-        """Simulate BSEE.bat launcher issues""""
+        """Simulate BSEE.bat launcher issues"""
         errors = []
 
         # Check for BSEE.bat file
@@ -231,7 +231,7 @@ class WindowsSimulator:
         return errors
 
     def simulate_network_connectivity_issues(self, file_path: Path) -> List[Dict[str, Any]]:
-        """Simulate network connectivity issues""""
+        """Simulate network connectivity issues"""
         errors = []
 
         try:
@@ -281,7 +281,7 @@ class WindowsSimulator:
         return errors
 
     def simulate_dependency_conflicts(self, file_path: Path) -> List[Dict[str, Any]]:
-        """Simulate dependency conflicts common on Windows""""
+        """Simulate dependency conflicts common on Windows"""
         errors = []
 
         try:
@@ -321,7 +321,7 @@ class WindowsSimulator:
         return errors
 
     def run_all_simulations(self) -> List[Dict[str, Any]]:
-        """Run all Windows simulation checks""""
+        """Run all Windows simulation checks"""
         print("Running Windows environment simulations...")
         all_errors = []
 
@@ -375,7 +375,7 @@ class WindowsSimulator:
         return all_errors
 
     def get_simulation_summary(self) -> Dict[str, Any]:
-        """Get summary of simulation results""""
+        """Get summary of simulation results"""
         summary = {}
             'total_issues': len(self.simulation_results),''
             'by_type': {},''
@@ -401,17 +401,17 @@ class WindowsSimulator:
         return summary
 
     def export_simulation_results(self) -> List[Dict[str, Any]]:
-        """Export all simulation results""""
+        """Export all simulation results"""
         return self.simulation_results.copy()
 
     def _get_timestamp(self) -> str:
-        """Get current timestamp""""
+        """Get current timestamp"""
         from datetime import datetime
         return datetime.now().isoformat()
 
 
 def main():
-    """Main function for standalone testing""""
+    """Main function for standalone testing"""
     import argparse
     import json
 

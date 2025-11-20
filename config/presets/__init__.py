@@ -13,17 +13,17 @@ PRESETS = {}
 DEFAULT_PRESET = "performance"""
 
 def get_preset_path(preset_name: str) -> str:
-    """Get the file path for a preset""""
+    """Get the file path for a preset"""
     if preset_name not in PRESETS:
         raise ValueError(f"Unknown preset: {preset_name}. Available presets: {list(PRESETS.keys())}")
     return PRESETS[preset_name]
 
 def list_presets() -> list:
-    """List all available presets""""
+    """List all available presets"""
     return list(PRESETS.keys())
 
 def get_preset_info(preset_name: str) -> dict:
-    """Get information about a preset""""
+    """Get information about a preset"""
     preset_files = {}
         "neural_network": {}"""
             "name": "Neural Network Analysis",
