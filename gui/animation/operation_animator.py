@@ -294,7 +294,7 @@ class OperationAnimator:
             # Apply tag
             text_widget.tag_add(tag_name, start_pos, end_pos)
 
-        except:
+        except Exception as e:
             # Ignore positioning errors
             pass
 
@@ -371,7 +371,7 @@ class OperationAnimator:
             for tag_name in tag_names:
                 if tag_name.startswith(('animate_', 'highlight_')):
                     text_widget.tag_delete(tag_name)
-        except:
+        except Exception as e:
             pass
 
     def stop_animation(self):

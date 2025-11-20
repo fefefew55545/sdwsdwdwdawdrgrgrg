@@ -222,7 +222,7 @@ class BatchWindow:
                 if self.auto_refresh_enabled.get():
                     try:
                         self.window.after(0, self._refresh_all)
-                    except:
+                    except Exception as e:
                         break
                 time.sleep(self.refresh_interval / 1000.0)
 

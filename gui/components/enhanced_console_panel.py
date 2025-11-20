@@ -170,7 +170,7 @@ class EnhancedConsolePanel:
                     self._display_message(message)
                 except queue.Empty:
                     pass
-                except:
+                except Exception as e:
                     break
 
         monitor_thread = threading.Thread(target=monitor_messages, daemon=True)

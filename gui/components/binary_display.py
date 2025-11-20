@@ -819,7 +819,7 @@ class BinaryDisplay(tk.Frame):
 
         try:
             self.text_widget.tag_add('cursor', start_pos, end_pos)
-        except:
+        except Exception as e:
             pass  # Ignore positioning errors
 
         # Ensure cursor is visible
@@ -858,7 +858,7 @@ class BinaryDisplay(tk.Frame):
 
         try:
             self.text_widget.tag_add('selected', start_pos, end_pos)
-        except:
+        except Exception as e:
             pass  # Ignore positioning errors
 
     def _get_position_from_coords(self, x: int, y: int) -> int:
@@ -999,7 +999,7 @@ class BinaryDisplay(tk.Frame):
             self.text_widget.tag_add('highlight', text_pos, end_pos)
             # Scroll to position
             self.text_widget.see(text_pos)
-        except:
+        except Exception as e:
             pass  # Ignore positioning errors
 
     def export_display(self, filename: str, format_type: str):

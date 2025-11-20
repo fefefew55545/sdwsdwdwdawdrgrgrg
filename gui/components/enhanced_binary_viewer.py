@@ -241,7 +241,7 @@ class EnhancedBinaryViewer:
         if show_ascii:
             try:
                 ascii_part = "".join(chr(byte) if 32 <= byte <= 126 else "." for byte in data)
-            except:
+            except Exception as e:
                 ascii_part = "." * len(data)
 
         offset_str = f"{offset:08X}"
@@ -261,7 +261,7 @@ class EnhancedBinaryViewer:
         """Format line as text representation."""
         try:
             text_part = "".join(chr(byte) if 32 <= byte <= 126 else "." for byte in data)
-        except:
+        except Exception as e:
             text_part = "." * len(data)
         offset_str = f"{offset:08X}"
         return f"{offset_str}  {text_part}"
@@ -296,7 +296,7 @@ class EnhancedBinaryViewer:
         if show_ascii:
             try:
                 ascii_part = "".join(chr(byte) if 32 <= byte <= 126 else "." for byte in data)
-            except:
+            except Exception as e:
                 ascii_part = "." * len(data)
 
         offset_str = f"{offset:08X}"

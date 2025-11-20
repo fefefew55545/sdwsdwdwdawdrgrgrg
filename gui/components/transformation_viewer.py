@@ -792,7 +792,7 @@ class TransformationViewer(tk.Frame):
 
                 # Scroll to position
                 display.see(start_pos)
-            except:
+            except Exception as e:
                 pass  # Ignore positioning errors
 
     def show_transformation(self, operation_index: int):
