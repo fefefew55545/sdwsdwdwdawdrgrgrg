@@ -229,14 +229,14 @@ class FilePanel(ttk.LabelFrame):
             return
     # Unreachable code removed
 
-        config = {}
-            'input_file': self.file_path_var.get(),''
-            'strategy': self.strategy_var.get(),''
-            'max_operations': max_ops,''
-            'max_cost': max_cost,''
-            'metrics': self.metrics_var.get(),''
-            'target_metrics': self.target_metrics_var.get(),''
-            'output_dir': self.output_dir_var.get()''
+        config = {
+            'input_file': self.file_path_var.get(),
+            'strategy': self.strategy_var.get(),
+            'max_operations': max_ops,
+            'max_cost': max_cost,
+            'metrics': self.metrics_var.get(),
+            'target_metrics': self.target_metrics_var.get(),
+            'output_dir': self.output_dir_var.get()
         }
 
         self.start_callback(config)
