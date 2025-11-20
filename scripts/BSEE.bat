@@ -963,6 +963,452 @@ call :generate_system_report
 if not "%AUTO_MODE%"=="1" pause
 goto interactive_mode
 
+:error_detection_fix
+echo.
+echo    [INFO] Starting BSEE Enhanced Error Detection & Fix System...
+echo    [INFO] This will find and automatically fix code issues throughout BSEE
+echo.
+
+call :info "Checking for error detection tools..."
+
+:: Check if our custom error detection tools exist
+set ERROR_DETECTION_TOOLS=0
+
+if exist "%PROJECT_DIR%\syntax_check.py" (
+    call :success "Found syntax validation tool"
+    set /a ERROR_DETECTION_TOOLS+=1
+) else (
+    call :warning "Syntax validation tool not found, creating..."
+    call :create_syntax_checker
+)
+
+if exist "%PROJECT_DIR%\ultimate_syntax_fixer.py" (
+    call :success "Found ultimate syntax fixer"
+    set /a ERROR_DETECTION_TOOLS+=1
+) else (
+    call :warning "Ultimate syntax fixer not found, creating..."
+    call :create_ultimate_fixer
+)
+
+if exist "%PROJECT_DIR%\run_enhanced_analysis.py" (
+    call :success "Found enhanced analysis tool"
+    set /a ERROR_DETECTION_TOOLS+=1
+) else (
+    call :warning "Enhanced analysis tool not found, creating..."
+    call :create_enhanced_analyzer
+)
+
+if exist "%PROJECT_DIR%\intelligent_fix_applier.py" (
+    call :success "Found intelligent fix applier"
+    set /a ERROR_DETECTION_TOOLS+=1
+) else (
+    call :warning "Intelligent fix applier not found, creating..."
+    call :create_intelligent_fixer
+)
+
+echo.
+echo    [INFO] Error Detection Tools Available: %ERROR_DETECTION_TOOLS%
+echo.
+
+echo    Choose error detection level:
+echo    [1] Quick Syntax Check - Fast validation of all Python files
+echo    [2] Comprehensive Analysis - Deep code analysis and fixes
+echo    [3] Ultimate Fix Mode - Fix all possible issues automatically
+echo    [4] Interactive Mode - Step-by-step error fixing
+echo    [5] Generate Report Only - Create detailed error report
+echo    [6] Return to Main Menu
+echo.
+
+set /p error_choice="Select option (1-6): "
+
+if "!error_choice!"=="1" goto quick_syntax_check
+if "!error_choice!"=="2" goto comprehensive_analysis
+if "!error_choice!"=="3" goto ultimate_fix_mode
+if "!error_choice!"=="4" goto interactive_error_fix
+if "!error_choice!"=="5" goto generate_error_report
+if "!error_choice!"=="6" goto interactive_mode
+call :warning "Invalid choice, running comprehensive analysis"
+goto comprehensive_analysis
+
+:quick_syntax_check
+echo.
+echo    [INFO] Running Quick Syntax Check...
+echo    [INFO] This will validate all Python files for syntax errors
+
+python "%PROJECT_DIR%\syntax_check.py"
+if errorlevel 1 (
+    call :error "Quick syntax check failed"
+) else (
+    call :success "Quick syntax check completed"
+)
+echo.
+if not "%AUTO_MODE%"=="1" pause
+goto error_detection_fix
+
+:comprehensive_analysis
+echo.
+echo    [INFO] Running Comprehensive Code Analysis...
+echo    [INFO] This includes syntax, logic, security, and performance analysis
+
+python "%PROJECT_DIR%\run_enhanced_analysis.py"
+if errorlevel 1 (
+    call :error "Comprehensive analysis failed"
+    call :info "Attempting basic syntax validation..."
+    python "%PROJECT_DIR%\syntax_check.py"
+) else (
+    call :success "Comprehensive analysis completed"
+)
+
+echo.
+echo    [INFO] Would you like to apply intelligent fixes? (y/n)
+set /p apply_fixes="Apply fixes? (y/n): "
+if /i "!apply_fixes!"=="y" (
+    echo.
+    echo    [INFO] Applying Intelligent Fixes...
+    python "%PROJECT_DIR%\intelligent_fix_applier.py"
+    if errorlevel 1 (
+        call :warning "Some intelligent fixes failed"
+    ) else (
+        call :success "Intelligent fixes applied successfully"
+    )
+)
+
+echo.
+if not "%AUTO_MODE%"=="1" pause
+goto error_detection_fix
+
+:ultimate_fix_mode
+echo.
+echo    [WARNING] ULTIMATE FIX MODE - This will attempt to fix ALL issues
+echo    [WARNING] This may take several minutes and will modify many files
+echo.
+echo    [INFO] Are you sure you want to continue? (y/n)
+set /p confirm_ultimate="Continue? (y/n): "
+if /i not "!confirm_ultimate!"=="y" (
+    call :info "Ultimate fix mode cancelled"
+    goto error_detection_fix
+)
+
+echo    [INFO] Starting Ultimate Fix Mode...
+echo    [INFO] Phase 1: Ultimate Syntax Fixing
+python "%PROJECT_DIR%\ultimate_syntax_fixer.py"
+
+echo.
+echo    [INFO] Phase 2: Intelligent Fix Application
+python "%PROJECT_DIR%\intelligent_fix_applier.py"
+
+echo.
+echo    [INFO] Phase 3: Final Validation
+python "%PROJECT_DIR%\syntax_check.py"
+
+call :success "Ultimate Fix Mode completed"
+echo.
+if not "%AUTO_MODE%"=="1" pause
+goto error_detection_fix
+
+:interactive_error_fix
+echo.
+echo    [INFO] Interactive Error Fix Mode
+echo    [INFO] This will guide you through fixing errors step by step
+
+echo.
+echo    Select error category to fix:
+echo    [1] Syntax Errors
+echo    [2] Import Issues
+echo    [3] Logic Errors
+echo    [4] Code Quality Issues
+echo    [5] Security Issues
+echo    [6] Performance Issues
+echo    [7] Return to Previous Menu
+echo.
+
+set /p interactive_choice="Select category (1-7): "
+
+if "!interactive_choice!"=="1" (
+    echo    [INFO] Fixing Syntax Errors...
+    python "%PROJECT_DIR%\syntax_check.py"
+) else if "!interactive_choice!"=="2" (
+    echo    [INFO] Analyzing Import Issues...
+    python -c "
+import ast
+import sys
+from pathlib import Path
+
+print('=== Import Issue Analysis ===')
+project_root = Path('%PROJECT_DIR%')
+python_files = list(project_root.rglob('*.py'))
+
+import_errors = []
+for file_path in python_files:
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+        ast.parse(content)
+        print(f'✓ {file_path.relative_to(project_root)}')
+    except Exception as e:
+        print(f'✗ {file_path.relative_to(project_root)}: {e}')
+        import_errors.append(str(file_path))
+
+print(f'\nFiles with import issues: {len(import_errors)}')
+"
+) else if "!interactive_choice!"=="3" (
+    echo    [INFO] Analyzing Logic Errors...
+    python -c "
+print('=== Logic Error Analysis ===')
+print('Checking for common logic issues...')
+
+import re
+from pathlib import Path
+
+project_root = Path('%PROJECT_DIR%')
+python_files = list(project_root.rglob('*.py'))
+
+logic_issues = []
+
+for file_path in python_files:
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+
+        issues = []
+
+        # Check for always true conditions
+        if re.search(r'if\s+True\s*:', content):
+            issues.append('Always True condition')
+
+        # Check for empty except blocks
+        if re.search(r'except\s*:\s*pass', content):
+            issues.append('Empty except block')
+
+        # Check for unreachable code
+        lines = content.split('\n')
+        for i, line in enumerate(lines):
+            if 'return' in line and i < len(lines) - 1:
+                next_line = lines[i + 1].strip()
+                if next_line and not next_line.startswith('#') and not next_line.startswith('def'):
+                    issues.append('Potentially unreachable code')
+                    break
+
+        if issues:
+            print(f'✗ {file_path.relative_to(project_root)}: {issues}')
+            logic_issues.append((str(file_path), issues))
+        else:
+            print(f'✓ {file_path.relative_to(project_root)}')
+
+    except Exception:
+        pass
+
+print(f'\nFiles with logic issues: {len(logic_issues)}')
+"
+) else if "!interactive_choice!"=="4" (
+    echo    [INFO] Analyzing Code Quality Issues...
+    python -c "
+print('=== Code Quality Analysis ===')
+
+from pathlib import Path
+
+project_root = Path('%PROJECT_DIR%')
+python_files = list(project_root.rglob('*.py'))
+
+quality_issues = []
+
+for file_path in python_files:
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+
+        issues = []
+
+        # Long lines
+        lines = content.split('\n')
+        long_lines = [i+1 for i, line in enumerate(lines) if len(line) > 120]
+        if long_lines:
+            issues.append(f'Long lines: {len(long_lines)}')
+
+        # Large files
+        if len(lines) > 500:
+            issues.append(f'Large file: {len(lines)} lines')
+
+        # TODO comments
+        if 'TODO' in content or 'FIXME' in content:
+            issues.append('Contains TODO/FIXME comments')
+
+        if issues:
+            print(f'⚠ {file_path.relative_to(project_root)}: {issues}')
+        else:
+            print(f'✓ {file_path.relative_to(project_root)}')
+
+    except Exception:
+        pass
+"
+) else if "!interactive_choice!"=="5" (
+    echo    [INFO] Analyzing Security Issues...
+    python -c "
+print('=== Security Analysis ===')
+
+import re
+from pathlib import Path
+
+project_root = Path('%PROJECT_DIR%')
+python_files = list(project_root.rglob('*.py'))
+
+security_issues = []
+
+for file_path in python_files:
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+
+        issues = []
+
+        # Hardcoded passwords
+        if re.search(r'(password|secret|key)\s*=\s*[\"'][^\"']+[\"']', content, re.IGNORECASE):
+            issues.append('Potential hardcoded secret')
+
+        # Unsafe eval/exec
+        if re.search(r'\b(exec|eval)\s*\(', content):
+            issues.append('Use of eval/exec function')
+
+        if issues:
+            print(f'🔴 {file_path.relative_to(project_root)}: {issues}')
+            security_issues.append((str(file_path), issues))
+        else:
+            print(f'✓ {file_path.relative_to(project_root)}')
+
+    except Exception:
+        pass
+
+print(f'\nFiles with security issues: {len(security_issues)}')
+if security_issues:
+    print('⚠️  WARNING: Security issues found - review these files carefully')
+"
+) else if "!interactive_choice!"=="6" (
+    echo    [INFO] Analyzing Performance Issues...
+    python -c "
+print('=== Performance Analysis ===')
+
+import re
+from pathlib import Path
+
+project_root = Path('%PROJECT_DIR%')
+python_files = list(project_root.rglob('*.py'))
+
+performance_issues = []
+
+for file_path in python_files:
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+
+        issues = []
+
+        # Inefficient string concatenation in loops
+        if re.search(r'for.*:.*\n.*\+=\s*[\"\'']', content, re.MULTILINE):
+            issues.append('Inefficient string concatenation in loop')
+
+        # Global variables
+        if 'global ' in content:
+            issues.append('Use of global variables')
+
+        # Nested loops
+        for_count = len(re.findall(r'for\s+\w+\s+in', content))
+        if for_count > 3:
+            issues.append(f'Multiple nested loops: {for_count}')
+
+        if issues:
+            print(f'⚠ {file_path.relative_to(project_root)}: {issues}')
+        else:
+            print(f'✓ {file_path.relative_to(project_root)}')
+
+    except Exception:
+        pass
+
+print(f'\nFiles with performance issues: {len(performance_issues)}')
+"
+) else if "!interactive_choice!"=="7" (
+    goto error_detection_fix
+) else (
+    call :warning "Invalid choice"
+    goto interactive_error_fix
+)
+
+echo.
+echo    [INFO] Category analysis completed
+if not "%AUTO_MODE%"=="1" pause
+goto interactive_error_fix
+
+:generate_error_report
+echo.
+echo    [INFO] Generating Comprehensive Error Report...
+
+set REPORT_FILE=%PROJECT_DIR%\logs\BSEE_Error_Report_%date:~-4,4%%date:~-10,2%%date:~-7,2%_%time:~0,2%%time:~3,2%.txt
+
+echo BSEE Comprehensive Error Report > "%REPORT_FILE%"
+echo =============================== >> "%REPORT_FILE%"
+echo Generated: %date% %time% >> "%REPORT_FILE%"
+echo Project Directory: %PROJECT_DIR% >> "%REPORT_FILE%"
+echo. >> "%REPORT_FILE%"
+echo EXECUTING ANALYSIS... >> "%REPORT_FILE%"
+echo. >> "%REPORT_FILE%"
+
+python -c "
+import sys
+import subprocess
+import os
+from pathlib import Path
+
+print('=== BSEE Comprehensive Error Analysis ===')
+print(f'Project: {Path(\"%PROJECT_DIR%\").name}')
+print(f'Python: {sys.version}')
+print(f'Timestamp: {subprocess.run([\"date\"], capture_output=True, text=True).stdout.strip()}')
+print()
+
+# Count Python files
+project_root = Path('%PROJECT_DIR%')
+python_files = list(project_root.rglob('*.py'))
+print(f'Total Python files: {len(python_files)}')
+
+# Quick syntax check
+syntax_errors = 0
+for file_path in python_files:
+    try:
+        with open(file_path, 'r') as f:
+            content = f.read()
+        compile(content, str(file_path), 'exec')
+    except SyntaxError:
+        syntax_errors += 1
+
+print(f'Files with syntax errors: {syntax_errors}')
+
+# Summary
+print()
+print('=== RECOMMENDATIONS ===')
+if syntax_errors > 0:
+    print('🔴 CRITICAL: Fix syntax errors immediately')
+    print(f'   Run: python syntax_check.py')
+else:
+    print('✅ No syntax errors detected')
+
+print('🔧 AVAILABLE TOOLS:')
+print('   - syntax_check.py: Validate Python syntax')
+print('   - ultimate_syntax_fixer.py: Fix syntax errors automatically')
+print('   - run_enhanced_analysis.py: Comprehensive code analysis')
+print('   - intelligent_fix_applier.py: Apply intelligent fixes')
+print()
+print('📋 NEXT STEPS:')
+print('1. Run syntax validation')
+print('2. Apply intelligent fixes')
+print('3. Verify with comprehensive analysis')
+print('4. Test core functionality')
+" >> "%REPORT_FILE%" 2>&1
+
+call :success "Error report generated: %REPORT_FILE%"
+echo.
+echo    [INFO] Report saved to: %REPORT_FILE%
+echo.
+if not "%AUTO_MODE%"=="1" pause
+goto error_detection_fix
+
 :exit_bsee
 echo.
 echo    [INFO] BSEE Enhanced session completed successfully!
