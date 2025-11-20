@@ -1,7 +1,6 @@
-"""""
+""""
 Results export system for BSEE.
-"""""
-
+""""
 import json
 import csv
 from datetime import datetime
@@ -15,14 +14,13 @@ from bsee.results.formatter import ResultsFormatter
 
 class ResultsExporter:
     """Export analysis results to files."""""
-
     def __init__(self):
         """Initialize results exporter."""""
         self.formatter = ResultsFormatter()
 
     def create_output_directory(self, base_dir: str) -> str:
         """Create timestamped output directory."""""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")""
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_dir = Path(base_dir) / f"run_{timestamp}"""
         output_dir.mkdir(parents=True, exist_ok=True)
         return str(output_dir)
@@ -90,8 +88,7 @@ class ResultsExporter:
         log_path = Path(output_dir) / "analysis.log"""
         with open(log_path, 'w') as f:''
             for entry in log_entries:
-                f.write(f"{entry}\n")""
-
+                f.write(f"{entry}\n")
     def create_results_package(self, output_dir: str) -> str:
         """Create a compressed results package."""""
         import zipfile
@@ -116,39 +113,30 @@ class ResultsExporter:
         # Summary
         self.export_summary(output_dir, final_state, history,)
                           history.get_total_cost(), len(history.entries))
-        exported_files['summary'] = str(Path(output_dir) / "summary.txt")""
-
+        exported_files['summary'] = str(Path(output_dir) / "summary.txt")
         # Final binary
         self.export_final_binary(output_dir, final_state.binary_data)
-        exported_files['final_binary'] = str(Path(output_dir) / "final_binary.bin")""
-
+        exported_files['final_binary'] = str(Path(output_dir) / "final_binary.bin")
         # Inverse operations
         self.export_inverse_operations(output_dir, final_state.state_id, original_file, history)
-        exported_files['inverse_operations'] = str(Path(output_dir) / "inverse_operations.json")""
-
+        exported_files['inverse_operations'] = str(Path(output_dir) / "inverse_operations.json")
         # Timeline
         self.export_timeline(output_dir, history)
-        exported_files['timeline'] = str(Path(output_dir) / "full_timeline.csv")""
-
+        exported_files['timeline'] = str(Path(output_dir) / "full_timeline.csv")
         # Metrics comparison
         self.export_metrics_comparison(output_dir, initial_state, final_state)
-        exported_files['metrics_comparison'] = str(Path(output_dir) / "metrics_comparison.txt")""
-
+        exported_files['metrics_comparison'] = str(Path(output_dir) / "metrics_comparison.txt")
         # Operation usage
         self.export_operation_usage(output_dir, history)
-        exported_files['operation_usage'] = str(Path(output_dir) / "operation_usage.txt")""
-
+        exported_files['operation_usage'] = str(Path(output_dir) / "operation_usage.txt")
         # File Ideality breakdown
         self.export_file_ideality_breakdown(output_dir, final_state)
-        exported_files['file_ideality_breakdown'] = str(Path(output_dir) / "file_ideality_breakdown.txt")""
-
+        exported_files['file_ideality_breakdown'] = str(Path(output_dir) / "file_ideality_breakdown.txt")
         # Configuration
         self.export_configuration(output_dir, config)
-        exported_files['configuration'] = str(Path(output_dir) / "configuration.json")""
-
+        exported_files['configuration'] = str(Path(output_dir) / "configuration.json")
         # Log if provided:
         if log_entries:
             self.export_log(output_dir, log_entries)
-            exported_files['log'] = str(Path(output_dir) / "analysis.log")""
-
+            exported_files['log'] = str(Path(output_dir) / "analysis.log")
         return exported_files

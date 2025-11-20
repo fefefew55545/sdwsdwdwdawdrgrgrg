@@ -1,7 +1,6 @@
-"""""
+""""
 GUI testing framework for BSEE.
-"""""
-
+""""
 import unittest
 import tkinter as tk
 from pathlib import Path
@@ -18,7 +17,6 @@ from gui.app_controller import AppController
 
 class TestGUIComponents(unittest.TestCase):
     """Test GUI components."""""
-
     @classmethod
     def setUpClass(cls):
         """Set up test environment."""""
@@ -82,7 +80,6 @@ class TestGUIComponents(unittest.TestCase):
 
 class TestGUIIntegration(unittest.TestCase):
     """Test GUI integration."""""
-
     def setUp(self):
         """Set up GUI for testing."""""
         self.app = MainWindow()
@@ -119,19 +116,17 @@ class TestGUIIntegration(unittest.TestCase):
                 processed = self.app.progress_queue.get_nowait()
                 self.assertEqual(processed['type'], message['type'])''
             except:
-                # Queue might be empty or full, that's okay for this test''
+                # Queue might be empty or full, that's okay for this test'''
                 pass
 
 
 class TestFileHandling(unittest.TestCase):
     """Test file handling functionality."""""
-
     def setUp(self):
         """Set up test files."""""
         self.test_dir = Path(tempfile.mkdtemp())
         self.test_file = self.test_dir / "test.bin"""
-        self.test_file.write_bytes(b"test data for BSEE GUI testing")""
-
+        self.test_file.write_bytes(b"test data for BSEE GUI testing")
     def tearDown(self):
         """Clean up test files."""""
         import shutil
@@ -145,7 +140,6 @@ class TestFileHandling(unittest.TestCase):
 
 class TestVisualization(unittest.TestCase):
     """Test visualization functionality."""""
-
     def setUp(self):
         """Set up visualization test."""""
         self.root = tk.Tk()
@@ -190,8 +184,8 @@ def run_gui_tests():
     return result.wasSuccessful()
 
 
-if __name__ == "__main__":""
-    print("BSEE GUI Test Suite")""
-    print("=" * 50)""
+if __name__ == "__main__":
+    print("BSEE GUI Test Suite")
+    print("=" * 50)
     success = run_gui_tests()
     sys.exit(0 if success else 1)

@@ -1,8 +1,7 @@
-"""""
+""""
 Component Health Checker
 Automated validation of all BSEE components
-"""""
-
+""""
 import time
 import traceback
 import importlib
@@ -81,7 +80,6 @@ class ValidationResult:
 
 class ComponentValidator:
     """Automated component validation system"""""
-
     def __init__(self):
         self.validation_rules = {}
         self.fix_strategies = {}
@@ -150,11 +148,11 @@ class ComponentValidator:
     def _setup_fix_strategies(self):
         """Setup automated fix strategies"""""
         self.fix_strategies = {}
-            "config_missing": self._fix_missing_config,""
-            "parameter_invalid": self._fix_invalid_parameters,""
-            "performance_slow": self._fix_performance_issues,""
-            "cache_full": self._fix_cache_issues,""
-            "gui_responsive": self._fix_gui_responsiveness,""
+            "config_missing": self._fix_missing_config,
+            "parameter_invalid": self._fix_invalid_parameters,
+            "performance_slow": self._fix_performance_issues,
+            "cache_full": self._fix_cache_issues,
+            "gui_responsive": self._fix_gui_responsiveness,
             "convergence_failed": self._fix_convergence_issues""
         }
 
@@ -174,7 +172,7 @@ class ComponentValidator:
             if not rules:
                 result.issues.append(ValidationIssue())
                     component=component_name,
-                    issue_type="no_validation_rules",""
+                    issue_type="no_validation_rules",
                     severity=ValidationStatus.WARNING,
                     message=f"No validation rules defined for component type {component_type.value}"""
                 ))
@@ -194,9 +192,9 @@ class ComponentValidator:
                 except Exception as e:
                     result.issues.append(ValidationIssue())
                         component=component_name,
-                        issue_type="validation_rule_error",""
+                        issue_type="validation_rule_error",
                         severity=ValidationStatus.ERROR,
-                        message=f"Validation rule failed: {str(e)}",""
+                        message=f"Validation rule failed: {str(e)}",
                         stack_trace=traceback.format_exc()
                     ))
 
@@ -210,10 +208,10 @@ class ComponentValidator:
 
             # Calculate validation metrics
             result.metrics = {}
-                "total_issues": len(result.issues),""
-                "critical_issues": len([i for i in result.issues if i.severity in [ValidationStatus.FAIL, ValidationStatus.ERROR]]),""
-                "warning_issues": len([i for i in result.issues if i.severity == ValidationStatus.WARNING]),""
-                "validation_rules_applied": len(rules),""
+                "total_issues": len(result.issues),
+                "critical_issues": len([i for i in result.issues if i.severity in [ValidationStatus.FAIL, ValidationStatus.ERROR]]),
+                "warning_issues": len([i for i in result.issues if i.severity == ValidationStatus.WARNING]),
+                "validation_rules_applied": len(rules),
                 "validation_timestamp": result.timestamp""
             }
 
@@ -221,9 +219,9 @@ class ComponentValidator:
             result.status = ValidationStatus.ERROR
             result.issues.append(ValidationIssue())
                 component=component_name,
-                issue_type="validation_error",""
+                issue_type="validation_error",
                 severity=ValidationStatus.ERROR,
-                message=f"Component validation failed: {str(e)}",""
+                message=f"Component validation failed: {str(e)}",
                 stack_trace=traceback.format_exc()
             ))
 
@@ -264,11 +262,11 @@ class ComponentValidator:
 
         # Try to import and validate known strategies
         known_strategies = []
-            ("MCTSStrategy", ComponentType.STRATEGY),""
-            ("GeneticStrategy", ComponentType.STRATEGY),""
-            ("BeamSearchStrategy", ComponentType.STRATEGY),""
-            ("SimulatedAnnealingStrategy", ComponentType.STRATEGY),""
-            ("HeuristicStrategy", ComponentType.STRATEGY)""
+            ("MCTSStrategy", ComponentType.STRATEGY),
+            ("GeneticStrategy", ComponentType.STRATEGY),
+            ("BeamSearchStrategy", ComponentType.STRATEGY),
+            ("SimulatedAnnealingStrategy", ComponentType.STRATEGY),
+            ("HeuristicStrategy", ComponentType.STRATEGY)
         ]
 
         for strategy_name, component_type in known_strategies:
@@ -291,7 +289,7 @@ class ComponentValidator:
                 )
                 result.issues.append(ValidationIssue())
                     component=strategy_name,
-                    issue_type="component_not_found",""
+                    issue_type="component_not_found",
                     severity=ValidationStatus.SKIP,
                     message=f"Strategy {strategy_name} not found at {module_path}"""
                 ))
@@ -305,9 +303,9 @@ class ComponentValidator:
                 )
                 result.issues.append(ValidationIssue())
                     component=strategy_name,
-                    issue_type="component_import_error",""
+                    issue_type="component_import_error",
                     severity=ValidationStatus.ERROR,
-                    message=f"Error importing {strategy_name}: {str(e)}",""
+                    message=f"Error importing {strategy_name}: {str(e)}",
                     stack_trace=traceback.format_exc()
                 ))
                 results[strategy_name] = result
@@ -319,11 +317,11 @@ class ComponentValidator:
         results = {}
 
         known_operations = []
-            ("XorOperation", ComponentType.OPERATION),""
-            ("AddConstantOperation", ComponentType.OPERATION),""
-            ("SubstituteOperation", ComponentType.OPERATION),""
-            ("RotateOperation", ComponentType.OPERATION),""
-            ("CompressOperation", ComponentType.OPERATION)""
+            ("XorOperation", ComponentType.OPERATION),
+            ("AddConstantOperation", ComponentType.OPERATION),
+            ("SubstituteOperation", ComponentType.OPERATION),
+            ("RotateOperation", ComponentType.OPERATION),
+            ("CompressOperation", ComponentType.OPERATION)
         ]
 
         for op_name, component_type in known_operations:
@@ -333,13 +331,13 @@ class ComponentValidator:
                 operation_class = getattr(module, op_name)
 
                 # Try to create operation instance
-                if op_name == "XorOperation":""
+                if op_name == "XorOperation":
                     op_instance = operation_class(0x42)
-                elif op_name == "AddConstantOperation":""
+                elif op_name == "AddConstantOperation":
                     op_instance = operation_class(10)
-                elif op_name == "SubstituteOperation":""
+                elif op_name == "SubstituteOperation":
                     op_instance = operation_class({65: 90})  # A->Z
-                elif op_name == "RotateOperation":""
+                elif op_name == "RotateOperation":
                     op_instance = operation_class(3)
                 else:
                     op_instance = operation_class()
@@ -355,7 +353,7 @@ class ComponentValidator:
                 )
                 result.issues.append(ValidationIssue())
                     component=op_name,
-                    issue_type="component_not_found",""
+                    issue_type="component_not_found",
                     severity=ValidationStatus.SKIP,
                     message=f"Operation {op_name} not found at {module_path}"""
                 ))
@@ -369,9 +367,9 @@ class ComponentValidator:
                 )
                 result.issues.append(ValidationIssue())
                     component=op_name,
-                    issue_type="component_import_error",""
+                    issue_type="component_import_error",
                     severity=ValidationStatus.ERROR,
-                    message=f"Error importing {op_name}: {str(e)}",""
+                    message=f"Error importing {op_name}: {str(e)}",
                     stack_trace=traceback.format_exc()
                 ))
                 results[op_name] = result
@@ -383,13 +381,13 @@ class ComponentValidator:
         results = {}
 
         config_files = []
-            ("strategy_configs", ComponentType.CONFIGURATION),""
-            ("operation_configs", ComponentType.CONFIGURATION),""
-            ("gui_configs", ComponentType.CONFIGURATION)""
+            ("strategy_configs", ComponentType.CONFIGURATION),
+            ("operation_configs", ComponentType.CONFIGURATION),
+            ("gui_configs", ComponentType.CONFIGURATION)
         ]
 
         for config_name, component_type in config_files:
-            result = self.validate_component(config_name, component_type, {"config_path": config_name})""
+            result = self.validate_component(config_name, component_type, {"config_path": config_name})
             results[config_name] = result
 
         return results
@@ -399,20 +397,20 @@ class ComponentValidator:
         results = {}
 
         performance_components = []
-            ("performance_monitor", ComponentType.PERFORMANCE),""
-            ("operation_cache", ComponentType.CACHE),""
-            ("parallel_processor", ComponentType.PERFORMANCE)""
+            ("performance_monitor", ComponentType.PERFORMANCE),
+            ("operation_cache", ComponentType.CACHE),
+            ("parallel_processor", ComponentType.PERFORMANCE)
         ]
 
         for comp_name, component_type in performance_components:
             try:
-                if comp_name == "performance_monitor":""
+                if comp_name == "performance_monitor":
                     from bsee.monitoring.performance_monitor import PerformanceMonitor
                     comp_instance = PerformanceMonitor()
-                elif comp_name == "operation_cache":""
+                elif comp_name == "operation_cache":
                     from bsee.caching.operation_cache import OperationCache
                     comp_instance = OperationCache()
-                elif comp_name == "parallel_processor":""
+                elif comp_name == "parallel_processor":
                     from bsee.processing.parallel_processor import ParallelProcessor
                     comp_instance = ParallelProcessor()
                 else:
@@ -429,7 +427,7 @@ class ComponentValidator:
                 )
                 result.issues.append(ValidationIssue())
                     component=comp_name,
-                    issue_type="component_not_found",""
+                    issue_type="component_not_found",
                     severity=ValidationStatus.SKIP,
                     message=f"Performance component {comp_name} not found"""
                 ))
@@ -443,9 +441,9 @@ class ComponentValidator:
                 )
                 result.issues.append(ValidationIssue())
                     component=comp_name,
-                    issue_type="component_import_error",""
+                    issue_type="component_import_error",
                     severity=ValidationStatus.ERROR,
-                    message=f"Error importing {comp_name}: {str(e)}",""
+                    message=f"Error importing {comp_name}: {str(e)}",
                     stack_trace=traceback.format_exc()
                 ))
                 results[comp_name] = result
@@ -458,13 +456,13 @@ class ComponentValidator:
         if not strategy_data:
             return ValidationIssue()
                 component=component_name,
-                issue_type="missing_strategy",""
+                issue_type="missing_strategy",
                 severity=ValidationStatus.FAIL,
                 message="Strategy instance is None or invalid"""
             )
 
         # Check if strategy has required methods
-        required_methods = ["analyze"]""
+        required_methods = ["analyze"]
         missing_methods = []
         for method in required_methods:
             if not hasattr(strategy_data, method):
@@ -473,10 +471,10 @@ class ComponentValidator:
         if missing_methods:
             return ValidationIssue()
                 component=component_name,
-                issue_type="missing_methods",""
+                issue_type="missing_methods",
                 severity=ValidationStatus.FAIL,
-                message=f"Strategy missing required methods: {missing_methods}",""
-                details={"missing_methods": missing_methods},""
+                message=f"Strategy missing required methods: {missing_methods}",
+                details={"missing_methods": missing_methods},
                 fix_suggestion="Implement missing methods in strategy class"""
             )
 
@@ -487,9 +485,9 @@ class ComponentValidator:
         if not hasattr(strategy_data, 'config'):''
             return ValidationIssue()
                 component=component_name,
-                issue_type="missing_config",""
+                issue_type="missing_config",
                 severity=ValidationStatus.WARNING,
-                message="Strategy does not have a config attribute",""
+                message="Strategy does not have a config attribute",
                 fix_suggestion="Add config attribute to strategy class"""
             )
 
@@ -498,9 +496,9 @@ class ComponentValidator:
         if not config or isinstance(config, dict) and len(config) == 0:
             return ValidationIssue()
                 component=component_name,
-                issue_type="empty_config",""
+                issue_type="empty_config",
                 severity=ValidationStatus.WARNING,
-                message="Strategy configuration is empty or default",""
+                message="Strategy configuration is empty or default",
                 fix_suggestion="Configure strategy with appropriate parameters"""
             )
 
@@ -518,10 +516,10 @@ class ComponentValidator:
             if execution_time > 5.0:  # Strategy should not take more than 5 seconds for 10 iterations
                 return ValidationIssue()
                     component=component_name,
-                    issue_type="slow_performance",""
+                    issue_type="slow_performance",
                     severity=ValidationStatus.WARNING,
-                    message=f"Strategy execution time ({execution_time:.2f}s) exceeds threshold",""
-                    details={"execution_time": execution_time, "threshold": 5.0},""
+                    message=f"Strategy execution time ({execution_time:.2f}s) exceeds threshold",
+                    details={"execution_time": execution_time, "threshold": 5.0},
                     fix_suggestion="Optimize strategy algorithm or reduce iteration count"""
                 )
 
@@ -529,18 +527,18 @@ class ComponentValidator:
             if not isinstance(result, dict):
                 return ValidationIssue()
                     component=component_name,
-                    issue_type="invalid_result",""
+                    issue_type="invalid_result",
                     severity=ValidationStatus.FAIL,
-                    message="Strategy analyze() must return a dictionary",""
+                    message="Strategy analyze() must return a dictionary",
                     fix_suggestion="Ensure analyze() method returns proper result structure"""
                 )
 
         except Exception as e:
             return ValidationIssue()
                 component=component_name,
-                issue_type="performance_test_error",""
+                issue_type="performance_test_error",
                 severity=ValidationStatus.ERROR,
-                message=f"Strategy performance test failed: {str(e)}",""
+                message=f"Strategy performance test failed: {str(e)}",
                 stack_trace=traceback.format_exc()
             )
 
@@ -556,25 +554,24 @@ class ComponentValidator:
 
             # Results should be consistent for same input
             if isinstance(result1, dict) and isinstance(result2, dict):
-                score1 = result1.get("score", 0)""
-                score2 = result2.get("score", 0)""
-
+                score1 = result1.get("score", 0)
+                score2 = result2.get("score", 0)
                 if abs(score1 - score2) > 0.1:  # Allow some tolerance for stochastic algorithms
                     return ValidationIssue()
                         component=component_name,
-                        issue_type="inconsistent_results",""
+                        issue_type="inconsistent_results",
                         severity=ValidationStatus.WARNING,
-                        message=f"Strategy produces inconsistent results: {score1:.3f} vs {score2:.3f}",""
-                        details={"score1": score1, "score2": score2},""
+                        message=f"Strategy produces inconsistent results: {score1:.3f} vs {score2:.3f}",
+                        details={"score1": score1, "score2": score2},
                         fix_suggestion="Check random seed handling and algorithm determinism"""
                     )
 
         except Exception as e:
             return ValidationIssue()
                 component=component_name,
-                issue_type="convergence_test_error",""
+                issue_type="convergence_test_error",
                 severity=ValidationStatus.ERROR,
-                message=f"Strategy convergence test failed: {str(e)}",""
+                message=f"Strategy convergence test failed: {str(e)}",
                 stack_trace=traceback.format_exc()
             )
 
@@ -586,7 +583,7 @@ class ComponentValidator:
         if not operation_data:
             return ValidationIssue()
                 component=component_name,
-                issue_type="missing_operation",""
+                issue_type="missing_operation",
                 severity=ValidationStatus.FAIL,
                 message="Operation instance is None or invalid"""
             )
@@ -595,9 +592,9 @@ class ComponentValidator:
         if not hasattr(operation_data, 'apply'):''
             return ValidationIssue()
                 component=component_name,
-                issue_type="missing_apply_method",""
+                issue_type="missing_apply_method",
                 severity=ValidationStatus.FAIL,
-                message="Operation missing required apply() method",""
+                message="Operation missing required apply() method",
                 fix_suggestion="Implement apply() method in operation class"""
             )
 
@@ -614,12 +611,12 @@ class ComponentValidator:
                 if restored != test_data:
                     return ValidationIssue()
                         component=component_name,
-                        issue_type="reversibility_failed",""
+                        issue_type="reversibility_failed",
                         severity=ValidationStatus.FAIL,
-                        message="Operation is not properly reversible",""
+                        message="Operation is not properly reversible",
                         details={}
-                            "original_length": len(test_data),""
-                            "restored_length": len(restored),""
+                            "original_length": len(test_data),
+                            "restored_length": len(restored),
                             "data_matches": restored == test_data""
                         },
                         fix_suggestion="Fix operation inverse implementation"""
@@ -628,9 +625,9 @@ class ComponentValidator:
             except Exception as e:
                 return ValidationIssue()
                     component=component_name,
-                    issue_type="reversibility_test_error",""
+                    issue_type="reversibility_test_error",
                     severity=ValidationStatus.ERROR,
-                    message=f"Reversibility test failed: {str(e)}",""
+                    message=f"Reversibility test failed: {str(e)}",
                     stack_trace=traceback.format_exc()
                 )
 
@@ -648,18 +645,18 @@ class ComponentValidator:
             if not isinstance(result, bytes):
                 return ValidationIssue()
                     component=component_name,
-                    issue_type="invalid_result_type",""
+                    issue_type="invalid_result_type",
                     severity=ValidationStatus.FAIL,
-                    message="Operation apply() must return bytes",""
+                    message="Operation apply() must return bytes",
                     fix_suggestion="Ensure apply() method returns bytes type"""
                 )
 
         except Exception as e:
             return ValidationIssue()
                 component=component_name,
-                issue_type="parameter_test_error",""
+                issue_type="parameter_test_error",
                 severity=ValidationStatus.ERROR,
-                message=f"Parameter test failed: {str(e)}",""
+                message=f"Parameter test failed: {str(e)}",
                 stack_trace=traceback.format_exc()
             )
 
@@ -681,28 +678,28 @@ class ComponentValidator:
                 if execution_time > max_acceptable_time:
                     return ValidationIssue()
                         component=component_name,
-                        issue_type="slow_operation",""
+                        issue_type="slow_operation",
                         severity=ValidationStatus.WARNING,
-                        message=f"Operation slow for size {size}: {execution_time:.3f}s",""
-                        details={"size": size, "execution_time": execution_time},""
+                        message=f"Operation slow for size {size}: {execution_time:.3f}s",
+                        details={"size": size, "execution_time": execution_time},
                         fix_suggestion="Optimize operation algorithm for better performance"""
                     )
 
                 if len(result) != size:
                     return ValidationIssue()
                         component=component_name,
-                        issue_type="size_mismatch",""
+                        issue_type="size_mismatch",
                         severity=ValidationStatus.FAIL,
-                        message=f"Output size ({len(result)}) doesn't match input size ({size})",""
+                        message=f"Output size ({len(result)}) doesn't match input size ({size})",""'
                         fix_suggestion="Ensure operation preserves data size or properly handles size changes"""
                     )
 
         except Exception as e:
             return ValidationIssue()
                 component=component_name,
-                issue_type="performance_test_error",""
+                issue_type="performance_test_error",
                 severity=ValidationStatus.ERROR,
-                message=f"Performance test failed: {str(e)}",""
+                message=f"Performance test failed: {str(e)}",
                 stack_trace=traceback.format_exc()
             )
 
@@ -711,11 +708,11 @@ class ComponentValidator:
     def _validate_operation_edge_cases(self, component_name: str, operation_data: Any) -> Optional[ValidationIssue]:
         """Validate operation edge cases"""""
         edge_cases = []
-            (b"", "empty_data"),""
-            (b"\x00", "single_zero"),""
-            (b"\xFF", "single_max"),""
-            (b"\x00" * 1000, "all_zeros"),""
-            (b"\xFF" * 1000, "all_ones")""
+            (b"", "empty_data"),
+            (b"\x00", "single_zero"),
+            (b"\xFF", "single_max"),
+            (b"\x00" * 1000, "all_zeros"),
+            (b"\xFF" * 1000, "all_ones")
         ]
 
         for test_data, case_name in edge_cases:
@@ -726,19 +723,19 @@ class ComponentValidator:
                 if not isinstance(result, bytes):
                     return ValidationIssue()
                         component=component_name,
-                        issue_type="edge_case_failure",""
+                        issue_type="edge_case_failure",
                         severity=ValidationStatus.FAIL,
-                        message=f"Operation failed on edge case '{case_name}': invalid return type",""
-                        details={"case": case_name, "return_type": type(result).__name__}""
+                        message=f"Operation failed on edge case '{case_name}': invalid return type",
+                        details={"case": case_name, "return_type": type(result).__name__}
                     )
 
             except Exception as e:
                 return ValidationIssue()
                     component=component_name,
-                    issue_type="edge_case_error",""
+                    issue_type="edge_case_error",
                     severity=ValidationStatus.ERROR,
-                    message=f"Operation failed on edge case '{case_name}': {str(e)}",""
-                    details={"case": case_name},""
+                    message=f"Operation failed on edge case '{case_name}': {str(e)}",
+                    details={"case": case_name},
                     stack_trace=traceback.format_exc()
                 )
 
@@ -747,19 +744,19 @@ class ComponentValidator:
     # Configuration validation rules
     def _validate_config_loading(self, component_name: str, config_data: Any) -> Optional[ValidationIssue]:
         """Validate configuration loading"""""
-        if not isinstance(config_data, dict) or "config_path" not in config_data:""
+        if not isinstance(config_data, dict) or "config_path" not in config_data:
             return ValidationIssue()
                 component=component_name,
-                issue_type="invalid_config_data",""
+                issue_type="invalid_config_data",
                 severity=ValidationStatus.WARNING,
-                message="Invalid configuration data provided",""
+                message="Invalid configuration data provided",
                 fix_suggestion="Provide proper configuration data structure"""
             )
 
         # Try to load configuration file
-        config_path = Path(config_data["config_path"])""
+        config_path = Path(config_data["config_path"])
         config_files = []
-            config_path / f"{config_data['config_path']}.json",""
+            config_path / f"{config_data['config_path']}.json",
             project_root / "configs" / f"{config_data['config_path']}.json"""
         ]
 
@@ -777,10 +774,10 @@ class ComponentValidator:
         if not config_found:
             return ValidationIssue()
                 component=component_name,
-                issue_type="config_not_found",""
+                issue_type="config_not_found",
                 severity=ValidationStatus.WARNING,
-                message=f"Configuration file not found: {config_data['config_path']}",""
-                details={"searched_paths": [str(p) for p in config_files]},""
+                message=f"Configuration file not found: {config_data['config_path']}",
+                details={"searched_paths": [str(p) for p in config_files]},
                 fix_suggestion="Create configuration file or provide default configuration"""
             )
 
@@ -810,15 +807,15 @@ class ComponentValidator:
         if not perf_data:
             return ValidationIssue()
                 component=component_name,
-                issue_type="no_performance_data",""
+                issue_type="no_performance_data",
                 severity=ValidationStatus.WARNING,
                 message="No performance data available for validation"""
             )
 
         # Check performance thresholds
         thresholds = {}
-            "min_ops_per_second": 1.0,""
-            "max_memory_mb": 512.0,""
+            "min_ops_per_second": 1.0,
+            "max_memory_mb": 512.0,
             "max_execution_time": 5.0""
         }
 
@@ -942,9 +939,9 @@ class ComponentValidator:
     def attempt_auto_fixes(self, validation_results: Dict[str, ValidationResult]) -> Dict[str, int]:
         """Attempt automatic fixes for validation issues"""""
         fix_results = {}
-            "total_issues": 0,""
-            "fixes_attempted": 0,""
-            "fixes_successful": 0,""
+            "total_issues": 0,
+            "fixes_attempted": 0,
+            "fixes_successful": 0,
             "fixes_failed": 0""
         }
 
@@ -979,36 +976,35 @@ class ComponentValidator:
         error_components = sum(1 for r in validation_results.values() if r.status == ValidationStatus.ERROR)
 
         total_issues = sum(len(r.issues) for r in validation_results.values())
-        critical_issues = sum(r.metrics.get("critical_issues", 0) for r in validation_results.values())""
-
+        critical_issues = sum(r.metrics.get("critical_issues", 0) for r in validation_results.values())
         return {}
             "summary": {}""""
-                "total_components": total_components,""
-                "passed": passed_components,""
-                "failed": failed_components,""
-                "warnings": warning_components,""
-                "errors": error_components,""
+                "total_components": total_components,
+                "passed": passed_components,
+                "failed": failed_components,
+                "warnings": warning_components,
+                "errors": error_components,
                 "success_rate": (passed_components / total_components * 100) if total_components > 0 else 0""
             },
             "issues": {}""""
-                "total_issues": total_issues,""
-                "critical_issues": critical_issues,""
+                "total_issues": total_issues,
+                "critical_issues": critical_issues,
                 "issues_by_component": {}""""
                     name: len(result.issues) for name, result in validation_results.items()
                 }
             },
             "performance": {}""""
-                "total_validation_time": sum(r.validation_time for r in validation_results.values()),""
+                "total_validation_time": sum(r.validation_time for r in validation_results.values()),
                 "average_validation_time": sum(r.validation_time for r in validation_results.values()) / total_components if total_components > 0 else 0""
             },
             "detailed_results": {}""""
                 name: {}
-                    "status": result.status.value,""
+                    "status": result.status.value,
                     "issues": []""""
                         {}
-                            "type": issue.issue_type,""
-                            "severity": issue.severity.value,""
-                            "message": issue.message,""
+                            "type": issue.issue_type,
+                            "severity": issue.severity.value,
+                            "message": issue.message,
                             "fix_suggestion": issue.fix_suggestion""
                         }
                         for issue in result.issues
@@ -1017,19 +1013,18 @@ class ComponentValidator:
                 }
                 for name, result in validation_results.items()
             },
-            "timestamp": time.time()""
+            "timestamp": time.time()
         }
 
     def export_validation_report(self, validation_results: Dict[str, ValidationResult],])
-                               format: str = "json", output_path: Optional[str] = None) -> str:""
+                               format: str = "json", output_path: Optional[str] = None) -> str:
         """Export validation report"""""
         report = self.generate_validation_report(validation_results)
 
-        if format.lower() == "json":""
+        if format.lower() == "json":
             report_content = json.dumps(report, indent=2, default=str)
         else:
-            raise ValueError(f"Unsupported export format: {format}")""
-
+            raise ValueError(f"Unsupported export format: {format}")
         if output_path:
             with open(output_path, 'w') as f:''
                 f.write(report_content)

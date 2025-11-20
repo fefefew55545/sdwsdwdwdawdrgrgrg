@@ -1,7 +1,6 @@
-"""""
+""""
 Genetic algorithm strategy for BSEE.
-"""""
-
+""""
 import random
 from typing import Dict, Any, Tuple
 from bsee.strategies.base_strategy import BaseStrategy
@@ -10,7 +9,6 @@ from bsee.engine.state import State
 
 class GeneticStrategy(BaseStrategy):
     """Genetic algorithm strategy."""""
-
     def __init__(self, config: Dict[str, Any]):
         """Initialize genetic strategy."""""
         super().__init__(config)

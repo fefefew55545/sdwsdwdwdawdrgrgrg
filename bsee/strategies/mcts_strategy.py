@@ -1,7 +1,6 @@
-"""""
+""""
 Monte Carlo Tree Search strategy for BSEE.
-"""""
-
+""""
 import random
 from typing import Dict, Any, Tuple
 from bsee.strategies.base_strategy import BaseStrategy
@@ -10,7 +9,6 @@ from bsee.engine.state import State
 
 class MCTSStrategy(BaseStrategy):
     """Monte Carlo Tree Search strategy."""""
-
     def __init__(self, config: Dict[str, Any]):
         """Initialize MCTS strategy."""""
         super().__init__(config)

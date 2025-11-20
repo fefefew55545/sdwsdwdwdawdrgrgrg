@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""""
+""""
 Test suite for the Error Detection System
 Tests error_detector.py, csv_logger.py, and windows_simulator.py
-"""""
-
+""""
 import pytest
 import tempfile
 import json
@@ -24,7 +23,6 @@ from windows_simulator import WindowsSimulator
 
 class TestErrorDetector:
     """Test cases for ErrorDetector"""""
-
     def test_init(self):
         """Test ErrorDetector initialization"""""
         detector = ErrorDetector()
@@ -35,12 +33,12 @@ class TestErrorDetector:
     def test_find_python_files(self, tmp_path):
         """Test finding Python files in a directory"""""
         # Create test Python files
-        (tmp_path / "test1.py").touch()""
-        (tmp_path / "test2.py").touch()""
-        (tmp_path / "not_python.txt").touch()""
-        (tmp_path / "subdir").mkdir()""
-        (tmp_path / "subdir" / "test3.py").touch()""
-        (tmp_path / ".hidden").mkdir()""
+        (tmp_path / "test1.py").touch()
+        (tmp_path / "test2.py").touch()
+        (tmp_path / "not_python.txt").touch()
+        (tmp_path / "subdir").mkdir()
+        (tmp_path / "subdir" / "test3.py").touch()
+        (tmp_path / ".hidden").mkdir()
         (tmp_path / ".hidden" / "hidden.py").touch()  # Should be ignored""
 
         detector = ErrorDetector(str(tmp_path))
@@ -56,8 +54,7 @@ class TestErrorDetector:
         """Test syntax error detection"""""
         # Create a file with syntax error
         syntax_error_file = tmp_path / "syntax_error.py"""
-        syntax_error_file.write_text("def test():\n    print('test')\n    # Missing colon after if\n    if True\n        print('no colon')")""
-
+        syntax_error_file.write_text("def test():\n    print('test')\n    # Missing colon after if\n    if True\n        print('no colon')")
         detector = ErrorDetector(str(tmp_path))
         error = detector.check_syntax_error(syntax_error_file)
 
@@ -68,8 +65,7 @@ class TestErrorDetector:
     def test_check_syntax_valid(self, tmp_path):
         """Test syntax checking with valid Python"""""
         valid_file = tmp_path / "valid.py"""
-        valid_file.write_text("def test():\n    print('test')\n    if True:\n        print('valid')")""
-
+        valid_file.write_text("def test():\n    print('test')\n    if True:\n        print('valid')")
         detector = ErrorDetector(str(tmp_path))
         error = detector.check_syntax_error(valid_file)
 
@@ -78,19 +74,17 @@ class TestErrorDetector:
     def test_check_import_error_missing_module(self, tmp_path):
         """Test import error detection with missing module"""""
         import_error_file = tmp_path / "import_error.py"""
-        import_error_file.write_text("import definitely_nonexistent_module_12345")""
-
+        import_error_file.write_text("import definitely_nonexistent_module_12345")
         detector = ErrorDetector(str(tmp_path))
         error = detector.check_import_error(import_error_file)
 
         # Should handle missing module gracefully during spec creation
-        assert error is None  # Spec creation doesn't actually import''
+        assert error is None  # Spec creation doesn't actually import'''
 
     def test_analyze_file_with_syntax_error(self, tmp_path):
         """Test analyzing a file with syntax error"""""
         error_file = tmp_path / "error.py"""
-        error_file.write_text("def test():\n    print('test')\n    if True  # Missing colon")""
-
+        error_file.write_text("def test():\n    print('test')\n    if True  # Missing colon")
         detector = ErrorDetector(str(tmp_path))
         errors = detector.analyze_file(error_file)
 
@@ -100,9 +94,8 @@ class TestErrorDetector:
     def test_analyze_project(self, tmp_path):
         """Test analyzing an entire project"""""
         # Create test files
-        (tmp_path / "good.py").write_text("print('hello')")""
-        (tmp_path / "bad.py").write_text("def test():\n    if True  # Syntax error")""
-
+        (tmp_path / "good.py").write_text("print('hello')")
+        (tmp_path / "bad.py").write_text("def test():\n    if True  # Syntax error")
         detector = ErrorDetector(str(tmp_path))
         errors = detector.analyze_project()
 
@@ -128,7 +121,6 @@ class TestErrorDetector:
 
 class TestCSVLogger:
     """Test cases for CSVLogger"""""
-
     def test_init(self, tmp_path):
         """Test CSVLogger initialization"""""
         csv_path = tmp_path / "test_report.csv"""
@@ -266,7 +258,6 @@ class TestCSVLogger:
 
 class TestWindowsSimulator:
     """Test cases for WindowsSimulator"""""
-
     def test_init(self):
         """Test WindowsSimulator initialization"""""
         simulator = WindowsSimulator()
@@ -277,11 +268,11 @@ class TestWindowsSimulator:
         """Test missing DLL simulation"""""
         # Create a file with DLL-dependent imports
         dll_file = tmp_path / "test_dll.py"""
-        dll_file.write_text("""""")""
+        dll_file.write_text("""""")
 import tkinter
 import cv2
 import pywin32
-""")""
+""")"""
 
         simulator = WindowsSimulator(str(tmp_path))
         errors = simulator.simulate_missing_dll(dll_file)
@@ -294,11 +285,11 @@ import pywin32
     def test_simulate_path_issues(self, tmp_path):
         """Test PATH issues simulation"""""
         path_file = tmp_path / "test_path.py"""
-        path_file.write_text("""""")""
+        path_file.write_text("""""")
 import subprocess
 subprocess.call(['git', 'status'])''
 os.system('python --version')''
-""")""
+""")"""
 
         simulator = WindowsSimulator(str(tmp_path))
         errors = simulator.simulate_path_issues(path_file)
@@ -310,11 +301,11 @@ os.system('python --version')''
     def test_simulate_gui_display_issues(self, tmp_path):
         """Test GUI display issues simulation"""""
         gui_file = tmp_path / "test_gui.py"""
-        gui_file.write_text("""""")""
+        gui_file.write_text("""""")
 import tkinter
 import matplotlib.pyplot as plt
 import PyQt5
-""")""
+""")"""
 
         simulator = WindowsSimulator(str(tmp_path))
         errors = simulator.simulate_gui_display_issues(gui_file)
@@ -327,11 +318,11 @@ import PyQt5
     def test_simulate_network_connectivity_issues(self, tmp_path):
         """Test network connectivity issues simulation"""""
         network_file = tmp_path / "test_network.py"""
-        network_file.write_text("""""")""
+        network_file.write_text("""""")
 import requests
 import urllib.request
 import socket
-""")""
+""")"""
 
         simulator = WindowsSimulator(str(tmp_path))
         errors = simulator.simulate_network_connectivity_issues(network_file)
@@ -347,11 +338,11 @@ import socket
         scripts_dir = tmp_path / "scripts"""
         scripts_dir.mkdir()
         batch_file = scripts_dir / "BSEE.bat"""
-        batch_file.write_text("""""")""
+        batch_file.write_text("""""")
 @echo off
 python -m bsee.main
 pip install -r requirements.txt
-""")""
+""")"""
 
         simulator = WindowsSimulator(str(tmp_path))
         errors = simulator.simulate_bsee_batch_issues()
@@ -379,20 +370,17 @@ pip install -r requirements.txt
 
 class TestIntegration:
     """Integration tests for the complete error detection system"""""
-
     def test_end_to_end_workflow(self, tmp_path):
         """Test complete end-to-end error detection workflow"""""
         # Create test project with various error types
-        (tmp_path / "syntax_error.py").write_text("def test():\n    if True  # Missing colon")""
-        (tmp_path / "import_error.py").write_text("import nonexistent_module_12345")""
-        (tmp_path / "gui_file.py").write_text("import tkinter\nimport matplotlib.pyplot as plt")""
-        (tmp_path / "network_file.py").write_text("import requests\nrequests.get('http://example.com')")""
-
+        (tmp_path / "syntax_error.py").write_text("def test():\n    if True  # Missing colon")
+        (tmp_path / "import_error.py").write_text("import nonexistent_module_12345")
+        (tmp_path / "gui_file.py").write_text("import tkinter\nimport matplotlib.pyplot as plt")
+        (tmp_path / "network_file.py").write_text("import requests\nrequests.get('http://example.com')")
         # Create BSEE.bat
         scripts_dir = tmp_path / "scripts"""
         scripts_dir.mkdir()
-        (scripts_dir / "BSEE.bat").write_text("python main.py\npip install numpy")""
-
+        (scripts_dir / "BSEE.bat").write_text("python main.py\npip install numpy")
         # Run error detection
         detector = ErrorDetector(str(tmp_path))
         errors = detector.analyze_project()
@@ -421,5 +409,5 @@ class TestIntegration:
 
 
 # Pytest configuration for running tests
-if __name__ == "__main__":""
-    pytest.main([__file__, "-v"])""
+if __name__ == "__main__":
+    pytest.main([__file__, "-v"])

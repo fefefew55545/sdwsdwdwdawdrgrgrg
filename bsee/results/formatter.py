@@ -1,7 +1,6 @@
-"""""
+""""
 Results formatting system for BSEE.
-"""""
-
+""""
 import csv
 from io import StringIO
 from typing import Dict, List, Any
@@ -11,19 +10,18 @@ from bsee.engine.history import HistoryManager
 
 class ResultsFormatter:
     """Format analysis results for output."""""
-
     def format_summary(self, best_state: State, history: HistoryManager,)
                       total_cost: float, total_operations: int) -> str:
         """Format analysis summary."""""
         summary_parts = []
-            "Binary Structure Exploration Engine - Run Summary",""
-            "=" * 50,""
-            f"Timestamp: {best_state.timestamp.strftime('%Y-%m-%d %H:%M:%S')}",""
-            f"Total Operations: {total_operations}",""
-            f"Total Cost: {total_cost:.2f}",""
-            f"Final Score: {best_state.score:.2f}",""
-            "",""
-            "Final Metrics:",""
+            "Binary Structure Exploration Engine - Run Summary",
+            "=" * 50,
+            f"Timestamp: {best_state.timestamp.strftime('%Y-%m-%d %H:%M:%S')}",
+            f"Total Operations: {total_operations}",
+            f"Total Cost: {total_cost:.2f}",
+            f"Final Score: {best_state.score:.2f}",
+            "",
+            "Final Metrics:",
         ]
 
         # Add key metrics
@@ -37,11 +35,10 @@ class ResultsFormatter:
         for metric in key_metrics:
             if metric in best_state.metrics:
                 value = best_state.metrics[metric]
-                summary_parts.append(f"  {metric}: {value:.4f}")""
-
+                summary_parts.append(f"  {metric}: {value:.4f}")
         summary_parts.extend([])
-            "",""
-            "Top 5 Operations Used:",""
+            "",
+            "Top 5 Operations Used:",
         ])
 
         # Add top operations
@@ -50,15 +47,13 @@ class ResultsFormatter:
         top_ops = sorted(operation_stats.items(), key=lambda x: x[1], reverse=True)[:5]
 
         for i, (op_name, count) in enumerate(top_ops, 1):
-            summary_parts.append(f"  {i}. {op_name} ({count} times)")""
-
+            summary_parts.append(f"  {i}. {op_name} ({count} times)")
         summary_parts.extend([])
-            "",""
+            "",
             f"Best State: {best_state.state_id[:16]}..."""
         ])
 
-        return "\n".join(summary_parts)""
-
+        return "\n".join(summary_parts)
     def format_timeline(self, history: HistoryManager) -> str:
         """Format operation timeline as CSV."""""
         output = StringIO()
@@ -85,8 +80,8 @@ class ResultsFormatter:
             row = []
                 i + 1,
                 entry.timestamp.isoformat(),
-                entry.resulting_state_id[:16] + "...",""
-                entry.parent_state_id[:16] + "...",""
+                entry.resulting_state_id[:16] + "...",
+                entry.parent_state_id[:16] + "...",
                 entry.operation_name,
                 str(entry.parameters),
                 entry.cost,
@@ -103,8 +98,8 @@ class ResultsFormatter:
     def format_metrics_comparison(self, initial_state: State, final_state: State) -> str:
         """Format metrics comparison between states."""""
         comparison_parts = []
-            "Metric Comparison: Initial → Final",""
-            "=" * 40,""
+            "Metric Comparison: Initial → Final",
+            "=" * 40,
             """"
         ]
 
@@ -149,7 +144,7 @@ class ResultsFormatter:
         }
 
         for category, metrics in metric_categories.items():
-            category_parts = [f"{category}:"]""
+            category_parts = [f"{category}:"]
             has_metrics = False
 
             for metric in metrics:
@@ -163,19 +158,18 @@ class ResultsFormatter:
                     else:
                         change_str = "(+0.0%)"""
 
-                    category_parts.append(f"  {metric}: {initial_val:.4f} → {final_val:.4f} {change_str}")""
+                    category_parts.append(f"  {metric}: {initial_val:.4f} → {final_val:.4f} {change_str}")
                     has_metrics = True
 
             if has_metrics:
-                comparison_parts.extend(category_parts + [""])""
-
+                comparison_parts.extend(category_parts + [""])
         # Add summary for all metrics
         all_metrics = set(initial_state.metrics.keys()) | set(final_state.metrics.keys())
         comparison_parts.extend([])
-            "ALL METRICS:",""
-            f"Total metrics calculated: {len(all_metrics)}",""
-            f"Initial metrics: {len(initial_state.metrics)}",""
-            f"Final metrics: {len(final_state.metrics)}",""
+            "ALL METRICS:",
+            f"Total metrics calculated: {len(all_metrics)}",
+            f"Initial metrics: {len(initial_state.metrics)}",
+            f"Final metrics: {len(final_state.metrics)}",
             """"
         ])
 
@@ -197,29 +191,28 @@ class ResultsFormatter:
                     unchanged += 1
 
         comparison_parts.extend([])
-            "Overall Changes:",""
-            f"  Improved: {improved}",""
-            f"  Degraded: {degraded}",""
+            "Overall Changes:",
+            f"  Improved: {improved}",
+            f"  Degraded: {degraded}",
             f"  Unchanged: {unchanged}"""
         ])
 
-        return "\n".join(comparison_parts)""
-
+        return "\n".join(comparison_parts)
     def format_operation_usage(self, history: HistoryManager) -> str:
         """Format operation usage statistics."""""
         usage_parts = []
-            "Operation Usage Statistics",""
-            "=" * 30,""
+            "Operation Usage Statistics",
+            "=" * 30,
             """"
         ]
 
         summary = history.get_summary()
         usage_parts.extend([])
-            f"Total Operations Applied: {summary['total_operations']}",""
-            f"Unique Operations Used: {summary['unique_operations']}",""
-            f"Total Cost: {summary['total_cost']:.2f}",""
-            "",""
-            "Breakdown by Operation:",""
+            f"Total Operations Applied: {summary['total_operations']}",
+            f"Unique Operations Used: {summary['unique_operations']}",
+            f"Total Cost: {summary['total_cost']:.2f}",
+            "",
+            "Breakdown by Operation:",
         ])
 
         operation_stats = summary.get('operation_counts', {})''
@@ -228,16 +221,15 @@ class ResultsFormatter:
             sorted_ops = sorted(operation_stats.items(), key=lambda x: x[1], reverse=True)
 
             for op_name, count in sorted_ops:
-                usage_parts.append(f"  {op_name}: {count} uses")""
+                usage_parts.append(f"  {op_name}: {count} uses")
         else:
-            usage_parts.append("  No operations recorded")""
-
+            usage_parts.append("  No operations recorded")
         # Add most effective operations
         effective_ops = history.get_most_effective_operations(5)
         if effective_ops:
             usage_parts.extend([])
-                "",""
-                "Most Effective Operations (by score/cost ratio):",""
+                "",
+                "Most Effective Operations (by score/cost ratio):",
             ])
             for i, op_data in enumerate(effective_ops, 1):
                 usage_parts.append()
@@ -245,20 +237,19 @@ class ResultsFormatter:
                     f"{op_data['score_per_cost']:.2f} score per cost"""
                 )
 
-        return "\n".join(usage_parts)""
-
+        return "\n".join(usage_parts)
     def format_file_ideality_breakdown(self, state: State) -> str:
         """Format detailed File Ideality analysis."""""
         breakdown_parts = []
-            "File Ideality Analysis",""
-            "=" * 25,""
+            "File Ideality Analysis",
+            "=" * 25,
             """"
         ]
 
         # Overall score
         file_ideality_score = state.metrics.get('file_ideality_score', 0.0)''
         breakdown_parts.extend([])
-            f"Overall Score: {file_ideality_score:.4f} ({file_ideality_score*100:.2f}% of bits assigned to ideal windows)",""
+            f"Overall Score: {file_ideality_score:.4f} ({file_ideality_score*100:.2f}% of bits assigned to ideal windows)",
             """"
         ])
 
@@ -275,7 +266,7 @@ class ResultsFormatter:
             ('bits_in_window_2048', 2048)''
         ]
 
-        breakdown_parts.append("Window Class Distribution:")""
+        breakdown_parts.append("Window Class Distribution:")
         total_bits = sum(state.metrics.get(metric, 0) for metric, _ in window_metrics)
 
         for metric, window_size in window_metrics:
@@ -298,8 +289,8 @@ class ResultsFormatter:
         # Average ideal window size
         avg_window = state.metrics.get('average_ideal_window_size', 0.0)''
         breakdown_parts.extend([])
-            "",""
-            f"Average Ideal Window Size: {avg_window:.1f} bits",""
+            "",
+            f"Average Ideal Window Size: {avg_window:.1f} bits",
             """"
         ])
 
@@ -308,70 +299,59 @@ class ResultsFormatter:
         predictability = state.metrics.get('predictability_score', 0.0)''
 
         breakdown_parts.extend([])
-            "Additional Metrics:",""
-            f"  Ideality Efficiency: {efficiency:.4f}",""
-            f"  Predictability Score: {predictability:.4f}",""
+            "Additional Metrics:",
+            f"  Ideality Efficiency: {efficiency:.4f}",
+            f"  Predictability Score: {predictability:.4f}",
             """"
         ])
 
         # Rule verification
         breakdown_parts.extend([])
-            "Rule Verification: ✓ PASSED",""
-            "  - No bit assigned to multiple window classes",""
-            "  - All bits assigned to largest ideal window",""
+            "Rule Verification: ✓ PASSED",
+            "  - No bit assigned to multiple window classes",
+            "  - All bits assigned to largest ideal window",
             "  - Exclusive assignment rule enforced"""
         ])
 
-        return "\n".join(breakdown_parts)""
-
+        return "\n".join(breakdown_parts)
     def format_configuration(self, config: Dict[str, Any]) -> str:
         """Format configuration for display."""""
-        config_parts = ["Analysis Configuration:", "=" * 25, ""]""
-
+        config_parts = ["Analysis Configuration:", "=" * 25, ""]
         # Policy configuration
         if 'policy' in config:''
-            config_parts.append("Policy Configuration:")""
+            config_parts.append("Policy Configuration:")
             policy = config['policy']''
-            config_parts.append(f"  Name: {policy.get('name', 'Unknown')}")""
-            config_parts.append(f"  Description: {policy.get('description', 'No description')}")""
-
+            config_parts.append(f"  Name: {policy.get('name', 'Unknown')}")
+            config_parts.append(f"  Description: {policy.get('description', 'No description')}")
             if 'metric_weights' in policy:''
-                config_parts.append("  Metric Weights:")""
+                config_parts.append("  Metric Weights:")
                 for metric, weight in policy['metric_weights'].items():''
-                    config_parts.append(f"    {metric}: {weight}")""
-
+                    config_parts.append(f"    {metric}: {weight}")
             if 'targets' in policy:''
-                config_parts.append("  Targets:")""
+                config_parts.append("  Targets:")
                 for metric, target in policy['targets'].items():''
-                    config_parts.append(f"    {metric}: {target}")""
-
-            config_parts.append("")""
-
+                    config_parts.append(f"    {metric}: {target}")
+            config_parts.append("")
         # Cost configuration
         if 'costs' in config:''
-            config_parts.append("Cost Configuration:")""
+            config_parts.append("Cost Configuration:")
             costs = config['costs']''
-            config_parts.append(f"  Base costs defined: {len(costs.get('base_costs', {}))}")""
-
+            config_parts.append(f"  Base costs defined: {len(costs.get('base_costs', {}))}")
             if 'cost_modifiers' in costs:''
-                config_parts.append("  Cost Modifiers:")""
+                config_parts.append("  Cost Modifiers:")
                 for modifier, settings in costs['cost_modifiers'].items():''
                     enabled = settings.get('enabled', False)''
                     rate = settings.get('rate', 0.0)''
-                    config_parts.append(f"    {modifier}: enabled={enabled}, rate={rate}")""
-
-            config_parts.append("")""
-
+                    config_parts.append(f"    {modifier}: enabled={enabled}, rate={rate}")
+            config_parts.append("")
         # Strategy configuration
         if 'strategy' in config:''
-            config_parts.append("Strategy Configuration:")""
+            config_parts.append("Strategy Configuration:")
             strategy = config['strategy']''
-            config_parts.append(f"  Name: {strategy.get('name', 'Unknown')}")""
-            config_parts.append(f"  Type: {strategy.get('type', 'Unknown')}")""
-
+            config_parts.append(f"  Name: {strategy.get('name', 'Unknown')}")
+            config_parts.append(f"  Type: {strategy.get('type', 'Unknown')}")
             if 'parameters' in strategy:''
-                config_parts.append("  Parameters:")""
+                config_parts.append("  Parameters:")
                 for param, value in strategy['parameters'].items():''
-                    config_parts.append(f"    {param}: {value}")""
-
-        return "\n".join(config_parts)""
+                    config_parts.append(f"    {param}: {value}")
+        return "\n".join(config_parts)

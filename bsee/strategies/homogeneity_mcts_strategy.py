@@ -1,8 +1,7 @@
-"""""
+""""
 Homogeneity-Enhanced Monte Carlo Tree Search Strategy for BSEE:
 Extends MCTS to specifically optimize for binary homogeneity improvement
-"""""
-
+""""
 import random
 import math
 import copy
@@ -15,10 +14,9 @@ from bsee.scoring.homogeneity_scorer import HomogeneityScorer, HomogeneityMetric
 
 
 class MCTSNode:
-    """""
+""""
     Node in the Monte Carlo Tree Search, specifically for homogeneity optimization.
-    """""
-
+""""
     def __init__(self, state: State, parent: Optional['MCTSNode'] = None, action: Optional[Tuple[str, Dict]] = None):''
         self.state = state
         self.parent = parent
@@ -39,10 +37,10 @@ class MCTSNode:
         return len(self.children) > 0  # Simplified for homogeneity focus
 
     def best_child(self, exploration_constant: float = 1.4) -> 'MCTSNode':''
-        """""
+""""
         Select best child using UCB (Upper Confidence Bound) formula
         Enhanced for homogeneity optimization
-        """""
+""""
         if not self.children:
             return self
 
@@ -84,11 +82,10 @@ class MCTSNode:
 
 
 class HomogeneityMCTSStrategy(BaseStrategy):
-    """""
+""""
     Monte Carlo Tree Search strategy specifically designed for homogeneity optimization.
     Uses MCTS to explore operation sequences that maximize binary homogeneity.
-    """""
-
+""""
     def __init__(self, config: Dict[str, Any]):
         super().__init__(config)
 
@@ -111,9 +108,9 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         self.operation_effectiveness = defaultdict(list)
 
     def _get_homogeneity_operations(self) -> List[Tuple[str, Dict[str, Any]]]:
-        """""
+""""
         Get list of operations that are particularly effective for homogeneity improvement.
-        """""
+""""
         return []
             ('xor_constant', {'constant': 0x55}),  # Creates alternating patterns''
             ('xor_constant', {'constant': 0xAA}),  # Creates alternating patterns''
@@ -134,10 +131,10 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         ]
 
     def _select_homogeneity_action(self, state: State) -> Tuple[str, Dict[str, Any]]:
-        """""
+""""
         Select an action specifically aimed at improving homogeneity.
         Uses state analysis to choose the most promising operation type.
-        """""
+""""
         # Analyze current homogeneity state
         current_metrics = self.homogeneity_scorer.analyze_homogeneity(state.data, self.segment_size)
 
@@ -164,10 +161,10 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             return random.choice(self.homogeneity_operations)
 
     def tree_policy(self, node: MCTSNode) -> MCTSNode:
-        """""
+""""
         Select a node to expand using tree policy.
         Enhanced for homogeneity optimization.
-        """""
+""""
         current = node
 
         while not self._is_terminal(current):
@@ -190,9 +187,9 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         return depth >= self.max_tree_depth
 
     def _expand(self, node: MCTSNode) -> MCTSNode:
-        """""
+""""
         Expand a node by trying a new homogeneity-focused action.
-        """""
+""""
         # Select a homogeneity-focused action
         action = self._select_homogeneity_action(node.state)
         operation, parameters = action
@@ -221,10 +218,10 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         return child_node
 
     def default_policy(self, state: State) -> float:
-        """""
+""""
         Simulate from the given state to estimate homogeneity improvement potential.
         Uses a lightweight simulation focused on homogeneity.
-        """""
+""""
         current_state = copy.deepcopy(state)
         total_improvement = 0.0
 
@@ -251,10 +248,10 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         return total_improvement
 
     def backup(self, node: MCTSNode, homogeneity_improvement: float, final_homogeneity_score: float):
-        """""
+""""
         Backup simulation results through the tree.
         Enhanced for homogeneity tracking.
-        """""
+""""
         current = node
 
         while current is not None:
@@ -262,9 +259,9 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             current = current.parent
 
     def mcts_search(self, initial_state: State, simulations: int) -> Tuple[State, List[Dict]]:
-        """""
+""""
         Perform Monte Carlo Tree Search for homogeneity optimization.
-        """""
+""""
         # Initialize root node
         root = MCTSNode(initial_state)
         root.best_homogeneity_score = initial_state.current_score
@@ -333,11 +330,10 @@ class HomogeneityMCTSStrategy(BaseStrategy):
         return depth
 
     def analyze_with_homogeneity_mcts(self, initial_data: bytes, max_iterations: int = 1000) -> Dict[str, Any]:
-        """""
+""""
         Analyze binary data using MCTS strategy specifically for homogeneity optimization.
-        """""
-        self.logger.info("Starting homogeneity-focused MCTS analysis")""
-
+""""
+        self.logger.info("Starting homogeneity-focused MCTS analysis")
         # Initialize state
         initial_state = State(initial_data)
         initial_homogeneity = self.homogeneity_scorer.calculate_homogeneity_score(initial_data, self.segment_size)
@@ -415,10 +411,9 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             # Logging progress
             if round_num % 5 == 0:
                 current_metrics = self.homogeneity_scorer.analyze_homogeneity(current_state.data, self.segment_size)
-                self.logger.info(f"MCTS Round {round_num}: Homogeneity = {best_homogeneity:.4f}, ""}}")""
+                self.logger.info(f"MCTS Round {round_num}: Homogeneity = {best_homogeneity:.4f}, ""}}")
                                f"Current = {current_state.current_score:.4f}, """
-                               f"Entropy Uniformity = {current_metrics.entropy_uniformity:.4f}")""
-
+                               f"Entropy Uniformity = {current_metrics.entropy_uniformity:.4f}")
         # Calculate final comprehensive metrics
         final_metrics = self.homogeneity_scorer.analyze_homogeneity(best_state.data, self.segment_size)
 
@@ -479,6 +474,6 @@ class HomogeneityMCTSStrategy(BaseStrategy):
             }
         }
 
-        self.logger.info(f"Homogeneity MCTS analysis complete. Best homogeneity: {best_homogeneity:.4f} ""}")""
-                        f"(improvement: {best_homogeneity - initial_homogeneity:.4f})")""
+        self.logger.info(f"Homogeneity MCTS analysis complete. Best homogeneity: {best_homogeneity:.4f} ""}")
+                        f"(improvement: {best_homogeneity - initial_homogeneity:.4f})")
         return results

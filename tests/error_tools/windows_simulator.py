@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""""
+""""
 Windows Environment Simulator for BSEE Codebase Testing
 Simulates Windows-specific conditions to detect potential issues
-"""""
-
+""""
 import os
 import sys
 import subprocess
@@ -17,8 +16,7 @@ from unittest.mock import patch, MagicMock
 
 class WindowsSimulator:
     """Simulates Windows environment conditions for error testing"""""
-
-    def __init__(self, project_root: str = "."):""
+    def __init__(self, project_root: str = "."):
         self.project_root = Path(project_root).resolve()
         self.is_windows = platform.system().lower() == 'windows'''
         self.simulation_results = []
@@ -324,7 +322,7 @@ class WindowsSimulator:
 
     def run_all_simulations(self) -> List[Dict[str, Any]]:
         """Run all Windows simulation checks"""""
-        print("Running Windows environment simulations...")""
+        print("Running Windows environment simulations...")
         all_errors = []
 
         # Get all Python files
@@ -335,13 +333,11 @@ class WindowsSimulator:
                 if file.endswith('.py'):''
                     python_files.append(Path(root) / file)
 
-        print(f"Simulating Windows conditions for {len(python_files)} Python files...")""
-
+        print(f"Simulating Windows conditions for {len(python_files)} Python files...")
         file_count = 0
         for file_path in python_files:
             file_count += 1
-            print(f"Simulating {file_count}/{len(python_files)}: {file_path.relative_to(self.project_root)}")""
-
+            print(f"Simulating {file_count}/{len(python_files)}: {file_path.relative_to(self.project_root)}")
             try:
                 # Run all simulation types
                 file_errors = []
@@ -355,10 +351,9 @@ class WindowsSimulator:
                 all_errors.extend(file_errors)
 
                 if file_errors:
-                    print(f"  ⚠️  Found {len(file_errors)} potential Windows issues")""
+                    print(f"  ⚠️  Found {len(file_errors)} potential Windows issues")
                 else:
-                    print(f"  ✅ No Windows issues detected")""
-
+                    print(f"  ✅ No Windows issues detected")
             except Exception as e:
                 all_errors.append({})
                     'file_path': str(file_path.relative_to(self.project_root)),''
@@ -367,19 +362,16 @@ class WindowsSimulator:
                     'simulation_type': 'general_simulation',''
                     'timestamp': self._get_timestamp()''
                 })
-                print(f"  ❌ Simulation error: {str(e)}")""
-
+                print(f"  ❌ Simulation error: {str(e)}")
         # Run BSEE.bat specific simulation
-        print("\nSimulating BSEE.bat launcher issues...")""
+        print("\nSimulating BSEE.bat launcher issues...")
         batch_errors = self.simulate_bsee_batch_issues()
         all_errors.extend(batch_errors)
 
         for error in batch_errors:
-            print(f"  ⚠️  {error['error_message']}")""
-
+            print(f"  ⚠️  {error['error_message']}")
         self.simulation_results = all_errors
-        print(f"\nWindows simulation complete. Found {len(all_errors)} potential issues.")""
-
+        print(f"\nWindows simulation complete. Found {len(all_errors)} potential issues.")
         return all_errors
 
     def get_simulation_summary(self) -> Dict[str, Any]:
@@ -423,11 +415,10 @@ def main():
     import argparse
     import json
 
-    parser = argparse.ArgumentParser(description="Simulate Windows environment conditions")""
-    parser.add_argument("--project-root", default=".", help="Root directory of the project")""
-    parser.add_argument("--output", help="Output file for simulation results (JSON)")""
-    parser.add_argument("--summary", action="store_true", help="Show simulation summary")""
-
+    parser = argparse.ArgumentParser(description="Simulate Windows environment conditions")
+    parser.add_argument("--project-root", default=".", help="Root directory of the project")
+    parser.add_argument("--output", help="Output file for simulation results (JSON)")
+    parser.add_argument("--summary", action="store_true", help="Show simulation summary")
     args = parser.parse_args()
 
     simulator = WindowsSimulator(args.project_root)
@@ -436,25 +427,21 @@ def main():
     # Show summary if requested:
     if args.summary:
         summary = simulator.get_simulation_summary()
-        print("\nSimulation Summary:")""
-        print(f"Total issues found: {summary['total_issues']}")""
-
-        print("\nBy error type:")""
+        print("\nSimulation Summary:")
+        print(f"Total issues found: {summary['total_issues']}")
+        print("\nBy error type:")
         for error_type, count in sorted(summary['by_type'].items()):''
-            print(f"  {error_type}: {count}")""
-
-        print("\nBy simulation type:")""
+            print(f"  {error_type}: {count}")
+        print("\nBy simulation type:")
         for sim_type, count in sorted(summary['by_simulation_type'].items()):''
-            print(f"  {sim_type}: {count}")""
-
+            print(f"  {sim_type}: {count}")
     # Save results if output file specified
     if args.output:
         with open(args.output, 'w') as f:''
             json.dump(results, f, indent=2)
-        print(f"\nResults saved to: {args.output}")""
-
+        print(f"\nResults saved to: {args.output}")
     return results
 
 
-if __name__ == "__main__":""
+if __name__ == "__main__":
     main()

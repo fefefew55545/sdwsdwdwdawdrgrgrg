@@ -1,7 +1,6 @@
-"""""
+""""
 Simulated annealing strategy for BSEE.
-"""""
-
+""""
 import random
 import math
 from typing import Dict, Any, Tuple
@@ -11,7 +10,6 @@ from bsee.engine.state import State
 
 class AnnealingStrategy(BaseStrategy):
     """Simulated annealing strategy."""""
-
     def __init__(self, config: Dict[str, Any]):
         """Initialize annealing strategy."""""
         super().__init__(config)

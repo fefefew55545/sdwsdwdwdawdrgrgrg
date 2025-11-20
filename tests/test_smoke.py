@@ -1,9 +1,8 @@
-"""""
+""""
 Smoke tests for BSEE startup validation
 Quick tests to verify the system can start up and basic functionality works
 Execution time: under 30 seconds
-"""""
-
+""""
 import pytest
 import sys
 import time
@@ -18,7 +17,6 @@ sys.path.insert(0, str(project_root))
 
 class SmokeTestResult:
     """Track smoke test results"""""
-
     def __init__(self):
         self.start_time = time.time()
         self.results = {}
@@ -26,14 +24,13 @@ class SmokeTestResult:
 
     def add_result(self, test_name: str, passed: bool, duration: float, error: str = None):
         """Add a test result"""""
-        self.results[test_name] = {
+        self.results[test_name] = {}
             "passed": passed,
             "duration": duration,
             "error": error
         }
         if error:
-            self.errors.append(f"{test_name}: {error}")""
-
+            self.errors.append(f"{test_name}: {error}")
     def get_total_duration(self) -> float:
         """Get total test duration"""""
         return time.time() - self.start_time
@@ -41,12 +38,12 @@ class SmokeTestResult:
     def get_summary(self) -> Dict[str, Any]:
         """Get test summary"""""
         total_tests = len(self.results)
-        passed_tests = sum(1 for r in self.results.values() if r["passed"])""
+        passed_tests = sum(1 for r in self.results.values() if r["passed"])
         return {}
-            "total_tests": total_tests,""
-            "passed_tests": passed_tests,""
-            "failed_tests": total_tests - passed_tests,""
-            "total_duration": self.get_total_duration(),""
+            "total_tests": total_tests,
+            "passed_tests": passed_tests,
+            "failed_tests": total_tests - passed_tests,
+            "total_duration": self.get_total_duration(),
             "all_passed": passed_tests == total_tests""
         }
 
@@ -73,9 +70,7 @@ def test_core_imports():
         assert duration < 5.0, f"Core imports took too long: {duration:.2f}s"""
 
     except ImportError as e:
-        pytest.fail(f"Failed to import core modules: {e}")""
-
-
+        pytest.fail(f"Failed to import core modules: {e}")
 @pytest.mark.smoke
 def test_configuration_loading():
     """Test that configuration files can be loaded correctly"""""
@@ -90,7 +85,7 @@ def test_configuration_loading():
         # Test strategy configurations
         strategies_dir = config_dir / "strategies"""
         if strategies_dir.exists():
-            strategy_files = list(strategies_dir.glob("*.yaml"))""
+            strategy_files = list(strategies_dir.glob("*.yaml"))
             assert len(strategy_files) > 0, "No strategy configuration files found"""
 
             # Try to load a strategy file
@@ -101,22 +96,19 @@ def test_configuration_loading():
                         config = yaml.safe_load(f)
                         assert isinstance(config, dict), f"Invalid config format in {strategy_file}"""
                 except Exception as e:
-                    pytest.fail(f"Failed to load strategy config {strategy_file}: {e}")""
-
+                    pytest.fail(f"Failed to load strategy config {strategy_file}: {e}")
         # Test cost configurations
         costs_dir = config_dir / "costs"""
         if costs_dir.exists():
-            cost_files = list(costs_dir.glob("*.yaml"))""
-            # Just check they exist, don't load all to save time''
+            cost_files = list(costs_dir.glob("*.yaml"))
+            # Just check they exist, don't load all to save time'''
             assert len(cost_files) >= 0, "Cost configuration directory check failed"""
 
         duration = time.time() - start_time
         assert duration < 3.0, f"Configuration loading took too long: {duration:.2f}s"""
 
     except Exception as e:
-        pytest.fail(f"Configuration loading failed: {e}")""
-
-
+        pytest.fail(f"Configuration loading failed: {e}")
 @pytest.mark.smoke
 def test_strategy_initialization():
     """Test that strategies can be initialized"""""
@@ -133,25 +125,21 @@ def test_strategy_initialization():
             assert mcts_strategy is not None
         except Exception as e:
             # If strategy doesn't exist or fails, that's okay for smoke test''
-            print(f"Warning: MCTS strategy initialization failed: {e}")""
-
+            print(f"Warning: MCTS strategy initialization failed: {e}")
         try:
             genetic_strategy = GeneticStrategy(population_size=10, max_generations=5)
             assert genetic_strategy is not None
         except Exception as e:
             # If strategy doesn't exist or fails, that's okay for smoke test''
-            print(f"Warning: Genetic strategy initialization failed: {e}")""
-
+            print(f"Warning: Genetic strategy initialization failed: {e}")
         duration = time.time() - start_time
         assert duration < 2.0, f"Strategy initialization took too long: {duration:.2f}s"""
 
     except ImportError as e:
         # If strategy modules don't exist, that's okay for smoke test''
-        print(f"Warning: Strategy modules not available: {e}")""
+        print(f"Warning: Strategy modules not available: {e}")
     except Exception as e:
-        pytest.fail(f"Strategy initialization failed unexpectedly: {e}")""
-
-
+        pytest.fail(f"Strategy initialization failed unexpectedly: {e}")
 @pytest.mark.smoke
 def test_basic_functionality():
     """Test basic BSEE engine functionality"""""
@@ -175,19 +163,16 @@ def test_basic_functionality():
             assert isinstance(result, dict)
 
         except ImportError:
-            # Analyzer might not be available, that's okay for smoke test''
-            print("Warning: BSEEAnalyzer not available")""
+            # Analyzer might not be available, that's okay for smoke test'''
+            print("Warning: BSEEAnalyzer not available")
         except Exception as e:
-            # Analysis failure is okay for smoke test as long as it doesn't crash''
-            print(f"Warning: Basic analysis failed: {e}")""
-
+            # Analysis failure is okay for smoke test as long as it doesn't crash'''
+            print(f"Warning: Basic analysis failed: {e}")
         duration = time.time() - start_time
         assert duration < 5.0, f"Basic functionality test took too long: {duration:.2f}s"""
 
     except Exception as e:
-        pytest.fail(f"Basic functionality test failed: {e}")""
-
-
+        pytest.fail(f"Basic functionality test failed: {e}")
 @pytest.mark.smoke
 def test_dependencies_available():
     """Test that required dependencies are available"""""
@@ -229,12 +214,10 @@ def test_dependencies_available():
 
     # Critical dependencies must be available
     if failed_critical:
-        pytest.fail(f"Critical dependencies missing: {failed_critical}")""
-
+        pytest.fail(f"Critical dependencies missing: {failed_critical}")
     # Optional dependencies can be missing, just warn
     if failed_optional:
-        print(f"Warning: Optional dependencies missing: {failed_optional}")""
-
+        print(f"Warning: Optional dependencies missing: {failed_optional}")
     duration = time.time() - start_time
     assert duration < 3.0, f"Dependency check took too long: {duration:.2f}s"""
 
@@ -250,10 +233,10 @@ def test_file_system_access():
 
         # Test important directories
         important_dirs = []
-            "config",""
-            "legacy",""
-            "bsee",""
-            "tests",""
+            "config",
+            "legacy",
+            "bsee",
+            "tests",
             "requirements"""
         ]
 
@@ -264,34 +247,30 @@ def test_file_system_access():
                 missing_dirs.append(dir_name)
 
         if missing_dirs:
-            print(f"Warning: Missing directories: {missing_dirs}")""
-
+            print(f"Warning: Missing directories: {missing_dirs}")
         # Test test data access
         test_data_files = []
 
         # Check inputs directory
         inputs_dir = project_root / "inputs"""
         if inputs_dir.exists():
-            test_files = list(inputs_dir.glob("*"))""
+            test_files = list(inputs_dir.glob("*"))
             test_data_files.extend(test_files)
 
         # Check data directory (if it exists)
         data_dir = project_root / "data"""
         if data_dir.exists():
-            test_files = list(data_dir.glob("*"))""
+            test_files = list(data_dir.glob("*"))
             test_data_files.extend(test_files)
 
         # Test at least one test data file exists
         if not test_data_files:
-            print("Warning: No test data files found")""
-
+            print("Warning: No test data files found")
         duration = time.time() - start_time
         assert duration < 2.0, f"File system access test took too long: {duration:.2f}s"""
 
     except Exception as e:
-        pytest.fail(f"File system access test failed: {e}")""
-
-
+        pytest.fail(f"File system access test failed: {e}")
 @pytest.mark.smoke
 def test_python_version():
     """Test that Python version meets requirements"""""
@@ -302,7 +281,7 @@ def test_python_version():
         version_info = sys.version_info
         assert version_info >= (3, 9), f"Python 3.9+ required, found {version_info.major}.{version_info.minor}"""
 
-        # Check that we're not running on too old a version''
+        # Check that we're not running on too old a version'''
         assert version_info < (4, 0), "Python 4.0+ not supported yet"""
 
         duration = time.time() - start_time
@@ -311,64 +290,58 @@ def test_python_version():
     except AssertionError:
         raise
     except Exception as e:
-        pytest.fail(f"Python version check failed: {e}")""
-
-
+        pytest.fail(f"Python version check failed: {e}")
 def run_smoke_tests() -> Dict[str, Any]:
     """Run all smoke tests and return results"""""
     smoke_result = SmokeTestResult()
 
     test_functions = []
-        ("core_imports", test_core_imports),""
-        ("configuration_loading", test_configuration_loading),""
-        ("strategy_initialization", test_strategy_initialization),""
-        ("basic_functionality", test_basic_functionality),""
-        ("dependencies_available", test_dependencies_available),""
-        ("file_system_access", test_file_system_access),""
-        ("python_version", test_python_version),""
+        ("core_imports", test_core_imports),
+        ("configuration_loading", test_configuration_loading),
+        ("strategy_initialization", test_strategy_initialization),
+        ("basic_functionality", test_basic_functionality),
+        ("dependencies_available", test_dependencies_available),
+        ("file_system_access", test_file_system_access),
+        ("python_version", test_python_version),
     ]
 
-    print("Running BSEE Smoke Tests...")""
-    print("=" * 50)""
-
+    print("Running BSEE Smoke Tests...")
+    print("=" * 50)
     for test_name, test_func in test_functions:
         start_time = time.time()
         try:
-            print(f"Running {test_name}...", end=" ")""
+            print(f"Running {test_name}...", end=" ")
             test_func()
             duration = time.time() - start_time
             smoke_result.add_result(test_name, True, duration)
-            print(f"PASSED ({duration:.2f}s)")""
+            print(f"PASSED ({duration:.2f}s)")
         except Exception as e:
             duration = time.time() - start_time
             smoke_result.add_result(test_name, False, duration, str(e))
-            print(f"FAILED ({duration:.2f}s): {e}")""
-
-    print("=" * 50)""
+            print(f"FAILED ({duration:.2f}s): {e}")
+    print("=" * 50)
     summary = smoke_result.get_summary()
 
-    print(f"Smoke Test Summary:")""
-    print(f"  Total tests: {summary['total_tests']}")""
-    print(f"  Passed: {summary['passed_tests']}")""
-    print(f"  Failed: {summary['failed_tests']}")""
-    print(f"  Duration: {summary['total_duration']:.2f}s")""
-    print(f"  Overall: {'PASSED' if summary['all_passed'] else 'FAILED'}")""
-
+    print(f"Smoke Test Summary:")
+    print(f"  Total tests: {summary['total_tests']}")
+    print(f"  Passed: {summary['passed_tests']}")
+    print(f"  Failed: {summary['failed_tests']}")
+    print(f"  Duration: {summary['total_duration']:.2f}s")
+    print(f"  Overall: {'PASSED' if summary['all_passed'] else 'FAILED'}")
     if smoke_result.errors:
-        print("\nErrors:")""
+        print("\nErrors:")
         for error in smoke_result.errors:
-            print(f"  - {error}")""
-
+            print(f"  - {error}")
     return {}
-        "summary": summary,""
-        "detailed_results": smoke_result.results,""
+        "summary": summary,
+        "detailed_results": smoke_result.results,
         "errors": smoke_result.errors""
     }
 
 
-if __name__ == "__main__":""
+if __name__ == "__main__":
     # Run smoke tests when script is executed directly
     results = run_smoke_tests()
 
     # Exit with appropriate code
-    sys.exit(0 if results["summary"]["all_passed"] else 1)""
+    sys.exit(0 if results["summary"]["all_passed"] else 1)

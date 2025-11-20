@@ -1,8 +1,7 @@
-"""""
+""""
 Multi-Objective Policy for BSEE:
 Policy that balances multiple optimization objectives simultaneously
-"""""
-
+""""
 import numpy as np
 from typing import Dict, List, Any, Optional, Tuple, Union
 import json
@@ -37,11 +36,10 @@ class ObjectiveWeight:
 
 
 class MultiObjectivePolicy:
-    """""
+""""
     Multi-objective policy that optimizes across multiple dimensions
     using Pareto optimality and weighted sum approaches.
-    """""
-
+""""
     def __init__(self, config: Dict[str, Any]):
         self.config = config
 
@@ -590,24 +588,20 @@ class MultiObjectivePolicy:
         for obj_name, obj_data in objective_analysis.items():
             if isinstance(obj_data, dict) and 'trend' in obj_data:''
                 if obj_data['trend'] == 'stable' and obj_data.get('current_weight', 0) > 0.2:''
-                    recommendations.append(f"Consider adjusting weight for {obj_name} - performance is stable")""
-
+                    recommendations.append(f"Consider adjusting weight for {obj_name} - performance is stable")
         # Check exploration rate
         if self.exploration_rate > 0.2:
-            recommendations.append("High exploration rate - consider reducing for more consistent results")""
+            recommendations.append("High exploration rate - consider reducing for more consistent results")
         elif self.exploration_rate < 0.05:
-            recommendations.append("Low exploration rate - consider increasing for better discovery")""
-
+            recommendations.append("Low exploration rate - consider increasing for better discovery")
         # Check Pareto solutions
         if len(self.pareto_solutions) < 5:
-            recommendations.append("Few Pareto solutions found - consider adjusting objectives or constraints")""
-
+            recommendations.append("Few Pareto solutions found - consider adjusting objectives or constraints")
         # Check strategy diversity
         strategy_ranking = self.get_strategy_ranking()
         if len(strategy_ranking) > 1:
             top_score = strategy_ranking[0][1]
             second_score = strategy_ranking[1][1]
             if top_score > second_score * 2:
-                recommendations.append("Strategy dominance detected - consider balancing strategy selection")""
-
+                recommendations.append("Strategy dominance detected - consider balancing strategy selection")
         return recommendations

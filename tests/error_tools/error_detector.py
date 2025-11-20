@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
-"""""
+""""
 Error Detection Tool for BSEE Codebase
 Dry-runs each Python file to detect import, syntax, and runtime errors
-"""""
-
+""""
 import os
 import sys
 import ast
@@ -18,7 +17,6 @@ from datetime import datetime
 
 class ErrorDetector:
     """Detects errors in Python files through dry-run analysis"""""
-
     def __init__(self, project_root: str = "."):
         self.project_root = Path(project_root).resolve()
         self.errors = []
@@ -53,7 +51,7 @@ class ErrorDetector:
             return {}
                 'file_path': str(file_path.relative_to(self.project_root)),''
                 'error_type': 'SyntaxError',''
-                'error_message': f"Line {e.lineno}: {e.msg}",""
+                'error_message': f"Line {e.lineno}: {e.msg}",
                 'full_traceback': traceback.format_exc(),''
                 'timestamp': datetime.now().isoformat()''
             }
@@ -61,7 +59,7 @@ class ErrorDetector:
             return {}
                 'file_path': str(file_path.relative_to(self.project_root)),''
                 'error_type': 'UnicodeError',''
-                'error_message': f"Encoding error: {str(e)}",""
+                'error_message': f"Encoding error: {str(e)}",
                 'full_traceback': traceback.format_exc(),''
                 'timestamp': datetime.now().isoformat()''
             }
@@ -86,7 +84,7 @@ class ErrorDetector:
             # Try to load the module without executing
             module = importlib.util.module_from_spec(spec)
 
-            # Don't execute the module yet, just check if spec can be created''
+            # Don't execute the module yet, just check if spec can be created'''
             return None
 
         except Exception as e:
@@ -105,15 +103,14 @@ class ErrorDetector:
 
         try:
             # Create a temporary test script that imports the target file
-            test_script = f'''''
+            test_script = f''''''
 import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.abspath("{file_path}")))""
-
+sys.path.insert(0, os.path.dirname(os.path.abspath("{file_path}")))
 try:
     # Try to import the module
     import importlib.util
-    spec = importlib.util.spec_from_file_location("test_module", "{file_path}")""
+    spec = importlib.util.spec_from_file_location("test_module", "{file_path}")
     if spec and spec.loader:
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
@@ -130,15 +127,15 @@ try:
                 # Expected for --help
                 pass
             except Exception as e:
-                raise type(e)(f"Main function error: {{e}}")""
+                raise type(e)(f"Main function error: {{e}}")
             finally:
                 sys.argv = original_argv
 
 except ImportError as e:
-    raise ImportError(f"Import error: {{e}}")""
+    raise ImportError(f"Import error: {{e}}")
 except Exception as e:
-    raise Exception(f"Runtime error: {{e}}")""
-'''''
+    raise Exception(f"Runtime error: {{e}}")
+''''''
 
             # Write test script to temporary file
             with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False) as temp_file:''
@@ -200,7 +197,7 @@ except Exception as e:
             runtime_errors.append({})
                 'file_path': str(file_path.relative_to(self.project_root)),''
                 'error_type': 'TestError',''
-                'error_message': f"Error testing file: {str(e)}",""
+                'error_message': f"Error testing file: {str(e)}",
                 'full_traceback': traceback.format_exc(),''
                 'timestamp': datetime.now().isoformat()''
             })
@@ -215,7 +212,7 @@ except Exception as e:
         syntax_error = self.check_syntax_error(file_path)
         if syntax_error:
             file_errors.append(syntax_error)
-            return file_errors  # Don't check other errors if syntax is broken''
+            return file_errors  # Don't check other errors if syntax is broken'''
 
         # Check import errors
         import_error = self.check_import_error(file_path)
@@ -230,40 +227,35 @@ except Exception as e:
 
     def analyze_project(self) -> List[Dict[str, Any]]:
         """Analyze all Python files in the project"""""
-        print(f"Analyzing project at: {self.project_root}")""
-
+        print(f"Analyzing project at: {self.project_root}")
         # Find all Python files
         python_files = self.find_python_files()
-        print(f"Found {len(python_files)} Python files")""
-
+        print(f"Found {len(python_files)} Python files")
         all_errors = []
         analyzed_count = 0
 
         for file_path in python_files:
             analyzed_count += 1
-            print(f"Analyzing {analyzed_count}/{len(python_files)}: {file_path.relative_to(self.project_root)}")""
-
+            print(f"Analyzing {analyzed_count}/{len(python_files)}: {file_path.relative_to(self.project_root)}")
             try:
                 file_errors = self.analyze_file(file_path)
                 if file_errors:
                     all_errors.extend(file_errors)
-                    print(f"  ❌ Found {len(file_errors)} error(s)")""
+                    print(f"  ❌ Found {len(file_errors)} error(s)")
                 else:
-                    print(f"  ✅ No errors found")""
+                    print(f"  ✅ No errors found")
             except Exception as e:
                 # Error in the analysis itself
                 all_errors.append({})
                     'file_path': str(file_path.relative_to(self.project_root)),''
                     'error_type': 'AnalysisError',''
-                    'error_message': f"Error during analysis: {str(e)}",""
+                    'error_message': f"Error during analysis: {str(e)}",
                     'full_traceback': traceback.format_exc(),''
                     'timestamp': datetime.now().isoformat()''
                 })
-                print(f"  ❌ Analysis error: {str(e)}")""
-
+                print(f"  ❌ Analysis error: {str(e)}")
         self.errors = all_errors
-        print(f"\nAnalysis complete. Found {len(all_errors)} total errors across {len(python_files)} files.")""
-
+        print(f"\nAnalysis complete. Found {len(all_errors)} total errors across {len(python_files)} files.")
         return all_errors
 
     def get_error_summary(self) -> Dict[str, int]:
@@ -283,10 +275,9 @@ def main():
     """Main function for standalone testing"""""
     import argparse
 
-    parser = argparse.ArgumentParser(description="Detect errors in Python files")""
-    parser.add_argument("--project-root", default=".", help="Root directory of the project")""
-    parser.add_argument("--output", help="Output file for error results (JSON)")""
-
+    parser = argparse.ArgumentParser(description="Detect errors in Python files")
+    parser.add_argument("--project-root", default=".", help="Root directory of the project")
+    parser.add_argument("--output", help="Output file for error results (JSON)")
     args = parser.parse_args()
 
     detector = ErrorDetector(args.project_root)
@@ -294,19 +285,17 @@ def main():
 
     # Print summary
     summary = detector.get_error_summary()
-    print("\nError Summary:")""
+    print("\nError Summary:")
     for error_type, count in sorted(summary.items()):
-        print(f"  {error_type}: {count}")""
-
+        print(f"  {error_type}: {count}")
     # Save results if output file specified
     if args.output:
         import json
         with open(args.output, 'w') as f:''
             json.dump(errors, f, indent=2)
-        print(f"\nResults saved to: {args.output}")""
-
+        print(f"\nResults saved to: {args.output}")
     return errors
 
 
-if __name__ == "__main__":""
+if __name__ == "__main__":
     main()

@@ -1,14 +1,12 @@
-"""""
+""""
 State scoring system for BSEE.
-"""""
-
+""""
 from typing import Dict, Any
 from bsee.engine.state import State
 
 
 class Scorer:
     """Score states based on metrics and policy."""""
-
     def __init__(self, policy_config: Dict[str, Any]):
         """Initialize scorer with policy configuration."""""
         self.policy_config = policy_config
