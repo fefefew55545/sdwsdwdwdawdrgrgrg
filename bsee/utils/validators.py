@@ -47,9 +47,9 @@ def _validate_strategy_parameters(parameters: Dict[str, Any]) -> None:
     if not isinstance(parameters, dict):
         raise ValueError("Strategy parameters must be a dictionary")
     # Common parameter validations
-    numeric_params = ['restart_threshold', 'random_restart_prob', 'lookahead_depth','''''']''
-                     'beam_width', 'temperature', 'exploration_constant',''
-                     'population_size', 'mutation_rate', 'crossover_rate']''
+    numeric_params = ['restart_threshold', 'random_restart_prob', 'lookahead_depth',
+                     'beam_width', 'temperature', 'exploration_constant',
+                     'population_size', 'mutation_rate', 'crossover_rate']
 
     for param_name in numeric_params:
         if param_name in parameters:
